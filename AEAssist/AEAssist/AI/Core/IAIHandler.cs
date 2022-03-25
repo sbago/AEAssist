@@ -5,8 +5,8 @@ namespace AEAssist.AI
 {
     public interface IAIHandler
     {
-        bool Check(LocalPlayer self);
+        bool Check(SpellData lastSpell);
 
-        void Run(LocalPlayer self);
+        Task<SpellData> Run();
     }
 }

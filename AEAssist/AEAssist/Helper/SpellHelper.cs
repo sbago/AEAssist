@@ -1,0 +1,94 @@
+﻿using System;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using Buddy.Coroutines;
+using ff14bot;
+using ff14bot.Enums;
+using ff14bot.Helpers;
+using ff14bot.Managers;
+using ff14bot.Objects;
+
+namespace AEAssist.Helper
+{
+    public static class SpellHelper
+    {
+        public static async Task<bool> CastGCD(SpellData spell, GameObject target)
+        {
+            if (spell.SpellType == SpellType.Ability)
+            {
+                LogHelper.Error($"{spell.Name} is not a GCD");
+                return false;
+            }
+            
+            if (!ActionManager.HasSpell(spell.Id))
+                return false;
+
+            if (!GameSettingsManager.FaceTargetOnAction)
+                GameSettingsManager.FaceTargetOnAction = true;
+
+            if (spell.GroundTarget)
+            {
+                if (!ActionManager.CanCastLocation(spell.Id, target.Location))
+                    return false;
+                if (!ActionManager.DoActionLocation(spell.Id, target.Location))
+                    return false;
+            }
+            else
+            {
+                if (!ActionManager.CanCast(spell.Id, target))
+                    return false;
+                if (!ActionManager.DoAction(spell, target))
+                    return false;
+            }
+            
+            // 等待cast 结束
+            if (spell.AdjustedCastTime != TimeSpan.Zero)
+            {
+                if (!await Coroutine.Wait(spell.BaseCastTime+TimeSpan.FromMilliseconds(500), () => Core.Me.IsCasting))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+
+        public static async Task<bool> CastAbility(SpellData spell, GameObject target)
+        {
+            if (spell.SpellType != SpellType.Ability)
+            {
+                LogHelper.Error($"{spell.Name} is not a Ability");
+                return false;
+            }
+
+            LogHelper.Debug("准备使用能力 : " + spell.Name);
+            
+            if (!ActionManager.HasSpell(spell.Id))
+                return false;
+            
+            if (!GameSettingsManager.FaceTargetOnAction)
+                GameSettingsManager.FaceTargetOnAction = true;
+            
+            
+            if (!ActionManager.CanCast(spell.Id, target))
+                return false;
+            if (!ActionManager.DoAction(spell, target))
+                return false;
+
+            await Coroutine.Wait((int)spell.AdjustedCastTime.TotalMilliseconds + ConstValue.AnimationLockMs, () => false);
+            return true;
+        }
+
+        public static bool IsReady(this SpellData spellData)
+        {
+           // LogHelper.Debug($"检测技能 {spellData.Name} {spellData.LocalizedName} AdCoolDown {spellData.AdjustedCooldown.TotalMilliseconds}");
+            if (Core.Me.ClassLevel < spellData.LevelAcquired
+                || !ActionManager.HasSpell(spellData.Id)
+                || spellData.Cooldown.TotalMilliseconds > 0)
+                return false;
+            return true;
+        }
+
+    }
+}

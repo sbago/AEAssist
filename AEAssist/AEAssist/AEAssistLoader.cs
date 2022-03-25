@@ -15,7 +15,7 @@ using TreeSharp;
 
 using Core = ff14bot.Core;
 
-namespace AEAssistLoader
+namespace AEAssist
 {
     public class AEAssistLoader : CombatRoutine
     {
@@ -45,19 +45,19 @@ namespace AEAssistLoader
         public override void Initialize()
         {
             base.Initialize();
-            AEAssist.AECore.Instance.Initialize();
+            AEAssist.Entry.Instance.Initialize();
         }
 
         public override void OnButtonPress()
         {
             base.OnButtonPress();
-            AEAssist.AECore.Instance.OnButtonPress();
+            AEAssist.Entry.Instance.OnButtonPress();
         }
 
         public override void Pulse()
         {
             base.Pulse();
-            AEAssist.AECore.Instance.Pulse();
+            AEAssist.Entry.Instance.Pulse();
         }
 
         public override void ShutDown()

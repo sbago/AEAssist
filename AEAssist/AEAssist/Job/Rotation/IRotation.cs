@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace AEAssist.Job
+namespace AEAssist
 {
     public interface IRotation
     {

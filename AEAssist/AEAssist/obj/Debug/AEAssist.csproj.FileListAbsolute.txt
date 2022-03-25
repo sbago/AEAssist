@@ -11,3 +11,13 @@ E:\Work\AEAssist\AEAssist\obj\Debug\AEAssist.dll
 E:\Work\bin\Debug\AEAssist.dll.config
 E:\Work\bin\Debug\AEAssist.dll
 E:\Work\bin\Debug\AEAssist.pdb
+D:\Github\AEAssist\bin\Debug\AEAssist.dll.config
+D:\Github\AEAssist\bin\Debug\AEAssist.dll
+D:\Github\AEAssist\bin\Debug\AEAssist.pdb
+D:\Github\AEAssist\AEAssist\AEAssist\obj\Debug\AEAssist.csproj.AssemblyReference.cache
+D:\Github\AEAssist\AEAssist\AEAssist\obj\Debug\AEAssist.GUI.resources
+D:\Github\AEAssist\AEAssist\AEAssist\obj\Debug\AEAssist.Properties.Resources.resources
+D:\Github\AEAssist\AEAssist\AEAssist\obj\Debug\AEAssist.csproj.GenerateResource.cache
+D:\Github\AEAssist\AEAssist\AEAssist\obj\Debug\AEAssist.csproj.CoreCompileInputs.cache
+D:\Github\AEAssist\AEAssist\AEAssist\obj\Debug\AEAssist.dll
+D:\Github\AEAssist\AEAssist\AEAssist\obj\Debug\AEAssist.pdb
