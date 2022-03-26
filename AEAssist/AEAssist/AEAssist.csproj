@@ -62,7 +62,10 @@
         <Compile Include="AI\Bard\Ability\BardAbility_Bloodletter.cs" />
         <Compile Include="AI\Bard\Ability\BardAbility_Buffs.cs" />
         <Compile Include="AI\Bard\Ability\BardAbility_EmpyrealArrow.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_MaxChargeBloodletter.cs" />
         <Compile Include="AI\Bard\Ability\BardAbility_PitchPerfect.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_RagingStrikes.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_Sidewinder.cs" />
         <Compile Include="AI\Bard\Ability\BardAbility_Songs.cs" />
         <Compile Include="AI\Bard\GCD\BardGCD_ApexArrow.cs" />
         <Compile Include="AI\Bard\GCD\BardGCD_Barrage_RefulgentArrow.cs" />

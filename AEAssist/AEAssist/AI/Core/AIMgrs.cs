@@ -23,9 +23,12 @@ namespace AEAssist.AI
         {
             new BardAbility_PitchPerfect(),
             new BardAbility_Songs(),
+            new BardAbility_RagingStrikes(),
+            new BardAbility_EmpyrealArrow(),
+            new BardAbility_MaxChargeBloodletter(),
             new BardAbility_Buffs(),
             new BardAbility_Barrage(),
-            new BardAbility_EmpyrealArrow(),
+            new BardAbility_Sidewinder(),
             new BardAbility_Bloodletter()
         };
 

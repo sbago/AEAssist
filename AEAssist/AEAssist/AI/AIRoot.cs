@@ -8,6 +8,8 @@ namespace AEAssist.AI
 {
     public class AIRoot
     {
+        public static readonly AIRoot Instance = new AIRoot();
+        
         private long _lastCastTime;
         private SpellData _lastGCDSpell;
         private SpellData _lastAbilitySpell;
@@ -41,15 +43,25 @@ namespace AEAssist.AI
                 var delta = timeNow - _lastCastTime;
                 var coolDown = _lastGCDSpell.AdjustedCooldown.TotalMilliseconds;
                 var coolDownForQueue = coolDown - GeneralSettings.Instance.ActionQueueMs;
+                var halfCoolDown = coolDown / GeneralSettings.Instance.MaxAbilityTimsInGCD;
                 if (delta < coolDownForQueue)
                 {
                     canUseGCD = false;
                 }
-                
-                if (_maxAbilityTimes>0 && coolDown - delta > ConstValue.AnimationLockMs + GeneralSettings.Instance.UserLatencyOffset)
+
+                var needDura = ConstValue.AnimationLockMs + GeneralSettings.Instance.UserLatencyOffset;
+                if (coolDown - delta > needDura)
                 {
-                   // LogHelper.Info($"delta {delta} coolDown {coolDown} ret: {coolDown - delta}");
-                    canUseAbility = true;
+                    // 可以使用前半段GCD的能力技
+                    if (_maxAbilityTimes == GeneralSettings.Instance.MaxAbilityTimsInGCD && delta < halfCoolDown)
+                    {
+                        canUseAbility = true;
+                    }
+                    else if (delta >= halfCoolDown)
+                    {
+                        // 可以使用后半段GCD的能力技
+                        canUseAbility = true;
+                    }
                 }
 
             }
@@ -80,11 +92,28 @@ namespace AEAssist.AI
             return false;
         }
 
-        public void CheckAbility()
+        // 当前是否是GCD后半段
+        public bool Is2ndAbilityTime()
         {
-            // 逻辑清单:
-            // 1. 检测
+            if (_lastGCDSpell == null)
+                return false;
+            if (_maxAbilityTimes == 1)
+                return true;
+            if (GeneralSettings.Instance.MaxAbilityTimsInGCD != 2)
+                return true;
+            var timeNow = TimeHelper.Now();
+            var delta = timeNow - _lastCastTime;
+            var coolDown = _lastGCDSpell.AdjustedCooldown.TotalMilliseconds;
+            if (delta > coolDown / GeneralSettings.Instance.MaxAbilityTimsInGCD)
+                return true;
+            return false;
         }
 
+        public double GetGCDDuration()
+        {
+            if (_lastGCDSpell == null)
+                return 2500;
+            return _lastGCDSpell.AdjustedCooldown.TotalMilliseconds;
+        }
     }
 }

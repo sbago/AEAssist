@@ -13,12 +13,14 @@ namespace AEAssist.AI
             var tar = Core.Me.CurrentTarget as Character;
             if (TTKHelper.IsTargetTTK(tar))
                 return false;
+            if (!BardSpellEx.CheckCanUseBuffs())
+                return false;
             // if (!tar.IsBoss())
             // {
             //     return false;
             // }
-            if (BardSpellEx.IsBuff(lastSpell))
-                return false;
+            // if (BardSpellEx.IsBuff(lastSpell))
+            //     return false;
             var buffs = BardSpellEx.GetBuffs();
             if (buffs == null)
                 return false;

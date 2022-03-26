@@ -57,7 +57,15 @@ namespace AEAssist.AI
                 return null;
             var ret = await SpellHelper.CastGCD(spell,target);
             if (ret)
+            {
+                if (spell == Spells.IronJaws)
+                {
+                    BardSpellEx.RecordIronJaw();
+                }
+
                 return spell;
+            }
+
             return null;
         }
     }

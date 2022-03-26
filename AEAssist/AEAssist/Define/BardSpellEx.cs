@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using AEAssist.AI;
 using AEAssist.Helper;
 using ff14bot;
+using ff14bot.Helpers;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
@@ -110,22 +112,35 @@ namespace AEAssist.Define
 
             return target.ContainMyAura((uint) id, 0);
         }
-        
+
         public static bool IsTargetNeedIronJaws(Character target)
         {
             if (Core.Me.ClassLevel < Spells.IronJaws.LevelAcquired)
                 return false;
-            
+
             var ve_id = GetVenomousBiteAura();
             if (ve_id == 0)
                 return false;
             var wind_id = GetWindBiteAura();
             if (wind_id == 0)
-                return false; 
-            
+                return false;
 
-            return !target.ContainMyAura((uint) ve_id, ConstValue.AuraTick) 
-                   || !target.ContainAura((uint) wind_id,ConstValue.AuraTick);
+            var buffCountInEnd = HasBuffsCountInEnd();
+            LogHelper.Info("当前快要结束的Buff数量 : " + buffCountInEnd);
+            if (buffCountInEnd >= 1 && !_lastIronJawWithBuff)
+            {
+                return true;
+            }
+            
+            return !target.ContainMyAura((uint) ve_id, ConstValue.AuraTick)
+                   || !target.ContainAura((uint) wind_id, ConstValue.AuraTick);
+        }
+
+        private static bool _lastIronJawWithBuff;
+
+        public static void RecordIronJaw()
+        {
+            _lastIronJawWithBuff = HasBuffsCountInEnd() >= 1;
         }
 
         public static SpellData GetRefulgentArrow()
@@ -180,10 +195,10 @@ namespace AEAssist.Define
                 return Spells.RadiantFinale;
             }
             
-            if (Spells.RagingStrikes.IsReady())
-            {
-                return Spells.RagingStrikes;
-            }
+            // if (Spells.RagingStrikes.IsReady())
+            // {
+            //     return Spells.RagingStrikes;
+            // }
 
             return null;
         }
@@ -208,12 +223,47 @@ namespace AEAssist.Define
             return count;
         }
         
+        public static int HasBuffsCountInEnd(int leftMs = 4000)
+        {
+            int count = 0;
+            if (Core.Me.ContainsMyInEndAura(AurasDefine.BattleVoice,leftMs))
+                count++;
+            if (Core.Me.ContainsMyInEndAura(AurasDefine.RagingStrikes,leftMs))
+                count++;
+            if (Core.Me.ContainsMyInEndAura(AurasDefine.RadiantFinale,leftMs))
+                count++;
+            return count;
+        }
+        
         public static double TimeUntilNextPossibleDoTTick()
         {
             if (ActionResourceManager.Bard.ActiveSong != ActionResourceManager.Bard.BardSong.None)
                 return ActionResourceManager.Bard.Timer.TotalMilliseconds % 3000;
 
             return 0;
+        }
+
+        private static long _lastCastRagingStrikesTime;
+        
+
+        public static void RecordUsingRagingStrikesTime()
+        {
+            _lastCastRagingStrikesTime = TimeHelper.Now();
+        }
+
+        public static bool CheckCanUseBuffs(int delayGCD = 2)
+        {
+            if (!Core.Me.HasMyAura(AurasDefine.RagingStrikes))
+            {
+                return false;
+            }
+
+            if (TimeHelper.Now() - _lastCastRagingStrikesTime >= AIRoot.Instance.GetGCDDuration() * delayGCD)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

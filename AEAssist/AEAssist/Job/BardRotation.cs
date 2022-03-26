@@ -10,7 +10,7 @@ namespace AEAssist
     public class BardRotation : IRotation
     {
 
-        private AIRoot AiRoot = new AIRoot();
+        private AIRoot AiRoot = AIRoot.Instance;
         public Task<bool> Rest()
         {
             var needRest = Core.Me.CurrentHealthPercent < BardSettings.Instance.RestHealthPercent;
