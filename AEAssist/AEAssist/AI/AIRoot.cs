@@ -14,6 +14,9 @@ namespace AEAssist.AI
         private SpellData _lastGCDSpell;
         private SpellData _lastAbilitySpell;
         private int _maxAbilityTimes ;
+        
+        public bool lastIronJawWithBuff;
+        public long lastCastRagingStrikesTime;
 
         private bool _stop;
         public bool Stop
@@ -40,6 +43,14 @@ namespace AEAssist.AI
             _maxAbilityTimes = GeneralSettings.Instance.MaxAbilityTimsInGCD;
         }
 
+        void Clear()
+        {
+            _lastGCDSpell = null;
+            _lastAbilitySpell = null;
+            _maxAbilityTimes = GeneralSettings.Instance.MaxAbilityTimsInGCD;
+            lastCastRagingStrikesTime = 0;
+            lastIronJawWithBuff = false;
+        }
 
         public async Task<bool> Update()
         {
@@ -48,9 +59,7 @@ namespace AEAssist.AI
 
             if (!Core.Me.InCombat)
             {
-                _lastGCDSpell = null;
-                _lastAbilitySpell = null;
-                _maxAbilityTimes = GeneralSettings.Instance.MaxAbilityTimsInGCD;
+                Clear();
             }
 
             if (Stop)

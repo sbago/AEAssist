@@ -68,7 +68,7 @@
         <Compile Include="AI\Bard\Ability\BardAbility_Sidewinder.cs" />
         <Compile Include="AI\Bard\Ability\BardAbility_Songs.cs" />
         <Compile Include="AI\Bard\Ability\BardAbility_UsePotion.cs" />
-        <Compile Include="AI\Bard\BardSpellEx.cs" />
+        <Compile Include="AI\Bard\BardSpellHelper.cs" />
         <Compile Include="AI\Bard\GCD\BardGCD_ApexArrow.cs" />
         <Compile Include="AI\Bard\GCD\BardGCD_Barrage_RefulgentArrow.cs" />
         <Compile Include="AI\Bard\GCD\BardGCD_BlastArrow.cs" />

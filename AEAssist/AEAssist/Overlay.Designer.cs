@@ -31,6 +31,7 @@ namespace AEAssist
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.CountDown5s = new System.Windows.Forms.Button();
             this.Battle = new System.Windows.Forms.Button();
             this.BattleStop = new System.Windows.Forms.CheckBox();
@@ -39,6 +40,7 @@ namespace AEAssist
             this.panel1 = new System.Windows.Forms.Panel();
             this.BuffControlCheckBox = new System.Windows.Forms.CheckBox();
             this.PotionControl = new System.Windows.Forms.CheckBox();
+            this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,8 +116,9 @@ namespace AEAssist
             this.BuffControlCheckBox.Name = "BuffControlCheckBox";
             this.BuffControlCheckBox.Size = new System.Drawing.Size(104, 28);
             this.BuffControlCheckBox.TabIndex = 7;
-            this.BuffControlCheckBox.Text = "关闭Buff(F11)";
+            this.BuffControlCheckBox.Text = "关闭爆发(F11)";
             this.BuffControlCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ToolTip1.SetToolTip(this.BuffControlCheckBox, "旅神,纷乱,战斗之声,90大招,猛者");
             this.BuffControlCheckBox.UseVisualStyleBackColor = false;
             this.BuffControlCheckBox.CheckedChanged += new System.EventHandler(this.BuffControlCheckBox_CheckedChanged);
             // 
@@ -128,8 +131,13 @@ namespace AEAssist
             this.PotionControl.TabIndex = 9;
             this.PotionControl.Text = "爆发药(F12)";
             this.PotionControl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ToolTip1.SetToolTip(this.PotionControl, "可以在职业设置对应的界面查看有效爆发药数量");
             this.PotionControl.UseVisualStyleBackColor = false;
             this.PotionControl.CheckedChanged += new System.EventHandler(this.PotionControl_CheckedChanged);
+            // 
+            // ToolTip1
+            // 
+            this.ToolTip1.AutomaticDelay = 100;
             // 
             // Overlay
             // 
@@ -161,6 +169,8 @@ namespace AEAssist
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.ToolTip ToolTip1;
 
         private System.Windows.Forms.CheckBox BattleStop;
 

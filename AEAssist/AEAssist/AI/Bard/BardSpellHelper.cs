@@ -127,7 +127,7 @@ namespace AEAssist.Define
 
             var buffCountInEnd = HasBuffsCountInEnd();
             LogHelper.Info("当前快要结束的Buff数量 : " + buffCountInEnd);
-            if (buffCountInEnd >= 1 && !_lastIronJawWithBuff)
+            if (buffCountInEnd >= 1 && !AIRoot.Instance.lastIronJawWithBuff)
             {
                 return true;
             }
@@ -136,11 +136,9 @@ namespace AEAssist.Define
                    || !target.ContainAura((uint) wind_id, ConstValue.AuraTick);
         }
 
-        private static bool _lastIronJawWithBuff;
-
         public static void RecordIronJaw()
         {
-            _lastIronJawWithBuff = HasBuffsCountInEnd() >= 1;
+            AIRoot.Instance.lastIronJawWithBuff = HasBuffsCountInEnd() >= 1;
         }
 
         public static SpellData GetRefulgentArrow()
@@ -255,12 +253,10 @@ namespace AEAssist.Define
             return 0;
         }
 
-        private static long _lastCastRagingStrikesTime;
-        
 
         public static void RecordUsingRagingStrikesTime()
         {
-            _lastCastRagingStrikesTime = TimeHelper.Now();
+            AIRoot.Instance.lastCastRagingStrikesTime = TimeHelper.Now();
         }
 
         public static bool CheckCanUseBuffs(int delayGCD = 2)
@@ -270,7 +266,7 @@ namespace AEAssist.Define
                 return false;
             }
 
-            if (TimeHelper.Now() - _lastCastRagingStrikesTime >= AIRoot.Instance.GetGCDDuration() * delayGCD)
+            if (TimeHelper.Now() - AIRoot.Instance.lastCastRagingStrikesTime >= AIRoot.Instance.GetGCDDuration() * delayGCD)
             {
                 return true;
             }

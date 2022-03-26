@@ -54,25 +54,25 @@ namespace AEAssist.AI
             switch (currSong)
             {
                 case ActionResourceManager.Bard.BardSong.None:
-                    spell = Spells.TheWanderersMinuet;
+                    spell = GetSongsByOrder(null);
                     break;
                 case ActionResourceManager.Bard.BardSong.MagesBallad:
                     if (remainTime <= BardSettings.Instance.Songs_MB_TimeLeftForSwitch)
                     {
-                        spell = Spells.ArmysPaeon;
+                        spell = GetSongsByOrder(Spells.MagesBallad);
                     }
                     break;
                 case ActionResourceManager.Bard.BardSong.ArmysPaeon:
                     if (remainTime <= BardSettings.Instance.Songs_AP_TimeLeftForSwitch)
                     {
-                        spell = Spells.TheWanderersMinuet;
+                        spell = GetSongsByOrder(Spells.ArmysPaeon);
                     }
 
                     break;
                 case ActionResourceManager.Bard.BardSong.WanderersMinuet:
                     if (remainTime <= BardSettings.Instance.Songs_WM_TimeLeftForSwitch)
                     {
-                        spell = Spells.MagesBallad;
+                        spell = GetSongsByOrder(Spells.TheWanderersMinuet);
                         if (Spells.PitchPerfect.IsReady())
                         {
                             await SpellHelper.CastAbility(Spells.PitchPerfect, Core.Me.CurrentTarget, 100);
@@ -87,6 +87,27 @@ namespace AEAssist.AI
             if (ret)
                 return spell;
             return null;
+        }
+
+        private SpellData GetSongsByOrder(SpellData passSpell)
+        {
+            SpellData spell = null;
+            if (passSpell != Spells.TheWanderersMinuet && !AIRoot.Instance.CloseBuff && Spells.TheWanderersMinuet.IsReady())
+            {
+                spell = Spells.TheWanderersMinuet;
+                return spell;
+            }
+            if (passSpell != Spells.MagesBallad &&Spells.MagesBallad.IsReady())
+            {
+                spell = Spells.MagesBallad;
+                return spell;
+            }
+            if (passSpell != Spells.ArmysPaeon && Spells.ArmysPaeon.IsReady())
+            {
+                spell = Spells.ArmysPaeon;
+                return spell;
+            }
+            return spell;
         }
     }
 }

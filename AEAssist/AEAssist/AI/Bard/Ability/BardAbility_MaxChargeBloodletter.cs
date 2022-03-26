@@ -15,7 +15,7 @@ namespace AEAssist.AI
                 return false;
             if (!Spells.Bloodletter.IsReady())
                 return false;
-            if (Math.Abs(Spells.Bloodletter.Charges - Spells.Bloodletter.MaxCharges) < 0.1f)
+            if (Spells.Bloodletter.Charges >= Spells.Bloodletter.MaxCharges)
                 return true;
             return false;
         }

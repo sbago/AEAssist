@@ -27,8 +27,13 @@ namespace AEAssist
         public async Task<bool> PreCombatBuff()
         {
             if (!BardSettings.Instance.UsePeloton)
+            {
+                GUIHelper.ShowInfo("非战斗状态,速行未开启");
                 return false;
+            }
             
+            GUIHelper.ShowInfo("非战斗状态,速行逻辑判断中");
+
             if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
                 return false;
 
@@ -50,6 +55,7 @@ namespace AEAssist
 
             if (await SpellHelper.CastAbility(Spells.Peloton, Core.Me))
             {
+                GUIHelper.ShowInfo("使用速行!");
                 randomTime = 0;
                 return true;
             }

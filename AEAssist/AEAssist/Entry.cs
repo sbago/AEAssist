@@ -36,7 +36,8 @@ namespace AEAssist
             GUIHelper.OpenOverlay();
             HookBehaviors();
             RegisHotkey();
-           // PotionHelper.DebugAllItems();
+            // PotionHelper.DebugAllItems();
+            GUIHelper.ShowInfo("插件初始化完成, 请检查ATB是否开启!");
             LogHelper.Info("Initialized!");
         }
 
