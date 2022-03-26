@@ -10,6 +10,8 @@ namespace AEAssist.AI
     {
         public bool Check(SpellData lastSpell)
         {
+            if (AIRoot.Instance.CloseBuff)
+                return false;
             var tar = Core.Me.CurrentTarget as Character;
             if (TTKHelper.IsTargetTTK(tar))
                 return false;

@@ -15,6 +15,7 @@ namespace AEAssist
         public int Songs_WM_TimeLeftForSwitch = 3000;
         public int Songs_MB_TimeLeftForSwitch = 11000;
         public int Songs_AP_TimeLeftForSwitch = 3000;
-        
+
+        public bool UsePeloton;
     }
 }

@@ -6,10 +6,14 @@ using ff14bot.Enums;
 using ff14bot.Managers;
 using ff14bot.Objects;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Windows.Input;
 using AEAssist;
+using AEAssist.AI;
 using AEAssist.Helper;
 using TreeSharp;
 
@@ -23,13 +27,39 @@ namespace AEAssist
 
         public static Entry Instance { get; } = new Entry();
 
+        public List<Hotkey> Hotkeys = new List<Hotkey>();
+
         public void Initialize()
         {
             LogHelper.Debug("Init....");
             DataHelper.Init();
             GUIHelper.OpenOverlay();
             HookBehaviors();
+            RegisHotkey();
             LogHelper.Info("Initialized!");
+        }
+
+        private void RegisHotkey()
+        {
+            Hotkeys.Clear();
+            Hotkeys.Add(HotkeyManager.Register("StartCoundDown5s", Keys.F8, ModifierKeys.None,
+                v => { CountDownHandler.Instance.StartCountDown(); }));
+
+            Hotkeys.Add(HotkeyManager.Register("BattleStartNow", Keys.F9, ModifierKeys.None,
+                v => { CountDownHandler.Instance.StartNow(); }));
+
+            Hotkeys.Add(HotkeyManager.Register("BattleStop", Keys.F10, ModifierKeys.None, v =>
+            {
+                GUIHelper.OpenOverlay();
+                GUIHelper.Overlay.RefreshCheckBox1(!AIRoot.Instance.Stop);
+            }));
+            
+            Hotkeys.Add(HotkeyManager.Register("ControlBuff", Keys.F11, ModifierKeys.None, v =>
+            {
+                GUIHelper.OpenOverlay();
+                GUIHelper.Overlay.SwitchBuffControlState();
+            }));
+
         }
 
         private ClassJobType CurrentJob { get; set; }
@@ -45,6 +75,10 @@ namespace AEAssist
         {
             LogHelper.Debug("Shutdown....");
             GUIHelper.CloseOverlay();
+            foreach (var v in Hotkeys)
+            {
+                HotkeyManager.Unregister(v);
+            }
         }
 
         public void OnButtonPress()

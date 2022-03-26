@@ -15,7 +15,24 @@ namespace AEAssist.AI
         private SpellData _lastAbilitySpell;
         private int _maxAbilityTimes ;
 
-        private bool Stop;
+        private bool _stop;
+        public bool Stop
+        {
+            get
+            {
+                return _stop;
+            }
+            set
+            {
+                _stop = value;
+                if (value)
+                {
+                    Core.Me.ClearTarget();
+                }
+            }
+        }
+
+        public bool CloseBuff { get; set; }
 
         public AIRoot()
         {
@@ -53,35 +70,26 @@ namespace AEAssist.AI
             var timeNow = TimeHelper.Now();
 
             bool canUseGCD = true;
-            bool canUseAbility = false;
-
+            bool canUseAbility = true;
+            var delta = timeNow - _lastCastTime;
+            var coolDown = GetGCDDuration();
             if (_lastGCDSpell != null)
             {
-                var delta = timeNow - _lastCastTime;
-                var coolDown = _lastGCDSpell.AdjustedCooldown.TotalMilliseconds;
                 var coolDownForQueue = coolDown - GeneralSettings.Instance.ActionQueueMs;
-                var halfCoolDown = coolDown / GeneralSettings.Instance.MaxAbilityTimsInGCD;
                 if (delta < coolDownForQueue)
                 {
                     canUseGCD = false;
                 }
-
-                var needDura = ConstValue.AnimationLockMs + GeneralSettings.Instance.UserLatencyOffset;
-                if (_maxAbilityTimes >0 && coolDown - delta > needDura)
-                {
-                    canUseAbility = true;
-                    // // 可以使用前半段GCD的能力技
-                    // if (_maxAbilityTimes == GeneralSettings.Instance.MaxAbilityTimsInGCD && delta < halfCoolDown)
-                    // {
-                    //     canUseAbility = true;
-                    // }
-                    // else if (delta >= halfCoolDown)
-                    // {
-                    //     // 可以使用后半段GCD的能力技
-                    //     canUseAbility = true;
-                    // }
-                }
-
+            }
+            
+            var needDura = ConstValue.AnimationLockMs + GeneralSettings.Instance.UserLatencyOffset;
+            if (_maxAbilityTimes >0 && coolDown - delta > needDura)
+            {
+                canUseAbility = true;
+            }
+            else
+            {
+                canUseAbility = false;
             }
 
             if (canUseGCD)
@@ -98,7 +106,7 @@ namespace AEAssist.AI
                     _lastAbilitySpell = null;
                 }
             }
-            else if (canUseAbility)
+            if (canUseAbility)
             {
                 //todo : check ability
                 var ret = await AIMgrs.Instance.HandleAbility(Core.Me.CurrentJob,_lastAbilitySpell);
@@ -139,11 +147,6 @@ namespace AEAssist.AI
         public void MuteAbilityTime()
         {
             _maxAbilityTimes = 0;
-        }
-
-        public void SetStop(bool stop)
-        {
-            this.Stop = stop;
         }
     }
 }

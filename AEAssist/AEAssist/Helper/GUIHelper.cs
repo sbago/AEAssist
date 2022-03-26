@@ -5,7 +5,7 @@ namespace AEAssist
     public static class GUIHelper
     {
         private static GUI GUI = new GUI();
-        private static Overlay Overlay = new Overlay();
+        public static Overlay Overlay = new Overlay();
         
         public static void OpenGUI()
         {
@@ -29,6 +29,11 @@ namespace AEAssist
         public static void CloseOverlay()
         {
             Overlay.Close();
+        }
+
+        public static void ShowInfo(string msg)
+        {
+            Overlay.ShowDebug(msg);
         }
     }
 }

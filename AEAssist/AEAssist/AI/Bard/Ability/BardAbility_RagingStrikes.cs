@@ -10,6 +10,8 @@ namespace AEAssist.AI
     {
         public bool Check(SpellData lastSpell)
         {
+            if (AIRoot.Instance.CloseBuff)
+                return false;
             if (!Spells.RagingStrikes.IsReady())
                 return false;
             return true;

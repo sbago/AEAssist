@@ -19,18 +19,20 @@ namespace AEAssist.AI
             if (!_start)
                 return;
             var restTime = CountDown - (TimeHelper.Now() - _lastTime);
+            var msg = $"倒计时{restTime/1000}秒 {restTime%1000}";
+
             if (Math.Abs(restTime - 2000) < 100)
             {
-                LogHelper.Info("倒计时2秒 准备使用爆发药!");
-                //todo: 准备使用爆发药了
+                msg += "->爆发药";
             }
 
             if (restTime < 100)
             {
-                LogHelper.Info("倒计时结束 开始战斗!");
+                msg = "倒计时结束 开始战斗!";
                 CanDoAction = true;
                 _start = false;
             }
+            GUIHelper.ShowInfo(msg);
         }
 
         public void StartCountDown()

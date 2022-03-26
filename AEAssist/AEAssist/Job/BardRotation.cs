@@ -26,6 +26,9 @@ namespace AEAssist
         // 战斗之前处理buff的?
         public async Task<bool> PreCombatBuff()
         {
+            if (!BardSettings.Instance.UsePeloton)
+                return false;
+            
             if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
                 return false;
 

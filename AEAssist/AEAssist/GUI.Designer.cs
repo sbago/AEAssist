@@ -33,11 +33,13 @@ namespace AEAssist
         {
             this.MainTab = new System.Windows.Forms.TabControl();
             this.GeneralTab = new System.Windows.Forms.TabPage();
+            this.ShowOverlay = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.BardTab = new System.Windows.Forms.TabPage();
-            this.ShowOverlay = new System.Windows.Forms.Button();
+            this.Peloton = new System.Windows.Forms.CheckBox();
             this.MainTab.SuspendLayout();
             this.GeneralTab.SuspendLayout();
+            this.BardTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainTab
@@ -64,23 +66,6 @@ namespace AEAssist
             this.GeneralTab.TabIndex = 0;
             this.GeneralTab.Text = "GeneralSetting";
             // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(68, 77);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(206, 62);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "欢迎使用AEAssist,这个界面是通用设置界面";
-            // 
-            // BardTab
-            // 
-            this.BardTab.Location = new System.Drawing.Point(4, 22);
-            this.BardTab.Name = "BardTab";
-            this.BardTab.Size = new System.Drawing.Size(792, 424);
-            this.BardTab.TabIndex = 1;
-            this.BardTab.Text = "BardSetting";
-            this.BardTab.UseVisualStyleBackColor = true;
-            // 
             // ShowOverlay
             // 
             this.ShowOverlay.Location = new System.Drawing.Point(11, 15);
@@ -90,6 +75,34 @@ namespace AEAssist
             this.ShowOverlay.Text = "显示Overlay";
             this.ShowOverlay.UseVisualStyleBackColor = true;
             this.ShowOverlay.Click += new System.EventHandler(this.ShowOverlay_Click);
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(269, 146);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(206, 62);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "欢迎使用AEAssist,这个界面是通用设置界面";
+            // 
+            // BardTab
+            // 
+            this.BardTab.BackColor = System.Drawing.Color.DimGray;
+            this.BardTab.Controls.Add(this.Peloton);
+            this.BardTab.Location = new System.Drawing.Point(4, 22);
+            this.BardTab.Name = "BardTab";
+            this.BardTab.Size = new System.Drawing.Size(792, 424);
+            this.BardTab.TabIndex = 1;
+            this.BardTab.Text = "BardSetting";
+            // 
+            // Peloton
+            // 
+            this.Peloton.Location = new System.Drawing.Point(24, 24);
+            this.Peloton.Name = "Peloton";
+            this.Peloton.Size = new System.Drawing.Size(108, 24);
+            this.Peloton.TabIndex = 0;
+            this.Peloton.Text = "使用速行";
+            this.Peloton.UseVisualStyleBackColor = true;
+            this.Peloton.CheckedChanged += new System.EventHandler(this.Peloton_CheckedChanged);
             // 
             // GUI
             // 
@@ -110,8 +123,13 @@ namespace AEAssist
             this.Load += new System.EventHandler(this.GUI_Load);
             this.MainTab.ResumeLayout(false);
             this.GeneralTab.ResumeLayout(false);
+            this.BardTab.ResumeLayout(false);
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.CheckBox Peloton;
+
+        private System.Windows.Forms.CheckBox checkBox1;
 
         private System.Windows.Forms.Button ShowOverlay;
 
