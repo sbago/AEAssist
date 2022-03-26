@@ -1,4 +1,6 @@
-﻿using AEAssist.Define;
+﻿using System.Linq;
+using AEAssist.Define;
+using AEAssist.Helper;
 
 namespace AEAssist
 {
@@ -17,5 +19,8 @@ namespace AEAssist
         public int Songs_AP_TimeLeftForSwitch = 3000;
 
         public bool UsePeloton;
+
+        public int PotionId = 36105;
+
     }
 }

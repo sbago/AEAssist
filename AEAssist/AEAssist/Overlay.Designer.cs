@@ -33,13 +33,12 @@ namespace AEAssist
         {
             this.CountDown5s = new System.Windows.Forms.Button();
             this.Battle = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.BattleStop = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.DebugText = new System.Windows.Forms.Label();
-            this.battleStateLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BuffControlCheckBox = new System.Windows.Forms.CheckBox();
-            this.BuffState = new System.Windows.Forms.Label();
+            this.PotionControl = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,20 +64,19 @@ namespace AEAssist
             this.Battle.UseVisualStyleBackColor = true;
             this.Battle.Click += new System.EventHandler(this.Battle_Click);
             // 
-            // checkBox1
+            // BattleStop
             // 
-            this.checkBox1.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.checkBox1.CausesValidation = false;
-            this.checkBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.checkBox1.Location = new System.Drawing.Point(16, 36);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(104, 28);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "停手(F10)";
-            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox1.UseVisualStyleBackColor = false;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.BattleStop.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.BattleStop.CausesValidation = false;
+            this.BattleStop.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.BattleStop.Location = new System.Drawing.Point(16, 36);
+            this.BattleStop.Name = "BattleStop";
+            this.BattleStop.Size = new System.Drawing.Size(104, 28);
+            this.BattleStop.TabIndex = 2;
+            this.BattleStop.Text = "停手(F10)";
+            this.BattleStop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.BattleStop.UseVisualStyleBackColor = false;
+            this.BattleStop.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label1
             // 
@@ -96,17 +94,7 @@ namespace AEAssist
             this.DebugText.Name = "DebugText";
             this.DebugText.Size = new System.Drawing.Size(230, 33);
             this.DebugText.TabIndex = 4;
-            this.DebugText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // battleStateLabel
-            // 
-            this.battleStateLabel.ForeColor = System.Drawing.Color.Lime;
-            this.battleStateLabel.Location = new System.Drawing.Point(126, 36);
-            this.battleStateLabel.Name = "battleStateLabel";
-            this.battleStateLabel.Size = new System.Drawing.Size(102, 27);
-            this.battleStateLabel.TabIndex = 5;
-            this.battleStateLabel.Text = "战斗中";
-            this.battleStateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.DebugText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
@@ -119,11 +107,10 @@ namespace AEAssist
             // 
             // BuffControlCheckBox
             // 
-            this.BuffControlCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.BuffControlCheckBox.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BuffControlCheckBox.CausesValidation = false;
             this.BuffControlCheckBox.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.BuffControlCheckBox.Location = new System.Drawing.Point(16, 70);
+            this.BuffControlCheckBox.Location = new System.Drawing.Point(142, 36);
             this.BuffControlCheckBox.Name = "BuffControlCheckBox";
             this.BuffControlCheckBox.Size = new System.Drawing.Size(104, 28);
             this.BuffControlCheckBox.TabIndex = 7;
@@ -132,15 +119,17 @@ namespace AEAssist
             this.BuffControlCheckBox.UseVisualStyleBackColor = false;
             this.BuffControlCheckBox.CheckedChanged += new System.EventHandler(this.BuffControlCheckBox_CheckedChanged);
             // 
-            // BuffState
+            // PotionControl
             // 
-            this.BuffState.ForeColor = System.Drawing.Color.Lime;
-            this.BuffState.Location = new System.Drawing.Point(126, 70);
-            this.BuffState.Name = "BuffState";
-            this.BuffState.Size = new System.Drawing.Size(102, 27);
-            this.BuffState.TabIndex = 8;
-            this.BuffState.Text = "战斗中";
-            this.BuffState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.PotionControl.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.PotionControl.Location = new System.Drawing.Point(16, 70);
+            this.PotionControl.Name = "PotionControl";
+            this.PotionControl.Size = new System.Drawing.Size(104, 28);
+            this.PotionControl.TabIndex = 9;
+            this.PotionControl.Text = "爆发药(F12)";
+            this.PotionControl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.PotionControl.UseVisualStyleBackColor = false;
+            this.PotionControl.CheckedChanged += new System.EventHandler(this.PotionControl_CheckedChanged);
             // 
             // Overlay
             // 
@@ -150,13 +139,12 @@ namespace AEAssist
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(274, 180);
+            this.ClientSize = new System.Drawing.Size(277, 183);
             this.ControlBox = false;
-            this.Controls.Add(this.BuffState);
+            this.Controls.Add(this.PotionControl);
             this.Controls.Add(this.BuffControlCheckBox);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.battleStateLabel);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.BattleStop);
             this.Controls.Add(this.Battle);
             this.Controls.Add(this.CountDown5s);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -174,12 +162,13 @@ namespace AEAssist
             this.ResumeLayout(false);
         }
 
+        private System.Windows.Forms.CheckBox BattleStop;
+
+        private System.Windows.Forms.CheckBox PotionControl;
+
         private System.Windows.Forms.CheckBox BuffControlCheckBox;
-        private System.Windows.Forms.Label BuffState;
 
         private System.Windows.Forms.Panel panel1;
-
-        private System.Windows.Forms.Label battleStateLabel;
 
         private System.Windows.Forms.Label DebugText;
 

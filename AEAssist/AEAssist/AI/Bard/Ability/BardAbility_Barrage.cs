@@ -16,10 +16,10 @@ namespace AEAssist.AI
             {
                 return false;
             }
-            
+
             if (Core.Me.HasAura(AurasDefine.StraighterShot))
                 return false;
-            if (BardSpellEx.HasBuffsCount() <= 1)
+            if (BardSpellEx.UnlockBuffsCount() > 1 && BardSpellEx.HasBuffsCount() <= 1)
                 return false;
 
             return true;

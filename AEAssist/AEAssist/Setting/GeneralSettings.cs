@@ -11,5 +11,6 @@
         public bool OpenTTK = false; // 启动TTK
         public int TimeToKill_TimeInSec = 15; //ttk 预计多少秒死亡
         public int TimeToKill_HpLine = 400000; // ttk 血量剩余多少不上Dot
+        public bool UsePotion;
     }
 }

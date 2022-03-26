@@ -36,6 +36,7 @@ namespace AEAssist
             GUIHelper.OpenOverlay();
             HookBehaviors();
             RegisHotkey();
+           // PotionHelper.DebugAllItems();
             LogHelper.Info("Initialized!");
         }
 
@@ -58,6 +59,12 @@ namespace AEAssist
             {
                 GUIHelper.OpenOverlay();
                 GUIHelper.Overlay.SwitchBuffControlState();
+            }));
+            
+            Hotkeys.Add(HotkeyManager.Register("PotionControl", Keys.F12, ModifierKeys.None, v =>
+            {
+                GUIHelper.OpenOverlay();
+                GUIHelper.Overlay.SiwtchPotionControl();
             }));
 
         }

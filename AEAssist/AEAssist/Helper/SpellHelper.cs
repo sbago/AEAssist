@@ -85,11 +85,18 @@ namespace AEAssist.Helper
             return true;
         }
 
+        public static bool IsUnlock(this SpellData spellData)
+        {
+            if (Core.Me.ClassLevel < spellData.LevelAcquired
+                || !ActionManager.HasSpell(spellData.Id))
+                return false;
+            return true;
+        }
+
         public static bool IsReady(this SpellData spellData)
         {
            // LogHelper.Debug($"检测技能 {spellData.Name} {spellData.LocalizedName} AdCoolDown {spellData.AdjustedCooldown.TotalMilliseconds}");
-            if (Core.Me.ClassLevel < spellData.LevelAcquired
-                || !ActionManager.HasSpell(spellData.Id)
+            if (!spellData.IsUnlock()
                 || spellData.Cooldown.TotalMilliseconds > 0)
                 return false;
             return true;
@@ -98,8 +105,7 @@ namespace AEAssist.Helper
         public static bool IsChargeReady(this SpellData spellData)
         {
             // LogHelper.Debug($"检测技能 {spellData.Name} {spellData.LocalizedName} AdCoolDown {spellData.AdjustedCooldown.TotalMilliseconds}");
-            if (Core.Me.ClassLevel < spellData.LevelAcquired
-                || !ActionManager.HasSpell(spellData.Id)
+            if (!spellData.IsUnlock()
                 || spellData.Charges < 1)
                 return false;
             return true;

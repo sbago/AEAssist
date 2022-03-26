@@ -22,6 +22,7 @@ namespace AEAssist.AI
 
         public List<IAIHandler> BardAI_Abilitys = new List<IAIHandler>()
         {
+            new BardAbility_UsePotion(),
             new BardAbility_PitchPerfect(),
             new BardAbility_Songs(),
             new BardAbility_RagingStrikes(),

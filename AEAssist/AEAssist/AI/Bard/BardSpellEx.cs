@@ -223,6 +223,18 @@ namespace AEAssist.Define
             return count;
         }
         
+        public static int UnlockBuffsCount()
+        {
+            int count = 0;
+            if (Spells.BattleVoice.IsUnlock())
+                count++;
+            if (Spells.RagingStrikes.IsUnlock())
+                count++;
+            if (Spells.RadiantFinale.IsUnlock())
+                count++;
+            return count;
+        }
+        
         public static int HasBuffsCountInEnd(int leftMs = 4000)
         {
             int count = 0;

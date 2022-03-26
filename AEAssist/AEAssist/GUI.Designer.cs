@@ -37,6 +37,8 @@ namespace AEAssist
             this.label1 = new System.Windows.Forms.Label();
             this.BardTab = new System.Windows.Forms.TabPage();
             this.Peloton = new System.Windows.Forms.CheckBox();
+            this.BardPotion = new System.Windows.Forms.Label();
+            this.CheckBardPotion = new System.Windows.Forms.Button();
             this.MainTab.SuspendLayout();
             this.GeneralTab.SuspendLayout();
             this.BardTab.SuspendLayout();
@@ -87,6 +89,8 @@ namespace AEAssist
             // BardTab
             // 
             this.BardTab.BackColor = System.Drawing.Color.DimGray;
+            this.BardTab.Controls.Add(this.CheckBardPotion);
+            this.BardTab.Controls.Add(this.BardPotion);
             this.BardTab.Controls.Add(this.Peloton);
             this.BardTab.Location = new System.Drawing.Point(4, 22);
             this.BardTab.Name = "BardTab";
@@ -103,6 +107,25 @@ namespace AEAssist
             this.Peloton.Text = "使用速行";
             this.Peloton.UseVisualStyleBackColor = true;
             this.Peloton.CheckedChanged += new System.EventHandler(this.Peloton_CheckedChanged);
+            // 
+            // BardPotion
+            // 
+            this.BardPotion.Location = new System.Drawing.Point(24, 51);
+            this.BardPotion.Name = "BardPotion";
+            this.BardPotion.Size = new System.Drawing.Size(202, 22);
+            this.BardPotion.TabIndex = 1;
+            this.BardPotion.Text = "爆发药: 5级巧力之幻药 数量 0\r\n";
+            this.BardPotion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // CheckBardPotion
+            // 
+            this.CheckBardPotion.Location = new System.Drawing.Point(222, 46);
+            this.CheckBardPotion.Name = "CheckBardPotion";
+            this.CheckBardPotion.Size = new System.Drawing.Size(105, 27);
+            this.CheckBardPotion.TabIndex = 2;
+            this.CheckBardPotion.Text = "检查爆发药数量";
+            this.CheckBardPotion.UseVisualStyleBackColor = true;
+            this.CheckBardPotion.Click += new System.EventHandler(this.CheckBardPotion_Click);
             // 
             // GUI
             // 
@@ -126,6 +149,10 @@ namespace AEAssist
             this.BardTab.ResumeLayout(false);
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button CheckBardPotion;
+
+        private System.Windows.Forms.Label BardPotion;
 
         private System.Windows.Forms.CheckBox Peloton;
 

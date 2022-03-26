@@ -18,8 +18,9 @@ namespace AEAssist
         private void Overlay_Load(object sender, EventArgs e)
         {
             LogHelper.Info("打开Overlay窗口");
-            RreshBattleState();
-            RefreshBuffState();
+            BattleStop.Checked = AIRoot.Instance.Stop;
+            BuffControlCheckBox.Checked = AIRoot.Instance.CloseBuff;
+            PotionControl.Checked = GeneralSettings.Instance.UsePotion;
         }
 
         private void CountDown5s_Click(object sender, EventArgs e)
@@ -35,49 +36,22 @@ namespace AEAssist
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             AIRoot.Instance.Stop =(checkBox1.CheckState == CheckState.Checked);
-            RreshBattleState();
         }
-
-
+        
         public void RefreshCheckBox1(bool stop)
         {
             checkBox1.CheckState = stop ? CheckState.Checked : CheckState.Unchecked;
-        }
-
-        void RreshBattleState()
-        {
-            if (AIRoot.Instance.Stop)
-            {
-                checkBox1.Text = "恢复(F10)";
-            }
-            else
-            {
-                checkBox1.Text = "停手(F10)";
-            }
-            if(AIRoot.Instance.Stop)
-                ShowBattleState("停手中",Color.DarkRed);
-            else
-            {
-                ShowBattleState("运行中",Color.SpringGreen);
-            }
         }
 
         public void ShowDebug(string msg)
         {
             this.DebugText.Text = msg;
         }
-
-        void ShowBattleState(string msg, System.Drawing.Color color)
-        {
-            this.battleStateLabel.Text = msg;
-            this.battleStateLabel.ForeColor = color;
-        }
+        
 
         private void BuffControlCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             AIRoot.Instance.CloseBuff = BuffControlCheckBox.Checked;
-
-            RefreshBuffState();
         }
 
         public void SwitchBuffControlState()
@@ -85,24 +59,14 @@ namespace AEAssist
             BuffControlCheckBox.Checked = !AIRoot.Instance.CloseBuff;
         }
 
-        void RefreshBuffState()
+        private void PotionControl_CheckedChanged(object sender, EventArgs e)
         {
-            if (AIRoot.Instance.CloseBuff)
-            {
-                BuffControlCheckBox.Text = "开启Buff(F11)";
-                ShowBuffState("关闭", Color.DarkRed);
-            }
-            else
-            {
-                BuffControlCheckBox.Text = "关闭Buff(F11)";
-                ShowBuffState("开启", Color.SpringGreen);
-            }
+            GeneralSettings.Instance.UsePotion = PotionControl.Checked;
         }
 
-        private void ShowBuffState(string msg, System.Drawing.Color color)
+        public void SiwtchPotionControl()
         {
-            this.BuffState.Text = msg;
-            this.BuffState.ForeColor = color;
+            PotionControl.Checked = !GeneralSettings.Instance.UsePotion;
         }
     }
 }

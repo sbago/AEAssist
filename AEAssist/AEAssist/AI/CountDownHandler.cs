@@ -24,6 +24,8 @@ namespace AEAssist.AI
             if (Math.Abs(restTime - 2000) < 100)
             {
                 msg += "->爆发药";
+                //todo: 根据职业选择
+                _ = PotionHelper.UsePotion(BardSettings.Instance.PotionId);
             }
 
             if (restTime < 100)

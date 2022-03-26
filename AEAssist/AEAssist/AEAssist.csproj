@@ -67,6 +67,7 @@
         <Compile Include="AI\Bard\Ability\BardAbility_RagingStrikes.cs" />
         <Compile Include="AI\Bard\Ability\BardAbility_Sidewinder.cs" />
         <Compile Include="AI\Bard\Ability\BardAbility_Songs.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_UsePotion.cs" />
         <Compile Include="AI\Bard\BardSpellEx.cs" />
         <Compile Include="AI\Bard\GCD\BardGCD_ApexArrow.cs" />
         <Compile Include="AI\Bard\GCD\BardGCD_Barrage_RefulgentArrow.cs" />
@@ -91,6 +92,7 @@
         <Compile Include="Helper\DataHelper.cs" />
         <Compile Include="Helper\GUIHelper.cs" />
         <Compile Include="Helper\LogHelper.cs" />
+        <Compile Include="Helper\PotionHelper.cs" />
         <Compile Include="Helper\RandomHelper.cs" />
         <Compile Include="Helper\SpellHelper.cs" />
         <Compile Include="Helper\TargetHelper.cs" />

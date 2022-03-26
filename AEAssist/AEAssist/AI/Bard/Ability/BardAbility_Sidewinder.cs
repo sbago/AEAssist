@@ -25,6 +25,9 @@ namespace AEAssist.AI
                 return true;
             }
 
+            if (BardSpellEx.UnlockBuffsCount() <= 1)
+                return true;
+
             return false;
         }
 
