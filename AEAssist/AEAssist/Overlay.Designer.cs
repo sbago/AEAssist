@@ -82,8 +82,10 @@ namespace AEAssist
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.CausesValidation = false;
-            this.label1.Location = new System.Drawing.Point(8, 9);
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 28);
             this.label1.TabIndex = 3;
@@ -92,9 +94,10 @@ namespace AEAssist
             // 
             // DebugText
             // 
-            this.DebugText.Location = new System.Drawing.Point(20, 28);
+            this.DebugText.AutoEllipsis = true;
+            this.DebugText.Location = new System.Drawing.Point(0, 28);
             this.DebugText.Name = "DebugText";
-            this.DebugText.Size = new System.Drawing.Size(230, 33);
+            this.DebugText.Size = new System.Drawing.Size(249, 52);
             this.DebugText.TabIndex = 4;
             this.DebugText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -104,7 +107,7 @@ namespace AEAssist
             this.panel1.Controls.Add(this.DebugText);
             this.panel1.Location = new System.Drawing.Point(16, 104);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(255, 69);
+            this.panel1.Size = new System.Drawing.Size(249, 80);
             this.panel1.TabIndex = 6;
             // 
             // BuffControlCheckBox
@@ -148,7 +151,6 @@ namespace AEAssist
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(277, 183);
-            this.ControlBox = false;
             this.Controls.Add(this.PotionControl);
             this.Controls.Add(this.BuffControlCheckBox);
             this.Controls.Add(this.panel1);

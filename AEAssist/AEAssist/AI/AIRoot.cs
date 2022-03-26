@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Helpers;
@@ -17,6 +18,10 @@ namespace AEAssist.AI
         
         public bool lastIronJawWithBuff;
         public long lastCastRagingStrikesTime;
+
+        private Dictionary<string, long> lastNoticeTime = new Dictionary<string, long>();
+
+        public long lastCastSongTime;
 
         private bool _stop;
         public bool Stop
@@ -50,6 +55,7 @@ namespace AEAssist.AI
             _maxAbilityTimes = GeneralSettings.Instance.MaxAbilityTimsInGCD;
             lastCastRagingStrikesTime = 0;
             lastIronJawWithBuff = false;
+            lastCastSongTime = 0;
         }
 
         public async Task<bool> Update()
@@ -63,16 +69,27 @@ namespace AEAssist.AI
             }
 
             if (Stop)
+            {
+                GUIHelper.ShowInfo("停手中");
                 return false;
+            }
 
             if (ff14bot.Core.Me.IsCasting)
                 return false;
 
+
+
             if (!ff14bot.Core.Me.HasTarget || !ff14bot.Core.Me.CurrentTarget.CanAttack)
-                return false;
-            
-            if (!((Character)ff14bot.Core.Me.CurrentTarget).HasTarget && !CountDownHandler.Instance.CanDoAction)
             {
+                if (CanNotice("key1", 1000))
+                    GUIHelper.ShowInfo("未选择目标/目标不可被攻击");
+                return false;
+            }
+
+            if (!((Character) ff14bot.Core.Me.CurrentTarget).HasTarget && !CountDownHandler.Instance.CanDoAction)
+            {
+                if (CanNotice("key2", 1000))
+                    GUIHelper.ShowInfo("目标可被攻击,准备战斗");
                 return false;
             }
 
@@ -90,9 +107,9 @@ namespace AEAssist.AI
                     canUseGCD = false;
                 }
             }
-            
+
             var needDura = ConstValue.AnimationLockMs + GeneralSettings.Instance.UserLatencyOffset;
-            if (_maxAbilityTimes >0 && coolDown - delta > needDura)
+            if (_maxAbilityTimes > 0 && coolDown - delta > needDura)
             {
                 canUseAbility = true;
             }
@@ -104,10 +121,11 @@ namespace AEAssist.AI
             if (canUseGCD)
             {
                 //todo: check gcd
-                var ret = await AIMgrs.Instance.HandleGCD(Core.Me.CurrentJob,_lastGCDSpell);
+                var ret = await AIMgrs.Instance.HandleGCD(Core.Me.CurrentJob, _lastGCDSpell);
                 if (ret != null)
                 {
-                    if(_lastGCDSpell == null)
+                    GUIHelper.ShowInfo("Cast GCD: " + ret.LocalizedName, 100);
+                    if (_lastGCDSpell == null)
                         CountDownHandler.Instance.Close();
                     _lastGCDSpell = ret;
                     _lastCastTime = timeNow;
@@ -115,12 +133,14 @@ namespace AEAssist.AI
                     _lastAbilitySpell = null;
                 }
             }
+
             if (canUseAbility)
             {
                 //todo : check ability
-                var ret = await AIMgrs.Instance.HandleAbility(Core.Me.CurrentJob,_lastAbilitySpell);
+                var ret = await AIMgrs.Instance.HandleAbility(Core.Me.CurrentJob, _lastAbilitySpell);
                 if (ret != null)
                 {
+                    GUIHelper.ShowInfo("Cast Ability: " + ret.LocalizedName, 100);
                     _maxAbilityTimes--;
                     LogHelper.Info($"剩余使用能力技能次数: {_maxAbilityTimes}");
                 }
@@ -156,6 +176,19 @@ namespace AEAssist.AI
         public void MuteAbilityTime()
         {
             _maxAbilityTimes = 0;
+        }
+
+        bool CanNotice(string key,long interval)
+        {
+            var now = TimeHelper.Now();
+            if (lastNoticeTime.TryGetValue(key, out var lastTime))
+            {
+                if (lastTime + interval > now)
+                    return false;
+            }
+
+            lastNoticeTime[key] = now;
+            return true;
         }
     }
 }

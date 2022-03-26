@@ -8,6 +8,7 @@ using ff14bot;
 using ff14bot.Enums;
 using ff14bot.Helpers;
 using ff14bot.Managers;
+using ff14bot.Objects;
 
 namespace AEAssist.Helper
 {
@@ -35,6 +36,8 @@ namespace AEAssist.Helper
             if (!GeneralSettings.Instance.UsePotion)
                 return false;
             if (AIRoot.Instance.CloseBuff)
+                return false;
+            if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return false;
             var item = InventoryManager.FilledSlots.FirstOrDefault(s => s.RawItemId == potionRawId);
 

@@ -5,6 +5,7 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using Buddy.Coroutines;
 using ff14bot;
+using ff14bot.Managers;
 using ff14bot.Objects;
 
 namespace AEAssist
@@ -26,6 +27,23 @@ namespace AEAssist
         // 战斗之前处理buff的?
         public async Task<bool> PreCombatBuff()
         {
+            if (Core.Me.InCombat)
+            {
+                return false;
+            }
+            
+            if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
+                return false;
+
+            if (PartyManager.IsInParty)
+            {
+                if (TargetMgr.Instance.EnemysIn25.Count > 0)
+                    return false;
+            }
+            
+            if (!MovementManager.IsMoving)
+                return false;
+
             if (!BardSettings.Instance.UsePeloton)
             {
                 GUIHelper.ShowInfo("非战斗状态,速行未开启");

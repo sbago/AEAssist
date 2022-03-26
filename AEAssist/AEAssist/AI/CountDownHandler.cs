@@ -21,9 +21,9 @@ namespace AEAssist.AI
             var restTime = CountDown - (TimeHelper.Now() - _lastTime);
             var msg = $"倒计时{restTime/1000}秒 {restTime%1000}";
 
-            if (Math.Abs(restTime - 2000) < 100)
+            if (Math.Abs(restTime - GeneralSettings.Instance.UsePotionCountDown) < 100)
             {
-                msg += "->爆发药";
+                msg += "->尝试爆发药";
                 //todo: 根据职业选择
                 _ = PotionHelper.UsePotion(BardSettings.Instance.PotionId);
             }
@@ -34,7 +34,7 @@ namespace AEAssist.AI
                 CanDoAction = true;
                 _start = false;
             }
-            GUIHelper.ShowInfo(msg);
+            GUIHelper.ShowInfo(msg,50);
         }
 
         public void StartCountDown()

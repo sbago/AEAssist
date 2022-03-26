@@ -16,6 +16,9 @@ namespace AEAssist.AI
             {
                 return false;
             }
+            if (Core.Me.HasAura(AurasDefine.ShadowBiteReady)
+            &&  TargetHelper.CheckNeedUseAOE(25, 5, ConstValue.BardAOECount))
+                return true;
 
             if (Core.Me.HasAura(AurasDefine.StraighterShot))
                 return false;

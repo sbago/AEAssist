@@ -276,6 +276,11 @@ namespace AEAssist.Define
 
         public static SpellData GetQuickNock()
         {
+            if (IsShadowBiteReady())
+            {
+                return Spells.Shadowbite;
+            }
+
             if (!Spells.Ladonsbite.IsReady())
             {
                 if (!Spells.QuickNock.IsReady())
@@ -284,6 +289,21 @@ namespace AEAssist.Define
             }
 
             return Spells.Ladonsbite;
+        }
+
+        public static bool IsShadowBiteReady()
+        {
+            if (!Spells.Shadowbite.IsReady())
+            {
+                return false;
+            }
+
+            if (Core.Me.ContainMyAura(AurasDefine.ShadowBiteReady))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

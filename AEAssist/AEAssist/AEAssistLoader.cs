@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using AEAssist;
 using Clio.Utilities;
 using ff14bot;
@@ -35,8 +36,8 @@ namespace AEAssist
                         return new[] { ff14bot.Core.Me.CurrentJob };
                     default:
                     {
-                        Logging.Write($@"[AEAssist] {ff14bot.Core.Me.CurrentJob} is not supported.");
-                        return default;
+                        Logging.Write( Colors.Red,$@"[AEAssist] {ff14bot.Core.Me.CurrentJob} is not supported.");
+                        return new[] { ff14bot.Core.Me.CurrentJob };
                     }
                 }
             }

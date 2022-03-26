@@ -1,4 +1,5 @@
 ﻿using ff14bot;
+using ff14bot.Managers;
 using ff14bot.Objects;
 
 namespace AEAssist.Helper
@@ -12,6 +13,11 @@ namespace AEAssist.Helper
                 return false;
 
             var hpLine = GeneralSettings.Instance.TimeToKill_HpLine;
+
+            if (PartyManager.NumMembers <= 4)
+            {
+                hpLine /= 2;
+            }
 
             if (target.CurrentHealth < hpLine)
                 return true;

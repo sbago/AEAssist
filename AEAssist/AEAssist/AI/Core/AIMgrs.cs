@@ -13,22 +13,22 @@ namespace AEAssist.AI
         public List<IAIHandler> BardAI_GCDs = new List<IAIHandler>()
         {
             new BardGCD_Barrage_RefulgentArrow(),
-            new BardGCD_QuickNock(),
             new BardGCD_Dot(),
             new BardGCD_BlastArrow(),
             new BardGCD_ApexArrow(),
+            new BardGCD_QuickNock(),
             new BardGCD_HeavyShot()
         };
 
         public List<IAIHandler> BardAI_Abilitys = new List<IAIHandler>()
         {
             new BardAbility_UsePotion(),
+            new BardAbility_Buffs(),
             new BardAbility_PitchPerfect(),
             new BardAbility_Songs(),
             new BardAbility_RagingStrikes(),
             new BardAbility_EmpyrealArrow(),
             new BardAbility_MaxChargeBloodletter(),
-            new BardAbility_Buffs(),
             new BardAbility_Barrage(),
             new BardAbility_Sidewinder(),
             new BardAbility_Bloodletter()

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
+using ff14bot;
 using ff14bot.Objects;
 
 namespace AEAssist.AI
@@ -12,6 +13,8 @@ namespace AEAssist.AI
             if (!GeneralSettings.Instance.UsePotion)
                 return false;
             if (AIRoot.Instance.CloseBuff)
+                return false;
+            if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return false;
             if (!PotionHelper.CheckPotion(BardSettings.Instance.PotionId))
                 return false;

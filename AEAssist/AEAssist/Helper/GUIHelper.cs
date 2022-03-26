@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using AEAssist.Helper;
 
 namespace AEAssist
 {
@@ -31,8 +32,13 @@ namespace AEAssist
             Overlay.Close();
         }
 
-        public static void ShowInfo(string msg)
+        private static long targetShowTime;
+        public static void ShowInfo(string msg,int time = 0,bool check = true)
         {
+            if (check &&  TimeHelper.Now() < targetShowTime)
+                return;
+            if (time > 0)
+                targetShowTime = TimeHelper.Now() + time;
             Overlay.ShowDebug(msg);
         }
     }
