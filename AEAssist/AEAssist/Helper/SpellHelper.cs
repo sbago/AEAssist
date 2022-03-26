@@ -54,7 +54,7 @@ namespace AEAssist.Helper
         }
 
 
-        public static async Task<bool> CastAbility(SpellData spell, GameObject target)
+        public static async Task<bool> CastAbility(SpellData spell, GameObject target,int waitTime = ConstValue.AnimationLockMs)
         {
             if (spell.SpellType != SpellType.Ability)
             {
@@ -76,7 +76,12 @@ namespace AEAssist.Helper
             if (!ActionManager.DoAction(spell, target))
                 return false;
 
-            await Coroutine.Wait((int)spell.AdjustedCastTime.TotalMilliseconds + ConstValue.AnimationLockMs, () => false);
+            var needTime = (int) spell.AdjustedCastTime.TotalMilliseconds + waitTime;
+
+            if (needTime <= 10)
+                return true;
+            
+            await Coroutine.Wait(needTime, () => false);
             return true;
         }
 
@@ -86,6 +91,16 @@ namespace AEAssist.Helper
             if (Core.Me.ClassLevel < spellData.LevelAcquired
                 || !ActionManager.HasSpell(spellData.Id)
                 || spellData.Cooldown.TotalMilliseconds > 0)
+                return false;
+            return true;
+        }
+        
+        public static bool IsChargeReady(this SpellData spellData)
+        {
+            // LogHelper.Debug($"检测技能 {spellData.Name} {spellData.LocalizedName} AdCoolDown {spellData.AdjustedCooldown.TotalMilliseconds}");
+            if (Core.Me.ClassLevel < spellData.LevelAcquired
+                || !ActionManager.HasSpell(spellData.Id)
+                || spellData.Charges < 1)
                 return false;
             return true;
         }

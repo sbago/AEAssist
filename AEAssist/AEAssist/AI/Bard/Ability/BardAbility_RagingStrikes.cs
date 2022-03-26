@@ -12,13 +12,13 @@ namespace AEAssist.AI
         {
             if (!Spells.RagingStrikes.IsReady())
                 return false;
-            if (!AIRoot.Instance.Is2ndAbilityTime())
-                return false;
             return true;
         }
 
         public async Task<SpellData> Run()
         {
+            // if (!AIRoot.Instance.Is2ndAbilityTime())
+            //     return null;
             var spellData = Spells.RagingStrikes;
             if (await SpellHelper.CastAbility(spellData, Core.Me))
             {

@@ -73,6 +73,10 @@ namespace AEAssist.AI
                     if (remainTime <= BardSettings.Instance.Songs_WM_TimeLeftForSwitch)
                     {
                         spell = Spells.MagesBallad;
+                        if (Spells.PitchPerfect.IsReady())
+                        {
+                            await SpellHelper.CastAbility(Spells.PitchPerfect, Core.Me.CurrentTarget, 100);
+                        }
                     }
                     break;
             }

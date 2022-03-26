@@ -67,17 +67,18 @@
         <Compile Include="AI\Bard\Ability\BardAbility_RagingStrikes.cs" />
         <Compile Include="AI\Bard\Ability\BardAbility_Sidewinder.cs" />
         <Compile Include="AI\Bard\Ability\BardAbility_Songs.cs" />
+        <Compile Include="AI\Bard\BardSpellEx.cs" />
         <Compile Include="AI\Bard\GCD\BardGCD_ApexArrow.cs" />
         <Compile Include="AI\Bard\GCD\BardGCD_Barrage_RefulgentArrow.cs" />
         <Compile Include="AI\Bard\GCD\BardGCD_BlastArrow.cs" />
         <Compile Include="AI\Bard\GCD\BardGCD_Dot.cs" />
         <Compile Include="AI\Bard\GCD\BardGCD_HeavyShot.cs" />
+        <Compile Include="AI\Bard\GCD\BardGCD_QuickNock.cs" />
         <Compile Include="AI\Core\AIMgrs.cs" />
         <Compile Include="AI\Core\IAIHandler.cs" />
+        <Compile Include="AI\CountDownHandler.cs" />
+        <Compile Include="AI\TargetMgr.cs" />
         <Compile Include="Define\AurasDefine.cs" />
-        <Compile Include="Define\BardSpellEx.cs" />
-        <Compile Include="Define\Combat.cs" />
-        <Compile Include="Define\Globals.cs" />
         <Compile Include="Define\Spells.cs" />
         <Compile Include="Entry.cs" />
         <Compile Include="GUI.cs">
@@ -90,19 +91,30 @@
         <Compile Include="Helper\DataHelper.cs" />
         <Compile Include="Helper\GUIHelper.cs" />
         <Compile Include="Helper\LogHelper.cs" />
+        <Compile Include="Helper\RandomHelper.cs" />
         <Compile Include="Helper\SpellHelper.cs" />
+        <Compile Include="Helper\TargetHelper.cs" />
         <Compile Include="Helper\TimeHelper.cs" />
         <Compile Include="Helper\TTKHelper.cs" />
         <Compile Include="Job\BardRotation.cs" />
         <Compile Include="Job\Rotation\DefaultRotation.cs" />
         <Compile Include="Job\Rotation\IRotation.cs" />
         <Compile Include="Job\Rotation\RotationManager.cs" />
+        <Compile Include="Overlay.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="Overlay.Designer.cs">
+          <DependentUpon>Overlay.cs</DependentUpon>
+        </Compile>
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Setting\BardSettings.cs" />
         <Compile Include="Setting\ConstValue.cs" />
         <Compile Include="Setting\GeneralSettings.cs" />
         <EmbeddedResource Include="GUI.resx">
           <DependentUpon>GUI.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Overlay.resx">
+          <DependentUpon>Overlay.cs</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Include="Properties\Resources.resx">
             <Generator>ResXFileCodeGenerator</Generator>
@@ -127,7 +139,9 @@
         <None Include="App.config" />
     </ItemGroup>
     <ItemGroup>
-      <Content Include="Resources\BossDictionary.json" />
+      <Content Include="Resources\BossDictionary.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
       <Content Include="Resources\Close.png" />
       <Content Include="Resources\Demo_Welcome.png" />
       <Content Include="Resources\Square_Filled.png" />

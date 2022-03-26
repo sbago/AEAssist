@@ -12,8 +12,9 @@ namespace AEAssist.AI
 
         public List<IAIHandler> BardAI_GCDs = new List<IAIHandler>()
         {
-            new BardGCD_Dot(),
             new BardGCD_Barrage_RefulgentArrow(),
+            new BardGCD_QuickNock(),
+            new BardGCD_Dot(),
             new BardGCD_BlastArrow(),
             new BardGCD_ApexArrow(),
             new BardGCD_HeavyShot()

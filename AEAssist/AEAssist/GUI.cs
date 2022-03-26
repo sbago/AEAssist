@@ -19,5 +19,10 @@ namespace AEAssist
         {
             
         }
+
+        private void ShowOverlay_Click(object sender, EventArgs e)
+        {
+            GUIHelper.OpenOverlay();
+        }
     }
 }

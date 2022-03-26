@@ -35,6 +35,7 @@ namespace AEAssist
             this.GeneralTab = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.BardTab = new System.Windows.Forms.TabPage();
+            this.ShowOverlay = new System.Windows.Forms.Button();
             this.MainTab.SuspendLayout();
             this.GeneralTab.SuspendLayout();
             this.SuspendLayout();
@@ -54,6 +55,7 @@ namespace AEAssist
             // GeneralTab
             // 
             this.GeneralTab.BackColor = System.Drawing.Color.Silver;
+            this.GeneralTab.Controls.Add(this.ShowOverlay);
             this.GeneralTab.Controls.Add(this.label1);
             this.GeneralTab.Location = new System.Drawing.Point(4, 22);
             this.GeneralTab.Name = "GeneralTab";
@@ -79,6 +81,16 @@ namespace AEAssist
             this.BardTab.Text = "BardSetting";
             this.BardTab.UseVisualStyleBackColor = true;
             // 
+            // ShowOverlay
+            // 
+            this.ShowOverlay.Location = new System.Drawing.Point(11, 15);
+            this.ShowOverlay.Name = "ShowOverlay";
+            this.ShowOverlay.Size = new System.Drawing.Size(105, 23);
+            this.ShowOverlay.TabIndex = 1;
+            this.ShowOverlay.Text = "显示Overlay";
+            this.ShowOverlay.UseVisualStyleBackColor = true;
+            this.ShowOverlay.Click += new System.EventHandler(this.ShowOverlay_Click);
+            // 
             // GUI
             // 
             this.AllowDrop = true;
@@ -100,6 +112,8 @@ namespace AEAssist
             this.GeneralTab.ResumeLayout(false);
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button ShowOverlay;
 
         private System.Windows.Forms.TabPage GeneralTab;
         private System.Windows.Forms.TabPage BardTab;

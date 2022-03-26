@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using ff14bot.Objects;
@@ -14,24 +15,23 @@ namespace AEAssist.Helper
 
         static DataHelper()
         {
-            var assembly = Assembly.GetExecutingAssembly();
-
-            const string bossFile = "Magitek.Resources.BossDictionary.json";
-
-            string bosses;
-
-            using (var stream = assembly.GetManifestResourceStream(bossFile))
-
-            using (var reader = new StreamReader(stream))
-            {
-                bosses = reader.ReadToEnd();
-            }
-
-            BossDictionary = new Dictionary<uint, string>(JsonConvert.DeserializeObject<Dictionary<uint, string>>(bosses));
-
-            LogHelper.Info("成功加载 Boss数据数目 " + BossDictionary.Count);
-        }
+            var bossFile = @"Routines\AEAssist\Resources\BossDictionary.json";
             
+             var bosses = File.ReadAllText(bossFile);
+             try
+             {
+                 BossDictionary = new Dictionary<uint, string>(JsonConvert.DeserializeObject<Dictionary<uint, string>>(bosses));
+             }
+             catch (Exception e)
+             {
+                LogHelper.Error(e.ToString());
+                BossDictionary = new Dictionary<uint, string>();
+             }
+          
+
+            LogHelper.Info("成功加载 Boss数据数目 " + BossDictionary?.Count);
+        }
+
         public static Dictionary<uint, string> BossDictionary;
         
         public static bool IsBoss(this GameObject unit)

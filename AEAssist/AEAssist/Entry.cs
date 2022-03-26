@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using AEAssist;
+using AEAssist.Helper;
 using TreeSharp;
 
 namespace AEAssist
@@ -25,7 +26,10 @@ namespace AEAssist
         public void Initialize()
         {
             LogHelper.Debug("Init....");
+            DataHelper.Init();
+            GUIHelper.OpenOverlay();
             HookBehaviors();
+            LogHelper.Info("Initialized!");
         }
 
         private ClassJobType CurrentJob { get; set; }
@@ -40,11 +44,11 @@ namespace AEAssist
         public void Shutdown()
         {
             LogHelper.Debug("Shutdown....");
+            GUIHelper.CloseOverlay();
         }
 
         public void OnButtonPress()
         {
-            LogHelper.Debug("OnButtonPress....");
             GUIHelper.OpenGUI();
         }
         

@@ -21,3 +21,5 @@ D:\Github\AEAssist\AEAssist\AEAssist\obj\Debug\AEAssist.csproj.GenerateResource.
 D:\Github\AEAssist\AEAssist\AEAssist\obj\Debug\AEAssist.csproj.CoreCompileInputs.cache
 D:\Github\AEAssist\AEAssist\AEAssist\obj\Debug\AEAssist.dll
 D:\Github\AEAssist\AEAssist\AEAssist\obj\Debug\AEAssist.pdb
+D:\Github\AEAssist\bin\Debug\Resources\BossDictionary.json
+D:\Github\AEAssist\AEAssist\AEAssist\obj\Debug\AEAssist.Overlay.resources

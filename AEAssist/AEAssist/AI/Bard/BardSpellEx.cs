@@ -265,5 +265,17 @@ namespace AEAssist.Define
 
             return false;
         }
+
+        public static SpellData GetQuickNock()
+        {
+            if (!Spells.Ladonsbite.IsReady())
+            {
+                if (!Spells.QuickNock.IsReady())
+                    return null;
+                return Spells.QuickNock;
+            }
+
+            return Spells.Ladonsbite;
+        }
     }
 }

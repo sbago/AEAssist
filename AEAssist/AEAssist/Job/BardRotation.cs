@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AEAssist.AI;
 using AEAssist.Define;
 using AEAssist.Helper;
+using Buddy.Coroutines;
 using ff14bot;
 using ff14bot.Objects;
 
@@ -11,6 +13,10 @@ namespace AEAssist
     {
 
         private AIRoot AiRoot = AIRoot.Instance;
+
+        private long randomTime;
+        private long _lastTime;
+
         public Task<bool> Rest()
         {
             var needRest = Core.Me.CurrentHealthPercent < BardSettings.Instance.RestHealthPercent;
@@ -23,10 +29,29 @@ namespace AEAssist
             if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
                 return false;
 
-            if(Core.Me.ContainAura(AurasDefine.Peloton,1000))
+            if (Core.Me.ContainAura(AurasDefine.Peloton, 100))
                 return false;
 
-            return await SpellHelper.CastAbility(Spells.Peloton, Core.Me);
+            if (_lastTime == 0)
+                _lastTime = TimeHelper.Now();
+            else
+            {
+                var now = TimeHelper.Now();
+                randomTime += now - _lastTime;
+                _lastTime = TimeHelper.Now();
+            }
+
+            // 防止每次都立即开疾行,搞的很假
+            if (RandomHelper.RandomInt(2000, 5000) > randomTime)
+                return false;
+
+            if (await SpellHelper.CastAbility(Spells.Peloton, Core.Me))
+            {
+                randomTime = 0;
+                return true;
+            }
+
+            return false;
         }
 
         public Task<bool> Pull()
@@ -47,6 +72,9 @@ namespace AEAssist
 
         public Task<bool> Combat()
         {
+            CountDownHandler.Instance.Update();
+            // 更新当前的敌人列表
+            TargetMgr.Instance.Update();
             return AiRoot.Update();
         }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AEAssist.AI;
 using ff14bot.Enums;
 
 namespace AEAssist

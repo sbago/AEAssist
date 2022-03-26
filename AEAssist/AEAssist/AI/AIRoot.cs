@@ -15,6 +15,8 @@ namespace AEAssist.AI
         private SpellData _lastAbilitySpell;
         private int _maxAbilityTimes ;
 
+        private bool Stop;
+
         public AIRoot()
         {
             _lastCastTime = TimeHelper.Now();
@@ -27,11 +29,26 @@ namespace AEAssist.AI
             // 逻辑清单: 
             // 1. 检测当前是否可以使用GCD技能
 
+            if (!Core.Me.InCombat)
+            {
+                _lastGCDSpell = null;
+                _lastAbilitySpell = null;
+                _maxAbilityTimes = GeneralSettings.Instance.MaxAbilityTimsInGCD;
+            }
+
+            if (Stop)
+                return false;
+
             if (ff14bot.Core.Me.IsCasting)
                 return false;
 
-            if (ff14bot.Core.Target == null || !ff14bot.Core.Target.CanAttack)
+            if (!ff14bot.Core.Me.HasTarget || !ff14bot.Core.Me.CurrentTarget.CanAttack)
                 return false;
+            
+            if (!((Character)ff14bot.Core.Me.CurrentTarget).HasTarget && !CountDownHandler.Instance.CanDoAction)
+            {
+                return false;
+            }
 
             var timeNow = TimeHelper.Now();
 
@@ -50,18 +67,19 @@ namespace AEAssist.AI
                 }
 
                 var needDura = ConstValue.AnimationLockMs + GeneralSettings.Instance.UserLatencyOffset;
-                if (coolDown - delta > needDura)
+                if (_maxAbilityTimes >0 && coolDown - delta > needDura)
                 {
-                    // 可以使用前半段GCD的能力技
-                    if (_maxAbilityTimes == GeneralSettings.Instance.MaxAbilityTimsInGCD && delta < halfCoolDown)
-                    {
-                        canUseAbility = true;
-                    }
-                    else if (delta >= halfCoolDown)
-                    {
-                        // 可以使用后半段GCD的能力技
-                        canUseAbility = true;
-                    }
+                    canUseAbility = true;
+                    // // 可以使用前半段GCD的能力技
+                    // if (_maxAbilityTimes == GeneralSettings.Instance.MaxAbilityTimsInGCD && delta < halfCoolDown)
+                    // {
+                    //     canUseAbility = true;
+                    // }
+                    // else if (delta >= halfCoolDown)
+                    // {
+                    //     // 可以使用后半段GCD的能力技
+                    //     canUseAbility = true;
+                    // }
                 }
 
             }
@@ -72,6 +90,8 @@ namespace AEAssist.AI
                 var ret = await AIMgrs.Instance.HandleGCD(Core.Me.CurrentJob,_lastGCDSpell);
                 if (ret != null)
                 {
+                    if(_lastGCDSpell == null)
+                        CountDownHandler.Instance.Close();
                     _lastGCDSpell = ret;
                     _lastCastTime = timeNow;
                     _maxAbilityTimes = GeneralSettings.Instance.MaxAbilityTimsInGCD;
@@ -114,6 +134,16 @@ namespace AEAssist.AI
             if (_lastGCDSpell == null)
                 return 2500;
             return _lastGCDSpell.AdjustedCooldown.TotalMilliseconds;
+        }
+
+        public void MuteAbilityTime()
+        {
+            _maxAbilityTimes = 0;
+        }
+
+        public void SetStop(bool stop)
+        {
+            this.Stop = stop;
         }
     }
 }

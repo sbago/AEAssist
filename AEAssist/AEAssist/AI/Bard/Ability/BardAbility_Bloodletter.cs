@@ -12,6 +12,8 @@ namespace AEAssist.AI
         {
             if (lastSpell == Spells.Bloodletter)
                 return false;
+            if (!Spells.Bloodletter.IsChargeReady())
+                return false;
             if (Spells.Bloodletter.Charges < 1)
                 return false;
             return true;
@@ -19,11 +21,23 @@ namespace AEAssist.AI
 
         public async Task<SpellData> Run()
         {
-            var spellData = Spells.Bloodletter;
+            SpellData spellData = null;
+            if (Spells.RainofDeath.IsChargeReady() && TargetHelper.CheckNeedUseAOE(25, 8, ConstValue.BardAOECount))
+            {
+                spellData = Spells.RainofDeath;
+                if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget))
+                {
+                    return spellData;
+                }
+            }
+
+            spellData = Spells.Bloodletter;
             if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget))
             {
                 return spellData;
             }
+
+            return null;
 
             return null;
         }

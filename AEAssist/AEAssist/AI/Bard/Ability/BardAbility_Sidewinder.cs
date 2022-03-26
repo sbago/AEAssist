@@ -12,7 +12,20 @@ namespace AEAssist.AI
         {
             if (!Spells.Sidewinder.IsReady())
                 return false;
-            return true;
+            if (BardSpellEx.HasBuffsCount() >= 2)
+                return true;
+
+            if (BardSpellEx.CheckCanUseBuffs())
+            {
+                return true;
+            }
+            
+            if (!Core.Me.HasMyAura(AurasDefine.RagingStrikes))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public async Task<SpellData> Run()

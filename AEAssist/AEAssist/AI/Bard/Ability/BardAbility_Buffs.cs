@@ -29,12 +29,28 @@ namespace AEAssist.AI
 
         public async Task<SpellData> Run()
         {
+            // if (!AIRoot.Instance.Is2ndAbilityTime())
+            //     return null;
             var buff = BardSpellEx.GetBuffs();
             if (buff == null)
                 return null;
-            var ret = await SpellHelper.CastAbility(buff, Core.Me);
+            var ret = await SpellHelper.CastAbility(buff, Core.Me,0);
             if (ret)
-                return buff;
+            {
+                var lastBuff = buff;
+                // buff = BardSpellEx.GetBuffs();
+                // // 连续使用两个Buff
+                // if(buff != null)
+                // {
+                //     if (await SpellHelper.CastAbility(buff, Core.Me, 0))
+                //     {
+                //         AIRoot.Instance.MuteAbilityTime();
+                //         return buff;
+                //     }
+                // }
+                return lastBuff;
+            }
+
             return null;
         }
     }

@@ -20,7 +20,16 @@ namespace AEAssist.AI
 
         public async Task<SpellData> Run()
         {
-            var spell = BardSpellEx.GetRefulgentArrow();
+            SpellData spell = null;
+            // 25和5 是 Shadowbite 的攻击距离和伤害距离
+            if (Spells.Shadowbite.IsReady() && TargetHelper.CheckNeedUseAOE(25, 5, ConstValue.BardAOECount))
+            {
+                spell = Spells.Shadowbite;
+                if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
+                    return spell;
+            }
+
+            spell = BardSpellEx.GetRefulgentArrow();
             if (spell == null)
                 return null;
             var ret = await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget);
