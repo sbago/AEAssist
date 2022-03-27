@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.AI;
 using ff14bot.Enums;
@@ -11,10 +12,35 @@ namespace AEAssist
 
         public DefaultRotation DefaultRotation = new DefaultRotation();
 
-        public Dictionary<ClassJobType, IRotation> AllRotations = new Dictionary<ClassJobType, IRotation>()
+        public Dictionary<ClassJobType, IRotation> AllRotations = new Dictionary<ClassJobType, IRotation>();
+
+        public void Init()
         {
-            {ClassJobType.Bard,new BardRotation()}
-        };
+            this.AllRotations.Clear();
+            var baseType = typeof(IRotation);
+            foreach (var type in this.GetType().Assembly.GetTypes())
+            {
+                if(type.IsAbstract || type.IsInterface)
+                    continue;
+                if(!baseType.IsAssignableFrom(type))
+                    continue;
+                var attrs = type.GetCustomAttributes(typeof(RotationAttribute), false);
+                if (attrs.Length == 0)
+                {
+                    LogHelper.Error("Rotation class need RotationAttribute");
+                    continue;
+                }
+
+                var attr = attrs[0] as RotationAttribute;
+                this.AllRotations[attr.ClassJobType] = Activator.CreateInstance(type) as IRotation;
+                LogHelper.Info("Load Rotation: " + attr.ClassJobType);
+            }
+            
+            foreach (var v in AllRotations)
+            {
+                v.Value.Init();
+            }
+        }
 
         IRotation GetRotation()
         {

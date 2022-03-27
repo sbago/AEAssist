@@ -21,7 +21,7 @@ namespace AEAssist.AI
 
             var time = ActionResourceManager.Bard.Timer.TotalMilliseconds;
 
-            if (time - BardSpellEx.TimeUntilNextPossibleDoTTick() < 550)
+            if (time - BardSpellHelper.TimeUntilNextPossibleDoTTick() < 550)
                 return true;
 
             if (ActionResourceManager.Bard.Repertoire == 3)

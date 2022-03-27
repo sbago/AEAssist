@@ -10,7 +10,7 @@ namespace AEAssist.AI
     {
         public bool Check(SpellData lastSpell)
         {
-            var spell = BardSpellEx.GetQuickNock();
+            var spell = BardSpellHelper.GetQuickNock();
             if (spell == null)
                 return false;
             return TargetHelper.CheckNeedUseAOE(12, 12, ConstValue.BardAOECount);
@@ -18,7 +18,7 @@ namespace AEAssist.AI
 
         public async Task<SpellData> Run()
         {
-            var spell = BardSpellEx.GetQuickNock();
+            var spell = BardSpellHelper.GetQuickNock();
             if (spell == null)
                 return null;
             var ret = await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget);

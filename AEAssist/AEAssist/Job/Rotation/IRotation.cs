@@ -4,6 +4,7 @@ namespace AEAssist
 {
     public interface IRotation
     {
+        void Init();
         Task<bool> Rest();
         Task<bool> PreCombatBuff();
         Task<bool> Pull();

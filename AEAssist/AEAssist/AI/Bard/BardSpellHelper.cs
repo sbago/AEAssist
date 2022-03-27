@@ -17,8 +17,18 @@ namespace AEAssist.Define
         MB_AP_WM
     }
     
-    public static class BardSpellEx
+    public static class BardSpellHelper
     {
+        public static CircleList<SpellData> Songs = new CircleList<SpellData>();
+
+        public static void Init()
+        {
+            Songs.Clear();
+            Songs.Add(Spells.TheWanderersMinuet);
+            Songs.Add(Spells.MagesBallad);
+            Songs.Add(Spells.ArmysPaeon);
+        }
+
         public static SpellData GetWindBite()
         {
             if (Core.Me.ClassLevel < Spells.Windbite.LevelAcquired)

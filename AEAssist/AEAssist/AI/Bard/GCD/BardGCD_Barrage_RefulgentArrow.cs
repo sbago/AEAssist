@@ -22,14 +22,14 @@ namespace AEAssist.AI
         {
             SpellData spell = null;
             // 25和5 是 Shadowbite 的攻击距离和伤害距离
-            if (BardSpellEx.IsShadowBiteReady() && TargetHelper.CheckNeedUseAOE(25, 5, ConstValue.BardAOECount))
+            if (BardSpellHelper.IsShadowBiteReady() && TargetHelper.CheckNeedUseAOE(25, 5, ConstValue.BardAOECount))
             {
                 spell = Spells.Shadowbite;
                 if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
                     return spell;
             }
 
-            spell = BardSpellEx.GetRefulgentArrow();
+            spell = BardSpellHelper.GetRefulgentArrow();
             if (spell == null)
                 return null;
             var ret = await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget);

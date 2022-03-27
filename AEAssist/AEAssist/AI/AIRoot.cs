@@ -48,7 +48,7 @@ namespace AEAssist.AI
             _maxAbilityTimes = SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD;
         }
 
-        void Clear()
+        public void Clear()
         {
             _lastGCDSpell = null;
             _lastAbilitySpell = null;
@@ -56,17 +56,15 @@ namespace AEAssist.AI
             lastCastRagingStrikesTime = 0;
             lastIronJawWithBuff = false;
             lastCastSongTime = 0;
+
+            if (CanNotice("Clear", 2000))
+                LogHelper.Debug("Clear battle data");
         }
 
         public async Task<bool> Update()
         {
             // 逻辑清单: 
             // 1. 检测当前是否可以使用GCD技能
-
-            if (!Core.Me.InCombat)
-            {
-                Clear();
-            }
 
             if (Stop)
             {

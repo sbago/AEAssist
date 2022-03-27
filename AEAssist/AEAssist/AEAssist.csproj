@@ -79,6 +79,7 @@
         <Compile Include="AI\Core\IAIHandler.cs" />
         <Compile Include="AI\CountDownHandler.cs" />
         <Compile Include="AI\TargetMgr.cs" />
+        <Compile Include="DataStruct\CircleList.cs" />
         <Compile Include="Define\AurasDefine.cs" />
         <Compile Include="Define\Spells.cs" />
         <Compile Include="Entry.cs" />
@@ -101,6 +102,7 @@
         <Compile Include="Job\BardRotation.cs" />
         <Compile Include="Job\Rotation\DefaultRotation.cs" />
         <Compile Include="Job\Rotation\IRotation.cs" />
+        <Compile Include="Job\Rotation\RotationAttribute.cs" />
         <Compile Include="Job\Rotation\RotationManager.cs" />
         <Compile Include="Overlay.cs">
           <SubType>Form</SubType>

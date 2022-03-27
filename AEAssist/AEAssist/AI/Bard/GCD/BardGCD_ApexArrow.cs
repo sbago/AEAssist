@@ -15,7 +15,7 @@ namespace AEAssist.AI
                 return true;
 
             if (ActionResourceManager.Bard.SoulVoice >= 80 &&
-                (BardSpellEx.HasBuffsCountInEnd() >= 1 || TargetHelper.CheckNeedUseAOE(ConstValue.BardAOETargetRange,
+                (BardSpellHelper.HasBuffsCountInEnd() >= 1 || TargetHelper.CheckNeedUseAOE(ConstValue.BardAOETargetRange,
                     2, ConstValue.BardAOECount)))
             {
                 return true;

@@ -17,7 +17,7 @@ namespace AEAssist.AI
 
         public async Task<SpellData> Run()
         {
-            var spell = BardSpellEx.GetBlastArrow();
+            var spell = BardSpellHelper.GetBlastArrow();
             if (spell == null)
                 return null;
             var ret = await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget);

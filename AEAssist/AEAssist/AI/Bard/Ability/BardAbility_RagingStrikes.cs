@@ -28,7 +28,7 @@ namespace AEAssist.AI
             var spellData = Spells.RagingStrikes;
             if (await SpellHelper.CastAbility(spellData, Core.Me))
             {
-                BardSpellEx.RecordUsingRagingStrikesTime();
+                BardSpellHelper.RecordUsingRagingStrikesTime();
                 return spellData;
             }
 

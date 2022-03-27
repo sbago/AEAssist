@@ -12,10 +12,10 @@ namespace AEAssist.AI
         {
             if (!Spells.Sidewinder.IsReady())
                 return false;
-            if (BardSpellEx.HasBuffsCount() >= 2)
+            if (BardSpellHelper.HasBuffsCount() >= 2)
                 return true;
 
-            if (BardSpellEx.CheckCanUseBuffs())
+            if (BardSpellHelper.CheckCanUseBuffs())
             {
                 return true;
             }
@@ -25,7 +25,7 @@ namespace AEAssist.AI
                 return true;
             }
 
-            if (BardSpellEx.UnlockBuffsCount() <= 1)
+            if (BardSpellHelper.UnlockBuffsCount() <= 1)
                 return true;
 
             return false;

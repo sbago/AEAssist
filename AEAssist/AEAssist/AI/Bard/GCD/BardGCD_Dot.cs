@@ -13,23 +13,21 @@ namespace AEAssist.AI
         public bool Check(SpellData lastSpell)
         {
             var tar = Core.Me.CurrentTarget as Character;
-            
-            LogHelper.Debug("检测是否可以使用Dot");
             if (TTKHelper.IsTargetTTK(tar))
                 return false;
             int dots = 0;
-            if (BardSpellEx.IsTargetHasAura_WindBite(tar))
+            if (BardSpellHelper.IsTargetHasAura_WindBite(tar))
             {
                 dots++;
             }
-            if (BardSpellEx.IsTargetHasAura_VenomousBite(tar))
+            if (BardSpellHelper.IsTargetHasAura_VenomousBite(tar))
             {
                 dots++;
             }
 
             if (dots >= 2)
             {
-                if (BardSpellEx.IsTargetNeedIronJaws(tar))
+                if (BardSpellHelper.IsTargetNeedIronJaws(tar))
                     return true;
                 return false;
             }
@@ -41,15 +39,15 @@ namespace AEAssist.AI
         {
             SpellData spell = null;
             var target = Core.Me.CurrentTarget as Character;
-            if (!BardSpellEx.IsTargetHasAura_WindBite(target))
+            if (!BardSpellHelper.IsTargetHasAura_WindBite(target))
             {
-                spell = BardSpellEx.GetWindBite();
+                spell = BardSpellHelper.GetWindBite();
             }
-            else if (!BardSpellEx.IsTargetHasAura_VenomousBite(target))
+            else if (!BardSpellHelper.IsTargetHasAura_VenomousBite(target))
             {
-                spell = BardSpellEx.GetVenomousBite();
+                spell = BardSpellHelper.GetVenomousBite();
             }
-            else if (BardSpellEx.IsTargetNeedIronJaws(target))
+            else if (BardSpellHelper.IsTargetNeedIronJaws(target))
             {
                 spell = Spells.IronJaws;
             }
@@ -61,7 +59,7 @@ namespace AEAssist.AI
             {
                 if (spell == Spells.IronJaws)
                 {
-                    BardSpellEx.RecordIronJaw();
+                    BardSpellHelper.RecordIronJaw();
                 }
 
                 return spell;

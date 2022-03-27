@@ -15,7 +15,7 @@ namespace AEAssist.AI
             var tar = Core.Me.CurrentTarget as Character;
             if (TTKHelper.IsTargetTTK(tar))
                 return false;
-            if (!BardSpellEx.CheckCanUseBuffs())
+            if (!BardSpellHelper.CheckCanUseBuffs())
                 return false;
             // if (!tar.IsBoss())
             // {
@@ -23,7 +23,7 @@ namespace AEAssist.AI
             // }
             // if (BardSpellEx.IsBuff(lastSpell))
             //     return false;
-            var buffs = BardSpellEx.GetBuffs();
+            var buffs = BardSpellHelper.GetBuffs();
             if (buffs == null)
                 return false;
             return true;
@@ -33,7 +33,7 @@ namespace AEAssist.AI
         {
             // if (!AIRoot.Instance.Is2ndAbilityTime())
             //     return null;
-            var buff = BardSpellEx.GetBuffs();
+            var buff = BardSpellHelper.GetBuffs();
             if (buff == null)
                 return null;
             var ret = await SpellHelper.CastAbility(buff, Core.Me,0);

@@ -22,7 +22,7 @@ namespace AEAssist.AI
 
             if (Core.Me.HasAura(AurasDefine.StraighterShot))
                 return false;
-            if (BardSpellEx.UnlockBuffsCount() > 1 && BardSpellEx.HasBuffsCount() <= 1)
+            if (BardSpellHelper.UnlockBuffsCount() > 1 && BardSpellHelper.HasBuffsCount() <= 1)
                 return false;
 
             return true;

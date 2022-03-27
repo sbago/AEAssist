@@ -4,6 +4,11 @@ namespace AEAssist
 {
     public class DefaultRotation : IRotation
     {
+        public void Init()
+        {
+            
+        }
+
         public Task<bool> Rest()
         {
             // LogHelper.Debug("Rest");

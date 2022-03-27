@@ -34,8 +34,9 @@ namespace AEAssist
             LogHelper.Debug("Init....");
             try
             {
-                DataHelper.Init();
                 SettingMgr.Instance.InitSetting();
+                DataHelper.Init();
+                RotationManager.Instance.Init();
                 GUIHelper.OpenOverlay();
                 HookBehaviors();
                 RegisHotkey();

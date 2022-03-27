@@ -5,11 +5,13 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using Buddy.Coroutines;
 using ff14bot;
+using ff14bot.Enums;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
 namespace AEAssist
 {
+    [Rotation(ClassJobType.Bard)]
     public class BardRotation : IRotation
     {
 
@@ -17,6 +19,11 @@ namespace AEAssist
 
         private long randomTime;
         private long _lastTime;
+
+        public void Init()
+        {
+            BardSpellHelper.Init();
+        }
 
         public Task<bool> Rest()
         {
@@ -31,7 +38,10 @@ namespace AEAssist
             {
                 return false;
             }
-            
+
+
+            AIRoot.Instance.Clear();
+
             if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
                 return false;
 
@@ -40,7 +50,7 @@ namespace AEAssist
                 if (TargetMgr.Instance.EnemysIn25.Count > 0)
                     return false;
             }
-            
+
             if (!MovementManager.IsMoving)
                 return false;
 
@@ -49,7 +59,7 @@ namespace AEAssist
                 GUIHelper.ShowInfo("非战斗状态,速行未开启");
                 return false;
             }
-            
+
             GUIHelper.ShowInfo("非战斗状态,速行逻辑判断中");
 
             if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
