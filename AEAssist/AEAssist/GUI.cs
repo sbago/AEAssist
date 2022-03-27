@@ -19,11 +19,14 @@ namespace AEAssist
 
         private void GUI_Load(object sender, EventArgs e)
         {
-            Peloton.Checked = BardSettings.Instance.UsePeloton;
+            Peloton.Checked = SettingMgr.GetSetting<BardSettings>().UsePeloton;
             CheckBardPotion_Click(null,null);
+
+            var generalSetting = SettingMgr.GetSetting<GeneralSettings>();
             
-            TTKHpLine.Text = GeneralSettings.Instance.TimeToKill_HpLine.ToString();
-            TTKControl.Checked =  GeneralSettings.Instance.OpenTTK;
+            TTKHpLine.Text = generalSetting.TimeToKill_TimeInSec.ToString();
+            TTKControl.Checked =  generalSetting.OpenTTK;
+            textBox2.Text = generalSetting.TTK_IgnoreDamage.ToString();
         }
 
         private void ShowOverlay_Click(object sender, EventArgs e)
@@ -33,34 +36,52 @@ namespace AEAssist
 
         private void Peloton_CheckedChanged(object sender, EventArgs e)
         {
-            BardSettings.Instance.UsePeloton = Peloton.CheckState == CheckState.Checked;
+            SettingMgr.GetSetting<BardSettings>().UsePeloton = Peloton.CheckState == CheckState.Checked;
         }
 
         private void CheckBardPotion_Click(object sender, EventArgs e)
         {
-            var num = PotionHelper.CheckNum(BardSettings.Instance.PotionId);
+            var num = PotionHelper.CheckNum( SettingMgr.GetSetting<BardSettings>().PotionId);
             this.BardPotion.Text = $"爆发药 5级巧力之幻药 数量 {num.ToString()}";
         }
 
         private void TTKControl_CheckedChanged(object sender, EventArgs e)
         {
-            GeneralSettings.Instance.OpenTTK = TTKControl.Checked;
+            SettingMgr.GetSetting<GeneralSettings>().OpenTTK = TTKControl.Checked;
         }
 
         private void TTKHpLine_TextChanged(object sender, EventArgs e)
         {
             if (!int.TryParse(TTKHpLine.Text, out var num))
             {
-                TTKHpLine.Text = GeneralSettings.Instance.TimeToKill_HpLine.ToString();
+                TTKHpLine.Text =  SettingMgr.GetSetting<GeneralSettings>().TimeToKill_TimeInSec.ToString();
                 return;
             }
 
-            GeneralSettings.Instance.TimeToKill_HpLine = num;
+            SettingMgr.GetSetting<GeneralSettings>().TimeToKill_TimeInSec = num;
         }
 
         private void SaveSetting_Click(object sender, EventArgs e)
         {
-            DataHelper.Save();
+            SettingMgr.Instance.Save();
+            MessageBox.Show("保存成功!");
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (!int.TryParse(textBox2.Text, out var num))
+            {
+                textBox2.Text =  SettingMgr.GetSetting<GeneralSettings>().TTK_IgnoreDamage.ToString();
+                return;
+            }
+
+            SettingMgr.GetSetting<GeneralSettings>().TTK_IgnoreDamage = num;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SettingMgr.Instance.Reset();
+            MessageBox.Show("重置成功!");
         }
     }
 }

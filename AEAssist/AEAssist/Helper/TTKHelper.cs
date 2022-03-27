@@ -1,4 +1,5 @@
-﻿using ff14bot;
+﻿using AEAssist.AI;
+using ff14bot;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
@@ -9,21 +10,27 @@ namespace AEAssist.Helper
     {
         public static bool IsTargetTTK(Character target)
         {
-            if (!GeneralSettings.Instance.OpenTTK)
+            if (!SettingMgr.GetSetting<GeneralSettings>().OpenTTK)
                 return false;
 
-            var hpLine = GeneralSettings.Instance.TimeToKill_HpLine;
-
-            if (PartyManager.NumMembers <= 4)
+            if (!TargetMgr.Instance.TargetStats.TryGetValue(target.ObjectId,out var stat))
             {
-                hpLine /= 2;
+                return false;
             }
 
-            if (target.CurrentHealth < hpLine)
-                return true;
+            if (stat.DeathPrediction == 0)
+            {
+                return false;
+            }
 
-            // todo: 预计N秒内死亡
-            return false;
+            var config = SettingMgr.GetSetting<GeneralSettings>().TimeToKill_TimeInSec * 1000;
+
+           // LogHelper.Debug($"{target.ObjectId} Hp {target.CurrentHealth} DeathPre {stat.DeathPrediction} Config {config}");
+            
+            if (stat.DeathPrediction > config)
+                return false;
+            
+            return true;
         }
     }
 }

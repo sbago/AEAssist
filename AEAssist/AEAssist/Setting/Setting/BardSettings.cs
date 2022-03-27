@@ -4,11 +4,8 @@ using AEAssist.Helper;
 
 namespace AEAssist
 {
-    public class BardSettings
+    public class BardSettings : IBaseSetting
     {
-        public static BardSettings Instance = new BardSettings();
-        
-        
         public double RestHealthPercent = 70.0f;
         public int ApexArrowValue = 95; // 绝峰 多少能量就用
 

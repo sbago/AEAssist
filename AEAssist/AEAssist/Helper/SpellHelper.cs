@@ -62,7 +62,7 @@ namespace AEAssist.Helper
                 return false;
             }
 
-            LogHelper.Debug("准备使用能力 : " + spell.Name);
+            //LogHelper.Debug("准备使用能力 : " + spell.Name);
             
             if (!ActionManager.HasSpell(spell.Id))
                 return false;

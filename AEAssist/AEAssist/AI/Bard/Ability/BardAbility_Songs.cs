@@ -65,21 +65,21 @@ namespace AEAssist.AI
                     break;
                 case ActionResourceManager.Bard.BardSong.WanderersMinuet:
                     // 关闭爆发的时候,我们让歌唱完
-                    if (!AIRoot.Instance.CloseBuff && remainTime <= BardSettings.Instance.Songs_WM_TimeLeftForSwitch)
+                    if (!AIRoot.Instance.CloseBuff && remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_WM_TimeLeftForSwitch)
                     {
                         spell = GetSongsByOrder(Spells.TheWanderersMinuet);
                     }
                     break;
                 case ActionResourceManager.Bard.BardSong.MagesBallad:
                     // 关闭爆发的时候,我们让歌唱完
-                    if (!AIRoot.Instance.CloseBuff && remainTime <= BardSettings.Instance.Songs_MB_TimeLeftForSwitch)
+                    if (!AIRoot.Instance.CloseBuff && remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_MB_TimeLeftForSwitch)
                     {
                         spell = GetSongsByOrder(Spells.MagesBallad);
                     }
                     break;
                 case ActionResourceManager.Bard.BardSong.ArmysPaeon:
                     // 关闭爆发的时候,我们让歌唱完
-                    if (!AIRoot.Instance.CloseBuff && remainTime <= BardSettings.Instance.Songs_AP_TimeLeftForSwitch)
+                    if (!AIRoot.Instance.CloseBuff && remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_AP_TimeLeftForSwitch)
                     {
                         spell = GetSongsByOrder(Spells.ArmysPaeon);
                     }

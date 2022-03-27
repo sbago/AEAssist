@@ -126,7 +126,7 @@ namespace AEAssist.Define
                 return false;
 
             var buffCountInEnd = HasBuffsCountInEnd();
-            LogHelper.Info("当前快要结束的Buff数量 : " + buffCountInEnd);
+            //LogHelper.Info("当前快要结束的Buff数量 : " + buffCountInEnd);
             if (buffCountInEnd >= 1 && !AIRoot.Instance.lastIronJawWithBuff)
             {
                 return true;

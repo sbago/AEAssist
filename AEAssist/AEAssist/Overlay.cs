@@ -20,7 +20,7 @@ namespace AEAssist
             LogHelper.Info("打开Overlay窗口");
             BattleStop.Checked = AIRoot.Instance.Stop;
             BuffControlCheckBox.Checked = AIRoot.Instance.CloseBuff;
-            PotionControl.Checked = GeneralSettings.Instance.UsePotion;
+            PotionControl.Checked =SettingMgr.GetSetting<GeneralSettings>().UsePotion;
         }
 
         private void CountDown5s_Click(object sender, EventArgs e)
@@ -61,12 +61,12 @@ namespace AEAssist
 
         private void PotionControl_CheckedChanged(object sender, EventArgs e)
         {
-            GeneralSettings.Instance.UsePotion = PotionControl.Checked;
+            SettingMgr.GetSetting<GeneralSettings>().UsePotion = PotionControl.Checked;
         }
 
         public void SiwtchPotionControl()
         {
-            PotionControl.Checked = !GeneralSettings.Instance.UsePotion;
+            PotionControl.Checked = !SettingMgr.GetSetting<GeneralSettings>().UsePotion;
         }
     }
 }

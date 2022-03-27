@@ -33,7 +33,7 @@ namespace AEAssist.Helper
         
         internal static async Task<bool> UsePotion(int potionRawId)
         {
-            if (!GeneralSettings.Instance.UsePotion)
+            if (!SettingMgr.GetSetting<GeneralSettings>().UsePotion)
                 return false;
             if (AIRoot.Instance.CloseBuff)
                 return false;
@@ -45,7 +45,7 @@ namespace AEAssist.Helper
 
             item.UseItem(); 
             await Coroutine.Wait(1000, () => !item.CanUse());
-            LogHelper.Info($@"[AEAssist] Using >>> {item.Name} {item.Item.ChnName}");
+            LogHelper.Info($@"Using Item >>> {item.Name}");
             return true;
         }
         

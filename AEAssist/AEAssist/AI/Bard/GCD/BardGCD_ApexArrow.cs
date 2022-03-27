@@ -11,7 +11,7 @@ namespace AEAssist.AI
     {
         public bool Check(SpellData lastSpell)
         {
-            if (ActionResourceManager.Bard.SoulVoice >= BardSettings.Instance.ApexArrowValue)
+            if (ActionResourceManager.Bard.SoulVoice >= SettingMgr.GetSetting<BardSettings>().ApexArrowValue)
                 return true;
 
             if (ActionResourceManager.Bard.SoulVoice >= 80 &&

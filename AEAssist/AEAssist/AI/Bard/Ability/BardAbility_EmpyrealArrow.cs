@@ -20,15 +20,15 @@ namespace AEAssist.AI
                 case ActionResourceManager.Bard.BardSong.None:
                     return false;
                 case ActionResourceManager.Bard.BardSong.MagesBallad:
-                    if (remainTime <= BardSettings.Instance.Songs_MB_TimeLeftForSwitch)
+                    if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_MB_TimeLeftForSwitch)
                         return false;
                     break;
                 case ActionResourceManager.Bard.BardSong.ArmysPaeon:
-                    if (remainTime <= BardSettings.Instance.Songs_AP_TimeLeftForSwitch)
+                    if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_AP_TimeLeftForSwitch)
                         return false;
                     break;
                 case ActionResourceManager.Bard.BardSong.WanderersMinuet:
-                    if (remainTime <= BardSettings.Instance.Songs_WM_TimeLeftForSwitch)
+                    if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_WM_TimeLeftForSwitch)
                         return false;
                     break;
             }

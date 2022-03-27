@@ -20,7 +20,7 @@ namespace AEAssist
 
         public Task<bool> Rest()
         {
-            var needRest = Core.Me.CurrentHealthPercent < BardSettings.Instance.RestHealthPercent;
+            var needRest = Core.Me.CurrentHealthPercent < SettingMgr.GetSetting<BardSettings>().RestHealthPercent;
             return Task.FromResult(needRest);
         }
 
@@ -44,7 +44,7 @@ namespace AEAssist
             if (!MovementManager.IsMoving)
                 return false;
 
-            if (!BardSettings.Instance.UsePeloton)
+            if (!SettingMgr.GetSetting<BardSettings>().UsePeloton)
             {
                 GUIHelper.ShowInfo("非战斗状态,速行未开启");
                 return false;
@@ -107,7 +107,7 @@ namespace AEAssist
 
         public Task<bool> PullBuff()
         {
-            LogHelper.Debug("PullBuff");
+            //LogHelper.Debug("PullBuff");
             return Task.FromResult(true);
         }
     }

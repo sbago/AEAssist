@@ -10,13 +10,13 @@ namespace AEAssist.AI
     {
         public bool Check(SpellData lastSpell)
         {
-            if (!GeneralSettings.Instance.UsePotion)
+            if (!SettingMgr.GetSetting<GeneralSettings>().UsePotion)
                 return false;
             if (AIRoot.Instance.CloseBuff)
                 return false;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return false;
-            if (!PotionHelper.CheckPotion(BardSettings.Instance.PotionId))
+            if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<BardSettings>().PotionId))
                 return false;
 
             return true;
@@ -24,7 +24,7 @@ namespace AEAssist.AI
 
         public async Task<SpellData> Run()
         {
-            var ret = await PotionHelper.UsePotion(BardSettings.Instance.PotionId);
+            var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<BardSettings>().PotionId);
             if (ret)
             {
                 AIRoot.Instance.MuteAbilityTime();

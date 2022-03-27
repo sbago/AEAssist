@@ -45,14 +45,14 @@ namespace AEAssist.AI
         public AIRoot()
         {
             _lastCastTime = TimeHelper.Now();
-            _maxAbilityTimes = GeneralSettings.Instance.MaxAbilityTimsInGCD;
+            _maxAbilityTimes = SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD;
         }
 
         void Clear()
         {
             _lastGCDSpell = null;
             _lastAbilitySpell = null;
-            _maxAbilityTimes = GeneralSettings.Instance.MaxAbilityTimsInGCD;
+            _maxAbilityTimes = SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD;
             lastCastRagingStrikesTime = 0;
             lastIronJawWithBuff = false;
             lastCastSongTime = 0;
@@ -101,14 +101,14 @@ namespace AEAssist.AI
             var coolDown = GetGCDDuration();
             if (_lastGCDSpell != null)
             {
-                var coolDownForQueue = coolDown - GeneralSettings.Instance.ActionQueueMs;
+                var coolDownForQueue = coolDown - SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
                 if (delta < coolDownForQueue)
                 {
                     canUseGCD = false;
                 }
             }
 
-            var needDura = ConstValue.AnimationLockMs + GeneralSettings.Instance.UserLatencyOffset;
+            var needDura = ConstValue.AnimationLockMs + SettingMgr.GetSetting<GeneralSettings>().UserLatencyOffset;
             if (_maxAbilityTimes > 0 && coolDown - delta > needDura)
             {
                 canUseAbility = true;
@@ -129,7 +129,7 @@ namespace AEAssist.AI
                         CountDownHandler.Instance.Close();
                     _lastGCDSpell = ret;
                     _lastCastTime = timeNow;
-                    _maxAbilityTimes = GeneralSettings.Instance.MaxAbilityTimsInGCD;
+                    _maxAbilityTimes = SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD;
                     _lastAbilitySpell = null;
                 }
             }
@@ -142,7 +142,7 @@ namespace AEAssist.AI
                 {
                     GUIHelper.ShowInfo("Cast Ability: " + ret.LocalizedName, 100);
                     _maxAbilityTimes--;
-                    LogHelper.Info($"剩余使用能力技能次数: {_maxAbilityTimes}");
+                    //LogHelper.Info($"剩余使用能力技能次数: {_maxAbilityTimes}");
                 }
             }
 
@@ -156,12 +156,12 @@ namespace AEAssist.AI
                 return false;
             if (_maxAbilityTimes == 1)
                 return true;
-            if (GeneralSettings.Instance.MaxAbilityTimsInGCD != 2)
+            if (SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD != 2)
                 return true;
             var timeNow = TimeHelper.Now();
             var delta = timeNow - _lastCastTime;
             var coolDown = _lastGCDSpell.AdjustedCooldown.TotalMilliseconds;
-            if (delta > coolDown / GeneralSettings.Instance.MaxAbilityTimsInGCD)
+            if (delta > coolDown / SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD)
                 return true;
             return false;
         }

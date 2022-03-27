@@ -37,6 +37,8 @@ namespace AEAssist
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.SaveSetting = new System.Windows.Forms.Button();
             this.TTKPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.TTKHpLineLabel = new System.Windows.Forms.Label();
             this.TTKControl = new System.Windows.Forms.CheckBox();
             this.TTKHpLine = new System.Windows.Forms.TextBox();
@@ -46,6 +48,7 @@ namespace AEAssist
             this.BardPotion = new System.Windows.Forms.Label();
             this.Peloton = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.MainTab.SuspendLayout();
             this.GeneralTab.SuspendLayout();
             this.TTKPanel.SuspendLayout();
@@ -67,6 +70,7 @@ namespace AEAssist
             // GeneralTab
             // 
             this.GeneralTab.BackColor = System.Drawing.Color.Silver;
+            this.GeneralTab.Controls.Add(this.button1);
             this.GeneralTab.Controls.Add(this.textBox1);
             this.GeneralTab.Controls.Add(this.SaveSetting);
             this.GeneralTab.Controls.Add(this.TTKPanel);
@@ -100,13 +104,34 @@ namespace AEAssist
             // TTKPanel
             // 
             this.TTKPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TTKPanel.Controls.Add(this.label1);
+            this.TTKPanel.Controls.Add(this.textBox2);
             this.TTKPanel.Controls.Add(this.TTKHpLineLabel);
             this.TTKPanel.Controls.Add(this.TTKControl);
             this.TTKPanel.Controls.Add(this.TTKHpLine);
             this.TTKPanel.Location = new System.Drawing.Point(11, 96);
             this.TTKPanel.Name = "TTKPanel";
-            this.TTKPanel.Size = new System.Drawing.Size(208, 71);
+            this.TTKPanel.Size = new System.Drawing.Size(210, 88);
             this.TTKPanel.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(3, 49);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 21);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "伤害阈值";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolTip1.SetToolTip(this.label1, "目标受到的超过给定值的伤害不作为TTK计算依据");
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(81, 49);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(111, 21);
+            this.textBox2.TabIndex = 6;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // TTKHpLineLabel
             // 
@@ -114,9 +139,9 @@ namespace AEAssist
             this.TTKHpLineLabel.Name = "TTKHpLineLabel";
             this.TTKHpLineLabel.Size = new System.Drawing.Size(72, 21);
             this.TTKHpLineLabel.TabIndex = 5;
-            this.TTKHpLineLabel.Text = "血量判定";
+            this.TTKHpLineLabel.Text = "X秒内死亡";
             this.TTKHpLineLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolTip1.SetToolTip(this.TTKHpLineLabel, "血量剩余多少就进入濒死状态,4人本会除2");
+            this.toolTip1.SetToolTip(this.TTKHpLineLabel, "预计多少秒内死亡算濒死状态");
             // 
             // TTKControl
             // 
@@ -188,6 +213,20 @@ namespace AEAssist
             this.Peloton.UseVisualStyleBackColor = true;
             this.Peloton.CheckedChanged += new System.EventHandler(this.Peloton_CheckedChanged);
             // 
+            // toolTip1
+            // 
+            this.toolTip1.AutomaticDelay = 100;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(11, 230);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(128, 34);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "恢复默认设置";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // GUI
             // 
             this.AllowDrop = true;
@@ -213,6 +252,11 @@ namespace AEAssist
             this.BardTab.ResumeLayout(false);
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button button1;
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox2;
 
         private System.Windows.Forms.TextBox textBox1;
 

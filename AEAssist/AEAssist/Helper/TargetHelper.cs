@@ -31,7 +31,7 @@ namespace AEAssist.Helper
             int count = 0;
             foreach (var v in list)
             {
-                if (v.Distance(Core.Me.CurrentTarget) <= damageRange)
+                if (v.Value.Distance(Core.Me.CurrentTarget) <= damageRange)
                     count++;
             }
 

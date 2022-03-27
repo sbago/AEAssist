@@ -14,6 +14,7 @@ namespace AEAssist.AI
         {
             var tar = Core.Me.CurrentTarget as Character;
             
+            LogHelper.Debug("检测是否可以使用Dot");
             if (TTKHelper.IsTargetTTK(tar))
                 return false;
             int dots = 0;

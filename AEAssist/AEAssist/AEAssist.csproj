@@ -109,9 +109,13 @@
           <DependentUpon>Overlay.cs</DependentUpon>
         </Compile>
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="Setting\BardSettings.cs" />
+        <Compile Include="Setting\BaseSetting.cs" />
         <Compile Include="Setting\ConstValue.cs" />
-        <Compile Include="Setting\GeneralSettings.cs" />
+        <Compile Include="Setting\SettingAttribute.cs" />
+        <Compile Include="Setting\SettingMgr.cs" />
+        <Compile Include="Setting\Setting\BardSettings.cs" />
+        <Compile Include="Setting\Setting\GeneralSettings.cs" />
+        <Compile Include="Setting\Setting\VersionSetting.cs" />
         <EmbeddedResource Include="GUI.resx">
           <DependentUpon>GUI.cs</DependentUpon>
         </EmbeddedResource>

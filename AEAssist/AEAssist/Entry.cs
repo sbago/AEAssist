@@ -32,12 +32,21 @@ namespace AEAssist
         public void Initialize()
         {
             LogHelper.Debug("Init....");
-            DataHelper.Init();
-            GUIHelper.OpenOverlay();
-            HookBehaviors();
-            RegisHotkey();
-            // PotionHelper.DebugAllItems();
-            GUIHelper.ShowInfo("插件初始化完成, 请检查ATB是否开启!");
+            try
+            {
+                DataHelper.Init();
+                SettingMgr.Instance.InitSetting();
+                GUIHelper.OpenOverlay();
+                HookBehaviors();
+                RegisHotkey();
+                // PotionHelper.DebugAllItems();
+                GUIHelper.ShowInfo("插件初始化完成, 请检查ATB是否开启!");
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error(e.ToString());
+                GUIHelper.ShowInfo("插件初始化失败, 请联系作者Q 210379417!");
+            }
             LogHelper.Info("Initialized!");
         }
 
@@ -81,7 +90,6 @@ namespace AEAssist
 
         public void Shutdown()
         {
-            LogHelper.Debug("Shutdown....");
             GUIHelper.CloseOverlay();
             foreach (var v in Hotkeys)
             {

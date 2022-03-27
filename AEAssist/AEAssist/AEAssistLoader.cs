@@ -64,7 +64,7 @@ namespace AEAssist
         public override void ShutDown()
         {
             base.ShutDown();
-            LogHelper.Debug("ShutDown");
+            AEAssist.Entry.Instance.Shutdown();
         }
 
         public override Composite RestBehavior
