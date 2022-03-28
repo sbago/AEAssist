@@ -17,7 +17,7 @@ namespace AEAssist
 
         public static void Error(string msg)
         {
-            Logging.Write(Colors.DarkRed, $"[AEAssist Error] {msg}");
+            Logging.Write(Colors.Red, $"[AEAssist Error] {msg}");
         }
     }
 }

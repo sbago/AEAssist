@@ -21,12 +21,6 @@ namespace AEAssist
 {
     public class Entry
     {
-        private Entry()
-        {
-        }
-
-        public static Entry Instance { get; } = new Entry();
-
         public List<Hotkey> Hotkeys = new List<Hotkey>();
 
         public void Initialize()
