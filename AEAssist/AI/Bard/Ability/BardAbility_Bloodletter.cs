@@ -38,8 +38,6 @@ namespace AEAssist.AI
             }
 
             return null;
-
-            return null;
         }
     }
 }

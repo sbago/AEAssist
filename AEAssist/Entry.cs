@@ -32,7 +32,7 @@ namespace AEAssist
                 DataHelper.Init();
                 RotationManager.Instance.Init();
                 GUIHelper.OpenOverlay();
-                //HookBehaviors();
+                HookBehaviors();
                 RegisHotkey();
                 // PotionHelper.DebugAllItems();
                 GUIHelper.ShowInfo("插件初始化完成, 请检查ATB是否开启!");
@@ -117,6 +117,7 @@ namespace AEAssist
 
         public void HookBehaviors()
         {
+            // 重新hook用来提高性能
             TreeHooks.Instance.ReplaceHook("Rest", RestBehavior);
             TreeHooks.Instance.ReplaceHook("PreCombatBuff", PreCombatBuffBehavior);
             TreeHooks.Instance.ReplaceHook("Pull", PullBehavior);

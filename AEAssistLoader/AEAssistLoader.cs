@@ -30,10 +30,14 @@ namespace AEAssist
         
         private static readonly string ProjectAssembly = Path.Combine(Environment.CurrentDirectory, $@"Routines\{ProjectName}\{ProjectAssemblyName}");
         private static readonly string GreyMagicAssembly = Path.Combine(Environment.CurrentDirectory, @"GreyMagic.dll");
-
-        private static readonly string MaterialDesignColorsAss =Path.Combine(Environment.CurrentDirectory, $@"Routines\{ProjectName}\MaterialDesignColors.dll");
-        private static readonly string MaterialDesign2Ass = Path.Combine(Environment.CurrentDirectory, $@"Routines\{ProjectName}\MaterialDesignThemes.Wpf.dll");
         
+        public static readonly HashSet<string> ExternelDlls = new HashSet<string>()
+        {
+            "MaterialDesignColors",
+            "MaterialDesignThemes.Wpf",
+            "MaterialDesignExtensions"
+        };
+
         public override ClassJobType[] Class
         {
             get
@@ -105,14 +109,18 @@ namespace AEAssist
             ResolveEventHandler MaterialDesignHandler = (sender, args) =>
             {
                 var requestedAssembly = new AssemblyName(args.Name);
-                if(requestedAssembly.Name == "MaterialDesignThemes.Wpf")
-                    return Assembly.LoadFrom(MaterialDesign2Ass);
-                if(requestedAssembly.Name == "MaterialDesignColors")
-                    return Assembly.LoadFrom(MaterialDesignColorsAss);
+                if (ExternelDlls.Contains(requestedAssembly.Name))
+                    return Assembly.LoadFrom(GetAssPath(requestedAssembly.Name));
                 return null;
             };
             AppDomain.CurrentDomain.AssemblyResolve += MaterialDesignHandler;
         }
+
+        static string GetAssPath(string name)
+        {
+           return  Path.Combine(Environment.CurrentDirectory, $@"Routines\{ProjectName}\{name}.dll");
+        }
+
         private static string CompiledAssembliesPath => Path.Combine(Utilities.AssemblyDirectory, "CompiledAssemblies");
 
         private static Assembly LoadAssembly(string path)
