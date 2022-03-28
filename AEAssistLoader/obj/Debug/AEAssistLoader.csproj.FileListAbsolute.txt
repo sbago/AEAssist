@@ -1,0 +1,9 @@
+E:\Work\AEAssist\AEAssistLoader\bin\Debug\AEAssistLoader.dll
+E:\Work\AEAssist\AEAssistLoader\bin\Debug\AEAssistLoader.pdb
+E:\Work\AEAssist\AEAssistLoader\bin\Debug\GreyMagic.dll
+E:\Work\AEAssist\AEAssistLoader\bin\Debug\RebornBuddy.exe
+E:\Work\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.csproj.AssemblyReference.cache
+E:\Work\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.csproj.CoreCompileInputs.cache
+E:\Work\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.csproj.CopyComplete
+E:\Work\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.dll
+E:\Work\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.pdb
