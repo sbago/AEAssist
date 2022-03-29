@@ -8,7 +8,7 @@ namespace AEAssist
     {
         public int UserLatencyOffset{ get; set; } = 50; // 玩家预计延迟
         [ValueRange(300,500)]
-        public int ActionQueueMs{ get; set; } = 400; // 提前多久开始准备释放技能
+        public int ActionQueueMs{ get; set; } = 500; // 提前多久开始准备释放技能
         [ValueRange(1,2)]
         public int MaxAbilityTimsInGCD { get; set; }= 2; // 一个GCD内最多插几个能力技
 
@@ -21,5 +21,7 @@ namespace AEAssist
         public bool UsePotion { get; set; }
         [ValueRange(1000,5000)]
         public long UsePotionCountDown{ get; set; } = 1500; // 倒计时多少ms的时候使用爆发药
+
+        public bool UseDot { get; set; } = true;
     }
 }

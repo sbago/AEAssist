@@ -19,6 +19,10 @@ namespace AEAssist
 
         public bool UsePeloton { get; set; }
 
+        public bool BuffsDelay2GCD { get; set; } // 起手双团辅延后两个GCD 还是1个
+
+        public int TTK_IronJaws { get; set; } = 28; // 不刷伶牙
+
         public int PotionId = 36105;
 
     }

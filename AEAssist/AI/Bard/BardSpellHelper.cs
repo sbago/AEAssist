@@ -135,15 +135,26 @@ namespace AEAssist.Define
             if (wind_id == 0)
                 return false;
 
+            var ttk_ironJaws = SettingMgr.GetSetting<BardSettings>().TTK_IronJaws;
+
+            bool NormalCheck()
+            {
+                return !target.ContainMyAura((uint) ve_id, ConstValue.AuraTick)
+                       || !target.ContainAura((uint) wind_id, ConstValue.AuraTick);
+            }
+
             var buffCountInEnd = HasBuffsCountInEnd();
             //LogHelper.Info("当前快要结束的Buff数量 : " + buffCountInEnd);
             if (buffCountInEnd >= 1 && !AIRoot.Instance.BardBattleData.lastIronJawWithBuff)
             {
+                if (target.ContainMyAura((uint) ve_id, ttk_ironJaws) &&
+                    TTKHelper.IsTargetTTK(target, ttk_ironJaws))
+                    return NormalCheck();
                 return true;
             }
-            
-            return !target.ContainMyAura((uint) ve_id, ConstValue.AuraTick)
-                   || !target.ContainAura((uint) wind_id, ConstValue.AuraTick);
+
+
+            return NormalCheck();
         }
 
         public static void RecordIronJaw()
@@ -292,8 +303,9 @@ namespace AEAssist.Define
             AIRoot.Instance.BardBattleData.lastCastRagingStrikesTime = TimeHelper.Now();
         }
 
-        public static bool CheckCanUseBuffs(int delayGCD = 2)
+        public static bool CheckCanUseBuffs()
         {
+            int delayGCD = SettingMgr.GetSetting<BardSettings>().BuffsDelay2GCD ? 2 : 1;
             if (!Core.Me.HasMyAura(AurasDefine.RagingStrikes))
             {
                 return false;

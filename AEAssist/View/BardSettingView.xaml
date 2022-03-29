@@ -44,9 +44,14 @@
         <TabItem Header="基本设置">
             <StackPanel HorizontalAlignment="Left" Margin="10">
                 <CheckBox Content="使用速行" IsChecked="{Binding BardSettings.UsePeloton,Mode=TwoWay}" />
+                <CheckBox Content="团辅推后两个GCD" IsChecked="{Binding BardSettings.BuffsDelay2GCD,Mode=TwoWay}" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="绝峰箭能量要求" Width="150" />
                     <TextBox Width="150" Text="{Binding BardSettings.ApexArrowValue,Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="X秒内死亡不刷强化伶牙" Width="150" />
+                    <TextBox Width="150" Text="{Binding BardSettings.TTK_IronJaws,Mode=TwoWay}" />
                 </StackPanel>
             </StackPanel>
         </TabItem>

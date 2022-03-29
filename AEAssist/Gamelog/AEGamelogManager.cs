@@ -35,6 +35,11 @@ namespace AEAssist.Gamelog
                 {
                     GUIHelper.ShowInfo(e.ChatLogEntry.Contents,1000,false);
                 }
+                else if (e.ChatLogEntry.Contents.Contains("取消了战斗开始"))
+                {
+                    CountDownHandler.Instance.Close();
+                    GUIHelper.ShowInfo(e.ChatLogEntry.Contents,1000,false);
+                }
             }   
         }
 
