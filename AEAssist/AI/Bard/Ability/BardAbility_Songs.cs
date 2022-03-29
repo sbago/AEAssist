@@ -15,7 +15,7 @@ namespace AEAssist.AI
             if (lastSpell == Spells.TheWanderersMinuet || lastSpell == Spells.MagesBallad || lastSpell == Spells.ArmysPaeon)
                 return false;
             // 可能会发生短时间内rb的song的Timer还是上一首歌的 (rb的bug),导致连续的GCD内连续切换两次歌的情况
-            if (TimeHelper.Now() - AIRoot.Instance.lastCastSongTime < 3000)
+            if (TimeHelper.Now() - AIRoot.Instance.BardBattleData.lastCastSongTime < 3000)
                 return false;
 
             if (!Spells.TheWanderersMinuet.IsReady()
@@ -51,7 +51,7 @@ namespace AEAssist.AI
             var ret = await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget);
             if (ret)
             {
-                AIRoot.Instance.lastCastSongTime = TimeHelper.Now();
+                AIRoot.Instance.BardBattleData.lastCastSongTime = TimeHelper.Now();
                 if (castPitch)
                 {
                     AIRoot.Instance.MuteAbilityTime();

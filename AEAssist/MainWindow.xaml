@@ -4,13 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AEAssist"
+        xmlns:view="clr-namespace:AEAssist.View"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:viewModels="clr-namespace:AEAssist.DataBinding"
         mc:Ignorable="d"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        Title="AEAssist" Height="450" Width="800" WindowStyle="SingleBorderWindow" Icon="Resources/Icon.png">
+        Title="AEAssist" Height="480" Width="800" WindowStyle="SingleBorderWindow" Icon="Resources/Icon.png"
+        ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -31,63 +33,59 @@
                 <ResourceDictionary
                     Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/MaterialDesignLightTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
         </ResourceDictionary>
     </Window.Resources>
-    
+
     <Window.DataContext>
         <Binding Source="{x:Static viewModels:BaseSettings.Instance}" />
     </Window.DataContext>
-    
-    <Grid>
-        <!-- <Grid.ColumnDefinitions> -->
-        <!--     <ColumnDefinition Width="200" /> -->
-        <!--     <ColumnDefinition Width="600"/> -->
-        <!-- </Grid.ColumnDefinitions> -->
 
+
+    <StackPanel>
+        <Border Background="Cornsilk">
         <TabControl Style="{StaticResource MaterialDesignTabControl}"
-                    TabStripPlacement="Top"
+                    TabStripPlacement="Left"
+                    Height="400"
                     materialDesign:ShadowAssist.ShadowDepth="Depth3"
                     materialDesign:ColorZoneAssist.Mode="PrimaryDark"
                     materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
-            <TabItem Header="GeneralSetting">
-                <TabControl Style="{StaticResource MaterialDesignTabControl}"
-                            TabStripPlacement="Top"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth3"
-                            materialDesign:ColorZoneAssist.Mode="PrimaryDark"
-                            materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
-                    
-                    <TabItem Header="基本信息">
-                        <StackPanel HorizontalAlignment="Left" Margin="10,10,10,10">
-                            <Button Content="显示Overlay" Width="150" Height="25" Margin="10,10,10,10"
-                                    HorizontalAlignment="Left" />
-                            <TextBox Text="Q群:    814352226" Margin="10,10,10,10" HorizontalAlignment="Left" />
-                            <TextBox Text="Discord:    https://discord.gg/9WKppshjww" Margin="10,10,10,10"
-                                     HorizontalAlignment="Left" />
-                            <Button Content="保存设置" Width="150" Height="25" Margin="10,10,10,10"
-                                    HorizontalAlignment="Left" />
-                            <Button Content="重置设置" Width="150" Height="25" Margin="10,10,10,10"
-                                    HorizontalAlignment="Left" />
-                        </StackPanel>
-                    </TabItem>
-
-                    <TabItem Header="TTK设置">
-                        <StackPanel HorizontalAlignment="Left" Margin="10,10,10,10">
-                            <CheckBox Content="开启TTK" Margin="10,10,10,10" HorizontalAlignment="Left" IsChecked="{Binding GeneralSettings.OpenTTK,Mode=TwoWay}"/>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,10,10,10">
-                                <Label Content="X秒内死亡" Width="100" />
-                                <TextBox Width="150" Text="{Binding GeneralSettings.TimeToKill_TimeInSec,Mode=TwoWay}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,10,10,10">
-                                <Label Content="伤害阈值" Width="100" />
-                                <TextBox Width="150" Text="{Binding GeneralSettings.TTK_IgnoreDamage,Mode=TwoWay}"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </TabItem>
-                </TabControl>
+            <TabItem Width="50" Height="50">
+                <TabItem.Header>
+                    <Image Margin="15,0,-15,0" Source="Resources/Icon.png" />
+                </TabItem.Header>
+                <TabItem.LayoutTransform>
+                    <RotateTransform Angle="90" />
+                </TabItem.LayoutTransform>
+                <view:GeneralSettingView />
             </TabItem>
-            <TabItem Header="BardSetting">
-                <!-- Your tab content -->
+
+            <TabItem Width="50" Height="50">
+                <TabItem.Header>
+                    <Image Margin="15,0,-15,0" Source="Resources/jobs/brd-framed.png" />
+                </TabItem.Header>
+                <TabItem.LayoutTransform>
+                    <RotateTransform Angle="90" />
+                </TabItem.LayoutTransform>
+                <view:BardSettingView />
             </TabItem>
         </TabControl>
-    </Grid>
+        </Border>
+        <Border>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBox Text="Q群:    814352226" Margin="10" HorizontalAlignment="Left" IsReadOnly="True" />
+            <TextBox Text="Discord:    https://discord.gg/9WKppshjww" Margin="10" IsReadOnly="True"
+                     HorizontalAlignment="Left" />
+            <Button Name="SaveSetting"
+                    Content="保存设置" Width="150" Height="25" Margin="10"
+                    HorizontalAlignment="Left"
+                    Click="SaveSetting_OnClick" />
+            <!-- <Button Name="ResetSetting" Content="重置设置" Width="150" Height="25" Margin="10" -->
+            <!--         HorizontalAlignment="Left" -->
+            <!--         Click="ResetSetting_OnClick" /> -->
+           
+        </StackPanel>
+            
+        </Border>
+    </StackPanel>
 </Window>

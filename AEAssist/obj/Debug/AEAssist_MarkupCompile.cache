@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-11151548125
+41825506001
 2288884925
-541115360602
+6275935335
 16-617122547
-MainWindow.xaml;
+View\BardSettingView.xaml;View\GeneralSettingView.xaml;View\Overlay\BardOverlayWindow.xaml;MainWindow.xaml;
 
 False
 

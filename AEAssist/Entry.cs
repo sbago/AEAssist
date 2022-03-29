@@ -14,7 +14,9 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using AEAssist;
 using AEAssist.AI;
+using AEAssist.Gamelog;
 using AEAssist.Helper;
+using AEAssist.View;
 using TreeSharp;
 
 namespace AEAssist
@@ -31,9 +33,10 @@ namespace AEAssist
                 SettingMgr.Instance.InitSetting();
                 DataHelper.Init();
                 RotationManager.Instance.Init();
-                GUIHelper.OpenOverlay();
                 HookBehaviors();
                 RegisHotkey();
+                OverlayManager.Instance.Init();
+                AEGamelogManager.Instance.Init();
                 // PotionHelper.DebugAllItems();
                 GUIHelper.ShowInfo("插件初始化完成, 请检查ATB是否开启!");
             }
@@ -44,6 +47,7 @@ namespace AEAssist
             }
             LogHelper.Info("Initialized!");
         }
+
 
         private static MainWindow _form;
         private MainWindow Form
@@ -63,28 +67,28 @@ namespace AEAssist
         private void RegisHotkey()
         {
             Hotkeys.Clear();
-            Hotkeys.Add(HotkeyManager.Register("StartCoundDown5s", Keys.F8, ModifierKeys.None,
-                v => { CountDownHandler.Instance.StartCountDown(); }));
+            // Hotkeys.Add(HotkeyManager.Register("StartCoundDown5s", Keys.F8, ModifierKeys.None,
+            //     v => { CountDownHandler.Instance.StartCountDown(); }));
 
-            Hotkeys.Add(HotkeyManager.Register("BattleStartNow", Keys.F9, ModifierKeys.None,
-                v => { CountDownHandler.Instance.StartNow(); }));
+            // Hotkeys.Add(HotkeyManager.Register("BattleStartNow", Keys.F9, ModifierKeys.None,
+            //     v => { CountDownHandler.Instance.StartNow(); }));
 
-            Hotkeys.Add(HotkeyManager.Register("BattleStop", Keys.F10, ModifierKeys.None, v =>
+            Hotkeys.Add(HotkeyManager.Register("BattleStop", Keys.F8, ModifierKeys.None, v =>
             {
-                GUIHelper.OpenOverlay();
-              //  GUIHelper.Overlay.RefreshCheckBox1(!AIRoot.Instance.Stop);
+                AIRoot.Instance.Stop =
+                    !AIRoot.Instance.Stop;
             }));
             
-            Hotkeys.Add(HotkeyManager.Register("ControlBuff", Keys.F11, ModifierKeys.None, v =>
+            Hotkeys.Add(HotkeyManager.Register("ControlBuff", Keys.F9, ModifierKeys.None, v =>
             {
-                GUIHelper.OpenOverlay();
-              //  GUIHelper.Overlay.SwitchBuffControlState();
+                AIRoot.Instance.CloseBuff =
+                    !AIRoot.Instance.CloseBuff;
             }));
             
-            Hotkeys.Add(HotkeyManager.Register("PotionControl", Keys.F12, ModifierKeys.None, v =>
+            Hotkeys.Add(HotkeyManager.Register("PotionControl", Keys.F10, ModifierKeys.None, v =>
             {
-                GUIHelper.OpenOverlay();
-              //  GUIHelper.Overlay.SiwtchPotionControl();
+                SettingMgr.GetSetting<GeneralSettings>().UsePotion =
+                    !SettingMgr.GetSetting<GeneralSettings>().UsePotion;
             }));
 
         }
@@ -94,13 +98,14 @@ namespace AEAssist
 
         public void Pulse()
         {
-           // LogHelper.Debug("Pulse....");
-
+            OverlayManager.Instance.SwitchJob();
+            GamelogManager.Pulse();
         }
 
         public void Shutdown()
         {
-            GUIHelper.CloseOverlay();
+            AEGamelogManager.Instance.Close();
+            OverlayManager.Instance.Close();
             foreach (var v in Hotkeys)
             {
                 HotkeyManager.Unregister(v);
@@ -117,13 +122,14 @@ namespace AEAssist
 
         public void HookBehaviors()
         {
-            // 重新hook用来提高性能
+            // 重新hook去掉Loader的反射调用用来提高性能
             TreeHooks.Instance.ReplaceHook("Rest", RestBehavior);
             TreeHooks.Instance.ReplaceHook("PreCombatBuff", PreCombatBuffBehavior);
             TreeHooks.Instance.ReplaceHook("Pull", PullBehavior);
             TreeHooks.Instance.ReplaceHook("Heal", HealBehavior);
             TreeHooks.Instance.ReplaceHook("CombatBuff", CombatBuffBehavior);
             TreeHooks.Instance.ReplaceHook("Combat", CombatBehavior);
+            TreeHooks.Instance.ReplaceHook("PullBuff", PullBuffBehavior);
         }
 
         public Composite RestBehavior
@@ -163,6 +169,11 @@ namespace AEAssist
         {
             get { return new ActionRunCoroutine(ctx => RotationManager.Instance.Combat()); }
         }
+        public Composite PullBuffBehavior
+        {
+            get { return new ActionRunCoroutine(ctx => RotationManager.Instance.PullBuff()); }
+        }
+        
 
         #endregion Behavior Composites
     }

@@ -137,7 +137,7 @@ namespace AEAssist.Define
 
             var buffCountInEnd = HasBuffsCountInEnd();
             //LogHelper.Info("当前快要结束的Buff数量 : " + buffCountInEnd);
-            if (buffCountInEnd >= 1 && !AIRoot.Instance.lastIronJawWithBuff)
+            if (buffCountInEnd >= 1 && !AIRoot.Instance.BardBattleData.lastIronJawWithBuff)
             {
                 return true;
             }
@@ -148,7 +148,7 @@ namespace AEAssist.Define
 
         public static void RecordIronJaw()
         {
-            AIRoot.Instance.lastIronJawWithBuff = HasBuffsCountInEnd() >= 1;
+            AIRoot.Instance.BardBattleData.lastIronJawWithBuff = HasBuffsCountInEnd() >= 1;
         }
 
         public static SpellData GetRefulgentArrow()
@@ -254,7 +254,30 @@ namespace AEAssist.Define
                 count++;
             return count;
         }
-        
+
+        public static bool Prepare2BurstBuffs(int time = 10000)
+        {
+            if (Spells.TheWanderersMinuet.IsReady())
+                return false;
+            
+            if (Spells.RagingStrikes.Cooldown.TotalMilliseconds < time)
+            {
+                return true;
+            }
+
+            if (!Core.Me.HasAura(AurasDefine.RagingStrikes))
+            {
+                return false;
+            }
+
+            if (Spells.BattleVoice.Cooldown.TotalMilliseconds < time)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public static double TimeUntilNextPossibleDoTTick()
         {
             if (ActionResourceManager.Bard.ActiveSong != ActionResourceManager.Bard.BardSong.None)
@@ -266,7 +289,7 @@ namespace AEAssist.Define
 
         public static void RecordUsingRagingStrikesTime()
         {
-            AIRoot.Instance.lastCastRagingStrikesTime = TimeHelper.Now();
+            AIRoot.Instance.BardBattleData.lastCastRagingStrikesTime = TimeHelper.Now();
         }
 
         public static bool CheckCanUseBuffs(int delayGCD = 2)
@@ -276,7 +299,7 @@ namespace AEAssist.Define
                 return false;
             }
 
-            if (TimeHelper.Now() - AIRoot.Instance.lastCastRagingStrikesTime >= AIRoot.Instance.GetGCDDuration() * delayGCD)
+            if (TimeHelper.Now() - AIRoot.Instance.BardBattleData.lastCastRagingStrikesTime >= AIRoot.Instance.GetGCDDuration() * delayGCD)
             {
                 return true;
             }

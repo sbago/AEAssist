@@ -16,6 +16,15 @@ namespace AEAssist.AI
                 return false;
             if (Spells.Bloodletter.Charges < 1)
                 return false;
+            
+            // 起手爆发期间, 失血箭尽量打进团辅
+
+            if (BardSpellHelper.HasBuffsCount() >= BardSpellHelper.UnlockBuffsCount())
+                return true;
+
+            if (BardSpellHelper.Prepare2BurstBuffs())
+                return false;
+            
             return true;
         }
 

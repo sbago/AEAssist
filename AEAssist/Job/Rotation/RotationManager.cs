@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.AI;
+using AEAssist.View;
 using ff14bot.Enums;
 
 namespace AEAssist

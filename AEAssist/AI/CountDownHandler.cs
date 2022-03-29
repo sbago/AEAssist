@@ -34,7 +34,7 @@ namespace AEAssist.AI
                 CanDoAction = true;
                 _start = false;
             }
-            GUIHelper.ShowInfo(msg,0,false);
+            GUIHelper.ShowInfo(msg,100,false);
         }
 
         public void StartCountDown()

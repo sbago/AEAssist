@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="AEAssist.View.BardSettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:AEAssist.View"
+             xmlns:viewModels="clr-namespace:AEAssist.DataBinding"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/Generic.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/Generic.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/MaterialDesignLightTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <UserControl.DataContext>
+        <Binding Source="{x:Static viewModels:BaseSettings.Instance}" />
+    </UserControl.DataContext>
+    
+    <TabControl Style="{StaticResource MaterialDesignTabControl}"
+                TabStripPlacement="Top"
+                materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                materialDesign:ColorZoneAssist.Mode="PrimaryDark"
+                materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
+
+        <TabItem Header="基本设置">
+            <StackPanel HorizontalAlignment="Left" Margin="10">
+                <CheckBox Content="使用速行" IsChecked="{Binding BardSettings.UsePeloton,Mode=TwoWay}" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="绝峰箭能量要求" Width="150" />
+                    <TextBox Width="150" Text="{Binding BardSettings.ApexArrowValue,Mode=TwoWay}" />
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="歌曲设置">
+            <StackPanel HorizontalAlignment="Left" Margin="10">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="旅神歌切换" Width="100" />
+                    <TextBox Width="150" Text="{Binding BardSettings.Songs_WM_TimeLeftForSwitch,Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="贤者歌切换" Width="100" />
+                    <TextBox Width="150" Text="{Binding BardSettings.Songs_MB_TimeLeftForSwitch,Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="军神歌切换" Width="100" />
+                    <TextBox Width="150" Text="{Binding BardSettings.Songs_AP_TimeLeftForSwitch,Mode=TwoWay}" />
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</UserControl>

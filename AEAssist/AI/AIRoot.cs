@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AEAssist.DataBinding;
+using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Helpers;
@@ -15,32 +17,32 @@ namespace AEAssist.AI
         private SpellData _lastGCDSpell;
         private SpellData _lastAbilitySpell;
         private int _maxAbilityTimes ;
-        
-        public bool lastIronJawWithBuff;
-        public long lastCastRagingStrikesTime;
 
-        private Dictionary<string, long> lastNoticeTime = new Dictionary<string, long>();
+        private bool ClearBattleData;
 
-        public long lastCastSongTime;
+        private BardBattleData _battleData;
 
-        private bool _stop;
-        public bool Stop
+        public BardBattleData BardBattleData
         {
-            get
-            {
-                return _stop;
-            }
-            set
-            {
-                _stop = value;
-                if (value)
-                {
-                    Core.Me.ClearTarget();
-                }
-            }
+            get => _battleData ?? (_battleData = new BardBattleData());
+            set => _battleData = value;
         }
 
-        public bool CloseBuff { get; set; }
+
+        private Dictionary<string, long> lastNoticeTime = new Dictionary<string, long>();
+        
+        
+        public bool Stop
+        {
+            get => BaseSettings.Instance.Stop;
+            set => BaseSettings.Instance.Stop = value;
+        }
+
+        public bool CloseBuff 
+        {
+            get => BaseSettings.Instance.CloseBuff;
+            set => BaseSettings.Instance.CloseBuff = value;
+        }
 
         public AIRoot()
         {
@@ -50,13 +52,16 @@ namespace AEAssist.AI
 
         public void Clear()
         {
+            if (ClearBattleData)
+                return;
+            CountDownHandler.Instance.Close();
             _lastGCDSpell = null;
             _lastAbilitySpell = null;
             _maxAbilityTimes = SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD;
-            lastCastRagingStrikesTime = 0;
-            lastIronJawWithBuff = false;
-            lastCastSongTime = 0;
 
+            BardBattleData = new BardBattleData();
+
+            ClearBattleData = true;
             if (CanNotice("Clear", 2000))
                 LogHelper.Debug("Clear battle data");
         }
@@ -68,6 +73,8 @@ namespace AEAssist.AI
 
             if (Stop)
             {
+                if (Core.Me.CurrentTarget != null)
+                    Core.Me.ClearTarget();
                 GUIHelper.ShowInfo("停手中");
                 return false;
             }
@@ -89,6 +96,11 @@ namespace AEAssist.AI
                 if (CanNotice("key2", 1000))
                     GUIHelper.ShowInfo("目标可被攻击,准备战斗");
                 return false;
+            }
+
+            if (Core.Me.InCombat)
+            {
+                ClearBattleData = false;
             }
 
             var timeNow = TimeHelper.Now();

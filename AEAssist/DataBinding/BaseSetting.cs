@@ -11,8 +11,13 @@ namespace AEAssist.DataBinding
     {
         private static BaseSettings _instance;
         public static BaseSettings Instance => _instance ?? (_instance = new BaseSettings());
+        public bool CloseBuff{ get; set; }
 
-        public GeneralSettings GeneralSettings { get; set; } = SettingMgr.GetSetting<GeneralSettings>();
+        public bool Stop { get; set; }
+
+        public GeneralSettings GeneralSettings { get; } = SettingMgr.GetSetting<GeneralSettings>();
         public BardSettings BardSettings  => SettingMgr.GetSetting<BardSettings>();
+        
+        public DebugCenter DebugCenter =>DebugCenter.Intance;
     }
 }

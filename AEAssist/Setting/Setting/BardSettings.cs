@@ -1,9 +1,11 @@
 ﻿using System.Linq;
 using AEAssist.Define;
 using AEAssist.Helper;
+using PropertyChanged;
 
 namespace AEAssist
 {
+    [AddINotifyPropertyChangedInterface]
     public class BardSettings : IBaseSetting
     {
         public double RestHealthPercent { get; set; } = 70.0f;

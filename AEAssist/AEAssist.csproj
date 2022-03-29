@@ -55,6 +55,20 @@
         <Reference Include="PresentationFramework" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="AI\Bard\BardBattleData.cs" />
+        <Compile Include="DataBinding\DebugCenter.cs" />
+        <Compile Include="Gamelog\AEGamelogManager.cs" />
+        <Compile Include="View\BardSettingView.xaml.cs">
+          <DependentUpon>BardSettingView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\GeneralSettingView.xaml.cs">
+          <DependentUpon>GeneralSettingView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\OverlayManager.cs" />
+        <Compile Include="View\Overlay\BardOverlayWindow.xaml.cs">
+          <DependentUpon>BardOverlayWindow.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\Overlay\OverlayUIComponent_BardOverlay.cs" />
         <Content Include="..\AEAssistLoader\AEAssistLoader.cs">
           <Link>AEAssistLoader.cs</Link>
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -77,6 +91,90 @@
         <Content Include="Resources\BossDictionary.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+        <Resource Include="Resources\jobs\acn.png" />
+        <Resource Include="Resources\jobs\alc.png" />
+        <Resource Include="Resources\jobs\arc.png" />
+        <Resource Include="Resources\jobs\arm.png" />
+        <Resource Include="Resources\jobs\ast-framed.png" />
+        <Resource Include="Resources\jobs\ast-large.png" />
+        <Resource Include="Resources\jobs\ast.png" />
+        <Resource Include="Resources\jobs\blm-framed.png" />
+        <Resource Include="Resources\jobs\blm-large.png" />
+        <Resource Include="Resources\jobs\blm.png" />
+        <Resource Include="Resources\jobs\blu-framed.png" />
+        <Resource Include="Resources\jobs\blu-large.png" />
+        <Resource Include="Resources\jobs\blu.png" />
+        <Resource Include="Resources\jobs\bot.png" />
+        <Resource Include="Resources\jobs\brd-framed.png" />
+        <Resource Include="Resources\jobs\brd-large.png" />
+        <Resource Include="Resources\jobs\brd.png" />
+        <Resource Include="Resources\jobs\bsm.png" />
+        <Resource Include="Resources\jobs\cho.png" />
+        <Resource Include="Resources\jobs\cnj.png" />
+        <Resource Include="Resources\jobs\crp.png" />
+        <Resource Include="Resources\jobs\cul.png" />
+        <Resource Include="Resources\jobs\dnc-framed.png" />
+        <Resource Include="Resources\jobs\dnc-large.png" />
+        <Resource Include="Resources\jobs\dnc.png" />
+        <Resource Include="Resources\jobs\drg-framed.png" />
+        <Resource Include="Resources\jobs\drg-large.png" />
+        <Resource Include="Resources\jobs\drg.png" />
+        <Resource Include="Resources\jobs\drk-framed.png" />
+        <Resource Include="Resources\jobs\drk-large.png" />
+        <Resource Include="Resources\jobs\drk.png" />
+        <Resource Include="Resources\jobs\fsh.png" />
+        <Resource Include="Resources\jobs\gla.png" />
+        <Resource Include="Resources\jobs\gnb-framed.png" />
+        <Resource Include="Resources\jobs\gnb-large.png" />
+        <Resource Include="Resources\jobs\gnb.png" />
+        <Resource Include="Resources\jobs\gsm.png" />
+        <Resource Include="Resources\jobs\limit break.png" />
+        <Resource Include="Resources\jobs\lnc.png" />
+        <Resource Include="Resources\jobs\ltw.png" />
+        <Resource Include="Resources\jobs\mch-framed.png" />
+        <Resource Include="Resources\jobs\mch-large.png" />
+        <Resource Include="Resources\jobs\mch.png" />
+        <Resource Include="Resources\jobs\min.png" />
+        <Resource Include="Resources\jobs\mnk-framed.png" />
+        <Resource Include="Resources\jobs\mnk-large.png" />
+        <Resource Include="Resources\jobs\mnk.png" />
+        <Resource Include="Resources\jobs\mrd.png" />
+        <Resource Include="Resources\jobs\nin-framed.png" />
+        <Resource Include="Resources\jobs\nin-large.png" />
+        <Resource Include="Resources\jobs\nin.png" />
+        <Resource Include="Resources\jobs\pet.png" />
+        <Resource Include="Resources\jobs\pgl.png" />
+        <Resource Include="Resources\jobs\pld-framed.png" />
+        <Resource Include="Resources\jobs\pld-large.png" />
+        <Resource Include="Resources\jobs\pld.png" />
+        <Resource Include="Resources\jobs\rdm-framed.png" />
+        <Resource Include="Resources\jobs\rdm-large.png" />
+        <Resource Include="Resources\jobs\rdm.png" />
+        <Resource Include="Resources\jobs\rog.png" />
+        <Resource Include="Resources\jobs\rpr-framed.png" />
+        <Resource Include="Resources\jobs\rpr.png" />
+        <Resource Include="Resources\jobs\sam-framed.png" />
+        <Resource Include="Resources\jobs\sam-large.png" />
+        <Resource Include="Resources\jobs\sam.png" />
+        <Resource Include="Resources\jobs\sch-framed.png" />
+        <Resource Include="Resources\jobs\sch-large.png" />
+        <Resource Include="Resources\jobs\sch.png" />
+        <Resource Include="Resources\jobs\sge-framed.png" />
+        <Resource Include="Resources\jobs\sge.png" />
+        <Resource Include="Resources\jobs\smn-framed.png" />
+        <Resource Include="Resources\jobs\smn-large.png" />
+        <Resource Include="Resources\jobs\smn.png" />
+        <Resource Include="Resources\jobs\thm.png" />
+        <Resource Include="Resources\jobs\war-framed.png" />
+        <Resource Include="Resources\jobs\war-large.png" />
+        <Resource Include="Resources\jobs\war.png" />
+        <Resource Include="Resources\jobs\whm-framed.png" />
+        <Resource Include="Resources\jobs\whm-large.png" />
+        <Resource Include="Resources\jobs\whm.png" />
+        <Resource Include="Resources\jobs\wvr.png" />
+        <Page Include="View\BardSettingView.xaml" />
+        <Page Include="View\GeneralSettingView.xaml" />
+        <Page Include="View\Overlay\BardOverlayWindow.xaml" />
         <Resource Include="Resources\Icon.png" />
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
@@ -147,9 +245,6 @@
     </ItemGroup>
     <ItemGroup>
         <None Include="App.config" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="bin\Debug" />
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="MaterialDesignColors" Version="2.0.6-ci125" />

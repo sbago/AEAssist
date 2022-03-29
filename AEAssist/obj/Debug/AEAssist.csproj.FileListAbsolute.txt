@@ -50,7 +50,13 @@ D:\Github\AEAssist\AEAssist\obj\Debug\AEAssist.Properties.Resources.resources
 D:\Github\AEAssist\AEAssist\obj\Debug\AEAssist.Resources.Icons.resources
 D:\Github\AEAssist\AEAssist\obj\Debug\AEAssist.csproj.GenerateResource.cache
 D:\Github\AEAssist\AEAssist\obj\Debug\AEAssist.csproj.CoreCompileInputs.cache
-D:\Github\AEAssist\AEAssist\obj\Debug\AEAssist.csproj.CopyComplete
 D:\Github\AEAssist\AEAssist\obj\Debug\AEAssist.dll
 D:\Github\AEAssist\AEAssist\obj\Debug\AEAssist.pdb
 D:\Github\AEAssist\AEAssist\obj\Debug\AEAssist.csproj.Fody.CopyLocal.cache
+D:\Github\AEAssist\AEAssist\obj\Debug\View\GeneralSettingView.g.cs
+D:\Github\AEAssist\AEAssist\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Github\AEAssist\AEAssist\obj\Debug\View\GeneralSettingView.baml
+D:\Github\AEAssist\AEAssist\obj\Debug\View\BardSettingView.g.cs
+D:\Github\AEAssist\AEAssist\obj\Debug\View\BardSettingView.baml
+D:\Github\AEAssist\AEAssist\obj\Debug\View\Overlay\BardOverlayWindow.g.cs
+D:\Github\AEAssist\AEAssist\obj\Debug\View\Overlay\BardOverlayWindow.baml
