@@ -18,5 +18,10 @@ namespace AEAssist.View
                 this.DragMove();
             }
         }
+
+        private void BardOverlayWindow_OnGotFocus(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

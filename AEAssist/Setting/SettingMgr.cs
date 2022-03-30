@@ -10,7 +10,7 @@ namespace AEAssist
     {
         public static SettingMgr Instance = new SettingMgr();
 
-        private Dictionary<Type, object> AllSetting = new Dictionary<Type, object>();
+        private Dictionary<Type, IBaseSetting> AllSetting = new Dictionary<Type, IBaseSetting>();
 
         private HashSet<Type> AllSettingsType = new HashSet<Type>();
 
@@ -24,10 +24,29 @@ namespace AEAssist
                     continue;
                 if(!baseType.IsAssignableFrom(type))
                     continue;
-
-                LogHelper.Debug("检测到Setting " + type.Name);
                 AllSettingsType.Add(type);
 
+            }
+            
+            
+            Directory.CreateDirectory(SettingPath);
+            var versionSetting =  LoadSetting(typeof(VersionSetting)) as VersionSetting;
+            if (versionSetting == null || versionSetting.SettingVersion != ConstValue.SettingVersion)
+            {
+                Reset();
+                GUIHelper.ShowMessageBox("本地配置版本较低,已重置为新版本默认值");
+                return;
+            }
+
+            foreach (var v in AllSettingsType)
+            {
+                var setting = LoadSetting(v);
+                if (setting == null)
+                {
+                    setting = Activator.CreateInstance(v);
+                }
+
+                AllSetting[v] = setting as IBaseSetting;
             }
         }
         
@@ -64,25 +83,7 @@ namespace AEAssist
 
         public void InitSetting()
         {
-            Directory.CreateDirectory(SettingPath);
-            var versionSetting =  LoadSetting(typeof(VersionSetting)) as VersionSetting;
-            if (versionSetting == null || versionSetting.SettingVersion != ConstValue.SettingVersion)
-            {
-                Reset();
-                GUIHelper.ShowMessageBox("本地配置版本较低,已重置为新版本默认值");
-                return;
-            }
 
-            foreach (var v in AllSettingsType)
-            {
-               var setting = LoadSetting(v);
-               if (setting == null)
-               {
-                   setting = Activator.CreateInstance(v);
-               }
-
-               AllSetting[v] = setting;
-            }
         }
 
         public void Reset()
@@ -95,8 +96,10 @@ namespace AEAssist
             foreach (var v in AllSettingsType)
             {
                 var setting = Activator.CreateInstance(v);
+
+                AllSetting[v] = setting as IBaseSetting;
+                
                 SaveSetting(setting);
-                AllSetting[v] = setting;
             }
         }
 

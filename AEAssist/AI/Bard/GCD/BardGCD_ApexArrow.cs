@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AEAssist.DataBinding;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -11,6 +12,8 @@ namespace AEAssist.AI
     {
         public bool Check(SpellData lastSpell)
         {
+            if (!BaseSettings.Instance.UseApex)
+                return false;
             if (ActionResourceManager.Bard.SoulVoice >= SettingMgr.GetSetting<BardSettings>().ApexArrowValue)
                 return true;
 

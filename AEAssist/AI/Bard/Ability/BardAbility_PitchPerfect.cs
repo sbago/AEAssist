@@ -21,12 +21,23 @@ namespace AEAssist.AI
 
             var time = ActionResourceManager.Bard.Timer.TotalMilliseconds;
 
-            if (time - BardSpellHelper.TimeUntilNextPossibleDoTTick() < 550)
+            if (time < ConstValue.AuraTick)
                 return true;
 
             if (ActionResourceManager.Bard.Repertoire == 3)
                 return true;
 
+            var lat = SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs +
+                      SettingMgr.GetSetting<GeneralSettings>().UserLatencyOffset;
+            
+            // 诗心两层,马上要跳诗心了,九天又转好,两个诗心也打出去
+            if (ActionResourceManager.Bard.Repertoire == 2
+                && BardSpellHelper.TimeUntilNextPossibleDoTTick() <= lat
+                && Spells.EmpyrealArrow.IsReady())
+
+                return true;
+                
+                
             return false;
         }
 

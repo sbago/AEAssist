@@ -57,7 +57,10 @@
     <ItemGroup>
         <Compile Include="AI\Bard\BardBattleData.cs" />
         <Compile Include="DataBinding\DebugCenter.cs" />
+        <Compile Include="Define\HotkeyData.cs" />
+        <Compile Include="Define\PotionData.cs" />
         <Compile Include="Gamelog\AEGamelogManager.cs" />
+        <Compile Include="Setting\Setting\HotkeySetting.cs" />
         <Compile Include="View\BardSettingView.xaml.cs">
           <DependentUpon>BardSettingView.xaml</DependentUpon>
         </Compile>

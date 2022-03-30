@@ -27,10 +27,6 @@ namespace AEAssist.AI
                     if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_AP_TimeLeftForSwitch)
                         return false;
                     break;
-                case ActionResourceManager.Bard.BardSong.WanderersMinuet:
-                    if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_WM_TimeLeftForSwitch)
-                        return false;
-                    break;
             }
 
             return true;

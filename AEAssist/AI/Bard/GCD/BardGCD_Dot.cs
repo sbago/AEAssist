@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AEAssist.DataBinding;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -13,6 +14,8 @@ namespace AEAssist.AI
         public bool Check(SpellData lastSpell)
         {
             var tar = Core.Me.CurrentTarget as Character;
+            if (!BaseSettings.Instance.UseDot)
+                return false;
             if (TTKHelper.IsTargetTTK(tar))
                 return false;
             int dots = 0;

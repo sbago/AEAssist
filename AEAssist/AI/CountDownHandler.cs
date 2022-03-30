@@ -25,7 +25,7 @@ namespace AEAssist.AI
             {
                 msg += "->尝试爆发药";
                 //todo: 根据职业选择
-                _ = PotionHelper.UsePotion(SettingMgr.GetSetting<BardSettings>().PotionId);
+                _ = PotionHelper.UsePotion(SettingMgr.GetSetting<BardSettings>().UsePotionId);
             }
 
             if (restTime < 100)

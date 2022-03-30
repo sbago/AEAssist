@@ -1,4 +1,7 @@
 ﻿using System.Windows;
+using System.Windows.Forms;
+using MaterialDesignExtensions.Controls;
+using MessageBox = System.Windows.MessageBox;
 
 namespace AEAssist
 {
@@ -17,9 +20,13 @@ namespace AEAssist
             SettingMgr.Instance.Save();
         }
 
-        private void ResetSetting_OnClick(object sender, RoutedEventArgs e)
-        {
-            SettingMgr.Instance.Reset();
-        }
+        // private void ResetSetting_OnClick(object sender, RoutedEventArgs e)
+        // {
+        //     var result = MessageBox.Show( messageBoxText: "确定重置设置嘛?", "二次确认",  button: MessageBoxButton.YesNo,MessageBoxImage.Question);
+        //     if (result ==  MessageBoxResult.Yes)
+        //     {
+        //         SettingMgr.Instance.Reset();
+        //     }
+        // }
     }
 }

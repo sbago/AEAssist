@@ -16,7 +16,7 @@ namespace AEAssist.AI
                 return false;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return false;
-            if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<BardSettings>().PotionId))
+            if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<BardSettings>().UsePotionId))
                 return false;
 
             return true;
@@ -24,7 +24,7 @@ namespace AEAssist.AI
 
         public async Task<SpellData> Run()
         {
-            var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<BardSettings>().PotionId);
+            var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<BardSettings>().UsePotionId);
             if (ret)
             {
                 AIRoot.Instance.MuteAbilityTime();

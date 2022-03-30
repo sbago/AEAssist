@@ -147,7 +147,7 @@ namespace AEAssist.Define
             //LogHelper.Info("当前快要结束的Buff数量 : " + buffCountInEnd);
             if (buffCountInEnd >= 1 && !AIRoot.Instance.BardBattleData.lastIronJawWithBuff)
             {
-                if (target.ContainMyAura((uint) ve_id, ttk_ironJaws) &&
+                if (ttk_ironJaws >0 && target.ContainMyAura((uint) ve_id, ttk_ironJaws * 1000) &&
                     TTKHelper.IsTargetTTK(target, ttk_ironJaws))
                     return NormalCheck();
                 return true;
@@ -306,17 +306,28 @@ namespace AEAssist.Define
         public static bool CheckCanUseBuffs()
         {
             int delayGCD = SettingMgr.GetSetting<BardSettings>().BuffsDelay2GCD ? 2 : 1;
-            if (!Core.Me.HasMyAura(AurasDefine.RagingStrikes))
+
+            var currSong = ActionResourceManager.Bard.ActiveSong;
+            if (currSong == ActionResourceManager.Bard.BardSong.None)
+                return false;
+            
+            if (Core.Me.HasMyAura(AurasDefine.RagingStrikes))
+            {
+                if (TimeHelper.Now() - AIRoot.Instance.BardBattleData.lastCastRagingStrikesTime >=
+                    AIRoot.Instance.GetGCDDuration() * delayGCD)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            
+            if (Spells.RagingStrikes.IsReady())
             {
                 return false;
             }
 
-            if (TimeHelper.Now() - AIRoot.Instance.BardBattleData.lastCastRagingStrikesTime >= AIRoot.Instance.GetGCDDuration() * delayGCD)
-            {
-                return true;
-            }
-
-            return false;
+            return true;
         }
 
         public static SpellData GetQuickNock()

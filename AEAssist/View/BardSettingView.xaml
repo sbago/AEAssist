@@ -44,7 +44,7 @@
         <TabItem Header="基本设置">
             <StackPanel HorizontalAlignment="Left" Margin="10">
                 <CheckBox Content="使用速行" IsChecked="{Binding BardSettings.UsePeloton,Mode=TwoWay}" />
-                <CheckBox Content="团辅推后两个GCD" IsChecked="{Binding BardSettings.BuffsDelay2GCD,Mode=TwoWay}" />
+                <CheckBox Content="团辅推后1个GCD" IsChecked="{Binding BardSettings.BuffsDelay2GCD,Mode=TwoWay}" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="绝峰箭能量要求" Width="150" />
                     <TextBox Width="150" Text="{Binding BardSettings.ApexArrowValue,Mode=TwoWay}" />
@@ -53,21 +53,30 @@
                     <Label Content="X秒内死亡不刷强化伶牙" Width="150" />
                     <TextBox Width="150" Text="{Binding BardSettings.TTK_IronJaws,Mode=TwoWay}" />
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="爆发药选择" Width="100" />
+                    <ComboBox IsEditable="False" Name="ChoosePotion" Width="150" DisplayMemberPath="Name" SelectedValuePath="ID" SelectionChanged="ChoosePotion_OnSelectionChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Button Content="检查爆发药数量" Width="100" Click="ButtonBase_OnClick" />
+                    <Label Margin="40,0,0,0" Name="PotionCount" Width="100" Content="数量: 0" VerticalAlignment="Center"/>
+                </StackPanel>
             </StackPanel>
         </TabItem>
 
         <TabItem Header="歌曲设置">
             <StackPanel HorizontalAlignment="Left" Margin="10">
+                <Label Content="以下数据是指开启爆发状态,关闭时每首都唱满" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="旅神歌切换" Width="100" />
+                    <Label Content="旅神歌剩余多久切换" Width="150" />
                     <TextBox Width="150" Text="{Binding BardSettings.Songs_WM_TimeLeftForSwitch,Mode=TwoWay}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="贤者歌切换" Width="100" />
+                    <Label Content="贤者歌剩余多久切换" Width="150" />
                     <TextBox Width="150" Text="{Binding BardSettings.Songs_MB_TimeLeftForSwitch,Mode=TwoWay}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="军神歌切换" Width="100" />
+                    <Label Content="军神歌剩余多久切换" Width="150" />
                     <TextBox Width="150" Text="{Binding BardSettings.Songs_AP_TimeLeftForSwitch,Mode=TwoWay}" />
                 </StackPanel>
             </StackPanel>

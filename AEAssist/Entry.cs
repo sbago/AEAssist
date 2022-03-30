@@ -23,8 +23,6 @@ namespace AEAssist
 {
     public class Entry
     {
-        public List<Hotkey> Hotkeys = new List<Hotkey>();
-
         public void Initialize()
         {
             LogHelper.Debug("Init....");
@@ -34,9 +32,10 @@ namespace AEAssist
                 DataHelper.Init();
                 RotationManager.Instance.Init();
                 HookBehaviors();
-                RegisHotkey();
+                SettingMgr.GetSetting<HotkeySetting>().RegisHotkey();
                 OverlayManager.Instance.Init();
                 AEGamelogManager.Instance.Init();
+                PotionHelper.Init();
                 // PotionHelper.DebugAllItems();
                 GUIHelper.ShowInfo("插件初始化完成, 请检查ATB是否开启!");
             }
@@ -63,35 +62,7 @@ namespace AEAssist
                 return _form;
             }
         }
-
-        private void RegisHotkey()
-        {
-            Hotkeys.Clear();
-            // Hotkeys.Add(HotkeyManager.Register("StartCoundDown5s", Keys.F8, ModifierKeys.None,
-            //     v => { CountDownHandler.Instance.StartCountDown(); }));
-
-            // Hotkeys.Add(HotkeyManager.Register("BattleStartNow", Keys.F9, ModifierKeys.None,
-            //     v => { CountDownHandler.Instance.StartNow(); }));
-
-            Hotkeys.Add(HotkeyManager.Register("BattleStop", Keys.F8, ModifierKeys.None, v =>
-            {
-                AIRoot.Instance.Stop =
-                    !AIRoot.Instance.Stop;
-            }));
-            
-            Hotkeys.Add(HotkeyManager.Register("ControlBuff", Keys.F9, ModifierKeys.None, v =>
-            {
-                AIRoot.Instance.CloseBuff =
-                    !AIRoot.Instance.CloseBuff;
-            }));
-            
-            Hotkeys.Add(HotkeyManager.Register("PotionControl", Keys.F10, ModifierKeys.None, v =>
-            {
-                SettingMgr.GetSetting<GeneralSettings>().UsePotion =
-                    !SettingMgr.GetSetting<GeneralSettings>().UsePotion;
-            }));
-
-        }
+        
 
         private ClassJobType CurrentJob { get; set; }
         private ushort CurrentZone { get; set; }
@@ -106,10 +77,7 @@ namespace AEAssist
         {
             AEGamelogManager.Instance.Close();
             OverlayManager.Instance.Close();
-            foreach (var v in Hotkeys)
-            {
-                HotkeyManager.Unregister(v);
-            }
+            SettingMgr.GetSetting<HotkeySetting>().UnRegisterKey();
         }
 
         public void OnButtonPress()

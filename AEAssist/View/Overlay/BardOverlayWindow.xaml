@@ -7,7 +7,8 @@
         xmlns:viewModels="clr-namespace:AEAssist.DataBinding"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Height="120" Width="200"
+        Width="200"
+        SizeToContent="Height"
         FontSize="12"
         WindowStyle="None"
         ShowInTaskbar="False"
@@ -64,12 +65,12 @@
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsChecked" Value="True">
                                     <Trigger.Setters>
-                                        <Setter TargetName="Background" Property="Background" Value="LightSeaGreen" />
+                                        <Setter TargetName="Background" Property="Background" Value="DodgerBlue" />
                                     </Trigger.Setters>
                                 </Trigger>
                                 <Trigger Property="IsChecked" Value="False">
                                     <Trigger.Setters>
-                                        <Setter TargetName="Background" Property="Background" Value="IndianRed" />
+                                        <Setter TargetName="Background" Property="Background" Value="DimGray" />
                                     </Trigger.Setters>
                                 </Trigger>
                             </ControlTemplate.Triggers>
@@ -92,51 +93,72 @@
         <StackPanel>
 
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
                 <CheckBox
-                    Content="停手(F8)"
+                    Content="{Binding HotkeySetting.StopBtnName}"
                     Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                    Width="100"
+                    Width="80"
+                    Height="30"
                     FontSize="12"
                     IsChecked="{Binding Stop,Mode=TwoWay}" />
 
 
                 <CheckBox Grid.Column="1" HorizontalContentAlignment="Center"
-                          Content="关闭爆发(F9)"
+                          Content="{Binding HotkeySetting.CloseBuffBtnName}"
                           FontSize="12"
-                          Width="100"
+                          Width="80"
+                          Height="30"
                           Style="{StaticResource CheckBoxOverlayCustomToggle}"
                           IsChecked="{Binding CloseBuff,Mode=TwoWay}" />
 
                 <CheckBox Grid.Row="1" HorizontalContentAlignment="Center"
-                          Content="爆发药(F10)"
+                          Content="爆发药"
                           FontSize="12"
-                          Width="100"
+                          Width="80"
+                          Height="30"
                           Style="{StaticResource CheckBoxOverlayCustomToggle}"
                           IsChecked="{Binding GeneralSettings.UsePotion,Mode=TwoWay}" />
 
-            </Grid>
+                <CheckBox Grid.Row="1" HorizontalContentAlignment="Center"
+                          Content="绝峰箭"
+                          FontSize="12"
+                          Width="80"
+                          Height="30"
+                          Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                          IsChecked="{Binding UseApex,Mode=TwoWay}" />
 
-            <Label MaxWidth="120" Style="{StaticResource MaterialDesignLabel}">
-                <TextBlock Height="60"
-                           FontSize="10"
-                           TextWrapping="Wrap"
-                           Foreground="LightGray"
-                           Text="{Binding DebugCenter.Msg,Mode=OneWay}"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center" />
-            </Label>
+                <CheckBox HorizontalContentAlignment="Center"
+                          Content="Dot"
+                          FontSize="12"
+                          Width="80"
+                          Height="30"
+                          Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                          IsChecked="{Binding UseDot,Mode=TwoWay}" />
 
+                <CheckBox HorizontalContentAlignment="Center"
+                          Content="主动攻击目标"
+                          FontSize="12"
+                          Width="80"
+                          Height="30"
+                          Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                          IsChecked="{Binding AutoAttack,Mode=TwoWay}" />
+
+            </WrapPanel>
+
+            <Border Margin="0,5,0,0" VerticalAlignment="Top" CornerRadius="5" Padding="10">
+                <Border.Background>
+                    <SolidColorBrush Color="#101011" Opacity="0.6" />
+                </Border.Background>
+                <Label MaxWidth="150" Height="34" Margin="0" Style="{StaticResource MaterialDesignLabel}">
+                    <TextBlock
+                        FontSize="10"
+                        TextWrapping="Wrap"
+                        Foreground="LightGray"
+                        Text="{Binding DebugCenter.Msg,Mode=OneWay}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" />
+                </Label>
+            </Border>
         </StackPanel>
     </Border>
 </Window>

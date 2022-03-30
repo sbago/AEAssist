@@ -57,7 +57,7 @@
                 <TabItem.LayoutTransform>
                     <RotateTransform Angle="90" />
                 </TabItem.LayoutTransform>
-                <view:GeneralSettingView />
+                <view:GeneralSettingView HorizontalAlignment="Center" />
             </TabItem>
 
             <TabItem Width="50" Height="50">
@@ -67,7 +67,7 @@
                 <TabItem.LayoutTransform>
                     <RotateTransform Angle="90" />
                 </TabItem.LayoutTransform>
-                <view:BardSettingView />
+                <view:BardSettingView HorizontalAlignment="Center" />
             </TabItem>
         </TabControl>
         </Border>

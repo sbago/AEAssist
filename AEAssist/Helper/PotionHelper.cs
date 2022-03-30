@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using AEAssist.AI;
+using AEAssist.Define;
 using Buddy.Coroutines;
 using ff14bot;
 using ff14bot.Enums;
@@ -14,21 +15,47 @@ namespace AEAssist.Helper
 {
     internal class PotionHelper
     {
+        public static List<PotionData> AllPotions { get; set; } = new List<PotionData>();
 
-        public static readonly HashSet<uint> Str = new HashSet<uint>
+        public string GetPotionName()
         {
-            36104, // 5级 刚力幻药
-        };
-
-        public static readonly HashSet<uint> Dex = new HashSet<uint>
+            return AllPotions.FindLast(v=>v.ID == SettingMgr.GetSetting<BardSettings>().UsePotionId).Name;
+        }
+        public static void Init()
         {
-            36105, // 5级 巧力幻药
-        };
-
-        public static readonly HashSet<uint> Int = new HashSet<uint>
-        {
-            36107, // 5级 智力幻药
-        };
+            if (AllPotions == null)
+                AllPotions = new List<PotionData>();
+            AllPotions.Clear();
+            AllPotions.Add(new PotionData()
+            {
+                ID = 36105,
+                Name = "5级巧力之幻药"
+            });
+            
+            AllPotions.Add(new PotionData()
+            {
+                ID = 31894,
+                Name = "4级巧力之幻药"
+            });
+            
+            AllPotions.Add(new PotionData()
+            {
+                ID = 29493,
+                Name = "3级巧力之幻药"
+            });
+            
+            AllPotions.Add(new PotionData()
+            {
+                ID = 27996,
+                Name = "2级巧力之幻药"
+            });
+            
+            AllPotions.Add(new PotionData()
+            {
+                ID = 27787,
+                Name = "巧力之幻药"
+            });
+        }
         
         
         internal static async Task<bool> UsePotion(int potionRawId)

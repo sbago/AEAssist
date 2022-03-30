@@ -12,11 +12,11 @@ namespace AEAssist.AI
         {
             if (AIRoot.Instance.CloseBuff)
                 return false;
+            if (!Spells.RagingStrikes.IsReady())
+                return false;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return false;
             if (Spells.TheWanderersMinuet.IsUnlock() && !Core.Me.ContainMyAura(AurasDefine.TheWanderersMinuet))
-                return false;
-            if (!Spells.RagingStrikes.IsReady())
                 return false;
             return true;
         }

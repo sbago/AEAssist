@@ -12,6 +12,6 @@ namespace AEAssist
         public static int BardAOETargetRange = 12;
         public static int BardAOECount = 2;
 
-        public static int SettingVersion = 4;
+        public static int SettingVersion = 10;
     }
 }

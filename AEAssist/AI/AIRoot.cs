@@ -44,12 +44,6 @@ namespace AEAssist.AI
             set => BaseSettings.Instance.CloseBuff = value;
         }
 
-        public AIRoot()
-        {
-            _lastCastTime = TimeHelper.Now();
-            _maxAbilityTimes = SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD;
-        }
-
         public void Clear()
         {
             if (ClearBattleData)
@@ -91,7 +85,8 @@ namespace AEAssist.AI
                 return false;
             }
 
-            if (!((Character) ff14bot.Core.Me.CurrentTarget).HasTarget && !CountDownHandler.Instance.CanDoAction)
+            if (!((Character) ff14bot.Core.Me.CurrentTarget).HasTarget && !CountDownHandler.Instance.CanDoAction
+            && !BaseSettings.Instance.AutoAttack)
             {
                 if (CanNotice("key2", 1000))
                     GUIHelper.ShowInfo("目标可被攻击,准备战斗");

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AEAssist.DataBinding;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -10,8 +11,22 @@ namespace AEAssist.AI
     {
         public bool Check(SpellData lastSpell)
         {
+            if (!BaseSettings.Instance.UseApex)
+                return false;
             if (!Core.Me.HasAura(AurasDefine.BlastArrowReady))
                 return false;
+
+            if (BardSpellHelper.HasBuffsCount() >= BardSpellHelper.UnlockBuffsCount())
+                return true;
+
+            var aura = Core.Me.GetAuraById(AurasDefine.BlastArrowReady);
+            if (BardSpellHelper.Prepare2BurstBuffs((int) aura.TimeLeft + + ConstValue.AuraTick))
+                return false;
+            if (aura.TimeLeft >= Spells.RagingStrikes.Cooldown.TotalMilliseconds + ConstValue.AuraTick)
+            {
+                return false;
+            }
+
             return true;
         }
 
