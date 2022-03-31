@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using AEAssist.Define;
+using ff14bot;
+using ff14bot.Enums;
+using ff14bot.Managers;
 using ff14bot.Objects;
 using Newtonsoft.Json;
 
@@ -32,8 +35,6 @@ namespace AEAssist.Helper
           
 
             LogHelper.Info("成功加载 Boss数据数目 " + BossDictionary?.Count);
-            
-            
 
         }
         

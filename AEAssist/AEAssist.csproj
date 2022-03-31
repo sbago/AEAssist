@@ -55,6 +55,21 @@
         <Reference Include="PresentationFramework" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="..\AETriggers\TriggerModel\ITriggerAction.cs">
+          <Link>TriggerModel\ITriggerAction.cs</Link>
+        </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\ITriggerBase.cs">
+          <Link>TriggerModel\ITriggerBase.cs</Link>
+        </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\ITriggerCond.cs">
+          <Link>TriggerModel\ITriggerCond.cs</Link>
+        </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs">
+          <Link>TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs</Link>
+        </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_AfterBattleStart.cs">
+          <Link>TriggerModel\TriggerCond\TriggerCond_AfterBattleStart.cs</Link>
+        </Compile>
         <Compile Include="AI\Bard\BardBattleData.cs" />
         <Compile Include="DataBinding\DebugCenter.cs" />
         <Compile Include="Define\HotkeyData.cs" />

@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AEAssist", "AEAssist\AEAssi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AEAssistLoader", "AEAssistLoader\AEAssistLoader.csproj", "{EE8AAC2B-7178-4E4A-B247-133FE8BE5A93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AETriggers", "AETriggers\AETriggers.csproj", "{CED693A9-070C-4C4D-983F-742DB28034A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{EE8AAC2B-7178-4E4A-B247-133FE8BE5A93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE8AAC2B-7178-4E4A-B247-133FE8BE5A93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE8AAC2B-7178-4E4A-B247-133FE8BE5A93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CED693A9-070C-4C4D-983F-742DB28034A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CED693A9-070C-4C4D-983F-742DB28034A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CED693A9-070C-4C4D-983F-742DB28034A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CED693A9-070C-4C4D-983F-742DB28034A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
