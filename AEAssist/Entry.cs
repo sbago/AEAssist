@@ -33,8 +33,8 @@ namespace AEAssist
                 RotationManager.Instance.Init();
                 HookBehaviors();
                 SettingMgr.GetSetting<HotkeySetting>().RegisHotkey();
-                OverlayManager.Instance.Init();
                 AEGamelogManager.Instance.Init();
+                OverlayManager.Instance.Init();
                 PotionHelper.Init();
                 // PotionHelper.DebugAllItems();
                 GUIHelper.ShowInfo("插件初始化完成, 请检查ATB是否开启!");

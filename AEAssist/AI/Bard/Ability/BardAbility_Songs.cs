@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AEAssist.DataBinding;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -121,7 +122,28 @@ namespace AEAssist.AI
 
         private SpellData GetSongsByOrder(SpellData passSpell)
         {
-            SpellData spell = NextSong(passSpell);
+            SpellData spell = null;
+            if (BaseSettings.Instance.nextSong != ActionResourceManager.Bard.BardSong.None)
+            {
+                switch (BaseSettings.Instance.nextSong)
+                {
+                    case ActionResourceManager.Bard.BardSong.MagesBallad:
+                        spell = Spells.MagesBallad;
+                        break;
+                    case ActionResourceManager.Bard.BardSong.ArmysPaeon:
+                        spell = Spells.ArmysPaeon;
+                        break;
+                    case ActionResourceManager.Bard.BardSong.WanderersMinuet:
+                        spell = Spells.TheWanderersMinuet;
+                        break;
+                }
+                if (spell != null && spell.IsReady())
+                {
+                    return spell;
+                }
+            }
+
+            spell = NextSong(passSpell);
             if (spell != null && spell.IsReady())
             {
                 return spell;

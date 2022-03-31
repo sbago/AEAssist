@@ -26,17 +26,19 @@ namespace AEAssist.View
                 {
                     Name = "BardOverlay",
                     Content = overlayUc,
-                    Width = overlayUc.DesiredSize.Width,
-                    Height = overlayUc.DesiredSize.Height,
-                    X = Core.OverlayManager.UnscaledOverlayWidth / 8,
-                    Y = Core.OverlayManager.UnscaledOverlayHeight / 8,
-                    AllowMoving = IsHitTestable,
-                    AllowResizing = IsHitTestable
+                    Width = overlayUc.Width + 5,
+                    Height = overlayUc.Height,
+                    X = 60,
+                    Y = 60,
+                    AllowMoving = true,
+                    AllowResizing = false,
+                    
                 };
+                LogHelper.Info("CreateOverlay " + _control.Width + "  " + _control.Height);
 
                 _control.MouseLeave += (sender, args) =>
                 {
-
+              
                 };
 
                 _control.MouseLeftButtonDown += (sender, args) =>

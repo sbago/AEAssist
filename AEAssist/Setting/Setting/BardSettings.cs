@@ -18,6 +18,7 @@ namespace AEAssist
 
         public void Reset()
         {
+            this.CurrentSongPlaylist = SongStrategyEnum.WM_MB_AP;
             this.RestHealthPercent = 70f;
             this.ApexArrowValue = 100;
             this.Songs_WM_TimeLeftForSwitch = 2000;

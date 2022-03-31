@@ -159,7 +159,7 @@ namespace AEAssist.Define
 
         public static void RecordIronJaw()
         {
-            AIRoot.Instance.BardBattleData.lastIronJawWithBuff = HasBuffsCountInEnd() >= 1;
+            AIRoot.Instance.BardBattleData.lastIronJawWithBuff = HasBuffsCount() >= 1;
         }
 
         public static SpellData GetRefulgentArrow()

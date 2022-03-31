@@ -2,6 +2,7 @@
 using AEAssist.AI;
 using Buddy.Overlay;
 using Clio.Utilities.Collections;
+using ff14bot.Managers;
 using PropertyChanged;
 
 namespace AEAssist.DataBinding
@@ -23,6 +24,14 @@ namespace AEAssist.DataBinding
         public bool UseApex { get; set; } = true;
         
         public bool AutoAttack { get; set; } = false;
+
+
+        #region NextSongs
+
+        public ActionResourceManager.Bard.BardSong nextSong = ActionResourceManager.Bard.BardSong.None;
+
+        #endregion
+        
 
         public GeneralSettings GeneralSettings { get; } = SettingMgr.GetSetting<GeneralSettings>();
         public BardSettings BardSettings  => SettingMgr.GetSetting<BardSettings>();

@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Buddy.Overlay;
+using Buddy.Overlay.Controls;
 using ff14bot;
 using ff14bot.Enums;
 
@@ -11,57 +12,68 @@ namespace AEAssist.View
     {
         public static OverlayManager Instance = new OverlayManager();
 
-        private Dictionary<ClassJobType, Window> AllOverlays = new Dictionary<ClassJobType, Window>();
+        private Dictionary<ClassJobType, OverlayUIComponent> AllOverlays = new Dictionary<ClassJobType, OverlayUIComponent>();
 
         private ClassJobType _classJobType;
+
+        private OverlayUIComponent lastOverlay;
         
         public void Init()
         {
-            AllOverlays[ClassJobType.Bard] = new BardOverlayWindow();
+            AllOverlays[ClassJobType.Bard] = new OverlayUIComponent_BardOverlay(true);
             SwitchJob();
         }
 
         public void SwitchJob()
         {
+            if (!Core.OverlayManager.IsActive)
+                return;
             var currJob = Core.Me.CurrentJob;
             if (currJob == _classJobType)
                 return;
-            _classJobType = currJob;
-            foreach (var v in AllOverlays)
-            {
-                v.Value.Dispatcher.Invoke(v.Value.Hide);
-            }
-            
 
+            if (lastOverlay != null)
+            {
+                Core.OverlayManager.RemoveUIComponent(lastOverlay);
+                // v.Value.Dispatcher.Invoke(v.Value.Hide);
+                lastOverlay = null;
+            }
+
+
+            _classJobType = currJob;
             if (AllOverlays.TryGetValue(currJob, out var window))
             {
-                window.Dispatcher.Invoke(window.Show);
+                LogHelper.Info($"OpenOverlay {window.GetType().Name}");
+                Core.OverlayManager.AddUIComponent(window);
+                lastOverlay = window;
+                //window.Dispatcher.Invoke(window.Show);
             }
         }
 
         public void ShowOverlay()
         {
+            if (!Core.OverlayManager.IsActive)
+                return;
             var currJob = Core.Me.CurrentJob;
             _classJobType = currJob;
-            foreach (var v in AllOverlays)
+            if (lastOverlay != null)
             {
-                v.Value.Dispatcher.Invoke(v.Value.Hide);
+                Core.OverlayManager.RemoveUIComponent(lastOverlay);
+                lastOverlay = null;
             }
             
-
             if (AllOverlays.TryGetValue(currJob, out var window))
             {
-                window.Dispatcher.Invoke(window.Show);
+                Core.OverlayManager.AddUIComponent(window);
+                lastOverlay = window;
             }
         }
 
         public void Close()
         {
-            foreach (var v in AllOverlays)
-            {
-                v.Value.Dispatcher.Invoke(v.Value.Hide);
-            }
-
+            if (lastOverlay != null)
+                Core.OverlayManager.RemoveUIComponent(lastOverlay);
+            lastOverlay = null;
         }
     }
 }
