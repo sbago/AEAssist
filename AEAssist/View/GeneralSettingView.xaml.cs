@@ -6,6 +6,7 @@ using System.Windows.Documents;
 using System.Windows.Forms;
 using AEAssist.Define;
 using AEAssist.Helper;
+using AEAssist.View.Overlay;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace AEAssist.View
@@ -33,6 +34,22 @@ namespace AEAssist.View
             return HotkeyDatas;
         }
 
+        
+        private static TriggerLineWindow _form;
+        private TriggerLineWindow Window
+        {
+            get
+            {
+                if (_form != null) return _form;
+                _form = new TriggerLineWindow();
+                _form.Closed += (sender, args) =>
+                {
+                    _form = null;
+                };
+                return _form;
+            }
+        }
+        
         public GeneralSettingView()
         {
             InitializeComponent();
@@ -62,6 +79,11 @@ namespace AEAssist.View
             SettingMgr.GetSetting<HotkeySetting>().CloseBuffKey = Hotkey_CloseBuff.SelectedValue.ToString();
             SettingMgr.GetSetting<HotkeySetting>().ResetHotkeyName();
             SettingMgr.GetSetting<HotkeySetting>().RegisHotkey();
+        }
+
+        private void LoadTriggerLine_OnClick(object sender, RoutedEventArgs e)
+        {
+            Window.Show();
         }
     }
 }

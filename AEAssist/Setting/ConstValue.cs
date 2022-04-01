@@ -4,7 +4,6 @@ namespace AEAssist
 {
     public static class ConstValue
     {
-        public const int AnimationLockMs = 500;
         public const int QuickAnimLockMs = 100;
         public static int AuraTick = 3000;
 
@@ -12,6 +11,6 @@ namespace AEAssist
         public static int BardAOETargetRange = 12;
         public static int BardAOECount = 2;
 
-        public static int SettingVersion = 10;
+        public static int SettingVersion = 11;
     }
 }

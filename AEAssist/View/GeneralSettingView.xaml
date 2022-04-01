@@ -47,6 +47,10 @@
                     Content="显示Overlay" Width="150" Height="25" Margin="10"
                         HorizontalAlignment="Left"
                         Click="ShowOverlay_OnClick"/>
+                <Button Name="LoadTriggerLine"
+                        Content="时间轴设置" Width="150" Height="25" Margin="10"
+                        HorizontalAlignment="Left"
+                        Click="LoadTriggerLine_OnClick"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="停手快捷键" Width="100" />
                     <ComboBox IsEditable="False" Name="Hotkey_Stop" Width="150" DisplayMemberPath="Name" SelectedValuePath="Key" SelectionChanged="Hotkey_Stop_OnSelectionChanged"/>
@@ -63,6 +67,10 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="平均延迟" Width="150" />
                     <TextBox Width="150" Text="{Binding GeneralSettings.UserLatencyOffset,Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="能力技窗口时间" Width="150" />
+                    <TextBox Width="150" Text="{Binding GeneralSettings.AnimationLockMs,Mode=TwoWay}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="GCD队列时间" Width="150" />

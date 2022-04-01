@@ -54,8 +54,12 @@ namespace AEAssist.Helper
         }
 
 
-        public static async Task<bool> CastAbility(SpellData spell, GameObject target,int waitTime = ConstValue.AnimationLockMs)
+        public static async Task<bool> CastAbility(SpellData spell, GameObject target,int waitTime = 0)
         {
+            if (waitTime == 0)
+                waitTime = SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs;
+            
+            
             if (spell.SpellType != SpellType.Ability)
             {
                 LogHelper.Error($"{spell.Name} is not a Ability");

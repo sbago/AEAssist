@@ -4,12 +4,10 @@ D:\Github\AEAssist\AETriggers\bin\Debug\AETriggers.pdb
 D:\Github\AEAssist\AETriggers\bin\Debug\MaterialDesignColors.dll
 D:\Github\AEAssist\AETriggers\bin\Debug\MaterialDesignExtensions.dll
 D:\Github\AEAssist\AETriggers\bin\Debug\MaterialDesignThemes.Wpf.dll
-D:\Github\AEAssist\AETriggers\bin\Debug\Newtonsoft.Json.dll
 D:\Github\AEAssist\AETriggers\bin\Debug\MaterialDesignColors.pdb
 D:\Github\AEAssist\AETriggers\bin\Debug\MaterialDesignExtensions.xml
 D:\Github\AEAssist\AETriggers\bin\Debug\MaterialDesignThemes.Wpf.pdb
 D:\Github\AEAssist\AETriggers\bin\Debug\MaterialDesignThemes.Wpf.xml
-D:\Github\AEAssist\AETriggers\bin\Debug\Newtonsoft.Json.xml
 D:\Github\AEAssist\AETriggers\bin\Debug\ar-DZ\MaterialDesignExtensions.resources.dll
 D:\Github\AEAssist\AETriggers\bin\Debug\cs\MaterialDesignExtensions.resources.dll
 D:\Github\AEAssist\AETriggers\bin\Debug\cs-CZ\MaterialDesignExtensions.resources.dll
@@ -38,3 +36,5 @@ D:\Github\AEAssist\AETriggers\obj\Debug\AETriggers.csproj.CoreCompileInputs.cach
 D:\Github\AEAssist\AETriggers\obj\Debug\AETriggers.csproj.CopyComplete
 D:\Github\AEAssist\AETriggers\obj\Debug\AETriggers.exe
 D:\Github\AEAssist\AETriggers\obj\Debug\AETriggers.pdb
+D:\Github\AEAssist\AETriggers\bin\Debug\RebornBuddy.exe
+D:\Github\AEAssist\AETriggers\bin\Debug\GreyMagic.dll

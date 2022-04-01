@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using AEAssist.AI;
+using AETriggers.TriggerModel;
 using Buddy.Overlay;
 using Clio.Utilities.Collections;
 using ff14bot.Managers;
@@ -39,5 +40,7 @@ namespace AEAssist.DataBinding
         public DebugCenter DebugCenter =>DebugCenter.Intance;
         
         public HotkeySetting HotkeySetting =>SettingMgr.GetSetting<HotkeySetting>();
+
+        public TriggerLine TriggerLine;
     }
 }

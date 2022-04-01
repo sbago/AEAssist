@@ -43,9 +43,8 @@
         <Reference Include="MaterialDesignThemes.Wpf, Version=4.5.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a">
           <HintPath>C:\Users\Administrator\.nuget\packages\materialdesignthemes\4.5.0-ci125\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
         </Reference>
-        <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
-          <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-          <Private>True</Private>
+        <Reference Include="RebornBuddy, Version=1.0.473.0, Culture=neutral, PublicKeyToken=48d7174f8a943034">
+          <HintPath>E:\Work\AEAssist\References\RebornBuddy.exe</HintPath>
         </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
@@ -104,6 +103,9 @@
     <ItemGroup>
         <None Include="App.config" />
         <None Include="packages.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="DisplayAttribute" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

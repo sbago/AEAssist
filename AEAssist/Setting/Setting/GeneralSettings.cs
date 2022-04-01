@@ -22,6 +22,7 @@ namespace AEAssist
             this.TTK_IgnoreDamage = 300000;
             this.UsePotion = false;
             this.UsePotionCountDown = 1500;
+            this.AnimationLockMs = 500;
         }
 
         public int UserLatencyOffset{ get; set; } // 玩家预计延迟
@@ -29,7 +30,7 @@ namespace AEAssist
         public int ActionQueueMs{ get; set; }  // 提前多久开始准备释放技能
         [ValueRange(1,2)]
         public int MaxAbilityTimsInGCD { get; set; } // 一个GCD内最多插几个能力技
-
+        public int AnimationLockMs { get; set; }
         public bool OpenTTK { get; set; }  // 启动TTK
         [ValueRange(1,30)]
         public int TimeToKill_TimeInSec{ get; set; } //ttk 预计多少秒死亡

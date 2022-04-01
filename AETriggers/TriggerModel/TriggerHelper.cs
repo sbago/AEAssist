@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
-using AETriggers.TriggerModel.TriggerAction;
+using AETriggers.TriggerModel;
+using ff14bot.Enums;
 using Newtonsoft.Json;
 
 namespace AETriggers.TriggerModel
@@ -12,38 +13,47 @@ namespace AETriggers.TriggerModel
             if (!Directory.Exists(dirPath))
                 Directory.CreateDirectory(dirPath);
 
-            var TriggerLine = new TriggerLine();
+            var TriggerLine = new TriggerLine
             {
-                var trigger = new Trigger();
-
+                Version = "1.0",
+                Author = "AE",
+                TargetDuty = 0,
+                TargetJob = ClassJobType.Adventurer,
+            };
+            {
                 foreach (var v in TriggerMgr.Instance.AllCondType)
                 {
-                    trigger.TriggerConds.Add(Activator.CreateInstance(v) as ITriggerCond);
+                    var trigger = new Trigger();
+                    trigger.TriggerCond = Activator.CreateInstance(v) as ITriggerCond;
+                    TriggerLine.Triggers.Add(trigger);
                 }
                 foreach (var v in TriggerMgr.Instance.AllActionType)
                 {
-                    trigger.TriggerActions.Add(Activator.CreateInstance(v) as ITriggerAction);
+                    var trigger = new Trigger();
+                    trigger.TriggerAction = Activator.CreateInstance(v) as ITriggerAction;
+                    TriggerLine.Triggers.Add(trigger);
                 }
 
-                TriggerLine.Triggers.Add(trigger);
             }
-            {
-                var trigger = new Trigger();
-                foreach (var v in TriggerMgr.Instance.AllCondType)
-                {
-                    trigger.TriggerConds.Add(Activator.CreateInstance(v) as ITriggerCond);
-                }
-                foreach (var v in TriggerMgr.Instance.AllActionType)
-                {
-                    trigger.TriggerActions.Add(Activator.CreateInstance(v) as ITriggerAction);
-                }
-
-                TriggerLine.Triggers.Add(trigger);
-            }
-
             var filePath = dirPath + "/TriggerLineTemplate.json";
             File.WriteAllText(filePath,JsonConvert.SerializeObject(TriggerLine));
 
+        }
+
+        public static TriggerLine LoadTriggerLine(string path)
+        {
+            if (!File.Exists(path))
+                return null;
+            var str = File.ReadAllText(path);
+            try
+            {
+                var line = JsonConvert.DeserializeObject<TriggerLine>(str);
+                return line;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
     }
 }

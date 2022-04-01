@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.DataBinding;
 using AEAssist.Define;
@@ -13,20 +14,23 @@ namespace AEAssist.AI
     {
         public static readonly AIRoot Instance = new AIRoot();
         
-        private long _lastCastTime;
-        private SpellData _lastGCDSpell;
-        private SpellData _lastAbilitySpell;
-        private int _maxAbilityTimes ;
-
         private bool ClearBattleData;
 
-        private BardBattleData _battleData;
+        private BardBattleData _bardBattleData;
 
         public BardBattleData BardBattleData
         {
-            get => _battleData ?? (_battleData = new BardBattleData());
+            get => _bardBattleData ?? (_bardBattleData = new BardBattleData());
+            set => _bardBattleData = value;
+        }
+
+        private BattleData _battleData;
+        public BattleData BattleData
+        {
+            get => _battleData ?? (_battleData = new BattleData());
             set => _battleData = value;
         }
+
 
 
         private Dictionary<string, long> lastNoticeTime = new Dictionary<string, long>();
@@ -49,12 +53,9 @@ namespace AEAssist.AI
             if (ClearBattleData)
                 return;
             CountDownHandler.Instance.Close();
-            _lastGCDSpell = null;
-            _lastAbilitySpell = null;
-            _maxAbilityTimes = SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD;
 
+            BattleData = new BattleData();
             BardBattleData = new BardBattleData();
-
             ClearBattleData = true;
             if (CanNotice("Clear", 2000))
                 LogHelper.Debug("Clear battle data");
@@ -93,18 +94,23 @@ namespace AEAssist.AI
                 return false;
             }
 
+            var timeNow = TimeHelper.Now();
             if (Core.Me.InCombat)
             {
+                if (ClearBattleData)
+                {
+                    BattleData.battleStartTime = timeNow;
+                }
+                BattleData.Update(timeNow);
                 ClearBattleData = false;
             }
 
-            var timeNow = TimeHelper.Now();
 
             bool canUseGCD = true;
             bool canUseAbility = true;
-            var delta = timeNow - _lastCastTime;
+            var delta = timeNow - BattleData.lastCastTime;
             var coolDown = GetGCDDuration();
-            if (_lastGCDSpell != null)
+            if (BattleData.lastGCDSpell != null)
             {
                 var coolDownForQueue = coolDown - SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
                 if (delta < coolDownForQueue)
@@ -113,8 +119,8 @@ namespace AEAssist.AI
                 }
             }
 
-            var needDura = ConstValue.AnimationLockMs + SettingMgr.GetSetting<GeneralSettings>().UserLatencyOffset;
-            if (_maxAbilityTimes > 0 && coolDown - delta > needDura)
+            var needDura = SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs + SettingMgr.GetSetting<GeneralSettings>().UserLatencyOffset;
+            if (BattleData.maxAbilityTimes > 0 && coolDown - delta > needDura)
             {
                 canUseAbility = true;
             }
@@ -126,27 +132,27 @@ namespace AEAssist.AI
             if (canUseGCD)
             {
                 //todo: check gcd
-                var ret = await AIMgrs.Instance.HandleGCD(Core.Me.CurrentJob, _lastGCDSpell);
+                var ret = await AIMgrs.Instance.HandleGCD(Core.Me.CurrentJob, BattleData.lastGCDSpell);
                 if (ret != null)
                 {
                     GUIHelper.ShowInfo("Cast GCD: " + ret.LocalizedName, 100);
-                    if (_lastGCDSpell == null)
+                    if (BattleData.lastGCDSpell == null)
                         CountDownHandler.Instance.Close();
-                    _lastGCDSpell = ret;
-                    _lastCastTime = timeNow;
-                    _maxAbilityTimes = SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD;
-                    _lastAbilitySpell = null;
+                    BattleData.lastGCDSpell = ret;
+                    BattleData.lastCastTime = timeNow;
+                    BattleData.maxAbilityTimes = SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD;
+                    BattleData.lastAbilitySpell = null;
                 }
             }
 
             if (canUseAbility)
             {
                 //todo : check ability
-                var ret = await AIMgrs.Instance.HandleAbility(Core.Me.CurrentJob, _lastAbilitySpell);
+                var ret = await AIMgrs.Instance.HandleAbility(Core.Me.CurrentJob, BattleData.lastAbilitySpell);
                 if (ret != null)
                 {
                     GUIHelper.ShowInfo("Cast Ability: " + ret.LocalizedName, 100);
-                    _maxAbilityTimes--;
+                    BattleData.maxAbilityTimes--;
                     //LogHelper.Info($"剩余使用能力技能次数: {_maxAbilityTimes}");
                 }
             }
@@ -157,15 +163,15 @@ namespace AEAssist.AI
         // 当前是否是GCD后半段
         public bool Is2ndAbilityTime()
         {
-            if (_lastGCDSpell == null)
+            if (BattleData.lastGCDSpell == null)
                 return false;
-            if (_maxAbilityTimes == 1)
+            if (BattleData.maxAbilityTimes == 1)
                 return true;
             if (SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD != 2)
                 return true;
             var timeNow = TimeHelper.Now();
-            var delta = timeNow - _lastCastTime;
-            var coolDown = _lastGCDSpell.AdjustedCooldown.TotalMilliseconds;
+            var delta = timeNow - BattleData.lastCastTime;
+            var coolDown = BattleData.lastGCDSpell.AdjustedCooldown.TotalMilliseconds;
             if (delta > coolDown / SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD)
                 return true;
             return false;
@@ -173,14 +179,14 @@ namespace AEAssist.AI
 
         public double GetGCDDuration()
         {
-            if (_lastGCDSpell == null)
+            if (BattleData.lastGCDSpell == null)
                 return 2500;
-            return _lastGCDSpell.AdjustedCooldown.TotalMilliseconds;
+            return BattleData.lastGCDSpell.AdjustedCooldown.TotalMilliseconds;
         }
 
         public void MuteAbilityTime()
         {
-            _maxAbilityTimes = 0;
+            BattleData.maxAbilityTimes = 0;
         }
 
         bool CanNotice(string key,long interval)
@@ -194,6 +200,11 @@ namespace AEAssist.AI
 
             lastNoticeTime[key] = now;
             return true;
+        }
+
+        public void AddTcs(long time, TaskCompletionSource<bool> tcs)
+        {
+            BattleData.AddTcs(time,tcs);
         }
     }
 }

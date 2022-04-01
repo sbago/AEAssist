@@ -64,19 +64,40 @@
         <Compile Include="..\AETriggers\TriggerModel\ITriggerCond.cs">
           <Link>TriggerModel\ITriggerCond.cs</Link>
         </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\Trigger.cs">
+          <Link>TriggerModel\Trigger.cs</Link>
+        </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs">
           <Link>TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_AfterBattleStart.cs">
           <Link>TriggerModel\TriggerCond\TriggerCond_AfterBattleStart.cs</Link>
         </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_GameLog.cs">
+          <Link>TriggerModel\TriggerCond\TriggerCond_GameLog.cs</Link>
+        </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerHelper.cs">
+          <Link>TriggerModel\TriggerHelper.cs</Link>
+        </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerLine.cs">
+          <Link>TriggerModel\TriggerLine.cs</Link>
+        </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerMgr.cs">
+          <Link>TriggerModel\TriggerMgr.cs</Link>
+        </Compile>
         <Compile Include="AI\Bard\BardBattleData.cs" />
+        <Compile Include="AI\BattleData.cs" />
         <Compile Include="DataBinding\DebugCenter.cs" />
         <Compile Include="Define\HotkeyData.cs" />
         <Compile Include="Define\PotionData.cs" />
         <Compile Include="Define\SongData.cs" />
         <Compile Include="Gamelog\AEGamelogManager.cs" />
         <Compile Include="Setting\Setting\HotkeySetting.cs" />
+        <Compile Include="TriggerSystem\ITriggerActionHandler.cs" />
+        <Compile Include="TriggerSystem\ITriggerCondHandler.cs" />
+        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchBurst.cs" />
+        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterBattleStart.cs" />
+        <Compile Include="TriggerSystem\TriggerSystemMgr.cs" />
         <Compile Include="View\BardSettingView.xaml.cs">
           <DependentUpon>BardSettingView.xaml</DependentUpon>
         </Compile>
@@ -88,6 +109,9 @@
           <DependentUpon>BardOverlayWindow.xaml</DependentUpon>
         </Compile>
         <Compile Include="View\Overlay\OverlayUIComponent_BardOverlay.cs" />
+        <Compile Include="View\Overlay\TriggerLineWindow.xaml.cs">
+          <DependentUpon>TriggerLineWindow.xaml</DependentUpon>
+        </Compile>
         <Content Include="..\AEAssistLoader\AEAssistLoader.cs">
           <Link>AEAssistLoader.cs</Link>
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -110,6 +134,7 @@
         <Content Include="Resources\BossDictionary.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+        <Page Include="View\Overlay\TriggerLineWindow.xaml" />
         <Resource Include="Resources\jobs\acn.png" />
         <Resource Include="Resources\jobs\alc.png" />
         <Resource Include="Resources\jobs\arc.png" />

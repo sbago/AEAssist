@@ -60,3 +60,5 @@ D:\Github\AEAssist\AEAssist\obj\Debug\View\BardSettingView.g.cs
 D:\Github\AEAssist\AEAssist\obj\Debug\View\BardSettingView.baml
 D:\Github\AEAssist\AEAssist\obj\Debug\View\Overlay\BardOverlayWindow.g.cs
 D:\Github\AEAssist\AEAssist\obj\Debug\View\Overlay\BardOverlayWindow.baml
+D:\Github\AEAssist\AEAssist\obj\Debug\View\Overlay\TriggerLineWindow.g.cs
+D:\Github\AEAssist\AEAssist\obj\Debug\View\Overlay\TriggerLineWindow.baml

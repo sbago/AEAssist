@@ -1,4 +1,4 @@
-﻿namespace AETriggers.TriggerModel.TriggerAction
+﻿namespace AETriggers.TriggerModel
 {
     public class TriggerAction_SwitchBurst : ITriggerAction
     {
