@@ -61,5 +61,13 @@ namespace AEAssist.View
         {
             BaseSettings.Instance.nextSong = (ActionResourceManager.Bard.BardSong) ChooseNextSong.SelectedValue;
         }
+
+        private void ChangeTriggerLine_OnClick(object sender, RoutedEventArgs e)
+        {
+            Entry.TriggerLineWindow.OnTriggerLineLoad = 
+                s =>
+                this.CurrTriggerLine.Content = $"当前加载时间轴: {s}";
+            Entry.TriggerLineWindow.Show();
+        }
     }
 }

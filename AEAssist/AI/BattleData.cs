@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AEAssist.DataBinding;
+using AEAssist.TriggerSystem;
+using AETriggers.TriggerModel;
 using ff14bot.Objects;
 
 namespace AEAssist.AI
@@ -20,6 +23,8 @@ namespace AEAssist.AI
         public long battleStartTime;
         public long BattleTime { get; private set; }
 
+        private HashSet<long> ExecutedTriggers = new HashSet<long>();
+
 
         private Dictionary<long, List<TaskCompletionSource<bool>>> AllBattleTimeTcs =
             new Dictionary<long, List<TaskCompletionSource<bool>>>();
@@ -27,6 +32,14 @@ namespace AEAssist.AI
         private HashSet<long> TempKeys = new HashSet<long>();
 
         public void Update(long currTime)
+        {
+            CalBattleTime(currTime);
+            
+           CalTriggerLine();
+            
+        }
+
+        void CalBattleTime(long currTime)
         {
             BattleTime = currTime - battleStartTime;
             if (BattleTime == 0)
@@ -53,7 +66,24 @@ namespace AEAssist.AI
 
                 AllBattleTimeTcs.Remove(v);
             }
-            
+        }
+
+        void CalTriggerLine()
+        {
+            var CurrTriggerLine = BaseSettings.Instance.CurrTriggerLine;
+            if (CurrTriggerLine == null)
+                return;
+            if (ExecutedTriggers.Count == CurrTriggerLine.Triggers.Count)
+                return;
+            foreach (var v in CurrTriggerLine.Triggers)
+            {
+                if(ExecutedTriggers.Contains(v.Id))
+                    continue;
+                if (TriggerSystemMgr.Instance.HandleTriggers(v))
+                {
+                    this.ExecutedTriggers.Add(v.Id);
+                }
+            }
         }
 
         public void AddTcs(long time, TaskCompletionSource<bool> tcs)

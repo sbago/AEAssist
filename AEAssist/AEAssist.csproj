@@ -70,8 +70,14 @@
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs">
           <Link>TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs</Link>
         </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerAttribute.cs">
+          <Link>TriggerModel\TriggerAttribute.cs</Link>
+        </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_AfterBattleStart.cs">
           <Link>TriggerModel\TriggerCond\TriggerCond_AfterBattleStart.cs</Link>
+        </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyCastSpellByName.cs">
+          <Link>TriggerModel\TriggerCond\TriggerCond_EnemyCastSpellByName.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_GameLog.cs">
           <Link>TriggerModel\TriggerCond\TriggerCond_GameLog.cs</Link>

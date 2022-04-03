@@ -21,7 +21,6 @@ namespace AEAssist.View
         public void Init()
         {
             AllOverlays[ClassJobType.Bard] = new OverlayUIComponent_BardOverlay(true);
-            SwitchJob();
         }
 
         public void SwitchJob()

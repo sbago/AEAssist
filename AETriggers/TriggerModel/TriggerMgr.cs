@@ -11,6 +11,10 @@ namespace AETriggers.TriggerModel
 
         public HashSet<Type> AllActionType = new HashSet<Type>();
 
+        public Dictionary<Type, TriggerAttribute> AllAttrs = new Dictionary<Type, TriggerAttribute>();
+
+        public Dictionary<string, Type> Name2Type = new Dictionary<string, Type>();
+
         public TriggerMgr()
         {
             var baseType = typeof(ITriggerBase);
@@ -31,6 +35,12 @@ namespace AETriggers.TriggerModel
                 {
                     this.AllActionType.Add(type);
                 }
+
+                var attrs = type.GetCustomAttributes(typeof(TriggerAttribute), false);
+                var attr = attrs[0] as TriggerAttribute; 
+                this.AllAttrs[type] = attr;
+
+                this.Name2Type[attr.Name] = type;
             }
         }
     }

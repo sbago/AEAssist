@@ -19,7 +19,7 @@
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
         <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
+        <OutputPath>bin\AE时间轴导出工具\</OutputPath>
         <DefineConstants>DEBUG;TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
@@ -34,6 +34,10 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
+          <HintPath>..\packages\NPOI.Excel.2.1.1\lib\ICSharpCode.SharpZipLib.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
         <Reference Include="MaterialDesignColors, Version=2.0.6.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a">
           <HintPath>C:\Users\Administrator\.nuget\packages\materialdesigncolors\2.0.6-ci125\lib\net452\MaterialDesignColors.dll</HintPath>
         </Reference>
@@ -43,8 +47,25 @@
         <Reference Include="MaterialDesignThemes.Wpf, Version=4.5.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a">
           <HintPath>C:\Users\Administrator\.nuget\packages\materialdesignthemes\4.5.0-ci125\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
         </Reference>
-        <Reference Include="RebornBuddy, Version=1.0.473.0, Culture=neutral, PublicKeyToken=48d7174f8a943034">
-          <HintPath>E:\Work\AEAssist\References\RebornBuddy.exe</HintPath>
+        <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+          <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="NPOI, Version=2.1.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1">
+          <HintPath>..\packages\NPOI.Excel.2.1.1\lib\NPOI.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="NPOI.OOXML, Version=2.1.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1">
+          <HintPath>..\packages\NPOI.Excel.2.1.1\lib\NPOI.OOXML.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="NPOI.OpenXml4Net, Version=2.1.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1">
+          <HintPath>..\packages\NPOI.Excel.2.1.1\lib\NPOI.OpenXml4Net.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="NPOI.OpenXmlFormats, Version=2.1.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1">
+          <HintPath>..\packages\NPOI.Excel.2.1.1\lib\NPOI.OpenXmlFormats.dll</HintPath>
+          <Private>True</Private>
         </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
@@ -63,12 +84,15 @@
             <SubType>Designer</SubType>
         </ApplicationDefinition>
         <Compile Include="Entry.cs" />
+        <Compile Include="LogHelper.cs" />
         <Compile Include="TriggerModel\ITriggerAction.cs" />
         <Compile Include="TriggerModel\ITriggerBase.cs" />
         <Compile Include="TriggerModel\ITriggerCond.cs" />
         <Compile Include="TriggerModel\Trigger.cs" />
         <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs" />
+        <Compile Include="TriggerModel\TriggerAttribute.cs" />
         <Compile Include="TriggerModel\TriggerCond\TriggerCond_AfterBattleStart.cs" />
+        <Compile Include="TriggerModel\TriggerCond\TriggerCond_EnemyCastSpellByName.cs" />
         <Compile Include="TriggerModel\TriggerCond\TriggerCond_GameLog.cs" />
         <Compile Include="TriggerModel\TriggerHelper.cs" />
         <Compile Include="TriggerModel\TriggerLine.cs" />

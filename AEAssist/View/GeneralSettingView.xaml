@@ -47,10 +47,10 @@
                     Content="显示Overlay" Width="150" Height="25" Margin="10"
                         HorizontalAlignment="Left"
                         Click="ShowOverlay_OnClick"/>
-                <Button Name="LoadTriggerLine"
-                        Content="时间轴设置" Width="150" Height="25" Margin="10"
-                        HorizontalAlignment="Left"
-                        Click="LoadTriggerLine_OnClick"/>
+                <!-- <Button Name="LoadTriggerLine" -->
+                <!--         Content="时间轴设置" Width="150" Height="25" Margin="10" -->
+                <!--         HorizontalAlignment="Left" -->
+                <!--         Click="LoadTriggerLine_OnClick"/> -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="停手快捷键" Width="100" />
                     <ComboBox IsEditable="False" Name="Hotkey_Stop" Width="150" DisplayMemberPath="Name" SelectedValuePath="Key" SelectionChanged="Hotkey_Stop_OnSelectionChanged"/>

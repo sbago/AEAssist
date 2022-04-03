@@ -201,10 +201,5 @@ namespace AEAssist.AI
             lastNoticeTime[key] = now;
             return true;
         }
-
-        public void AddTcs(long time, TaskCompletionSource<bool> tcs)
-        {
-            BattleData.AddTcs(time,tcs);
-        }
     }
 }

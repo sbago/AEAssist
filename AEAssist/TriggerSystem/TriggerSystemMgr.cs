@@ -43,15 +43,39 @@ namespace AEAssist.TriggerSystem
 
         }
 
-        public void HandleCond(ITriggerCond cond,ITriggerAction action)
+        public bool HandleTriggers(Trigger trigger)
+        {
+            foreach (var v in trigger.TriggerConds)
+            {
+                if (!this.HandleCond(v))
+                    return false;
+            }
+
+            foreach (var v in trigger.TriggerActions)
+            {
+                this.HandleAction(v);
+            }
+
+            return true;
+        }
+
+        public bool HandleCond(ITriggerCond cond)
         {
             if (!this.AllCondHandlers.TryGetValue(cond.GetType(), out var handler))
             {
                 LogHelper.Error($"there is no cond handler for {cond.GetType().FullName}");
-                return;
+                return false;
             }
 
-            this.AllCondHandlers[cond.GetType()].Add(cond,action);
+            try
+            {
+                return handler.Handle(cond);
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error(e.ToString());
+                return false;
+            }
         }
 
         public void HandleAction(ITriggerAction action)
@@ -64,7 +88,14 @@ namespace AEAssist.TriggerSystem
                 return;
             }
 
-            this.AllActionHandlers[action.GetType()].Run(action);
+            try
+            {
+                handler.Run(action);
+            }
+            catch (Exception e)
+            {
+               LogHelper.Error(e.ToString());
+            }
         }
 
     }

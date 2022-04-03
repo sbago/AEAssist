@@ -7,7 +7,7 @@ namespace AEAssist.TriggerSystem
     public interface ITriggerCondHandler
     {
         Type GetCondType();
-        Task Add(ITriggerCond o,ITriggerAction TriggerAction);
+        bool Handle(ITriggerCond o);
     }
 
     public abstract class ATriggerCondHandler<T> : ITriggerCondHandler where T: class,ITriggerCond
@@ -17,15 +17,11 @@ namespace AEAssist.TriggerSystem
             return typeof(T);
         }
 
-        public async Task Add(ITriggerCond o,ITriggerAction TriggerAction)
+        public bool Handle(ITriggerCond o)
         {
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-            Handle(o as T,tcs);
-            var ret = await tcs.Task;
-            if (ret)
-                TriggerSystemMgr.Instance.HandleAction(TriggerAction);
+            return Check(o as T);
         }
 
-        protected abstract void Handle(T cond,TaskCompletionSource<bool> tcs);
+        protected abstract bool Check(T cond);
     }
 }

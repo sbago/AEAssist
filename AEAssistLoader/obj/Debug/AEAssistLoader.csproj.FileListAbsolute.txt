@@ -7,3 +7,11 @@ E:\Work\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.csproj.CoreCompileInput
 E:\Work\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.csproj.CopyComplete
 E:\Work\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.dll
 E:\Work\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.pdb
+D:\Github\AEAssist\AEAssistLoader\bin\Debug\AEAssistLoader.dll
+D:\Github\AEAssist\AEAssistLoader\bin\Debug\AEAssistLoader.pdb
+D:\Github\AEAssist\AEAssistLoader\bin\Debug\GreyMagic.dll
+D:\Github\AEAssist\AEAssistLoader\bin\Debug\RebornBuddy.exe
+D:\Github\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.csproj.AssemblyReference.cache
+D:\Github\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.csproj.CoreCompileInputs.cache
+D:\Github\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.dll
+D:\Github\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.pdb

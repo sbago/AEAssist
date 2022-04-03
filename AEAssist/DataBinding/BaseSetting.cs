@@ -40,7 +40,6 @@ namespace AEAssist.DataBinding
         public DebugCenter DebugCenter =>DebugCenter.Intance;
         
         public HotkeySetting HotkeySetting =>SettingMgr.GetSetting<HotkeySetting>();
-
-        public TriggerLine TriggerLine;
+        public TriggerLine CurrTriggerLine { get; set; }
     }
 }

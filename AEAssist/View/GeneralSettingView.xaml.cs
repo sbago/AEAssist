@@ -35,21 +35,6 @@ namespace AEAssist.View
         }
 
         
-        private static TriggerLineWindow _form;
-        private TriggerLineWindow Window
-        {
-            get
-            {
-                if (_form != null) return _form;
-                _form = new TriggerLineWindow();
-                _form.Closed += (sender, args) =>
-                {
-                    _form = null;
-                };
-                return _form;
-            }
-        }
-        
         public GeneralSettingView()
         {
             InitializeComponent();
@@ -80,10 +65,6 @@ namespace AEAssist.View
             SettingMgr.GetSetting<HotkeySetting>().ResetHotkeyName();
             SettingMgr.GetSetting<HotkeySetting>().RegisHotkey();
         }
-
-        private void LoadTriggerLine_OnClick(object sender, RoutedEventArgs e)
-        {
-            Window.Show();
-        }
+        
     }
 }

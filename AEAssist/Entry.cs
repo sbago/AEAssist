@@ -17,6 +17,7 @@ using AEAssist.AI;
 using AEAssist.Gamelog;
 using AEAssist.Helper;
 using AEAssist.View;
+using AEAssist.View.Overlay;
 using TreeSharp;
 
 namespace AEAssist
@@ -25,7 +26,7 @@ namespace AEAssist
     {
         public void Initialize()
         {
-            LogHelper.Debug("Init....");
+            LogHelper.Debug("Init....Version " + ConstValue.ProjectVersion);
             try
             {
                 SettingMgr.Instance.InitSetting();
@@ -49,7 +50,7 @@ namespace AEAssist
 
 
         private static MainWindow _form;
-        private MainWindow Form
+        private static MainWindow Form
         {
             get
             {
@@ -60,6 +61,21 @@ namespace AEAssist
                     _form = null;
                 };
                 return _form;
+            }
+        }
+        
+        private static TriggerLineWindow _triggerLineWindow;
+        public static TriggerLineWindow TriggerLineWindow
+        {
+            get
+            {
+                if (_triggerLineWindow != null) return _triggerLineWindow;
+                _triggerLineWindow = new TriggerLineWindow();
+                _triggerLineWindow.Closed += (sender, args) =>
+                {
+                    _triggerLineWindow = null;
+                };
+                return _triggerLineWindow;
             }
         }
         
@@ -75,6 +91,7 @@ namespace AEAssist
 
         public void Shutdown()
         {
+            LogHelper.Info("...ShutDown");
             AEGamelogManager.Instance.Close();
             OverlayManager.Instance.Close();
             SettingMgr.GetSetting<HotkeySetting>().UnRegisterKey();

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ff14bot.Enums;
 
 namespace AETriggers.TriggerModel
 {
@@ -7,8 +6,8 @@ namespace AETriggers.TriggerModel
     {
         public string Version;
         public string Author;
-        public int TargetDuty;
-        public ClassJobType TargetJob;
+        public string TargetDuty;
+        public string TargetJob;
         public List<Trigger> Triggers = new List<Trigger>();
     }
 }

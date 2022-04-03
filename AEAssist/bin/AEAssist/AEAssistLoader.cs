@@ -59,6 +59,8 @@ namespace AEAssist
         public Dictionary<string, MethodInfo> Methods = new Dictionary<string, MethodInfo>();
 
         public object Entry;
+
+        private bool Loaded;
         
         void LoadAsm()
         {
@@ -69,7 +71,8 @@ namespace AEAssist
             var entryType = asm.GetType("AEAssist.Entry");
 
             Entry = Activator.CreateInstance(entryType);
-
+            Behaviors.Clear();
+            Methods.Clear();
 
             AddBehavior(entryType,"RestBehavior");
             AddBehavior(entryType,"PreCombatBuffBehavior");
@@ -83,7 +86,6 @@ namespace AEAssist
             AddMethod(entryType,"Pulse");
             AddMethod(entryType,"Shutdown");
             AddMethod(entryType,"OnButtonPress");
-
         }
         
         public static void RedirectAssembly()
@@ -136,6 +138,7 @@ namespace AEAssist
             var pdbPath = path.Replace(Path.GetExtension(path), "pdb");
             var pdb = $"{Path.GetFileNameWithoutExtension(path)}{t}.pdb";
             var capath = Path.Combine(CompiledAssembliesPath, name);
+            Logging.Write($"Asm: {capath} origin {path}");
             if (File.Exists(capath))
             {
                 try

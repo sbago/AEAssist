@@ -6,7 +6,7 @@ namespace AETriggers
     {
         public static void Init()
         {
-            TriggerHelper.CreateTemplateFile("./Triggers");
+          
         }
     }
 }

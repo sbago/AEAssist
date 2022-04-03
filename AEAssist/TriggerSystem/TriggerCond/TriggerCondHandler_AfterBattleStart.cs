@@ -6,9 +6,10 @@ namespace AEAssist.TriggerSystem.TriggerCond
 {
     public class TriggerCondHandler_AfterBattleStart : ATriggerCondHandler<TriggerCond_AfterBattleStart>
     {
-        protected override void Handle(TriggerCond_AfterBattleStart cond, TaskCompletionSource<bool> tcs)
+        protected override bool Check(TriggerCond_AfterBattleStart cond)
         {
-            AIRoot.Instance.AddTcs(cond.Time,tcs);
+            var battleTime = AIRoot.Instance.BattleData.BattleTime;
+            return battleTime >= cond.Time;
         }
     }
 }
