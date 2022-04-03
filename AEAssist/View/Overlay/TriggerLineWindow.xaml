@@ -9,7 +9,7 @@
         Topmost="True"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
-        Title="时间轴加载" Height="200" Width="300">
+        Title="时间轴加载" Height="200" Width="200">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -39,15 +39,11 @@
     </Window.DataContext>
 
     
-    <StackPanel>
+    <StackPanel Margin="20">
         <Button Name="LoadTriggerLine" Content="加载时间轴文件" Click="LoadTriggerLine_OnClick" />
-        <StackPanel>
-        <Label Content="目标副本" />
+        <Label Name="TriggerLineAuthor" Content=""/>
+        <Label Name="TriggerLineVersion" Content=""/>
         <Label Name="TriggerLineTargetDuty" Content=""/>
-            </StackPanel>
-        <StackPanel>
-            <Label Content="职业" />
-            <Label Name="TriggerLineJob" Content=""/>
-        </StackPanel>
+        <Label Name="TriggerLineJob" Content=""/>
     </StackPanel>
 </Window>

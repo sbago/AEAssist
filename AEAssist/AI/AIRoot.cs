@@ -65,6 +65,11 @@ namespace AEAssist.AI
         {
             // 逻辑清单: 
             // 1. 检测当前是否可以使用GCD技能
+            var timeNow = TimeHelper.Now();
+            if (!ClearBattleData)
+            {
+                BattleData.Update(timeNow);
+            }
 
             if (Stop)
             {
@@ -93,15 +98,13 @@ namespace AEAssist.AI
                     GUIHelper.ShowInfo("目标可被攻击,准备战斗");
                 return false;
             }
-
-            var timeNow = TimeHelper.Now();
+            
             if (Core.Me.InCombat)
             {
                 if (ClearBattleData)
                 {
                     BattleData.battleStartTime = timeNow;
                 }
-                BattleData.Update(timeNow);
                 ClearBattleData = false;
             }
 

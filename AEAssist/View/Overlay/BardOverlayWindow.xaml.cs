@@ -69,5 +69,11 @@ namespace AEAssist.View
                 this.CurrTriggerLine.Content = $"当前加载时间轴: {s}";
             Entry.TriggerLineWindow.Show();
         }
+
+        private void ClearTriggerLine_OnClick(object sender, RoutedEventArgs e)
+        {
+            BaseSettings.Instance.CurrTriggerLine = null;
+            this.CurrTriggerLine.Content = "当前加载时间轴: 无";
+        }
     }
 }

@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using AETriggers.TriggerModel;
 using Microsoft.Win32;
-using Newtonsoft.Json;
+using NPOI.HPSF;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.Formula.Functions;
 using NPOI.SS.UserModel;
@@ -182,7 +182,10 @@ namespace AETriggers
                 return false;
             foreach (var v in AllExcelData)
             {
-                var trigger = new Trigger();
+                var trigger = new Trigger
+                {
+                    Id = Guid.NewGuid().ToString()
+                };
                 TriggerLine.Triggers.Add(trigger);
                 
                 foreach (var data in v.Value)

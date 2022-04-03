@@ -9,7 +9,7 @@
 
         public void WriteFromJson(string[] values)
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }

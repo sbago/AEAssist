@@ -35,7 +35,8 @@ namespace AEAssist
         {
             "MaterialDesignColors",
             "MaterialDesignThemes.Wpf",
-            "MaterialDesignExtensions"
+            "MaterialDesignExtensions",
+            "MongoDB.Bson"
         };
 
         public override ClassJobType[] Class

@@ -23,7 +23,7 @@ namespace AEAssist.AI
         public long battleStartTime;
         public long BattleTime { get; private set; }
 
-        private HashSet<long> ExecutedTriggers = new HashSet<long>();
+        private HashSet<string> ExecutedTriggers = new HashSet<string>();
 
 
         private Dictionary<long, List<TaskCompletionSource<bool>>> AllBattleTimeTcs =
@@ -34,9 +34,15 @@ namespace AEAssist.AI
         public void Update(long currTime)
         {
             CalBattleTime(currTime);
-            
-           CalTriggerLine();
-            
+            // var enemys = TargetMgr.Instance.EnemysIn25;
+            // foreach (var v in enemys.Values)
+            // {
+            //     if (v.SpellCastInfo == null || !v.IsCasting)
+            //         continue;
+            //     LogHelper.Info($"Character {v.Name} Casting===>{v.SpellCastInfo.SpellData.LocalizedName}");
+            // }
+
+            CalTriggerLine();
         }
 
         void CalBattleTime(long currTime)

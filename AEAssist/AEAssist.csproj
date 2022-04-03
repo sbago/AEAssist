@@ -38,6 +38,9 @@
           <HintPath>..\References\GreyMagic.dll</HintPath>
           <Private>False</Private>
         </Reference>
+        <Reference Include="MongoDB.Bson, Version=2.15.0.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>..\packages\MongoDB.Bson.2.15.0\lib\net472\MongoDB.Bson.dll</HintPath>
+        </Reference>
         <Reference Include="RebornBuddy, Version=1.0.473.0, Culture=neutral, PublicKeyToken=48d7174f8a943034">
           <HintPath>..\References\RebornBuddy.exe</HintPath>
           <Private>False</Private>
@@ -64,6 +67,9 @@
         <Compile Include="..\AETriggers\TriggerModel\ITriggerCond.cs">
           <Link>TriggerModel\ITriggerCond.cs</Link>
         </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\MongoHelper.cs">
+          <Link>TriggerModel\MongoHelper.cs</Link>
+        </Compile>
         <Compile Include="..\AETriggers\TriggerModel\Trigger.cs">
           <Link>TriggerModel\Trigger.cs</Link>
         </Compile>
@@ -78,6 +84,9 @@
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyCastSpellByName.cs">
           <Link>TriggerModel\TriggerCond\TriggerCond_EnemyCastSpellByName.cs</Link>
+        </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyInLOS.cs">
+          <Link>TriggerModel\TriggerCond\TriggerCond_EnemyInLOS.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_GameLog.cs">
           <Link>TriggerModel\TriggerCond\TriggerCond_GameLog.cs</Link>
@@ -103,6 +112,8 @@
         <Compile Include="TriggerSystem\ITriggerCondHandler.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchBurst.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterBattleStart.cs" />
+        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyCastSpellByName.cs" />
+        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyInLOS.cs" />
         <Compile Include="TriggerSystem\TriggerSystemMgr.cs" />
         <Compile Include="View\BardSettingView.xaml.cs">
           <DependentUpon>BardSettingView.xaml</DependentUpon>

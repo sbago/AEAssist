@@ -13,6 +13,6 @@ namespace AEAssist
 
         public static int SettingVersion = 11;
 
-        public const string ProjectVersion = "0.4.0.5";
+        public const string ProjectVersion = "0.5.0.0";
     }
 }

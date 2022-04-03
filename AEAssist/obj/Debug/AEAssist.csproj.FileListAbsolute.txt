@@ -62,3 +62,6 @@ D:\Github\AEAssist\AEAssist\obj\Debug\View\Overlay\BardOverlayWindow.g.cs
 D:\Github\AEAssist\AEAssist\obj\Debug\View\Overlay\BardOverlayWindow.baml
 D:\Github\AEAssist\AEAssist\obj\Debug\View\Overlay\TriggerLineWindow.g.cs
 D:\Github\AEAssist\AEAssist\obj\Debug\View\Overlay\TriggerLineWindow.baml
+D:\Github\AEAssist\AEAssist\bin\AEAssist\MongoDB.Bson.dll
+D:\Github\AEAssist\AEAssist\bin\AEAssist\System.Runtime.CompilerServices.Unsafe.dll
+D:\Github\AEAssist\AEAssist\bin\AEAssist\MongoDB.Bson.xml

@@ -1,30 +1,27 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.Serialization.Formatters;
 using System.Windows;
 using AEAssist;
 using AETriggers.TriggerModel;
-using Newtonsoft.Json;
+using MongoDB.Bson.Serialization;
 
 namespace AETriggers.TriggerModel
 {
     public static class TriggerHelper
     {
-        private static JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings() { 
-            TypeNameHandling = TypeNameHandling.All 
-        }; 
-
         public static TriggerLine LoadTriggerLine(string path)
         {
             if (!File.Exists(path))
                 return null;
-            var str = File.ReadAllText(path);
             try
             {
-                var line = JsonConvert.DeserializeObject<TriggerLine>(str,jsonSerializerSettings);
+                var line = MongoHelper.FromJson<TriggerLine>(File.ReadAllText(path));
                 return line;
             }
             catch (Exception e)
             {
+                LogHelper.Error(e.ToString());
                 MessageBox.Show("加载失败: " + e.ToString());
                 return null;
             }
@@ -32,7 +29,9 @@ namespace AETriggers.TriggerModel
 
         public static void SaveTriggerLine(TriggerLine triggerLine, string path)
         {
-            File.WriteAllText(path,JsonConvert.SerializeObject(triggerLine,jsonSerializerSettings));
+            if(File.Exists(path))
+                File.Delete(path);
+            File.WriteAllText(path,MongoHelper.ToJson(triggerLine));
         }
     }
 }
