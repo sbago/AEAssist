@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
+using AETriggers.TriggerModel;
 using ff14bot;
 using ff14bot.Managers;
 using ff14bot.Objects;
@@ -19,6 +20,8 @@ namespace AEAssist.AI.Reaper.Ability
                 return false;
             if (Core.Me.HasAura(AurasDefine.Enshrouded))
                 return false;
+            if(TimeHelper.Now() - AIRoot.Instance.ReaperBattleData.EnshroundTime < 3000)
+                return false;
             // 死亡祭祀
             if (Core.Me.HasAura(AurasDefine.BloodsownCircle))
                 return false;
@@ -30,7 +33,7 @@ namespace AEAssist.AI.Reaper.Ability
             if (ActionResourceManager.Reaper.SoulGauge < 50)
                 return false;
             // 可以打附体,就不打暴食了
-            if (ActionResourceManager.Reaper.ShroudGauge >= 50) return false;
+            if ( ReaperSpellHelper.ReadyToEnshroud()) return false;
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
                 return false;
 
@@ -41,6 +44,12 @@ namespace AEAssist.AI.Reaper.Ability
         {
             if (await SpellHelper.CastAbility(SpellsDefine.Gluttony, Core.Me.CurrentTarget))
             {
+                // if (AIRoot.Instance.BattleData.maxAbilityTimes>0 && await ReaperSpellHelper.UseTruthNorth() != null)
+                // {
+                //     if (AIRoot.Instance.BattleData.maxAbilityTimes > 1)
+                //         AIRoot.Instance.MuteAbilityTime();
+                // }
+
                 return SpellsDefine.Gluttony;
             }
 

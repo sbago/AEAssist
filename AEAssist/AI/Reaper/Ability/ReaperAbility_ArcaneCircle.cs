@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
+using AEAssist.DataBinding;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
+using ff14bot.Managers;
 using ff14bot.Objects;
 
 namespace AEAssist.AI.Reaper.Ability
@@ -18,6 +20,18 @@ namespace AEAssist.AI.Reaper.Ability
                 return false;
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
                 return false;
+
+            if (BaseSettings.Instance.DoubleEnshroudPrefer)
+            {
+                if (ActionResourceManager.Reaper.ShroudGauge >= 50 && !Core.Me.HasAura(AurasDefine.Enshrouded))
+                    return false;
+                if (Core.Me.HasAura(AurasDefine.Enshrouded))
+                {
+                    if (TimeHelper.Now() - AIRoot.Instance.ReaperBattleData.EnshroundTime < 2000)
+                        return false;
+                }
+            }
+
             return true;
         }
 

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AEAssist.DataBinding;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -16,6 +17,12 @@ namespace AEAssist.AI.Reaper.GCD
 
             if (!Core.Me.HasAura(AurasDefine.Enshrouded))
                 return false;
+
+            // 双附体时,神秘环如果即将冷却好,或者已经可以用了,先不打这些GCD
+            if (BaseSettings.Instance.DoubleEnshroudPrefer && SpellsDefine.ArcaneCircle.Cooldown.TotalMilliseconds<ConstValue.ReaperDoubleEnshroudMinCheckTime)
+            {
+                return false;
+            }
 
             if (ActionResourceManager.Reaper.LemureShroud == 0)
                 return false;

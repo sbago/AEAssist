@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AEAssist.DataBinding;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -13,13 +14,25 @@ namespace AEAssist.AI.Reaper.Ability
         {
             if (!SpellsDefine.BloodStalk.IsUnlock())
                 return false;
+            if (!BaseSettings.Instance.UseSoulGauge)
+                return false;
             if (ActionResourceManager.Reaper.SoulGauge < 50)
+                return false;
+
+            if (SpellsDefine.Enshroud.Cooldown.TotalMilliseconds > 0
+                && SpellsDefine.Enshroud.Cooldown.TotalMilliseconds < 5000
+                && ReaperSpellHelper.ReadyToEnshroud())
+            {
+                return false;
+            }
+
+            if(TimeHelper.Now() - AIRoot.Instance.ReaperBattleData.EnshroundTime < 3000)
                 return false;
             if (Core.Me.HasAura(AurasDefine.SoulReaver))
                 return false;
             if (Core.Me.HasAura(AurasDefine.Enshrouded))
                 return false;
-            if (!AIRoot.Instance.CloseBuff && SpellsDefine.Gluttony.Cooldown.TotalMilliseconds < 6000)
+            if (!AIRoot.Instance.CloseBuff && SpellsDefine.Gluttony.Cooldown.TotalMilliseconds < 10000)
             {
                 return false;
             }
@@ -38,6 +51,12 @@ namespace AEAssist.AI.Reaper.Ability
 
             if (await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget))
             {
+                // if (AIRoot.Instance.BattleData.maxAbilityTimes>1 && await ReaperSpellHelper.UseTruthNorth() != null)
+                // {
+                //     if (AIRoot.Instance.BattleData.maxAbilityTimes > 1)
+                //         AIRoot.Instance.MuteAbilityTime();
+                // }
+
                 return spell;
             }
 

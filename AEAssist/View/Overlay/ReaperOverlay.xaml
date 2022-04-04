@@ -115,6 +115,13 @@
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
                                   IsChecked="{Binding GeneralSettings.UsePotion,Mode=TwoWay}" />
                         
+                        <CheckBox Grid.Row="1" HorizontalContentAlignment="Center"
+                                  Content="优先双附体"
+                                  FontSize="12"
+                                  Width="80"
+                                  Height="30"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding DoubleEnshroudPrefer,Mode=TwoWay}" />
 
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="勾刃"

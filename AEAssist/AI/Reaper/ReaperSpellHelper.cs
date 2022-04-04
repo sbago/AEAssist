@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AEAssist.DataBinding;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -156,6 +157,69 @@ namespace AEAssist.AI.Reaper
                 return false;
             }
             
+            return true;
+        }
+
+        public static bool CheckIfNeedTrueNorth()
+        {
+            var target = Core.Me.CurrentTarget;
+            var targetSpell = Gibbit_Gallows(target);
+
+            if (targetSpell == SpellsDefine.Guillotine)
+                return false;
+
+            if (target.IsFlanking && targetSpell == SpellsDefine.Gallows)
+            {
+                return true;
+            }
+            
+            if (target.IsBehind && targetSpell == SpellsDefine.Gibbet)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static async Task<SpellData> UseTruthNorth()
+        {
+            if (!BaseSettings.Instance.UseTrueNorth)
+                return null;
+            if (!CheckIfNeedTrueNorth())
+                return null;
+            if (await SpellHelper.CastAbility(SpellsDefine.TrueNorth, Core.Me,100))
+            {
+                return SpellsDefine.TrueNorth;
+            }
+
+            return null;
+        }
+
+        public static bool ReadyToEnshroud()
+        {
+            if (AIRoot.Instance.CloseBuff)
+                return false;
+            if (Core.Me.HasAura(AurasDefine.Enshrouded))
+                return false;
+            if (Core.Me.HasAura(AurasDefine.SoulReaver))
+                return false;
+            if (ActionResourceManager.Reaper.ShroudGauge < 50) return false;
+            
+            if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
+                return false;
+            if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
+                return false;
+
+            var coolDown = SpellsDefine.ArcaneCircle.Cooldown.TotalMilliseconds;
+            
+            if (BaseSettings.Instance.DoubleEnshroudPrefer
+                && ActionResourceManager.Reaper.ShroudGauge < 90
+                && coolDown> 2000
+                && coolDown < ConstValue.ReaperDoubleEnshroudMaxCheckTime)
+            {
+                return false;
+            }
+
             return true;
         }
     }

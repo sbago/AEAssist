@@ -12,6 +12,7 @@
     public class ReaperBattleData
     {
         public ReaperComboStages CurrCombo = ReaperComboStages.Slice;
-        
+
+        public long EnshroundTime;
     }
 }

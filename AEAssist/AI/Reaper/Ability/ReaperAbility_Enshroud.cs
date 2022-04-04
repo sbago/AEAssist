@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AEAssist.DataBinding;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -13,24 +14,16 @@ namespace AEAssist.AI.Reaper.Ability
         {
             if (!SpellsDefine.Enshroud.IsReady())
                 return false;
-            if (AIRoot.Instance.CloseBuff)
+            if (lastSpell == SpellsDefine.Gluttony)
                 return false;
-            if (Core.Me.HasAura(AurasDefine.Enshrouded))
-                return false;
-            if (Core.Me.HasAura(AurasDefine.SoulReaver))
-                return false;
-            if (ActionResourceManager.Reaper.ShroudGauge < 50) return false;
-            if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
-                return false;
-            if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
-                return false;
-            return true;
+            return ReaperSpellHelper.ReadyToEnshroud();
         }
 
         public async Task<SpellData> Run()
         {
             if (await SpellHelper.CastAbility(SpellsDefine.Enshroud, Core.Me))
             {
+                AIRoot.Instance.ReaperBattleData.EnshroundTime = TimeHelper.Now();
                 return SpellsDefine.Enshroud;
             }
 

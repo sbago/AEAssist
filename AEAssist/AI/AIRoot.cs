@@ -195,6 +195,7 @@ namespace AEAssist.AI
         {
             BattleData.maxAbilityTimes = 0;
         }
+        
 
         bool CanNotice(string key,long interval)
         {

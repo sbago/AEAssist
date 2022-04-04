@@ -11,6 +11,9 @@ namespace AEAssist
         public static int BardAOETargetRange = 12;
         public static int BardAOECount = 2;
 
+        public static int ReaperDoubleEnshroudMinCheckTime = 4500;
+        public static int ReaperDoubleEnshroudMaxCheckTime = 25000;
+
         public static int SettingVersion = 13;
 
         public const string ProjectVersion = "0.6.0.0";

@@ -18,6 +18,9 @@ namespace AEAssist.Helper
             if (!SettingMgr.GetSetting<GeneralSettings>().OpenTTK)
                 return false;
 
+            if (target.IsBoss())
+                return false;
+            
             if (!TargetMgr.Instance.TargetStats.TryGetValue(target.ObjectId,out var stat))
             {
                 return false;

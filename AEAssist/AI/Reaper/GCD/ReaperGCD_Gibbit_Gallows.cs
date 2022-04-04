@@ -26,7 +26,10 @@ namespace AEAssist.AI.Reaper.GCD
             if (spell == null)
                 return null;
             if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
+            {
                 return spell;
+            }
+
             return null;
         }
     }

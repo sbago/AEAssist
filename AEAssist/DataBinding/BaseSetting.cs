@@ -22,6 +22,8 @@ namespace AEAssist.DataBinding
             this.UseDot = true;
             this.AutoAttack = false;
             this.UseHarpe = false;
+            this.UseSoulGauge = true;
+            this.DoubleEnshroudPrefer = true;
         }
 
         public bool CloseBuff{ get; set; }
@@ -29,6 +31,8 @@ namespace AEAssist.DataBinding
         public bool Stop { get; set; }
         
         public bool AutoAttack { get; set; } = false;
+
+        public bool UseTrueNorth { get; set; }
 
 
         #region Bard
@@ -43,6 +47,9 @@ namespace AEAssist.DataBinding
         #region Reaper
 
         public bool UseHarpe { get; set; } = false;
+        public bool UseSoulGauge { get; set; } = true;
+
+        public bool DoubleEnshroudPrefer { get; set; } = true;
 
         #endregion
 
