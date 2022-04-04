@@ -19,7 +19,7 @@
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
         <Optimize>false</Optimize>
-        <OutputPath>bin\AE时间轴导出工具\</OutputPath>
+        <OutputPath>..\Output\AE时间轴导出工具\</OutputPath>
         <DefineConstants>DEBUG;TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
@@ -95,10 +95,14 @@
         <Compile Include="TriggerModel\ITriggerCond.cs" />
         <Compile Include="TriggerModel\MongoHelper.cs" />
         <Compile Include="TriggerModel\Trigger.cs" />
+        <Compile Include="TriggerModel\TriggerAction\TriggerAction_NextSong.cs" />
+        <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchApex.cs" />
         <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs" />
+        <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchDOT.cs" />
         <Compile Include="TriggerModel\TriggerAttribute.cs" />
         <Compile Include="TriggerModel\TriggerCond\TriggerCond_AfterBattleStart.cs" />
         <Compile Include="TriggerModel\TriggerCond\TriggerCond_EnemyCastSpellByName.cs" />
+        <Compile Include="TriggerModel\TriggerCond\TriggerCond_EnemyHPPct.cs" />
         <Compile Include="TriggerModel\TriggerCond\TriggerCond_EnemyInLOS.cs" />
         <Compile Include="TriggerModel\TriggerCond\TriggerCond_GameLog.cs" />
         <Compile Include="TriggerModel\TriggerHelper.cs" />

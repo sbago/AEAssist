@@ -11,8 +11,8 @@ namespace AEAssist
         public static int BardAOETargetRange = 12;
         public static int BardAOECount = 2;
 
-        public static int SettingVersion = 11;
+        public static int SettingVersion = 13;
 
-        public const string ProjectVersion = "0.5.0.0";
+        public const string ProjectVersion = "0.6.0.0";
     }
 }

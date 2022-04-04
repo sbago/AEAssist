@@ -9,7 +9,7 @@ namespace AEAssist.View
         public BardSettingView()
         {
             InitializeComponent();
-            this.ChoosePotion.ItemsSource = PotionHelper.AllPotions;
+            this.ChoosePotion.ItemsSource = PotionHelper.DexPotions;
             this.ChoosePotion.SelectedValue = SettingMgr.GetSetting<BardSettings>().UsePotionId;
             ButtonBase_OnClick(null,null);
         }

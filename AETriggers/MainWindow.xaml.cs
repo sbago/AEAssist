@@ -45,7 +45,7 @@ namespace AETriggers
         {
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.Filter = "Excel(*.xlsx)|*.xlsx|Excel(*.xls)|*.xls";
-            openFile.InitialDirectory = Environment.CurrentDirectory;
+            openFile.InitialDirectory = new DirectoryInfo("../").FullName;
             openFile.Multiselect = false;
             var ret = openFile.ShowDialog();
             
@@ -122,7 +122,7 @@ namespace AETriggers
                         var valueParams = new string[3];
                         valueParams[0] = row.GetCell(5)?.ToString();
                         valueParams[1] = row.GetCell(6)?.ToString();
-                        valueParams[1] = row.GetCell(7)?.ToString();
+                        valueParams[2] = row.GetCell(7)?.ToString();
 
                         if (!AllExcelData.TryGetValue(groupId, out var list))
                         {
@@ -165,7 +165,7 @@ namespace AETriggers
                 return;
             SaveFileDialog openFile = new SaveFileDialog();
             openFile.Filter = "Json(*.json)|*.json";
-            openFile.InitialDirectory = Environment.CurrentDirectory;
+            openFile.InitialDirectory = new DirectoryInfo("../").FullName;
             openFile.FileName =
                 $"[{TriggerLine.Author}][{TriggerLine.Version}]{TriggerLine.TargetDuty}_{TriggerLine.TargetJob}.json";
             var ret = openFile.ShowDialog();
@@ -255,7 +255,7 @@ namespace AETriggers
         {
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.Filter = "Json(*.json)|*.json";
-            openFile.InitialDirectory = Environment.CurrentDirectory;
+            openFile.InitialDirectory = Environment.CurrentDirectory+@"\..\";
             openFile.Multiselect = false;
             var ret = openFile.ShowDialog();
             

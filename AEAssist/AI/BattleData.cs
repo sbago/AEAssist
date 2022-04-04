@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.DataBinding;
+using AEAssist.Helper;
 using AEAssist.TriggerSystem;
 using AETriggers.TriggerModel;
+using ff14bot;
 using ff14bot.Objects;
 
 namespace AEAssist.AI
@@ -40,6 +42,11 @@ namespace AEAssist.AI
             //     if (v.SpellCastInfo == null || !v.IsCasting)
             //         continue;
             //     LogHelper.Info($"Character {v.Name} Casting===>{v.SpellCastInfo.SpellData.LocalizedName}");
+            // }
+
+            // foreach (var v in Core.Me.CharacterAuras.AuraList)
+            // {
+            //     LogHelper.Info($"{v.LocalizedName} Id: {v.Id}  TimeLeft: {v.TimeLeft}");
             // }
 
             CalTriggerLine();

@@ -81,7 +81,7 @@ namespace AEAssist
             if (RandomHelper.RandomInt(2000, 5000) > randomTime)
                 return false;
 
-            if (await SpellHelper.CastAbility(Spells.Peloton, Core.Me))
+            if (await SpellHelper.CastAbility(SpellsDefine.Peloton, Core.Me))
             {
                 GUIHelper.ShowInfo("使用速行!");
                 randomTime = 0;
@@ -116,6 +116,16 @@ namespace AEAssist
         public Task<bool> PullBuff()
         {
             return Task.FromResult(false);
+        }
+
+        public SpellData GetBaseGCDSpell()
+        {
+            return BardSpellHelper.GetHeavyShot();
+        }
+
+        public void HandleInCountDown1500()
+        {
+            _ = PotionHelper.UsePotion(SettingMgr.GetSetting<BardSettings>().UsePotionId);
         }
     }
 }

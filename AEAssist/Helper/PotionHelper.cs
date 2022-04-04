@@ -15,50 +15,58 @@ namespace AEAssist.Helper
 {
     internal class PotionHelper
     {
-        public static List<PotionData> AllPotions { get; set; } = new List<PotionData>();
+        public static List<PotionData> DexPotions { get; set; } = new List<PotionData>();
+        public static List<PotionData> StrPotions { get; set; } = new List<PotionData>();
 
         public string GetPotionName()
         {
-            return AllPotions.FindLast(v=>v.ID == SettingMgr.GetSetting<BardSettings>().UsePotionId).Name;
+            return DexPotions.FindLast(v=>v.ID == SettingMgr.GetSetting<BardSettings>().UsePotionId).Name;
         }
         public static void Init()
         {
-            if (AllPotions == null)
-                AllPotions = new List<PotionData>();
-            AllPotions.Clear();
-            AllPotions.Add(new PotionData()
+            if (DexPotions == null)
+                DexPotions = new List<PotionData>();
+            DexPotions.Clear();
+            DexPotions.Add(new PotionData()
             {
                 ID = 36105,
                 Name = "5级巧力之幻药"
             });
             
-            AllPotions.Add(new PotionData()
+            DexPotions.Add(new PotionData()
             {
                 ID = 31894,
                 Name = "4级巧力之幻药"
             });
             
-            AllPotions.Add(new PotionData()
+            DexPotions.Add(new PotionData()
             {
                 ID = 29493,
                 Name = "3级巧力之幻药"
             });
             
-            AllPotions.Add(new PotionData()
+
+            if (StrPotions == null)
+                StrPotions = new List<PotionData>();
+            StrPotions.Add(new PotionData()
             {
-                ID = 27996,
-                Name = "2级巧力之幻药"
+                ID = 36104,
+                Name = "5级刚力之幻药"
             });
-            
-            AllPotions.Add(new PotionData()
+            StrPotions.Add(new PotionData()
             {
-                ID = 27787,
-                Name = "巧力之幻药"
+                ID = 31893,
+                Name = "4级刚力之幻药"
+            });
+            StrPotions.Add(new PotionData()
+            {
+                ID = 29492,
+                Name = "3级刚力之幻药"
             });
         }
         
         
-        internal static async Task<bool> UsePotion(int potionRawId)
+        internal static bool UsePotion(int potionRawId)
         {
             if (!SettingMgr.GetSetting<GeneralSettings>().UsePotion)
                 return false;
@@ -68,12 +76,10 @@ namespace AEAssist.Helper
                 return false;
             var item = InventoryManager.FilledSlots.FirstOrDefault(s => s.RawItemId == potionRawId);
 
-            if (item == null || !item.CanUse()) return false;
+            if (item == null || !item.CanUse(Core.Me)) return false;
 
-            item.UseItem(); 
-            await Coroutine.Wait(1000, () => !item.CanUse());
             LogHelper.Info($@"Using Item >>> {item.Name}");
-            return true;
+            return item.UseItem(Core.Me);
         }
         
         internal static bool CheckPotion(int potionRawId)

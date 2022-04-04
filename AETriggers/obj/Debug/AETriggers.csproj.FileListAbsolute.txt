@@ -74,3 +74,6 @@ D:\Github\AEAssist\AETriggers\bin\AE时间轴导出工具\MongoDB.Bson.dll
 D:\Github\AEAssist\AETriggers\bin\AE时间轴导出工具\System.Runtime.CompilerServices.Unsafe.dll
 D:\Github\AEAssist\AETriggers\bin\AE时间轴导出工具\MongoDB.Bson.xml
 D:\Github\AEAssist\AETriggers\bin\AE时间轴导出工具\System.Runtime.CompilerServices.Unsafe.xml
+D:\Github\AEAssist\Output\AE时间轴导出工具\AETriggers.exe.config
+D:\Github\AEAssist\Output\AE时间轴导出工具\AETriggers.exe
+D:\Github\AEAssist\Output\AE时间轴导出工具\AETriggers.pdb

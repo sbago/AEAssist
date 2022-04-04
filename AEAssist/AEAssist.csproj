@@ -19,7 +19,7 @@
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
         <Optimize>false</Optimize>
-        <OutputPath>bin\AEAssist\</OutputPath>
+        <OutputPath>..\Output\AEAssist\</OutputPath>
         <DefineConstants>DEBUG;TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
@@ -73,8 +73,17 @@
         <Compile Include="..\AETriggers\TriggerModel\Trigger.cs">
           <Link>TriggerModel\Trigger.cs</Link>
         </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_NextSong.cs">
+          <Link>TriggerModel\TriggerAction\TriggerAction_NextSong.cs</Link>
+        </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchApex.cs">
+          <Link>TriggerModel\TriggerAction\TriggerAction_SwitchApex.cs</Link>
+        </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs">
           <Link>TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs</Link>
+        </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchDOT.cs">
+          <Link>TriggerModel\TriggerAction\TriggerAction_SwitchDOT.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAttribute.cs">
           <Link>TriggerModel\TriggerAttribute.cs</Link>
@@ -84,6 +93,9 @@
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyCastSpellByName.cs">
           <Link>TriggerModel\TriggerCond\TriggerCond_EnemyCastSpellByName.cs</Link>
+        </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyHPPct.cs">
+          <Link>TriggerModel\TriggerCond\TriggerCond_EnemyHPPct.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyInLOS.cs">
           <Link>TriggerModel\TriggerCond\TriggerCond_EnemyInLOS.cs</Link>
@@ -100,19 +112,42 @@
         <Compile Include="..\AETriggers\TriggerModel\TriggerMgr.cs">
           <Link>TriggerModel\TriggerMgr.cs</Link>
         </Compile>
+        <Compile Include="AI\Bard\BardAIHandlers.cs" />
         <Compile Include="AI\Bard\BardBattleData.cs" />
         <Compile Include="AI\BattleData.cs" />
+        <Compile Include="AI\Reaper\Ability\ReaperAbility_UsePotion.cs" />
+        <Compile Include="AI\Reaper\Ability\ReaperAbility_ArcaneCircle.cs" />
+        <Compile Include="AI\Reaper\Ability\ReaperAbility_BloodStalk.cs" />
+        <Compile Include="AI\Reaper\Ability\ReaperAbility_Enshroud.cs" />
+        <Compile Include="AI\Reaper\Ability\ReaperAbility_Gluttony.cs" />
+        <Compile Include="AI\Reaper\Ability\ReaperAbility_Lemure.cs" />
+        <Compile Include="AI\Reaper\ReaperAIHandlers.cs" />
+        <Compile Include="AI\Reaper\GCD\ReaperGCD_BaseGCDCombo.cs" />
+        <Compile Include="AI\Reaper\GCD\ReaperGCD_EnshroudGCD.cs" />
+        <Compile Include="AI\Reaper\GCD\ReaperGCD_Gibbit_Gallows.cs" />
+        <Compile Include="AI\Reaper\GCD\ReaperGCD_PullRangeGCD.cs" />
+        <Compile Include="AI\Reaper\GCD\ReaperGCD_PlentifulHarvest.cs" />
+        <Compile Include="AI\Reaper\GCD\ReaperGCD_ShadowOfDeath.cs" />
+        <Compile Include="AI\Reaper\GCD\ReaperGCD_SoulSlice.cs" />
+        <Compile Include="AI\Reaper\ReaperBattleData.cs" />
+        <Compile Include="AI\Reaper\ReaperSpellHelper.cs" />
         <Compile Include="DataBinding\DebugCenter.cs" />
         <Compile Include="Define\HotkeyData.cs" />
         <Compile Include="Define\PotionData.cs" />
         <Compile Include="Define\SongData.cs" />
         <Compile Include="Gamelog\AEGamelogManager.cs" />
+        <Compile Include="Job\ReaperRotation.cs" />
         <Compile Include="Setting\Setting\HotkeySetting.cs" />
+        <Compile Include="Setting\Setting\ReaperSettings.cs" />
         <Compile Include="TriggerSystem\ITriggerActionHandler.cs" />
         <Compile Include="TriggerSystem\ITriggerCondHandler.cs" />
+        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_NextSong.cs" />
+        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchApex.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchBurst.cs" />
+        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchDOT.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterBattleStart.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyCastSpellByName.cs" />
+        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyHpPct.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyInLOS.cs" />
         <Compile Include="TriggerSystem\TriggerSystemMgr.cs" />
         <Compile Include="View\BardSettingView.xaml.cs">
@@ -126,7 +161,14 @@
           <DependentUpon>BardOverlayWindow.xaml</DependentUpon>
         </Compile>
         <Compile Include="View\Overlay\OverlayUIComponent_BardOverlay.cs" />
-        <Compile Include="View\Overlay\TriggerLineWindow.xaml.cs">
+        <Compile Include="View\Overlay\OverlayUIComponent_ReaperOverlay.cs" />
+        <Compile Include="View\Overlay\ReaperOverlay.xaml.cs">
+          <DependentUpon>ReaperOverlay.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\ReaperSettingView.xaml.cs">
+          <DependentUpon>ReaperSettingView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\TriggerLineWindow.xaml.cs">
           <DependentUpon>TriggerLineWindow.xaml</DependentUpon>
         </Compile>
         <Content Include="..\AEAssistLoader\AEAssistLoader.cs">
@@ -151,7 +193,9 @@
         <Content Include="Resources\BossDictionary.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
-        <Page Include="View\Overlay\TriggerLineWindow.xaml" />
+        <Page Include="View\Overlay\ReaperOverlay.xaml" />
+        <Page Include="View\ReaperSettingView.xaml" />
+        <Page Include="View\TriggerLineWindow.xaml" />
         <Resource Include="Resources\jobs\acn.png" />
         <Resource Include="Resources\jobs\alc.png" />
         <Resource Include="Resources\jobs\arc.png" />
@@ -265,7 +309,7 @@
         <Compile Include="AI\TargetMgr.cs" />
         <Compile Include="DataStruct\CircleList.cs" />
         <Compile Include="Define\AurasDefine.cs" />
-        <Compile Include="Define\Spells.cs" />
+        <Compile Include="Define\SpellsDefine.cs" />
         <Compile Include="Helper\AuraHelper.cs" />
         <Compile Include="Helper\DataHelper.cs" />
         <Compile Include="Helper\GUIHelper.cs" />

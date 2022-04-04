@@ -24,44 +24,44 @@ namespace AEAssist.Define
         public static void Init()
         {
             Songs.Clear();
-            Songs.Add(Spells.TheWanderersMinuet);
-            Songs.Add(Spells.MagesBallad);
-            Songs.Add(Spells.ArmysPaeon);
+            Songs.Add(SpellsDefine.TheWanderersMinuet);
+            Songs.Add(SpellsDefine.MagesBallad);
+            Songs.Add(SpellsDefine.ArmysPaeon);
         }
 
         public static SpellData GetWindBite()
         {
-            if (Core.Me.ClassLevel < Spells.Windbite.LevelAcquired)
+            if (Core.Me.ClassLevel < SpellsDefine.Windbite.LevelAcquired)
                 return null;
 
 
-            if (Core.Me.ClassLevel < Spells.Stormbite.LevelAcquired)
+            if (Core.Me.ClassLevel < SpellsDefine.Stormbite.LevelAcquired)
             {
-                if (!ActionManager.HasSpell(Spells.Windbite.Id))
+                if (!ActionManager.HasSpell(SpellsDefine.Windbite.Id))
                     return null;
-                return Spells.Windbite;
+                return SpellsDefine.Windbite;
             }
             
-            if (!ActionManager.HasSpell(Spells.Stormbite.Id))
+            if (!ActionManager.HasSpell(SpellsDefine.Stormbite.Id))
                 return null;
 
-            return Spells.Stormbite;
+            return SpellsDefine.Stormbite;
         }
 
         public static int GetWindBiteAura()
         {
-            if (Core.Me.ClassLevel < Spells.Windbite.LevelAcquired)
+            if (Core.Me.ClassLevel < SpellsDefine.Windbite.LevelAcquired)
                 return 0;
 
 
-            if (Core.Me.ClassLevel < Spells.Stormbite.LevelAcquired)
+            if (Core.Me.ClassLevel < SpellsDefine.Stormbite.LevelAcquired)
             {
-                if (!ActionManager.HasSpell(Spells.Windbite.Id))
+                if (!ActionManager.HasSpell(SpellsDefine.Windbite.Id))
                     return 0;
                 return AurasDefine.Windbite;
             }
             
-            if (!ActionManager.HasSpell(Spells.Stormbite.Id))
+            if (!ActionManager.HasSpell(SpellsDefine.Stormbite.Id))
                 return 0;
 
             return AurasDefine.StormBite;
@@ -69,37 +69,37 @@ namespace AEAssist.Define
 
         public static SpellData GetVenomousBite()
         {
-            if (Core.Me.ClassLevel < Spells.VenomousBite.LevelAcquired)
+            if (Core.Me.ClassLevel < SpellsDefine.VenomousBite.LevelAcquired)
                 return null;
 
 
-            if (Core.Me.ClassLevel < Spells.CausticBite.LevelAcquired)
+            if (Core.Me.ClassLevel < SpellsDefine.CausticBite.LevelAcquired)
             {
-                if (!ActionManager.HasSpell(Spells.VenomousBite.Id))
+                if (!ActionManager.HasSpell(SpellsDefine.VenomousBite.Id))
                     return null;
-                return Spells.VenomousBite;
+                return SpellsDefine.VenomousBite;
             }
             
-            if (!ActionManager.HasSpell(Spells.CausticBite.Id))
+            if (!ActionManager.HasSpell(SpellsDefine.CausticBite.Id))
                 return null;
 
-            return Spells.CausticBite;
+            return SpellsDefine.CausticBite;
         }
         
         public static int GetVenomousBiteAura()
         {
-            if (Core.Me.ClassLevel < Spells.VenomousBite.LevelAcquired)
+            if (Core.Me.ClassLevel < SpellsDefine.VenomousBite.LevelAcquired)
                 return 0;
 
 
-            if (Core.Me.ClassLevel < Spells.CausticBite.LevelAcquired)
+            if (Core.Me.ClassLevel < SpellsDefine.CausticBite.LevelAcquired)
             {
-                if (!ActionManager.HasSpell(Spells.VenomousBite.Id))
+                if (!ActionManager.HasSpell(SpellsDefine.VenomousBite.Id))
                     return 0;
                 return AurasDefine.VenomousBite;
             }
             
-            if (!ActionManager.HasSpell(Spells.CausticBite.Id))
+            if (!ActionManager.HasSpell(SpellsDefine.CausticBite.Id))
                 return 0;
 
             return AurasDefine.CausticBite;
@@ -125,7 +125,7 @@ namespace AEAssist.Define
 
         public static bool IsTargetNeedIronJaws(Character target)
         {
-            if (Core.Me.ClassLevel < Spells.IronJaws.LevelAcquired)
+            if (Core.Me.ClassLevel < SpellsDefine.IronJaws.LevelAcquired)
                 return false;
 
             var ve_id = GetVenomousBiteAura();
@@ -164,54 +164,54 @@ namespace AEAssist.Define
 
         public static SpellData GetRefulgentArrow()
         {
-            if (Core.Me.ClassLevel < Spells.StraightShot.LevelAcquired)
+            if (Core.Me.ClassLevel < SpellsDefine.StraightShot.LevelAcquired)
                 return null;
-            if (Core.Me.ClassLevel < Spells.RefulgentArrow.LevelAcquired)
-                return Spells.StraightShot;
-            if (!ActionManager.HasSpell(Spells.RefulgentArrow.Id))
+            if (Core.Me.ClassLevel < SpellsDefine.RefulgentArrow.LevelAcquired)
+                return SpellsDefine.StraightShot;
+            if (!ActionManager.HasSpell(SpellsDefine.RefulgentArrow.Id))
             {
-                return Spells.StraightShot;
+                return SpellsDefine.StraightShot;
             }
 
-            return Spells.RefulgentArrow;
+            return SpellsDefine.RefulgentArrow;
         }
 
         public static SpellData GetBlastArrow()
         {
-            if (Core.Me.ClassLevel < Spells.BlastArrow.LevelAcquired)
+            if (Core.Me.ClassLevel < SpellsDefine.BlastArrow.LevelAcquired)
                 return null;
-            return Spells.BlastArrow;
+            return SpellsDefine.BlastArrow;
         }
 
         public static SpellData GetHeavyShot()
         {
             if (Core.Me.HasAura(AurasDefine.StraighterShot))
             {
-                if (Core.Me.ClassLevel < Spells.RefulgentArrow.LevelAcquired)
-                    return Spells.StraightShot;
-                if (!ActionManager.HasSpell(Spells.RefulgentArrow.Id))
+                if (Core.Me.ClassLevel < SpellsDefine.RefulgentArrow.LevelAcquired)
+                    return SpellsDefine.StraightShot;
+                if (!ActionManager.HasSpell(SpellsDefine.RefulgentArrow.Id))
                 {
-                    return Spells.StraightShot;
+                    return SpellsDefine.StraightShot;
                 }
-                return Spells.RefulgentArrow;
+                return SpellsDefine.RefulgentArrow;
             }
 
 
-            if (Core.Me.ClassLevel < Spells.BurstShot.LevelAcquired)
-                return Spells.HeavyShot;
-            return Spells.BurstShot;
+            if (Core.Me.ClassLevel < SpellsDefine.BurstShot.LevelAcquired)
+                return SpellsDefine.HeavyShot;
+            return SpellsDefine.BurstShot;
         }
 
         public static SpellData GetBuffs()
         {
-            if (Spells.BattleVoice.IsReady())
+            if (SpellsDefine.BattleVoice.IsReady())
             {
-                return Spells.BattleVoice;
+                return SpellsDefine.BattleVoice;
             }
             
-            if (Spells.RadiantFinale.IsReady())
+            if (SpellsDefine.RadiantFinale.IsReady())
             {
-                return Spells.RadiantFinale;
+                return SpellsDefine.RadiantFinale;
             }
             
             // if (Spells.RagingStrikes.IsReady())
@@ -224,8 +224,8 @@ namespace AEAssist.Define
 
         public static bool IsBuff(SpellData spellData)
         {
-            if (spellData == Spells.BattleVoice || spellData == Spells.RagingStrikes ||
-                spellData == Spells.RadiantFinale)
+            if (spellData == SpellsDefine.BattleVoice || spellData == SpellsDefine.RagingStrikes ||
+                spellData == SpellsDefine.RadiantFinale)
                 return true;
             return false;
         }
@@ -245,11 +245,11 @@ namespace AEAssist.Define
         public static int UnlockBuffsCount()
         {
             int count = 0;
-            if (Spells.BattleVoice.IsUnlock())
+            if (SpellsDefine.BattleVoice.IsUnlock())
                 count++;
-            if (Spells.RagingStrikes.IsUnlock())
+            if (SpellsDefine.RagingStrikes.IsUnlock())
                 count++;
-            if (Spells.RadiantFinale.IsUnlock())
+            if (SpellsDefine.RadiantFinale.IsUnlock())
                 count++;
             return count;
         }
@@ -268,10 +268,10 @@ namespace AEAssist.Define
 
         public static bool Prepare2BurstBuffs(int time = 10000)
         {
-            if (Spells.TheWanderersMinuet.IsReady())
+            if (SpellsDefine.TheWanderersMinuet.IsReady())
                 return false;
             
-            if (Spells.RagingStrikes.Cooldown.TotalMilliseconds < time)
+            if (SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds < time)
             {
                 return true;
             }
@@ -281,7 +281,7 @@ namespace AEAssist.Define
                 return false;
             }
 
-            if (Spells.BattleVoice.Cooldown.TotalMilliseconds < time)
+            if (SpellsDefine.BattleVoice.Cooldown.TotalMilliseconds < time)
             {
                 return true;
             }
@@ -322,7 +322,7 @@ namespace AEAssist.Define
                 return false;
             }
             
-            if (Spells.RagingStrikes.IsReady())
+            if (SpellsDefine.RagingStrikes.IsReady())
             {
                 return false;
             }
@@ -334,22 +334,22 @@ namespace AEAssist.Define
         {
             if (IsShadowBiteReady())
             {
-                return Spells.Shadowbite;
+                return SpellsDefine.Shadowbite;
             }
 
-            if (!Spells.Ladonsbite.IsReady())
+            if (!SpellsDefine.Ladonsbite.IsReady())
             {
-                if (!Spells.QuickNock.IsReady())
+                if (!SpellsDefine.QuickNock.IsReady())
                     return null;
-                return Spells.QuickNock;
+                return SpellsDefine.QuickNock;
             }
 
-            return Spells.Ladonsbite;
+            return SpellsDefine.Ladonsbite;
         }
 
         public static bool IsShadowBiteReady()
         {
-            if (!Spells.Shadowbite.IsReady())
+            if (!SpellsDefine.Shadowbite.IsReady())
             {
                 return false;
             }

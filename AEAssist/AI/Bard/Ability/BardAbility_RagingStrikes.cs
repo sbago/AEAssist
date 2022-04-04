@@ -12,11 +12,11 @@ namespace AEAssist.AI
         {
             if (AIRoot.Instance.CloseBuff)
                 return false;
-            if (!Spells.RagingStrikes.IsReady())
+            if (!SpellsDefine.RagingStrikes.IsReady())
                 return false;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return false;
-            if (Spells.TheWanderersMinuet.IsUnlock() && !Core.Me.ContainMyAura(AurasDefine.TheWanderersMinuet))
+            if (SpellsDefine.TheWanderersMinuet.IsUnlock() && !Core.Me.ContainMyAura(AurasDefine.TheWanderersMinuet))
                 return false;
             return true;
         }
@@ -25,7 +25,7 @@ namespace AEAssist.AI
         {
             // if (!AIRoot.Instance.Is2ndAbilityTime())
             //     return null;
-            var spellData = Spells.RagingStrikes;
+            var spellData = SpellsDefine.RagingStrikes;
             if (await SpellHelper.CastAbility(spellData, Core.Me))
             {
                 BardSpellHelper.RecordUsingRagingStrikesTime();

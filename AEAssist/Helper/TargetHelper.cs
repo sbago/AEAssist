@@ -17,6 +17,21 @@ namespace AEAssist.Helper
             return unit != null && !unit.HasAnyAura(AurasDefine.Invincibility);
         }
 
+        public static bool CanAttackTargetInRange(this GameObject unit,GameObject target,int range = 3)
+        {
+            if (!target.ValidAttackUnit())
+                return false;
+            
+            var combatReach = target.CombatReach + unit.CombatReach;
+
+            if (unit.Distance(target) < range + combatReach -0.1f) // 0.1 是为了防止误差导致没打到
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -32,6 +47,23 @@ namespace AEAssist.Helper
             foreach (var v in list)
             {
                 if (v.Value.Distance(Core.Me.CurrentTarget) <= damageRange)
+                    count++;
+            }
+
+            if (count >= needCount)
+                return true;
+            return false;
+        }
+        
+        public static bool CheckNeedUseAOE(GameObject target, int targetRange,int damageRange,int needCount = 3)
+        {
+            if (target.Distance(Core.Me) >= targetRange)
+                return false;
+            var list = TargetMgr.Instance.EnemysIn25;
+            int count = 0;
+            foreach (var v in list)
+            {
+                if (v.Value.Distance(target) <= damageRange)
                     count++;
             }
 

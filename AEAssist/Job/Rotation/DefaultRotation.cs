@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using ff14bot.Objects;
 
 namespace AEAssist
 {
@@ -49,6 +50,16 @@ namespace AEAssist
         {
             // LogHelper.Debug("PullBuff");
             return Task.FromResult(true);
+        }
+
+        public SpellData GetBaseGCDSpell()
+        {
+            return null;
+        }
+
+        public void HandleInCountDown1500()
+        {
+            
         }
     }
 }

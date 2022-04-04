@@ -11,7 +11,7 @@ namespace AEAssist.AI
     {
         public bool Check(SpellData lastSpell)
         {
-            if (!Spells.PitchPerfect.IsReady())
+            if (!SpellsDefine.PitchPerfect.IsReady())
                 return false;
             if (ActionResourceManager.Bard.ActiveSong != ActionResourceManager.Bard.BardSong.WanderersMinuet)
                 return false;
@@ -33,7 +33,7 @@ namespace AEAssist.AI
             // 诗心两层,马上要跳诗心了,九天又转好,两个诗心也打出去
             if (ActionResourceManager.Bard.Repertoire == 2
                 && BardSpellHelper.TimeUntilNextPossibleDoTTick() <= lat
-                && Spells.EmpyrealArrow.IsReady())
+                && SpellsDefine.EmpyrealArrow.IsReady())
 
                 return true;
                 
@@ -43,7 +43,7 @@ namespace AEAssist.AI
 
         public async Task<SpellData> Run()
         {
-            var spell = Spells.PitchPerfect;
+            var spell = SpellsDefine.PitchPerfect;
             if (spell == null)
                 return null;
             var ret = await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget);

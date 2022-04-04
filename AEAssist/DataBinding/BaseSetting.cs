@@ -13,29 +13,46 @@ namespace AEAssist.DataBinding
     {
         private static BaseSettings _instance;
         public static BaseSettings Instance => _instance ?? (_instance = new BaseSettings());
-        
-        
-        
+
+        public void Reset()
+        {
+            this.CloseBuff = false;
+            this.Stop = false;
+            this.UseApex = true;
+            this.UseDot = true;
+            this.AutoAttack = false;
+            this.UseHarpe = false;
+        }
+
         public bool CloseBuff{ get; set; }
 
         public bool Stop { get; set; }
+        
+        public bool AutoAttack { get; set; } = false;
+
+
+        #region Bard
 
         public bool UseDot { get; set; } = true;
 
         public bool UseApex { get; set; } = true;
         
-        public bool AutoAttack { get; set; } = false;
-
-
-        #region NextSongs
-
-        public ActionResourceManager.Bard.BardSong nextSong = ActionResourceManager.Bard.BardSong.None;
 
         #endregion
-        
+
+        #region Reaper
+
+        public bool UseHarpe { get; set; } = false;
+
+        #endregion
+
+
+
+
 
         public GeneralSettings GeneralSettings { get; } = SettingMgr.GetSetting<GeneralSettings>();
         public BardSettings BardSettings  => SettingMgr.GetSetting<BardSettings>();
+        public ReaperSettings ReaperSettings  => SettingMgr.GetSetting<ReaperSettings>();
         
         public DebugCenter DebugCenter =>DebugCenter.Intance;
         

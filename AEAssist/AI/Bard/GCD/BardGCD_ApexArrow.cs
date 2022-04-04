@@ -29,7 +29,7 @@ namespace AEAssist.AI
 
         public async Task<SpellData> Run()
         {
-            var spell = Spells.ApexArrow;
+            var spell = SpellsDefine.ApexArrow;
             if (spell == null)
                 return null;
             var ret = await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget);

@@ -46,6 +46,7 @@ namespace AEAssist
                 switch (ff14bot.Core.Me.CurrentJob)
                 {
                     case ClassJobType.Bard:
+                    case ClassJobType.Reaper:
                         return new[] { ff14bot.Core.Me.CurrentJob };
                     default:
                     {

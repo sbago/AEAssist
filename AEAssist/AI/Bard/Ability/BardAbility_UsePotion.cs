@@ -14,6 +14,9 @@ namespace AEAssist.AI
                 return false;
             if (AIRoot.Instance.CloseBuff)
                 return false;
+            if (AIRoot.Instance.BattleData.maxAbilityTimes <
+                SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD)
+                return false;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return false;
             if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<BardSettings>().UsePotionId))
@@ -24,12 +27,13 @@ namespace AEAssist.AI
 
         public async Task<SpellData> Run()
         {
-            var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<BardSettings>().UsePotionId);
+            var ret = PotionHelper.UsePotion(SettingMgr.GetSetting<BardSettings>().UsePotionId);
             if (ret)
             {
                 AIRoot.Instance.MuteAbilityTime();
             }
 
+            await Task.CompletedTask;
             return null;
         }
     }

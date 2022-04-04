@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using ff14bot.Objects;
 
 namespace AEAssist
 {
@@ -12,5 +13,9 @@ namespace AEAssist
         Task<bool> CombatBuff();
         Task<bool> Combat();
         Task<bool> PullBuff();
+
+        SpellData GetBaseGCDSpell();
+
+        void HandleInCountDown1500();
     }
 }

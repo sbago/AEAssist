@@ -23,9 +23,8 @@ namespace AEAssist.AI
 
             if (Math.Abs(restTime - SettingMgr.GetSetting<GeneralSettings>().UsePotionCountDown) < 100)
             {
-                msg += "->尝试爆发药";
-                //todo: 根据职业选择
-                _ = PotionHelper.UsePotion(SettingMgr.GetSetting<BardSettings>().UsePotionId);
+                msg += "->尝试特殊行为-1500";
+                RotationManager.Instance.HandleInCountDown1500();
             }
 
             if (restTime < 100)

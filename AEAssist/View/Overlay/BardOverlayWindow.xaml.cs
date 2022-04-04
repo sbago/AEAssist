@@ -16,32 +16,32 @@ namespace AEAssist.View
         public BardOverlayWindow()
         {
             InitializeComponent();
-
-            SongDatas = new List<SongData>();
-            SongDatas.Add(new SongData
-            {
-                Name = "不指定",
-                Song = ActionResourceManager.Bard.BardSong.None
-            });
-            SongDatas.Add(new SongData
-            {
-                Name = "旅神小步舞",
-                Song = ActionResourceManager.Bard.BardSong.WanderersMinuet
-            });
-            SongDatas.Add(new SongData
-            {
-                Name = "贤者叙事谣",
-                Song = ActionResourceManager.Bard.BardSong.MagesBallad
-            });
-            SongDatas.Add(new SongData
-            {
-                Name = "军神赞美歌",
-                Song = ActionResourceManager.Bard.BardSong.ArmysPaeon
-            });
-
-            this.ChooseNextSong.ItemsSource = SongDatas;
-
-            this.ChooseNextSong.SelectedValue = BaseSettings.Instance.nextSong;
+            //
+            // SongDatas = new List<SongData>();
+            // SongDatas.Add(new SongData
+            // {
+            //     Name = "不指定",
+            //     Song = ActionResourceManager.Bard.BardSong.None
+            // });
+            // SongDatas.Add(new SongData
+            // {
+            //     Name = "旅神小步舞",
+            //     Song = ActionResourceManager.Bard.BardSong.WanderersMinuet
+            // });
+            // SongDatas.Add(new SongData
+            // {
+            //     Name = "贤者叙事谣",
+            //     Song = ActionResourceManager.Bard.BardSong.MagesBallad
+            // });
+            // SongDatas.Add(new SongData
+            // {
+            //     Name = "军神赞美歌",
+            //     Song = ActionResourceManager.Bard.BardSong.ArmysPaeon
+            // });
+            //
+            // this.ChooseNextSong.ItemsSource = SongDatas;
+            //
+            // this.ChooseNextSong.SelectedValue = BaseSettings.Instance.nextSong;
         }
         
         private void BardOverlayWindow_OnMouseMove(object sender, MouseEventArgs e)
@@ -57,23 +57,26 @@ namespace AEAssist.View
             
         }
 
-        private void ChooseNextSong_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            BaseSettings.Instance.nextSong = (ActionResourceManager.Bard.BardSong) ChooseNextSong.SelectedValue;
-        }
+        // private void ChooseNextSong_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        // {
+        //     BaseSettings.Instance.nextSong = (ActionResourceManager.Bard.BardSong) ChooseNextSong.SelectedValue;
+        // }
 
         private void ChangeTriggerLine_OnClick(object sender, RoutedEventArgs e)
         {
             Entry.TriggerLineWindow.OnTriggerLineLoad = 
                 s =>
                 this.CurrTriggerLine.Content = $"当前加载时间轴: {s}";
+            
+            Entry.TriggerLineWindow.OnTriggerLineClear=()=>
+                this.CurrTriggerLine.Content="当前加载时间轴: 无";
+            
             Entry.TriggerLineWindow.Show();
         }
 
-        private void ClearTriggerLine_OnClick(object sender, RoutedEventArgs e)
+        private void Reset_OnClick(object sender, RoutedEventArgs e)
         {
-            BaseSettings.Instance.CurrTriggerLine = null;
-            this.CurrTriggerLine.Content = "当前加载时间轴: 无";
+            BaseSettings.Instance.Reset();
         }
     }
 }

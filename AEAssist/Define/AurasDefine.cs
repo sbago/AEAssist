@@ -299,7 +299,8 @@ namespace AEAssist.Define
             ImmortalSacrifice = 2592,
             Enshrouded = 2593,
             Soulsow = 2594,
-            BloodsownCircle = 2601,
+            BloodsownCircle = 2972,
+            
             CrestOfTimeReturned = 2598,
             CrestOfTimeBorrowed = 2597,
             FlourishingSymmetry = 2693,

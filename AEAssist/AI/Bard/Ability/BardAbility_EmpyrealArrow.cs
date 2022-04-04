@@ -11,7 +11,7 @@ namespace AEAssist.AI
     {
         public bool Check(SpellData lastSpell)
         {
-            if (!Spells.EmpyrealArrow.IsReady())
+            if (!SpellsDefine.EmpyrealArrow.IsReady())
                 return false;
             var currSong = ActionResourceManager.Bard.ActiveSong;
             var remainTime = ActionResourceManager.Bard.Timer.TotalMilliseconds;
@@ -34,7 +34,7 @@ namespace AEAssist.AI
 
         public async Task<SpellData> Run()
         {
-            var spell = Spells.EmpyrealArrow;
+            var spell = SpellsDefine.EmpyrealArrow;
             if (spell == null)
                 return null;
             var ret = await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget);

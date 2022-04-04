@@ -10,11 +10,11 @@ namespace AEAssist.AI
     {
         public bool Check(SpellData lastSpell)
         {
-            if (lastSpell == Spells.Bloodletter)
+            if (lastSpell == SpellsDefine.Bloodletter)
                 return false;
-            if (!Spells.Bloodletter.IsChargeReady())
+            if (!SpellsDefine.Bloodletter.IsChargeReady())
                 return false;
-            if (Spells.Bloodletter.Charges < 1)
+            if (SpellsDefine.Bloodletter.Charges < 1)
                 return false;
             
             // 起手爆发期间, 失血箭尽量打进团辅
@@ -31,16 +31,16 @@ namespace AEAssist.AI
         public async Task<SpellData> Run()
         {
             SpellData spellData = null;
-            if (Spells.RainofDeath.IsChargeReady() && TargetHelper.CheckNeedUseAOE(25, 8, ConstValue.BardAOECount))
+            if (SpellsDefine.RainofDeath.IsChargeReady() && TargetHelper.CheckNeedUseAOE(25, 8, ConstValue.BardAOECount))
             {
-                spellData = Spells.RainofDeath;
+                spellData = SpellsDefine.RainofDeath;
                 if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget))
                 {
                     return spellData;
                 }
             }
 
-            spellData = Spells.Bloodletter;
+            spellData = SpellsDefine.Bloodletter;
             if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget))
             {
                 return spellData;

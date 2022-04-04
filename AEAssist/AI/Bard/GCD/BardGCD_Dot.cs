@@ -52,7 +52,7 @@ namespace AEAssist.AI
             }
             else if (BardSpellHelper.IsTargetNeedIronJaws(target))
             {
-                spell = Spells.IronJaws;
+                spell = SpellsDefine.IronJaws;
             }
 
             if (spell == null)
@@ -60,7 +60,7 @@ namespace AEAssist.AI
             var ret = await SpellHelper.CastGCD(spell,target);
             if (ret)
             {
-                if (spell == Spells.IronJaws)
+                if (spell == SpellsDefine.IronJaws)
                 {
                     BardSpellHelper.RecordIronJaw();
                 }

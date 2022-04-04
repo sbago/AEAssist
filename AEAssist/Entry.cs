@@ -43,7 +43,7 @@ namespace AEAssist
             catch (Exception e)
             {
                 LogHelper.Error(e.ToString());
-                GUIHelper.ShowInfo("插件初始化失败, 请联系作者Q 210379417!");
+                GUIHelper.ShowInfo("插件初始化失败, 请联系作者!");
             }
             LogHelper.Info("Initialized!");
         }

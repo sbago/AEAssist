@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.AI;
+using AEAssist.Define;
 using ff14bot.Enums;
 using ff14bot.Objects;
 
@@ -9,44 +11,22 @@ namespace AEAssist.AI
     public class AIMgrs
     {
         public static readonly AIMgrs Instance = new AIMgrs();
-
-        public List<IAIHandler> BardAI_GCDs = new List<IAIHandler>()
-        {
-            new BardGCD_Barrage_RefulgentArrow(),
-            new BardGCD_Dot(),
-            new BardGCD_BlastArrow(),
-            new BardGCD_ApexArrow(),
-            new BardGCD_QuickNock(),
-            new BardGCD_HeavyShot()
-        };
-
-        public List<IAIHandler> BardAI_Abilitys = new List<IAIHandler>()
-        {
-            new BardAbility_UsePotion(),
-            new BardAbility_PitchPerfect(),
-            new BardAbility_Buffs(),
-            new BardAbility_Songs(),
-            new BardAbility_RagingStrikes(),
-            new BardAbility_EmpyrealArrow(),
-            new BardAbility_MaxChargeBloodletter(),
-            new BardAbility_Barrage(),
-            new BardAbility_Sidewinder(),
-            new BardAbility_Bloodletter()
-        };
-
+        
         public async Task<SpellData> HandleGCD(ClassJobType classJobType,SpellData lastGCD)
         {
-            switch (classJobType)
+            try
             {
-                case ClassJobType.Bard:
-                    foreach (var v in BardAI_GCDs)
-                    {
-                        if (v.Check(lastGCD))
-                        {
-                            return await v.Run();
-                        }
-                    }
-                    break;
+                switch (classJobType)
+                {
+                    case ClassJobType.Bard:
+                        return await BardAIHandlers.HandleGCD(lastGCD);
+                    case ClassJobType.Reaper:
+                        return await ReaperAIHandlers.HandleGCD(lastGCD);
+                }
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error(e.ToString());
             }
 
             return null;
@@ -54,17 +34,19 @@ namespace AEAssist.AI
         
         public async Task<SpellData> HandleAbility(ClassJobType classJobType,SpellData lastAbility)
         {
-            switch (classJobType)
+            try
             {
-                case ClassJobType.Bard:
-                    foreach (var v in BardAI_Abilitys)
-                    {
-                        if (v.Check(lastAbility))
-                        {
-                            return await v.Run();
-                        }
-                    }
-                    break;
+                switch (classJobType)
+                {
+                    case ClassJobType.Bard:
+                        return await BardAIHandlers.HandleAbility(lastAbility);
+                    case ClassJobType.Reaper:
+                        return await ReaperAIHandlers.HandleAbility(lastAbility);
+                }
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error(e.ToString());
             }
 
             return null;

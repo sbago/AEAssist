@@ -149,24 +149,25 @@
                 <!--     <Border.Background> -->
                 <!--         <SolidColorBrush Color="Cornsilk" Opacity="0.6" /> -->
                 <!--     </Border.Background> -->
-                    <StackPanel Width="250" Orientation="Horizontal" Height="30" HorizontalAlignment="Center">
-                        <Label Content="下一首歌优先:" Foreground="Aqua" Margin="20,0,0,0"/>
-                        <ComboBox IsEditable="False" Margin="10,-4,0,-4" Width="80"
-                                  Name="ChooseNextSong" DisplayMemberPath="Name" SelectedValuePath="Song" 
-                                  SelectionChanged="ChooseNextSong_OnSelectionChanged"/>
-
-                    </StackPanel>
+                    <!-- <StackPanel Width="250" Orientation="Horizontal" Height="30" HorizontalAlignment="Center"> -->
+                    <!--     <Label Content="下一首歌优先:" Foreground="Aqua" Margin="20,0,0,0"/> -->
+                    <!--     <ComboBox IsEditable="False" Margin="10,-4,0,-4" Width="80" -->
+                    <!--               Name="ChooseNextSong" DisplayMemberPath="Name" SelectedValuePath="Song"  -->
+                    <!--               SelectionChanged="ChooseNextSong_OnSelectionChanged"/> -->
+                    <!-- -->
+                    <!-- </StackPanel> -->
                <!-- // </Border> -->
             </WrapPanel>
-            <StackPanel Width="250">
-                <Label Name="CurrTriggerLine" Content="当前加载时间轴: 无" Foreground="Aqua" Width="250"/>
+            <StackPanel Width="250" HorizontalAlignment="Center">
+                <Button Name="Reset" FontSize="12" Content="重置" Width="200" Height="25"
+                        Click="Reset_OnClick"
+                        HorizontalAlignment="Center"  />
+                <Label Name="CurrTriggerLine" Content="当前加载时间轴: 无" Foreground="Aqua" Width="200"/>
                 <!-- <Label Name="TriggerLineStatus" Content="[状态: 准备运行中]" Foreground="Aqua"/> -->
-                <StackPanel Orientation="Horizontal" Width="250" HorizontalAlignment="Center">
-                <Button Name="ChangeTriggerLine" FontSize="12" Margin="10,0,10,0" Content="配置" Width="80" Height="25"
+               
+                <Button Name="ChangeTriggerLine" FontSize="12" Margin="10,0,10,0" Content="配置" Width="200" Height="25"
                         Click="ChangeTriggerLine_OnClick"/>
-                <Button Name="ClearTriggerLine" FontSize="12" Margin="10,0,10,0" Content="清理" Width="80" Height="25"
-                        Click="ClearTriggerLine_OnClick"/>
-                </StackPanel>
+            
             </StackPanel>
             <Border Margin="0,5,0,0" VerticalAlignment="Top" CornerRadius="5" Padding="10">
                 <Border.Background>

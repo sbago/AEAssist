@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AEAssist.AI;
 using AEAssist.View;
 using ff14bot.Enums;
+using ff14bot.Objects;
 
 namespace AEAssist
 {
@@ -88,6 +89,16 @@ namespace AEAssist
         public Task<bool> PullBuff()
         {
             return GetRotation().PullBuff();
+        }
+
+        public SpellData GetBaseGCDSpell()
+        {
+            return GetRotation().GetBaseGCDSpell();
+        }
+
+        public void HandleInCountDown1500()
+        {
+             GetRotation().HandleInCountDown1500();
         }
     }
 }

@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="AEAssist.View.ReaperSettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:AEAssist.View"
+             xmlns:viewModels="clr-namespace:AEAssist.DataBinding"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/Generic.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/Generic.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/MaterialDesignLightTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <UserControl.DataContext>
+        <Binding Source="{x:Static viewModels:BaseSettings.Instance}" />
+    </UserControl.DataContext>
+    
+    <TabControl Style="{StaticResource MaterialDesignTabControl}"
+                TabStripPlacement="Top"
+                materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                materialDesign:ColorZoneAssist.Mode="PrimaryDark"
+                materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
+
+        <TabItem Header="基本设置">
+            <StackPanel HorizontalAlignment="Left" Margin="10">
+                <CheckBox Content="优先打缢杀" IsChecked="{Binding ReaperSettings.GallowsPrefer,Mode=TwoWay}" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="爆发药选择" Width="100" />
+                    <ComboBox IsEditable="False" Name="ChoosePotion" Width="150" DisplayMemberPath="Name" SelectedValuePath="ID" SelectionChanged="ChoosePotion_OnSelectionChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Button Content="检查爆发药数量" Width="100" Click="ButtonBase_OnClick" />
+                    <Label Margin="40,0,0,0" Name="PotionCount" Width="100" Content="数量: 0" VerticalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+
+    </TabControl>
+</UserControl>

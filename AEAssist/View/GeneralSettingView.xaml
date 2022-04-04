@@ -80,10 +80,10 @@
                     <Label Content="GCD插入能力技次数" Width="150" />
                     <TextBox Width="150" Text="{Binding GeneralSettings.MaxAbilityTimsInGCD,Mode=TwoWay}" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="倒计时多少ms使用爆发药" Width="150" />
-                    <TextBox Width="150" Text="{Binding GeneralSettings.UsePotionCountDown,Mode=TwoWay}" />
-                </StackPanel>
+                <!-- <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10"> -->
+                <!--     <Label Content="倒计时多少ms使用爆发药" Width="150" /> -->
+                <!--     <TextBox Width="150" Text="{Binding GeneralSettings.UsePotionCountDown,Mode=TwoWay}" /> -->
+                <!-- </StackPanel> -->
             </StackPanel>
         </TabItem>
 

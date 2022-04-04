@@ -10,7 +10,7 @@ namespace AEAssist.AI
     {
         public bool Check(SpellData lastSpell)
         {
-            if (!Spells.Sidewinder.IsReady())
+            if (!SpellsDefine.Sidewinder.IsReady())
                 return false;
             if (BardSpellHelper.HasBuffsCount() >= 2)
                 return true;
@@ -33,7 +33,7 @@ namespace AEAssist.AI
 
         public async Task<SpellData> Run()
         {
-            var spellData = Spells.Sidewinder;
+            var spellData = SpellsDefine.Sidewinder;
             if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget))
             {
                 return spellData;

@@ -98,6 +98,7 @@ namespace AEAssist
                 var setting = Activator.CreateInstance(v);
 
                 AllSetting[v] = setting as IBaseSetting;
+                AllSetting[v].Reset();
                 
                 SaveSetting(setting);
             }

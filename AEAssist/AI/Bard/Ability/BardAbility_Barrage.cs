@@ -12,7 +12,7 @@ namespace AEAssist.AI
         public bool Check(SpellData lastSpell)
         {
 
-            if (!Spells.Barrage.IsReady())
+            if (!SpellsDefine.Barrage.IsReady())
             {
                 return false;
             }
@@ -30,7 +30,7 @@ namespace AEAssist.AI
 
         public async Task<SpellData> Run()
         {
-            var spell = Spells.Barrage;
+            var spell = SpellsDefine.Barrage;
             if (spell == null)
                 return null;
             var ret = await SpellHelper.CastAbility(spell, Core.Me);

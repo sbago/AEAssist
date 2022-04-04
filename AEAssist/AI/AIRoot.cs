@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AEAssist.AI.Reaper;
 using AEAssist.DataBinding;
 using AEAssist.Define;
 using AEAssist.Helper;
@@ -22,6 +23,14 @@ namespace AEAssist.AI
         {
             get => _bardBattleData ?? (_bardBattleData = new BardBattleData());
             set => _bardBattleData = value;
+        }
+        
+        private ReaperBattleData _reaperBattleData;
+
+        public ReaperBattleData ReaperBattleData
+        {
+            get => _reaperBattleData ?? (_reaperBattleData = new ReaperBattleData());
+            set => _reaperBattleData = value;
         }
 
         private BattleData _battleData;
@@ -56,6 +65,8 @@ namespace AEAssist.AI
 
             BattleData = new BattleData();
             BardBattleData = new BardBattleData();
+            ReaperBattleData = new ReaperBattleData();
+            BaseSettings.Instance.Reset();
             ClearBattleData = true;
             if (CanNotice("Clear", 2000))
                 LogHelper.Debug("Clear battle data");
@@ -70,6 +81,8 @@ namespace AEAssist.AI
             {
                 BattleData.Update(timeNow);
             }
+            
+          
 
             if (Stop)
             {
@@ -78,11 +91,6 @@ namespace AEAssist.AI
                 GUIHelper.ShowInfo("停手中");
                 return false;
             }
-
-            if (ff14bot.Core.Me.IsCasting)
-                return false;
-
-
 
             if (!ff14bot.Core.Me.HasTarget || !ff14bot.Core.Me.CurrentTarget.CanAttack)
             {
@@ -107,20 +115,10 @@ namespace AEAssist.AI
                 }
                 ClearBattleData = false;
             }
-
-
-            bool canUseGCD = true;
+            
             bool canUseAbility = true;
             var delta = timeNow - BattleData.lastCastTime;
             var coolDown = GetGCDDuration();
-            if (BattleData.lastGCDSpell != null)
-            {
-                var coolDownForQueue = coolDown - SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
-                if (delta < coolDownForQueue)
-                {
-                    canUseGCD = false;
-                }
-            }
 
             var needDura = SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs + SettingMgr.GetSetting<GeneralSettings>().UserLatencyOffset;
             if (BattleData.maxAbilityTimes > 0 && coolDown - delta > needDura)
@@ -132,7 +130,7 @@ namespace AEAssist.AI
                 canUseAbility = false;
             }
 
-            if (canUseGCD)
+            if (CanUseGCD())
             {
                 //todo: check gcd
                 var ret = await AIMgrs.Instance.HandleGCD(Core.Me.CurrentJob, BattleData.lastGCDSpell);
@@ -182,9 +180,15 @@ namespace AEAssist.AI
 
         public double GetGCDDuration()
         {
-            if (BattleData.lastGCDSpell == null)
-                return 2500;
-            return BattleData.lastGCDSpell.AdjustedCooldown.TotalMilliseconds;
+            var spell = RotationManager.Instance.GetBaseGCDSpell();
+            return spell.AdjustedCooldown.TotalMilliseconds;
+        }
+
+        // gcd技能处于没有冷却完毕状态 (考虑了队列时间,实际上是是否可以发出指令使用GCD技能了)
+        public bool CanUseGCD()
+        {
+            var ret = RotationManager.Instance.GetBaseGCDSpell();
+            return ret.Cooldown.TotalMilliseconds < SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
         }
 
         public void MuteAbilityTime()

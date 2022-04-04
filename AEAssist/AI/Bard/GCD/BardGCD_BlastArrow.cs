@@ -22,7 +22,7 @@ namespace AEAssist.AI
             var aura = Core.Me.GetAuraById(AurasDefine.BlastArrowReady);
             if (BardSpellHelper.Prepare2BurstBuffs((int) aura.TimeLeft + + ConstValue.AuraTick))
                 return false;
-            if (aura.TimeLeft >= Spells.RagingStrikes.Cooldown.TotalMilliseconds + ConstValue.AuraTick)
+            if (aura.TimeLeft >= SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds + ConstValue.AuraTick)
             {
                 return false;
             }
