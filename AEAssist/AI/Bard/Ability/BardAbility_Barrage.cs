@@ -9,23 +9,23 @@ namespace AEAssist.AI
 {
     public class BardAbility_Barrage : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
 
             if (!SpellsDefine.Barrage.IsReady())
             {
-                return false;
+                return -1;
             }
             if (Core.Me.HasAura(AurasDefine.ShadowBiteReady)
             &&  TargetHelper.CheckNeedUseAOE(25, 5, ConstValue.BardAOECount))
-                return true;
+                return 1;
 
             if (Core.Me.HasAura(AurasDefine.StraighterShot))
-                return false;
+                return -2;
             if (BardSpellHelper.UnlockBuffsCount() > 1 && BardSpellHelper.HasBuffsCount() <= 1)
-                return false;
+                return -3;
 
-            return true;
+            return 0;
         }
 
         public async Task<SpellData> Run()

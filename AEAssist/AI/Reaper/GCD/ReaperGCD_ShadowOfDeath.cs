@@ -9,28 +9,28 @@ namespace AEAssist.AI.Reaper.GCD
 {
     public class ReaperGCD_ShadowOfDeath : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (!SpellsDefine.ShadowOfDeath.IsUnlock())
-                return false;
+                return -1;
 
             var target = Core.Me.CurrentTarget as Character;
 
             // 妖异
             if (Core.Me.HasAura(AurasDefine.SoulReaver))
-                return false;
+                return -2;
             
             if (!target.ContainMyAura(AurasDefine.DeathsDesign, 10000)
                 && (ActionResourceManager.Reaper.SoulGauge > 50
                     || ActionResourceManager.Reaper.ShroudGauge > 50))
             {
-                return true;
+                return 1;
             }
 
             if (target.ContainMyAura(AurasDefine.DeathsDesign, 3000))
-                return false;
+                return -3;
 
-            return true;
+            return 0;
         }
 
         public async Task<SpellData> Run()

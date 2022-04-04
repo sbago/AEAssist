@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AEAssist.DataBinding;
+using AEAssist;
 using AEAssist.Helper;
 using AEAssist.TriggerSystem;
 using AETriggers.TriggerModel;
@@ -33,6 +33,13 @@ namespace AEAssist.AI
 
         private HashSet<long> TempKeys = new HashSet<long>();
 
+        public int NearbyEnemyCount_Range12_12;
+        public int NearbyEnemyCount_Range25_8;
+        public int NearbyEnemyCount_Range25_5;
+        
+        public int NearbyEnemyCount_Range5_5;
+        public int NearbyEnemyCount_Range8_8;
+
         public void Update(long currTime)
         {
             CalBattleTime(currTime);
@@ -50,6 +57,18 @@ namespace AEAssist.AI
             // }
 
             CalTriggerLine();
+
+           // CalRangeEnemy();
+        }
+
+        private void CalRangeEnemy()
+        {
+            var target = Core.Me.CurrentTarget;
+            NearbyEnemyCount_Range12_12 = TargetHelper.GetNearbyEnemyCount(target, 12, 12);
+            NearbyEnemyCount_Range25_8 = TargetHelper.GetNearbyEnemyCount(target, 25, 8);
+            NearbyEnemyCount_Range25_5 = TargetHelper.GetNearbyEnemyCount(target, 25, 5);
+            NearbyEnemyCount_Range5_5 = TargetHelper.GetNearbyEnemyCount(target, 5, 5);
+            NearbyEnemyCount_Range8_8 = TargetHelper.GetNearbyEnemyCount(target, 8, 8);
         }
 
         void CalBattleTime(long currTime)
@@ -83,7 +102,7 @@ namespace AEAssist.AI
 
         void CalTriggerLine()
         {
-            var CurrTriggerLine = BaseSettings.Instance.CurrTriggerLine;
+            var CurrTriggerLine = AEAssist.DataBinding.Instance.CurrTriggerLine;
             if (CurrTriggerLine == null)
                 return;
             if (ExecutedTriggers.Count == CurrTriggerLine.Triggers.Count)

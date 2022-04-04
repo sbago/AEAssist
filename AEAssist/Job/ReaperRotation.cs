@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using AEAssist.AI;
 using AEAssist.AI.Reaper;
-using AEAssist.DataBinding;
+using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using Buddy.Coroutines;

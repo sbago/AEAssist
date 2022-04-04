@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using AEAssist.DataBinding;
+using AEAssist;
 using AEAssist.Define;
 using ff14bot.Managers;
 
@@ -76,7 +76,7 @@ namespace AEAssist.View
 
         private void Reset_OnClick(object sender, RoutedEventArgs e)
         {
-            BaseSettings.Instance.Reset();
+            AEAssist.DataBinding.Instance.Reset();
         }
     }
 }

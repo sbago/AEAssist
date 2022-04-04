@@ -8,15 +8,15 @@ namespace AEAssist.AI
 {
     public class BardAbility_Buffs : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (AIRoot.Instance.CloseBuff)
-                return false;
+                return -1;
             var tar = Core.Me.CurrentTarget as Character;
             if (TTKHelper.IsTargetTTK(tar))
-                return false;
+                return -2;
             if (!BardSpellHelper.CheckCanUseBuffs())
-                return false;
+                return -3;
             // if (!tar.IsBoss())
             // {
             //     return false;
@@ -25,8 +25,8 @@ namespace AEAssist.AI
             //     return false;
             var buffs = BardSpellHelper.GetBuffs();
             if (buffs == null)
-                return false;
-            return true;
+                return -4;
+            return 0;
         }
 
         public async Task<SpellData> Run()

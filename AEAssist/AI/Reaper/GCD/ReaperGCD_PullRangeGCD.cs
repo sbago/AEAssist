@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using AEAssist.DataBinding;
+using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -10,11 +10,11 @@ namespace AEAssist.AI.Reaper.GCD
     // 近战之外的范围的GCD
     public class ReaperGCD_PullRangeGCD : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget,6))
-                return false;
-            return true;
+                return -1;
+            return 0;
         }
 
         public async Task<SpellData> Run()
@@ -24,7 +24,7 @@ namespace AEAssist.AI.Reaper.GCD
             {
                 spell = SpellsDefine.HarvestMoon;
             }
-            else if(!BaseSettings.Instance.UseHarpe)
+            else if(!AEAssist.DataBinding.Instance.UseHarpe)
             {
                 return null;
             }

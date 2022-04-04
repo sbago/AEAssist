@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AEAssist.DataBinding;
+using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -11,13 +11,13 @@ namespace AEAssist.AI
     public class BardGCD_Dot : IAIHandler
     {
         
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             var tar = Core.Me.CurrentTarget as Character;
-            if (!BaseSettings.Instance.UseDot)
-                return false;
+            if (!AEAssist.DataBinding.Instance.UseDot)
+                return -1;
             if (TTKHelper.IsTargetTTK(tar))
-                return false;
+                return -2;
             int dots = 0;
             if (BardSpellHelper.IsTargetHasAura_WindBite(tar))
             {
@@ -31,11 +31,11 @@ namespace AEAssist.AI
             if (dots >= 2)
             {
                 if (BardSpellHelper.IsTargetNeedIronJaws(tar))
-                    return true;
-                return false;
+                    return 1;
+                return -3;
             }
             
-            return true;
+            return 0;
         }
 
         public async Task<SpellData> Run()

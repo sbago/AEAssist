@@ -50,22 +50,23 @@ namespace AEAssist.View
             }
         }
 
-        public void ShowOverlay()
+        public void SwitchOverlay()
         {
             if (!Core.OverlayManager.IsActive)
                 return;
-            var currJob = Core.Me.CurrentJob;
-            _classJobType = currJob;
             if (lastOverlay != null)
             {
-                Core.OverlayManager.RemoveUIComponent(lastOverlay);
-                lastOverlay = null;
+               Close();
             }
-            
-            if (AllOverlays.TryGetValue(currJob, out var window))
+            else
             {
-                Core.OverlayManager.AddUIComponent(window);
-                lastOverlay = window;
+                var currJob = Core.Me.CurrentJob;
+                _classJobType = currJob;
+                if (AllOverlays.TryGetValue(currJob, out var window))
+                {
+                    Core.OverlayManager.AddUIComponent(window);
+                    lastOverlay = window;
+                }   
             }
         }
 

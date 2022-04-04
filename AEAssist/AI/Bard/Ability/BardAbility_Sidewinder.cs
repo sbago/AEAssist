@@ -8,27 +8,27 @@ namespace AEAssist.AI
 {
     public class BardAbility_Sidewinder : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (!SpellsDefine.Sidewinder.IsReady())
-                return false;
+                return -1;
             if (BardSpellHelper.HasBuffsCount() >= 2)
-                return true;
+                return 1;
 
             if (BardSpellHelper.CheckCanUseBuffs())
             {
-                return true;
+                return 2;
             }
             
             if (!Core.Me.HasMyAura(AurasDefine.RagingStrikes))
             {
-                return true;
+                return 3;
             }
 
             if (BardSpellHelper.UnlockBuffsCount() <= 1)
-                return true;
+                return 4;
 
-            return false;
+            return -4;
         }
 
         public async Task<SpellData> Run()

@@ -8,24 +8,24 @@ namespace AEAssist.AI
 {
     public class BardAbility_Bloodletter : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (lastSpell == SpellsDefine.Bloodletter)
-                return false;
+                return -1;
             if (!SpellsDefine.Bloodletter.IsChargeReady())
-                return false;
+                return -2;
             if (SpellsDefine.Bloodletter.Charges < 1)
-                return false;
+                return -3;
             
             // 起手爆发期间, 失血箭尽量打进团辅
 
             if (BardSpellHelper.HasBuffsCount() >= BardSpellHelper.UnlockBuffsCount())
-                return true;
+                return 1;
 
             if (BardSpellHelper.Prepare2BurstBuffs())
-                return false;
+                return -4;
             
-            return true;
+            return 0;
         }
 
         public async Task<SpellData> Run()

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:AEAssist"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:viewModels="clr-namespace:AEAssist.DataBinding"
+             xmlns:viewModels="clr-namespace:AEAssist"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -32,7 +32,7 @@
     </UserControl.Resources>
     
     <UserControl.DataContext>
-        <Binding Source="{x:Static viewModels:BaseSettings.Instance}" />
+        <Binding Source="{x:Static viewModels:DataBinding.Instance}" />
     </UserControl.DataContext>
     
     <TabControl Style="{StaticResource MaterialDesignTabControl}"
@@ -44,9 +44,13 @@
         <TabItem Header="通用">
             <StackPanel HorizontalAlignment="Left" Margin="10">
                 <Button Name="ShowOverlay"
-                    Content="显示Overlay" Width="150" Height="25" Margin="10"
+                    Content="显示/隐藏Overlay" Width="150" Height="25" Margin="10"
                         HorizontalAlignment="Left"
                         Click="ShowOverlay_OnClick"/>
+                <CheckBox Name="ShowGameLog"
+                        Content="显示GameLog(编辑时间轴必备)" Width="200" Height="25" Margin="10"
+                        HorizontalAlignment="Left"
+                        IsChecked="{Binding GeneralSettings.ShowGameLog}"/>
                 <!-- <Button Name="LoadTriggerLine" -->
                 <!--         Content="时间轴设置" Width="150" Height="25" Margin="10" -->
                 <!--         HorizontalAlignment="Left" -->

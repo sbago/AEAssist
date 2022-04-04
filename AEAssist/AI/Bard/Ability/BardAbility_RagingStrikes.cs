@@ -8,17 +8,17 @@ namespace AEAssist.AI
 {
     public class BardAbility_RagingStrikes : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (AIRoot.Instance.CloseBuff)
-                return false;
+                return -1;
             if (!SpellsDefine.RagingStrikes.IsReady())
-                return false;
+                return -2;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
-                return false;
+                return -3;
             if (SpellsDefine.TheWanderersMinuet.IsUnlock() && !Core.Me.ContainMyAura(AurasDefine.TheWanderersMinuet))
-                return false;
-            return true;
+                return -4;
+            return 0;
         }
 
         public async Task<SpellData> Run()

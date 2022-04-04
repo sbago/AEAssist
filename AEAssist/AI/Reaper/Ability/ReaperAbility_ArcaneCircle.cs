@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using AEAssist.DataBinding;
+using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -10,29 +10,26 @@ namespace AEAssist.AI.Reaper.Ability
 {
     public class ReaperAbility_ArcaneCircle : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (!SpellsDefine.ArcaneCircle.IsReady())
-                return false;
+                return -1;
             if (AIRoot.Instance.CloseBuff)
-                return false;
-            if (Core.Me.HasAura(AurasDefine.SoulReaver))
-                return false;
+                return -2;
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
-                return false;
-
-            if (BaseSettings.Instance.DoubleEnshroudPrefer)
+                return -3;
+            if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer)
             {
                 if (ActionResourceManager.Reaper.ShroudGauge >= 50 && !Core.Me.HasAura(AurasDefine.Enshrouded))
-                    return false;
+                    return -4;
                 if (Core.Me.HasAura(AurasDefine.Enshrouded))
                 {
                     if (TimeHelper.Now() - AIRoot.Instance.ReaperBattleData.EnshroundTime < 2000)
-                        return false;
+                        return -5;
                 }
             }
 
-            return true;
+            return 0;
         }
 
         public async Task<SpellData> Run()

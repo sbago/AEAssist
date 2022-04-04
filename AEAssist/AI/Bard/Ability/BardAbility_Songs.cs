@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AEAssist.DataBinding;
+using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -11,23 +11,23 @@ namespace AEAssist.AI
 {
     public class BardAbility_Songs : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (lastSpell == SpellsDefine.TheWanderersMinuet || lastSpell == SpellsDefine.MagesBallad || lastSpell == SpellsDefine.ArmysPaeon)
-                return false;
+                return -1;
             // 可能会发生短时间内rb的song的Timer还是上一首歌的 (rb的bug),导致连续的GCD内连续切换两次歌的情况
             if (TimeHelper.Now() - AIRoot.Instance.BardBattleData.lastCastSongTime < 3000)
-                return false;
+                return -2;
 
             if (!SpellsDefine.TheWanderersMinuet.IsReady()
                 && !SpellsDefine.MagesBallad.IsReady()
                 && !SpellsDefine.ArmysPaeon.IsReady())
-                return false;
+                return -3;
             
             var spell = CheckNeedChangeSong(out var forceNextSong,out var forceNextDuration);
             if (spell == null)
-                return false;
-            return true;
+                return -4;
+            return 0;
         }
 
         public async Task<SpellData> Run()

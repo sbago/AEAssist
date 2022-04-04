@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using AEAssist.DataBinding;
+using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -9,14 +9,14 @@ namespace AEAssist.AI.Reaper.GCD
 {
     public class ReaperGCD_BaseGCDCombo : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
-            return true;
+            return 0;
         }
 
         public async Task<SpellData> Run()
         {
-            if (BaseSettings.Instance.DoubleEnshroudPrefer 
+            if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer 
                 && Core.Me.ContainMyAura(AurasDefine.Enshrouded))
             {
                 if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 5, 5))

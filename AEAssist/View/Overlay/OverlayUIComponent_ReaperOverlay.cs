@@ -1,4 +1,4 @@
-﻿using AEAssist.DataBinding;
+﻿using AEAssist;
 using AEAssist.View.Overlay;
 using Buddy.Overlay;
 using Buddy.Overlay.Controls;

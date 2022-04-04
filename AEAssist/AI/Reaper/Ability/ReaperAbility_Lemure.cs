@@ -9,15 +9,15 @@ namespace AEAssist.AI.Reaper.Ability
 {
     public class ReaperAbility_Lemure : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (!SpellsDefine.LemuresSlice.IsUnlock())
-                return false;
+                return -1;
             if (ActionResourceManager.Reaper.VoidShroud < 2)
-                return false;
+                return -2;
             if (!Core.Me.HasAura(AurasDefine.Enshrouded))
-                return false;
-            return true;
+                return -3;
+            return 0;
         }
 
         public async Task<SpellData> Run()

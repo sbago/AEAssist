@@ -8,21 +8,21 @@ namespace AEAssist.AI
 {
     public class BardAbility_UsePotion : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (!SettingMgr.GetSetting<GeneralSettings>().UsePotion)
-                return false;
+                return -1;
             if (AIRoot.Instance.CloseBuff)
-                return false;
+                return -2;
             if (AIRoot.Instance.BattleData.maxAbilityTimes <
                 SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD)
-                return false;
+                return -3;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
-                return false;
+                return -4;
             if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<BardSettings>().UsePotionId))
-                return false;
+                return -5;
 
-            return true;
+            return 0;
         }
 
         public async Task<SpellData> Run()

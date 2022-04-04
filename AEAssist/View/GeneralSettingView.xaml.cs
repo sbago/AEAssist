@@ -49,7 +49,7 @@ namespace AEAssist.View
 
         private void ShowOverlay_OnClick(object sender, RoutedEventArgs e)
         {
-            OverlayManager.Instance.ShowOverlay();
+            OverlayManager.Instance.SwitchOverlay();
         }
 
         private void Hotkey_Stop_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -112,23 +112,43 @@
         <Compile Include="..\AETriggers\TriggerModel\TriggerMgr.cs">
           <Link>TriggerModel\TriggerMgr.cs</Link>
         </Compile>
-        <Compile Include="AI\Bard\BardAIHandlers.cs" />
+        <Compile Include="AI\AIMgrs.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_Barrage.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_Bloodletter.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_Buffs.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_EmpyrealArrow.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_MaxChargeBloodletter.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_PitchPerfect.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_RagingStrikes.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_Sidewinder.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_Songs.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_UsePotion.cs" />
+        <Compile Include="AI\Bard\Bard_AIPriorityQueue.cs" />
         <Compile Include="AI\Bard\BardBattleData.cs" />
+        <Compile Include="AI\Bard\BardSpellHelper.cs" />
+        <Compile Include="AI\Bard\GCD\BardGCD_ApexArrow.cs" />
+        <Compile Include="AI\Bard\GCD\BardGCD_Barrage_RefulgentArrow.cs" />
+        <Compile Include="AI\Bard\GCD\BardGCD_BlastArrow.cs" />
+        <Compile Include="AI\Bard\GCD\BardGCD_Dot.cs" />
+        <Compile Include="AI\Bard\GCD\BardGCD_HeavyShot.cs" />
+        <Compile Include="AI\Bard\GCD\BardGCD_QuickNock.cs" />
         <Compile Include="AI\BattleData.cs" />
-        <Compile Include="AI\Reaper\Ability\ReaperAbility_UsePotion.cs" />
+        <Compile Include="AI\IAIHandler.cs" />
+        <Compile Include="AI\IAIPriorityQueue.cs" />
         <Compile Include="AI\Reaper\Ability\ReaperAbility_ArcaneCircle.cs" />
         <Compile Include="AI\Reaper\Ability\ReaperAbility_BloodStalk.cs" />
         <Compile Include="AI\Reaper\Ability\ReaperAbility_Enshroud.cs" />
         <Compile Include="AI\Reaper\Ability\ReaperAbility_Gluttony.cs" />
         <Compile Include="AI\Reaper\Ability\ReaperAbility_Lemure.cs" />
-        <Compile Include="AI\Reaper\ReaperAIHandlers.cs" />
+        <Compile Include="AI\Reaper\Ability\ReaperAbility_UsePotion.cs" />
         <Compile Include="AI\Reaper\GCD\ReaperGCD_BaseGCDCombo.cs" />
         <Compile Include="AI\Reaper\GCD\ReaperGCD_EnshroudGCD.cs" />
         <Compile Include="AI\Reaper\GCD\ReaperGCD_Gibbit_Gallows.cs" />
-        <Compile Include="AI\Reaper\GCD\ReaperGCD_PullRangeGCD.cs" />
         <Compile Include="AI\Reaper\GCD\ReaperGCD_PlentifulHarvest.cs" />
+        <Compile Include="AI\Reaper\GCD\ReaperGCD_PullRangeGCD.cs" />
         <Compile Include="AI\Reaper\GCD\ReaperGCD_ShadowOfDeath.cs" />
         <Compile Include="AI\Reaper\GCD\ReaperGCD_SoulSlice.cs" />
+        <Compile Include="AI\Reaper\Reaper_AIPriorityQueue.cs" />
         <Compile Include="AI\Reaper\ReaperBattleData.cs" />
         <Compile Include="AI\Reaper\ReaperSpellHelper.cs" />
         <Compile Include="DataBinding\DebugCenter.cs" />
@@ -149,6 +169,7 @@
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyCastSpellByName.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyHpPct.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyInLOS.cs" />
+        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_GameLog.cs" />
         <Compile Include="TriggerSystem\TriggerSystemMgr.cs" />
         <Compile Include="View\BardSettingView.xaml.cs">
           <DependentUpon>BardSettingView.xaml</DependentUpon>
@@ -175,7 +196,7 @@
           <Link>AEAssistLoader.cs</Link>
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
-        <Compile Include="DataBinding\BaseSetting.cs" />
+        <Compile Include="DataBinding\DataBinding.cs" />
         <Compile Include="Entry.cs" />
         <Compile Include="Properties\Annotations.cs" />
         <Compile Include="Resources\Icons.Designer.cs">
@@ -286,25 +307,6 @@
             <SubType>Designer</SubType>
         </Page>
         <Compile Include="AI\AIRoot.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_Barrage.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_Bloodletter.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_Buffs.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_EmpyrealArrow.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_MaxChargeBloodletter.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_PitchPerfect.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_RagingStrikes.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_Sidewinder.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_Songs.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_UsePotion.cs" />
-        <Compile Include="AI\Bard\BardSpellHelper.cs" />
-        <Compile Include="AI\Bard\GCD\BardGCD_ApexArrow.cs" />
-        <Compile Include="AI\Bard\GCD\BardGCD_Barrage_RefulgentArrow.cs" />
-        <Compile Include="AI\Bard\GCD\BardGCD_BlastArrow.cs" />
-        <Compile Include="AI\Bard\GCD\BardGCD_Dot.cs" />
-        <Compile Include="AI\Bard\GCD\BardGCD_HeavyShot.cs" />
-        <Compile Include="AI\Bard\GCD\BardGCD_QuickNock.cs" />
-        <Compile Include="AI\Core\AIMgrs.cs" />
-        <Compile Include="AI\Core\IAIHandler.cs" />
         <Compile Include="AI\CountDownHandler.cs" />
         <Compile Include="AI\TargetMgr.cs" />
         <Compile Include="DataStruct\CircleList.cs" />

@@ -1,4 +1,4 @@
-﻿using AEAssist.DataBinding;
+﻿using AEAssist;
 using Buddy.Overlay;
 using Buddy.Overlay.Controls;
 using ff14bot;

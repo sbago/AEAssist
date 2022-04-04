@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using AEAssist.DataBinding;
+using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -10,21 +10,21 @@ namespace AEAssist.AI
 {
     public class BardGCD_ApexArrow : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
-            if (!BaseSettings.Instance.UseApex)
-                return false;
+            if (!AEAssist.DataBinding.Instance.UseApex)
+                return -1;
             if (ActionResourceManager.Bard.SoulVoice >= SettingMgr.GetSetting<BardSettings>().ApexArrowValue)
-                return true;
+                return 1;
 
             if (ActionResourceManager.Bard.SoulVoice >= 80 &&
                 (BardSpellHelper.HasBuffsCountInEnd() >= 1 || TargetHelper.CheckNeedUseAOE(ConstValue.BardAOETargetRange,
                     2, ConstValue.BardAOECount)))
             {
-                return true;
+                return 2;
             }
 
-            return false;
+            return -2;
         }
 
         public async Task<SpellData> Run()

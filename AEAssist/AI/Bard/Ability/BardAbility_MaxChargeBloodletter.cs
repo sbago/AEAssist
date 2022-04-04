@@ -9,15 +9,15 @@ namespace AEAssist.AI
 {
     public class BardAbility_MaxChargeBloodletter : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (lastSpell == SpellsDefine.Bloodletter)
-                return false;
+                return -1;
             if (!SpellsDefine.Bloodletter.IsReady())
-                return false;
+                return -2;
             if (SpellsDefine.Bloodletter.Charges >= SpellsDefine.Bloodletter.MaxCharges)
-                return true;
-            return false;
+                return 0;
+            return -3;
         }
 
         public async Task<SpellData> Run()

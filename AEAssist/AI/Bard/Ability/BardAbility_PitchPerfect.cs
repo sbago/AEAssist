@@ -9,23 +9,23 @@ namespace AEAssist.AI
 {
     public class BardAbility_PitchPerfect : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (!SpellsDefine.PitchPerfect.IsReady())
-                return false;
+                return -1;
             if (ActionResourceManager.Bard.ActiveSong != ActionResourceManager.Bard.BardSong.WanderersMinuet)
-                return false;
+                return -2;
 
             if (ActionResourceManager.Bard.Repertoire == 0)
-                return false;
+                return -3;
 
             var time = ActionResourceManager.Bard.Timer.TotalMilliseconds;
 
             if (time < ConstValue.AuraTick)
-                return true;
+                return 1;
 
             if (ActionResourceManager.Bard.Repertoire == 3)
-                return true;
+                return 2;
 
             var lat = SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs +
                       SettingMgr.GetSetting<GeneralSettings>().UserLatencyOffset;
@@ -35,10 +35,10 @@ namespace AEAssist.AI
                 && BardSpellHelper.TimeUntilNextPossibleDoTTick() <= lat
                 && SpellsDefine.EmpyrealArrow.IsReady())
 
-                return true;
+                return 3;
                 
                 
-            return false;
+            return -4;
         }
 
         public async Task<SpellData> Run()

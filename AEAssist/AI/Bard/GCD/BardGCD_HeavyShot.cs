@@ -8,9 +8,9 @@ namespace AEAssist.AI
 {
     public class BardGCD_HeavyShot : IAIHandler
     {
-        public bool Check(SpellData lastGCD)
+        public int Check(SpellData lastGCD)
         {
-            return true;
+            return 0;
         }
 
         public async Task<SpellData> Run()

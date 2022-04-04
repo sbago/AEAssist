@@ -1,6 +1,6 @@
 ﻿using PropertyChanged;
 
-namespace AEAssist.DataBinding
+namespace AEAssist
 {
     [AddINotifyPropertyChangedInterface]
     public class DebugCenter

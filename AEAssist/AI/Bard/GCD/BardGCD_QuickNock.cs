@@ -8,12 +8,14 @@ namespace AEAssist.AI
 {
     public class BardGCD_QuickNock : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             var spell = BardSpellHelper.GetQuickNock();
             if (spell == null)
-                return false;
-            return TargetHelper.CheckNeedUseAOE(12, 12, ConstValue.BardAOECount);
+                return -1;
+            if (TargetHelper.CheckNeedUseAOE(12, 12, ConstValue.BardAOECount))
+                return 0;
+            return -2;
         }
 
         public async Task<SpellData> Run()

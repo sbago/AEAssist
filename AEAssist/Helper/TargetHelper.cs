@@ -40,25 +40,17 @@ namespace AEAssist.Helper
         /// <returns></returns>
         public static bool CheckNeedUseAOE(int targetRange,int damageRange,int needCount = 3)
         {
-            if (Core.Me.CurrentTarget.Distance(Core.Me) >= targetRange)
-                return false;
-            var list = TargetMgr.Instance.EnemysIn25;
-            int count = 0;
-            foreach (var v in list)
-            {
-                if (v.Value.Distance(Core.Me.CurrentTarget) <= damageRange)
-                    count++;
-            }
+            var count = GetNearbyEnemyCount(Core.Me.CurrentTarget, targetRange, damageRange);
 
             if (count >= needCount)
                 return true;
             return false;
         }
         
-        public static bool CheckNeedUseAOE(GameObject target, int targetRange,int damageRange,int needCount = 3)
+        public static int GetNearbyEnemyCount(GameObject target, int targetRange,int damageRange)
         {
             if (target.Distance(Core.Me) >= targetRange)
-                return false;
+                return 0;
             var list = TargetMgr.Instance.EnemysIn25;
             int count = 0;
             foreach (var v in list)
@@ -66,6 +58,13 @@ namespace AEAssist.Helper
                 if (v.Value.Distance(target) <= damageRange)
                     count++;
             }
+
+            return count;
+        }
+        
+        public static bool CheckNeedUseAOE(GameObject target, int targetRange,int damageRange,int needCount = 3)
+        {
+            var count = GetNearbyEnemyCount(target, targetRange, damageRange);
 
             if (count >= needCount)
                 return true;

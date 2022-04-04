@@ -8,16 +8,16 @@ namespace AEAssist.AI.Reaper.GCD
 {
     public class ReaperGCD_Gibbit_Gallows : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (!SpellsDefine.Gibbet.IsUnlock())
             {
-                return false;
+                return -1;
             }
 
             if (Core.Me.HasAura(AurasDefine.SoulReaver))
-                return true;
-            return false;
+                return 0;
+            return -2;
         }
 
         public async Task<SpellData> Run()

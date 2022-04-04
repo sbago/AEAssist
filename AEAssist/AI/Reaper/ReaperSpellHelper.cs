@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using AEAssist.DataBinding;
+using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -132,32 +132,32 @@ namespace AEAssist.AI.Reaper
             return SpellsDefine.VoidReaping;
         }
 
-        public static bool CheckCanUsePlentifulHarvest()
+        public static int CheckCanUsePlentifulHarvest()
         {
             if (!SpellsDefine.PlentifulHarvest.IsUnlock())
-                return false;
+                return -200;
             
             // 死亡祭祀
             if (Core.Me.HasAura(AurasDefine.BloodsownCircle))
-                return false;
+                return -201;
 
             // 妖异
             if (Core.Me.HasAura(AurasDefine.SoulReaver))
-                return false;
+                return -202;
             
             // 死亡祭品
             if (!Core.Me.HasAura(AurasDefine.ImmortalSacrifice))
             {
-                return false;
+                return -203;
             }
 
             // 50点蓝条以上,而且神秘环buff没有接近消失,就延后
             if (ActionResourceManager.Reaper.ShroudGauge > 50 && !Core.Me.ContainsMyInEndAura(AurasDefine.ArcaneCircle,3000))
             {
-                return false;
+                return -204;
             }
             
-            return true;
+            return 200;
         }
 
         public static bool CheckIfNeedTrueNorth()
@@ -183,7 +183,7 @@ namespace AEAssist.AI.Reaper
 
         public static async Task<SpellData> UseTruthNorth()
         {
-            if (!BaseSettings.Instance.UseTrueNorth)
+            if (!AEAssist.DataBinding.Instance.UseTrueNorth)
                 return null;
             if (!CheckIfNeedTrueNorth())
                 return null;
@@ -195,32 +195,33 @@ namespace AEAssist.AI.Reaper
             return null;
         }
 
-        public static bool ReadyToEnshroud()
+        public static int ReadyToEnshroud()
         {
             if (AIRoot.Instance.CloseBuff)
-                return false;
+                return -100;
             if (Core.Me.HasAura(AurasDefine.Enshrouded))
-                return false;
+                return -101;
             if (Core.Me.HasAura(AurasDefine.SoulReaver))
-                return false;
-            if (ActionResourceManager.Reaper.ShroudGauge < 50) return false;
+                return -102;
+            if (ActionResourceManager.Reaper.ShroudGauge < 50)
+                return -103;
             
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
-                return false;
+                return -104;
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
-                return false;
+                return -105;
 
             var coolDown = SpellsDefine.ArcaneCircle.Cooldown.TotalMilliseconds;
             
-            if (BaseSettings.Instance.DoubleEnshroudPrefer
+            if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer
                 && ActionResourceManager.Reaper.ShroudGauge < 90
                 && coolDown> 2000
                 && coolDown < ConstValue.ReaperDoubleEnshroudMaxCheckTime)
             {
-                return false;
+                return -106;
             }
 
-            return true;
+            return 0;
         }
     }
 }

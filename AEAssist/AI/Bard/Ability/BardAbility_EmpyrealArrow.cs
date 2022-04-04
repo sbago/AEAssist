@@ -9,27 +9,27 @@ namespace AEAssist.AI
 {
     public class BardAbility_EmpyrealArrow : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (!SpellsDefine.EmpyrealArrow.IsReady())
-                return false;
+                return -1;
             var currSong = ActionResourceManager.Bard.ActiveSong;
             var remainTime = ActionResourceManager.Bard.Timer.TotalMilliseconds;
             switch (currSong)
             {
                 case ActionResourceManager.Bard.BardSong.None:
-                    return false;
+                    return -2;
                 case ActionResourceManager.Bard.BardSong.MagesBallad:
                     if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_MB_TimeLeftForSwitch)
-                        return false;
+                        return -3;
                     break;
                 case ActionResourceManager.Bard.BardSong.ArmysPaeon:
                     if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_AP_TimeLeftForSwitch)
-                        return false;
+                        return -4;
                     break;
             }
 
-            return true;
+            return 0;
         }
 
         public async Task<SpellData> Run()

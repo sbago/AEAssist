@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.AI.Reaper;
-using AEAssist.DataBinding;
+using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -47,14 +47,14 @@ namespace AEAssist.AI
         
         public bool Stop
         {
-            get => BaseSettings.Instance.Stop;
-            set => BaseSettings.Instance.Stop = value;
+            get => AEAssist.DataBinding.Instance.Stop;
+            set => AEAssist.DataBinding.Instance.Stop = value;
         }
 
         public bool CloseBuff 
         {
-            get => BaseSettings.Instance.CloseBuff;
-            set => BaseSettings.Instance.CloseBuff = value;
+            get => AEAssist.DataBinding.Instance.CloseBuff;
+            set => AEAssist.DataBinding.Instance.CloseBuff = value;
         }
 
         public void Clear()
@@ -66,7 +66,7 @@ namespace AEAssist.AI
             BattleData = new BattleData();
             BardBattleData = new BardBattleData();
             ReaperBattleData = new ReaperBattleData();
-            BaseSettings.Instance.Reset();
+            AEAssist.DataBinding.Instance.Reset();
             ClearBattleData = true;
             if (CanNotice("Clear", 2000))
                 LogHelper.Debug("Clear battle data");
@@ -100,7 +100,7 @@ namespace AEAssist.AI
             }
 
             if (!((Character) ff14bot.Core.Me.CurrentTarget).HasTarget && !CountDownHandler.Instance.CanDoAction
-            && !BaseSettings.Instance.AutoAttack)
+            && !AEAssist.DataBinding.Instance.AutoAttack)
             {
                 if (CanNotice("key2", 1000))
                     GUIHelper.ShowInfo("目标可被攻击,准备战斗");

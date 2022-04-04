@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using AEAssist.DataBinding;
+using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -10,12 +10,12 @@ namespace AEAssist.AI.Reaper.Ability
 {
     public class ReaperAbility_Enshroud : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (!SpellsDefine.Enshroud.IsReady())
-                return false;
+                return -1;
             if (lastSpell == SpellsDefine.Gluttony)
-                return false;
+                return -2;
             return ReaperSpellHelper.ReadyToEnshroud();
         }
 

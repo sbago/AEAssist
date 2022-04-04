@@ -10,34 +10,34 @@ namespace AEAssist.AI
 {
     public class ReaperAbility_UsePotion : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (!SettingMgr.GetSetting<GeneralSettings>().UsePotion)
-                return false;
+                return -1;
             if (AIRoot.Instance.CloseBuff)
-                return false;
+                return -2;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
-                return false;
+                return -3;
 
             if (AIRoot.Instance.BattleData.maxAbilityTimes <
                 SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD)
-                return false;
+                return -4;
 
             if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<ReaperSettings>().UsePotionId))
-                return false;
+                return -5;
             
             if (SpellsDefine.PlentifulHarvest.IsUnlock() 
             && !Core.Me.HasAura(AurasDefine.BloodsownCircle)
                 &&Core.Me.HasAura(AurasDefine.ImmortalSacrifice))
             {
-                return true;
+                return 1;
             }
 
             //todo: 优化,如果没解锁圣餐, 就绑定附体状态用
             if (!SpellsDefine.PlentifulHarvest.IsUnlock() && ActionResourceManager.Reaper.ShroudGauge>50)
-                return true;
+                return 2;
             
-            return false;
+            return -6;
         }
 
         public async Task<SpellData> Run()

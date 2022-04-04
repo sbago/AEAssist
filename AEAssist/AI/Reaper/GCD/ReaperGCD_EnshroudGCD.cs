@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using AEAssist.DataBinding;
+using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -10,30 +10,30 @@ namespace AEAssist.AI.Reaper.GCD
 {
     public class ReaperGCD_EnshroudGCD : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (!SpellsDefine.CrossReaping.IsUnlock())
-                return false;
+                return -1;
 
             if (!Core.Me.HasAura(AurasDefine.Enshrouded))
-                return false;
+                return -2;
 
             // 双附体时,神秘环如果即将冷却好,或者已经可以用了,先不打这些GCD
-            if (BaseSettings.Instance.DoubleEnshroudPrefer && SpellsDefine.ArcaneCircle.Cooldown.TotalMilliseconds<ConstValue.ReaperDoubleEnshroudMinCheckTime)
+            if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer && SpellsDefine.ArcaneCircle.Cooldown.TotalMilliseconds<ConstValue.ReaperDoubleEnshroudMinCheckTime)
             {
-                return false;
+                return -3;
             }
 
             if (ActionResourceManager.Reaper.LemureShroud == 0)
-                return false;
+                return -4;
 
             // 本来需要打90大招,但是因为在移动,所以不打了.
             if (ActionResourceManager.Reaper.LemureShroud < 2 
                 && SpellsDefine.Communio.IsUnlock()
             && MovementManager.IsMoving)
-                return false;
+                return -5;
 
-            return true;
+            return 0;
         }
 
         public async Task<SpellData> Run()

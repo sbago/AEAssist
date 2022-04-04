@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Forms;
-using AEAssist.DataBinding;
+using AEAssist;
 using AEAssist.Helper;
 using MessageBox = System.Windows.MessageBox;
 

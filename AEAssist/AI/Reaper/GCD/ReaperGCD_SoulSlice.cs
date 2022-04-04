@@ -9,20 +9,20 @@ namespace AEAssist.AI.Reaper.GCD
 {
     public class ReaperGCD_SoulSlice : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (!SpellsDefine.SoulSlice.IsChargeReady())
-                return false;
+                return -1;
 
             if (ActionResourceManager.Reaper.SoulGauge > 50)
-                return false;
-            return true;
+                return -2;
+            return 0;
         }
 
         public async Task<SpellData> Run()
         {
             if(SpellsDefine.SoulSlice.Charges<SpellsDefine.SoulSlice.MaxCharges
-            && ReaperSpellHelper.ReadyToEnshroud())
+            && ReaperSpellHelper.ReadyToEnshroud()>=0)
             {
                 if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 5, 5))
                 {

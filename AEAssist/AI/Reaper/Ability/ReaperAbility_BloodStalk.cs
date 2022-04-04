@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using AEAssist.DataBinding;
+using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -10,35 +10,34 @@ namespace AEAssist.AI.Reaper.Ability
 {
     public class ReaperAbility_BloodStalk : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (!SpellsDefine.BloodStalk.IsUnlock())
-                return false;
-            if (!BaseSettings.Instance.UseSoulGauge)
-                return false;
+                return -1;
+            if (!AEAssist.DataBinding.Instance.UseSoulGauge)
+                return -2;
             if (ActionResourceManager.Reaper.SoulGauge < 50)
-                return false;
-
+                return -3;
+            if (Core.Me.HasAura(AurasDefine.SoulReaver))
+                return -4;
             if (SpellsDefine.Enshroud.Cooldown.TotalMilliseconds > 0
                 && SpellsDefine.Enshroud.Cooldown.TotalMilliseconds < 5000
-                && ReaperSpellHelper.ReadyToEnshroud())
+                && ReaperSpellHelper.ReadyToEnshroud()>=0)
             {
-                return false;
+                return -5;
             }
 
             if(TimeHelper.Now() - AIRoot.Instance.ReaperBattleData.EnshroundTime < 3000)
-                return false;
-            if (Core.Me.HasAura(AurasDefine.SoulReaver))
-                return false;
+                return -6;
             if (Core.Me.HasAura(AurasDefine.Enshrouded))
-                return false;
+                return -7;
             if (!AIRoot.Instance.CloseBuff && SpellsDefine.Gluttony.Cooldown.TotalMilliseconds < 10000)
             {
-                return false;
+                return -8;
             }
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
-                return false;
-            return true;
+                return -9;
+            return 0;
         }
 
         public async Task<SpellData> Run()

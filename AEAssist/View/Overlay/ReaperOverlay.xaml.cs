@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using AEAssist.DataBinding;
+using AEAssist;
 
 namespace AEAssist.View.Overlay
 {
@@ -13,7 +13,7 @@ namespace AEAssist.View.Overlay
 
         private void Reset_OnClick(object sender, RoutedEventArgs e)
         {
-            BaseSettings.Instance.Reset();
+            AEAssist.DataBinding.Instance.Reset();
         }
 
         private void ChangeTriggerLine_OnClick(object sender, RoutedEventArgs e)

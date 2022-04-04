@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using AEAssist.DataBinding;
+using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -9,25 +9,25 @@ namespace AEAssist.AI
 {
     public class BardGCD_BlastArrow : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
-            if (!BaseSettings.Instance.UseApex)
-                return false;
+            if (!AEAssist.DataBinding.Instance.UseApex)
+                return -1;
             if (!Core.Me.HasAura(AurasDefine.BlastArrowReady))
-                return false;
+                return -2;
 
             if (BardSpellHelper.HasBuffsCount() >= BardSpellHelper.UnlockBuffsCount())
-                return true;
+                return 1;
 
             var aura = Core.Me.GetAuraById(AurasDefine.BlastArrowReady);
             if (BardSpellHelper.Prepare2BurstBuffs((int) aura.TimeLeft + + ConstValue.AuraTick))
-                return false;
+                return -3;
             if (aura.TimeLeft >= SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds + ConstValue.AuraTick)
             {
-                return false;
+                return -4;
             }
 
-            return true;
+            return 0;
         }
 
         public async Task<SpellData> Run()

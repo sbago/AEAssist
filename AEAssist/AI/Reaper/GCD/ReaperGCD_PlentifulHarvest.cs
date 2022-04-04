@@ -10,7 +10,7 @@ namespace AEAssist.AI.Reaper.GCD
 {
     public class ReaperGCD_PlentifulHarvest : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             return ReaperSpellHelper.CheckCanUsePlentifulHarvest();
         }

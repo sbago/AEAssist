@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:AEAssist.View.Overlay"
-        xmlns:viewModels="clr-namespace:AEAssist.DataBinding"
+        xmlns:viewModels="clr-namespace:AEAssist"
         mc:Ignorable="d"
         Topmost="True"
         ResizeMode="NoResize"
@@ -35,7 +35,7 @@
     </Window.Resources>
 
     <Window.DataContext>
-        <Binding Source="{x:Static viewModels:BaseSettings.Instance}" />
+        <Binding Source="{x:Static viewModels:DataBinding.Instance}" />
     </Window.DataContext>
 
     

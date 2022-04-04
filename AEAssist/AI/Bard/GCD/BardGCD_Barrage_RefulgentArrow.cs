@@ -11,11 +11,11 @@ namespace AEAssist.AI
     /// </summary>
     public class BardGCD_Barrage_RefulgentArrow : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (!Core.Me.HasAura(AurasDefine.Barrage))
-                return false;
-            return true;
+                return -1;
+            return 0;
         }
 
         public async Task<SpellData> Run()

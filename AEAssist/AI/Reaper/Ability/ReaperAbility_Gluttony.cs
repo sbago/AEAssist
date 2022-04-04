@@ -10,34 +10,36 @@ namespace AEAssist.AI.Reaper.Ability
 {
     public class ReaperAbility_Gluttony : IAIHandler
     {
-        public bool Check(SpellData lastSpell)
+        public int Check(SpellData lastSpell)
         {
             if (!SpellsDefine.Gluttony.IsReady())
-                return false;
+                return -1;
             if (AIRoot.Instance.CloseBuff)
-                return false;
+                return -2;
             if (Core.Me.HasAura(AurasDefine.SoulReaver))
-                return false;
+                return -3;
             if (Core.Me.HasAura(AurasDefine.Enshrouded))
-                return false;
+                return -4;
             if(TimeHelper.Now() - AIRoot.Instance.ReaperBattleData.EnshroundTime < 3000)
-                return false;
+                return -5;
             // 死亡祭祀
             if (Core.Me.HasAura(AurasDefine.BloodsownCircle))
-                return false;
+                return -6;
             // 死亡祭品
             if (Core.Me.HasAura(AurasDefine.ImmortalSacrifice))
             {
-                return false;
+                return -7;
             }
             if (ActionResourceManager.Reaper.SoulGauge < 50)
-                return false;
+                return -8;
             // 可以打附体,就不打暴食了
-            if ( ReaperSpellHelper.ReadyToEnshroud()) return false;
+            var ret = ReaperSpellHelper.ReadyToEnshroud();
+            if (ret >= 0)
+                return -9;
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
-                return false;
+                return -10;
 
-            return true;
+            return 0;
         }
 
         public async Task<SpellData> Run()
