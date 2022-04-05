@@ -43,8 +43,19 @@ namespace AEAssist.AI
 
 
         private Dictionary<string, long> lastNoticeTime = new Dictionary<string, long>();
-        
-        
+
+        public struct SpellHistory
+        {
+            public uint SpellId;
+            public long CastTime;
+            public string Name;
+        }
+
+        public Queue<SpellHistory> GCDSpellHistory = new Queue<SpellHistory>();
+        public Queue<SpellHistory> AbilitySpellHistory = new Queue<SpellHistory>();
+        public Dictionary<uint, long> SpellLastCastTime = new Dictionary<uint, long>();
+
+
         public bool Stop
         {
             get => AEAssist.DataBinding.Instance.Stop;
@@ -67,6 +78,11 @@ namespace AEAssist.AI
             BardBattleData = new BardBattleData();
             ReaperBattleData = new ReaperBattleData();
             AEAssist.DataBinding.Instance.Reset();
+            
+            GCDSpellHistory.Clear();
+            AbilitySpellHistory.Clear();
+            SpellLastCastTime.Clear();
+            
             ClearBattleData = true;
             if (CanNotice("Clear", 2000))
                 LogHelper.Debug("Clear battle data");
@@ -80,6 +96,7 @@ namespace AEAssist.AI
             if (!ClearBattleData)
             {
                 BattleData.Update(timeNow);
+                CheckIfNeedClearHistory();
             }
             
           
@@ -139,6 +156,14 @@ namespace AEAssist.AI
                 if (ret != null)
                 {
                     GUIHelper.ShowInfo("Cast GCD: " + ret.LocalizedName, 100);
+                    GCDSpellHistory.Enqueue(new SpellHistory
+                    {
+                        SpellId = ret.Id,
+                        CastTime = timeNow,
+                        Name = ret.LocalizedName
+                    });
+                    SpellLastCastTime[ret.Id] = timeNow;
+                    
                     if (BattleData.lastGCDSpell == null)
                         CountDownHandler.Instance.Close();
                     BattleData.lastGCDSpell = ret;
@@ -155,6 +180,13 @@ namespace AEAssist.AI
                 if (ret != null)
                 {
                     GUIHelper.ShowInfo("Cast Ability: " + ret.LocalizedName, 100);
+                    AbilitySpellHistory.Enqueue(new SpellHistory
+                    {
+                        SpellId = ret.Id,
+                        CastTime = timeNow,
+                        Name = ret.LocalizedName
+                    });
+                    SpellLastCastTime[ret.Id] = timeNow;
                     BattleData.maxAbilityTimes--;
                     //LogHelper.Info($"剩余使用能力技能次数: {_maxAbilityTimes}");
                 }
@@ -210,6 +242,18 @@ namespace AEAssist.AI
 
             lastNoticeTime[key] = now;
             return true;
+        }
+
+        void CheckIfNeedClearHistory()
+        {
+            while (GCDSpellHistory.Count >= 50)
+            {
+                GCDSpellHistory.Dequeue();
+            }
+            while (AbilitySpellHistory.Count >= 50)
+            {
+                AbilitySpellHistory.Dequeue();
+            }
         }
     }
 }

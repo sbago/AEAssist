@@ -49,7 +49,7 @@ namespace AEAssist.Gamelog
                 Content = content
             });
             if (SettingMgr.GetSetting<GeneralSettings>().ShowGameLog)
-                LogHelper.Debug($"GameLog==> MessageType:{msgType.ToString()} Content:{content}");
+                LogHelper.Info($"GameLog==> MessageType:{msgType.ToString()} Content:{content}");
         }
 
         private void MessageRecevied(object sender, ChatEventArgs e)

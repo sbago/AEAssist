@@ -1,10 +1,12 @@
-﻿using System.Windows.Media;
+﻿using System.Diagnostics;
+using System.Windows.Media;
 using ff14bot.Helpers;
 
 namespace AEAssist
 {
     public static class LogHelper
     {
+        [Conditional("DEBUG")]
         public static void Debug(string msg)
         {
             Logging.Write($"[AEAssist DEBUG] {msg}");

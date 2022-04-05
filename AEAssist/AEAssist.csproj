@@ -27,11 +27,12 @@
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
         <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
+        <Optimize>false</Optimize>
         <OutputPath>bin\Release\</OutputPath>
         <DefineConstants>TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
+        <DebugSymbols>true</DebugSymbols>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="GreyMagic, Version=1.0.60.0, Culture=neutral, PublicKeyToken=260525fa2b0e778a">
@@ -157,6 +158,7 @@
         <Compile Include="Define\PotionData.cs" />
         <Compile Include="Define\SongData.cs" />
         <Compile Include="Gamelog\AEGamelogManager.cs" />
+        <Compile Include="Helper\SpellHistoryHelper.cs" />
         <Compile Include="Rotations\ReaperRotation.cs" />
         <Compile Include="Setting\Setting\HotkeySetting.cs" />
         <Compile Include="Setting\Setting\ReaperSettings.cs" />

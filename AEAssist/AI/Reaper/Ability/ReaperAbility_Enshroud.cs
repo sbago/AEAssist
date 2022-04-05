@@ -23,7 +23,6 @@ namespace AEAssist.AI.Reaper.Ability
         {
             if (await SpellHelper.CastAbility(SpellsDefine.Enshroud, Core.Me))
             {
-                AIRoot.Instance.ReaperBattleData.EnshroundTime = TimeHelper.Now();
                 return SpellsDefine.Enshroud;
             }
 

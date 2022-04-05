@@ -27,7 +27,7 @@ namespace AEAssist.AI.Reaper.Ability
                 return -5;
             }
 
-            if(TimeHelper.Now() - AIRoot.Instance.ReaperBattleData.EnshroundTime < 3000)
+            if(TimeHelper.Now() - SpellHistoryHelper.GetLastSpellTime(SpellsDefine.Enshroud.Id) < 3000)
                 return -6;
             if (Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -7;

@@ -16,7 +16,8 @@ namespace AEAssist.AI.Reaper.GCD
 
         public async Task<SpellData> Run()
         {
-            if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer 
+            // DoubleEnshroudPrefer 填充
+            if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer
                 && Core.Me.ContainMyAura(AurasDefine.Enshrouded))
             {
                 if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 5, 5))
