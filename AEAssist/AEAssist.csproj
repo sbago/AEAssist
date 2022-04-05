@@ -152,11 +152,12 @@
         <Compile Include="AI\Reaper\ReaperBattleData.cs" />
         <Compile Include="AI\Reaper\ReaperSpellHelper.cs" />
         <Compile Include="DataBinding\DebugCenter.cs" />
+        <Compile Include="Define\DataStruct\CircleList.cs" />
         <Compile Include="Define\HotkeyData.cs" />
         <Compile Include="Define\PotionData.cs" />
         <Compile Include="Define\SongData.cs" />
         <Compile Include="Gamelog\AEGamelogManager.cs" />
-        <Compile Include="Job\ReaperRotation.cs" />
+        <Compile Include="Rotations\ReaperRotation.cs" />
         <Compile Include="Setting\Setting\HotkeySetting.cs" />
         <Compile Include="Setting\Setting\ReaperSettings.cs" />
         <Compile Include="TriggerSystem\ITriggerActionHandler.cs" />
@@ -309,7 +310,6 @@
         <Compile Include="AI\AIRoot.cs" />
         <Compile Include="AI\CountDownHandler.cs" />
         <Compile Include="AI\TargetMgr.cs" />
-        <Compile Include="DataStruct\CircleList.cs" />
         <Compile Include="Define\AurasDefine.cs" />
         <Compile Include="Define\SpellsDefine.cs" />
         <Compile Include="Helper\AuraHelper.cs" />
@@ -322,11 +322,11 @@
         <Compile Include="Helper\TargetHelper.cs" />
         <Compile Include="Helper\TimeHelper.cs" />
         <Compile Include="Helper\TTKHelper.cs" />
-        <Compile Include="Job\BardRotation.cs" />
-        <Compile Include="Job\Rotation\DefaultRotation.cs" />
-        <Compile Include="Job\Rotation\IRotation.cs" />
-        <Compile Include="Job\Rotation\RotationAttribute.cs" />
-        <Compile Include="Job\Rotation\RotationManager.cs" />
+        <Compile Include="Rotations\BardRotation.cs" />
+        <Compile Include="Rotations\Core\DefaultRotation.cs" />
+        <Compile Include="Rotations\Core\IRotation.cs" />
+        <Compile Include="Rotations\Core\RotationAttribute.cs" />
+        <Compile Include="Rotations\Core\RotationManager.cs" />
         <Compile Include="MainWindow.xaml.cs">
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>

@@ -86,7 +86,7 @@ namespace AEAssist.Helper
         {
             var item = InventoryManager.FilledSlots.FirstOrDefault(s => s.RawItemId == potionRawId);
 
-            if (item == null || !item.CanUse()) return false;
+            if (item == null || !item.CanUse(Core.Me)) return false;
 
             return true;
         }

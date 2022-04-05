@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using AEAssist.AI;
 using AEAssist;
 using ff14bot.Enums;
 using ff14bot.Managers;
-using QuickGraph.Collections;
 
 namespace AEAssist.Gamelog
 {
@@ -17,25 +17,39 @@ namespace AEAssist.Gamelog
             public string Content;
         }
 
-        public readonly Queue<GameLog> GameLogBuffers = new Queue<GameLog>();
+        public readonly QuickGraph.Collections.Queue<GameLog> GameLogBuffers = new QuickGraph.Collections.Queue<GameLog>();
+        
+        // private HashSet<int> MuteType = new HashSet<int>()
+        // {
+        //     4139,4400,4777,4905,4398,10283,
+        // }
 
         public void Init()
         {
             GamelogManager.MessageRecevied += MessageRecevied;
         }
 
+        public void CheckLog()
+        {
+            while (this.GameLogBuffers.Count >= 20)
+            {
+                this.GameLogBuffers.Dequeue();
+            }
+        }
+
         void AddBuffers(int msgType, string content)
         {
             if (msgType >= 10 && msgType < (int) MessageType.Echo)
+                return;
+            if (msgType > 1000)
                 return;
             GameLogBuffers.Enqueue(new GameLog
             {
                 MsgType = msgType,
                 Content = content
             });
-            LogHelper.Debug($"GameLog==> MessageType:{msgType.ToString()} Content:{content}");
-            if (this.GameLogBuffers.Count >= 15)
-                this.GameLogBuffers.Dequeue();
+            if (SettingMgr.GetSetting<GeneralSettings>().ShowGameLog)
+                LogHelper.Debug($"GameLog==> MessageType:{msgType.ToString()} Content:{content}");
         }
 
         private void MessageRecevied(object sender, ChatEventArgs e)

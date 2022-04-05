@@ -24,7 +24,9 @@ namespace AEAssist.AI.Reaper.Ability
                     return -4;
                 if (Core.Me.HasAura(AurasDefine.Enshrouded))
                 {
-                    if (TimeHelper.Now() - AIRoot.Instance.ReaperBattleData.EnshroundTime < 2000)
+                    var delta = TimeHelper.Now() - AIRoot.Instance.ReaperBattleData.EnshroundTime;
+                    LogHelper.Debug($"{nameof(ReaperAbility_ArcaneCircle)}: {delta}");
+                    if (delta < 2000)
                         return -5;
                 }
             }

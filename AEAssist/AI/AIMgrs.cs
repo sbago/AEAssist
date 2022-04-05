@@ -53,10 +53,10 @@ namespace AEAssist.AI
                 {
                     return await v.Run();
                 }
-                else
-                {
-                    LogHelper.Debug($"Check:{v.GetType().Name } ret: {ret}");
-                }
+                // else
+                // {
+                //     LogHelper.Debug($"Check:{v.GetType().Name } ret: {ret}");
+                // }
             }
 
             return null;

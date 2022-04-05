@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist;
+using AEAssist.Gamelog;
 using AEAssist.Helper;
 using AEAssist.TriggerSystem;
 using AETriggers.TriggerModel;
@@ -57,6 +58,7 @@ namespace AEAssist.AI
             // }
 
             CalTriggerLine();
+            AEGamelogManager.Instance.CheckLog();
 
            // CalRangeEnemy();
         }

@@ -127,6 +127,8 @@ namespace AEAssist.AI
             }
             else
             {
+                LogHelper.Debug(
+                    $"NoAbility==> Need:{needDura} Times:{BattleData.maxAbilityTimes} Delta: {coolDown - delta}");
                 canUseAbility = false;
             }
 
