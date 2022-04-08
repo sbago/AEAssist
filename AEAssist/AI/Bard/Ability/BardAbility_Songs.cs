@@ -93,7 +93,14 @@ namespace AEAssist.AI
 
                         return spell;
                     }
-                    return null;   
+
+                    if (remainTime <= ConstValue.SongsTimeLeftCheckWhenCloseBuff)
+                    {
+                        spell = GetSongsByOrder(null,out forceNextSong);
+                        return spell;
+                    }
+
+                    return null;
                 }
                 else
                 {

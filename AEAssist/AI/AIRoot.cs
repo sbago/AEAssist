@@ -44,17 +44,6 @@ namespace AEAssist.AI
 
         private Dictionary<string, long> lastNoticeTime = new Dictionary<string, long>();
 
-        public struct SpellHistory
-        {
-            public uint SpellId;
-            public long CastTime;
-            public string Name;
-        }
-
-        public Queue<SpellHistory> GCDSpellHistory = new Queue<SpellHistory>();
-        public Queue<SpellHistory> AbilitySpellHistory = new Queue<SpellHistory>();
-        public Dictionary<uint, long> SpellLastCastTime = new Dictionary<uint, long>();
-
 
         public bool Stop
         {
@@ -79,9 +68,7 @@ namespace AEAssist.AI
             ReaperBattleData = new ReaperBattleData();
             AEAssist.DataBinding.Instance.Reset();
             
-            GCDSpellHistory.Clear();
-            AbilitySpellHistory.Clear();
-            SpellLastCastTime.Clear();
+            SpellHistoryMgr.Instance.Clear();
             
             ClearBattleData = true;
             if (CanNotice("Clear", 2000))
@@ -96,7 +83,7 @@ namespace AEAssist.AI
             if (!ClearBattleData)
             {
                 BattleData.Update(timeNow);
-                CheckIfNeedClearHistory();
+                SpellHistoryMgr.Instance.CheckIfNeedClearHistory();
             }
             
           
@@ -137,35 +124,37 @@ namespace AEAssist.AI
             var delta = timeNow - BattleData.lastCastTime;
             var coolDown = GetGCDDuration();
 
-            var needDura = SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs + SettingMgr.GetSetting<GeneralSettings>().UserLatencyOffset;
-            if (BattleData.maxAbilityTimes > 0 && coolDown - delta > needDura)
+            bool canUseGCD = CanUseGCD();
+            
+            if (!canUseGCD && BattleData.maxAbilityTimes > 0 && coolDown - delta >=coolDown * 0.3f)
             {
                 canUseAbility = true;
             }
             else
             {
-                LogHelper.Debug(
-                    $"NoAbility==> Need:{needDura} Times:{BattleData.maxAbilityTimes} Delta: {coolDown - delta}");
+                // LogHelper.Debug(
+                //     $"NoAbility==> Need:{needDura} Times:{BattleData.maxAbilityTimes} Delta: {coolDown - delta}");
                 canUseAbility = false;
             }
 
-            if (CanUseGCD())
+            if (canUseGCD)
             {
                 //todo: check gcd
                 var ret = await AIMgrs.Instance.HandleGCD(Core.Me.CurrentJob, BattleData.lastGCDSpell);
                 if (ret != null)
                 {
                     GUIHelper.ShowInfo("Cast GCD: " + ret.LocalizedName, 100);
-                    GCDSpellHistory.Enqueue(new SpellHistory
+                    var history = new SpellHistory
                     {
                         SpellId = ret.Id,
                         CastTime = timeNow,
                         Name = ret.LocalizedName
-                    });
-                    SpellLastCastTime[ret.Id] = timeNow;
+                    };
+                    SpellHistoryMgr.Instance.AddGCDHistory(history);
                     
                     if (BattleData.lastGCDSpell == null)
                         CountDownHandler.Instance.Close();
+                    BattleData.lastGCDIndex++;
                     BattleData.lastGCDSpell = ret;
                     BattleData.lastCastTime = timeNow;
                     BattleData.maxAbilityTimes = SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD;
@@ -180,13 +169,13 @@ namespace AEAssist.AI
                 if (ret != null)
                 {
                     GUIHelper.ShowInfo("Cast Ability: " + ret.LocalizedName, 100);
-                    AbilitySpellHistory.Enqueue(new SpellHistory
+                    var history =new SpellHistory
                     {
                         SpellId = ret.Id,
                         CastTime = timeNow,
                         Name = ret.LocalizedName
-                    });
-                    SpellLastCastTime[ret.Id] = timeNow;
+                    };
+                    SpellHistoryMgr.Instance.AddAbilityHistory(history);
                     BattleData.maxAbilityTimes--;
                     //LogHelper.Info($"剩余使用能力技能次数: {_maxAbilityTimes}");
                 }
@@ -242,18 +231,6 @@ namespace AEAssist.AI
 
             lastNoticeTime[key] = now;
             return true;
-        }
-
-        void CheckIfNeedClearHistory()
-        {
-            while (GCDSpellHistory.Count >= 50)
-            {
-                GCDSpellHistory.Dequeue();
-            }
-            while (AbilitySpellHistory.Count >= 50)
-            {
-                AbilitySpellHistory.Dequeue();
-            }
         }
     }
 }

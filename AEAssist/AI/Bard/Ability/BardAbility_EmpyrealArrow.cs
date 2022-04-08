@@ -13,22 +13,9 @@ namespace AEAssist.AI
         {
             if (!SpellsDefine.EmpyrealArrow.IsReady())
                 return -1;
-            var currSong = ActionResourceManager.Bard.ActiveSong;
-            var remainTime = ActionResourceManager.Bard.Timer.TotalMilliseconds;
-            switch (currSong)
-            {
-                case ActionResourceManager.Bard.BardSong.None:
-                    return -2;
-                case ActionResourceManager.Bard.BardSong.MagesBallad:
-                    if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_MB_TimeLeftForSwitch)
-                        return -3;
-                    break;
-                case ActionResourceManager.Bard.BardSong.ArmysPaeon:
-                    if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_AP_TimeLeftForSwitch)
-                        return -4;
-                    break;
-            }
-
+            if (BardSpellHelper.PrepareSwitchSong())
+                return -2;
+            
             return 0;
         }
 

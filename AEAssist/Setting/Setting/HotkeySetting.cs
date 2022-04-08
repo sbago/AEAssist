@@ -21,14 +21,22 @@ namespace AEAssist
         {
             StopKey = Key.F8.ToString();
             CloseBuffKey = Key.F9.ToString();
-
+            this.UseHotkey = true;
             ResetHotkeyName();
         }
 
         public void ResetHotkeyName()
         {
-            StopBtnName = $"停手 {StopKey}";
-            CloseBuffBtnName = $"关闭爆发 {CloseBuffKey}";
+            if (UseHotkey)
+            {
+                StopBtnName = $"停手 {StopKey}";
+                CloseBuffBtnName = $"关闭爆发 {CloseBuffKey}";
+            }
+            else
+            {
+                StopBtnName = $"停手";
+                CloseBuffBtnName = $"关闭爆发";
+            }
         }
 
         [JsonIgnore] private List<Hotkey> Hotkeys;
@@ -50,6 +58,9 @@ namespace AEAssist
                     Reset();
                 //  LogHelper.Info("Hotkey_Stop: " + this.StopKey);
                 //  LogHelper.Info("Hotkey_CloseBuff: " + this.CloseBuffKey);
+
+                if (!UseHotkey)
+                    return;
 
                 var stopKey = (Keys) Enum.Parse(typeof(Keys), this.StopKey);
                 var closeBuffKey = (Keys) Enum.Parse(typeof(Keys), this.CloseBuffKey);
@@ -87,5 +98,19 @@ namespace AEAssist
 
         public string StopKey { get; set; }
         public string CloseBuffKey { get; set; }
+        
+        private bool _UseHotkey = true;
+        public bool UseHotkey {
+            get
+            {
+                return _UseHotkey;
+            }
+            set
+            {
+                _UseHotkey = value;
+                RegisHotkey();
+                ResetHotkeyName();
+            }
+        } 
     }
 }

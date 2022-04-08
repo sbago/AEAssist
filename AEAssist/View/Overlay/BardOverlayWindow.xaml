@@ -114,6 +114,14 @@
                                   IsChecked="{Binding CloseBuff,Mode=TwoWay}" />
 
                         <CheckBox Grid.Row="1" HorizontalContentAlignment="Center"
+                                  Content="AOE"
+                                  FontSize="12"
+                                  Width="80"
+                                  Height="30"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding UseAOE,Mode=TwoWay}" />
+                        
+                        <CheckBox Grid.Row="1" HorizontalContentAlignment="Center"
                                   Content="爆发药"
                                   FontSize="12"
                                   Width="80"

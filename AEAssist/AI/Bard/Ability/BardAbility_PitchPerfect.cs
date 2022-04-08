@@ -27,8 +27,7 @@ namespace AEAssist.AI
             if (ActionResourceManager.Bard.Repertoire == 3)
                 return 2;
 
-            var lat = SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs +
-                      SettingMgr.GetSetting<GeneralSettings>().UserLatencyOffset;
+            var lat = SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
             
             // 诗心两层,马上要跳诗心了,九天又转好,两个诗心也打出去
             if (ActionResourceManager.Bard.Repertoire == 2

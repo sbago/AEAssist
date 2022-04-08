@@ -74,4 +74,3 @@ D:\Github\AEAssist\AEAssist\obj\Debug\View\Overlay\ReaperOverlay.baml
 D:\Github\AEAssist\AEAssist\obj\Debug\View\TriggerLineWindow.baml
 D:\Github\AEAssist\AEAssist\obj\Debug\View\ReaperSettingView.g.cs
 D:\Github\AEAssist\AEAssist\obj\Debug\View\ReaperSettingView.baml
-D:\Github\AEAssist\AEAssist\obj\Debug\AEAssist.csproj.CopyComplete

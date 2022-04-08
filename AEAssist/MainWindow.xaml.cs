@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Forms;
-using MaterialDesignExtensions.Controls;
 using MessageBox = System.Windows.MessageBox;
 
 namespace AEAssist

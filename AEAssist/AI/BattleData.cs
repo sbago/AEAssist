@@ -22,7 +22,9 @@ namespace AEAssist.AI
         public SpellData lastGCDSpell;
         public SpellData lastAbilitySpell;
         public int maxAbilityTimes ;
-        
+
+        public int lastGCDIndex;
+
         public long battleStartTime;
         public long BattleTime { get; private set; }
 

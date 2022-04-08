@@ -40,6 +40,8 @@ namespace AEAssist.Helper
         /// <returns></returns>
         public static bool CheckNeedUseAOE(int targetRange,int damageRange,int needCount = 3)
         {
+            if (!DataBinding.Instance.UseAOE)
+                return false;
             var count = GetNearbyEnemyCount(Core.Me.CurrentTarget, targetRange, damageRange);
 
             if (count >= needCount)
@@ -64,6 +66,8 @@ namespace AEAssist.Helper
         
         public static bool CheckNeedUseAOE(GameObject target, int targetRange,int damageRange,int needCount = 3)
         {
+            if (!DataBinding.Instance.UseAOE)
+                return false;
             var count = GetNearbyEnemyCount(target, targetRange, damageRange);
 
             if (count >= needCount)

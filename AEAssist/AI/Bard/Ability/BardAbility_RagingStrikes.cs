@@ -16,7 +16,7 @@ namespace AEAssist.AI
                 return -2;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return -3;
-            if (SpellsDefine.TheWanderersMinuet.IsUnlock() && !Core.Me.ContainMyAura(AurasDefine.TheWanderersMinuet))
+            if (SpellsDefine.TheWanderersMinuet.IsUnlock() && !SpellsDefine.TheWanderersMinuet.RecentlyUsed() && !Core.Me.ContainMyAura(AurasDefine.TheWanderersMinuet))
                 return -4;
             return 0;
         }

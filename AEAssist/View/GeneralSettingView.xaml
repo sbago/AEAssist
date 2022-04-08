@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:viewModels="clr-namespace:AEAssist"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="350" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -51,6 +51,14 @@
                         Content="显示GameLog(编辑时间轴必备)" Width="200" Height="25" Margin="10"
                         HorizontalAlignment="Left"
                         IsChecked="{Binding GeneralSettings.ShowGameLog}"/>
+                <CheckBox Name="ShowAbilityDebug"
+                          Content="显示能力技判定Log(调试用)" Width="200" Height="25" Margin="10"
+                          HorizontalAlignment="Left"
+                          IsChecked="{Binding GeneralSettings.ShowAbilityDebugLog}"/>
+                <CheckBox Name="UseHotkey"
+                          Content="使用快捷键" Width="200" Height="25" Margin="10"
+                          HorizontalAlignment="Left"
+                          IsChecked="{Binding HotkeySetting.UseHotkey}"/>
                 <!-- <Button Name="LoadTriggerLine" -->
                 <!--         Content="时间轴设置" Width="150" Height="25" Margin="10" -->
                 <!--         HorizontalAlignment="Left" -->
@@ -68,10 +76,6 @@
 
         <TabItem Header="基本设置">
             <StackPanel HorizontalAlignment="Left" Margin="10">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="平均延迟" Width="150" />
-                    <TextBox Width="150" Text="{Binding GeneralSettings.UserLatencyOffset,Mode=TwoWay}" />
-                </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="能力技窗口时间" Width="150" />
                     <TextBox Width="150" Text="{Binding GeneralSettings.AnimationLockMs,Mode=TwoWay}" />

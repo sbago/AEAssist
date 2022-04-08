@@ -152,6 +152,7 @@
         <Compile Include="AI\Reaper\Reaper_AIPriorityQueue.cs" />
         <Compile Include="AI\Reaper\ReaperBattleData.cs" />
         <Compile Include="AI\Reaper\ReaperSpellHelper.cs" />
+        <Compile Include="AI\SpellHistoryMgr.cs" />
         <Compile Include="DataBinding\DebugCenter.cs" />
         <Compile Include="Define\DataStruct\CircleList.cs" />
         <Compile Include="Define\HotkeyData.cs" />
@@ -361,9 +362,6 @@
       <PackageReference Include="MaterialDesignThemes" Version="4.5.0-ci125" />
       <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
       <PackageReference Include="System.ObjectModel" Version="4.3.0" />
-    </ItemGroup>
-    <ItemGroup>
-      <ReferencePathWithRefAssemblies Update="C:\Users\Administrator\.nuget\packages\materialdesignextensions\4.0.0-a02\lib\net452\MaterialDesignExtensions.dll" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

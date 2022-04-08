@@ -268,15 +268,14 @@ namespace AEAssist.Define
 
         public static bool Prepare2BurstBuffs(int time = 10000)
         {
-            if (SpellsDefine.TheWanderersMinuet.IsReady())
+            if (AIRoot.Instance.CloseBuff)
                 return false;
-            
             if (SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds < time)
             {
                 return true;
             }
 
-            if (!Core.Me.HasAura(AurasDefine.RagingStrikes))
+            if (!SpellsDefine.RagingStrikes.RecentlyUsed() && !Core.Me.HasAura(AurasDefine.RagingStrikes))
             {
                 return false;
             }
@@ -301,20 +300,23 @@ namespace AEAssist.Define
         public static void RecordUsingRagingStrikesTime()
         {
             AIRoot.Instance.BardBattleData.lastCastRagingStrikesTime = TimeHelper.Now();
+            AIRoot.Instance.BardBattleData.lastCastRagingStrikesGCDIndex = AIRoot.Instance.BattleData.lastGCDIndex;
         }
 
         public static bool CheckCanUseBuffs()
         {
             int delayGCD = SettingMgr.GetSetting<BardSettings>().BuffsDelay2GCD ? 2 : 1;
+            int gcdActionTime = SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
 
             var currSong = ActionResourceManager.Bard.ActiveSong;
             if (currSong == ActionResourceManager.Bard.BardSong.None)
                 return false;
             
-            if (Core.Me.HasMyAura(AurasDefine.RagingStrikes))
+            if (SpellsDefine.RagingStrikes.RecentlyUsed() || Core.Me.HasMyAura(AurasDefine.RagingStrikes))
             {
-                if (TimeHelper.Now() - AIRoot.Instance.BardBattleData.lastCastRagingStrikesTime >=
-                    AIRoot.Instance.GetGCDDuration() * delayGCD)
+                if (AIRoot.Instance.BattleData.lastGCDIndex 
+                    - AIRoot.Instance.BardBattleData.lastCastRagingStrikesGCDIndex >
+                     delayGCD )
                 {
                     return true;
                 }
@@ -323,6 +325,11 @@ namespace AEAssist.Define
             }
             
             if (SpellsDefine.RagingStrikes.IsReady())
+            {
+                return false;
+            }
+
+            if (SpellsDefine.RadiantFinale.IsReady() && SpellsDefine.BattleVoice.Cooldown.TotalMilliseconds < 15000)
             {
                 return false;
             }
@@ -360,6 +367,66 @@ namespace AEAssist.Define
             }
 
             return false;
+        }
+
+        public static bool PrepareSwitchSong()
+        {
+            var currSong = ActionResourceManager.Bard.ActiveSong;
+            var remainTime = ActionResourceManager.Bard.Timer.TotalMilliseconds;
+            
+            
+            if (!AIRoot.Instance.CloseBuff)
+            {
+                if (AIRoot.Instance.BardBattleData.nextSong == ActionResourceManager.Bard.BardSong.None 
+                    && currSong != ActionResourceManager.Bard.BardSong.None 
+                    && AIRoot.Instance.BardBattleData.nextSongDuration != 0)
+                {
+                    if (remainTime <= 45000 - AIRoot.Instance.BardBattleData.nextSongDuration)
+                    {
+                        return true;
+                    }
+                }
+                switch (currSong)
+                {
+                    case ActionResourceManager.Bard.BardSong.None:
+                        return true;
+                    case ActionResourceManager.Bard.BardSong.MagesBallad:
+                        if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_MB_TimeLeftForSwitch)
+                            return true;
+                        break;
+                    case ActionResourceManager.Bard.BardSong.ArmysPaeon:
+                        if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_AP_TimeLeftForSwitch)
+                            return true;
+                        break;
+                    case ActionResourceManager.Bard.BardSong.WanderersMinuet:
+                        if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_WM_TimeLeftForSwitch)
+                            return true;
+                        break;
+                }
+
+                return false;
+            }
+            else
+            {
+                // 关爆发的时候,让歌唱完
+                if (currSong != ActionResourceManager.Bard.BardSong.None)
+                {
+                    if(AIRoot.Instance.BardBattleData.nextSong == ActionResourceManager.Bard.BardSong.None
+                       && AIRoot.Instance.BardBattleData.nextSongDuration != 0)
+                    {
+                        if (remainTime <= 45000 - AIRoot.Instance.BardBattleData.nextSongDuration)
+                        {
+                            return true;
+                        }
+                        
+                    }
+                    if (remainTime <= ConstValue.SongsTimeLeftCheckWhenCloseBuff)
+                        return true;
+                    return false;
+                }
+
+                return true;
+            }
         }
     }
 }

@@ -24,6 +24,7 @@ namespace AEAssist
             this.UsePotionCountDown = 1500;
             this.AnimationLockMs = 500;
             this.ShowGameLog = true;
+            this.ShowAbilityDebugLog = false;
         }
 
         public int UserLatencyOffset{ get; set; } // 玩家预计延迟
@@ -43,5 +44,6 @@ namespace AEAssist
         public long UsePotionCountDown{ get; set; } // 倒计时多少ms的时候使用爆发药
         
         public bool ShowGameLog { get; set; }
+        public bool ShowAbilityDebugLog { get; set; }
     }
 }

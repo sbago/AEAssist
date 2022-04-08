@@ -2,6 +2,7 @@
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
+using ff14bot.Managers;
 using ff14bot.Objects;
 
 namespace AEAssist.AI
@@ -10,12 +11,19 @@ namespace AEAssist.AI
     {
         public int Check(SpellData lastSpell)
         {
-            if (lastSpell == SpellsDefine.Bloodletter)
+            if (SpellsDefine.Bloodletter.RecentlyUsed())
                 return -1;
             if (!SpellsDefine.Bloodletter.IsChargeReady())
                 return -2;
-            if (SpellsDefine.Bloodletter.Charges < 1)
-                return -3;
+
+            if (SettingMgr.GetSetting<GeneralSettings>().ShowAbilityDebugLog)
+            {
+                LogHelper.Debug(
+                    $"Bloodletter: {SpellsDefine.Bloodletter.Charges} Max:{SpellsDefine.Bloodletter.MaxCharges}");
+            }
+
+            if (AIRoot.Instance.CloseBuff)
+                return 2;
             
             // 起手爆发期间, 失血箭尽量打进团辅
 
@@ -24,6 +32,12 @@ namespace AEAssist.AI
 
             if (BardSpellHelper.Prepare2BurstBuffs())
                 return -4;
+            
+            // 军神期间,小于2.5 不用失血
+            if (SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds < 45000
+                 && ActionResourceManager.Bard.ActiveSong != ActionResourceManager.Bard.BardSong.MagesBallad
+                && SpellsDefine.Bloodletter.Charges < SpellsDefine.Bloodletter.MaxCharges - 0.6f)
+                return -5;
             
             return 0;
         }

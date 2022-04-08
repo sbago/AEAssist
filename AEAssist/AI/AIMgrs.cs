@@ -53,10 +53,11 @@ namespace AEAssist.AI
                 {
                     return await v.Run();
                 }
-                // else
-                // {
-                //     LogHelper.Debug($"Check:{v.GetType().Name } ret: {ret}");
-                // }
+                else if(SettingMgr.GetSetting<GeneralSettings>().ShowAbilityDebugLog)
+                {
+                    if(v.GetType() == typeof(BardAbility_Bloodletter))
+                    LogHelper.Debug($"{(AIRoot.Instance.BattleData.BattleTime / 1000.0f):#0.000}  Check:{v.GetType().Name } ret: {ret}");
+                }
             }
 
             return null;

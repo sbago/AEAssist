@@ -15,7 +15,8 @@ namespace AEAssist.AI
                 return -1;
             if (!SpellsDefine.Bloodletter.IsReady())
                 return -2;
-            if (SpellsDefine.Bloodletter.Charges >= SpellsDefine.Bloodletter.MaxCharges)
+            // 接近溢出 要优先用
+            if (SpellsDefine.Bloodletter.Charges >= SpellsDefine.Bloodletter.MaxCharges - SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs)
                 return 0;
             return -3;
         }

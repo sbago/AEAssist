@@ -24,6 +24,7 @@ namespace AEAssist
             this.UseHarpe = false;
             this.UseSoulGauge = true;
             this.DoubleEnshroudPrefer = true;
+            this.UseAOE = true;
         }
 
         public bool CloseBuff{ get; set; }
@@ -33,6 +34,8 @@ namespace AEAssist
         public bool AutoAttack { get; set; } = false;
 
         public bool UseTrueNorth { get; set; }
+
+        public bool UseAOE { get; set; } = true;
 
 
         #region Bard

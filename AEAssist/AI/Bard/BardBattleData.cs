@@ -7,6 +7,7 @@ namespace AEAssist.Define
         public bool lastIronJawWithBuff;
         public long lastCastRagingStrikesTime;
         public long lastCastSongTime;
+        public int lastCastRagingStrikesGCDIndex;
         
         #region NextSongs
 
