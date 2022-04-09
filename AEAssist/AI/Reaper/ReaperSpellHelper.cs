@@ -136,6 +136,9 @@ namespace AEAssist.AI.Reaper
         {
             if (!SpellsDefine.PlentifulHarvest.IsUnlock())
                 return -200;
+
+            if (SpellsDefine.PlentifulHarvest.RecentlyUsed())
+                return -300;
             
             // 死亡祭祀
             if (Core.Me.HasAura(AurasDefine.BloodsownCircle))
@@ -199,11 +202,11 @@ namespace AEAssist.AI.Reaper
         {
             if (AIRoot.Instance.CloseBuff)
                 return -100;
-            if (Core.Me.HasAura(AurasDefine.Enshrouded))
+            if (SpellsDefine.Enshroud.RecentlyUsed() ||Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -101;
             if (Core.Me.HasAura(AurasDefine.SoulReaver))
                 return -102;
-            if (ActionResourceManager.Reaper.ShroudGauge < 50)
+            if (!SpellsDefine.PlentifulHarvest.RecentlyUsed() && ActionResourceManager.Reaper.ShroudGauge < 50)
                 return -103;
             
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
@@ -215,10 +218,18 @@ namespace AEAssist.AI.Reaper
             
             if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer
                 && ActionResourceManager.Reaper.ShroudGauge < 90
-                && coolDown> 2000
+                && coolDown>2000
                 && coolDown < ConstValue.ReaperDoubleEnshroudMaxCheckTime)
             {
                 return -106;
+            }
+            
+            if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer
+                && ActionResourceManager.Reaper.ShroudGauge < 90
+                && coolDown<=2000
+                && AIRoot.Instance.ReaperBattleData.CurrCombo == ReaperComboStages.InfernalSlice)
+            {
+                return -107;
             }
 
             return 0;

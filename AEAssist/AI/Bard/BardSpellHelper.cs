@@ -299,8 +299,7 @@ namespace AEAssist.Define
 
         public static void RecordUsingRagingStrikesTime()
         {
-            AIRoot.Instance.BardBattleData.lastCastRagingStrikesTime = TimeHelper.Now();
-            AIRoot.Instance.BardBattleData.lastCastRagingStrikesGCDIndex = AIRoot.Instance.BattleData.lastGCDIndex;
+            
         }
 
         public static bool CheckCanUseBuffs()
@@ -315,7 +314,7 @@ namespace AEAssist.Define
             if (SpellsDefine.RagingStrikes.RecentlyUsed() || Core.Me.HasMyAura(AurasDefine.RagingStrikes))
             {
                 if (AIRoot.Instance.BattleData.lastGCDIndex 
-                    - AIRoot.Instance.BardBattleData.lastCastRagingStrikesGCDIndex >
+                    - SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.RagingStrikes.Id) >
                      delayGCD )
                 {
                     return true;

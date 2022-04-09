@@ -20,13 +20,12 @@ namespace AEAssist.AI.Reaper.Ability
                 return -3;
             if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer)
             {
-                if (ActionResourceManager.Reaper.ShroudGauge >= 50 && !Core.Me.HasAura(AurasDefine.Enshrouded))
+                if ((SpellsDefine.PlentifulHarvest.RecentlyUsed() || ActionResourceManager.Reaper.ShroudGauge >= 50) && !Core.Me.HasAura(AurasDefine.Enshrouded))
                     return -4;
-                if (Core.Me.HasAura(AurasDefine.Enshrouded))
+                if (SpellsDefine.Enshroud.RecentlyUsed()|| Core.Me.HasAura(AurasDefine.Enshrouded))
                 {
-                    var delta = TimeHelper.Now() - SpellHistoryHelper.GetLastSpellTime(SpellsDefine.Enshroud.Id);
-                    LogHelper.Debug($"{nameof(ReaperAbility_ArcaneCircle)}: {delta}");
-                    if (delta < 2000)
+                    var delta = AIRoot.Instance.BattleData.lastGCDIndex - SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.Enshroud.Id);
+                    if (delta < 1)
                         return -5;
                 }
             }

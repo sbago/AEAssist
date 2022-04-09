@@ -11,7 +11,7 @@ namespace AEAssist.AI
     {
         public int Check(SpellData lastSpell)
         {
-            if (SpellsDefine.Bloodletter.RecentlyUsed())
+            if (lastSpell == SpellsDefine.Bloodletter)
                 return -1;
             if (!SpellsDefine.Bloodletter.IsChargeReady())
                 return -2;
@@ -34,8 +34,7 @@ namespace AEAssist.AI
                 return -4;
             
             // 军神期间,小于2.5 不用失血
-            if (SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds < 45000
-                 && ActionResourceManager.Bard.ActiveSong != ActionResourceManager.Bard.BardSong.MagesBallad
+            if (ActionResourceManager.Bard.ActiveSong == ActionResourceManager.Bard.BardSong.ArmysPaeon
                 && SpellsDefine.Bloodletter.Charges < SpellsDefine.Bloodletter.MaxCharges - 0.6f)
                 return -5;
             

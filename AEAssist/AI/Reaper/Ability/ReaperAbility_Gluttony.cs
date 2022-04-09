@@ -18,7 +18,7 @@ namespace AEAssist.AI.Reaper.Ability
                 return -2;
             if (Core.Me.HasAura(AurasDefine.SoulReaver))
                 return -3;
-            if (Core.Me.HasAura(AurasDefine.Enshrouded))
+            if (SpellsDefine.Enshroud.RecentlyUsed() ||Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -4;
             if(TimeHelper.Now() - SpellHistoryHelper.GetLastSpellTime(SpellsDefine.Enshroud.Id) < 3000)
                 return -5;

@@ -29,7 +29,7 @@ namespace AEAssist.AI.Reaper.Ability
 
             if(TimeHelper.Now() - SpellHistoryHelper.GetLastSpellTime(SpellsDefine.Enshroud.Id) < 3000)
                 return -6;
-            if (Core.Me.HasAura(AurasDefine.Enshrouded))
+            if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -7;
             if (!AIRoot.Instance.CloseBuff && SpellsDefine.Gluttony.Cooldown.TotalMilliseconds < 10000)
             {

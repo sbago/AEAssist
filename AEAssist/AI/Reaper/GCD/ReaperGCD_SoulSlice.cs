@@ -16,11 +16,16 @@ namespace AEAssist.AI.Reaper.GCD
 
             if (ActionResourceManager.Reaper.SoulGauge > 50)
                 return -2;
+
+            if ((SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.ContainMyAura(AurasDefine.Enshrouded)))
+                return -3;
+            
             return 0;
         }
 
         public async Task<SpellData> Run()
         {
+            // 不是满充能,而且准备附体,先把连击状态打掉
             if(SpellsDefine.SoulSlice.Charges<SpellsDefine.SoulSlice.MaxCharges
             && ReaperSpellHelper.ReadyToEnshroud()>=0)
             {

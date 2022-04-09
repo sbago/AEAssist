@@ -30,9 +30,14 @@ namespace AEAssist.AI
             
             foreach (var v in queue.GCDQueue)
             {
-                if (v.Check(lastGCD)>=0)
+                var ret = v.Check(lastGCD);
+                if (ret>=0)
                 {
                     return await v.Run();
+                }
+                else  if(SettingMgr.GetSetting<GeneralSettings>().ShowAbilityDebugLog)
+                {
+                    LogHelper.Debug($"{(AIRoot.Instance.BattleData.BattleTime / 1000.0f):#0.000}  Check:{v.GetType().Name } ret: {ret}");
                 }
             }
             
@@ -55,7 +60,7 @@ namespace AEAssist.AI
                 }
                 else if(SettingMgr.GetSetting<GeneralSettings>().ShowAbilityDebugLog)
                 {
-                    if(v.GetType() == typeof(BardAbility_Bloodletter))
+                 //   if(v.GetType() == typeof(BardAbility_Bloodletter))
                     LogHelper.Debug($"{(AIRoot.Instance.BattleData.BattleTime / 1000.0f):#0.000}  Check:{v.GetType().Name } ret: {ret}");
                 }
             }

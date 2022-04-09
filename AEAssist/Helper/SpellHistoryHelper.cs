@@ -11,6 +11,12 @@ namespace AEAssist.Helper
             return time;
         }
 
+        public static int GetLastGCDIndex(uint SpellId)
+        {
+            SpellHistoryMgr.Instance.SpellLastCastGCDIndex.TryGetValue(SpellId, out var time);
+            return time;
+        }
+
         /// <summary>
         /// 防止网络延迟
         /// </summary>

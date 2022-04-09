@@ -173,7 +173,8 @@ namespace AEAssist.AI
                     {
                         SpellId = ret.Id,
                         CastTime = timeNow,
-                        Name = ret.LocalizedName
+                        Name = ret.LocalizedName,
+                        GCDIndex = BattleData.lastGCDIndex
                     };
                     SpellHistoryMgr.Instance.AddAbilityHistory(history);
                     BattleData.maxAbilityTimes--;

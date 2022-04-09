@@ -22,7 +22,7 @@ namespace AEAssist.AI.Reaper.GCD
             
             if (!target.ContainMyAura(AurasDefine.DeathsDesign, 10000)
                 && (ActionResourceManager.Reaper.SoulGauge > 50
-                    || ActionResourceManager.Reaper.ShroudGauge > 50))
+                    || ActionResourceManager.Reaper.ShroudGauge > 50 || SpellsDefine.PlentifulHarvest.RecentlyUsed()))
             {
                 return 1;
             }
