@@ -48,5 +48,7 @@ namespace AEAssist
         public bool ShowAbilityDebugLog { get; set; }
 
         public bool ShowToast { get; set; }
+
+        public bool ShowBattleTime { get; set; }
     }
 }

@@ -91,8 +91,8 @@ namespace AEAssist.AI
                 SpellHistoryMgr.Instance.CheckIfNeedClearHistory();
             }
             
-          
-
+            DataBinding.Instance.Update();
+            
             if (Stop)
             {
                 if (Core.Me.CurrentTarget != null)
@@ -169,7 +169,9 @@ namespace AEAssist.AI
                     ret = await AIMgrs.Instance.HandleGCD(Core.Me.CurrentJob, BattleData.lastGCDSpell);
                 if (ret != null)
                 {
-                    GUIHelper.ShowInfo("Cast GCD: " + ret.LocalizedName, 100);
+                    var msg = "Cast GCD: " + ret.LocalizedName;
+                    LogHelper.Info(msg);
+                    GUIHelper.ShowInfo(msg, 100);
                     var history = new SpellHistory
                     {
                         SpellId = ret.Id,
@@ -191,7 +193,20 @@ namespace AEAssist.AI
             if (canUseAbility)
             {
                 SpellData ret = null;
-                if (BattleData.NextAbilitySpellId != 0)
+
+                if (BattleData.maxAbilityTimes == SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD && BattleData.NextAbilityUsePotion)
+                {
+                    BattleData.NextAbilitySpellId = 0;
+                    var msg = "===>Try using Potion";
+                    LogHelper.Info(msg);
+                    var boolRet = await AIMgrs.Instance.UsePotion(Core.Me.CurrentJob);
+                    if (boolRet)
+                    {
+                        BattleData.NextAbilityUsePotion = false;
+                        return false;
+                    }
+                }
+                else if (BattleData.NextAbilitySpellId != 0)
                 {
                     ret = DataManager.GetSpellData(BattleData.NextAbilitySpellId);
                     if (ret != null && ret.IsUnlock() && ActionManager.CanCast(ret, Core.Me.CurrentTarget))
@@ -216,7 +231,9 @@ namespace AEAssist.AI
                     ret = await AIMgrs.Instance.HandleAbility(Core.Me.CurrentJob, BattleData.lastAbilitySpell);
                 if (ret != null)
                 {
-                    GUIHelper.ShowInfo("Cast Ability: " + ret.LocalizedName, 100);
+                    var msg = "Cast Ability: " + ret.LocalizedName;
+                    LogHelper.Info(msg);
+                    GUIHelper.ShowInfo(msg, 100);
                     var history =new SpellHistory
                     {
                         SpellId = ret.Id,

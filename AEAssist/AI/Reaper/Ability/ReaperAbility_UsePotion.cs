@@ -43,7 +43,7 @@ namespace AEAssist.AI
 
         public async Task<SpellData> Run()
         {
-            var ret = PotionHelper.UsePotion(SettingMgr.GetSetting<ReaperSettings>().UsePotionId);
+            var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<ReaperSettings>().UsePotionId);
             if (ret)
             {
                 AIRoot.Instance.MuteAbilityTime();

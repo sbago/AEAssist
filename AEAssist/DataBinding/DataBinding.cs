@@ -28,6 +28,7 @@ namespace AEAssist
             this.UseSoulGauge = true;
             this.DoubleEnshroudPrefer = true;
             this.UseAOE = true;
+            this.TimeStr = "";
         }
 
 
@@ -53,6 +54,21 @@ namespace AEAssist
         public bool UseTrueNorth { get; set; }
 
         public bool UseAOE { get; set; } = true;
+
+        public string TimeStr { get; set; }
+
+
+        public void Update()
+        {
+            if (GeneralSettings.ShowBattleTime)
+            {
+                this.TimeStr = $"战斗时间:  {AIRoot.Instance.BattleData.BattleTime/1000}";
+            }
+            else
+            {
+                this.TimeStr = $"本地时间:  {DateTime.Now:hh:mm:ss}";
+            }
+        }
 
 
         #region Bard

@@ -64,9 +64,8 @@ namespace AEAssist.Helper
                 Name = "3级刚力之幻药"
             });
         }
-        
-        
-        internal static bool UsePotion(int potionRawId)
+
+        public static async Task<bool> UsePotion(int potionRawId)
         {
             if (!SettingMgr.GetSetting<GeneralSettings>().UsePotion)
                 return false;
@@ -74,14 +73,27 @@ namespace AEAssist.Helper
                 return false;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return false;
-            var item = InventoryManager.FilledSlots.FirstOrDefault(s => s.RawItemId == potionRawId);
-
-            if (item == null || !item.CanUse(Core.Me)) return false;
-
-            LogHelper.Info($@"Using Item >>> {item.Name}");
-            return item.UseItem(Core.Me);
+            return await ForceUsePotion(potionRawId);
         }
-        
+
+        public static async Task<bool> ForceUsePotion(int potionRawId)
+        {
+            var item = InventoryManager.FilledSlots.FirstOrDefault(s => s.RawItemId == potionRawId);
+            if (item == null)
+                return false;
+            if (!item.CanUse(Core.Me)) return false;
+            LogHelper.Info($@"Using Item >>> {item.Name}");
+            for (int i = 0; i < 15; i++)
+            {
+                item.UseItem(Core.Me);
+                await Coroutine.Sleep(100);
+                if (item == null || !item.CanUse())
+                    return true;
+            }
+
+            return false;
+        }
+
         internal static bool CheckPotion(int potionRawId)
         {
             var item = InventoryManager.FilledSlots.FirstOrDefault(s => s.RawItemId == potionRawId);

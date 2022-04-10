@@ -37,6 +37,7 @@ namespace AEAssist.AI
         private HashSet<long> TempKeys = new HashSet<long>();
 
         public uint NextAbilitySpellId;
+        public bool NextAbilityUsePotion;
         public uint NextGCDSpellId;
 
         public int NearbyEnemyCount_Range12_12;

@@ -964,6 +964,7 @@ namespace AEAssist.Define
         public static readonly SpellData FluidAuraPvp = DataManager.GetSpellData(8900);
         #endregion
 
+        public static readonly SpellData Sprint = DataManager.GetSpellData(3);
     }
 
 }

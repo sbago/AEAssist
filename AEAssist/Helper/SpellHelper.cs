@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using AEAssist.Define;
 using Buddy.Coroutines;
 using ff14bot;
 using ff14bot.Enums;
@@ -60,7 +61,7 @@ namespace AEAssist.Helper
                 waitTime = SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs;
             
             
-            if (spell.SpellType != SpellType.Ability)
+            if (spell.Id != SpellsDefine.Sprint.Id && spell.SpellType != SpellType.Ability)
             {
                 LogHelper.Error($"{spell.Name} is not a Ability");
                 return false;

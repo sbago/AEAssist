@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.AI;
+using AEAssist.Helper;
 using ff14bot.Enums;
 using ff14bot.Objects;
 
@@ -31,5 +32,12 @@ namespace AEAssist.Define
             new BardAbility_Sidewinder(),
             new BardAbility_Bloodletter()
         };
+
+        public async Task<bool> UsePotion()
+        {
+            return await PotionHelper.ForceUsePotion(SettingMgr.GetSetting<BardSettings>().UsePotionId);
+        }
+
+
     }
 }

@@ -67,5 +67,15 @@ namespace AEAssist.AI
 
             return null;
         }
+
+        public async Task<bool> UsePotion(ClassJobType classJobType)
+        {
+            if (!JobPriorityQueue.TryGetValue(classJobType, out var queue))
+            {
+                return false;
+            }
+
+            return await queue.UsePotion();
+        }
     }
 }

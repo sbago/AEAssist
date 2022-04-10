@@ -44,5 +44,21 @@ namespace AEAssist.View.Overlay
         {
             AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.Feint.Id;
         }
+
+        private void UseSprint_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.Sprint.Id;
+        }
+
+        private void UseTrueNorth_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.TrueNorth.Id;
+            AIRoot.Instance.BattleData.NextAbilityUsePotion = false;
+        }
+
+        private void UsePotion_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.Instance.BattleData.NextAbilityUsePotion = true;
+        }
     }
 }

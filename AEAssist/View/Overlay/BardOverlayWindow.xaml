@@ -154,14 +154,24 @@
                               IsChecked="{Binding AutoAttack,Mode=TwoWay}" />
                 </WrapPanel>
                 <WrapPanel Margin="10">
-                    <Button Margin="5,0,5,0" Name="UseTroubadour" Click="UseTroubadour_OnClick">
+                    <Button Margin="5,2,5,2" Name="UseTroubadour" Click="UseTroubadour_OnClick">
                         <Button.Background>
                             <ImageBrush ImageSource="../../Resources/Spells/Troubadour.png" Stretch="Uniform" />
                         </Button.Background>
                     </Button>
-                    <Button Margin="5,0,5,0" Name="UseArmsLength" Click="UseArmsLength_OnClick">
+                    <Button Margin="5,2,5,2" Name="UseArmsLength" Click="UseArmsLength_OnClick">
                         <Button.Background>
                             <ImageBrush ImageSource="../../Resources/Spells/ArmsLength.png" Stretch="Uniform" />
+                        </Button.Background>
+                    </Button>
+                    <Button Margin="5,2,5,2" Name="UseSprint" Click="UseSprint_OnClick">
+                        <Button.Background>
+                            <ImageBrush ImageSource="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
+                        </Button.Background>
+                    </Button>
+                    <Button Margin="5,2,5,2" Name="UsePotion" Click="UsePotion_OnClick">
+                        <Button.Background>
+                            <ImageBrush ImageSource="../../Resources/Spells/Potion.png" Stretch="Uniform" />
                         </Button.Background>
                     </Button>
                 </WrapPanel>
@@ -181,15 +191,18 @@
                 <Border.Background>
                     <SolidColorBrush Color="#101011" Opacity="0.6" />
                 </Border.Background>
-                <Label MaxWidth="250" Height="34" Margin="0" Style="{StaticResource MaterialDesignLabel}">
-                    <TextBlock
-                        FontSize="10"
-                        TextWrapping="Wrap"
-                        Foreground="Azure"
-                        Text="{Binding DebugCenter.Msg,Mode=OneWay}"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center" />
-                </Label>
+                <StackPanel>
+                    <Label Name="TimeLabel" Content="{Binding TimeStr}" Foreground="Aqua" />
+                    <Label MaxWidth="250" Height="34" Margin="0" Style="{StaticResource MaterialDesignLabel}">
+                        <TextBlock
+                            FontSize="10"
+                            TextWrapping="Wrap"
+                            Foreground="Azure"
+                            Text="{Binding DebugCenter.Msg,Mode=OneWay}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" />
+                    </Label>
+                </StackPanel>
             </Border>
         </StackPanel>
     </Border>

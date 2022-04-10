@@ -27,7 +27,8 @@ namespace AEAssist.AI
 
         public async Task<SpellData> Run()
         {
-            var ret = PotionHelper.UsePotion(SettingMgr.GetSetting<BardSettings>().UsePotionId);
+            LogHelper.Debug("===>Try using Potion   1111");
+            var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<BardSettings>().UsePotionId);
             if (ret)
             {
                 AIRoot.Instance.MuteAbilityTime();

@@ -55,6 +55,12 @@
                           Content="显示能力技判定Log(调试用)" Width="200" Height="25" Margin="10"
                           HorizontalAlignment="Left"
                           IsChecked="{Binding GeneralSettings.ShowAbilityDebugLog}" />
+                
+                <CheckBox Name="ShowBattleTime"
+                          Content="Overlay显示战斗时间" Width="200" Height="25" Margin="10"
+                          HorizontalAlignment="Left"
+                          IsChecked="{Binding GeneralSettings.ShowBattleTime}" />
+                
                 <!-- <CheckBox  -->
                 <!--           Content="显示屏幕中间提示" Width="200" Height="25" Margin="10" -->
                 <!--           HorizontalAlignment="Left" -->

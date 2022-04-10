@@ -231,6 +231,10 @@
         <Content Include="Resources\BossDictionary.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+        <Resource Include="Resources\Spells\Potion.png" />
+        <Resource Include="Resources\Spells\SecondWind.png" />
+        <Resource Include="Resources\Spells\Sprint.png" />
+        <Resource Include="Resources\Spells\TrueNorth.png" />
         <Resource Include="Resources\Spells\ArcaneCrest.png" />
         <Resource Include="Resources\Spells\Feint.png" />
         <Resource Include="Resources\Spells\Reset.jpeg" />

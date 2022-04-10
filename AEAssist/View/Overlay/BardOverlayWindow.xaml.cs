@@ -90,5 +90,16 @@ namespace AEAssist.View
         {
             AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.ArmsLength.Id;
         }
+
+        private void UseSprint_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.Sprint.Id;
+            AIRoot.Instance.BattleData.NextAbilityUsePotion = false;
+        }
+
+        private void UsePotion_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.Instance.BattleData.NextAbilityUsePotion = true;
+        }
     }
 }

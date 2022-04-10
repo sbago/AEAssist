@@ -156,19 +156,34 @@
                         
                     </WrapPanel>
                 <WrapPanel Margin="10">
-                    <Button Margin="5,0,5,0" Name="UseArcaneCrest" Click="UseArcaneCrest_OnClick">
+                    <Button Margin="5,2,5,2" Name="UseArcaneCrest" Click="UseArcaneCrest_OnClick">
                         <Button.Background>
                             <ImageBrush ImageSource="../../Resources/Spells/ArcaneCrest.png" Stretch="Uniform" />
                         </Button.Background>
                     </Button>
-                    <Button Margin="5,0,5,0" Name="UseArmsLength" Click="UseArmsLength_OnClick">
+                    <Button Margin="5,2,5,2" Name="UseArmsLength" Click="UseArmsLength_OnClick">
                         <Button.Background>
                             <ImageBrush ImageSource="../../Resources/Spells/ArmsLength.png" Stretch="Uniform" />
                         </Button.Background>
                     </Button>
-                    <Button Margin="5,0,5,0" Name="UseFeint" Click="UseFeint_OnClick">
+                    <Button Margin="5,2,5,2" Name="UseFeint" Click="UseFeint_OnClick">
                         <Button.Background>
                             <ImageBrush ImageSource="../../Resources/Spells/Feint.png" Stretch="Uniform" />
+                        </Button.Background>
+                    </Button>
+                    <Button Margin="5,2,5,2" Name="UseSprint" Click="UseSprint_OnClick">
+                        <Button.Background>
+                            <ImageBrush ImageSource="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
+                        </Button.Background>
+                    </Button>
+                    <Button Margin="5,2,5,2" Name="UseTrueNorth" Click="UseTrueNorth_OnClick">
+                        <Button.Background>
+                            <ImageBrush ImageSource="../../Resources/Spells/TrueNorth.png" Stretch="Uniform" />
+                        </Button.Background>
+                    </Button>
+                    <Button Margin="5,2,5,2" Name="UsePotion" Click="UsePotion_OnClick">
+                        <Button.Background>
+                            <ImageBrush ImageSource="../../Resources/Spells/Potion.png" Stretch="Uniform" />
                         </Button.Background>
                     </Button>
                 </WrapPanel>
@@ -188,7 +203,9 @@
                 <Border.Background>
                     <SolidColorBrush Color="#101011" Opacity="0.6" />
                 </Border.Background>
-                <Label MaxWidth="250" Height="34" Margin="0" Style="{StaticResource MaterialDesignLabel}">
+                <StackPanel>
+                    <Label Name="TimeLabel" Content="{Binding TimeStr}" Foreground="Aqua" />
+                    <Label MaxWidth="250" Height="34" Margin="0" Style="{StaticResource MaterialDesignLabel}">
                     <TextBlock
                         FontSize="10"
                         TextWrapping="Wrap"
@@ -197,6 +214,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center" />
                 </Label>
+                </StackPanel>
             </Border>
         </StackPanel>
     </Border>

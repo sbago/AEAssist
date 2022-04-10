@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AEAssist.AI;
 using AEAssist.AI.Reaper.Ability;
 using AEAssist.AI.Reaper.GCD;
+using AEAssist.Helper;
 using ff14bot.Enums;
 using ff14bot.Objects;
 
@@ -31,5 +32,10 @@ namespace AEAssist.Define
             new ReaperAbility_BloodStalk(),
             new ReaperAbility_TrueNorth()
         };
+        
+        public async Task<bool> UsePotion()
+        {
+            return await PotionHelper.ForceUsePotion(SettingMgr.GetSetting<ReaperSettings>().UsePotionId);
+        }
     }
 }
