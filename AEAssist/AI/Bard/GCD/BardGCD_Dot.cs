@@ -64,6 +64,10 @@ namespace AEAssist.AI
                 {
                     BardSpellHelper.RecordIronJaw();
                 }
+                else
+                {
+                    BardSpellHelper.RemoveRecordIronJaw();
+                }
 
                 return spell;
             }

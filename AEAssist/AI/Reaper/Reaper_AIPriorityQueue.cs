@@ -29,6 +29,7 @@ namespace AEAssist.Define
             new ReaperAbility_Enshroud(),
             new ReaperAbility_Gluttony(),
             new ReaperAbility_BloodStalk(),
+            new ReaperAbility_TrueNorth()
         };
     }
 }

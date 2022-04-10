@@ -25,6 +25,7 @@ namespace AEAssist
             this.AnimationLockMs = 500;
             this.ShowGameLog = true;
             this.ShowAbilityDebugLog = false;
+            this.ShowToast = false;
         }
 
         public int UserLatencyOffset{ get; set; } // 玩家预计延迟
@@ -45,5 +46,7 @@ namespace AEAssist
         
         public bool ShowGameLog { get; set; }
         public bool ShowAbilityDebugLog { get; set; }
+
+        public bool ShowToast { get; set; }
     }
 }

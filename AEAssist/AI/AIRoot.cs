@@ -7,6 +7,7 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Helpers;
+using ff14bot.Managers;
 using ff14bot.Objects;
 
 namespace AEAssist.AI
@@ -61,6 +62,11 @@ namespace AEAssist.AI
         {
             if (ClearBattleData)
                 return;
+            ForceClear();
+        }
+
+        public void ForceClear()
+        {
             CountDownHandler.Instance.Close();
 
             BattleData = new BattleData();
@@ -71,8 +77,7 @@ namespace AEAssist.AI
             SpellHistoryMgr.Instance.Clear();
             
             ClearBattleData = true;
-            if (CanNotice("Clear", 2000))
-                LogHelper.Debug("Clear battle data");
+            LogHelper.Debug("Clear battle data");
         }
 
         public async Task<bool> Update()
@@ -126,7 +131,7 @@ namespace AEAssist.AI
 
             bool canUseGCD = CanUseGCD();
             
-            if (!canUseGCD && BattleData.maxAbilityTimes > 0 && coolDown - delta >=coolDown * 0.3f)
+            if (!canUseGCD && BattleData.maxAbilityTimes > 0 && coolDown - delta >=coolDown * 0.33f)
             {
                 canUseAbility = true;
             }
@@ -139,8 +144,29 @@ namespace AEAssist.AI
 
             if (canUseGCD)
             {
-                //todo: check gcd
-                var ret = await AIMgrs.Instance.HandleGCD(Core.Me.CurrentJob, BattleData.lastGCDSpell);
+                SpellData ret = null;
+                if (BattleData.NextGCDSpellId != 0)
+                {
+                    ret = DataManager.GetSpellData(BattleData.NextGCDSpellId);
+                    if (ret != null && ret.IsUnlock() && ActionManager.CanCast(ret, Core.Me.CurrentTarget))
+                    {
+                        if (!await SpellHelper.CastGCD(ret, Core.Me.CurrentTarget))
+                        {
+                            ret = null;
+                        }
+                        else
+                        {
+                            BattleData.NextGCDSpellId = 0;
+                        }
+                    }
+                    else
+                    {
+                        ret = null;
+                        BattleData.NextGCDSpellId = 0;
+                    }
+                }
+                if (ret == null)
+                    ret = await AIMgrs.Instance.HandleGCD(Core.Me.CurrentJob, BattleData.lastGCDSpell);
                 if (ret != null)
                 {
                     GUIHelper.ShowInfo("Cast GCD: " + ret.LocalizedName, 100);
@@ -164,8 +190,30 @@ namespace AEAssist.AI
 
             if (canUseAbility)
             {
-                //todo : check ability
-                var ret = await AIMgrs.Instance.HandleAbility(Core.Me.CurrentJob, BattleData.lastAbilitySpell);
+                SpellData ret = null;
+                if (BattleData.NextAbilitySpellId != 0)
+                {
+                    ret = DataManager.GetSpellData(BattleData.NextAbilitySpellId);
+                    if (ret != null && ret.IsUnlock() && ActionManager.CanCast(ret, Core.Me.CurrentTarget))
+                    {
+                        if (!await SpellHelper.CastAbility(ret, Core.Me.CurrentTarget))
+                        {
+                            ret = null;
+                        }
+                        else
+                        {
+                            BattleData.NextAbilitySpellId = 0;
+                        }
+                    }
+                    else
+                    {
+                        ret = null;
+                        BattleData.NextAbilitySpellId = 0;
+                    }
+                }
+
+                if (ret == null)
+                    ret = await AIMgrs.Instance.HandleAbility(Core.Me.CurrentJob, BattleData.lastAbilitySpell);
                 if (ret != null)
                 {
                     GUIHelper.ShowInfo("Cast Ability: " + ret.LocalizedName, 100);

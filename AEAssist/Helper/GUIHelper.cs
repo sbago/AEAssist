@@ -1,7 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Forms;
 using AEAssist;
 using AEAssist.Helper;
+using ff14bot;
 using MessageBox = System.Windows.MessageBox;
 
 namespace AEAssist
@@ -33,6 +35,19 @@ namespace AEAssist
         public static void ShowMessageBox(string msg)
         {
             MessageBox.Show(msg);
+        }
+
+        public static void ShowToast(string msg, int time = 1500)
+        {
+            if (!SettingMgr.GetSetting<GeneralSettings>().ShowToast)
+                return;
+            {
+                Core.OverlayManager.AddToast(() => msg,
+                    TimeSpan.FromSeconds(time),
+                    System.Windows.Media.Colors.Green,
+                    System.Windows.Media.Colors.Black,
+                    new System.Windows.Media.FontFamily("Consolas"));
+            }
         }
     }
 }

@@ -74,8 +74,14 @@
         <Compile Include="..\AETriggers\TriggerModel\Trigger.cs">
           <Link>TriggerModel\Trigger.cs</Link>
         </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_CastAbility.cs">
+          <Link>TriggerModel\TriggerAction\TriggerAction_CastAbility.cs</Link>
+        </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_NextSong.cs">
           <Link>TriggerModel\TriggerAction\TriggerAction_NextSong.cs</Link>
+        </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchAOE.cs">
+          <Link>TriggerModel\TriggerAction\TriggerAction_SwitchAOE.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchApex.cs">
           <Link>TriggerModel\TriggerAction\TriggerAction_SwitchApex.cs</Link>
@@ -91,6 +97,9 @@
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_AfterBattleStart.cs">
           <Link>TriggerModel\TriggerCond\TriggerCond_AfterBattleStart.cs</Link>
+        </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_AfterOtherTrigger.cs">
+          <Link>TriggerModel\TriggerCond\TriggerCond_AfterOtherTrigger.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyCastSpellByName.cs">
           <Link>TriggerModel\TriggerCond\TriggerCond_EnemyCastSpellByName.cs</Link>
@@ -141,6 +150,7 @@
         <Compile Include="AI\Reaper\Ability\ReaperAbility_Enshroud.cs" />
         <Compile Include="AI\Reaper\Ability\ReaperAbility_Gluttony.cs" />
         <Compile Include="AI\Reaper\Ability\ReaperAbility_Lemure.cs" />
+        <Compile Include="AI\Reaper\Ability\ReaperAbility_TrueNorth.cs" />
         <Compile Include="AI\Reaper\Ability\ReaperAbility_UsePotion.cs" />
         <Compile Include="AI\Reaper\GCD\ReaperGCD_BaseGCDCombo.cs" />
         <Compile Include="AI\Reaper\GCD\ReaperGCD_EnshroudGCD.cs" />
@@ -165,11 +175,14 @@
         <Compile Include="Setting\Setting\ReaperSettings.cs" />
         <Compile Include="TriggerSystem\ITriggerActionHandler.cs" />
         <Compile Include="TriggerSystem\ITriggerCondHandler.cs" />
+        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_CastAbility.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_NextSong.cs" />
+        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchAOE.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchApex.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchBurst.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchDOT.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterBattleStart.cs" />
+        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterOtherTrigger.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyCastSpellByName.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyHpPct.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyInLOS.cs" />
@@ -218,6 +231,11 @@
         <Content Include="Resources\BossDictionary.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+        <Resource Include="Resources\Spells\ArcaneCrest.png" />
+        <Resource Include="Resources\Spells\Feint.png" />
+        <Resource Include="Resources\Spells\Reset.jpeg" />
+        <Resource Include="Resources\Spells\ArmsLength.png" />
+        <Resource Include="Resources\Spells\Troubadour.png" />
         <Page Include="View\Overlay\ReaperOverlay.xaml" />
         <Page Include="View\ReaperSettingView.xaml" />
         <Page Include="View\TriggerLineWindow.xaml" />

@@ -28,13 +28,16 @@ namespace AEAssist.AI
         public long battleStartTime;
         public long BattleTime { get; private set; }
 
-        private HashSet<string> ExecutedTriggers = new HashSet<string>();
+        private Dictionary<string,long> ExecutedTriggers = new Dictionary<string,long>();
 
 
         private Dictionary<long, List<TaskCompletionSource<bool>>> AllBattleTimeTcs =
             new Dictionary<long, List<TaskCompletionSource<bool>>>();
 
         private HashSet<long> TempKeys = new HashSet<long>();
+
+        public uint NextAbilitySpellId;
+        public uint NextGCDSpellId;
 
         public int NearbyEnemyCount_Range12_12;
         public int NearbyEnemyCount_Range25_8;
@@ -113,13 +116,19 @@ namespace AEAssist.AI
                 return;
             foreach (var v in CurrTriggerLine.Triggers)
             {
-                if(ExecutedTriggers.Contains(v.Id))
+                if(ExecutedTriggers.ContainsKey(v.Id))
                     continue;
                 if (TriggerSystemMgr.Instance.HandleTriggers(v))
                 {
-                    this.ExecutedTriggers.Add(v.Id);
+                    this.ExecutedTriggers.Add(v.Id,TimeHelper.Now());
                 }
             }
+        }
+
+        public long GetExecutedTriggersTime(string id)
+        {
+            this.ExecutedTriggers.TryGetValue(id, out var time);
+            return time;
         }
 
         public void AddTcs(long time, TaskCompletionSource<bool> tcs)

@@ -28,18 +28,7 @@ namespace AETriggers
             
             Entry.Init();
         }
-
-        private TriggerLine TriggerLine;
-
-        private struct ExcelData
-        {
-            public string groupId;
-            public string type;
-            public string valueType;
-            public string[] valueParams;
-        }
-
-        private Dictionary<string, List<ExcelData>> AllExcelData = new Dictionary<string, List<ExcelData>>();
+        
 
         private void Load_OnClick(object sender, RoutedEventArgs e)
         {
@@ -96,7 +85,7 @@ namespace AETriggers
                     var targetDuty = sheet.GetRow(2).GetCell(1).ToString();
                     var job = sheet.GetRow(3).GetCell(1).ToString();
 
-                    this.TriggerLine = new TriggerLine
+                    Entry.TriggerLine = new TriggerLine
                     {
                         Version = version,
                         Author = authorName,
@@ -104,7 +93,9 @@ namespace AETriggers
                         TargetJob = job,
                     };
 
-                    AllExcelData.Clear();
+                    var AllExcelData = Entry.AllExcelData;
+                    
+                    Entry.AllExcelData.Clear();
                     for (int i = 6; i < sheet.LastRowNum; i++)
                     {
                         var row = sheet.GetRow(i);
@@ -126,11 +117,11 @@ namespace AETriggers
 
                         if (!AllExcelData.TryGetValue(groupId, out var list))
                         {
-                            list = new List<ExcelData>();
+                            list = new List<Entry.ExcelData>();
                             AllExcelData[groupId] = list;
                         }
 
-                        list.Add(new ExcelData
+                        list.Add(new Entry.ExcelData
                         {
                             groupId = groupId,
                             type = type,
@@ -144,8 +135,8 @@ namespace AETriggers
                     if (loadRet) MessageBox.Show("成功加载数据 ");
                     else
                     {
-                        this.TriggerLine = null;
-                        this.AllExcelData.Clear();
+                        Entry.TriggerLine = null;
+                        AllExcelData.Clear();
                     }
 
                     RefreshUI();
@@ -161,6 +152,7 @@ namespace AETriggers
         
         private void Export_OnClick(object sender, RoutedEventArgs e)
         {
+            var TriggerLine = Entry.TriggerLine;
             if (TriggerLine == null)
                 return;
             SaveFileDialog openFile = new SaveFileDialog();
@@ -178,13 +170,15 @@ namespace AETriggers
 
         private bool LoadExcelData()
         {
-            if (this.TriggerLine == null || this.AllExcelData.Count == 0)
+            var TriggerLine = Entry.TriggerLine;
+            var AllExcelData = Entry.AllExcelData;
+            if (TriggerLine == null || AllExcelData.Count == 0)
                 return false;
             foreach (var v in AllExcelData)
             {
                 var trigger = new Trigger
                 {
-                    Id = Guid.NewGuid().ToString()
+                    Id = v.Key
                 };
                 TriggerLine.Triggers.Add(trigger);
                 
@@ -236,6 +230,8 @@ namespace AETriggers
 
         private void RefreshUI()
         {
+            var TriggerLine = Entry.TriggerLine;
+            var AllExcelData = Entry.AllExcelData;
             if (TriggerLine == null)
             {
                 this.AuthorName.Content = string.Empty;
@@ -253,6 +249,8 @@ namespace AETriggers
 
         private void LoadJson_OnClick(object sender, RoutedEventArgs e)
         {
+            var TriggerLine = Entry.TriggerLine;
+            var AllExcelData = Entry.AllExcelData;
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.Filter = "Json(*.json)|*.json";
             openFile.InitialDirectory = Environment.CurrentDirectory+@"\..\";
@@ -262,7 +260,7 @@ namespace AETriggers
             if (!ret.HasValue || !ret.Value)
                 return;
             var file = openFile.FileName;
-            this.TriggerLine = TriggerHelper.LoadTriggerLine(file);
+            TriggerLine = TriggerHelper.LoadTriggerLine(file);
             MessageBox.Show("加载成功!");
         }
     }

@@ -94,88 +94,88 @@
 
             <WrapPanel Width="250" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
 
-           
-                    <WrapPanel>
-                        <CheckBox
-                            Content="{Binding HotkeySetting.StopBtnName}"
-                            Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                            Width="80"
-                            Height="30"
-                            FontSize="12"
-                            IsChecked="{Binding Stop,Mode=TwoWay}" />
+
+                <WrapPanel>
+                    <CheckBox
+                        Content="{Binding HotkeySetting.StopBtnName}"
+                        Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                        Width="80"
+                        Height="30"
+                        FontSize="12"
+                        IsChecked="{Binding Stop,Mode=TwoWay}" />
 
 
-                        <CheckBox Grid.Column="1" HorizontalContentAlignment="Center"
-                                  Content="{Binding HotkeySetting.CloseBuffBtnName}"
-                                  FontSize="12"
-                                  Width="80"
-                                  Height="30"
-                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                  IsChecked="{Binding CloseBuff,Mode=TwoWay}" />
+                    <CheckBox Grid.Column="1" HorizontalContentAlignment="Center"
+                              Content="{Binding HotkeySetting.CloseBuffBtnName}"
+                              FontSize="12"
+                              Width="80"
+                              Height="30"
+                              Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                              IsChecked="{Binding CloseBuff,Mode=TwoWay}" />
 
-                        <CheckBox Grid.Row="1" HorizontalContentAlignment="Center"
-                                  Content="AOE"
-                                  FontSize="12"
-                                  Width="80"
-                                  Height="30"
-                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                  IsChecked="{Binding UseAOE,Mode=TwoWay}" />
-                        
-                        <CheckBox Grid.Row="1" HorizontalContentAlignment="Center"
-                                  Content="爆发药"
-                                  FontSize="12"
-                                  Width="80"
-                                  Height="30"
-                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                  IsChecked="{Binding GeneralSettings.UsePotion,Mode=TwoWay}" />
+                    <CheckBox Grid.Row="1" HorizontalContentAlignment="Center"
+                              Content="AOE"
+                              FontSize="12"
+                              Width="80"
+                              Height="30"
+                              Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                              IsChecked="{Binding UseAOE,Mode=TwoWay}" />
 
-                        <CheckBox Grid.Row="1" HorizontalContentAlignment="Center"
-                                  Content="绝峰箭"
-                                  FontSize="12"
-                                  Width="80"
-                                  Height="30"
-                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                  IsChecked="{Binding UseApex,Mode=TwoWay}" />
+                    <CheckBox Grid.Row="1" HorizontalContentAlignment="Center"
+                              Content="爆发药"
+                              FontSize="12"
+                              Width="80"
+                              Height="30"
+                              Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                              IsChecked="{Binding GeneralSettings.UsePotion,Mode=TwoWay}" />
 
-                        <CheckBox HorizontalContentAlignment="Center"
-                                  Content="Dot"
-                                  FontSize="12"
-                                  Width="80"
-                                  Height="30"
-                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                  IsChecked="{Binding UseDot,Mode=TwoWay}" />
+                    <CheckBox Grid.Row="1" HorizontalContentAlignment="Center"
+                              Content="绝峰箭"
+                              FontSize="12"
+                              Width="80"
+                              Height="30"
+                              Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                              IsChecked="{Binding UseApex,Mode=TwoWay}" />
 
-                        <CheckBox HorizontalContentAlignment="Center"
-                                  Content="主动攻击目标"
-                                  FontSize="12"
-                                  Width="80"
-                                  Height="30"
-                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                  IsChecked="{Binding AutoAttack,Mode=TwoWay}" />
-                    </WrapPanel>
-                <!-- <Border Margin="0,5,0,0" VerticalAlignment="Top" CornerRadius="10" Padding="5"> -->
-                <!--     <Border.Background> -->
-                <!--         <SolidColorBrush Color="Cornsilk" Opacity="0.6" /> -->
-                <!--     </Border.Background> -->
-                    <!-- <StackPanel Width="250" Orientation="Horizontal" Height="30" HorizontalAlignment="Center"> -->
-                    <!--     <Label Content="下一首歌优先:" Foreground="Aqua" Margin="20,0,0,0"/> -->
-                    <!--     <ComboBox IsEditable="False" Margin="10,-4,0,-4" Width="80" -->
-                    <!--               Name="ChooseNextSong" DisplayMemberPath="Name" SelectedValuePath="Song"  -->
-                    <!--               SelectionChanged="ChooseNextSong_OnSelectionChanged"/> -->
-                    <!-- -->
-                    <!-- </StackPanel> -->
-               <!-- // </Border> -->
+                    <CheckBox HorizontalContentAlignment="Center"
+                              Content="Dot"
+                              FontSize="12"
+                              Width="80"
+                              Height="30"
+                              Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                              IsChecked="{Binding UseDot,Mode=TwoWay}" />
+
+                    <CheckBox HorizontalContentAlignment="Center"
+                              Content="主动攻击目标"
+                              FontSize="12"
+                              Width="80"
+                              Height="30"
+                              Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                              IsChecked="{Binding AutoAttack,Mode=TwoWay}" />
+                </WrapPanel>
+                <WrapPanel Margin="10">
+                    <Button Margin="5,0,5,0" Name="UseTroubadour" Click="UseTroubadour_OnClick">
+                        <Button.Background>
+                            <ImageBrush ImageSource="../../Resources/Spells/Troubadour.png" Stretch="Uniform" />
+                        </Button.Background>
+                    </Button>
+                    <Button Margin="5,0,5,0" Name="UseArmsLength" Click="UseArmsLength_OnClick">
+                        <Button.Background>
+                            <ImageBrush ImageSource="../../Resources/Spells/ArmsLength.png" Stretch="Uniform" />
+                        </Button.Background>
+                    </Button>
+                </WrapPanel>
             </WrapPanel>
             <StackPanel Width="250" HorizontalAlignment="Center">
                 <Button Name="Reset" FontSize="12" Content="重置" Width="200" Height="25"
                         Click="Reset_OnClick"
-                        HorizontalAlignment="Center"  />
-                <Label Name="CurrTriggerLine" Content="当前加载时间轴: 无" Foreground="Aqua" Width="200"/>
+                        HorizontalAlignment="Center" />
+                <Label Name="CurrTriggerLine" Content="当前加载时间轴: 无" Foreground="Aqua" Width="200" />
                 <!-- <Label Name="TriggerLineStatus" Content="[状态: 准备运行中]" Foreground="Aqua"/> -->
-               
+
                 <Button Name="ChangeTriggerLine" FontSize="12" Margin="10,0,10,0" Content="配置" Width="200" Height="25"
-                        Click="ChangeTriggerLine_OnClick"/>
-            
+                        Click="ChangeTriggerLine_OnClick" />
+
             </StackPanel>
             <Border Margin="0,5,0,0" VerticalAlignment="Top" CornerRadius="5" Padding="10">
                 <Border.Background>

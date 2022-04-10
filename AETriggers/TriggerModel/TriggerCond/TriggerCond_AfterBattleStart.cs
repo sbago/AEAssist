@@ -6,14 +6,7 @@ namespace AETriggers.TriggerModel
     public class TriggerCond_AfterBattleStart : ITriggerCond
     {
         public int Time;
-
-        public bool Check()
-        {
-            if (Time < 0)
-                return false;
-            return true;
-        }
-
+        
         public void WriteFromJson(string[] values)
         {
             if (!int.TryParse(values[0], out var time))

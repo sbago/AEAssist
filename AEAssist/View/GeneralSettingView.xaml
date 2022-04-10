@@ -30,11 +30,11 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    
+
     <UserControl.DataContext>
         <Binding Source="{x:Static viewModels:DataBinding.Instance}" />
     </UserControl.DataContext>
-    
+
     <TabControl Style="{StaticResource MaterialDesignTabControl}"
                 TabStripPlacement="Top"
                 materialDesign:ShadowAssist.ShadowDepth="Depth3"
@@ -44,32 +44,44 @@
         <TabItem Header="通用">
             <StackPanel HorizontalAlignment="Left" Margin="10">
                 <Button Name="ShowOverlay"
-                    Content="显示/隐藏Overlay" Width="150" Height="25" Margin="10"
+                        Content="显示/隐藏Overlay" Width="150" Height="25" Margin="10"
                         HorizontalAlignment="Left"
-                        Click="ShowOverlay_OnClick"/>
+                        Click="ShowOverlay_OnClick" />
                 <CheckBox Name="ShowGameLog"
-                        Content="显示GameLog(编辑时间轴必备)" Width="200" Height="25" Margin="10"
-                        HorizontalAlignment="Left"
-                        IsChecked="{Binding GeneralSettings.ShowGameLog}"/>
+                          Content="显示GameLog(编辑时间轴必备)" Width="200" Height="25" Margin="10"
+                          HorizontalAlignment="Left"
+                          IsChecked="{Binding GeneralSettings.ShowGameLog}" />
                 <CheckBox Name="ShowAbilityDebug"
                           Content="显示能力技判定Log(调试用)" Width="200" Height="25" Margin="10"
                           HorizontalAlignment="Left"
-                          IsChecked="{Binding GeneralSettings.ShowAbilityDebugLog}"/>
+                          IsChecked="{Binding GeneralSettings.ShowAbilityDebugLog}" />
+                <!-- <CheckBox  -->
+                <!--           Content="显示屏幕中间提示" Width="200" Height="25" Margin="10" -->
+                <!--           HorizontalAlignment="Left" -->
+                <!--           IsChecked="{Binding GeneralSettings.ShowToast}" /> -->
+
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="快捷键">
+            <StackPanel>
                 <CheckBox Name="UseHotkey"
                           Content="使用快捷键" Width="200" Height="25" Margin="10"
                           HorizontalAlignment="Left"
-                          IsChecked="{Binding HotkeySetting.UseHotkey}"/>
+                          IsChecked="{Binding HotkeySetting.UseHotkey}" />
                 <!-- <Button Name="LoadTriggerLine" -->
                 <!--         Content="时间轴设置" Width="150" Height="25" Margin="10" -->
                 <!--         HorizontalAlignment="Left" -->
                 <!--         Click="LoadTriggerLine_OnClick"/> -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="停手快捷键" Width="100" />
-                    <ComboBox IsEditable="False" Name="Hotkey_Stop" Width="150" DisplayMemberPath="Name" SelectedValuePath="Key" SelectionChanged="Hotkey_Stop_OnSelectionChanged"/>
+                    <ComboBox IsEditable="False" Name="Hotkey_Stop" Width="150" DisplayMemberPath="Name"
+                              SelectedValuePath="Key" SelectionChanged="Hotkey_Stop_OnSelectionChanged" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="关闭爆发快捷键" Width="100" />
-                    <ComboBox IsEditable="False" Name="Hotkey_CloseBuff" Width="150" DisplayMemberPath="Name" SelectedValuePath="Key" SelectionChanged="Hotkey_CloseBuff_OnSelectionChanged"/>
+                    <ComboBox IsEditable="False" Name="Hotkey_CloseBuff" Width="150" DisplayMemberPath="Name"
+                              SelectedValuePath="Key" SelectionChanged="Hotkey_CloseBuff_OnSelectionChanged" />
                 </StackPanel>
             </StackPanel>
         </TabItem>

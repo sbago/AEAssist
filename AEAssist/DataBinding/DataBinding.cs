@@ -1,8 +1,11 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using AEAssist.AI;
 using AETriggers.TriggerModel;
 using Buddy.Overlay;
+using Buddy.Overlay.Notifications;
 using Clio.Utilities.Collections;
+using ff14bot;
 using ff14bot.Managers;
 using PropertyChanged;
 
@@ -27,7 +30,21 @@ namespace AEAssist
             this.UseAOE = true;
         }
 
-        public bool CloseBuff{ get; set; }
+
+        private bool _closeBuff;
+        
+        public bool CloseBuff{
+            get
+            {
+                return _closeBuff;
+            }
+            set
+            {
+                _closeBuff = value;
+                // var msg = !_closeBuff ? "Burst On" : "Burst Off";
+                // GUIHelper.ShowToast(msg,2000);
+            }
+        }
 
         public bool Stop { get; set; }
         

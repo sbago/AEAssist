@@ -145,7 +145,7 @@ namespace AEAssist.Define
 
             var buffCountInEnd = HasBuffsCountInEnd();
             //LogHelper.Info("当前快要结束的Buff数量 : " + buffCountInEnd);
-            if (buffCountInEnd >= 1 && !AIRoot.Instance.BardBattleData.lastIronJawWithBuff)
+            if (buffCountInEnd >= 1 && !AIRoot.Instance.BardBattleData.IsTargetLastIronJawWithBuff())
             {
                 if (ttk_ironJaws >0 && target.ContainMyAura((uint) ve_id, ttk_ironJaws * 1000) &&
                     TTKHelper.IsTargetTTK(target, ttk_ironJaws))
@@ -159,7 +159,14 @@ namespace AEAssist.Define
 
         public static void RecordIronJaw()
         {
-            AIRoot.Instance.BardBattleData.lastIronJawWithBuff = HasBuffsCount() >= 1;
+            var targetId = Core.Me.CurrentTarget.ObjectId;
+            AIRoot.Instance.BardBattleData.lastIronJawWithBuffWithObj[targetId] = HasBuffsCount() >= 1;
+        }
+        
+        public static void RemoveRecordIronJaw()
+        {
+            var targetId = Core.Me.CurrentTarget.ObjectId;
+            AIRoot.Instance.BardBattleData.lastIronJawWithBuffWithObj[targetId] = false;
         }
 
         public static SpellData GetRefulgentArrow()

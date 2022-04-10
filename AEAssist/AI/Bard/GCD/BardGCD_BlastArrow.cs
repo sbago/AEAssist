@@ -16,16 +16,14 @@ namespace AEAssist.AI
             if (!Core.Me.HasAura(AurasDefine.BlastArrowReady))
                 return -2;
 
-            if (BardSpellHelper.HasBuffsCount() >= BardSpellHelper.UnlockBuffsCount())
+            if (SpellsDefine.RagingStrikes.RecentlyUsed() || BardSpellHelper.HasBuffsCount() >= 1)
                 return 1;
-
+            
             var aura = Core.Me.GetAuraById(AurasDefine.BlastArrowReady);
-            if (BardSpellHelper.Prepare2BurstBuffs((int) aura.TimespanLeft.TotalMilliseconds + + ConstValue.AuraTick))
-                return -3;
             var buffTime = SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds;
             if (SpellsDefine.RagingStrikes.IsReady())
                 buffTime = 0;
-            if (aura.TimespanLeft.TotalMilliseconds >= buffTime + ConstValue.AuraTick * 2)
+            if (aura.TimespanLeft.TotalMilliseconds >= buffTime + ConstValue.AuraTick)
             {
                 return -4;
             }

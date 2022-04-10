@@ -108,6 +108,14 @@
                                   IsChecked="{Binding CloseBuff,Mode=TwoWay}" />
 
                         <CheckBox Grid.Row="1" HorizontalContentAlignment="Center"
+                                  Content="AOE"
+                                  FontSize="12"
+                                  Width="80"
+                                  Height="30"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding UseAOE,Mode=TwoWay}" />
+                        
+                        <CheckBox Grid.Row="1" HorizontalContentAlignment="Center"
                                   Content="爆发药"
                                   FontSize="12"
                                   Width="80"
@@ -138,19 +146,32 @@
                                   Height="30"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
                                   IsChecked="{Binding AutoAttack,Mode=TwoWay}" />
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="错位真北"
+                                  FontSize="12"
+                                  Width="80"
+                                  Height="30"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding UseTrueNorth,Mode=TwoWay}" />
+                        
                     </WrapPanel>
-                <!-- <Border Margin="0,5,0,0" VerticalAlignment="Top" CornerRadius="10" Padding="5"> -->
-                <!--     <Border.Background> -->
-                <!--         <SolidColorBrush Color="Cornsilk" Opacity="0.6" /> -->
-                <!--     </Border.Background> -->
-                    <!-- <StackPanel Width="250" Orientation="Horizontal" Height="30" HorizontalAlignment="Center"> -->
-                    <!--     <Label Content="下一首歌优先:" Foreground="Aqua" Margin="20,0,0,0"/> -->
-                    <!--     <ComboBox IsEditable="False" Margin="10,-4,0,-4" Width="80" -->
-                    <!--               Name="ChooseNextSong" DisplayMemberPath="Name" SelectedValuePath="Song"  -->
-                    <!--               SelectionChanged="ChooseNextSong_OnSelectionChanged"/> -->
-                    <!-- -->
-                    <!-- </StackPanel> -->
-               <!-- // </Border> -->
+                <WrapPanel Margin="10">
+                    <Button Margin="5,0,5,0" Name="UseArcaneCrest" Click="UseArcaneCrest_OnClick">
+                        <Button.Background>
+                            <ImageBrush ImageSource="../../Resources/Spells/ArcaneCrest.png" Stretch="Uniform" />
+                        </Button.Background>
+                    </Button>
+                    <Button Margin="5,0,5,0" Name="UseArmsLength" Click="UseArmsLength_OnClick">
+                        <Button.Background>
+                            <ImageBrush ImageSource="../../Resources/Spells/ArmsLength.png" Stretch="Uniform" />
+                        </Button.Background>
+                    </Button>
+                    <Button Margin="5,0,5,0" Name="UseFeint" Click="UseFeint_OnClick">
+                        <Button.Background>
+                            <ImageBrush ImageSource="../../Resources/Spells/Feint.png" Stretch="Uniform" />
+                        </Button.Background>
+                    </Button>
+                </WrapPanel>
             </WrapPanel>
             <StackPanel Width="250" HorizontalAlignment="Center">
                 <Button Name="Reset" FontSize="12" Content="重置" Width="200" Height="25"

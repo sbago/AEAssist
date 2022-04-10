@@ -10,9 +10,9 @@ namespace AEAssist.Define
     {
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>()
         {
+            new BardGCD_BlastArrow(),
             new BardGCD_Barrage_RefulgentArrow(),
             new BardGCD_Dot(),
-            new BardGCD_BlastArrow(),
             new BardGCD_ApexArrow(),
             new BardGCD_QuickNock(),
             new BardGCD_HeavyShot()

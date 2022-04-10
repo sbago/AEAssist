@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using AEAssist;
+using AEAssist.AI;
 using AEAssist.Define;
 using ff14bot.Managers;
 
@@ -77,6 +78,17 @@ namespace AEAssist.View
         private void Reset_OnClick(object sender, RoutedEventArgs e)
         {
             AEAssist.DataBinding.Instance.Reset();
+            AIRoot.Instance.ForceClear();
+        }
+
+        private void UseTroubadour_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.Troubadour.Id;
+        }
+
+        private void UseArmsLength_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.ArmsLength.Id;
         }
     }
 }

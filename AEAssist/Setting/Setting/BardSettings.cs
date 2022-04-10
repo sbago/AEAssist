@@ -20,7 +20,7 @@ namespace AEAssist
         {
             this.CurrentSongPlaylist = SongStrategyEnum.WM_MB_AP;
             this.RestHealthPercent = 70f;
-            this.ApexArrowValue = 100;
+            this.ApexArrowValue = 95;
             this.Songs_WM_TimeLeftForSwitch = 2000;
             this.Songs_MB_TimeLeftForSwitch = 11000;
             this.Songs_AP_TimeLeftForSwitch = 2000;
