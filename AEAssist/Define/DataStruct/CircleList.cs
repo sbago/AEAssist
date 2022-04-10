@@ -8,12 +8,12 @@ namespace AEAssist
         private List<T> _list = new List<T>();
 
         public int Count => _list.Count;
-        
+
         public void Add(T t)
         {
             _list.Add(t);
         }
-        
+
         public void Clear()
         {
             _list.Clear();
@@ -22,7 +22,7 @@ namespace AEAssist
 
         public int GetIndex(T t)
         {
-            return _list.FindIndex(v=>v == t);
+            return _list.FindIndex(v => v == t);
         }
 
         public T GetNext(T t)
@@ -50,7 +50,7 @@ namespace AEAssist
 
             return _list[nextIndex];
         }
-        
+
         public T GetPre(T t)
         {
             if (t == null)
@@ -59,11 +59,12 @@ namespace AEAssist
                     return this._list[0];
                 return null;
             }
+
             var currIndex = GetIndex(t);
             if (currIndex < 0)
                 return null;
             var nextIndex = currIndex - 1;
-            if (nextIndex<0)
+            if (nextIndex < 0)
             {
                 nextIndex += _list.Count;
             }

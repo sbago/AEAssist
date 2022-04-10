@@ -10,7 +10,6 @@ namespace AEAssist.AI
 {
     public class BardGCD_Dot : IAIHandler
     {
-        
         public int Check(SpellData lastSpell)
         {
             var tar = Core.Me.CurrentTarget as Character;
@@ -23,6 +22,7 @@ namespace AEAssist.AI
             {
                 dots++;
             }
+
             if (BardSpellHelper.IsTargetHasAura_VenomousBite(tar))
             {
                 dots++;
@@ -34,7 +34,7 @@ namespace AEAssist.AI
                     return 1;
                 return -3;
             }
-            
+
             return 0;
         }
 
@@ -57,7 +57,7 @@ namespace AEAssist.AI
 
             if (spell == null)
                 return null;
-            var ret = await SpellHelper.CastGCD(spell,target);
+            var ret = await SpellHelper.CastGCD(spell, target);
             if (ret)
             {
                 if (spell == SpellsDefine.IronJaws)

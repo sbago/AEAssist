@@ -18,24 +18,26 @@ namespace AEAssist
         {
             // 自动注册IgnoreExtraElements
 
-            ConventionPack conventionPack = new ConventionPack { new IgnoreExtraElementsConvention(true) };
+            ConventionPack conventionPack = new ConventionPack {new IgnoreExtraElementsConvention(true)};
 
             ConventionRegistry.Register("IgnoreExtraElements", conventionPack, type => true);
-            
+
             var types = Assembly.GetExecutingAssembly().GetTypes();
 
             foreach (Type type in types)
             {
-                if(type.IsAbstract || type.IsInterface)
+                if (type.IsAbstract || type.IsInterface)
                     continue;
                 if (type.IsGenericType)
                 {
                     continue;
                 }
+
                 if (!typeof(ITriggerBase).IsAssignableFrom(type))
                 {
                     continue;
                 }
+
                 BsonClassMap.LookupClassMap(type);
             }
         }
@@ -82,7 +84,7 @@ namespace AEAssist
             {
                 BsonSerializationContext context = BsonSerializationContext.CreateRoot(bsonWriter);
                 BsonSerializationArgs args = default;
-                args.NominalType = typeof (object);
+                args.NominalType = typeof(object);
                 IBsonSerializer serializer = BsonSerializer.LookupSerializer(args.NominalType);
                 serializer.Serialize(context, args, message);
             }
@@ -133,18 +135,18 @@ namespace AEAssist
             {
                 using (MemoryStream memoryStream = new MemoryStream(bytes))
                 {
-                    return (T) BsonSerializer.Deserialize(memoryStream, typeof (T));
+                    return (T) BsonSerializer.Deserialize(memoryStream, typeof(T));
                 }
             }
             catch (Exception e)
             {
-                throw new Exception($"from bson error: {typeof (T).Name}", e);
+                throw new Exception($"from bson error: {typeof(T).Name}", e);
             }
         }
 
         public static T FromBson<T>(byte[] bytes, int index, int count)
         {
-            return (T) FromBson(typeof (T), bytes, index, count);
+            return (T) FromBson(typeof(T), bytes, index, count);
         }
 
         public static T Clone<T>(T t)

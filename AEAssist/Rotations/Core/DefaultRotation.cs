@@ -7,7 +7,6 @@ namespace AEAssist
     {
         public void Init()
         {
-            
         }
 
         public Task<bool> Rest()
@@ -59,7 +58,6 @@ namespace AEAssist
 
         public void HandleInCountDown1500()
         {
-            
         }
     }
 }

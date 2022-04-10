@@ -33,12 +33,10 @@ namespace AEAssist
 
 
         private bool _closeBuff;
-        
-        public bool CloseBuff{
-            get
-            {
-                return _closeBuff;
-            }
+
+        public bool CloseBuff
+        {
+            get { return _closeBuff; }
             set
             {
                 _closeBuff = value;
@@ -48,7 +46,7 @@ namespace AEAssist
         }
 
         public bool Stop { get; set; }
-        
+
         public bool AutoAttack { get; set; } = false;
 
         public bool UseTrueNorth { get; set; }
@@ -62,7 +60,7 @@ namespace AEAssist
         {
             if (GeneralSettings.ShowBattleTime)
             {
-                this.TimeStr = $"战斗时间:  {AIRoot.Instance.BattleData.BattleTime/1000}";
+                this.TimeStr = $"战斗时间:  {AIRoot.Instance.BattleData.BattleTime / 1000}";
             }
             else
             {
@@ -76,7 +74,6 @@ namespace AEAssist
         public bool UseDot { get; set; } = true;
 
         public bool UseApex { get; set; } = true;
-        
 
         #endregion
 
@@ -90,16 +87,13 @@ namespace AEAssist
         #endregion
 
 
-
-
-
         public GeneralSettings GeneralSettings { get; } = SettingMgr.GetSetting<GeneralSettings>();
-        public BardSettings BardSettings  => SettingMgr.GetSetting<BardSettings>();
-        public ReaperSettings ReaperSettings  => SettingMgr.GetSetting<ReaperSettings>();
-        
-        public DebugCenter DebugCenter =>DebugCenter.Intance;
-        
-        public HotkeySetting HotkeySetting =>SettingMgr.GetSetting<HotkeySetting>();
+        public BardSettings BardSettings => SettingMgr.GetSetting<BardSettings>();
+        public ReaperSettings ReaperSettings => SettingMgr.GetSetting<ReaperSettings>();
+
+        public DebugCenter DebugCenter => DebugCenter.Intance;
+
+        public HotkeySetting HotkeySetting => SettingMgr.GetSetting<HotkeySetting>();
         public TriggerLine CurrTriggerLine { get; set; }
     }
 }

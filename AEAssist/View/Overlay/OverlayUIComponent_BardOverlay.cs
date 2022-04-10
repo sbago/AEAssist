@@ -14,7 +14,7 @@ namespace AEAssist.View
         private OverlayControl _control;
 
         public override OverlayControl Control
-  {
+        {
             get
             {
                 if (_control != null)
@@ -32,19 +32,12 @@ namespace AEAssist.View
                     Y = 60,
                     AllowMoving = true,
                     AllowResizing = false,
-                    
                 };
                 LogHelper.Info("CreateOverlay " + _control.Width + "  " + _control.Height);
 
-                _control.MouseLeave += (sender, args) =>
-                {
-              
-                };
+                _control.MouseLeave += (sender, args) => { };
 
-                _control.MouseLeftButtonDown += (sender, args) =>
-                {
-                    _control.DragMove();
-                };
+                _control.MouseLeftButtonDown += (sender, args) => { _control.DragMove(); };
 
                 return _control;
             }

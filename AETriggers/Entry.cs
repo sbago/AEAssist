@@ -5,8 +5,8 @@ namespace AETriggers
 {
     public static class Entry
     {
-        public static  TriggerLine TriggerLine;
-        
+        public static TriggerLine TriggerLine;
+
         public struct ExcelData
         {
             public string groupId;
@@ -16,10 +16,9 @@ namespace AETriggers
         }
 
         public static Dictionary<string, List<ExcelData>> AllExcelData = new Dictionary<string, List<ExcelData>>();
-        
+
         public static void Init()
         {
-          
         }
     }
 }

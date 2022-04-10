@@ -26,7 +26,6 @@ namespace AEAssist.AI.Reaper.GCD
                     {
                         return SpellsDefine.WhorlOfDeath;
                     }
-
                 }
                 else
                 {
@@ -34,9 +33,7 @@ namespace AEAssist.AI.Reaper.GCD
                     {
                         return SpellsDefine.ShadowOfDeath;
                     }
-
                 }
-
             }
 
             return await ReaperSpellHelper.BaseGCDCombo(Core.Me.CurrentTarget);

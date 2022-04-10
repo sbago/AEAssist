@@ -15,7 +15,7 @@ namespace AEAssist.AI
     public class AIRoot
     {
         public static readonly AIRoot Instance = new AIRoot();
-        
+
         private bool ClearBattleData;
 
         private BardBattleData _bardBattleData;
@@ -25,7 +25,7 @@ namespace AEAssist.AI
             get => _bardBattleData ?? (_bardBattleData = new BardBattleData());
             set => _bardBattleData = value;
         }
-        
+
         private ReaperBattleData _reaperBattleData;
 
         public ReaperBattleData ReaperBattleData
@@ -35,12 +35,12 @@ namespace AEAssist.AI
         }
 
         private BattleData _battleData;
+
         public BattleData BattleData
         {
             get => _battleData ?? (_battleData = new BattleData());
             set => _battleData = value;
         }
-
 
 
         private Dictionary<string, long> lastNoticeTime = new Dictionary<string, long>();
@@ -52,7 +52,7 @@ namespace AEAssist.AI
             set => AEAssist.DataBinding.Instance.Stop = value;
         }
 
-        public bool CloseBuff 
+        public bool CloseBuff
         {
             get => AEAssist.DataBinding.Instance.CloseBuff;
             set => AEAssist.DataBinding.Instance.CloseBuff = value;
@@ -73,9 +73,9 @@ namespace AEAssist.AI
             BardBattleData = new BardBattleData();
             ReaperBattleData = new ReaperBattleData();
             AEAssist.DataBinding.Instance.Reset();
-            
+
             SpellHistoryMgr.Instance.Clear();
-            
+
             ClearBattleData = true;
             LogHelper.Debug("Clear battle data");
         }
@@ -90,9 +90,9 @@ namespace AEAssist.AI
                 BattleData.Update(timeNow);
                 SpellHistoryMgr.Instance.CheckIfNeedClearHistory();
             }
-            
+
             DataBinding.Instance.Update();
-            
+
             if (Stop)
             {
                 if (Core.Me.CurrentTarget != null)
@@ -109,29 +109,30 @@ namespace AEAssist.AI
             }
 
             if (!((Character) ff14bot.Core.Me.CurrentTarget).HasTarget && !CountDownHandler.Instance.CanDoAction
-            && !AEAssist.DataBinding.Instance.AutoAttack)
+                                                                       && !AEAssist.DataBinding.Instance.AutoAttack)
             {
                 if (CanNotice("key2", 1000))
                     GUIHelper.ShowInfo("目标可被攻击,准备战斗");
                 return false;
             }
-            
+
             if (Core.Me.InCombat)
             {
                 if (ClearBattleData)
                 {
                     BattleData.battleStartTime = timeNow;
                 }
+
                 ClearBattleData = false;
             }
-            
+
             bool canUseAbility = true;
             var delta = timeNow - BattleData.lastCastTime;
             var coolDown = GetGCDDuration();
 
             bool canUseGCD = CanUseGCD();
-            
-            if (!canUseGCD && BattleData.maxAbilityTimes > 0 && coolDown - delta >=coolDown * 0.33f)
+
+            if (!canUseGCD && BattleData.maxAbilityTimes > 0 && coolDown - delta >= coolDown * 0.33f)
             {
                 canUseAbility = true;
             }
@@ -165,6 +166,7 @@ namespace AEAssist.AI
                         BattleData.NextGCDSpellId = 0;
                     }
                 }
+
                 if (ret == null)
                     ret = await AIMgrs.Instance.HandleGCD(Core.Me.CurrentJob, BattleData.lastGCDSpell);
                 if (ret != null)
@@ -179,7 +181,7 @@ namespace AEAssist.AI
                         Name = ret.LocalizedName
                     };
                     SpellHistoryMgr.Instance.AddGCDHistory(history);
-                    
+
                     if (BattleData.lastGCDSpell == null)
                         CountDownHandler.Instance.Close();
                     BattleData.lastGCDIndex++;
@@ -194,7 +196,8 @@ namespace AEAssist.AI
             {
                 SpellData ret = null;
 
-                if (BattleData.maxAbilityTimes == SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD && BattleData.NextAbilityUsePotion)
+                if (BattleData.maxAbilityTimes == SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD &&
+                    BattleData.NextAbilityUsePotion)
                 {
                     BattleData.NextAbilitySpellId = 0;
                     var msg = "===>Try using Potion";
@@ -234,7 +237,7 @@ namespace AEAssist.AI
                     var msg = "Cast Ability: " + ret.LocalizedName;
                     LogHelper.Info(msg);
                     GUIHelper.ShowInfo(msg, 100);
-                    var history =new SpellHistory
+                    var history = new SpellHistory
                     {
                         SpellId = ret.Id,
                         CastTime = timeNow,
@@ -284,9 +287,9 @@ namespace AEAssist.AI
         {
             BattleData.maxAbilityTimes = 0;
         }
-        
 
-        bool CanNotice(string key,long interval)
+
+        bool CanNotice(string key, long interval)
         {
             var now = TimeHelper.Now();
             if (lastNoticeTime.TryGetValue(key, out var lastTime))

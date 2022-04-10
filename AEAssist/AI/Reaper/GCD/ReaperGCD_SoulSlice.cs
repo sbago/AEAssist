@@ -19,15 +19,15 @@ namespace AEAssist.AI.Reaper.GCD
 
             if ((SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.ContainMyAura(AurasDefine.Enshrouded)))
                 return -3;
-            
+
             return 0;
         }
 
         public async Task<SpellData> Run()
         {
             // 不是满充能,而且准备附体,先把连击状态打掉
-            if(SpellsDefine.SoulSlice.Charges<SpellsDefine.SoulSlice.MaxCharges
-            && ReaperSpellHelper.ReadyToEnshroud()>=0)
+            if (SpellsDefine.SoulSlice.Charges < SpellsDefine.SoulSlice.MaxCharges
+                && ReaperSpellHelper.ReadyToEnshroud() >= 0)
             {
                 if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 5, 5))
                 {
@@ -59,9 +59,8 @@ namespace AEAssist.AI.Reaper.GCD
                         }
                     }
                 }
-
             }
-            
+
             SpellData spell = ReaperSpellHelper.CanUseSoulSlice_Scythe(Core.Me.CurrentTarget);
             if (spell == null)
                 return null;

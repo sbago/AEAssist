@@ -9,8 +9,8 @@
         Title="AE轴导出器" Height="180" Width="225">
     <StackPanel Margin="5">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-        <Button Margin="5" Name="Load" Content="加载Excel表" Click="Load_OnClick"></Button>
-            <Button Margin="5" Name="Export" Content="导出" Click="Export_OnClick"></Button>
+            <Button Margin="5" Name="Load" Content="加载Excel表" Click="Load_OnClick" />
+            <Button Margin="5" Name="Export" Content="导出" Click="Export_OnClick" />
             <!-- <Button Name="LoadJson" Content="加载导出文件(检验用)" Click="LoadJson_OnClick"></Button> -->
         </StackPanel>
         <StackPanel Orientation="Horizontal">
@@ -29,6 +29,6 @@
             <Label Content="目标职业:" />
             <Label Name="TargetJob" Content="" />
         </StackPanel>
-        
+
     </StackPanel>
 </Window>

@@ -15,4 +15,3 @@ D:\Github\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.csproj.AssemblyRefere
 D:\Github\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.csproj.CoreCompileInputs.cache
 D:\Github\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.dll
 D:\Github\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.pdb
-D:\Github\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.csproj.CopyComplete

@@ -2,11 +2,11 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger(name:"Burst",remark:"是否允许爆发")]
+    [Trigger(name: "Burst", remark: "是否允许爆发")]
     public class TriggerAction_SwitchBurst : ITriggerAction
     {
         public bool value;
-        
+
         public void WriteFromJson(string[] values)
         {
             if (!int.TryParse(values[0], out var va))

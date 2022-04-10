@@ -12,12 +12,13 @@ namespace AEAssist.View
     {
         public static OverlayManager Instance = new OverlayManager();
 
-        private Dictionary<ClassJobType, OverlayUIComponent> AllOverlays = new Dictionary<ClassJobType, OverlayUIComponent>();
+        private Dictionary<ClassJobType, OverlayUIComponent> AllOverlays =
+            new Dictionary<ClassJobType, OverlayUIComponent>();
 
         private ClassJobType _classJobType;
 
         private OverlayUIComponent lastOverlay;
-        
+
         public void Init()
         {
             AllOverlays[ClassJobType.Bard] = new OverlayUIComponent_BardOverlay(true);
@@ -56,7 +57,7 @@ namespace AEAssist.View
                 return;
             if (lastOverlay != null)
             {
-               Close();
+                Close();
             }
             else
             {
@@ -66,7 +67,7 @@ namespace AEAssist.View
                 {
                     Core.OverlayManager.AddUIComponent(window);
                     lastOverlay = window;
-                }   
+                }
             }
         }
 

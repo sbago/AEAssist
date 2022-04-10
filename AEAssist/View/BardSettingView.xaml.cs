@@ -11,12 +11,12 @@ namespace AEAssist.View
             InitializeComponent();
             this.ChoosePotion.ItemsSource = PotionHelper.DexPotions;
             this.ChoosePotion.SelectedValue = SettingMgr.GetSetting<BardSettings>().UsePotionId;
-            ButtonBase_OnClick(null,null);
+            ButtonBase_OnClick(null, null);
         }
 
         private void ChoosePotion_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SettingMgr.GetSetting<BardSettings>().UsePotionId = (int)ChoosePotion.SelectedValue;
+            SettingMgr.GetSetting<BardSettings>().UsePotionId = (int) ChoosePotion.SelectedValue;
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)

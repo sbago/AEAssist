@@ -17,7 +17,6 @@ namespace AEAssist
     [Rotation(ClassJobType.Reaper)]
     public class ReaperRotation : IRotation
     {
-
         private AIRoot AiRoot = AIRoot.Instance;
 
         private long randomTime;
@@ -25,12 +24,11 @@ namespace AEAssist
 
         public void Init()
         {
-           
         }
 
         public Task<bool> Rest()
         {
-           // var needRest = Core.Me.CurrentHealthPercent < SettingMgr.GetSetting<BardSettings>().RestHealthPercent;
+            // var needRest = Core.Me.CurrentHealthPercent < SettingMgr.GetSetting<BardSettings>().RestHealthPercent;
             return Task.FromResult(false);
         }
 
@@ -47,16 +45,16 @@ namespace AEAssist
 
             if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
                 return false;
-            
+
             if (MovementManager.IsMoving)
                 return false;
-            
+
             GUIHelper.ShowInfo("非战斗状态");
 
 
             if (Core.Me.HasAura(AurasDefine.Soulsow))
                 return true;
-            
+
             if (await SpellHelper.CastGCD(SpellsDefine.Soulsow, Core.Me))
             {
                 GUIHelper.ShowInfo("使用收获月!");
@@ -96,7 +94,7 @@ namespace AEAssist
 
         public SpellData GetBaseGCDSpell()
         {
-            return  SpellsDefine.Slice;
+            return SpellsDefine.Slice;
         }
 
         public void HandleInCountDown1500()

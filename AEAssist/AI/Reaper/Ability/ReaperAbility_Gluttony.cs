@@ -18,9 +18,9 @@ namespace AEAssist.AI.Reaper.Ability
                 return -2;
             if (Core.Me.HasAura(AurasDefine.SoulReaver))
                 return -3;
-            if (SpellsDefine.Enshroud.RecentlyUsed() ||Core.Me.HasAura(AurasDefine.Enshrouded))
+            if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -4;
-            if(TimeHelper.Now() - SpellHistoryHelper.GetLastSpellTime(SpellsDefine.Enshroud.Id) < 3000)
+            if (TimeHelper.Now() - SpellHistoryHelper.GetLastSpellTime(SpellsDefine.Enshroud.Id) < 3000)
                 return -5;
             // 死亡祭祀
             if (Core.Me.HasAura(AurasDefine.BloodsownCircle))
@@ -30,6 +30,7 @@ namespace AEAssist.AI.Reaper.Ability
             {
                 return -7;
             }
+
             if (ActionResourceManager.Reaper.SoulGauge < 50)
                 return -8;
             // 可以打附体,就不打暴食了

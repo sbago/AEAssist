@@ -15,8 +15,8 @@ namespace AEAssist
             this.UsePotionId = 36104; // 5级刚力
             this.GallowsPrefer = false;
         }
-        
-        public int UsePotionId  {get;set;}
+
+        public int UsePotionId { get; set; }
 
         public bool GallowsPrefer { get; set; }
     }

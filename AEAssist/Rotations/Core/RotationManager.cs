@@ -22,11 +22,11 @@ namespace AEAssist
             var baseType = typeof(IRotation);
             foreach (var type in this.GetType().Assembly.GetTypes())
             {
-                if(type.IsAbstract || type.IsInterface)
+                if (type.IsAbstract || type.IsInterface)
                     continue;
-                if(!baseType.IsAssignableFrom(type))
+                if (!baseType.IsAssignableFrom(type))
                     continue;
-                if(type == typeof(DefaultRotation))
+                if (type == typeof(DefaultRotation))
                     continue;
                 var attrs = type.GetCustomAttributes(typeof(RotationAttribute), false);
                 if (attrs.Length == 0)
@@ -39,7 +39,7 @@ namespace AEAssist
                 this.AllRotations[attr.ClassJobType] = Activator.CreateInstance(type) as IRotation;
                 LogHelper.Info("Load Rotation: " + attr.ClassJobType);
             }
-            
+
             foreach (var v in AllRotations)
             {
                 v.Value.Init();
@@ -98,7 +98,7 @@ namespace AEAssist
 
         public void HandleInCountDown1500()
         {
-             GetRotation().HandleInCountDown1500();
+            GetRotation().HandleInCountDown1500();
         }
     }
 }

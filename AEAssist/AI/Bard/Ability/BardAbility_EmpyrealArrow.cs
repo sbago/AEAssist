@@ -15,7 +15,7 @@ namespace AEAssist.AI
                 return -1;
             if (BardSpellHelper.PrepareSwitchSong())
                 return -2;
-            
+
             return 0;
         }
 

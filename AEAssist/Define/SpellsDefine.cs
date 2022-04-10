@@ -6,7 +6,9 @@ namespace AEAssist.Define
     internal static class SpellsDefine
     {
         // DPS Role
+
         #region DPS Role
+
         public static readonly SpellData SecondWind = DataManager.GetSpellData(7541);
         public static readonly SpellData Bloodbath = DataManager.GetSpellData(7542);
         public static readonly SpellData TrueNorth = DataManager.GetSpellData(7546);
@@ -17,10 +19,13 @@ namespace AEAssist.Define
         public static readonly SpellData LegGraze = DataManager.GetSpellData(7554);
         public static readonly SpellData Peloton = DataManager.GetSpellData(7557);
         public static readonly SpellData LegSweep = DataManager.GetSpellData(7863);
+
         #endregion
 
         // Magic Role
+
         #region Magic Role
+
         public static readonly SpellData Surecast = DataManager.GetSpellData(7559);
         public static readonly SpellData Addle = DataManager.GetSpellData(7560);
         public static readonly SpellData Swiftcast = DataManager.GetSpellData(7561);
@@ -28,20 +33,26 @@ namespace AEAssist.Define
         public static readonly SpellData Esuna = DataManager.GetSpellData(7568);
         public static readonly SpellData Rescue = DataManager.GetSpellData(7571);
         public static readonly SpellData Repose = DataManager.GetSpellData(16560);
+
         #endregion
 
         // Tank Role
+
         #region Tank Role
+
         public static readonly SpellData Rampart = DataManager.GetSpellData(7531);
         public static readonly SpellData Provoke = DataManager.GetSpellData(7533);
         public static readonly SpellData Reprisal = DataManager.GetSpellData(7535);
         public static readonly SpellData Shirk = DataManager.GetSpellData(7537);
         public static readonly SpellData Interject = DataManager.GetSpellData(7538);
         public static readonly SpellData LowBlow = DataManager.GetSpellData(7540);
+
         #endregion
 
         // ACN
+
         #region ACN
+
         public static readonly SpellData Ruin = DataManager.GetSpellData(163);
         public static readonly SpellData SummonCarbuncle = DataManager.GetSpellData(25798);
         public static readonly SpellData RadiantAegis = DataManager.GetSpellData(25799);
@@ -67,11 +78,12 @@ namespace AEAssist.Define
         public static readonly SpellData Ruin2 = DataManager.GetSpellData(172);
         public static readonly SpellData SmnPhysick = DataManager.GetSpellData(16230);
 
-
         #endregion
 
         // AST
+
         #region AST
+
         public static readonly SpellData Draw = DataManager.GetSpellData(3590);
         public static readonly SpellData Redraw = DataManager.GetSpellData(3593);
         public static readonly SpellData Benefic = DataManager.GetSpellData(3594);
@@ -117,10 +129,13 @@ namespace AEAssist.Define
         public static readonly SpellData Microcosmos = DataManager.GetSpellData(25874);
         public static readonly SpellData FallMalefic = DataManager.GetSpellData(25871);
         public static readonly SpellData GravityII = DataManager.GetSpellData(25872);
+
         #endregion
 
         // BLM
+
         #region BLM
+
         public static readonly SpellData Fire = DataManager.GetSpellData(141);
         public static readonly SpellData Blizzard = DataManager.GetSpellData(142);
         public static readonly SpellData Thunder = DataManager.GetSpellData(144);
@@ -150,10 +165,13 @@ namespace AEAssist.Define
         public static readonly SpellData HighBlizzardII = DataManager.GetSpellData(25795);
         public static readonly SpellData Amplifier = DataManager.GetSpellData(25796);
         public static readonly SpellData Paradox = DataManager.GetSpellData(25797);
+
         #endregion
 
         // BRD
+
         #region BRD
+
         //SingleTarget
 
         public static readonly SpellData HeavyShot = DataManager.GetSpellData(97);
@@ -178,7 +196,7 @@ namespace AEAssist.Define
 
         public static readonly SpellData VenomousBite = DataManager.GetSpellData(100);
         public static readonly SpellData Windbite = DataManager.GetSpellData(113);
-        public static readonly SpellData IronJaws = DataManager.GetSpellData(3560);         //Not a DoT but will refresh both
+        public static readonly SpellData IronJaws = DataManager.GetSpellData(3560); //Not a DoT but will refresh both
         public static readonly SpellData CausticBite = DataManager.GetSpellData(7406);
         public static readonly SpellData Stormbite = DataManager.GetSpellData(7407);
 
@@ -205,7 +223,9 @@ namespace AEAssist.Define
         #endregion
 
         // DNC
+
         #region DNC
+
         public static readonly SpellData Cascade = DataManager.GetSpellData(15989);
         public static readonly SpellData Fountain = DataManager.GetSpellData(15990);
         public static readonly SpellData ReverseCascade = DataManager.GetSpellData(15991);
@@ -242,10 +262,13 @@ namespace AEAssist.Define
         public static readonly SpellData FanDanceIV = DataManager.GetSpellData(25791);
         public static readonly SpellData StarfallDance = DataManager.GetSpellData(25792);
         public static readonly SpellData Tillana = DataManager.GetSpellData(25790);
+
         #endregion
 
         // DRG
+
         #region DRG
+
         public static readonly SpellData TrueThrust = DataManager.GetSpellData(75);
         public static readonly SpellData VorpalThrust = DataManager.GetSpellData(78);
         public static readonly SpellData LifeSurge = DataManager.GetSpellData(83);
@@ -274,10 +297,13 @@ namespace AEAssist.Define
         public static readonly SpellData ChaoticSpring = DataManager.GetSpellData(25772);
         public static readonly SpellData WyrmwindThrust = DataManager.GetSpellData(25773);
         public static readonly SpellData DraconianFury = DataManager.GetSpellData(25770);
+
         #endregion
 
         // DRK
+
         #region DRK
+
         public static readonly SpellData HardSlash = DataManager.GetSpellData(3617);
         public static readonly SpellData Unleash = DataManager.GetSpellData(3621);
         public static readonly SpellData SyphonStrike = DataManager.GetSpellData(3623);
@@ -305,10 +331,13 @@ namespace AEAssist.Define
         public static readonly SpellData LivingShadow = DataManager.GetSpellData(16472);
         public static readonly SpellData Oblation = DataManager.GetSpellData(25754);
         public static readonly SpellData Shadowbringer = DataManager.GetSpellData(25757);
+
         #endregion
 
         // GNB
+
         #region GNB
+
         public static readonly SpellData KeenEdge = DataManager.GetSpellData(16137);
         public static readonly SpellData NoMercy = DataManager.GetSpellData(16138);
         public static readonly SpellData BrutalShell = DataManager.GetSpellData(16139);
@@ -341,10 +370,13 @@ namespace AEAssist.Define
         public static readonly SpellData HeartOfCorundum = DataManager.GetSpellData(25758);
         public static readonly SpellData DoubleDown = DataManager.GetSpellData(25760);
         public static readonly SpellData Hypervelocity = DataManager.GetSpellData(25759);
+
         #endregion
 
         // MCH
+
         #region MCH
+
         public static readonly SpellData RookAutoturret = DataManager.GetSpellData(2864);
         public static readonly SpellData SplitShot = DataManager.GetSpellData(2866);
         public static readonly SpellData SlugShot = DataManager.GetSpellData(2868);
@@ -381,18 +413,25 @@ namespace AEAssist.Define
         public static readonly SpellData PVPWildfire = DataManager.GetSpellData(8855);
         public static readonly SpellData PVPAirAnchor = DataManager.GetSpellData(17750);
         public static readonly SpellData PVPSpreadShot = DataManager.GetSpellData(18932);
+
         #endregion
 
         // MNK
+
         #region MNK
+
         public static readonly SpellData ArmOfTheDestroyer = DataManager.GetSpellData(62);
         public static readonly SpellData Bootshine = DataManager.GetSpellData(53);
         public static readonly SpellData TrueStrike = DataManager.GetSpellData(54);
+
         public static readonly SpellData SnapPunch = DataManager.GetSpellData(56);
+
         //public static readonly SpellData FistsOfEarth = DataManager.GetSpellData(60);
         public static readonly SpellData TwinSnakes = DataManager.GetSpellData(61);
         public static readonly SpellData Demolish = DataManager.GetSpellData(66);
+
         public static readonly SpellData Rockbreaker = DataManager.GetSpellData(70);
+
         //public static readonly SpellData FistsOfWind = DataManager.GetSpellData(73);
         //public static readonly SpellData ShoulderTackle = DataManager.GetSpellData(71);
         //public static readonly SpellData FistsOfFire = DataManager.GetSpellData(63);
@@ -410,10 +449,13 @@ namespace AEAssist.Define
         public static readonly SpellData TornadoKick = DataManager.GetSpellData(3543);
         public static readonly SpellData MasterfulBlitz = DataManager.GetSpellData(25764);
         public static readonly SpellData ShadowOfTheDestroyer = DataManager.GetSpellData(25767);
+
         #endregion
 
         // NIN
+
         #region NIN
+
         public static readonly SpellData SpinningEdge = DataManager.GetSpellData(2240);
         public static readonly SpellData ShadeShift = DataManager.GetSpellData(2241);
         public static readonly SpellData GustSlash = DataManager.GetSpellData(2242);
@@ -457,7 +499,9 @@ namespace AEAssist.Define
         #endregion
 
         // PLD
+
         #region PLD
+
         public static readonly SpellData Sentinel = DataManager.GetSpellData(17);
         public static readonly SpellData FightorFlight = DataManager.GetSpellData(20);
         public static readonly SpellData Cover = DataManager.GetSpellData(27);
@@ -489,10 +533,13 @@ namespace AEAssist.Define
         public static readonly SpellData BladeOfFaith = DataManager.GetSpellData(25748);
         public static readonly SpellData BladeOfTruth = DataManager.GetSpellData(25749);
         public static readonly SpellData BladeOfValor = DataManager.GetSpellData(25750);
+
         #endregion
 
         // RDM
+
         #region RDM
+
         public static readonly SpellData Jolt = DataManager.GetSpellData(7503);
         public static readonly SpellData Riposte = DataManager.GetSpellData(7504);
         public static readonly SpellData Verthunder = DataManager.GetSpellData(7505);
@@ -526,10 +573,13 @@ namespace AEAssist.Define
         public static readonly SpellData VerthunderIII = DataManager.GetSpellData(25855);
         public static readonly SpellData VeraeroIII = DataManager.GetSpellData(25856);
         public static readonly SpellData MagickBarrier = DataManager.GetSpellData(25857);
+
         #endregion
 
         // SAM
+
         #region SAM
+
         public static readonly SpellData Hakaze = DataManager.GetSpellData(7477);
         public static readonly SpellData Shoha = DataManager.GetSpellData(16487);
         public static readonly SpellData Jinpu = DataManager.GetSpellData(7478);
@@ -555,17 +605,22 @@ namespace AEAssist.Define
         public static readonly SpellData HissatsuSenei = DataManager.GetSpellData(16481);
         public static readonly SpellData Meditate = DataManager.GetSpellData(7497);
         public static readonly SpellData ThirdEye = DataManager.GetSpellData(7498);
+
         public static readonly SpellData MeikyoShisui = DataManager.GetSpellData(7499);
+
         //public static readonly SpellData HissatsuSeigan = DataManager.GetSpellData(7501);
         public static readonly SpellData Meditation = DataManager.GetSpellData(3546);
         public static readonly SpellData ShohaII = DataManager.GetSpellData(25779);
         public static readonly SpellData Fuko = DataManager.GetSpellData(25780);
         public static readonly SpellData OgiNamikiri = DataManager.GetSpellData(25781);
         public static readonly SpellData KaeshiNamikiri = DataManager.GetSpellData(25782);
+
         #endregion
 
         // SGE
+
         #region SGE
+
         public static readonly SpellData Dosis = DataManager.GetSpellData(24283);
         public static readonly SpellData Diagnosis = DataManager.GetSpellData(24284);
         public static readonly SpellData Kardia = DataManager.GetSpellData(24285);
@@ -601,10 +656,13 @@ namespace AEAssist.Define
         public static readonly SpellData DyskrasiaII = DataManager.GetSpellData(24315);
         public static readonly SpellData Krasis = DataManager.GetSpellData(24317);
         public static readonly SpellData Pneuma = DataManager.GetSpellData(24318);
+
         #endregion
 
         // SCH
+
         #region SCH
+
         public static readonly SpellData Aetherflow = DataManager.GetSpellData(166);
         public static readonly SpellData EnergyDrain2 = DataManager.GetSpellData(167);
         public static readonly SpellData Adloquium = DataManager.GetSpellData(185);
@@ -641,10 +699,10 @@ namespace AEAssist.Define
         public static readonly SpellData Bio = DataManager.GetSpellData(17864);
         public static readonly SpellData Enkindle = DataManager.GetSpellData(184);
 
-
         #endregion
 
         // SMN
+
         #region SMN
 
         public static readonly SpellData SummonIfrit = DataManager.GetSpellData(25805);
@@ -693,11 +751,12 @@ namespace AEAssist.Define
         public static readonly SpellData MountainBuster = DataManager.GetSpellData(25836);
         public static readonly SpellData Slipstream = DataManager.GetSpellData(25837);
 
-
         #endregion
 
         // WAR
+
         #region WAR
+
         public static readonly SpellData HeavySwing = DataManager.GetSpellData(31);
         public static readonly SpellData Maim = DataManager.GetSpellData(37);
         public static readonly SpellData Berserk = DataManager.GetSpellData(38);
@@ -727,10 +786,13 @@ namespace AEAssist.Define
         public static readonly SpellData Orogeny = DataManager.GetSpellData(25752);
         public static readonly SpellData PrimalRend = DataManager.GetSpellData(25753);
         public static readonly SpellData NascentFlash = DataManager.GetSpellData(16464);
+
         #endregion
 
         // WHM
+
         #region WHM
+
         public static readonly SpellData Stone = DataManager.GetSpellData(119);
         public static readonly SpellData Cure = DataManager.GetSpellData(120);
         public static readonly SpellData Aero = DataManager.GetSpellData(121);
@@ -739,7 +801,9 @@ namespace AEAssist.Define
         public static readonly SpellData Stone2 = DataManager.GetSpellData(127);
         public static readonly SpellData Cure3 = DataManager.GetSpellData(131);
         public static readonly SpellData Aero2 = DataManager.GetSpellData(132);
+
         public static readonly SpellData Medica2 = DataManager.GetSpellData(133);
+
         //public static readonly SpellData FluidAura = DataManager.GetSpellData(134);
         public static readonly SpellData Cure2 = DataManager.GetSpellData(135);
         public static readonly SpellData PresenceofMind = DataManager.GetSpellData(136);
@@ -764,10 +828,13 @@ namespace AEAssist.Define
         public static readonly SpellData HolyIII = DataManager.GetSpellData(25860);
         public static readonly SpellData Aquaveil = DataManager.GetSpellData(25861);
         public static readonly SpellData LiturgyOfTheBell = DataManager.GetSpellData(25862);
+
         #endregion
 
         // BLU
+
         #region BLU
+
         public static readonly SpellData Snort = DataManager.GetSpellData(11383);
         public static readonly SpellData FourTonzWeight = DataManager.GetSpellData(11384);
         public static readonly SpellData WaterCannon = DataManager.GetSpellData(11385);
@@ -875,9 +942,11 @@ namespace AEAssist.Define
         public static readonly SpellData PhantomFlurryEnd = DataManager.GetSpellData(23289);
         public static readonly SpellData NightBloom = DataManager.GetSpellData(23290);
         public static readonly SpellData Stotram = DataManager.GetSpellData(23416);
+
         #endregion
 
         // RPR
+
         #region RPR
 
         public static readonly SpellData Slice = DataManager.GetSpellData(24373); // [24373, Slice]
@@ -892,7 +961,10 @@ namespace AEAssist.Define
         public static readonly SpellData Gibbet = DataManager.GetSpellData(24382); // [24382, Gibbet]
         public static readonly SpellData Gallows = DataManager.GetSpellData(24383); // [24383, Gallows]
         public static readonly SpellData Guillotine = DataManager.GetSpellData(24384); // [24384, Guillotine]
-        public static readonly SpellData PlentifulHarvest = DataManager.GetSpellData(24385); // [24385, Plentiful Harvest]
+
+        public static readonly SpellData
+            PlentifulHarvest = DataManager.GetSpellData(24385); // [24385, Plentiful Harvest]
+
         public static readonly SpellData Harpe = DataManager.GetSpellData(24386); // [24386, Harpe]
         public static readonly SpellData Soulsow = DataManager.GetSpellData(24387); // [24387, Soulsow]
         public static readonly SpellData HarvestMoon = DataManager.GetSpellData(24388); // [24388, Harvest Moon]
@@ -917,7 +989,9 @@ namespace AEAssist.Define
         #endregion
 
         //PVP
+
         #region PVP
+
         public static readonly SpellData Concentrate = DataManager.GetSpellData(1582);
         public static readonly SpellData Muse = DataManager.GetSpellData(1583);
         public static readonly SpellData Safeguard = DataManager.GetSpellData(1585);
@@ -962,9 +1036,9 @@ namespace AEAssist.Define
         public static readonly SpellData DivineBenisonPvp = DataManager.GetSpellData(9621);
         public static readonly SpellData AssizePvp = DataManager.GetSpellData(9620);
         public static readonly SpellData FluidAuraPvp = DataManager.GetSpellData(8900);
+
         #endregion
 
         public static readonly SpellData Sprint = DataManager.GetSpellData(3);
     }
-
 }

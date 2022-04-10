@@ -25,10 +25,10 @@ namespace AETriggers
         public MainWindow()
         {
             InitializeComponent();
-            
+
             Entry.Init();
         }
-        
+
 
         private void Load_OnClick(object sender, RoutedEventArgs e)
         {
@@ -37,7 +37,7 @@ namespace AETriggers
             openFile.InitialDirectory = new DirectoryInfo("../").FullName;
             openFile.Multiselect = false;
             var ret = openFile.ShowDialog();
-            
+
             if (!ret.HasValue || !ret.Value)
                 return;
             var file = openFile.FileName;
@@ -45,7 +45,8 @@ namespace AETriggers
             string fileExt = Path.GetExtension(file).ToLower();
             try
             {
-                using (FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read,System.IO.FileShare.ReadWrite))
+                using (FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read,
+                    System.IO.FileShare.ReadWrite))
                 {
                     if (fileExt == ".xlsx")
                     {
@@ -77,9 +78,8 @@ namespace AETriggers
                     //             MessageBox.Show($"{v.RowIndex} {v.ColumnIndex} : {v.ToString()}");
                     //     }
                     // }
-                    
-                    
-                    
+
+
                     var authorName = sheet.GetRow(0).GetCell(1).ToString();
                     var version = sheet.GetRow(1).GetCell(1).ToString();
                     var targetDuty = sheet.GetRow(2).GetCell(1).ToString();
@@ -94,22 +94,22 @@ namespace AETriggers
                     };
 
                     var AllExcelData = Entry.AllExcelData;
-                    
+
                     Entry.AllExcelData.Clear();
                     for (int i = 6; i < sheet.LastRowNum; i++)
                     {
                         var row = sheet.GetRow(i);
                         var cell = row.GetCell(1);
                         var notData = cell != null && cell.ToString().StartsWith("#");
-                        if(notData)
+                        if (notData)
                             continue;
                         var groupId = row.GetCell(2)?.ToString();
                         var type = row.GetCell(3)?.ToString();
                         var valueType = row.GetCell(4)?.ToString();
-                        
-                        if(groupId == null || type == null || valueType == null)
+
+                        if (groupId == null || type == null || valueType == null)
                             continue;
-                        
+
                         var valueParams = new string[3];
                         valueParams[0] = row.GetCell(5)?.ToString();
                         valueParams[1] = row.GetCell(6)?.ToString();
@@ -141,15 +141,13 @@ namespace AETriggers
 
                     RefreshUI();
                 }
-
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.ToString());
             }
-
         }
-        
+
         private void Export_OnClick(object sender, RoutedEventArgs e)
         {
             var TriggerLine = Entry.TriggerLine;
@@ -165,7 +163,6 @@ namespace AETriggers
                 return;
             TriggerHelper.SaveTriggerLine(triggerLine: TriggerLine, openFile.FileName);
             MessageBox.Show("导出成功!");
-
         }
 
         private bool LoadExcelData()
@@ -181,7 +178,7 @@ namespace AETriggers
                     Id = v.Key
                 };
                 TriggerLine.Triggers.Add(trigger);
-                
+
                 foreach (var data in v.Value)
                 {
                     var strs = data.valueType.Split(':');
@@ -207,9 +204,8 @@ namespace AETriggers
                     catch (Exception e)
                     {
                         var pre = $"Type: {data.valueType} Params : [{ListToString(data.valueParams)}]\n ";
-                        MessageBox.Show( pre+ e.ToString());
+                        MessageBox.Show(pre + e.ToString());
                     }
-
                 }
             }
 
@@ -253,10 +249,10 @@ namespace AETriggers
             var AllExcelData = Entry.AllExcelData;
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.Filter = "Json(*.json)|*.json";
-            openFile.InitialDirectory = Environment.CurrentDirectory+@"\..\";
+            openFile.InitialDirectory = Environment.CurrentDirectory + @"\..\";
             openFile.Multiselect = false;
             var ret = openFile.ShowDialog();
-            
+
             if (!ret.HasValue || !ret.Value)
                 return;
             var file = openFile.FileName;

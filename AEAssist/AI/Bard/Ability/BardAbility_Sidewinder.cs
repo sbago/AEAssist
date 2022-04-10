@@ -19,7 +19,7 @@ namespace AEAssist.AI
             {
                 return 2;
             }
-            
+
             if (!Core.Me.HasMyAura(AurasDefine.RagingStrikes))
             {
                 return 3;

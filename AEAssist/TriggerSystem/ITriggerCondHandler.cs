@@ -10,7 +10,7 @@ namespace AEAssist.TriggerSystem
         bool Handle(ITriggerCond o);
     }
 
-    public abstract class ATriggerCondHandler<T> : ITriggerCondHandler where T: class,ITriggerCond
+    public abstract class ATriggerCondHandler<T> : ITriggerCondHandler where T : class, ITriggerCond
     {
         public Type GetCondType()
         {

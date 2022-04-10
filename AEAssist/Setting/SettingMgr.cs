@@ -14,23 +14,23 @@ namespace AEAssist
 
         private HashSet<Type> AllSettingsType = new HashSet<Type>();
 
-        readonly string SettingPath =  @"Settings\AEAssists";
+        readonly string SettingPath = @"Settings\AEAssists";
+
         public SettingMgr()
         {
             var baseType = typeof(IBaseSetting);
             foreach (var type in this.GetType().Assembly.GetTypes())
             {
-                if(type.IsAbstract || type.IsInterface)
+                if (type.IsAbstract || type.IsInterface)
                     continue;
-                if(!baseType.IsAssignableFrom(type))
+                if (!baseType.IsAssignableFrom(type))
                     continue;
                 AllSettingsType.Add(type);
-
             }
-            
-            
+
+
             Directory.CreateDirectory(SettingPath);
-            var versionSetting =  LoadSetting(typeof(VersionSetting)) as VersionSetting;
+            var versionSetting = LoadSetting(typeof(VersionSetting)) as VersionSetting;
             if (versionSetting == null || versionSetting.SettingVersion != ConstValue.SettingVersion)
             {
                 Reset();
@@ -49,17 +49,17 @@ namespace AEAssist
                 AllSetting[v] = setting as IBaseSetting;
             }
         }
-        
+
         object LoadSetting(Type type)
         {
-            var generalSettingFile =  $"{SettingPath}/{type.Name}.json";
-            
+            var generalSettingFile = $"{SettingPath}/{type.Name}.json";
+
             if (File.Exists(generalSettingFile))
             {
                 try
                 {
                     var generalSetting =
-                        JsonConvert.DeserializeObject(File.ReadAllText(generalSettingFile),type);
+                        JsonConvert.DeserializeObject(File.ReadAllText(generalSettingFile), type);
                     LogHelper.Info("Loaded Setting: " + type.Name);
                     return generalSetting;
                 }
@@ -67,23 +67,21 @@ namespace AEAssist
                 {
                     LogHelper.Error(e.ToString());
                 }
-              
             }
 
             return null;
         }
-        
+
         void SaveSetting(object obj)
         {
             var type = obj.GetType();
-            var generalSettingFile =  $"{SettingPath}/{type.Name}.json";
-            File.WriteAllText(generalSettingFile,JsonConvert.SerializeObject(obj));
+            var generalSettingFile = $"{SettingPath}/{type.Name}.json";
+            File.WriteAllText(generalSettingFile, JsonConvert.SerializeObject(obj));
         }
 
 
         public void InitSetting()
         {
-
         }
 
         public void Reset()
@@ -92,7 +90,7 @@ namespace AEAssist
 
             VersionSetting versionSetting = new VersionSetting();
             SaveSetting(versionSetting);
-            
+
             foreach (var v in AllSettingsType)
             {
                 var setting = Activator.CreateInstance(v);
@@ -103,12 +101,12 @@ namespace AEAssist
             foreach (var v in AllSetting)
             {
                 v.Value.Reset();
-                
-                SaveSetting(v.Value);   
+
+                SaveSetting(v.Value);
             }
         }
 
-        public static T GetSetting<T>() where T : class, IBaseSetting,new()
+        public static T GetSetting<T>() where T : class, IBaseSetting, new()
         {
             var type = typeof(T);
             SettingMgr.Instance.AllSetting.TryGetValue(type, out var value);
@@ -122,7 +120,5 @@ namespace AEAssist
                 SaveSetting(v.Value);
             }
         }
-        
-        
     }
 }

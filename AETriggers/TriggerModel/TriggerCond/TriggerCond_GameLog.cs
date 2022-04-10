@@ -2,12 +2,12 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger(name:"GameLog",remark:"副本内台词/系统提示的监控")]
+    [Trigger(name: "GameLog", remark: "副本内台词/系统提示的监控")]
     public class TriggerCond_GameLog : ITriggerCond
     {
         public int MsgType;
         public string ContainValue;
-        
+
 
         public void WriteFromJson(string[] values)
         {

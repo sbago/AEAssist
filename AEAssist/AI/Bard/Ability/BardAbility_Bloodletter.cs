@@ -24,7 +24,7 @@ namespace AEAssist.AI
 
             if (AIRoot.Instance.CloseBuff)
                 return 2;
-            
+
             // 起手爆发期间, 失血箭尽量打进团辅
 
             if (BardSpellHelper.HasBuffsCount() >= BardSpellHelper.UnlockBuffsCount())
@@ -32,19 +32,20 @@ namespace AEAssist.AI
 
             if (BardSpellHelper.Prepare2BurstBuffs())
                 return -4;
-            
+
             // 军神期间,小于2.5 不用失血
             if (ActionResourceManager.Bard.ActiveSong == ActionResourceManager.Bard.BardSong.ArmysPaeon
                 && SpellsDefine.Bloodletter.Charges < SpellsDefine.Bloodletter.MaxCharges - 0.6f)
                 return -5;
-            
+
             return 0;
         }
 
         public async Task<SpellData> Run()
         {
             SpellData spellData = null;
-            if (SpellsDefine.RainofDeath.IsChargeReady() && TargetHelper.CheckNeedUseAOE(25, 8, ConstValue.BardAOECount))
+            if (SpellsDefine.RainofDeath.IsChargeReady() &&
+                TargetHelper.CheckNeedUseAOE(25, 8, ConstValue.BardAOECount))
             {
                 spellData = SpellsDefine.RainofDeath;
                 if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget))

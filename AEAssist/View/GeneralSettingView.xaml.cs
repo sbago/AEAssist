@@ -14,15 +14,15 @@ namespace AEAssist.View
     public partial class GeneralSettingView : UserControl
     {
         private List<HotkeyData> HotkeyDatas;
-        
+
         List<HotkeyData> GetHotkeyData()
         {
-            var    HotkeyDatas = new List<HotkeyData>();
+            var HotkeyDatas = new List<HotkeyData>();
             var array = Enum.GetValues(typeof(Keys));
             foreach (var v in array)
             {
                 var key = (Keys) v;
-                if(key == Keys.None)
+                if (key == Keys.None)
                     continue;
                 HotkeyDatas.Add(new HotkeyData
                 {
@@ -34,17 +34,18 @@ namespace AEAssist.View
             return HotkeyDatas;
         }
 
-        
+
         public GeneralSettingView()
         {
             InitializeComponent();
 
             HotkeyDatas = GetHotkeyData();
-            
+
             Hotkey_Stop.ItemsSource = HotkeyDatas;
             Hotkey_CloseBuff.ItemsSource = HotkeyDatas;
-            Hotkey_Stop.SelectedValue = Enum.Parse(typeof(Keys),SettingMgr.GetSetting<HotkeySetting>().StopKey);
-            Hotkey_CloseBuff.SelectedValue = Enum.Parse(typeof(Keys),SettingMgr.GetSetting<HotkeySetting>().CloseBuffKey);
+            Hotkey_Stop.SelectedValue = Enum.Parse(typeof(Keys), SettingMgr.GetSetting<HotkeySetting>().StopKey);
+            Hotkey_CloseBuff.SelectedValue =
+                Enum.Parse(typeof(Keys), SettingMgr.GetSetting<HotkeySetting>().CloseBuffKey);
         }
 
         private void ShowOverlay_OnClick(object sender, RoutedEventArgs e)
@@ -65,6 +66,5 @@ namespace AEAssist.View
             SettingMgr.GetSetting<HotkeySetting>().ResetHotkeyName();
             SettingMgr.GetSetting<HotkeySetting>().RegisHotkey();
         }
-        
     }
 }

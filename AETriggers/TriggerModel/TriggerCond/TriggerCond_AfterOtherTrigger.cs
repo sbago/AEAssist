@@ -2,17 +2,16 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger(name:"AfterOtherTrigger",remark:"某组触发器触发后过了多久")]
+    [Trigger(name: "AfterOtherTrigger", remark: "某组触发器触发后过了多久")]
     public class TriggerCond_AfterOtherTrigger : ITriggerCond
     {
         public string TriggerId;
         public int Time;
+
         public void WriteFromJson(string[] values)
         {
             this.TriggerId = values[0];
 #if Trigger
-            
-
             if (!Entry.AllExcelData.ContainsKey(this.TriggerId))
             {
                 throw new Exception($"不存在组Id: {values[0]}!\n");
@@ -23,6 +22,7 @@ namespace AETriggers.TriggerModel
             {
                 throw new Exception($"{values[1]}格式错误!\n");
             }
+
             this.Time = time;
             if (Time < 0)
             {

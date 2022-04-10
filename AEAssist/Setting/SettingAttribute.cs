@@ -4,6 +4,5 @@ namespace AEAssist
 {
     public class SettingAttribute : Attribute
     {
-        
     }
 }

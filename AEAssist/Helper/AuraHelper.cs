@@ -19,13 +19,13 @@ namespace AEAssist.Helper
 
             return false;
         }
-        
+
         public static bool ContainMyAura(this Character character, uint id, int timeLeft = 0)
         {
             if (character.HasMyAura(id))
             {
                 var aura = character.CharacterAuras.Where(r => r.CasterId == Core.Player.ObjectId && r.Id == id);
-                if (aura.Any(vc=>vc.TimespanLeft.TotalMilliseconds > timeLeft))
+                if (aura.Any(vc => vc.TimespanLeft.TotalMilliseconds > timeLeft))
                     return true;
             }
 
@@ -37,14 +37,14 @@ namespace AEAssist.Helper
             if (character.HasMyAura(id))
             {
                 var aura = character.CharacterAuras.Where(r => r.CasterId == Core.Player.ObjectId && r.Id == id);
-                if (aura.Any(vc=>vc.TimespanLeft.TotalMilliseconds <= timeLeft))
+                if (aura.Any(vc => vc.TimespanLeft.TotalMilliseconds <= timeLeft))
                     return true;
             }
 
             return false;
         }
-        
-        public static bool HasAnyAura(this GameObject unit, List<uint> auras,  int msLeft = 0)
+
+        public static bool HasAnyAura(this GameObject unit, List<uint> auras, int msLeft = 0)
         {
             var unitAsCharacter = unit as Character;
 
@@ -53,7 +53,8 @@ namespace AEAssist.Helper
                 return false;
             }
 
-            return unitAsCharacter.CharacterAuras.Any(r => auras.Contains(r.Id) && r.TimespanLeft.TotalMilliseconds >= msLeft);
+            return unitAsCharacter.CharacterAuras.Any(r =>
+                auras.Contains(r.Id) && r.TimespanLeft.TotalMilliseconds >= msLeft);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace AEAssist.AI
 
             if (SpellsDefine.RagingStrikes.RecentlyUsed() || BardSpellHelper.HasBuffsCount() >= 1)
                 return 1;
-            
+
             var aura = Core.Me.GetAuraById(AurasDefine.BlastArrowReady);
             var buffTime = SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds;
             if (SpellsDefine.RagingStrikes.IsReady())

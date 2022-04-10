@@ -12,7 +12,6 @@ namespace AEAssist.AI
 {
     public class BattleData
     {
-
         public BattleData()
         {
             maxAbilityTimes = SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD;
@@ -21,14 +20,14 @@ namespace AEAssist.AI
         public long lastCastTime;
         public SpellData lastGCDSpell;
         public SpellData lastAbilitySpell;
-        public int maxAbilityTimes ;
+        public int maxAbilityTimes;
 
         public int lastGCDIndex;
 
         public long battleStartTime;
         public long BattleTime { get; private set; }
 
-        private Dictionary<string,long> ExecutedTriggers = new Dictionary<string,long>();
+        private Dictionary<string, long> ExecutedTriggers = new Dictionary<string, long>();
 
 
         private Dictionary<long, List<TaskCompletionSource<bool>>> AllBattleTimeTcs =
@@ -43,7 +42,7 @@ namespace AEAssist.AI
         public int NearbyEnemyCount_Range12_12;
         public int NearbyEnemyCount_Range25_8;
         public int NearbyEnemyCount_Range25_5;
-        
+
         public int NearbyEnemyCount_Range5_5;
         public int NearbyEnemyCount_Range8_8;
 
@@ -66,7 +65,7 @@ namespace AEAssist.AI
             CalTriggerLine();
             AEGamelogManager.Instance.CheckLog();
 
-           // CalRangeEnemy();
+            // CalRangeEnemy();
         }
 
         private void CalRangeEnemy()
@@ -86,13 +85,14 @@ namespace AEAssist.AI
             {
                 return;
             }
+
             if (AllBattleTimeTcs.Count == 0)
                 return;
 
             TempKeys.Clear();
             foreach (var v in AllBattleTimeTcs)
             {
-                if(v.Key>BattleTime)
+                if (v.Key > BattleTime)
                     continue;
                 TempKeys.Add(v.Key);
             }
@@ -117,11 +117,11 @@ namespace AEAssist.AI
                 return;
             foreach (var v in CurrTriggerLine.Triggers)
             {
-                if(ExecutedTriggers.ContainsKey(v.Id))
+                if (ExecutedTriggers.ContainsKey(v.Id))
                     continue;
                 if (TriggerSystemMgr.Instance.HandleTriggers(v))
                 {
-                    this.ExecutedTriggers.Add(v.Id,TimeHelper.Now());
+                    this.ExecutedTriggers.Add(v.Id, TimeHelper.Now());
                 }
             }
         }

@@ -13,6 +13,5 @@ namespace AEAssist
         {
             this.Msg = msg;
         }
-
     }
 }

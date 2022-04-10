@@ -30,11 +30,11 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    
+
     <UserControl.DataContext>
         <Binding Source="{x:Static viewModels:DataBinding.Instance}" />
     </UserControl.DataContext>
-    
+
     <TabControl Style="{StaticResource MaterialDesignTabControl}"
                 TabStripPlacement="Top"
                 materialDesign:ShadowAssist.ShadowDepth="Depth3"
@@ -46,11 +46,12 @@
                 <CheckBox Content="优先打缢杀" IsChecked="{Binding ReaperSettings.GallowsPrefer,Mode=TwoWay}" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="爆发药选择" Width="100" />
-                    <ComboBox IsEditable="False" Name="ChoosePotion" Width="150" DisplayMemberPath="Name" SelectedValuePath="ID" SelectionChanged="ChoosePotion_OnSelectionChanged"/>
+                    <ComboBox IsEditable="False" Name="ChoosePotion" Width="150" DisplayMemberPath="Name"
+                              SelectedValuePath="ID" SelectionChanged="ChoosePotion_OnSelectionChanged" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Button Content="检查爆发药数量" Width="100" Click="ButtonBase_OnClick" />
-                    <Label Margin="40,0,0,0" Name="PotionCount" Width="100" Content="数量: 0" VerticalAlignment="Center"/>
+                    <Label Margin="40,0,0,0" Name="PotionCount" Width="100" Content="数量: 0" VerticalAlignment="Center" />
                 </StackPanel>
             </StackPanel>
         </TabItem>

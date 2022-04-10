@@ -14,7 +14,6 @@ namespace AEAssist
     [Rotation(ClassJobType.Bard)]
     public class BardRotation : IRotation
     {
-
         private AIRoot AiRoot = AIRoot.Instance;
 
         private long randomTime;

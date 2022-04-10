@@ -10,7 +10,6 @@ namespace AEAssist
     [AddINotifyPropertyChangedInterface]
     public class BardSettings : IBaseSetting
     {
-
         public BardSettings()
         {
             Reset();
@@ -37,7 +36,7 @@ namespace AEAssist
         public SongStrategyEnum CurrentSongPlaylist { get; set; }
 
         public int Songs_WM_TimeLeftForSwitch { get; set; }
-        public int Songs_MB_TimeLeftForSwitch { get; set; } 
+        public int Songs_MB_TimeLeftForSwitch { get; set; }
         public int Songs_AP_TimeLeftForSwitch { get; set; }
 
         public bool UsePeloton { get; set; }
@@ -46,6 +45,6 @@ namespace AEAssist
 
         public int TTK_IronJaws { get; set; } // 不刷伶牙
 
-        public int UsePotionId  {get;set;}
+        public int UsePotionId { get; set; }
     }
 }

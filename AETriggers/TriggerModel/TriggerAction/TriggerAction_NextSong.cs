@@ -2,12 +2,12 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger(name:"NextSong",remark:"设置下一首歌")]
+    [Trigger(name: "NextSong", remark: "设置下一首歌")]
     public class TriggerAction_NextSong : ITriggerAction
     {
         public int value;
         public int Duration;
-        
+
         public void WriteFromJson(string[] values)
         {
             if (!int.TryParse(values[0], out var va))
@@ -21,7 +21,7 @@ namespace AETriggers.TriggerModel
             }
 
             this.value = va;
-            
+
             if (!int.TryParse(values[1], out var dura))
             {
                 throw new Exception($"{values[1]}格式错误!\n");

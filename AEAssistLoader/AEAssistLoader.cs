@@ -14,7 +14,6 @@ using ff14bot.Helpers;
 using ff14bot.Managers;
 using ff14bot.Navigation;
 using TreeSharp;
-
 using Core = ff14bot.Core;
 
 namespace AEAssist
@@ -23,14 +22,27 @@ namespace AEAssist
     {
         private const string ProjectName = "AEAssist";
         private const string ProjectAssemblyName = "AEAssist.dll";
-        public override string Name { get => ProjectName; }
-        public override float PullRange { get => 25; }
 
-        public override bool WantButton { get=>true; }
-        
-        private static readonly string ProjectAssembly = Path.Combine(Environment.CurrentDirectory, $@"Routines\{ProjectName}\{ProjectAssemblyName}");
+        public override string Name
+        {
+            get => ProjectName;
+        }
+
+        public override float PullRange
+        {
+            get => 25;
+        }
+
+        public override bool WantButton
+        {
+            get => true;
+        }
+
+        private static readonly string ProjectAssembly = Path.Combine(Environment.CurrentDirectory,
+            $@"Routines\{ProjectName}\{ProjectAssemblyName}");
+
         private static readonly string GreyMagicAssembly = Path.Combine(Environment.CurrentDirectory, @"GreyMagic.dll");
-        
+
         public static readonly HashSet<string> ExternelDlls = new HashSet<string>()
         {
             "MaterialDesignColors",
@@ -47,11 +59,11 @@ namespace AEAssist
                 {
                     case ClassJobType.Bard:
                     case ClassJobType.Reaper:
-                        return new[] { ff14bot.Core.Me.CurrentJob };
+                        return new[] {ff14bot.Core.Me.CurrentJob};
                     default:
                     {
-                        Logging.Write( Colors.Red,$@"[AEAssist] {ff14bot.Core.Me.CurrentJob} is not supported.");
-                        return new[] { ff14bot.Core.Me.CurrentJob };
+                        Logging.Write(Colors.Red, $@"[AEAssist] {ff14bot.Core.Me.CurrentJob} is not supported.");
+                        return new[] {ff14bot.Core.Me.CurrentJob};
                     }
                 }
             }
@@ -63,7 +75,7 @@ namespace AEAssist
         public object Entry;
 
         private bool Loaded;
-        
+
         void LoadAsm()
         {
             RedirectAssembly();
@@ -76,20 +88,20 @@ namespace AEAssist
             Behaviors.Clear();
             Methods.Clear();
 
-            AddBehavior(entryType,"RestBehavior");
-            AddBehavior(entryType,"PreCombatBuffBehavior");
-            AddBehavior(entryType,"PullBehavior");
-            AddBehavior(entryType,"HealBehavior");
-            AddBehavior(entryType,"CombatBuffBehavior");
-            AddBehavior(entryType,"CombatBehavior");
-            AddBehavior(entryType,"PullBuffBehavior");
+            AddBehavior(entryType, "RestBehavior");
+            AddBehavior(entryType, "PreCombatBuffBehavior");
+            AddBehavior(entryType, "PullBehavior");
+            AddBehavior(entryType, "HealBehavior");
+            AddBehavior(entryType, "CombatBuffBehavior");
+            AddBehavior(entryType, "CombatBehavior");
+            AddBehavior(entryType, "PullBuffBehavior");
 
-            AddMethod(entryType,"Initialize");
-            AddMethod(entryType,"Pulse");
-            AddMethod(entryType,"Shutdown");
-            AddMethod(entryType,"OnButtonPress");
+            AddMethod(entryType, "Initialize");
+            AddMethod(entryType, "Pulse");
+            AddMethod(entryType, "Shutdown");
+            AddMethod(entryType, "OnButtonPress");
         }
-        
+
         public static void RedirectAssembly()
         {
             ResolveEventHandler handler = (sender, args) =>
@@ -106,10 +118,10 @@ namespace AEAssist
                 var requestedAssembly = new AssemblyName(args.Name);
                 return requestedAssembly.Name != "GreyMagic" ? null : Assembly.LoadFrom(GreyMagicAssembly);
             };
-            
+
 
             AppDomain.CurrentDomain.AssemblyResolve += greyMagicHandler;
-            
+
             ResolveEventHandler MaterialDesignHandler = (sender, args) =>
             {
                 var requestedAssembly = new AssemblyName(args.Name);
@@ -122,14 +134,18 @@ namespace AEAssist
 
         static string GetAssPath(string name)
         {
-           return  Path.Combine(Environment.CurrentDirectory, $@"Routines\{ProjectName}\{name}.dll");
+            return Path.Combine(Environment.CurrentDirectory, $@"Routines\{ProjectName}\{name}.dll");
         }
 
         private static string CompiledAssembliesPath => Path.Combine(Utilities.AssemblyDirectory, "CompiledAssemblies");
 
         private static Assembly LoadAssembly(string path)
         {
-            if (!File.Exists(path)) { return null; }
+            if (!File.Exists(path))
+            {
+                return null;
+            }
+
             if (!Directory.Exists(CompiledAssembliesPath))
             {
                 Directory.CreateDirectory(CompiledAssembliesPath);
@@ -152,6 +168,7 @@ namespace AEAssist
                     //
                 }
             }
+
             if (File.Exists(pdb))
             {
                 try
@@ -176,20 +193,26 @@ namespace AEAssist
 
 
             Assembly assembly = null;
-            try { assembly = Assembly.LoadFrom(capath); }
-            catch (Exception e) { Logging.WriteException(e); }
+            try
+            {
+                assembly = Assembly.LoadFrom(capath);
+            }
+            catch (Exception e)
+            {
+                Logging.WriteException(e);
+            }
 
             return assembly;
         }
 
         void AddBehavior(Type type, string name)
         {
-            Behaviors.Add(name,type.GetProperty(name));
+            Behaviors.Add(name, type.GetProperty(name));
         }
 
         void AddMethod(Type type, string name)
         {
-            Methods.Add(name,type.GetMethod(name));
+            Methods.Add(name, type.GetMethod(name));
         }
 
         public override void Initialize()
@@ -202,7 +225,7 @@ namespace AEAssist
             }
             catch (Exception e)
             {
-               Logging.Write( Colors.Red,e.ToString());
+                Logging.Write(Colors.Red, e.ToString());
             }
         }
 
@@ -213,6 +236,7 @@ namespace AEAssist
             {
                 return;
             }
+
             method.Invoke(Entry, null);
         }
 
@@ -223,6 +247,7 @@ namespace AEAssist
             {
                 return;
             }
+
             method.Invoke(Entry, null);
         }
 
@@ -233,6 +258,7 @@ namespace AEAssist
             {
                 return;
             }
+
             method.Invoke(Entry, null);
         }
 
@@ -244,12 +270,13 @@ namespace AEAssist
                 {
                     return default;
                 }
+
                 return prop.GetValue(Entry, null) as Composite;
             }
         }
-       
 
-        public override Composite PreCombatBuffBehavior         
+
+        public override Composite PreCombatBuffBehavior
         {
             get
             {
@@ -257,10 +284,12 @@ namespace AEAssist
                 {
                     return default;
                 }
+
                 return prop.GetValue(Entry, null) as Composite;
             }
         }
-        public override Composite PullBehavior 
+
+        public override Composite PullBehavior
         {
             get
             {
@@ -268,11 +297,12 @@ namespace AEAssist
                 {
                     return default;
                 }
+
                 return prop.GetValue(Entry, null) as Composite;
             }
         }
 
-        public override Composite HealBehavior 
+        public override Composite HealBehavior
         {
             get
             {
@@ -280,11 +310,12 @@ namespace AEAssist
                 {
                     return default;
                 }
+
                 return prop.GetValue(Entry, null) as Composite;
             }
         }
 
-        public override Composite CombatBuffBehavior 
+        public override Composite CombatBuffBehavior
         {
             get
             {
@@ -292,11 +323,12 @@ namespace AEAssist
                 {
                     return default;
                 }
+
                 return prop.GetValue(Entry, null) as Composite;
             }
         }
 
-        public override Composite CombatBehavior 
+        public override Composite CombatBehavior
         {
             get
             {
@@ -304,11 +336,12 @@ namespace AEAssist
                 {
                     return default;
                 }
+
                 return prop.GetValue(Entry, null) as Composite;
             }
         }
 
-        public override Composite PullBuffBehavior 
+        public override Composite PullBuffBehavior
         {
             get
             {
@@ -316,6 +349,7 @@ namespace AEAssist
                 {
                     return default;
                 }
+
                 return prop.GetValue(Entry, null) as Composite;
             }
         }

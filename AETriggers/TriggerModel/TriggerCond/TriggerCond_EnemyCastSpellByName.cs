@@ -2,11 +2,11 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger(name:"EnemyCastSpellByName",remark:"场内有敌人正在读条xx技能")]
+    [Trigger(name: "EnemyCastSpellByName", remark: "场内有敌人正在读条xx技能")]
     public class TriggerCond_EnemyCastSpellByName : ITriggerCond
     {
         public string spellName;
-        
+
         public void WriteFromJson(string[] values)
         {
             this.spellName = values[0];

@@ -22,12 +22,12 @@ namespace AEAssist.AI.Reaper.Ability
                 return -4;
             if (SpellsDefine.Enshroud.Cooldown.TotalMilliseconds > 0
                 && SpellsDefine.Enshroud.Cooldown.TotalMilliseconds < 5000
-                && ReaperSpellHelper.ReadyToEnshroud()>=0)
+                && ReaperSpellHelper.ReadyToEnshroud() >= 0)
             {
                 return -5;
             }
 
-            if(TimeHelper.Now() - SpellHistoryHelper.GetLastSpellTime(SpellsDefine.Enshroud.Id) < 3000)
+            if (TimeHelper.Now() - SpellHistoryHelper.GetLastSpellTime(SpellsDefine.Enshroud.Id) < 3000)
                 return -6;
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -7;
@@ -35,6 +35,7 @@ namespace AEAssist.AI.Reaper.Ability
             {
                 return -8;
             }
+
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
                 return -9;
             return 0;

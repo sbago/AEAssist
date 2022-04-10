@@ -44,59 +44,59 @@
 
     <StackPanel>
         <Border Background="Cornsilk">
-        <TabControl Style="{StaticResource MaterialDesignTabControl}"
-                    TabStripPlacement="Left"
-                    Height="400"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth3"
-                    materialDesign:ColorZoneAssist.Mode="PrimaryDark"
-                    materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
-            <TabItem Width="50" Height="50">
-                <TabItem.Header>
-                    <Image Margin="15,0,-15,0" Source="Resources/Icon.png" />
-                </TabItem.Header>
-                <TabItem.LayoutTransform>
-                    <RotateTransform Angle="90" />
-                </TabItem.LayoutTransform>
-                <view:GeneralSettingView HorizontalAlignment="Center" />
-            </TabItem>
+            <TabControl Style="{StaticResource MaterialDesignTabControl}"
+                        TabStripPlacement="Left"
+                        Height="400"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                        materialDesign:ColorZoneAssist.Mode="PrimaryDark"
+                        materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
+                <TabItem Width="50" Height="50">
+                    <TabItem.Header>
+                        <Image Margin="15,0,-15,0" Source="Resources/Icon.png" />
+                    </TabItem.Header>
+                    <TabItem.LayoutTransform>
+                        <RotateTransform Angle="90" />
+                    </TabItem.LayoutTransform>
+                    <view:GeneralSettingView HorizontalAlignment="Center" />
+                </TabItem>
 
-            <TabItem Width="50" Height="50">
-                <TabItem.Header>
-                    <Image Margin="15,0,-15,0" Source="Resources/jobs/brd-framed.png" />
-                </TabItem.Header>
-                <TabItem.LayoutTransform>
-                    <RotateTransform Angle="90" />
-                </TabItem.LayoutTransform>
-                <view:BardSettingView HorizontalAlignment="Center" />
-            </TabItem>
-            
-            
-            <TabItem Width="50" Height="50">
-                <TabItem.Header>
-                    <Image Margin="15,0,-15,0" Source="Resources/jobs/rpr-framed.png" />
-                </TabItem.Header>
-                <TabItem.LayoutTransform>
-                    <RotateTransform Angle="90" />
-                </TabItem.LayoutTransform>
-                <view:ReaperSettingView HorizontalAlignment="Center" />
-            </TabItem>
-        </TabControl>
+                <TabItem Width="50" Height="50">
+                    <TabItem.Header>
+                        <Image Margin="15,0,-15,0" Source="Resources/jobs/brd-framed.png" />
+                    </TabItem.Header>
+                    <TabItem.LayoutTransform>
+                        <RotateTransform Angle="90" />
+                    </TabItem.LayoutTransform>
+                    <view:BardSettingView HorizontalAlignment="Center" />
+                </TabItem>
+
+
+                <TabItem Width="50" Height="50">
+                    <TabItem.Header>
+                        <Image Margin="15,0,-15,0" Source="Resources/jobs/rpr-framed.png" />
+                    </TabItem.Header>
+                    <TabItem.LayoutTransform>
+                        <RotateTransform Angle="90" />
+                    </TabItem.LayoutTransform>
+                    <view:ReaperSettingView HorizontalAlignment="Center" />
+                </TabItem>
+            </TabControl>
         </Border>
         <Border>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <TextBox Text="Q群:    814352226" Margin="10" HorizontalAlignment="Left" IsReadOnly="True" />
-            <TextBox Text="Discord:    https://discord.gg/9WKppshjww" Margin="10" IsReadOnly="True"
-                     HorizontalAlignment="Left" />
-            <Button Name="SaveSetting"
-                    Content="保存设置" Width="150" Height="25" Margin="10"
-                    HorizontalAlignment="Left"
-                    Click="SaveSetting_OnClick" />
-            <!-- <Button Name="ResetSetting" Content="重置设置" Width="150" Height="25" Margin="10" -->
-            <!--         HorizontalAlignment="Left" -->
-            <!--         Click="ResetSetting_OnClick" /> -->
-           
-        </StackPanel>
-            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBox Text="Q群:    814352226" Margin="10" HorizontalAlignment="Left" IsReadOnly="True" />
+                <TextBox Text="Discord:    https://discord.gg/9WKppshjww" Margin="10" IsReadOnly="True"
+                         HorizontalAlignment="Left" />
+                <Button Name="SaveSetting"
+                        Content="保存设置" Width="150" Height="25" Margin="10"
+                        HorizontalAlignment="Left"
+                        Click="SaveSetting_OnClick" />
+                <!-- <Button Name="ResetSetting" Content="重置设置" Width="150" Height="25" Margin="10" -->
+                <!--         HorizontalAlignment="Left" -->
+                <!--         Click="ResetSetting_OnClick" /> -->
+
+            </StackPanel>
+
         </Border>
     </StackPanel>
 </Window>

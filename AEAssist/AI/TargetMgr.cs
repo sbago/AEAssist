@@ -20,7 +20,7 @@ namespace AEAssist.AI
 
     public class TargetStat
     {
-        public LinkedList<(uint,long)> DamageLL = new LinkedList<(uint,long)>(); // 最近3秒内降低的血量
+        public LinkedList<(uint, long)> DamageLL = new LinkedList<(uint, long)>(); // 最近3秒内降低的血量
         public uint lastHp;
         public int DeathPrediction; // 预计多少ms后死亡
     }
@@ -120,17 +120,16 @@ namespace AEAssist.AI
                     continue;
                 }
 
-                stat.DamageLL.AddLast((d,now));
+                stat.DamageLL.AddLast((d, now));
                 if (stat.DamageLL.Count > damageCalCount)
                 {
                     stat.DamageLL.RemoveFirst();
                 }
-                
-                
+
+
                 //LogHelper.Info($"TTK {v.Value.ObjectId} Now {now} Delta {now - stat.DamageLL.First.Value.Item2}");
 
                 CalDeathPre(stat, v.Value);
-
             }
         }
 
@@ -146,7 +145,7 @@ namespace AEAssist.AI
                 return;
 
             var duration = stat.DamageLL.Last.Value.Item2 - stat.DamageLL.First.Value.Item2;
-            var avgDamagePerMs = total/ (float)duration;
+            var avgDamagePerMs = total / (float) duration;
             stat.DeathPrediction = (int) (character.CurrentHealth / avgDamagePerMs);
         }
     }

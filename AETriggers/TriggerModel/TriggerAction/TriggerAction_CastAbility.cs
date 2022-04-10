@@ -2,7 +2,7 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger(name:"CastAbility",remark:"插队使用指定能力技")]
+    [Trigger(name: "CastAbility", remark: "插队使用指定能力技")]
     public class TriggerAction_CastAbility : ITriggerAction
     {
         public uint SpellId;
@@ -13,6 +13,7 @@ namespace AETriggers.TriggerModel
             {
                 throw new Exception($"{values[0]}格式错误!");
             }
+
             this.SpellId = spell;
         }
     }

@@ -11,10 +11,10 @@ namespace AEAssist
         {
             Logging.Write($"[AEAssist DEBUG] {msg}");
         }
-        
+
         public static void Info(string msg)
         {
-            Logging.Write(Colors.Green,$"[AEAssist Info] {msg}");
+            Logging.Write(Colors.Green, $"[AEAssist Info] {msg}");
         }
 
         public static void Error(string msg)

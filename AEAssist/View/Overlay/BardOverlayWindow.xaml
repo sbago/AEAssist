@@ -176,34 +176,7 @@
                     </Button>
                 </WrapPanel>
             </WrapPanel>
-            <StackPanel Width="250" HorizontalAlignment="Center">
-                <Button Name="Reset" FontSize="12" Content="重置" Width="200" Height="25"
-                        Click="Reset_OnClick"
-                        HorizontalAlignment="Center" />
-                <Label Name="CurrTriggerLine" Content="当前加载时间轴: 无" Foreground="Aqua" Width="200" />
-                <!-- <Label Name="TriggerLineStatus" Content="[状态: 准备运行中]" Foreground="Aqua"/> -->
-
-                <Button Name="ChangeTriggerLine" FontSize="12" Margin="10,0,10,0" Content="配置" Width="200" Height="25"
-                        Click="ChangeTriggerLine_OnClick" />
-
-            </StackPanel>
-            <Border Margin="0,5,0,0" VerticalAlignment="Top" CornerRadius="5" Padding="10">
-                <Border.Background>
-                    <SolidColorBrush Color="#101011" Opacity="0.6" />
-                </Border.Background>
-                <StackPanel>
-                    <Label Name="TimeLabel" Content="{Binding TimeStr}" Foreground="Aqua" />
-                    <Label MaxWidth="250" Height="34" Margin="0" Style="{StaticResource MaterialDesignLabel}">
-                        <TextBlock
-                            FontSize="10"
-                            TextWrapping="Wrap"
-                            Foreground="Azure"
-                            Text="{Binding DebugCenter.Msg,Mode=OneWay}"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center" />
-                    </Label>
-                </StackPanel>
-            </Border>
+            <local:CommonOverlay HorizontalAlignment="Center" />
         </StackPanel>
     </Border>
 </UserControl>

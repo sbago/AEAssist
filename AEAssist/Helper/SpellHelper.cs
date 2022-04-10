@@ -20,7 +20,7 @@ namespace AEAssist.Helper
                 LogHelper.Error($"{spell.Name} is not a GCD");
                 return false;
             }
-            
+
             if (!ActionManager.HasSpell(spell.Id))
                 return false;
 
@@ -36,16 +36,16 @@ namespace AEAssist.Helper
             }
             else
             {
-                if (!ActionManager.CanCast(spell.Id, target))
+                if (!ActionManager.CanCastOrQueue(spell, target))
                     return false;
                 if (!ActionManager.DoAction(spell, target))
                     return false;
             }
-            
+
             // 等待cast 结束
             if (spell.AdjustedCastTime != TimeSpan.Zero)
             {
-                if (!await Coroutine.Wait(spell.BaseCastTime+TimeSpan.FromMilliseconds(500), () => Core.Me.IsCasting))
+                if (!await Coroutine.Wait(spell.BaseCastTime + TimeSpan.FromMilliseconds(500), () => Core.Me.IsCasting))
                 {
                     return false;
                 }
@@ -55,12 +55,12 @@ namespace AEAssist.Helper
         }
 
 
-        public static async Task<bool> CastAbility(SpellData spell, GameObject target,int waitTime = 0)
+        public static async Task<bool> CastAbility(SpellData spell, GameObject target, int waitTime = 0)
         {
             if (waitTime == 0)
                 waitTime = SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs;
-            
-            
+
+
             if (spell.Id != SpellsDefine.Sprint.Id && spell.SpellType != SpellType.Ability)
             {
                 LogHelper.Error($"{spell.Name} is not a Ability");
@@ -68,14 +68,14 @@ namespace AEAssist.Helper
             }
 
             //LogHelper.Debug("准备使用能力 : " + spell.Name);
-            
+
             if (!ActionManager.HasSpell(spell.Id))
                 return false;
-            
+
             if (!GameSettingsManager.FaceTargetOnAction)
                 GameSettingsManager.FaceTargetOnAction = true;
-            
-            
+
+
             if (!ActionManager.CanCast(spell.Id, target))
                 return false;
             if (!ActionManager.DoAction(spell, target))
@@ -85,7 +85,7 @@ namespace AEAssist.Helper
 
             if (needTime <= 10)
                 return true;
-            
+
             await Coroutine.Wait(needTime, () => false);
             return true;
         }
@@ -100,13 +100,13 @@ namespace AEAssist.Helper
 
         public static bool IsReady(this SpellData spellData)
         {
-           // LogHelper.Debug($"检测技能 {spellData.Name} {spellData.LocalizedName} AdCoolDown {spellData.AdjustedCooldown.TotalMilliseconds}");
+            // LogHelper.Debug($"检测技能 {spellData.Name} {spellData.LocalizedName} AdCoolDown {spellData.AdjustedCooldown.TotalMilliseconds}");
             if (!spellData.IsUnlock()
                 || spellData.Cooldown.TotalMilliseconds > 0)
                 return false;
             return true;
         }
-        
+
         public static bool IsChargeReady(this SpellData spellData)
         {
             // LogHelper.Debug($"检测技能 {spellData.Name} {spellData.LocalizedName} AdCoolDown {spellData.AdjustedCooldown.TotalMilliseconds}");
@@ -115,6 +115,5 @@ namespace AEAssist.Helper
                 return false;
             return true;
         }
-
     }
 }

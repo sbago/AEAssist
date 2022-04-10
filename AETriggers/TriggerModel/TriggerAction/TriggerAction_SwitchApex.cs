@@ -2,10 +2,11 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger(name:"SwitchApex",remark:"是否允许使用绝峰箭")]
+    [Trigger(name: "SwitchApex", remark: "是否允许使用绝峰箭")]
     public class TriggerAction_SwitchApex : ITriggerAction
     {
         public bool value;
+
         public void WriteFromJson(string[] values)
         {
             if (!int.TryParse(values[0], out var va))

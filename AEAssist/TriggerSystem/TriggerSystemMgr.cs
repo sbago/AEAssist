@@ -11,7 +11,8 @@ namespace AEAssist.TriggerSystem
 
         private Dictionary<Type, ITriggerCondHandler> AllCondHandlers = new Dictionary<Type, ITriggerCondHandler>();
 
-        private Dictionary<Type, ITriggerActionHandler> AllActionHandlers = new Dictionary<Type, ITriggerActionHandler>();
+        private Dictionary<Type, ITriggerActionHandler> AllActionHandlers =
+            new Dictionary<Type, ITriggerActionHandler>();
 
         public bool AllowTriggers { get; set; } = true;
 
@@ -20,27 +21,27 @@ namespace AEAssist.TriggerSystem
             var baseType = typeof(ITriggerCondHandler);
             foreach (var type in this.GetType().Assembly.GetTypes())
             {
-                if(type.IsAbstract || type.IsInterface)
+                if (type.IsAbstract || type.IsInterface)
                     continue;
-                if(!baseType.IsAssignableFrom(type))
+                if (!baseType.IsAssignableFrom(type))
                     continue;
 
                 var handler = Activator.CreateInstance(type) as ITriggerCondHandler;
-                this.AllCondHandlers.Add(handler.GetCondType(),Activator.CreateInstance(type) as ITriggerCondHandler);
+                this.AllCondHandlers.Add(handler.GetCondType(), Activator.CreateInstance(type) as ITriggerCondHandler);
             }
-            
+
             baseType = typeof(ITriggerActionHandler);
             foreach (var type in this.GetType().Assembly.GetTypes())
             {
-                if(type.IsAbstract || type.IsInterface)
+                if (type.IsAbstract || type.IsInterface)
                     continue;
-                if(!baseType.IsAssignableFrom(type))
+                if (!baseType.IsAssignableFrom(type))
                     continue;
 
                 var handler = Activator.CreateInstance(type) as ITriggerActionHandler;
-                this.AllActionHandlers.Add(handler.GetActionType(),Activator.CreateInstance(type) as ITriggerActionHandler);
+                this.AllActionHandlers.Add(handler.GetActionType(),
+                    Activator.CreateInstance(type) as ITriggerActionHandler);
             }
-
         }
 
         public bool HandleTriggers(Trigger trigger)
@@ -94,9 +95,8 @@ namespace AEAssist.TriggerSystem
             }
             catch (Exception e)
             {
-               LogHelper.Error(e.ToString());
+                LogHelper.Error(e.ToString());
             }
         }
-
     }
 }

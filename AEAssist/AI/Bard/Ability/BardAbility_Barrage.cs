@@ -11,13 +11,13 @@ namespace AEAssist.AI
     {
         public int Check(SpellData lastSpell)
         {
-
             if (!SpellsDefine.Barrage.IsReady())
             {
                 return -1;
             }
+
             if (Core.Me.HasAura(AurasDefine.ShadowBiteReady)
-            &&  TargetHelper.CheckNeedUseAOE(25, 5, ConstValue.BardAOECount))
+                && TargetHelper.CheckNeedUseAOE(25, 5, ConstValue.BardAOECount))
                 return 1;
 
             if (Core.Me.HasAura(AurasDefine.StraighterShot))

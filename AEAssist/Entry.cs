@@ -1,4 +1,5 @@
 ﻿//using Clio.Utilities.Collections;
+
 using ff14bot;
 using ff14bot.AClasses;
 using ff14bot.Behavior;
@@ -45,40 +46,37 @@ namespace AEAssist
                 LogHelper.Error(e.ToString());
                 GUIHelper.ShowInfo("插件初始化失败, 请联系作者!");
             }
+
             LogHelper.Info("Initialized!");
         }
 
 
         private static MainWindow _form;
+
         private static MainWindow Form
         {
             get
             {
                 if (_form != null) return _form;
                 _form = new MainWindow();
-                _form.Closed += (sender, args) =>
-                {
-                    _form = null;
-                };
+                _form.Closed += (sender, args) => { _form = null; };
                 return _form;
             }
         }
-        
+
         private static TriggerLineWindow _triggerLineWindow;
+
         public static TriggerLineWindow TriggerLineWindow
         {
             get
             {
                 if (_triggerLineWindow != null) return _triggerLineWindow;
                 _triggerLineWindow = new TriggerLineWindow();
-                _triggerLineWindow.Closed += (sender, args) =>
-                {
-                    _triggerLineWindow = null;
-                };
+                _triggerLineWindow.Closed += (sender, args) => { _triggerLineWindow = null; };
                 return _triggerLineWindow;
             }
         }
-        
+
 
         private ClassJobType CurrentJob { get; set; }
         private ushort CurrentZone { get; set; }
@@ -101,7 +99,7 @@ namespace AEAssist
         {
             Form.Show();
         }
-        
+
 
         #region Behavior Composites
 
@@ -154,11 +152,11 @@ namespace AEAssist
         {
             get { return new ActionRunCoroutine(ctx => RotationManager.Instance.Combat()); }
         }
+
         public Composite PullBuffBehavior
         {
             get { return new ActionRunCoroutine(ctx => RotationManager.Instance.PullBuff()); }
         }
-        
 
         #endregion Behavior Composites
     }

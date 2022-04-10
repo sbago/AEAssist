@@ -11,7 +11,7 @@ namespace AEAssist.TriggerSystem.TriggerCond
             var enemys = TargetMgr.Instance.Enemys;
             foreach (var v in enemys.Values)
             {
-                if(v.SpellCastInfo == null || !v.IsCasting)
+                if (v.SpellCastInfo == null || !v.IsCasting)
                     continue;
                 //LogHelper.Info($"Character {v.Name} Casting===>{v.SpellCastInfo.SpellData.LocalizedName}");
                 if (v.SpellCastInfo.SpellData.LocalizedName.Contains(cond.spellName))

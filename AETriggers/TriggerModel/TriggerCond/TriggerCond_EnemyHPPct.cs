@@ -2,12 +2,12 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger(name:"EnemyHPPct",remark:"某敌人血量百分比")]
+    [Trigger(name: "EnemyHPPct", remark: "某敌人血量百分比")]
     public class TriggerCond_EnemyHPPct : ITriggerCond
     {
         public string Name;
         public float HpPct; // xx.xxx
-        
+
         public void WriteFromJson(string[] values)
         {
             this.Name = values[0];

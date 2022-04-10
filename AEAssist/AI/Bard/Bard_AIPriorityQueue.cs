@@ -37,7 +37,5 @@ namespace AEAssist.Define
         {
             return await PotionHelper.ForceUsePotion(SettingMgr.GetSetting<BardSettings>().UsePotionId);
         }
-
-
     }
 }

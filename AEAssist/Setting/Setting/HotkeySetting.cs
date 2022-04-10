@@ -98,19 +98,18 @@ namespace AEAssist
 
         public string StopKey { get; set; }
         public string CloseBuffKey { get; set; }
-        
+
         private bool _UseHotkey = true;
-        public bool UseHotkey {
-            get
-            {
-                return _UseHotkey;
-            }
+
+        public bool UseHotkey
+        {
+            get { return _UseHotkey; }
             set
             {
                 _UseHotkey = value;
                 RegisHotkey();
                 ResetHotkeyName();
             }
-        } 
+        }
     }
 }

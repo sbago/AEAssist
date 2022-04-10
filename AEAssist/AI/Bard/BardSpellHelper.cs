@@ -16,7 +16,7 @@ namespace AEAssist.Define
         MB_WM_AP,
         MB_AP_WM
     }
-    
+
     public static class BardSpellHelper
     {
         public static CircleList<SpellData> Songs = new CircleList<SpellData>();
@@ -41,7 +41,7 @@ namespace AEAssist.Define
                     return null;
                 return SpellsDefine.Windbite;
             }
-            
+
             if (!ActionManager.HasSpell(SpellsDefine.Stormbite.Id))
                 return null;
 
@@ -60,7 +60,7 @@ namespace AEAssist.Define
                     return 0;
                 return AurasDefine.Windbite;
             }
-            
+
             if (!ActionManager.HasSpell(SpellsDefine.Stormbite.Id))
                 return 0;
 
@@ -79,13 +79,13 @@ namespace AEAssist.Define
                     return null;
                 return SpellsDefine.VenomousBite;
             }
-            
+
             if (!ActionManager.HasSpell(SpellsDefine.CausticBite.Id))
                 return null;
 
             return SpellsDefine.CausticBite;
         }
-        
+
         public static int GetVenomousBiteAura()
         {
             if (Core.Me.ClassLevel < SpellsDefine.VenomousBite.LevelAcquired)
@@ -98,7 +98,7 @@ namespace AEAssist.Define
                     return 0;
                 return AurasDefine.VenomousBite;
             }
-            
+
             if (!ActionManager.HasSpell(SpellsDefine.CausticBite.Id))
                 return 0;
 
@@ -113,7 +113,7 @@ namespace AEAssist.Define
 
             return target.ContainMyAura((uint) id, 0);
         }
-        
+
         public static bool IsTargetHasAura_VenomousBite(Character target)
         {
             var id = GetVenomousBiteAura();
@@ -147,7 +147,7 @@ namespace AEAssist.Define
             //LogHelper.Info("当前快要结束的Buff数量 : " + buffCountInEnd);
             if (buffCountInEnd >= 1 && !AIRoot.Instance.BardBattleData.IsTargetLastIronJawWithBuff())
             {
-                if (ttk_ironJaws >0 && target.ContainMyAura((uint) ve_id, ttk_ironJaws * 1000) &&
+                if (ttk_ironJaws > 0 && target.ContainMyAura((uint) ve_id, ttk_ironJaws * 1000) &&
                     TTKHelper.IsTargetTTK(target, ttk_ironJaws))
                     return NormalCheck();
                 return true;
@@ -162,7 +162,7 @@ namespace AEAssist.Define
             var targetId = Core.Me.CurrentTarget.ObjectId;
             AIRoot.Instance.BardBattleData.lastIronJawWithBuffWithObj[targetId] = HasBuffsCount() >= 1;
         }
-        
+
         public static void RemoveRecordIronJaw()
         {
             var targetId = Core.Me.CurrentTarget.ObjectId;
@@ -200,6 +200,7 @@ namespace AEAssist.Define
                 {
                     return SpellsDefine.StraightShot;
                 }
+
                 return SpellsDefine.RefulgentArrow;
             }
 
@@ -215,12 +216,12 @@ namespace AEAssist.Define
             {
                 return SpellsDefine.BattleVoice;
             }
-            
+
             if (SpellsDefine.RadiantFinale.IsReady())
             {
                 return SpellsDefine.RadiantFinale;
             }
-            
+
             // if (Spells.RagingStrikes.IsReady())
             // {
             //     return Spells.RagingStrikes;
@@ -248,7 +249,7 @@ namespace AEAssist.Define
                 count++;
             return count;
         }
-        
+
         public static int UnlockBuffsCount()
         {
             int count = 0;
@@ -260,15 +261,15 @@ namespace AEAssist.Define
                 count++;
             return count;
         }
-        
+
         public static int HasBuffsCountInEnd(int leftMs = 4000)
         {
             int count = 0;
-            if (Core.Me.ContainsMyInEndAura(AurasDefine.BattleVoice,leftMs))
+            if (Core.Me.ContainsMyInEndAura(AurasDefine.BattleVoice, leftMs))
                 count++;
-            if (Core.Me.ContainsMyInEndAura(AurasDefine.RagingStrikes,leftMs))
+            if (Core.Me.ContainsMyInEndAura(AurasDefine.RagingStrikes, leftMs))
                 count++;
-            if (Core.Me.ContainsMyInEndAura(AurasDefine.RadiantFinale,leftMs))
+            if (Core.Me.ContainsMyInEndAura(AurasDefine.RadiantFinale, leftMs))
                 count++;
             return count;
         }
@@ -306,7 +307,6 @@ namespace AEAssist.Define
 
         public static void RecordUsingRagingStrikesTime()
         {
-            
         }
 
         public static bool CheckCanUseBuffs()
@@ -317,19 +317,19 @@ namespace AEAssist.Define
             var currSong = ActionResourceManager.Bard.ActiveSong;
             if (currSong == ActionResourceManager.Bard.BardSong.None)
                 return false;
-            
+
             if (SpellsDefine.RagingStrikes.RecentlyUsed() || Core.Me.HasMyAura(AurasDefine.RagingStrikes))
             {
-                if (AIRoot.Instance.BattleData.lastGCDIndex 
+                if (AIRoot.Instance.BattleData.lastGCDIndex
                     - SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.RagingStrikes.Id) >
-                     delayGCD )
+                    delayGCD)
                 {
                     return true;
                 }
 
                 return false;
             }
-            
+
             if (SpellsDefine.RagingStrikes.IsReady())
             {
                 return false;
@@ -379,12 +379,12 @@ namespace AEAssist.Define
         {
             var currSong = ActionResourceManager.Bard.ActiveSong;
             var remainTime = ActionResourceManager.Bard.Timer.TotalMilliseconds;
-            
-            
+
+
             if (!AIRoot.Instance.CloseBuff)
             {
-                if (AIRoot.Instance.BardBattleData.nextSong == ActionResourceManager.Bard.BardSong.None 
-                    && currSong != ActionResourceManager.Bard.BardSong.None 
+                if (AIRoot.Instance.BardBattleData.nextSong == ActionResourceManager.Bard.BardSong.None
+                    && currSong != ActionResourceManager.Bard.BardSong.None
                     && AIRoot.Instance.BardBattleData.nextSongDuration != 0)
                 {
                     if (remainTime <= 45000 - AIRoot.Instance.BardBattleData.nextSongDuration)
@@ -392,6 +392,7 @@ namespace AEAssist.Define
                         return true;
                     }
                 }
+
                 switch (currSong)
                 {
                     case ActionResourceManager.Bard.BardSong.None:
@@ -417,15 +418,15 @@ namespace AEAssist.Define
                 // 关爆发的时候,让歌唱完
                 if (currSong != ActionResourceManager.Bard.BardSong.None)
                 {
-                    if(AIRoot.Instance.BardBattleData.nextSong == ActionResourceManager.Bard.BardSong.None
-                       && AIRoot.Instance.BardBattleData.nextSongDuration != 0)
+                    if (AIRoot.Instance.BardBattleData.nextSong == ActionResourceManager.Bard.BardSong.None
+                        && AIRoot.Instance.BardBattleData.nextSongDuration != 0)
                     {
                         if (remainTime <= 45000 - AIRoot.Instance.BardBattleData.nextSongDuration)
                         {
                             return true;
                         }
-                        
                     }
+
                     if (remainTime <= ConstValue.SongsTimeLeftCheckWhenCloseBuff)
                         return true;
                     return false;

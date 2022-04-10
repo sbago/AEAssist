@@ -16,12 +16,12 @@ namespace AEAssist.View.Overlay
     {
         public Action<string> OnTriggerLineLoad;
         public Action OnTriggerLineClear;
-        
+
         public TriggerLineWindow()
         {
             InitializeComponent();
         }
-        
+
         private void LoadTriggerLine_OnClick(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFile = new OpenFileDialog();
@@ -29,7 +29,7 @@ namespace AEAssist.View.Overlay
             openFile.InitialDirectory = Environment.CurrentDirectory;
             openFile.Multiselect = false;
             var ret = openFile.ShowDialog();
-            
+
             if (!ret.HasValue || !ret.Value)
                 return;
             var file = openFile.FileName;
@@ -38,10 +38,11 @@ namespace AEAssist.View.Overlay
                 if (AEAssist.DataBinding.Instance.CurrTriggerLine != null)
                 {
                     MessageBox.Show("加载时间轴成功!");
-                    TriggerLineAuthor.Content = $"作者: {AEAssist.DataBinding.Instance.CurrTriggerLine.Author}"; 
-                    TriggerLineTargetDuty.Content = $"目标副本: {AEAssist.DataBinding.Instance.CurrTriggerLine.TargetDuty}"; 
-                    TriggerLineJob.Content = $"目标职业: {AEAssist.DataBinding.Instance.CurrTriggerLine.TargetJob.ToString()}"; 
-                    TriggerLineVersion.Content = $"版本: {AEAssist.DataBinding.Instance.CurrTriggerLine.Version}"; 
+                    TriggerLineAuthor.Content = $"作者: {AEAssist.DataBinding.Instance.CurrTriggerLine.Author}";
+                    TriggerLineTargetDuty.Content = $"目标副本: {AEAssist.DataBinding.Instance.CurrTriggerLine.TargetDuty}";
+                    TriggerLineJob.Content =
+                        $"目标职业: {AEAssist.DataBinding.Instance.CurrTriggerLine.TargetJob.ToString()}";
+                    TriggerLineVersion.Content = $"版本: {AEAssist.DataBinding.Instance.CurrTriggerLine.Version}";
                     OnTriggerLineLoad?.Invoke(Path.GetFileName(file));
                 }
                 else

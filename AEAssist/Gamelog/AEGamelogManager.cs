@@ -10,15 +10,16 @@ namespace AEAssist.Gamelog
     public class AEGamelogManager
     {
         public static AEGamelogManager Instance = new AEGamelogManager();
-        
+
         public struct GameLog
         {
             public int MsgType;
             public string Content;
         }
 
-        public readonly QuickGraph.Collections.Queue<GameLog> GameLogBuffers = new QuickGraph.Collections.Queue<GameLog>();
-        
+        public readonly QuickGraph.Collections.Queue<GameLog> GameLogBuffers =
+            new QuickGraph.Collections.Queue<GameLog>();
+
         // private HashSet<int> MuteType = new HashSet<int>()
         // {
         //     4139,4400,4777,4905,4398,10283,
@@ -55,29 +56,26 @@ namespace AEAssist.Gamelog
         private void MessageRecevied(object sender, ChatEventArgs e)
         {
             AddBuffers((int) e.ChatLogEntry.MessageType, e.ChatLogEntry.Contents);
-            if ((ushort)e.ChatLogEntry.MessageType == 185)
+            if ((ushort) e.ChatLogEntry.MessageType == 185)
             {
-                if (e.ChatLogEntry.Contents.Contains("战斗开始"))
+                if (e.ChatLogEntry.Contents.Contains(Language.Instance.MessageLog_CountDown_BattleStart))
                 {
-                    GUIHelper.ShowInfo(e.ChatLogEntry.Contents,1000,false);
+                    GUIHelper.ShowInfo(e.ChatLogEntry.Contents, 1000, false);
                 }
             }
+
             if (e.ChatLogEntry.MessageType == MessageType.SystemMessages)
             {
-                if (e.ChatLogEntry.Contents.Contains("距离战斗开始还有5秒"))
+                if (e.ChatLogEntry.Contents.Contains(Language.Instance.MessageLog_CountDown_BattleStartIn5sec))
                 {
                     CountDownHandler.Instance.StartCountDown();
                 }
-                else if (e.ChatLogEntry.Contents.Contains("距离战斗开始"))
-                {
-                    GUIHelper.ShowInfo(e.ChatLogEntry.Contents,1000,false);
-                }
-                else if (e.ChatLogEntry.Contents.Contains("取消了战斗开始"))
+                else if (e.ChatLogEntry.Contents.Contains(Language.Instance.MessageLog_CountDown_CancelBattleStart))
                 {
                     CountDownHandler.Instance.Close();
-                    GUIHelper.ShowInfo(e.ChatLogEntry.Contents,1000,false);
+                    GUIHelper.ShowInfo(e.ChatLogEntry.Contents, 1000, false);
                 }
-            }   
+            }
         }
 
         public void Close()

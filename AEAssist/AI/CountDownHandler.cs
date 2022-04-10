@@ -19,7 +19,7 @@ namespace AEAssist.AI
             if (!_start)
                 return;
             var restTime = CountDown - (TimeHelper.Now() - _lastTime);
-            var msg = $"倒计时{restTime/1000}秒 {restTime%1000}";
+            var msg = $"倒计时{restTime / 1000}秒 {restTime % 1000}";
 
             if (Math.Abs(restTime - SettingMgr.GetSetting<GeneralSettings>().UsePotionCountDown) < 100)
             {
@@ -33,7 +33,8 @@ namespace AEAssist.AI
                 CanDoAction = true;
                 _start = false;
             }
-            GUIHelper.ShowInfo(msg,100,false);
+
+            GUIHelper.ShowInfo(msg, 100, false);
         }
 
         public void StartCountDown()
@@ -46,7 +47,6 @@ namespace AEAssist.AI
 
         public void SyncRestTime(float restTime)
         {
-            
         }
 
         public void Close()

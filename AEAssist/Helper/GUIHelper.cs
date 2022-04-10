@@ -19,13 +19,14 @@ namespace AEAssist
 
         public static void Close()
         {
-           // GUI.Close();
+            // GUI.Close();
         }
 
         private static long targetShowTime;
-        public static void ShowInfo(string msg,int time = 0,bool check = true)
+
+        public static void ShowInfo(string msg, int time = 0, bool check = true)
         {
-            if (check &&  TimeHelper.Now() < targetShowTime)
+            if (check && TimeHelper.Now() < targetShowTime)
                 return;
             if (time > 0)
                 targetShowTime = TimeHelper.Now() + time;

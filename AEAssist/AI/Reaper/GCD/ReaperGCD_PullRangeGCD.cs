@@ -12,7 +12,7 @@ namespace AEAssist.AI.Reaper.GCD
     {
         public int Check(SpellData lastSpell)
         {
-            if (Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget,6))
+            if (Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget, 6))
                 return -1;
             return 0;
         }
@@ -24,7 +24,7 @@ namespace AEAssist.AI.Reaper.GCD
             {
                 spell = SpellsDefine.HarvestMoon;
             }
-            else if(!AEAssist.DataBinding.Instance.UseHarpe)
+            else if (!AEAssist.DataBinding.Instance.UseHarpe)
             {
                 return null;
             }

@@ -11,7 +11,7 @@ namespace AEAssist.TriggerSystem.TriggerCond
             foreach (var v in enemys.Values)
             {
                 LogHelper.Info($"HPPct {v.Name} {v.CurrentHealthPercent}");
-                if(!v.Name.Contains(cond.Name))
+                if (!v.Name.Contains(cond.Name))
                     continue;
                 if (v.CurrentHealthPercent * 100 <= cond.HpPct)
                     return true;

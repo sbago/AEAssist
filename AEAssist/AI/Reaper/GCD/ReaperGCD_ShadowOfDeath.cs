@@ -19,7 +19,7 @@ namespace AEAssist.AI.Reaper.GCD
             // 妖异
             if (Core.Me.HasAura(AurasDefine.SoulReaver))
                 return -2;
-            
+
             if (!target.ContainMyAura(AurasDefine.DeathsDesign, 10000)
                 && (ActionResourceManager.Reaper.SoulGauge > 50
                     || ActionResourceManager.Reaper.ShroudGauge > 50 || SpellsDefine.PlentifulHarvest.RecentlyUsed()))
@@ -40,6 +40,7 @@ namespace AEAssist.AI.Reaper.GCD
             {
                 spell = SpellsDefine.WhorlOfDeath;
             }
+
             if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
                 return spell;
             return null;

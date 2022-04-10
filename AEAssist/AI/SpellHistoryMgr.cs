@@ -1,6 +1,4 @@
-﻿
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace AEAssist.AI
 {
@@ -11,6 +9,7 @@ namespace AEAssist.AI
         public int GCDIndex;
         public string Name;
     }
+
     public class SpellHistoryMgr
     {
         public static SpellHistoryMgr Instance = new SpellHistoryMgr();
@@ -32,20 +31,21 @@ namespace AEAssist.AI
             GCDSpellHistory.Enqueue(ret);
             SpellLastCastTime[ret.SpellId] = ret.CastTime;
         }
-        
+
         public void AddAbilityHistory(SpellHistory ret)
         {
             AbilitySpellHistory.Enqueue(ret);
             SpellLastCastTime[ret.SpellId] = ret.CastTime;
             SpellLastCastGCDIndex[ret.SpellId] = ret.GCDIndex;
         }
-        
+
         public void CheckIfNeedClearHistory()
         {
             while (GCDSpellHistory.Count >= 50)
             {
                 GCDSpellHistory.Dequeue();
             }
+
             while (AbilitySpellHistory.Count >= 50)
             {
                 AbilitySpellHistory.Dequeue();

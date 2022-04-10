@@ -25,19 +25,18 @@ namespace AEAssist.AI
 
             if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<ReaperSettings>().UsePotionId))
                 return -5;
-            
-            if (SpellsDefine.PlentifulHarvest.IsReady() 
-            && ( Core.Me.ContainsMyInEndAura(AurasDefine.BloodsownCircle,3000)))
+
+            if (SpellsDefine.PlentifulHarvest.IsReady()
+                && (Core.Me.ContainsMyInEndAura(AurasDefine.BloodsownCircle, 3000)))
             {
                 return 1;
             }
-            
-            
+
 
             //todo: 优化,如果没冷却好圣餐或者没解锁, 就绑定附体状态用
-            if (!SpellsDefine.PlentifulHarvest.IsReady() && ActionResourceManager.Reaper.ShroudGauge>50)
+            if (!SpellsDefine.PlentifulHarvest.IsReady() && ActionResourceManager.Reaper.ShroudGauge > 50)
                 return 2;
-            
+
             return -6;
         }
 
@@ -48,6 +47,7 @@ namespace AEAssist.AI
             {
                 AIRoot.Instance.MuteAbilityTime();
             }
+
             await Task.CompletedTask;
             return null;
         }

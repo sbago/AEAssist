@@ -20,8 +20,9 @@ namespace AEAssist.Helper
 
         public string GetPotionName()
         {
-            return DexPotions.FindLast(v=>v.ID == SettingMgr.GetSetting<BardSettings>().UsePotionId).Name;
+            return DexPotions.FindLast(v => v.ID == SettingMgr.GetSetting<BardSettings>().UsePotionId).Name;
         }
+
         public static void Init()
         {
             if (DexPotions == null)
@@ -32,19 +33,19 @@ namespace AEAssist.Helper
                 ID = 36105,
                 Name = "5级巧力之幻药"
             });
-            
+
             DexPotions.Add(new PotionData()
             {
                 ID = 31894,
                 Name = "4级巧力之幻药"
             });
-            
+
             DexPotions.Add(new PotionData()
             {
                 ID = 29493,
                 Name = "3级巧力之幻药"
             });
-            
+
 
             if (StrPotions == null)
                 StrPotions = new List<PotionData>();
@@ -110,7 +111,7 @@ namespace AEAssist.Helper
         //         LogHelper.Info($"道具 {v.RawItemId} {v.Name} {v.Item.ChnName}");
         //     }
         // }
-        
+
         public static int CheckNum(int potionId)
         {
             int num = 0;

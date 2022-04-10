@@ -22,9 +22,9 @@ namespace AETriggers.TriggerModel
             var actionType = typeof(ITriggerAction);
             foreach (var type in this.GetType().Assembly.GetTypes())
             {
-                if(type.IsAbstract || type.IsInterface)
+                if  (type.IsAbstract || type.IsInterface)
                     continue;
-                if(!baseType.IsAssignableFrom(type))
+                if (!baseType.IsAssignableFrom(type))
                     continue;
 
                 if (condType.IsAssignableFrom(type))
@@ -37,8 +37,8 @@ namespace AETriggers.TriggerModel
                 }
 
                 var attrs = type.GetCustomAttributes(typeof(TriggerAttribute), false);
-                var attr = attrs[0] as TriggerAttribute; 
-                this.AllAttrs[type] = attr;
+                var attr = attrs[0] as TriggerAttribute;
+                 this.AllAttrs[type] = attr;
 
                 this.Name2Type[attr.Name] = type;
             }

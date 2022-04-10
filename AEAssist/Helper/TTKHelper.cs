@@ -10,9 +10,9 @@ namespace AEAssist.Helper
     {
         public static bool IsTargetTTK(Character target)
         {
-            return IsTargetTTK(target,SettingMgr.GetSetting<GeneralSettings>().TimeToKill_TimeInSec);
+            return IsTargetTTK(target, SettingMgr.GetSetting<GeneralSettings>().TimeToKill_TimeInSec);
         }
-        
+
         public static bool IsTargetTTK(Character target, int timeInSec)
         {
             if (!SettingMgr.GetSetting<GeneralSettings>().OpenTTK)
@@ -20,8 +20,8 @@ namespace AEAssist.Helper
 
             if (target.IsBoss())
                 return false;
-            
-            if (!TargetMgr.Instance.TargetStats.TryGetValue(target.ObjectId,out var stat))
+
+            if (!TargetMgr.Instance.TargetStats.TryGetValue(target.ObjectId, out var stat))
             {
                 return false;
             }
@@ -34,10 +34,10 @@ namespace AEAssist.Helper
             var config = timeInSec * 1000;
 
             // LogHelper.Debug($"{target.ObjectId} Hp {target.CurrentHealth} DeathPre {stat.DeathPrediction} Config {config}");
-            
+
             if (stat.DeathPrediction > config)
                 return false;
-            
+
             return true;
         }
     }

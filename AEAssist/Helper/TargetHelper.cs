@@ -11,20 +11,20 @@ namespace AEAssist.Helper
         {
             return unit != null && unit.IsValid && unit.IsTargetable && unit.CanAttack && unit.CurrentHealth > 0;
         }
-        
+
         public static bool NotInvulnerable(this GameObject unit)
         {
             return unit != null && !unit.HasAnyAura(AurasDefine.Invincibility);
         }
 
-        public static bool CanAttackTargetInRange(this GameObject unit,GameObject target,int range = 3)
+        public static bool CanAttackTargetInRange(this GameObject unit, GameObject target, int range = 3)
         {
             if (!target.ValidAttackUnit())
                 return false;
-            
+
             var combatReach = target.CombatReach + unit.CombatReach;
 
-            if (unit.Distance(target) < range + combatReach -0.1f) // 0.1 是为了防止误差导致没打到
+            if (unit.Distance(target) < range + combatReach - 0.1f) // 0.1 是为了防止误差导致没打到
             {
                 return true;
             }
@@ -38,7 +38,7 @@ namespace AEAssist.Helper
         /// <param name="targetRange"> 目标和自己的距离</param>
         /// <param name="damageRange"> 目标和他周围单位的距离</param>
         /// <returns></returns>
-        public static bool CheckNeedUseAOE(int targetRange,int damageRange,int needCount = 3)
+        public static bool CheckNeedUseAOE(int targetRange, int damageRange, int needCount = 3)
         {
             if (!DataBinding.Instance.UseAOE)
                 return false;
@@ -48,8 +48,8 @@ namespace AEAssist.Helper
                 return true;
             return false;
         }
-        
-        public static int GetNearbyEnemyCount(GameObject target, int targetRange,int damageRange)
+
+        public static int GetNearbyEnemyCount(GameObject target, int targetRange, int damageRange)
         {
             if (target.Distance(Core.Me) >= targetRange)
                 return 0;
@@ -63,8 +63,8 @@ namespace AEAssist.Helper
 
             return count;
         }
-        
-        public static bool CheckNeedUseAOE(GameObject target, int targetRange,int damageRange,int needCount = 3)
+
+        public static bool CheckNeedUseAOE(GameObject target, int targetRange, int damageRange, int needCount = 3)
         {
             if (!DataBinding.Instance.UseAOE)
                 return false;

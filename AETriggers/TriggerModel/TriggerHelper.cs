@@ -29,9 +29,9 @@ namespace AETriggers.TriggerModel
 
         public static void SaveTriggerLine(TriggerLine triggerLine, string path)
         {
-            if(File.Exists(path))
+            if (File.Exists(path))
                 File.Delete(path);
-            File.WriteAllText(path,MongoHelper.ToJson(triggerLine));
+            File.WriteAllText(path, MongoHelper.ToJson(triggerLine));
         }
     }
 }

@@ -2,12 +2,11 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger(name:"EnemyInLOS",remark:"敌人出现在视野里")]
+    [Trigger(name: "EnemyInLOS", remark: "敌人出现在视野里")]
     public class TriggerCond_EnemyInLOS : ITriggerCond
     {
-
         public string name;
-        
+
         public void WriteFromJson(string[] values)
         {
             this.name = values[0];

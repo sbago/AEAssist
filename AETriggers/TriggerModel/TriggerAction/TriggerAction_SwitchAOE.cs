@@ -2,10 +2,11 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger(name:"SwitchAOE",remark:"允许AOE")]
+    [Trigger(name: "SwitchAOE", remark: "允许AOE")]
     public class TriggerAction_SwitchAOE : ITriggerAction
     {
         public bool value;
+
         public void WriteFromJson(string[] values)
         {
             if (!int.TryParse(values[0], out var va))

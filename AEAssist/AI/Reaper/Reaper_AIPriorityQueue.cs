@@ -32,7 +32,7 @@ namespace AEAssist.Define
             new ReaperAbility_BloodStalk(),
             new ReaperAbility_TrueNorth()
         };
-        
+
         public async Task<bool> UsePotion()
         {
             return await PotionHelper.ForceUsePotion(SettingMgr.GetSetting<ReaperSettings>().UsePotionId);

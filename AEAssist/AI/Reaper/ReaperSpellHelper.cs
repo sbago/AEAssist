@@ -13,7 +13,7 @@ namespace AEAssist.AI.Reaper
         static async Task<SpellData> UseAOECombo(GameObject target)
         {
             if (AIRoot.Instance.ReaperBattleData.CurrCombo != ReaperComboStages.NightmareScythe
-            || ActionManager.ComboTimeLeft<=0)
+                || ActionManager.ComboTimeLeft <= 0)
             {
                 if (await SpellHelper.CastGCD(SpellsDefine.SpinningScythe, target))
                 {
@@ -51,6 +51,7 @@ namespace AEAssist.AI.Reaper
                     }
                 }
             }
+
             if (await SpellHelper.CastGCD(SpellsDefine.Slice, target))
             {
                 AIRoot.Instance.ReaperBattleData.CurrCombo = ReaperComboStages.WaxingSlice;
@@ -62,7 +63,7 @@ namespace AEAssist.AI.Reaper
 
         public static async Task<SpellData> BaseGCDCombo(GameObject target)
         {
-            if (TargetHelper.CheckNeedUseAOE(target,5, 5))
+            if (TargetHelper.CheckNeedUseAOE(target, 5, 5))
             {
                 return await UseAOECombo(target);
             }
@@ -74,7 +75,7 @@ namespace AEAssist.AI.Reaper
         {
             if (!SpellsDefine.SoulSlice.IsChargeReady())
                 return null;
-            if (TargetHelper.CheckNeedUseAOE(target,5, 5))
+            if (TargetHelper.CheckNeedUseAOE(target, 5, 5))
             {
                 return SpellsDefine.SoulScythe;
             }
@@ -95,7 +96,7 @@ namespace AEAssist.AI.Reaper
             {
                 return SpellsDefine.Gibbet;
             }
-           else if (Core.Me.HasAura(AurasDefine.EnhancedGallows))
+            else if (Core.Me.HasAura(AurasDefine.EnhancedGallows))
             {
                 return SpellsDefine.Gallows;
             }
@@ -111,8 +112,8 @@ namespace AEAssist.AI.Reaper
         {
             if (!Core.Me.HasAura(AurasDefine.Enshrouded))
                 return null;
-            
-            if (ActionResourceManager.Reaper.LemureShroud < 2 
+
+            if (ActionResourceManager.Reaper.LemureShroud < 2
                 && SpellsDefine.Communio.IsUnlock())
                 return SpellsDefine.Communio;
 
@@ -139,7 +140,7 @@ namespace AEAssist.AI.Reaper
 
             if (SpellsDefine.PlentifulHarvest.RecentlyUsed())
                 return -300;
-            
+
             // 死亡祭祀
             if (Core.Me.HasAura(AurasDefine.BloodsownCircle))
                 return -201;
@@ -147,7 +148,7 @@ namespace AEAssist.AI.Reaper
             // 妖异
             if (Core.Me.HasAura(AurasDefine.SoulReaver))
                 return -202;
-            
+
             // 死亡祭品
             if (!Core.Me.HasAura(AurasDefine.ImmortalSacrifice))
             {
@@ -155,11 +156,12 @@ namespace AEAssist.AI.Reaper
             }
 
             // 50点蓝条以上,而且神秘环buff没有接近消失,就延后
-            if (ActionResourceManager.Reaper.ShroudGauge > 50 && !Core.Me.ContainsMyInEndAura(AurasDefine.ArcaneCircle,3000))
+            if (ActionResourceManager.Reaper.ShroudGauge > 50 &&
+                !Core.Me.ContainsMyInEndAura(AurasDefine.ArcaneCircle, 3000))
             {
                 return -204;
             }
-            
+
             return 200;
         }
 
@@ -175,7 +177,7 @@ namespace AEAssist.AI.Reaper
             {
                 return true;
             }
-            
+
             if (target.IsBehind && targetSpell == SpellsDefine.Gibbet)
             {
                 return true;
@@ -190,7 +192,7 @@ namespace AEAssist.AI.Reaper
                 return null;
             if (!CheckIfNeedTrueNorth())
                 return null;
-            if (await SpellHelper.CastAbility(SpellsDefine.TrueNorth, Core.Me,100))
+            if (await SpellHelper.CastAbility(SpellsDefine.TrueNorth, Core.Me, 100))
             {
                 return SpellsDefine.TrueNorth;
             }
@@ -202,31 +204,31 @@ namespace AEAssist.AI.Reaper
         {
             if (AIRoot.Instance.CloseBuff)
                 return -100;
-            if (SpellsDefine.Enshroud.RecentlyUsed() ||Core.Me.HasAura(AurasDefine.Enshrouded))
+            if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -101;
             if (Core.Me.HasAura(AurasDefine.SoulReaver))
                 return -102;
             if (!SpellsDefine.PlentifulHarvest.RecentlyUsed() && ActionResourceManager.Reaper.ShroudGauge < 50)
                 return -103;
-            
+
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return -104;
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
                 return -105;
 
             var coolDown = SpellsDefine.ArcaneCircle.Cooldown.TotalMilliseconds;
-            
+
             if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer
                 && ActionResourceManager.Reaper.ShroudGauge < 90
-                && coolDown>2000
+                && coolDown > 2000
                 && coolDown < ConstValue.ReaperDoubleEnshroudMaxCheckTime)
             {
                 return -106;
             }
-            
+
             if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer
                 && ActionResourceManager.Reaper.ShroudGauge < 90
-                && coolDown<=2000
+                && coolDown <= 2000
                 && AIRoot.Instance.ReaperBattleData.CurrCombo == ReaperComboStages.InfernalSlice)
             {
                 return -107;

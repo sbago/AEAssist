@@ -300,7 +300,6 @@ namespace AEAssist.Define
             Enshrouded = 2593,
             Soulsow = 2594,
             BloodsownCircle = 2972,
-            
             CrestOfTimeReturned = 2598,
             CrestOfTimeBorrowed = 2597,
             FlourishingSymmetry = 2693,
@@ -337,7 +336,7 @@ namespace AEAssist.Define
 
         public const int
 
-        #region PVP Specific
+            #region PVP Specific
 
             PvpSynastrySource = 1336,
             PvpSynastryDestination = 1337,
