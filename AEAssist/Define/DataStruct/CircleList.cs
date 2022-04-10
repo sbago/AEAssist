@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace AEAssist
 {
     public class CircleList<T> where T : class
     {
-        private List<T> _list = new List<T>();
+        private readonly List<T> _list = new List<T>();
 
         public int Count => _list.Count;
 
@@ -29,8 +28,8 @@ namespace AEAssist
         {
             if (t == null)
             {
-                if (this._list.Count > 0)
-                    return this._list[0];
+                if (_list.Count > 0)
+                    return _list[0];
                 return null;
             }
 
@@ -38,15 +37,9 @@ namespace AEAssist
             if (currIndex < 0)
                 return null;
             var nextIndex = currIndex + 1;
-            if (_list.Count <= nextIndex)
-            {
-                nextIndex -= _list.Count;
-            }
+            if (_list.Count <= nextIndex) nextIndex -= _list.Count;
 
-            if (_list[nextIndex] == t)
-            {
-                return null;
-            }
+            if (_list[nextIndex] == t) return null;
 
             return _list[nextIndex];
         }
@@ -55,8 +48,8 @@ namespace AEAssist
         {
             if (t == null)
             {
-                if (this._list.Count > 0)
-                    return this._list[0];
+                if (_list.Count > 0)
+                    return _list[0];
                 return null;
             }
 
@@ -64,15 +57,9 @@ namespace AEAssist
             if (currIndex < 0)
                 return null;
             var nextIndex = currIndex - 1;
-            if (nextIndex < 0)
-            {
-                nextIndex += _list.Count;
-            }
+            if (nextIndex < 0) nextIndex += _list.Count;
 
-            if (_list[nextIndex] == t)
-            {
-                return null;
-            }
+            if (_list[nextIndex] == t) return null;
 
             return _list[nextIndex];
         }

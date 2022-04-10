@@ -9,8 +9,8 @@ namespace AEAssist.View
         public ReaperSettingView()
         {
             InitializeComponent();
-            this.ChoosePotion.ItemsSource = PotionHelper.StrPotions;
-            this.ChoosePotion.SelectedValue = SettingMgr.GetSetting<ReaperSettings>().UsePotionId;
+            ChoosePotion.ItemsSource = PotionHelper.StrPotions;
+            ChoosePotion.SelectedValue = SettingMgr.GetSetting<ReaperSettings>().UsePotionId;
             ButtonBase_OnClick(null, null);
         }
 
@@ -22,7 +22,7 @@ namespace AEAssist.View
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             var value = PotionHelper.CheckNum(SettingMgr.GetSetting<ReaperSettings>().UsePotionId);
-            this.PotionCount.Content = "数量: " + value.ToString();
+            PotionCount.Content = "数量: " + value;
         }
     }
 }

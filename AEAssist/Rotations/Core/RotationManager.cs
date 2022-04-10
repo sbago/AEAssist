@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AEAssist.AI;
-using AEAssist.View;
+using ff14bot;
 using ff14bot.Enums;
 using ff14bot.Objects;
 
@@ -12,15 +11,15 @@ namespace AEAssist
     {
         public static RotationManager Instance = new RotationManager();
 
-        public DefaultRotation DefaultRotation = new DefaultRotation();
-
         public Dictionary<ClassJobType, IRotation> AllRotations = new Dictionary<ClassJobType, IRotation>();
+
+        public DefaultRotation DefaultRotation = new DefaultRotation();
 
         public void Init()
         {
-            this.AllRotations.Clear();
+            AllRotations.Clear();
             var baseType = typeof(IRotation);
-            foreach (var type in this.GetType().Assembly.GetTypes())
+            foreach (var type in GetType().Assembly.GetTypes())
             {
                 if (type.IsAbstract || type.IsInterface)
                     continue;
@@ -36,22 +35,16 @@ namespace AEAssist
                 }
 
                 var attr = attrs[0] as RotationAttribute;
-                this.AllRotations[attr.ClassJobType] = Activator.CreateInstance(type) as IRotation;
+                AllRotations[attr.ClassJobType] = Activator.CreateInstance(type) as IRotation;
                 LogHelper.Info("Load Rotation: " + attr.ClassJobType);
             }
 
-            foreach (var v in AllRotations)
-            {
-                v.Value.Init();
-            }
+            foreach (var v in AllRotations) v.Value.Init();
         }
 
-        IRotation GetRotation()
+        private IRotation GetRotation()
         {
-            if (AllRotations.TryGetValue(ff14bot.Core.Me.CurrentJob, out var job))
-            {
-                return job;
-            }
+            if (AllRotations.TryGetValue(Core.Me.CurrentJob, out var job)) return job;
 
             return DefaultRotation;
         }

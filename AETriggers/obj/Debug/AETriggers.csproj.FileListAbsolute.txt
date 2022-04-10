@@ -26,7 +26,6 @@ D:\Github\AEAssist\AETriggers\obj\Debug\AETriggers.exe.config
 D:\Github\AEAssist\AETriggers\obj\Debug\MainWindow.g.cs
 D:\Github\AEAssist\AETriggers\obj\Debug\App.g.cs
 D:\Github\AEAssist\AETriggers\obj\Debug\AETriggers_MarkupCompile.cache
-D:\Github\AEAssist\AETriggers\obj\Debug\AETriggers_MarkupCompile.lref
 D:\Github\AEAssist\AETriggers\obj\Debug\App.baml
 D:\Github\AEAssist\AETriggers\obj\Debug\MainWindow.baml
 D:\Github\AEAssist\AETriggers\obj\Debug\AETriggers.g.resources

@@ -18,7 +18,7 @@ namespace AEAssist.Helper
         }
 
         /// <summary>
-        /// 防止网络延迟
+        ///     防止网络延迟
         /// </summary>
         /// <param name="spellData"></param>
         /// <param name="span"></param>

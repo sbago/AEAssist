@@ -15,15 +15,9 @@ namespace AEAssist.AI
             if (BardSpellHelper.HasBuffsCount() >= 2)
                 return 1;
 
-            if (BardSpellHelper.CheckCanUseBuffs())
-            {
-                return 2;
-            }
+            if (BardSpellHelper.CheckCanUseBuffs()) return 2;
 
-            if (!Core.Me.HasMyAura(AurasDefine.RagingStrikes))
-            {
-                return 3;
-            }
+            if (!Core.Me.HasMyAura(AurasDefine.RagingStrikes)) return 3;
 
             if (BardSpellHelper.UnlockBuffsCount() <= 1)
                 return 4;
@@ -34,10 +28,7 @@ namespace AEAssist.AI
         public async Task<SpellData> Run()
         {
             var spellData = SpellsDefine.Sidewinder;
-            if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget))
-            {
-                return spellData;
-            }
+            if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget)) return spellData;
 
             return null;
         }

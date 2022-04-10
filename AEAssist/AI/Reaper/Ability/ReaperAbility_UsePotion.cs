@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using AEAssist.AI.Reaper;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -27,10 +26,8 @@ namespace AEAssist.AI
                 return -5;
 
             if (SpellsDefine.PlentifulHarvest.IsReady()
-                && (Core.Me.ContainsMyInEndAura(AurasDefine.BloodsownCircle, 3000)))
-            {
+                && Core.Me.ContainsMyInEndAura(AurasDefine.BloodsownCircle, 3000))
                 return 1;
-            }
 
 
             //todo: 优化,如果没冷却好圣餐或者没解锁, 就绑定附体状态用
@@ -43,10 +40,7 @@ namespace AEAssist.AI
         public async Task<SpellData> Run()
         {
             var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<ReaperSettings>().UsePotionId);
-            if (ret)
-            {
-                AIRoot.Instance.MuteAbilityTime();
-            }
+            if (ret) AIRoot.Instance.MuteAbilityTime();
 
             await Task.CompletedTask;
             return null;

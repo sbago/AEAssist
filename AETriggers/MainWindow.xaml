@@ -3,8 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AETriggers"
-        xmlns:triggerModel="clr-namespace:AETriggers.TriggerModel"
         mc:Ignorable="d"
         Title="AE轴导出器" Height="180" Width="225">
     <StackPanel Margin="5">

@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using AEAssist.Define;
 using Buddy.Coroutines;
 using ff14bot;
 using ff14bot.Enums;
-using ff14bot.Helpers;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
@@ -44,12 +42,8 @@ namespace AEAssist.Helper
 
             // 等待cast 结束
             if (spell.AdjustedCastTime != TimeSpan.Zero)
-            {
                 if (!await Coroutine.Wait(spell.BaseCastTime + TimeSpan.FromMilliseconds(500), () => Core.Me.IsCasting))
-                {
                     return false;
-                }
-            }
 
             return true;
         }

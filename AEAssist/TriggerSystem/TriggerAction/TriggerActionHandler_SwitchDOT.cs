@@ -1,5 +1,4 @@
-﻿using AEAssist;
-using AETriggers.TriggerModel;
+﻿using AETriggers.TriggerModel;
 
 namespace AEAssist.TriggerSystem.TriggerAction
 {
@@ -7,7 +6,7 @@ namespace AEAssist.TriggerSystem.TriggerAction
     {
         protected override void Handle(TriggerAction_SwitchDOT t)
         {
-            AEAssist.DataBinding.Instance.UseDot = t.value;
+            DataBinding.Instance.UseDot = t.value;
         }
     }
 }

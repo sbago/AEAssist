@@ -1,30 +1,49 @@
 ﻿//using Clio.Utilities.Collections;
 
-using ff14bot;
-using ff14bot.AClasses;
-using ff14bot.Behavior;
-using ff14bot.Enums;
-using ff14bot.Managers;
-using ff14bot.Objects;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Windows.Input;
-using AEAssist;
-using AEAssist.AI;
 using AEAssist.Gamelog;
 using AEAssist.Helper;
 using AEAssist.View;
 using AEAssist.View.Overlay;
+using ff14bot.Behavior;
+using ff14bot.Enums;
+using ff14bot.Managers;
 using TreeSharp;
 
 namespace AEAssist
 {
     public class Entry
     {
+        private static MainWindow _form;
+
+        private static TriggerLineWindow _triggerLineWindow;
+
+        private static MainWindow Form
+        {
+            get
+            {
+                if (_form != null) return _form;
+                _form = new MainWindow();
+                _form.Closed += (sender, args) => { _form = null; };
+                return _form;
+            }
+        }
+
+        public static TriggerLineWindow TriggerLineWindow
+        {
+            get
+            {
+                if (_triggerLineWindow != null) return _triggerLineWindow;
+                _triggerLineWindow = new TriggerLineWindow();
+                _triggerLineWindow.Closed += (sender, args) => { _triggerLineWindow = null; };
+                return _triggerLineWindow;
+            }
+        }
+
+
+        private ClassJobType CurrentJob { get; set; }
+        private ushort CurrentZone { get; set; }
+
         public void Initialize()
         {
             LogHelper.Debug("Init....Version " + ConstValue.ProjectVersion);
@@ -49,37 +68,6 @@ namespace AEAssist
 
             LogHelper.Info("Initialized!");
         }
-
-
-        private static MainWindow _form;
-
-        private static MainWindow Form
-        {
-            get
-            {
-                if (_form != null) return _form;
-                _form = new MainWindow();
-                _form.Closed += (sender, args) => { _form = null; };
-                return _form;
-            }
-        }
-
-        private static TriggerLineWindow _triggerLineWindow;
-
-        public static TriggerLineWindow TriggerLineWindow
-        {
-            get
-            {
-                if (_triggerLineWindow != null) return _triggerLineWindow;
-                _triggerLineWindow = new TriggerLineWindow();
-                _triggerLineWindow.Closed += (sender, args) => { _triggerLineWindow = null; };
-                return _triggerLineWindow;
-            }
-        }
-
-
-        private ClassJobType CurrentJob { get; set; }
-        private ushort CurrentZone { get; set; }
 
         public void Pulse()
         {

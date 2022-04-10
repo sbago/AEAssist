@@ -11,7 +11,7 @@ namespace AEAssist
 
         public void ShowMsg(string msg)
         {
-            this.Msg = msg;
+            Msg = msg;
         }
     }
 }

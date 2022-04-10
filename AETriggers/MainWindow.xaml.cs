@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using AETriggers.TriggerModel;
 using Microsoft.Win32;
-using NPOI.HPSF;
 using NPOI.HSSF.UserModel;
-using NPOI.SS.Formula.Functions;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using Trigger = AETriggers.TriggerModel.Trigger;
@@ -18,7 +12,7 @@ using Trigger = AETriggers.TriggerModel.Trigger;
 namespace AETriggers
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    ///     Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow
     {
@@ -32,7 +26,7 @@ namespace AETriggers
 
         private void Load_OnClick(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFile = new OpenFileDialog();
+            var openFile = new OpenFileDialog();
             openFile.Filter = "Excel(*.xlsx)|*.xlsx|Excel(*.xls)|*.xls";
             openFile.InitialDirectory = new DirectoryInfo("../").FullName;
             openFile.Multiselect = false;
@@ -42,24 +36,18 @@ namespace AETriggers
                 return;
             var file = openFile.FileName;
             IWorkbook workbook;
-            string fileExt = Path.GetExtension(file).ToLower();
+            var fileExt = Path.GetExtension(file).ToLower();
             try
             {
-                using (FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read,
-                    System.IO.FileShare.ReadWrite))
+                using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read,
+                    FileShare.ReadWrite))
                 {
                     if (fileExt == ".xlsx")
-                    {
                         workbook = new XSSFWorkbook(fs);
-                    }
                     else if (fileExt == ".xls")
-                    {
                         workbook = new HSSFWorkbook(fs);
-                    }
                     else
-                    {
                         workbook = null;
-                    }
 
                     if (workbook == null)
                     {
@@ -67,7 +55,7 @@ namespace AETriggers
                         return;
                     }
 
-                    ISheet sheet = workbook.GetSheetAt(0);
+                    var sheet = workbook.GetSheetAt(0);
 
                     // for (int i = 0; i < sheet.LastRowNum; i++)
                     // {
@@ -90,13 +78,13 @@ namespace AETriggers
                         Version = version,
                         Author = authorName,
                         TargetDuty = targetDuty,
-                        TargetJob = job,
+                        TargetJob = job
                     };
 
                     var AllExcelData = Entry.AllExcelData;
 
                     Entry.AllExcelData.Clear();
-                    for (int i = 6; i < sheet.LastRowNum; i++)
+                    for (var i = 6; i < sheet.LastRowNum; i++)
                     {
                         var row = sheet.GetRow(i);
                         var cell = row.GetCell(1);
@@ -132,7 +120,10 @@ namespace AETriggers
 
                     var loadRet = LoadExcelData();
 
-                    if (loadRet) MessageBox.Show("成功加载数据 ");
+                    if (loadRet)
+                    {
+                        MessageBox.Show("成功加载数据 ");
+                    }
                     else
                     {
                         Entry.TriggerLine = null;
@@ -153,7 +144,7 @@ namespace AETriggers
             var TriggerLine = Entry.TriggerLine;
             if (TriggerLine == null)
                 return;
-            SaveFileDialog openFile = new SaveFileDialog();
+            var openFile = new SaveFileDialog();
             openFile.Filter = "Json(*.json)|*.json";
             openFile.InitialDirectory = new DirectoryInfo("../").FullName;
             openFile.FileName =
@@ -161,7 +152,7 @@ namespace AETriggers
             var ret = openFile.ShowDialog();
             if (!ret.HasValue || !ret.Value)
                 return;
-            TriggerHelper.SaveTriggerLine(triggerLine: TriggerLine, openFile.FileName);
+            TriggerHelper.SaveTriggerLine(TriggerLine, openFile.FileName);
             MessageBox.Show("导出成功!");
         }
 
@@ -193,18 +184,14 @@ namespace AETriggers
                         instance.WriteFromJson(data.valueParams);
 
                         if (instance is ITriggerCond)
-                        {
                             trigger.TriggerConds.Add(instance as ITriggerCond);
-                        }
                         else
-                        {
                             trigger.TriggerActions.Add(instance as ITriggerAction);
-                        }
                     }
                     catch (Exception e)
                     {
                         var pre = $"Type: {data.valueType} Params : [{ListToString(data.valueParams)}]\n ";
-                        MessageBox.Show(pre + e.ToString());
+                        MessageBox.Show(pre + e);
                     }
                 }
             }
@@ -212,14 +199,12 @@ namespace AETriggers
             return true;
         }
 
-        string ListToString(string[] pa)
+        private string ListToString(string[] pa)
         {
             var str = string.Empty;
             if (pa != null && pa.Length > 0)
                 foreach (var v in pa)
-                {
                     str += v + ",";
-                }
 
             return $"[{str}]";
         }
@@ -230,24 +215,24 @@ namespace AETriggers
             var AllExcelData = Entry.AllExcelData;
             if (TriggerLine == null)
             {
-                this.AuthorName.Content = string.Empty;
-                this.Version.Content = string.Empty;
-                this.TargetDuty.Content = string.Empty;
-                this.TargetJob.Content = string.Empty;
+                AuthorName.Content = string.Empty;
+                Version.Content = string.Empty;
+                TargetDuty.Content = string.Empty;
+                TargetJob.Content = string.Empty;
                 return;
             }
 
-            this.AuthorName.Content = TriggerLine.Author;
-            this.Version.Content = TriggerLine.Version;
-            this.TargetDuty.Content = TriggerLine.TargetDuty;
-            this.TargetJob.Content = TriggerLine.TargetJob;
+            AuthorName.Content = TriggerLine.Author;
+            Version.Content = TriggerLine.Version;
+            TargetDuty.Content = TriggerLine.TargetDuty;
+            TargetJob.Content = TriggerLine.TargetJob;
         }
 
         private void LoadJson_OnClick(object sender, RoutedEventArgs e)
         {
             var TriggerLine = Entry.TriggerLine;
             var AllExcelData = Entry.AllExcelData;
-            OpenFileDialog openFile = new OpenFileDialog();
+            var openFile = new OpenFileDialog();
             openFile.Filter = "Json(*.json)|*.json";
             openFile.InitialDirectory = Environment.CurrentDirectory + @"\..\";
             openFile.Multiselect = false;

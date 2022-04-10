@@ -12,16 +12,37 @@ namespace AEAssist
     [AddINotifyPropertyChangedInterface]
     public class HotkeySetting : IBaseSetting
     {
+        private bool _UseHotkey = true;
+
+        [JsonIgnore] private List<Hotkey> Hotkeys;
+
         public HotkeySetting()
         {
             Reset();
+        }
+
+        public string StopBtnName { get; set; }
+        public string CloseBuffBtnName { get; set; }
+
+        public string StopKey { get; set; }
+        public string CloseBuffKey { get; set; }
+
+        public bool UseHotkey
+        {
+            get => _UseHotkey;
+            set
+            {
+                _UseHotkey = value;
+                RegisHotkey();
+                ResetHotkeyName();
+            }
         }
 
         public void Reset()
         {
             StopKey = Key.F8.ToString();
             CloseBuffKey = Key.F9.ToString();
-            this.UseHotkey = true;
+            UseHotkey = true;
             ResetHotkeyName();
         }
 
@@ -34,12 +55,10 @@ namespace AEAssist
             }
             else
             {
-                StopBtnName = $"停手";
-                CloseBuffBtnName = $"关闭爆发";
+                StopBtnName = "停手";
+                CloseBuffBtnName = "关闭爆发";
             }
         }
-
-        [JsonIgnore] private List<Hotkey> Hotkeys;
 
         public void RegisHotkey()
         {
@@ -54,7 +73,7 @@ namespace AEAssist
 
                 // Hotkeys.Add(HotkeyManager.Register("BattleStartNow", Keys.F9, ModifierKeys.None,
                 //     v => { CountDownHandler.Instance.StartNow(); }));
-                if (this.StopKey == null || this.CloseBuffKey == null)
+                if (StopKey == null || CloseBuffKey == null)
                     Reset();
                 //  LogHelper.Info("Hotkey_Stop: " + this.StopKey);
                 //  LogHelper.Info("Hotkey_CloseBuff: " + this.CloseBuffKey);
@@ -62,8 +81,8 @@ namespace AEAssist
                 if (!UseHotkey)
                     return;
 
-                var stopKey = (Keys) Enum.Parse(typeof(Keys), this.StopKey);
-                var closeBuffKey = (Keys) Enum.Parse(typeof(Keys), this.CloseBuffKey);
+                var stopKey = (Keys) Enum.Parse(typeof(Keys), StopKey);
+                var closeBuffKey = (Keys) Enum.Parse(typeof(Keys), CloseBuffKey);
 
                 Hotkeys.Add(HotkeyManager.Register("BattleStop", stopKey, ModifierKeys.None, v =>
                 {
@@ -87,29 +106,7 @@ namespace AEAssist
         {
             if (Hotkeys == null)
                 return;
-            foreach (var v in Hotkeys)
-            {
-                HotkeyManager.Unregister(v);
-            }
-        }
-
-        public string StopBtnName { get; set; }
-        public string CloseBuffBtnName { get; set; }
-
-        public string StopKey { get; set; }
-        public string CloseBuffKey { get; set; }
-
-        private bool _UseHotkey = true;
-
-        public bool UseHotkey
-        {
-            get { return _UseHotkey; }
-            set
-            {
-                _UseHotkey = value;
-                RegisHotkey();
-                ResetHotkeyName();
-            }
+            foreach (var v in Hotkeys) HotkeyManager.Unregister(v);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
-using AETriggers.TriggerModel;
 using ff14bot;
 using ff14bot.Managers;
 using ff14bot.Objects;
@@ -26,10 +25,7 @@ namespace AEAssist.AI.Reaper.Ability
             if (Core.Me.HasAura(AurasDefine.BloodsownCircle))
                 return -6;
             // 死亡祭品
-            if (Core.Me.HasAura(AurasDefine.ImmortalSacrifice))
-            {
-                return -7;
-            }
+            if (Core.Me.HasAura(AurasDefine.ImmortalSacrifice)) return -7;
 
             if (ActionResourceManager.Reaper.SoulGauge < 50)
                 return -8;
@@ -46,7 +42,6 @@ namespace AEAssist.AI.Reaper.Ability
         public async Task<SpellData> Run()
         {
             if (await SpellHelper.CastAbility(SpellsDefine.Gluttony, Core.Me.CurrentTarget))
-            {
                 // if (AIRoot.Instance.BattleData.maxAbilityTimes>0 && await ReaperSpellHelper.UseTruthNorth() != null)
                 // {
                 //     if (AIRoot.Instance.BattleData.maxAbilityTimes > 1)
@@ -54,7 +49,6 @@ namespace AEAssist.AI.Reaper.Ability
                 // }
 
                 return SpellsDefine.Gluttony;
-            }
 
             return null;
         }

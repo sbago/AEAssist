@@ -1,14 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AEAssist.AI;
-using AEAssist.AI.Reaper;
-using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
-using Buddy.Coroutines;
 using ff14bot;
 using ff14bot.Enums;
-using ff14bot.Helpers;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
@@ -17,10 +12,10 @@ namespace AEAssist
     [Rotation(ClassJobType.Reaper)]
     public class ReaperRotation : IRotation
     {
-        private AIRoot AiRoot = AIRoot.Instance;
+        private long _lastTime;
+        private readonly AIRoot AiRoot = AIRoot.Instance;
 
         private long randomTime;
-        private long _lastTime;
 
         public void Init()
         {
@@ -35,10 +30,7 @@ namespace AEAssist
         // 战斗之前处理buff的?
         public async Task<bool> PreCombatBuff()
         {
-            if (Core.Me.InCombat)
-            {
-                return false;
-            }
+            if (Core.Me.InCombat) return false;
 
 
             AIRoot.Instance.Clear();

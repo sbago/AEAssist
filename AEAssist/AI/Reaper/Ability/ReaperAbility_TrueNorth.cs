@@ -20,10 +20,7 @@ namespace AEAssist.AI.Reaper.Ability
                 || SpellsDefine.TrueNorth.RecentlyUsed())
                 return -9;
 
-            if (!SpellsDefine.Gibbet.IsUnlock())
-            {
-                return -2;
-            }
+            if (!SpellsDefine.Gibbet.IsUnlock()) return -2;
 
             if (!SpellsDefine.BloodStalk.RecentlyUsed()
                 && !Core.Me.HasAura(AurasDefine.SoulReaver)
@@ -31,7 +28,7 @@ namespace AEAssist.AI.Reaper.Ability
                 && !SpellsDefine.GrimSwathe.RecentlyUsed())
                 return -3;
 
-            SpellData spell = ReaperSpellHelper.Gibbit_Gallows(Core.Me.CurrentTarget);
+            var spell = ReaperSpellHelper.Gibbit_Gallows(Core.Me.CurrentTarget);
             if (spell == null)
                 return -4;
 
@@ -47,10 +44,7 @@ namespace AEAssist.AI.Reaper.Ability
         public async Task<SpellData> Run()
         {
             var spell = SpellsDefine.TrueNorth;
-            if (await SpellHelper.CastAbility(spell, Core.Me))
-            {
-                return spell;
-            }
+            if (await SpellHelper.CastAbility(spell, Core.Me)) return spell;
 
             return null;
         }

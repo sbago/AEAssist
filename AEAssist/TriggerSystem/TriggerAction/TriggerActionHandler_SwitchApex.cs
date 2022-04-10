@@ -1,6 +1,4 @@
-﻿using AEAssist.AI;
-using AEAssist;
-using AETriggers.TriggerModel;
+﻿using AETriggers.TriggerModel;
 
 namespace AEAssist.TriggerSystem.TriggerAction
 {
@@ -8,7 +6,7 @@ namespace AEAssist.TriggerSystem.TriggerAction
     {
         protected override void Handle(TriggerAction_SwitchApex t)
         {
-            AEAssist.DataBinding.Instance.UseApex = t.value;
+            DataBinding.Instance.UseApex = t.value;
         }
     }
 }

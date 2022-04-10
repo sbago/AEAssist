@@ -1,6 +1,5 @@
 ﻿using AEAssist.AI;
 using AETriggers.TriggerModel;
-using ff14bot.Helpers;
 
 namespace AEAssist.TriggerSystem.TriggerCond
 {
@@ -14,10 +13,7 @@ namespace AEAssist.TriggerSystem.TriggerCond
                 if (v.SpellCastInfo == null || !v.IsCasting)
                     continue;
                 //LogHelper.Info($"Character {v.Name} Casting===>{v.SpellCastInfo.SpellData.LocalizedName}");
-                if (v.SpellCastInfo.SpellData.LocalizedName.Contains(cond.spellName))
-                {
-                    return true;
-                }
+                if (v.SpellCastInfo.SpellData.LocalizedName.Contains(cond.spellName)) return true;
             }
 
             return false;

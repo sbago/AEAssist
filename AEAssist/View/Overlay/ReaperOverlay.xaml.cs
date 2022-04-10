@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using AEAssist;
 using AEAssist.AI;
 using AEAssist.Define;
 

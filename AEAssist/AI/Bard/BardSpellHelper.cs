@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using AEAssist.AI;
+﻿using AEAssist.AI;
 using AEAssist.Helper;
 using ff14bot;
-using ff14bot.Helpers;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
@@ -111,7 +107,7 @@ namespace AEAssist.Define
             if (id == 0)
                 return true; // 让上层觉得已经有Buff了
 
-            return target.ContainMyAura((uint) id, 0);
+            return target.ContainMyAura((uint) id);
         }
 
         public static bool IsTargetHasAura_VenomousBite(Character target)
@@ -120,7 +116,7 @@ namespace AEAssist.Define
             if (id == 0)
                 return true; // 让上层觉得已经有Buff了
 
-            return target.ContainMyAura((uint) id, 0);
+            return target.ContainMyAura((uint) id);
         }
 
         public static bool IsTargetNeedIronJaws(Character target)
@@ -175,10 +171,7 @@ namespace AEAssist.Define
                 return null;
             if (Core.Me.ClassLevel < SpellsDefine.RefulgentArrow.LevelAcquired)
                 return SpellsDefine.StraightShot;
-            if (!ActionManager.HasSpell(SpellsDefine.RefulgentArrow.Id))
-            {
-                return SpellsDefine.StraightShot;
-            }
+            if (!ActionManager.HasSpell(SpellsDefine.RefulgentArrow.Id)) return SpellsDefine.StraightShot;
 
             return SpellsDefine.RefulgentArrow;
         }
@@ -196,10 +189,7 @@ namespace AEAssist.Define
             {
                 if (Core.Me.ClassLevel < SpellsDefine.RefulgentArrow.LevelAcquired)
                     return SpellsDefine.StraightShot;
-                if (!ActionManager.HasSpell(SpellsDefine.RefulgentArrow.Id))
-                {
-                    return SpellsDefine.StraightShot;
-                }
+                if (!ActionManager.HasSpell(SpellsDefine.RefulgentArrow.Id)) return SpellsDefine.StraightShot;
 
                 return SpellsDefine.RefulgentArrow;
             }
@@ -212,15 +202,9 @@ namespace AEAssist.Define
 
         public static SpellData GetBuffs()
         {
-            if (SpellsDefine.BattleVoice.IsReady())
-            {
-                return SpellsDefine.BattleVoice;
-            }
+            if (SpellsDefine.BattleVoice.IsReady()) return SpellsDefine.BattleVoice;
 
-            if (SpellsDefine.RadiantFinale.IsReady())
-            {
-                return SpellsDefine.RadiantFinale;
-            }
+            if (SpellsDefine.RadiantFinale.IsReady()) return SpellsDefine.RadiantFinale;
 
             // if (Spells.RagingStrikes.IsReady())
             // {
@@ -240,7 +224,7 @@ namespace AEAssist.Define
 
         public static int HasBuffsCount()
         {
-            int count = 0;
+            var count = 0;
             if (Core.Me.HasAura(AurasDefine.BattleVoice))
                 count++;
             if (Core.Me.HasAura(AurasDefine.RagingStrikes))
@@ -252,7 +236,7 @@ namespace AEAssist.Define
 
         public static int UnlockBuffsCount()
         {
-            int count = 0;
+            var count = 0;
             if (SpellsDefine.BattleVoice.IsUnlock())
                 count++;
             if (SpellsDefine.RagingStrikes.IsUnlock())
@@ -264,7 +248,7 @@ namespace AEAssist.Define
 
         public static int HasBuffsCountInEnd(int leftMs = 4000)
         {
-            int count = 0;
+            var count = 0;
             if (Core.Me.ContainsMyInEndAura(AurasDefine.BattleVoice, leftMs))
                 count++;
             if (Core.Me.ContainsMyInEndAura(AurasDefine.RagingStrikes, leftMs))
@@ -278,20 +262,11 @@ namespace AEAssist.Define
         {
             if (AIRoot.Instance.CloseBuff)
                 return false;
-            if (SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds < time)
-            {
-                return true;
-            }
+            if (SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds < time) return true;
 
-            if (!SpellsDefine.RagingStrikes.RecentlyUsed() && !Core.Me.HasAura(AurasDefine.RagingStrikes))
-            {
-                return false;
-            }
+            if (!SpellsDefine.RagingStrikes.RecentlyUsed() && !Core.Me.HasAura(AurasDefine.RagingStrikes)) return false;
 
-            if (SpellsDefine.BattleVoice.Cooldown.TotalMilliseconds < time)
-            {
-                return true;
-            }
+            if (SpellsDefine.BattleVoice.Cooldown.TotalMilliseconds < time) return true;
 
             return false;
         }
@@ -311,8 +286,8 @@ namespace AEAssist.Define
 
         public static bool CheckCanUseBuffs()
         {
-            int delayGCD = SettingMgr.GetSetting<BardSettings>().BuffsDelay2GCD ? 2 : 1;
-            int gcdActionTime = SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
+            var delayGCD = SettingMgr.GetSetting<BardSettings>().BuffsDelay2GCD ? 2 : 1;
+            var gcdActionTime = SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
 
             var currSong = ActionResourceManager.Bard.ActiveSong;
             if (currSong == ActionResourceManager.Bard.BardSong.None)
@@ -323,32 +298,22 @@ namespace AEAssist.Define
                 if (AIRoot.Instance.BattleData.lastGCDIndex
                     - SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.RagingStrikes.Id) >
                     delayGCD)
-                {
                     return true;
-                }
 
                 return false;
             }
 
-            if (SpellsDefine.RagingStrikes.IsReady())
-            {
-                return false;
-            }
+            if (SpellsDefine.RagingStrikes.IsReady()) return false;
 
-            if (SpellsDefine.RadiantFinale.IsReady() && SpellsDefine.BattleVoice.Cooldown.TotalMilliseconds < 15000)
-            {
-                return false;
-            }
+            if (SpellsDefine.RadiantFinale.IsReady() &&
+                SpellsDefine.BattleVoice.Cooldown.TotalMilliseconds < 15000) return false;
 
             return true;
         }
 
         public static SpellData GetQuickNock()
         {
-            if (IsShadowBiteReady())
-            {
-                return SpellsDefine.Shadowbite;
-            }
+            if (IsShadowBiteReady()) return SpellsDefine.Shadowbite;
 
             if (!SpellsDefine.Ladonsbite.IsReady())
             {
@@ -362,15 +327,9 @@ namespace AEAssist.Define
 
         public static bool IsShadowBiteReady()
         {
-            if (!SpellsDefine.Shadowbite.IsReady())
-            {
-                return false;
-            }
+            if (!SpellsDefine.Shadowbite.IsReady()) return false;
 
-            if (Core.Me.ContainMyAura(AurasDefine.ShadowBiteReady))
-            {
-                return true;
-            }
+            if (Core.Me.ContainMyAura(AurasDefine.ShadowBiteReady)) return true;
 
             return false;
         }
@@ -386,12 +345,8 @@ namespace AEAssist.Define
                 if (AIRoot.Instance.BardBattleData.nextSong == ActionResourceManager.Bard.BardSong.None
                     && currSong != ActionResourceManager.Bard.BardSong.None
                     && AIRoot.Instance.BardBattleData.nextSongDuration != 0)
-                {
                     if (remainTime <= 45000 - AIRoot.Instance.BardBattleData.nextSongDuration)
-                    {
                         return true;
-                    }
-                }
 
                 switch (currSong)
                 {
@@ -413,27 +368,21 @@ namespace AEAssist.Define
 
                 return false;
             }
-            else
+
+            // 关爆发的时候,让歌唱完
+            if (currSong != ActionResourceManager.Bard.BardSong.None)
             {
-                // 关爆发的时候,让歌唱完
-                if (currSong != ActionResourceManager.Bard.BardSong.None)
-                {
-                    if (AIRoot.Instance.BardBattleData.nextSong == ActionResourceManager.Bard.BardSong.None
-                        && AIRoot.Instance.BardBattleData.nextSongDuration != 0)
-                    {
-                        if (remainTime <= 45000 - AIRoot.Instance.BardBattleData.nextSongDuration)
-                        {
-                            return true;
-                        }
-                    }
-
-                    if (remainTime <= ConstValue.SongsTimeLeftCheckWhenCloseBuff)
+                if (AIRoot.Instance.BardBattleData.nextSong == ActionResourceManager.Bard.BardSong.None
+                    && AIRoot.Instance.BardBattleData.nextSongDuration != 0)
+                    if (remainTime <= 45000 - AIRoot.Instance.BardBattleData.nextSongDuration)
                         return true;
-                    return false;
-                }
 
-                return true;
+                if (remainTime <= ConstValue.SongsTimeLeftCheckWhenCloseBuff)
+                    return true;
+                return false;
             }
+
+            return true;
         }
     }
 }

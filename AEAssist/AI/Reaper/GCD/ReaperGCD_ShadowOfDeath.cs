@@ -23,9 +23,7 @@ namespace AEAssist.AI.Reaper.GCD
             if (!target.ContainMyAura(AurasDefine.DeathsDesign, 10000)
                 && (ActionResourceManager.Reaper.SoulGauge > 50
                     || ActionResourceManager.Reaper.ShroudGauge > 50 || SpellsDefine.PlentifulHarvest.RecentlyUsed()))
-            {
                 return 1;
-            }
 
             if (target.ContainMyAura(AurasDefine.DeathsDesign, 3000))
                 return -3;
@@ -36,10 +34,7 @@ namespace AEAssist.AI.Reaper.GCD
         public async Task<SpellData> Run()
         {
             var spell = SpellsDefine.ShadowOfDeath;
-            if (TargetHelper.CheckNeedUseAOE(5, 5))
-            {
-                spell = SpellsDefine.WhorlOfDeath;
-            }
+            if (TargetHelper.CheckNeedUseAOE(5, 5)) spell = SpellsDefine.WhorlOfDeath;
 
             if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
                 return spell;

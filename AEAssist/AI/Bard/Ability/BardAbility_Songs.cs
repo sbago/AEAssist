@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using AEAssist;
+﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -37,18 +35,12 @@ namespace AEAssist.AI
             if (spell == null)
                 return null;
 
-            bool castPitch = false;
+            var castPitch = false;
 
             if (ActionResourceManager.Bard.ActiveSong == ActionResourceManager.Bard.BardSong.WanderersMinuet)
-            {
                 if (SpellsDefine.PitchPerfect.IsReady())
-                {
                     if (await SpellHelper.CastAbility(SpellsDefine.PitchPerfect, Core.Me.CurrentTarget, 100))
-                    {
                         castPitch = true;
-                    }
-                }
-            }
 
             var ret = await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget);
             if (ret)
@@ -58,10 +50,7 @@ namespace AEAssist.AI
                 if (forceNextDuration)
                     AIRoot.Instance.BardBattleData.nextSongDuration = 0;
                 AIRoot.Instance.BardBattleData.lastCastSongTime = TimeHelper.Now();
-                if (castPitch)
-                {
-                    AIRoot.Instance.MuteAbilityTime();
-                }
+                if (castPitch) AIRoot.Instance.MuteAbilityTime();
 
                 return spell;
             }
@@ -102,10 +91,8 @@ namespace AEAssist.AI
 
                     return null;
                 }
-                else
-                {
-                    spell = GetSongsByOrder(null, out forceNextSong);
-                }
+
+                spell = GetSongsByOrder(null, out forceNextSong);
             }
             else
             {
@@ -129,33 +116,24 @@ namespace AEAssist.AI
                         case ActionResourceManager.Bard.BardSong.WanderersMinuet:
                             // 关闭爆发的时候,我们让歌唱完
                             if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_WM_TimeLeftForSwitch)
-                            {
                                 spell = GetSongsByOrder(SpellsDefine.TheWanderersMinuet, out forceNextSong);
-                            }
 
                             break;
                         case ActionResourceManager.Bard.BardSong.MagesBallad:
                             if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_MB_TimeLeftForSwitch)
-                            {
                                 spell = GetSongsByOrder(SpellsDefine.MagesBallad, out forceNextSong);
-                            }
 
                             break;
                         case ActionResourceManager.Bard.BardSong.ArmysPaeon:
                             if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_AP_TimeLeftForSwitch)
-                            {
                                 spell = GetSongsByOrder(SpellsDefine.ArmysPaeon, out forceNextSong);
-                            }
 
                             break;
                     }
                 }
             }
 
-            if (spell != null)
-            {
-                GUIHelper.ShowInfo($"Song: {spell.LocalizedName} remainTime: {remainTime}", 1000, false);
-            }
+            if (spell != null) GUIHelper.ShowInfo($"Song: {spell.LocalizedName} remainTime: {remainTime}", 1000, false);
 
             return spell;
         }
@@ -180,17 +158,11 @@ namespace AEAssist.AI
                 }
 
                 forceNextSong = true;
-                if (spell != null && spell.IsReady())
-                {
-                    return spell;
-                }
+                if (spell != null && spell.IsReady()) return spell;
             }
 
             spell = NextSong(passSpell);
-            if (spell != null && spell.IsReady())
-            {
-                return spell;
-            }
+            if (spell != null && spell.IsReady()) return spell;
 
             spell = NextSong(spell);
             if (spell != null && spell.IsReady())
@@ -200,21 +172,15 @@ namespace AEAssist.AI
 
         private SpellData NextSong(SpellData spellData)
         {
-            int i = BardSpellHelper.Songs.Count;
+            var i = BardSpellHelper.Songs.Count;
             var origin = spellData;
             while (i > 0)
             {
                 spellData = BardSpellHelper.Songs.GetNext(spellData);
                 i--;
-                if (spellData == null || !spellData.IsReady())
-                {
-                    continue;
-                }
+                if (spellData == null || !spellData.IsReady()) continue;
 
-                if (spellData == SpellsDefine.TheWanderersMinuet && AIRoot.Instance.CloseBuff)
-                {
-                    continue;
-                }
+                if (spellData == SpellsDefine.TheWanderersMinuet && AIRoot.Instance.CloseBuff) continue;
 
                 if (spellData == origin)
                     continue;

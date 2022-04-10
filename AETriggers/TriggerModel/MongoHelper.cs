@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using AETriggers.TriggerModel;
 using MongoDB.Bson;
 using MongoDB.Bson.IO;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Conventions;
-using MongoDB.Bson.Serialization.Serializers;
 
 namespace AEAssist
 {
@@ -18,25 +15,19 @@ namespace AEAssist
         {
             // 自动注册IgnoreExtraElements
 
-            ConventionPack conventionPack = new ConventionPack {new IgnoreExtraElementsConvention(true)};
+            var conventionPack = new ConventionPack {new IgnoreExtraElementsConvention(true)};
 
             ConventionRegistry.Register("IgnoreExtraElements", conventionPack, type => true);
 
             var types = Assembly.GetExecutingAssembly().GetTypes();
 
-            foreach (Type type in types)
+            foreach (var type in types)
             {
                 if (type.IsAbstract || type.IsInterface)
                     continue;
-                if (type.IsGenericType)
-                {
-                    continue;
-                }
+                if (type.IsGenericType) continue;
 
-                if (!typeof(ITriggerBase).IsAssignableFrom(type))
-                {
-                    continue;
-                }
+                if (!typeof(ITriggerBase).IsAssignableFrom(type)) continue;
 
                 BsonClassMap.LookupClassMap(type);
             }
@@ -80,12 +71,12 @@ namespace AEAssist
 
         public static void ToStream(object message, MemoryStream stream)
         {
-            using (BsonBinaryWriter bsonWriter = new BsonBinaryWriter(stream, BsonBinaryWriterSettings.Defaults))
+            using (var bsonWriter = new BsonBinaryWriter(stream, BsonBinaryWriterSettings.Defaults))
             {
-                BsonSerializationContext context = BsonSerializationContext.CreateRoot(bsonWriter);
+                var context = BsonSerializationContext.CreateRoot(bsonWriter);
                 BsonSerializationArgs args = default;
                 args.NominalType = typeof(object);
-                IBsonSerializer serializer = BsonSerializer.LookupSerializer(args.NominalType);
+                var serializer = BsonSerializer.LookupSerializer(args.NominalType);
                 serializer.Serialize(context, args, message);
             }
         }
@@ -106,7 +97,7 @@ namespace AEAssist
         {
             try
             {
-                using (MemoryStream memoryStream = new MemoryStream(bytes, index, count))
+                using (var memoryStream = new MemoryStream(bytes, index, count))
                 {
                     return BsonSerializer.Deserialize(memoryStream, type);
                 }
@@ -133,7 +124,7 @@ namespace AEAssist
         {
             try
             {
-                using (MemoryStream memoryStream = new MemoryStream(bytes))
+                using (var memoryStream = new MemoryStream(bytes))
                 {
                     return (T) BsonSerializer.Deserialize(memoryStream, typeof(T));
                 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
 using Newtonsoft.Json;
 
 namespace AEAssist
@@ -10,16 +9,16 @@ namespace AEAssist
     {
         public static SettingMgr Instance = new SettingMgr();
 
-        private Dictionary<Type, IBaseSetting> AllSetting = new Dictionary<Type, IBaseSetting>();
+        private readonly string SettingPath = @"Settings\AEAssists";
 
-        private HashSet<Type> AllSettingsType = new HashSet<Type>();
+        private readonly Dictionary<Type, IBaseSetting> AllSetting = new Dictionary<Type, IBaseSetting>();
 
-        readonly string SettingPath = @"Settings\AEAssists";
+        private readonly HashSet<Type> AllSettingsType = new HashSet<Type>();
 
         public SettingMgr()
         {
             var baseType = typeof(IBaseSetting);
-            foreach (var type in this.GetType().Assembly.GetTypes())
+            foreach (var type in GetType().Assembly.GetTypes())
             {
                 if (type.IsAbstract || type.IsInterface)
                     continue;
@@ -41,21 +40,17 @@ namespace AEAssist
             foreach (var v in AllSettingsType)
             {
                 var setting = LoadSetting(v);
-                if (setting == null)
-                {
-                    setting = Activator.CreateInstance(v);
-                }
+                if (setting == null) setting = Activator.CreateInstance(v);
 
                 AllSetting[v] = setting as IBaseSetting;
             }
         }
 
-        object LoadSetting(Type type)
+        private object LoadSetting(Type type)
         {
             var generalSettingFile = $"{SettingPath}/{type.Name}.json";
 
             if (File.Exists(generalSettingFile))
-            {
                 try
                 {
                     var generalSetting =
@@ -67,12 +62,11 @@ namespace AEAssist
                 {
                     LogHelper.Error(e.ToString());
                 }
-            }
 
             return null;
         }
 
-        void SaveSetting(object obj)
+        private void SaveSetting(object obj)
         {
             var type = obj.GetType();
             var generalSettingFile = $"{SettingPath}/{type.Name}.json";
@@ -88,7 +82,7 @@ namespace AEAssist
         {
             AllSetting.Clear();
 
-            VersionSetting versionSetting = new VersionSetting();
+            var versionSetting = new VersionSetting();
             SaveSetting(versionSetting);
 
             foreach (var v in AllSettingsType)
@@ -109,16 +103,13 @@ namespace AEAssist
         public static T GetSetting<T>() where T : class, IBaseSetting, new()
         {
             var type = typeof(T);
-            SettingMgr.Instance.AllSetting.TryGetValue(type, out var value);
+            Instance.AllSetting.TryGetValue(type, out var value);
             return value as T;
         }
 
         public void Save()
         {
-            foreach (var v in AllSetting)
-            {
-                SaveSetting(v.Value);
-            }
+            foreach (var v in AllSetting) SaveSetting(v.Value);
         }
     }
 }

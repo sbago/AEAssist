@@ -1,5 +1,4 @@
 ﻿using AEAssist.AI;
-using AEAssist;
 using AETriggers.TriggerModel;
 using ff14bot.Managers;
 

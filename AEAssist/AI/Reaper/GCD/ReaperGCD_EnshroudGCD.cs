@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -19,11 +18,9 @@ namespace AEAssist.AI.Reaper.GCD
                 return -2;
 
             // 双附体时,神秘环如果即将冷却好,或者已经可以用了,先不打这些GCD
-            if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer &&
+            if (DataBinding.Instance.DoubleEnshroudPrefer &&
                 SpellsDefine.ArcaneCircle.Cooldown.TotalMilliseconds < ConstValue.ReaperDoubleEnshroudMinCheckTime)
-            {
                 return -3;
-            }
 
             if (ActionResourceManager.Reaper.LemureShroud == 0)
                 return -4;
@@ -42,15 +39,9 @@ namespace AEAssist.AI.Reaper.GCD
             var spell = ReaperSpellHelper.GetEnshroudGCDSpell(Core.Me.CurrentTarget);
             if (spell == null)
                 return null;
-            if (spell == SpellsDefine.Communio)
-            {
-                MovementManager.MoveStop();
-            }
+            if (spell == SpellsDefine.Communio) MovementManager.MoveStop();
 
-            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
-            {
-                return spell;
-            }
+            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget)) return spell;
 
             return null;
         }

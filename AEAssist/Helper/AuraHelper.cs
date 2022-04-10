@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ff14bot;
-using ff14bot.Helpers;
 using ff14bot.Objects;
 
 namespace AEAssist.Helper
@@ -48,10 +47,7 @@ namespace AEAssist.Helper
         {
             var unitAsCharacter = unit as Character;
 
-            if (unitAsCharacter == null || !unitAsCharacter.IsValid)
-            {
-                return false;
-            }
+            if (unitAsCharacter == null || !unitAsCharacter.IsValid) return false;
 
             return unitAsCharacter.CharacterAuras.Any(r =>
                 auras.Contains(r.Id) && r.TimespanLeft.TotalMilliseconds >= msLeft);

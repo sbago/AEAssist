@@ -1,11 +1,9 @@
 ﻿using System.Windows;
-using System.Windows.Forms;
-using MessageBox = System.Windows.MessageBox;
 
 namespace AEAssist
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    ///     Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow
     {

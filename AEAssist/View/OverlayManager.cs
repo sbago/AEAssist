@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Controls;
 using Buddy.Overlay;
-using Buddy.Overlay.Controls;
 using ff14bot;
 using ff14bot.Enums;
 
@@ -12,10 +9,10 @@ namespace AEAssist.View
     {
         public static OverlayManager Instance = new OverlayManager();
 
-        private Dictionary<ClassJobType, OverlayUIComponent> AllOverlays =
-            new Dictionary<ClassJobType, OverlayUIComponent>();
-
         private ClassJobType _classJobType;
+
+        private readonly Dictionary<ClassJobType, OverlayUIComponent> AllOverlays =
+            new Dictionary<ClassJobType, OverlayUIComponent>();
 
         private OverlayUIComponent lastOverlay;
 

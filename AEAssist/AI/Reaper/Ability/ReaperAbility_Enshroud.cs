@@ -1,9 +1,7 @@
 ﻿using System.Threading.Tasks;
-using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
-using ff14bot.Managers;
 using ff14bot.Objects;
 
 namespace AEAssist.AI.Reaper.Ability
@@ -21,10 +19,7 @@ namespace AEAssist.AI.Reaper.Ability
 
         public async Task<SpellData> Run()
         {
-            if (await SpellHelper.CastAbility(SpellsDefine.Enshroud, Core.Me))
-            {
-                return SpellsDefine.Enshroud;
-            }
+            if (await SpellHelper.CastAbility(SpellsDefine.Enshroud, Core.Me)) return SpellsDefine.Enshroud;
 
             return null;
         }

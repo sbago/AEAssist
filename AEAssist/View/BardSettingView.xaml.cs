@@ -9,8 +9,8 @@ namespace AEAssist.View
         public BardSettingView()
         {
             InitializeComponent();
-            this.ChoosePotion.ItemsSource = PotionHelper.DexPotions;
-            this.ChoosePotion.SelectedValue = SettingMgr.GetSetting<BardSettings>().UsePotionId;
+            ChoosePotion.ItemsSource = PotionHelper.DexPotions;
+            ChoosePotion.SelectedValue = SettingMgr.GetSetting<BardSettings>().UsePotionId;
             ButtonBase_OnClick(null, null);
         }
 
@@ -22,7 +22,7 @@ namespace AEAssist.View
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             var value = PotionHelper.CheckNum(SettingMgr.GetSetting<BardSettings>().UsePotionId);
-            this.PotionCount.Content = "数量: " + value.ToString();
+            PotionCount.Content = "数量: " + value;
         }
     }
 }

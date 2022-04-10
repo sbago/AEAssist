@@ -2,14 +2,12 @@
 using System.Threading.Tasks;
 using AEAssist.AI;
 using AEAssist.Helper;
-using ff14bot.Enums;
-using ff14bot.Objects;
 
 namespace AEAssist.Define
 {
     public class Bard_AIPriorityQueue : IAIPriorityQueue
     {
-        public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>()
+        public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>
         {
             new BardGCD_BlastArrow(),
             new BardGCD_Barrage_RefulgentArrow(),
@@ -19,7 +17,7 @@ namespace AEAssist.Define
             new BardGCD_HeavyShot()
         };
 
-        public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()
+        public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>
         {
             new BardAbility_UsePotion(),
             new BardAbility_PitchPerfect(),

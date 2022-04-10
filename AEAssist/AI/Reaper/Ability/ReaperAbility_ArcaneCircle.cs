@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -18,7 +17,7 @@ namespace AEAssist.AI.Reaper.Ability
                 return -2;
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
                 return -3;
-            if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer)
+            if (DataBinding.Instance.DoubleEnshroudPrefer)
             {
                 if ((SpellsDefine.PlentifulHarvest.RecentlyUsed() || ActionResourceManager.Reaper.ShroudGauge >= 50) &&
                     !Core.Me.HasAura(AurasDefine.Enshrouded))
@@ -37,10 +36,7 @@ namespace AEAssist.AI.Reaper.Ability
 
         public async Task<SpellData> Run()
         {
-            if (await SpellHelper.CastAbility(SpellsDefine.ArcaneCircle, Core.Me))
-            {
-                return SpellsDefine.ArcaneCircle;
-            }
+            if (await SpellHelper.CastAbility(SpellsDefine.ArcaneCircle, Core.Me)) return SpellsDefine.ArcaneCircle;
 
             return null;
         }

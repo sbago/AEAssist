@@ -17,7 +17,7 @@ namespace AEAssist.AI.Reaper.GCD
             if (ActionResourceManager.Reaper.SoulGauge > 50)
                 return -2;
 
-            if ((SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.ContainMyAura(AurasDefine.Enshrouded)))
+            if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.ContainMyAura(AurasDefine.Enshrouded))
                 return -3;
 
             return 0;
@@ -32,13 +32,11 @@ namespace AEAssist.AI.Reaper.GCD
                 if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 5, 5))
                 {
                     if (AIRoot.Instance.ReaperBattleData.CurrCombo == ReaperComboStages.NightmareScythe)
-                    {
                         if (await SpellHelper.CastGCD(SpellsDefine.NightmareScythe, Core.Me.CurrentTarget))
                         {
                             AIRoot.Instance.ReaperBattleData.CurrCombo = ReaperComboStages.SpinningScythe;
                             return SpellsDefine.NightmareScythe;
                         }
-                    }
                 }
                 else
                 {
@@ -61,13 +59,10 @@ namespace AEAssist.AI.Reaper.GCD
                 }
             }
 
-            SpellData spell = ReaperSpellHelper.CanUseSoulSlice_Scythe(Core.Me.CurrentTarget);
+            var spell = ReaperSpellHelper.CanUseSoulSlice_Scythe(Core.Me.CurrentTarget);
             if (spell == null)
                 return null;
-            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
-            {
-                return spell;
-            }
+            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget)) return spell;
 
             return null;
         }

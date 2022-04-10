@@ -2,10 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using AEAssist;
 using AEAssist.AI;
 using AEAssist.Define;
-using ff14bot.Managers;
 
 namespace AEAssist.View
 {

@@ -10,14 +10,14 @@ namespace AEAssist
             Reset();
         }
 
-        public void Reset()
-        {
-            this.UsePotionId = 36104; // 5级刚力
-            this.GallowsPrefer = false;
-        }
-
         public int UsePotionId { get; set; }
 
         public bool GallowsPrefer { get; set; }
+
+        public void Reset()
+        {
+            UsePotionId = 36104; // 5级刚力
+            GallowsPrefer = false;
+        }
     }
 }

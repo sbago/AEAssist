@@ -17,10 +17,8 @@ namespace AEAssist.AI
                 return -2;
 
             if (SettingMgr.GetSetting<GeneralSettings>().ShowAbilityDebugLog)
-            {
                 LogHelper.Debug(
                     $"Bloodletter: {SpellsDefine.Bloodletter.Charges} Max:{SpellsDefine.Bloodletter.MaxCharges}");
-            }
 
             if (AIRoot.Instance.CloseBuff)
                 return 2;
@@ -48,17 +46,11 @@ namespace AEAssist.AI
                 TargetHelper.CheckNeedUseAOE(25, 8, ConstValue.BardAOECount))
             {
                 spellData = SpellsDefine.RainofDeath;
-                if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget))
-                {
-                    return spellData;
-                }
+                if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget)) return spellData;
             }
 
             spellData = SpellsDefine.Bloodletter;
-            if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget))
-            {
-                return spellData;
-            }
+            if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget)) return spellData;
 
             return null;
         }

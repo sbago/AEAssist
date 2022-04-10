@@ -9,7 +9,7 @@ namespace AEAssist
 
         public RotationAttribute(ClassJobType classJobType)
         {
-            this.ClassJobType = classJobType;
+            ClassJobType = classJobType;
         }
     }
 }

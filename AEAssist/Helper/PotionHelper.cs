@@ -1,13 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Media;
 using AEAssist.AI;
 using AEAssist.Define;
 using Buddy.Coroutines;
 using ff14bot;
-using ff14bot.Enums;
-using ff14bot.Helpers;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
@@ -28,19 +25,19 @@ namespace AEAssist.Helper
             if (DexPotions == null)
                 DexPotions = new List<PotionData>();
             DexPotions.Clear();
-            DexPotions.Add(new PotionData()
+            DexPotions.Add(new PotionData
             {
                 ID = 36105,
                 Name = "5级巧力之幻药"
             });
 
-            DexPotions.Add(new PotionData()
+            DexPotions.Add(new PotionData
             {
                 ID = 31894,
                 Name = "4级巧力之幻药"
             });
 
-            DexPotions.Add(new PotionData()
+            DexPotions.Add(new PotionData
             {
                 ID = 29493,
                 Name = "3级巧力之幻药"
@@ -49,17 +46,17 @@ namespace AEAssist.Helper
 
             if (StrPotions == null)
                 StrPotions = new List<PotionData>();
-            StrPotions.Add(new PotionData()
+            StrPotions.Add(new PotionData
             {
                 ID = 36104,
                 Name = "5级刚力之幻药"
             });
-            StrPotions.Add(new PotionData()
+            StrPotions.Add(new PotionData
             {
                 ID = 31893,
                 Name = "4级刚力之幻药"
             });
-            StrPotions.Add(new PotionData()
+            StrPotions.Add(new PotionData
             {
                 ID = 29492,
                 Name = "3级刚力之幻药"
@@ -84,7 +81,7 @@ namespace AEAssist.Helper
                 return false;
             if (!item.CanUse(Core.Me)) return false;
             LogHelper.Info($@"Using Item >>> {item.Name}");
-            for (int i = 0; i < 15; i++)
+            for (var i = 0; i < 15; i++)
             {
                 item.UseItem(Core.Me);
                 await Coroutine.Sleep(100);
@@ -114,12 +111,10 @@ namespace AEAssist.Helper
 
         public static int CheckNum(int potionId)
         {
-            int num = 0;
+            var num = 0;
             foreach (var v in InventoryManager.FilledSlots)
-            {
                 if (v.RawItemId == potionId)
                     num = (int) (num + v.Item.ItemCount());
-            }
 
             return num;
         }

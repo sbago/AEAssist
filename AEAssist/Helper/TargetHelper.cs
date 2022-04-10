@@ -25,15 +25,12 @@ namespace AEAssist.Helper
             var combatReach = target.CombatReach + unit.CombatReach;
 
             if (unit.Distance(target) < range + combatReach - 0.1f) // 0.1 是为了防止误差导致没打到
-            {
                 return true;
-            }
 
             return false;
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="targetRange"> 目标和自己的距离</param>
         /// <param name="damageRange"> 目标和他周围单位的距离</param>
@@ -54,12 +51,10 @@ namespace AEAssist.Helper
             if (target.Distance(Core.Me) >= targetRange)
                 return 0;
             var list = TargetMgr.Instance.EnemysIn25;
-            int count = 0;
+            var count = 0;
             foreach (var v in list)
-            {
                 if (v.Value.Distance(target) <= damageRange)
                     count++;
-            }
 
             return count;
         }

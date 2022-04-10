@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -28,17 +27,11 @@ namespace AEAssist.AI
             if (SpellsDefine.RainofDeath.IsReady() && TargetHelper.CheckNeedUseAOE(25, 8, ConstValue.BardAOECount))
             {
                 spellData = SpellsDefine.RainofDeath;
-                if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget))
-                {
-                    return spellData;
-                }
+                if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget)) return spellData;
             }
 
             spellData = SpellsDefine.Bloodletter;
-            if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget))
-            {
-                return spellData;
-            }
+            if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget)) return spellData;
 
             return null;
         }

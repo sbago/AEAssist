@@ -12,17 +12,17 @@ namespace AEAssist.View
 
         private void Reset_OnClick(object sender, RoutedEventArgs e)
         {
-            AEAssist.DataBinding.Instance.Reset();
+            DataBinding.Instance.Reset();
         }
 
         private void ChangeTriggerLine_OnClick(object sender, RoutedEventArgs e)
         {
             Entry.TriggerLineWindow.OnTriggerLineLoad =
                 s =>
-                    this.CurrTriggerLine.Content = $"当前加载时间轴: {s}";
+                    CurrTriggerLine.Content = $"当前加载时间轴: {s}";
 
             Entry.TriggerLineWindow.OnTriggerLineClear = () =>
-                this.CurrTriggerLine.Content = "当前加载时间轴: 无";
+                CurrTriggerLine.Content = "当前加载时间轴: 无";
 
             Entry.TriggerLineWindow.Show();
         }

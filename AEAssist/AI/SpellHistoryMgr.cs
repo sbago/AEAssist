@@ -13,10 +13,10 @@ namespace AEAssist.AI
     public class SpellHistoryMgr
     {
         public static SpellHistoryMgr Instance = new SpellHistoryMgr();
-        public Queue<SpellHistory> GCDSpellHistory = new Queue<SpellHistory>();
         public Queue<SpellHistory> AbilitySpellHistory = new Queue<SpellHistory>();
-        public Dictionary<uint, long> SpellLastCastTime = new Dictionary<uint, long>();
+        public Queue<SpellHistory> GCDSpellHistory = new Queue<SpellHistory>();
         public Dictionary<uint, int> SpellLastCastGCDIndex = new Dictionary<uint, int>();
+        public Dictionary<uint, long> SpellLastCastTime = new Dictionary<uint, long>();
 
         public void Clear()
         {
@@ -41,15 +41,9 @@ namespace AEAssist.AI
 
         public void CheckIfNeedClearHistory()
         {
-            while (GCDSpellHistory.Count >= 50)
-            {
-                GCDSpellHistory.Dequeue();
-            }
+            while (GCDSpellHistory.Count >= 50) GCDSpellHistory.Dequeue();
 
-            while (AbilitySpellHistory.Count >= 50)
-            {
-                AbilitySpellHistory.Dequeue();
-            }
+            while (AbilitySpellHistory.Count >= 50) AbilitySpellHistory.Dequeue();
         }
     }
 }

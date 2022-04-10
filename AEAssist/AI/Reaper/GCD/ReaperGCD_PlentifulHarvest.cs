@@ -2,9 +2,7 @@
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
-using ff14bot.Managers;
 using ff14bot.Objects;
-using ff14bot.RemoteWindows;
 
 namespace AEAssist.AI.Reaper.GCD
 {
@@ -17,11 +15,8 @@ namespace AEAssist.AI.Reaper.GCD
 
         public async Task<SpellData> Run()
         {
-            SpellData spell = SpellsDefine.PlentifulHarvest;
-            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
-            {
-                return spell;
-            }
+            var spell = SpellsDefine.PlentifulHarvest;
+            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget)) return spell;
 
             return null;
         }

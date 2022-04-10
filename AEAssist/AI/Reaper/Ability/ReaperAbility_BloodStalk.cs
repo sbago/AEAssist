@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -14,7 +13,7 @@ namespace AEAssist.AI.Reaper.Ability
         {
             if (!SpellsDefine.BloodStalk.IsUnlock())
                 return -1;
-            if (!AEAssist.DataBinding.Instance.UseSoulGauge)
+            if (!DataBinding.Instance.UseSoulGauge)
                 return -2;
             if (ActionResourceManager.Reaper.SoulGauge < 50)
                 return -3;
@@ -23,18 +22,13 @@ namespace AEAssist.AI.Reaper.Ability
             if (SpellsDefine.Enshroud.Cooldown.TotalMilliseconds > 0
                 && SpellsDefine.Enshroud.Cooldown.TotalMilliseconds < 5000
                 && ReaperSpellHelper.ReadyToEnshroud() >= 0)
-            {
                 return -5;
-            }
 
             if (TimeHelper.Now() - SpellHistoryHelper.GetLastSpellTime(SpellsDefine.Enshroud.Id) < 3000)
                 return -6;
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -7;
-            if (!AIRoot.Instance.CloseBuff && SpellsDefine.Gluttony.Cooldown.TotalMilliseconds < 10000)
-            {
-                return -8;
-            }
+            if (!AIRoot.Instance.CloseBuff && SpellsDefine.Gluttony.Cooldown.TotalMilliseconds < 10000) return -8;
 
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
                 return -9;
@@ -45,12 +39,9 @@ namespace AEAssist.AI.Reaper.Ability
         {
             var spell = SpellsDefine.BloodStalk;
             if (SpellsDefine.GrimSwathe.IsUnlock() && TargetHelper.CheckNeedUseAOE(8, 8))
-            {
                 spell = SpellsDefine.GrimSwathe;
-            }
 
             if (await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget))
-            {
                 // if (AIRoot.Instance.BattleData.maxAbilityTimes>1 && await ReaperSpellHelper.UseTruthNorth() != null)
                 // {
                 //     if (AIRoot.Instance.BattleData.maxAbilityTimes > 1)
@@ -58,7 +49,6 @@ namespace AEAssist.AI.Reaper.Ability
                 // }
 
                 return spell;
-            }
 
             return null;
         }

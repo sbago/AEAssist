@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AEAssist;
 using AEAssist.Gamelog;
 using AEAssist.Helper;
 using AEAssist.TriggerSystem;
-using AETriggers.TriggerModel;
 using ff14bot;
 using ff14bot.Objects;
 
@@ -12,39 +10,39 @@ namespace AEAssist.AI
 {
     public class BattleData
     {
-        public BattleData()
-        {
-            maxAbilityTimes = SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD;
-        }
-
-        public long lastCastTime;
-        public SpellData lastGCDSpell;
-        public SpellData lastAbilitySpell;
-        public int maxAbilityTimes;
-
-        public int lastGCDIndex;
-
-        public long battleStartTime;
-        public long BattleTime { get; private set; }
-
-        private Dictionary<string, long> ExecutedTriggers = new Dictionary<string, long>();
-
-
-        private Dictionary<long, List<TaskCompletionSource<bool>>> AllBattleTimeTcs =
+        private readonly Dictionary<long, List<TaskCompletionSource<bool>>> AllBattleTimeTcs =
             new Dictionary<long, List<TaskCompletionSource<bool>>>();
 
-        private HashSet<long> TempKeys = new HashSet<long>();
+        public long battleStartTime;
+
+        private readonly Dictionary<string, long> ExecutedTriggers = new Dictionary<string, long>();
+        public SpellData lastAbilitySpell;
+
+        public long lastCastTime;
+
+        public int lastGCDIndex;
+        public SpellData lastGCDSpell;
+        public int maxAbilityTimes;
+
+        public int NearbyEnemyCount_Range12_12;
+        public int NearbyEnemyCount_Range25_5;
+        public int NearbyEnemyCount_Range25_8;
+
+        public int NearbyEnemyCount_Range5_5;
+        public int NearbyEnemyCount_Range8_8;
 
         public uint NextAbilitySpellId;
         public bool NextAbilityUsePotion;
         public uint NextGCDSpellId;
 
-        public int NearbyEnemyCount_Range12_12;
-        public int NearbyEnemyCount_Range25_8;
-        public int NearbyEnemyCount_Range25_5;
+        private readonly HashSet<long> TempKeys = new HashSet<long>();
 
-        public int NearbyEnemyCount_Range5_5;
-        public int NearbyEnemyCount_Range8_8;
+        public BattleData()
+        {
+            maxAbilityTimes = SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD;
+        }
+
+        public long BattleTime { get; private set; }
 
         public void Update(long currTime)
         {
@@ -78,13 +76,10 @@ namespace AEAssist.AI
             NearbyEnemyCount_Range8_8 = TargetHelper.GetNearbyEnemyCount(target, 8, 8);
         }
 
-        void CalBattleTime(long currTime)
+        private void CalBattleTime(long currTime)
         {
             BattleTime = currTime - battleStartTime;
-            if (BattleTime == 0)
-            {
-                return;
-            }
+            if (BattleTime == 0) return;
 
             if (AllBattleTimeTcs.Count == 0)
                 return;
@@ -99,18 +94,15 @@ namespace AEAssist.AI
 
             foreach (var v in TempKeys)
             {
-                foreach (var tcsList in AllBattleTimeTcs[v])
-                {
-                    tcsList.SetResult(true);
-                }
+                foreach (var tcsList in AllBattleTimeTcs[v]) tcsList.SetResult(true);
 
                 AllBattleTimeTcs.Remove(v);
             }
         }
 
-        void CalTriggerLine()
+        private void CalTriggerLine()
         {
-            var CurrTriggerLine = AEAssist.DataBinding.Instance.CurrTriggerLine;
+            var CurrTriggerLine = DataBinding.Instance.CurrTriggerLine;
             if (CurrTriggerLine == null)
                 return;
             if (ExecutedTriggers.Count == CurrTriggerLine.Triggers.Count)
@@ -119,16 +111,13 @@ namespace AEAssist.AI
             {
                 if (ExecutedTriggers.ContainsKey(v.Id))
                     continue;
-                if (TriggerSystemMgr.Instance.HandleTriggers(v))
-                {
-                    this.ExecutedTriggers.Add(v.Id, TimeHelper.Now());
-                }
+                if (TriggerSystemMgr.Instance.HandleTriggers(v)) ExecutedTriggers.Add(v.Id, TimeHelper.Now());
             }
         }
 
         public long GetExecutedTriggersTime(string id)
         {
-            this.ExecutedTriggers.TryGetValue(id, out var time);
+            ExecutedTriggers.TryGetValue(id, out var time);
             return time;
         }
 
@@ -137,7 +126,7 @@ namespace AEAssist.AI
             if (!AllBattleTimeTcs.TryGetValue(time, out var list))
             {
                 list = new List<TaskCompletionSource<bool>>();
-                this.AllBattleTimeTcs[time] = list;
+                AllBattleTimeTcs[time] = list;
             }
 
             list.Add(tcs);

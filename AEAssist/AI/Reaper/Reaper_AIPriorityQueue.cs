@@ -4,14 +4,12 @@ using AEAssist.AI;
 using AEAssist.AI.Reaper.Ability;
 using AEAssist.AI.Reaper.GCD;
 using AEAssist.Helper;
-using ff14bot.Enums;
-using ff14bot.Objects;
 
 namespace AEAssist.Define
 {
     public class Reaper_AIPriorityQueue : IAIPriorityQueue
     {
-        public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>()
+        public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>
         {
             new ReaperGCD_PullRangeGCD(),
             new ReaperGCD_ShadowOfDeath(),
@@ -22,7 +20,7 @@ namespace AEAssist.Define
             new ReaperGCD_BaseGCDCombo()
         };
 
-        public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()
+        public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>
         {
             new ReaperAbility_ArcaneCircle(),
             new ReaperAbility_Lemure(),

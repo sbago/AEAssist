@@ -9,8 +9,8 @@ namespace AETriggers.TriggerModel
 
         public TriggerAttribute(string name, string remark)
         {
-            this.Name = name;
-            this.Remark = remark;
+            Name = name;
+            Remark = remark;
         }
     }
 }

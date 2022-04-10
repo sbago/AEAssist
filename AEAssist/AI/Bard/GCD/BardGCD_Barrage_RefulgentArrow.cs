@@ -7,7 +7,7 @@ using ff14bot.Objects;
 namespace AEAssist.AI
 {
     /// <summary>
-    /// 如果有纷乱buff, 打辉煌
+    ///     如果有纷乱buff, 打辉煌
     /// </summary>
     public class BardGCD_Barrage_RefulgentArrow : IAIHandler
     {

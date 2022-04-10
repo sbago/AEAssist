@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using AEAssist.AI;
+﻿using AEAssist.AI;
 using AETriggers.TriggerModel;
 
 namespace AEAssist.TriggerSystem.TriggerCond

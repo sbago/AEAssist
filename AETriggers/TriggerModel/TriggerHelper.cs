@@ -1,10 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.Serialization.Formatters;
 using System.Windows;
 using AEAssist;
-using AETriggers.TriggerModel;
-using MongoDB.Bson.Serialization;
 
 namespace AETriggers.TriggerModel
 {
@@ -22,7 +19,7 @@ namespace AETriggers.TriggerModel
             catch (Exception e)
             {
                 LogHelper.Error(e.ToString());
-                MessageBox.Show("加载失败: " + e.ToString());
+                MessageBox.Show("加载失败: " + e);
                 return null;
             }
         }

@@ -1,11 +1,11 @@
-﻿using System;
-
-namespace AEAssist
+﻿namespace AEAssist
 {
     public static class ConstValue
     {
         public const int QuickAnimLockMs = 100;
         public const int AuraTick = 3000;
+
+        public const string ProjectVersion = "0.6.0.0";
 
         public static int BardAOEDamageRange = 8;
         public static int BardAOETargetRange = 12;
@@ -16,7 +16,5 @@ namespace AEAssist
         public static int ReaperDoubleEnshroudMaxCheckTime = 25000;
 
         public static int SettingVersion = 13;
-
-        public const string ProjectVersion = "0.6.0.0";
     }
 }

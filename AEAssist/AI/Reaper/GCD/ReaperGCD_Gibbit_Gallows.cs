@@ -10,10 +10,7 @@ namespace AEAssist.AI.Reaper.GCD
     {
         public int Check(SpellData lastSpell)
         {
-            if (!SpellsDefine.Gibbet.IsUnlock())
-            {
-                return -1;
-            }
+            if (!SpellsDefine.Gibbet.IsUnlock()) return -1;
 
             if (Core.Me.HasAura(AurasDefine.SoulReaver))
                 return 0;
@@ -22,13 +19,10 @@ namespace AEAssist.AI.Reaper.GCD
 
         public async Task<SpellData> Run()
         {
-            SpellData spell = ReaperSpellHelper.Gibbit_Gallows(Core.Me.CurrentTarget);
+            var spell = ReaperSpellHelper.Gibbit_Gallows(Core.Me.CurrentTarget);
             if (spell == null)
                 return null;
-            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
-            {
-                return spell;
-            }
+            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget)) return spell;
 
             return null;
         }

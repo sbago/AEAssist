@@ -23,10 +23,7 @@ namespace AEAssist.AI.Reaper.Ability
         public async Task<SpellData> Run()
         {
             var spell = SpellsDefine.LemuresSlice;
-            if (TargetHelper.CheckNeedUseAOE(8, 8))
-            {
-                spell = SpellsDefine.LemuresScythe;
-            }
+            if (TargetHelper.CheckNeedUseAOE(8, 8)) spell = SpellsDefine.LemuresScythe;
 
             if (await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget))
             {

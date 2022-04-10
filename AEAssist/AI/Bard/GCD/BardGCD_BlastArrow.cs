@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -11,7 +10,7 @@ namespace AEAssist.AI
     {
         public int Check(SpellData lastSpell)
         {
-            if (!AEAssist.DataBinding.Instance.UseApex)
+            if (!DataBinding.Instance.UseApex)
                 return -1;
             if (!Core.Me.HasAura(AurasDefine.BlastArrowReady))
                 return -2;
@@ -23,10 +22,7 @@ namespace AEAssist.AI
             var buffTime = SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds;
             if (SpellsDefine.RagingStrikes.IsReady())
                 buffTime = 0;
-            if (aura.TimespanLeft.TotalMilliseconds >= buffTime + ConstValue.AuraTick)
-            {
-                return -4;
-            }
+            if (aura.TimespanLeft.TotalMilliseconds >= buffTime + ConstValue.AuraTick) return -4;
 
             return 0;
         }

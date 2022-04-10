@@ -1,9 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AEAssist.AI;
 using AEAssist.Define;
 using AEAssist.Helper;
-using Buddy.Coroutines;
 using ff14bot;
 using ff14bot.Enums;
 using ff14bot.Managers;
@@ -14,10 +12,10 @@ namespace AEAssist
     [Rotation(ClassJobType.Bard)]
     public class BardRotation : IRotation
     {
-        private AIRoot AiRoot = AIRoot.Instance;
+        private long _lastTime;
+        private readonly AIRoot AiRoot = AIRoot.Instance;
 
         private long randomTime;
-        private long _lastTime;
 
         public void Init()
         {
@@ -33,10 +31,7 @@ namespace AEAssist
         // 战斗之前处理buff的?
         public async Task<bool> PreCombatBuff()
         {
-            if (Core.Me.InCombat)
-            {
-                return false;
-            }
+            if (Core.Me.InCombat) return false;
 
 
             AIRoot.Instance.Clear();
@@ -45,10 +40,8 @@ namespace AEAssist
                 return false;
 
             if (PartyManager.IsInParty)
-            {
                 if (TargetMgr.Instance.EnemysIn25.Count > 0)
                     return false;
-            }
 
             if (!MovementManager.IsMoving)
                 return false;
@@ -68,7 +61,9 @@ namespace AEAssist
                 return false;
 
             if (_lastTime == 0)
+            {
                 _lastTime = TimeHelper.Now();
+            }
             else
             {
                 var now = TimeHelper.Now();

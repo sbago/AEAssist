@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using AEAssist.AI;
-using AEAssist;
+﻿using AEAssist.AI;
 using ff14bot.Enums;
 using ff14bot.Managers;
+using QuickGraph.Collections;
 
 namespace AEAssist.Gamelog
 {
@@ -11,14 +9,8 @@ namespace AEAssist.Gamelog
     {
         public static AEGamelogManager Instance = new AEGamelogManager();
 
-        public struct GameLog
-        {
-            public int MsgType;
-            public string Content;
-        }
-
-        public readonly QuickGraph.Collections.Queue<GameLog> GameLogBuffers =
-            new QuickGraph.Collections.Queue<GameLog>();
+        public readonly Queue<GameLog> GameLogBuffers =
+            new Queue<GameLog>();
 
         // private HashSet<int> MuteType = new HashSet<int>()
         // {
@@ -32,13 +24,10 @@ namespace AEAssist.Gamelog
 
         public void CheckLog()
         {
-            while (this.GameLogBuffers.Count >= 20)
-            {
-                this.GameLogBuffers.Dequeue();
-            }
+            while (GameLogBuffers.Count >= 20) GameLogBuffers.Dequeue();
         }
 
-        void AddBuffers(int msgType, string content)
+        private void AddBuffers(int msgType, string content)
         {
             if (msgType >= 10 && msgType < (int) MessageType.Echo)
                 return;
@@ -57,12 +46,8 @@ namespace AEAssist.Gamelog
         {
             AddBuffers((int) e.ChatLogEntry.MessageType, e.ChatLogEntry.Contents);
             if ((ushort) e.ChatLogEntry.MessageType == 185)
-            {
                 if (e.ChatLogEntry.Contents.Contains(Language.Instance.MessageLog_CountDown_BattleStart))
-                {
                     GUIHelper.ShowInfo(e.ChatLogEntry.Contents, 1000, false);
-                }
-            }
 
             if (e.ChatLogEntry.MessageType == MessageType.SystemMessages)
             {
@@ -81,6 +66,12 @@ namespace AEAssist.Gamelog
         public void Close()
         {
             GamelogManager.MessageRecevied -= MessageRecevied;
+        }
+
+        public struct GameLog
+        {
+            public int MsgType;
+            public string Content;
         }
     }
 }

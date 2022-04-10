@@ -1,6 +1,4 @@
-﻿using ff14bot.Managers;
-
-namespace AEAssist.Define
+﻿namespace AEAssist.Define
 {
     public class PotionData
     {

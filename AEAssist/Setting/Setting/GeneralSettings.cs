@@ -11,22 +11,6 @@ namespace AEAssist
             Reset();
         }
 
-        public void Reset()
-        {
-            this.UserLatencyOffset = 50;
-            this.ActionQueueMs = 500;
-            this.MaxAbilityTimsInGCD = 2;
-            this.OpenTTK = true;
-            this.TimeToKill_TimeInSec = 15;
-            this.TTK_IgnoreDamage = 300000;
-            this.UsePotion = false;
-            this.UsePotionCountDown = 1500;
-            this.AnimationLockMs = 500;
-            this.ShowGameLog = true;
-            this.ShowAbilityDebugLog = false;
-            this.ShowToast = false;
-        }
-
         public int UserLatencyOffset { get; set; } // 玩家预计延迟
         [ValueRange(300, 500)] public int ActionQueueMs { get; set; } // 提前多久开始准备释放技能
         [ValueRange(1, 2)] public int MaxAbilityTimsInGCD { get; set; } // 一个GCD内最多插几个能力技
@@ -44,5 +28,21 @@ namespace AEAssist
         public bool ShowToast { get; set; }
 
         public bool ShowBattleTime { get; set; }
+
+        public void Reset()
+        {
+            UserLatencyOffset = 50;
+            ActionQueueMs = 500;
+            MaxAbilityTimsInGCD = 2;
+            OpenTTK = true;
+            TimeToKill_TimeInSec = 15;
+            TTK_IgnoreDamage = 300000;
+            UsePotion = false;
+            UsePotionCountDown = 1500;
+            AnimationLockMs = 500;
+            ShowGameLog = true;
+            ShowAbilityDebugLog = false;
+            ShowToast = false;
+        }
     }
 }

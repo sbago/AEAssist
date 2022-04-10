@@ -36,7 +36,7 @@ namespace AEAssist.AI
             var buff = BardSpellHelper.GetBuffs();
             if (buff == null)
                 return null;
-            var ret = await SpellHelper.CastAbility(buff, Core.Me, 0);
+            var ret = await SpellHelper.CastAbility(buff, Core.Me);
             if (ret)
             {
                 var lastBuff = buff;

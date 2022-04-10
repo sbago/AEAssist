@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Forms;
-using AEAssist;
+using System.Windows.Media;
 using AEAssist.Helper;
 using ff14bot;
-using MessageBox = System.Windows.MessageBox;
 
 namespace AEAssist
 {
     public static class GUIHelper
     {
+        private static long targetShowTime;
+
         public static void OpenGUI()
         {
             // if (GUI == null || GUI.IsDisposed || GUI.Disposing)
@@ -21,8 +21,6 @@ namespace AEAssist
         {
             // GUI.Close();
         }
-
-        private static long targetShowTime;
 
         public static void ShowInfo(string msg, int time = 0, bool check = true)
         {
@@ -45,9 +43,9 @@ namespace AEAssist
             {
                 Core.OverlayManager.AddToast(() => msg,
                     TimeSpan.FromSeconds(time),
-                    System.Windows.Media.Colors.Green,
-                    System.Windows.Media.Colors.Black,
-                    new System.Windows.Media.FontFamily("Consolas"));
+                    Colors.Green,
+                    Colors.Black,
+                    new FontFamily("Consolas"));
             }
         }
     }

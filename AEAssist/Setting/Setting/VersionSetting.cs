@@ -2,11 +2,11 @@
 {
     public class VersionSetting
     {
+        public int SettingVersion;
+
         public VersionSetting()
         {
-            this.SettingVersion = ConstValue.SettingVersion;
+            SettingVersion = ConstValue.SettingVersion;
         }
-
-        public int SettingVersion;
     }
 }

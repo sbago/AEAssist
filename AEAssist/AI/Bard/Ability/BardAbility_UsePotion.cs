@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Objects;
@@ -29,10 +28,7 @@ namespace AEAssist.AI
         {
             LogHelper.Debug("===>Try using Potion   1111");
             var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<BardSettings>().UsePotionId);
-            if (ret)
-            {
-                AIRoot.Instance.MuteAbilityTime();
-            }
+            if (ret) AIRoot.Instance.MuteAbilityTime();
 
             await Task.CompletedTask;
             return null;

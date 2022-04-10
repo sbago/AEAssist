@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
-using AEAssist.Define;
-using ff14bot;
-using ff14bot.Enums;
-using ff14bot.Managers;
 using ff14bot.Objects;
 using Newtonsoft.Json;
 
@@ -13,9 +8,7 @@ namespace AEAssist.Helper
 {
     internal static class DataHelper
     {
-        public static void Init()
-        {
-        }
+        public static Dictionary<uint, string> BossDictionary;
 
 
         static DataHelper()
@@ -38,12 +31,14 @@ namespace AEAssist.Helper
             LogHelper.Info("成功加载 Boss数据数目 " + BossDictionary?.Count);
         }
 
-        public static Dictionary<uint, string> BossDictionary;
+        public static void Init()
+        {
+        }
 
         public static bool IsBoss(this GameObject unit)
         {
             return unit != null &&
-                   (DataHelper.BossDictionary.ContainsKey(unit.NpcId) || unit.EnglishName.Contains("Dummy"));
+                   (BossDictionary.ContainsKey(unit.NpcId) || unit.EnglishName.Contains("Dummy"));
         }
     }
 }

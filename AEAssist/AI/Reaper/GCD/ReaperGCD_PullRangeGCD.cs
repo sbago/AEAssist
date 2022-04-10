@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using AEAssist;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -21,18 +20,10 @@ namespace AEAssist.AI.Reaper.GCD
         {
             var spell = SpellsDefine.Harpe;
             if (SpellsDefine.HarvestMoon.IsUnlock() && Core.Me.HasAura(AurasDefine.Soulsow))
-            {
                 spell = SpellsDefine.HarvestMoon;
-            }
-            else if (!AEAssist.DataBinding.Instance.UseHarpe)
-            {
-                return null;
-            }
+            else if (!DataBinding.Instance.UseHarpe) return null;
 
-            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
-            {
-                return spell;
-            }
+            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget)) return spell;
 
             return null;
         }

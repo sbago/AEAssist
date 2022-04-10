@@ -9,10 +9,8 @@ namespace AEAssist.TriggerSystem.TriggerCond
         {
             var enemy = TargetMgr.Instance.Enemys;
             foreach (var v in enemy.Values)
-            {
                 if (v.Name.Contains(cond.name))
                     return true;
-            }
 
             return false;
         }

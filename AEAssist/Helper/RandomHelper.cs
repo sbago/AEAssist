@@ -4,7 +4,7 @@ namespace AEAssist.Helper
 {
     public static class RandomHelper
     {
-        private static Random _random = new Random();
+        private static readonly Random _random = new Random();
 
         public static float RandomFloat(float min, float max)
         {

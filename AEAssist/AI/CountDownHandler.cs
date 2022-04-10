@@ -5,12 +5,11 @@ namespace AEAssist.AI
 {
     public class CountDownHandler
     {
+        private const long CountDown = 5000;
         public static CountDownHandler Instance = new CountDownHandler();
-
-        private bool _start;
         private long _lastTime;
 
-        private const long CountDown = 5000;
+        private bool _start;
 
         public bool CanDoAction { get; private set; }
 
