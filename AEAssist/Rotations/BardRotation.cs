@@ -48,11 +48,11 @@ namespace AEAssist
 
             if (!SettingMgr.GetSetting<BardSettings>().UsePeloton)
             {
-                GUIHelper.ShowInfo("非战斗状态,速行未开启");
+                GUIHelper.ShowInfo(Language.Instance.Content_Bard_PreCombat1);
                 return false;
             }
 
-            GUIHelper.ShowInfo("非战斗状态,速行逻辑判断中");
+            GUIHelper.ShowInfo(Language.Instance.Content_Bard_PreCombat2);
 
             if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
                 return false;
@@ -77,7 +77,7 @@ namespace AEAssist
 
             if (await SpellHelper.CastAbility(SpellsDefine.Peloton, Core.Me))
             {
-                GUIHelper.ShowInfo("使用速行!");
+                GUIHelper.ShowInfo(Language.Instance.Content_Bard_PreCombat3);
                 randomTime = 0;
                 return true;
             }

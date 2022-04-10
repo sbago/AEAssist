@@ -1,1 +1,57 @@
-{ "_t" : "TriggerLine", "Version" : "v0.1", "Author" : "AE", "TargetDuty" : "绝巴哈", "TargetJob" : "Bard", "Triggers" : [{ "_id" : "1", "TriggerConds" : [{ "_t" : "TriggerCond_AfterBattleStart", "Time" : 20000 }], "TriggerActions" : [{ "_t" : "TriggerAction_SwitchBurst", "value" : false }] }, { "_id" : "2", "TriggerConds" : [{ "_t" : "TriggerCond_AfterOtherTrigger", "TriggerId" : "1", "Time" : 60000 }, { "_t" : "TriggerCond_EnemyInLOS", "name" : "奈尔" }], "TriggerActions" : [{ "_t" : "TriggerAction_SwitchBurst", "value" : true }] }, { "_id" : "3", "TriggerConds" : [{ "_t" : "TriggerCond_AfterOtherTrigger", "TriggerId" : "2", "Time" : 20000 }], "TriggerActions" : [{ "_t" : "TriggerAction_SwitchBurst", "value" : false }] }, { "_id" : "4", "TriggerConds" : [{ "_t" : "TriggerCond_AfterOtherTrigger", "TriggerId" : "2", "Time" : 60000 }, { "_t" : "TriggerCond_EnemyInLOS", "name" : "巴哈姆特" }], "TriggerActions" : [{ "_t" : "TriggerAction_SwitchBurst", "value" : true }] }] }
+{
+  "_t" : "TriggerLine",
+  "TargetDuty" : "绝巴哈",
+  "TargetJob" : "Bard",
+  "Triggers" : [{
+      "_id" : "1",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchBurst",
+          "value" : false
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : 20000
+        }]
+    }, {
+      "_id" : "2",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchBurst",
+          "value" : true
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterOtherTrigger",
+          "Time" : 60000,
+          "TriggerId" : "1"
+        }, {
+          "_t" : "TriggerCond_EnemyInLOS",
+          "name" : "奈尔"
+        }]
+    }, {
+      "_id" : "3",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchBurst",
+          "value" : false
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterOtherTrigger",
+          "Time" : 20000,
+          "TriggerId" : "2"
+        }]
+    }, {
+      "_id" : "4",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchBurst",
+          "value" : true
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterOtherTrigger",
+          "Time" : 60000,
+          "TriggerId" : "2"
+        }, {
+          "_t" : "TriggerCond_EnemyInLOS",
+          "name" : "巴哈姆特"
+        }]
+    }],
+  "Version" : "v0.1",
+  "Author" : "AE"
+}

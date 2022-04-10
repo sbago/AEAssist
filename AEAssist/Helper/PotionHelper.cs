@@ -28,19 +28,19 @@ namespace AEAssist.Helper
             DexPotions.Add(new PotionData
             {
                 ID = 36105,
-                Name = "5级巧力之幻药"
+                Name = "Grade 5 Dex/5级巧力之幻药"
             });
 
             DexPotions.Add(new PotionData
             {
                 ID = 31894,
-                Name = "4级巧力之幻药"
+                Name = "Grade 4 Dex/4级巧力之幻药"
             });
 
             DexPotions.Add(new PotionData
             {
                 ID = 29493,
-                Name = "3级巧力之幻药"
+                Name = "Grade 3 Dex/3级巧力之幻药"
             });
 
 
@@ -49,17 +49,17 @@ namespace AEAssist.Helper
             StrPotions.Add(new PotionData
             {
                 ID = 36104,
-                Name = "5级刚力之幻药"
+                Name = "Grade 5 Str/5级刚力之幻药"
             });
             StrPotions.Add(new PotionData
             {
                 ID = 31893,
-                Name = "4级刚力之幻药"
+                Name = "Grade 4 Str/4级刚力之幻药"
             });
             StrPotions.Add(new PotionData
             {
                 ID = 29492,
-                Name = "3级刚力之幻药"
+                Name = "Grade 3 Str/3级刚力之幻药"
             });
         }
 

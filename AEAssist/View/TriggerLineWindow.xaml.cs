@@ -31,17 +31,17 @@ namespace AEAssist.View.Overlay
                 DataBinding.Instance.CurrTriggerLine = TriggerHelper.LoadTriggerLine(file);
                 if (DataBinding.Instance.CurrTriggerLine != null)
                 {
-                    MessageBox.Show("加载时间轴成功!");
-                    TriggerLineAuthor.Content = $"作者: {DataBinding.Instance.CurrTriggerLine.Author}";
-                    TriggerLineTargetDuty.Content = $"目标副本: {DataBinding.Instance.CurrTriggerLine.TargetDuty}";
+                    MessageBox.Show("Load Success!");
+                    TriggerLineAuthor.Content = $"Author: {DataBinding.Instance.CurrTriggerLine.Author}";
+                    TriggerLineTargetDuty.Content = $"Duty: {DataBinding.Instance.CurrTriggerLine.TargetDuty}";
                     TriggerLineJob.Content =
-                        $"目标职业: {DataBinding.Instance.CurrTriggerLine.TargetJob}";
-                    TriggerLineVersion.Content = $"版本: {DataBinding.Instance.CurrTriggerLine.Version}";
-                    OnTriggerLineLoad?.Invoke(Path.GetFileName(file));
+                        $"TargetJob: {DataBinding.Instance.CurrTriggerLine.TargetJob}";
+                    TriggerLineVersion.Content = $"Version: {DataBinding.Instance.CurrTriggerLine.Version}";
+                    OnTriggerLineLoad?.Invoke(Path.GetFileNameWithoutExtension(file));
                 }
                 else
                 {
-                    MessageBox.Show("Failed: 加载时间轴失败!");
+                    MessageBox.Show("Load Failed!");
                 }
             }
         }

@@ -12,9 +12,12 @@ namespace AEAssist
         }
 
         public int UserLatencyOffset { get; set; } // 玩家预计延迟
-        [ValueRange(300, 500)] public int ActionQueueMs { get; set; } // 提前多久开始准备释放技能
+        [ValueRange(300, 700)] public int ActionQueueMs { get; set; } // 提前多久开始准备释放技能
         [ValueRange(1, 2)] public int MaxAbilityTimsInGCD { get; set; } // 一个GCD内最多插几个能力技
         public int AnimationLockMs { get; set; }
+
+        public bool EarlyDecisionMode { get; set; } // 提前决策模式,镰刀不推荐,对起手有影响
+
         public bool OpenTTK { get; set; } // 启动TTK
         [ValueRange(1, 30)] public int TimeToKill_TimeInSec { get; set; } //ttk 预计多少秒死亡
         [ValueRange(200000, 1000000)] public int TTK_IgnoreDamage { get; set; } // 大于30W的伤害不计算为最近的平均伤害.
@@ -43,6 +46,7 @@ namespace AEAssist
             ShowGameLog = true;
             ShowAbilityDebugLog = false;
             ShowToast = false;
+            EarlyDecisionMode = true;
         }
     }
 }

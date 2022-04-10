@@ -17,7 +17,7 @@ namespace AEAssist.AI.Reaper.Ability
                 return -2;
             if (ActionResourceManager.Reaper.SoulGauge < 50)
                 return -3;
-            if (Core.Me.HasAura(AurasDefine.SoulReaver))
+            if (ReaperSpellHelper.IfHasSoulReaver())
                 return -4;
             if (SpellsDefine.Enshroud.Cooldown.TotalMilliseconds > 0
                 && SpellsDefine.Enshroud.Cooldown.TotalMilliseconds < 5000
@@ -28,7 +28,7 @@ namespace AEAssist.AI.Reaper.Ability
                 return -6;
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -7;
-            if (!AIRoot.Instance.BurstOff && SpellsDefine.Gluttony.Cooldown.TotalMilliseconds < 10000) return -8;
+            if (SpellsDefine.Gluttony.IsUnlock()&& !AIRoot.Instance.BurstOff && SpellsDefine.Gluttony.Cooldown.TotalMilliseconds < 10000) return -8;
 
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
                 return -9;

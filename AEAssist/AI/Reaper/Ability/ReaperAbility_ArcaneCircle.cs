@@ -26,7 +26,7 @@ namespace AEAssist.AI.Reaper.Ability
                 {
                     var delta = AIRoot.Instance.BattleData.lastGCDIndex -
                                 SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.Enshroud.Id);
-                    if (delta < 1)
+                    if (delta < 2)
                         return -5;
                 }
             }

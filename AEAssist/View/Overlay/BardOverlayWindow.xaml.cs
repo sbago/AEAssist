@@ -14,32 +14,6 @@ namespace AEAssist.View
         public BardOverlayWindow()
         {
             InitializeComponent();
-            //
-            // SongDatas = new List<SongData>();
-            // SongDatas.Add(new SongData
-            // {
-            //     Name = "不指定",
-            //     Song = ActionResourceManager.Bard.BardSong.None
-            // });
-            // SongDatas.Add(new SongData
-            // {
-            //     Name = "旅神小步舞",
-            //     Song = ActionResourceManager.Bard.BardSong.WanderersMinuet
-            // });
-            // SongDatas.Add(new SongData
-            // {
-            //     Name = "贤者叙事谣",
-            //     Song = ActionResourceManager.Bard.BardSong.MagesBallad
-            // });
-            // SongDatas.Add(new SongData
-            // {
-            //     Name = "军神赞美歌",
-            //     Song = ActionResourceManager.Bard.BardSong.ArmysPaeon
-            // });
-            //
-            // this.ChooseNextSong.ItemsSource = SongDatas;
-            //
-            // this.ChooseNextSong.SelectedValue = BaseSettings.Instance.nextSong;
         }
 
         private void BardOverlayWindow_OnMouseMove(object sender, MouseEventArgs e)

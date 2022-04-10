@@ -5,6 +5,7 @@ using System.Windows;
 using AETriggers.TriggerModel;
 using Microsoft.Win32;
 using NPOI.HSSF.UserModel;
+using NPOI.SS.Formula.Functions;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using Trigger = AETriggers.TriggerModel.Trigger;
@@ -19,6 +20,13 @@ namespace AETriggers
         public MainWindow()
         {
             InitializeComponent();
+            var currCulture = System.Globalization.CultureInfo.CurrentCulture;
+            if (currCulture.Name.Contains("zh-CN"))
+            {
+                this.Load.Content = "加载Excel表";
+                this.Export.Content = "导出";
+            }
+
 
             Entry.Init();
         }
@@ -176,11 +184,14 @@ namespace AETriggers
                     var category = strs[0];
                     var typeName = strs[1];
 
-                    var type = TriggerMgr.Instance.Name2Type[typeName];
-                    var instance = Activator.CreateInstance(type) as ITriggerBase;
+                    //MessageBox.Show(typeName);
+                    
+                
 
                     try
                     {
+                        var type = TriggerMgr.Instance.Name2Type[typeName];
+                        var instance = Activator.CreateInstance(type) as ITriggerBase;
                         instance.WriteFromJson(data.valueParams);
 
                         if (instance is ITriggerCond)
@@ -190,7 +201,7 @@ namespace AETriggers
                     }
                     catch (Exception e)
                     {
-                        var pre = $"Type: {data.valueType} Params : [{ListToString(data.valueParams)}]\n ";
+                        var pre = $"Type: {data.valueType} TypeName {typeName} Params : [{ListToString(data.valueParams)}]\n ";
                         MessageBox.Show(pre + e);
                     }
                 }

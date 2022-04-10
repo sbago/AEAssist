@@ -82,11 +82,11 @@
         </Border>
         <Border>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBox Text="Q群:    814352226" Margin="10" HorizontalAlignment="Left" IsReadOnly="True" />
+                <TextBox Text="{Binding Language.QQGroup}" Margin="10" HorizontalAlignment="Left" IsReadOnly="True" />
                 <TextBox Text="Discord:    https://discord.gg/9WKppshjww" Margin="10" IsReadOnly="True"
                          HorizontalAlignment="Left" />
                 <Button Name="SaveSetting"
-                        Content="保存设置" Width="150" Height="25" Margin="10"
+                        Content="{Binding Language.SaveSetting}" Width="150" Height="25" Margin="10"
                         HorizontalAlignment="Left"
                         Click="SaveSetting_OnClick" />
                 <!-- <Button Name="ResetSetting" Content="重置设置" Width="150" Height="25" Margin="10" -->

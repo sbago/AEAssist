@@ -12,8 +12,6 @@ namespace AEAssist.AI.Reaper.Ability
         {
             if (!SpellsDefine.Enshroud.IsReady())
                 return -1;
-            if (SpellsDefine.Gluttony.RecentlyUsed())
-                return -2;
             return ReaperSpellHelper.ReadyToEnshroud();
         }
 

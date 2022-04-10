@@ -237,10 +237,10 @@
         <Content Include="Resources\BossDictionary.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
-        <Content Include="Resources\Lan_pre-en.json">
+        <Content Include="Resources\Lan_cn-en.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
-        <Content Include="Resources\Lan_pre-jp.json">
+        <Content Include="Resources\Lan_cn-jp.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="Resources\Lan_en.json">

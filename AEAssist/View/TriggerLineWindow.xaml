@@ -8,7 +8,7 @@
         Topmost="True"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
-        Title="时间轴加载" Height="200" Width="250">
+        Title="{Binding Language.Title_LoadTriggerLine}" Height="200" Width="250">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -40,8 +40,8 @@
 
     <StackPanel Margin="10" Width="200">
         <StackPanel Orientation="Horizontal">
-            <Button Name="LoadTriggerLine" Width="100" Margin="2" Content="加载文件" Click="LoadTriggerLine_OnClick" />
-            <Button Name="ClearTriggerLine" Width="100" Content="清理" Click="ClearTriggerLine_OnClick" />
+            <Button Name="LoadTriggerLine" Width="100" Margin="2" Content="{Binding Language.Btn_LoadTriggerLine}" Click="LoadTriggerLine_OnClick" />
+            <Button Name="ClearTriggerLine" Width="100" Content="{Binding Language.Btn_ClearTriggerLine}" Click="ClearTriggerLine_OnClick" />
         </StackPanel>
         <Label Name="TriggerLineAuthor" Content="" />
         <Label Name="TriggerLineVersion" Content="" />

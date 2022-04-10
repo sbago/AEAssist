@@ -94,14 +94,14 @@ namespace AEAssist.AI
             {
                 if (Core.Me.CurrentTarget != null)
                     Core.Me.ClearTarget();
-                GUIHelper.ShowInfo("停手中");
+                GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_Stoping);
                 return false;
             }
 
             if (!Core.Me.HasTarget || !Core.Me.CurrentTarget.CanAttack)
             {
                 if (CanNotice("key1", 1000))
-                    GUIHelper.ShowInfo("未选择目标/目标不可被攻击");
+                    GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_NoTarget);
                 return false;
             }
 
@@ -109,7 +109,7 @@ namespace AEAssist.AI
                                                                && !DataBinding.Instance.AutoAttack)
             {
                 if (CanNotice("key2", 1000))
-                    GUIHelper.ShowInfo("目标可被攻击,准备战斗");
+                    GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_CanAttack);
                 return false;
             }
 

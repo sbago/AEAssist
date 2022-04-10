@@ -19,10 +19,10 @@ namespace AEAssist.View
         {
             Entry.TriggerLineWindow.OnTriggerLineLoad =
                 s =>
-                    CurrTriggerLine.Content = $"当前加载时间轴: {s}";
+                    CurrTriggerLine.Content = s;
 
             Entry.TriggerLineWindow.OnTriggerLineClear = () =>
-                CurrTriggerLine.Content = "当前加载时间轴: 无";
+                CurrTriggerLine.Content = "NULL";
 
             Entry.TriggerLineWindow.Show();
         }

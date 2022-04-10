@@ -18,6 +18,8 @@ namespace AEAssist
         public string Toggle_ShowDebugLog { get; set; } = "显示优先级判定Log(调试用)";
         public string Toggle_ShowBattleTime { get; set; } = "Overlay显示战斗时间";
 
+        public string Toggle_EarlyDecisionMode { get; set; } = "提前决策模式";
+        
         public string Toggle_UseHotkey { get; set; } = "使用快捷键";
         public string Toggle_UseTTK { get; set; } = "使用TTK(目标濒死机制)";
 
@@ -68,6 +70,31 @@ namespace AEAssist
         public string Label_PotionNum { get; set; } = "数量:";
 
         public string Toggle_PreferGallow { get; set; } = "优先打缢杀";
+
+        public string Btn_LoadTriggerLine { get; set; } = "加载文件";
+        public string Btn_ClearTriggerLine { get; set; } = "清理";
+
+        public string QQGroup { get; set; } = "Q群:    814352226";
+        public string SaveSetting { get; set; } = "保存设置";
+
+        public string Content_CoolDown { get; set; } = "倒计时";
+        public string Content_CoolDown_1500 { get; set; } = "尝试特殊行为1500";
+        public string Content_CoolDownFinish { get; set; } = "倒计时结束,开始战斗!";
+        public string Content_Bard_PreCombat1 { get; set; } = "非战斗状态,速行未开启";
+        public string Content_Bard_PreCombat2 { get; set; } = "非战斗状态,速行逻辑判断中";
+        public string Content_Bard_PreCombat3 { get; set; } = "使用速行!";
+        
+        public string Content_Reaper_PreCombat1 { get; set; } = "非战斗状态";
+        public string Content_Reaper_PreCombat2 { get; set; } = "使用收获月!";
+
+        public string Content_AIRoot_Stoping { get; set; } = "停手中";
+        public string Content_AIRoot_NoTarget { get; set; } = "未选择目标/目标不可被攻击";
+        public string Content_AIRoot_CanAttack { get; set; } = "目标可被攻击,准备战斗";
+
+        public string Content_LocalTime { get; set; } = "本地时间";
+        public string Content_BattleTime { get; set; } = "战斗时间";
+
+        public string Title_LoadTriggerLine { get; set; } = "加载时间轴";
 
         public string MessageLog_CountDown_BattleStart { get; set; } = "战斗开始";
         public string MessageLog_CountDown_BattleStartIn5sec { get; set; } = "战斗开始.*5";

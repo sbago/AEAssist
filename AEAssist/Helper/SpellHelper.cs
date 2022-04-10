@@ -34,8 +34,17 @@ namespace AEAssist.Helper
             }
             else
             {
-                if (!ActionManager.CanCastOrQueue(spell, target))
-                    return false;
+                if (SettingMgr.GetSetting<GeneralSettings>().EarlyDecisionMode)
+                {
+                    if (!ActionManager.CanCastOrQueue(spell, target))
+                        return false;
+                }
+                else
+                {
+                    if (!ActionManager.CanCast(spell, target))
+                        return false;
+                }
+
                 if (!ActionManager.DoAction(spell, target))
                     return false;
             }

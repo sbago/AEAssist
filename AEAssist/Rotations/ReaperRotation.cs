@@ -41,7 +41,7 @@ namespace AEAssist
             if (MovementManager.IsMoving)
                 return false;
 
-            GUIHelper.ShowInfo("非战斗状态");
+            GUIHelper.ShowInfo(Language.Instance.Content_Reaper_PreCombat1);
 
 
             if (Core.Me.HasAura(AurasDefine.Soulsow))
@@ -49,7 +49,7 @@ namespace AEAssist
 
             if (await SpellHelper.CastGCD(SpellsDefine.Soulsow, Core.Me))
             {
-                GUIHelper.ShowInfo("使用收获月!");
+                GUIHelper.ShowInfo(Language.Instance.Content_Reaper_PreCombat2);
                 randomTime = 0;
                 return true;
             }

@@ -2,7 +2,7 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger("BattleStart", "战斗开始后")]
+    [Trigger("AfterBattleStart", "战斗开始后")]
     public class TriggerCond_AfterBattleStart : ITriggerCond
     {
         public int Time;

@@ -72,11 +72,10 @@ namespace AEAssist
 
         public static void SwitchLan(string lanType)
         {
-            LogHelper.Debug("Change lanType===>" + lanType);
+          //  LogHelper.Debug("Change lanType===>" + lanType);
             if (!AllLans.TryGetValue(lanType, out var language))
                 return;
             SwitchLan(language);
-            LogHelper.Debug("Change lanType finished");
         }
 
         public static void SwitchLan(Language target)
@@ -108,6 +107,7 @@ namespace AEAssist
             
             //其他地方要刷新
             SettingMgr.GetSetting<HotkeySetting>().ResetHotkeyName();
+            LogHelper.Debug($"Change Language==>{target.LanType} finished");
         }
         
     }

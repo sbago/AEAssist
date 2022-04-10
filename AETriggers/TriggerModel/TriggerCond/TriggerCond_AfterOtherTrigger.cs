@@ -2,7 +2,7 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger("OtherTrigger", "某组触发器")]
+    [Trigger("AfterOtherTrigger", "某组触发器")]
     public class TriggerCond_AfterOtherTrigger : ITriggerCond
     {
         public int Time;

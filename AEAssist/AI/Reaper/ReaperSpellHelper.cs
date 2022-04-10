@@ -173,7 +173,7 @@ namespace AEAssist.AI.Reaper
                 return -100;
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -101;
-            if (Core.Me.HasAura(AurasDefine.SoulReaver))
+            if (ReaperSpellHelper.IfHasSoulReaver())
                 return -102;
             if (!SpellsDefine.PlentifulHarvest.RecentlyUsed() && ActionResourceManager.Reaper.ShroudGauge < 50)
                 return -103;
@@ -186,18 +186,30 @@ namespace AEAssist.AI.Reaper
             var coolDown = SpellsDefine.ArcaneCircle.Cooldown.TotalMilliseconds;
 
             if (DataBinding.Instance.DoubleEnshroudPrefer
+                && SpellsDefine.PlentifulHarvest.IsUnlock()
                 && ActionResourceManager.Reaper.ShroudGauge < 90
                 && coolDown > 2000
                 && coolDown < ConstValue.ReaperDoubleEnshroudMaxCheckTime)
                 return -106;
 
             if (DataBinding.Instance.DoubleEnshroudPrefer
+                && SpellsDefine.PlentifulHarvest.IsUnlock()
                 && ActionResourceManager.Reaper.ShroudGauge < 90
                 && coolDown <= 2000
                 && AIRoot.Instance.ReaperBattleData.CurrCombo == ReaperComboStages.InfernalSlice)
                 return -107;
 
             return 0;
+        }
+
+        public static bool IfHasSoulReaver()
+        {
+            if (SpellsDefine.Gluttony.RecentlyUsed() 
+                || SpellsDefine.BloodStalk.RecentlyUsed()
+                || SpellsDefine.GrimSwathe.RecentlyUsed()
+                || Core.Me.HasAura(AurasDefine.SoulReaver))
+                return true;
+            return false;
         }
     }
 }

@@ -93,6 +93,10 @@
 
         <TabItem Header="{Binding Language.TabItem_BaseSetting}">
             <StackPanel HorizontalAlignment="Left" Margin="10">
+                <CheckBox Name="EarlyDecisionMode"
+                          Content="{Binding Language.Toggle_EarlyDecisionMode}" Width="200" Height="25" Margin="10"
+                          HorizontalAlignment="Left"
+                          IsChecked="{Binding GeneralSettings.EarlyDecisionMode}" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="{Binding Language.Textbox_AnimationLockMs}" Width="150" />
                     <TextBox Width="150" Text="{Binding GeneralSettings.AnimationLockMs,Mode=TwoWay}" />

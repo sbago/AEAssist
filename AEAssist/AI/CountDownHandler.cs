@@ -13,22 +13,25 @@ namespace AEAssist.AI
 
         public bool CanDoAction { get; private set; }
 
+        private bool _1500Action;
+
         public void Update()
         {
             if (!_start)
                 return;
             var restTime = CountDown - (TimeHelper.Now() - _lastTime);
-            var msg = $"倒计时{restTime / 1000}秒 {restTime % 1000}";
+            var msg = $"{Language.Instance.Content_CoolDown} {restTime / 1000}秒";
 
-            if (Math.Abs(restTime - SettingMgr.GetSetting<GeneralSettings>().UsePotionCountDown) < 100)
+            if (!_1500Action &&restTime <= SettingMgr.GetSetting<GeneralSettings>().UsePotionCountDown)
             {
-                msg += "->尝试特殊行为-1500";
+                msg += $"->{Language.Instance.Content_CoolDown_1500}";
+                _1500Action = true;
                 RotationManager.Instance.HandleInCountDown1500();
             }
 
             if (restTime < 100)
             {
-                msg = "倒计时结束 开始战斗!";
+                msg = $"{Language.Instance.Content_CoolDownFinish}";
                 CanDoAction = true;
                 _start = false;
             }
@@ -42,6 +45,7 @@ namespace AEAssist.AI
             _lastTime = TimeHelper.Now();
             CanDoAction = false;
             _start = true;
+            _1500Action = false;
         }
 
         public void SyncRestTime(float restTime)
@@ -52,12 +56,14 @@ namespace AEAssist.AI
         {
             _start = false;
             CanDoAction = false;
+            _1500Action = false;
         }
 
         public void StartNow()
         {
             _start = false;
             CanDoAction = true;
+            _1500Action = false;
         }
     }
 }

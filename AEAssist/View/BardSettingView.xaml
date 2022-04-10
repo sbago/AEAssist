@@ -45,12 +45,12 @@
                 <CheckBox Content="{Binding Language.Toggle_UsePoleton}" IsChecked="{Binding BardSettings.UsePeloton,Mode=TwoWay}" />
                 <CheckBox Content="{Binding Language.Toggle_Bard_Delay1GCDToUseBuffs}" IsChecked="{Binding BardSettings.BuffsDelay2GCD,Mode=TwoWay}" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="{Binding Language.Textbox_Bard_ApexArrow_SoulVoiceGauge}" Width="150" />
-                    <TextBox Width="150" Text="{Binding BardSettings.ApexArrowValue,Mode=TwoWay}" />
+                    <Label Content="{Binding Language.Textbox_Bard_ApexArrow_SoulVoiceGauge}" Width="200" />
+                    <TextBox Width="100" Text="{Binding BardSettings.ApexArrowValue,Mode=TwoWay}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="{Binding Language.Textbox_Bard_TTK2BuffEnhancedIronJaw}" Width="150" />
-                    <TextBox Width="150" Text="{Binding BardSettings.TTK_IronJaws,Mode=TwoWay}" />
+                    <Label Content="{Binding Language.Textbox_Bard_TTK2BuffEnhancedIronJaw}" Width="200" />
+                    <TextBox Width="100" Text="{Binding BardSettings.TTK_IronJaws,Mode=TwoWay}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="{Binding Language.Label_ChoosePotion}" Width="100" />

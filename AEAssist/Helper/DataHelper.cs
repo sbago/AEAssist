@@ -28,7 +28,7 @@ namespace AEAssist.Helper
             }
 
 
-            LogHelper.Info("成功加载 Boss数据数目 " + BossDictionary?.Count);
+            LogHelper.Info("Load BossCount: " + BossDictionary?.Count);
         }
 
         public static void Init()

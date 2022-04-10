@@ -62,9 +62,9 @@ namespace AEAssist
         public void Update()
         {
             if (GeneralSettings.ShowBattleTime)
-                TimeStr = $"战斗时间:  {AIRoot.Instance.BattleData.BattleTime / 1000}";
+                TimeStr = $"{Language.Instance.Content_BattleTime}:  {AIRoot.Instance.BattleData.BattleTime / 1000}";
             else
-                TimeStr = $"本地时间:  {DateTime.Now:hh:mm:ss}";
+                TimeStr = $"{Language.Instance.Content_LocalTime}:  {DateTime.Now:hh:mm:ss}";
         }
 
 

@@ -4,5 +4,5 @@
   "LanVersion" : "2",
   "MessageLog_CountDown_BattleStart" : "Battle commencing in",
   "MessageLog_CountDown_BattleStartIn5sec" : "Battle commencing in.*5",
-  "MessageLog_CountDown_CancelBattleStart" : "取消了战斗开始"
+  "MessageLog_CountDown_CancelBattleStart" : "Countdown canceled"
 }
