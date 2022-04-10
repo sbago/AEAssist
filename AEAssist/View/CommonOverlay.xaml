@@ -40,13 +40,14 @@
     </UserControl.DataContext>
     <StackPanel>
         <StackPanel Margin="5" Width="250" HorizontalAlignment="Center">
-            <Button Name="Reset" FontSize="12" Content="重置" Width="200" Height="25"
+            <Button Name="Reset" FontSize="12" Content="{Binding Language.Btn_Reset}" Width="200" Height="25"
                     Click="Reset_OnClick"
                     HorizontalAlignment="Center" />
-            <Label Name="CurrTriggerLine" Content="当前加载时间轴: 无" Foreground="Aqua" Width="200" />
-            <!-- <Label Name="TriggerLineStatus" Content="[状态: 准备运行中]" Foreground="Aqua"/> -->
-
-            <Button Name="ChangeTriggerLine" FontSize="12" Margin="10,0,10,0" Content="配置" Width="200" Height="25"
+            <StackPanel Orientation="Horizontal">
+                <Label Content="{Binding Language.Label_CurrTriggerLine}" Foreground="Aqua" Width="100" HorizontalContentAlignment="Left" />
+                <Label Name="CurrTriggerLine" Content="NULL" Foreground="Aqua" Width="120" FontSize="8" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <Button Name="ChangeTriggerLine" FontSize="12" Margin="5,0,5,0" Content="{Binding Language.SetTriggerLine}" Width="200" Height="25"
                     Click="ChangeTriggerLine_OnClick" />
 
         </StackPanel>

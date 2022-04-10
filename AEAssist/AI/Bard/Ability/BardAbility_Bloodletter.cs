@@ -20,7 +20,7 @@ namespace AEAssist.AI
                 LogHelper.Debug(
                     $"Bloodletter: {SpellsDefine.Bloodletter.Charges} Max:{SpellsDefine.Bloodletter.MaxCharges}");
 
-            if (AIRoot.Instance.CloseBuff)
+            if (AIRoot.Instance.BurstOff)
                 return 2;
 
             // 起手爆发期间, 失血箭尽量打进团辅

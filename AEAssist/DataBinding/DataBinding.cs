@@ -13,7 +13,7 @@ namespace AEAssist
 
         public static DataBinding Instance => _instance ?? (_instance = new DataBinding());
 
-        public bool CloseBuff
+        public bool BurstOff
         {
             get;
             set;
@@ -39,11 +39,14 @@ namespace AEAssist
         public DebugCenter DebugCenter => DebugCenter.Intance;
 
         public HotkeySetting HotkeySetting => SettingMgr.GetSetting<HotkeySetting>();
+        
+        public Language Language =>Language.Instance;
+        
         public TriggerLine CurrTriggerLine { get; set; }
 
         public void Reset()
         {
-            CloseBuff = false;
+            BurstOff = false;
             Stop = false;
             UseApex = true;
             UseDot = true;

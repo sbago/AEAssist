@@ -40,88 +40,84 @@
                 materialDesign:ColorZoneAssist.Mode="PrimaryDark"
                 materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
 
-        <TabItem Header="通用">
+        <TabItem Header="Lan">
+            <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                <Label Content="Curr Language:" Width="100" />
+                <ComboBox IsEditable="False" Name="SwitchLan" Width="100" DisplayMemberPath="Name"
+                          SelectedValuePath="Key" SelectionChanged="SwitchLan_OnSelectionChanged" />
+            </StackPanel>
+            </StackPanel>
+        </TabItem>
+        
+        <TabItem Header="{Binding Language.TabItem_General}">
             <StackPanel HorizontalAlignment="Left" Margin="10">
                 <Button Name="ShowOverlay"
-                        Content="显示/隐藏Overlay" Width="150" Height="25" Margin="10"
+                        Content="{Binding Language.Btn_SwitchOverlay}" Width="150" Height="25" Margin="10"
                         HorizontalAlignment="Left"
                         Click="ShowOverlay_OnClick" />
                 <CheckBox Name="ShowGameLog"
-                          Content="显示GameLog(编辑时间轴必备)" Width="200" Height="25" Margin="10"
+                          Content="{Binding Language.Toggle_ShowGameLog}" Width="200" Height="25" Margin="10"
                           HorizontalAlignment="Left"
                           IsChecked="{Binding GeneralSettings.ShowGameLog}" />
                 <CheckBox Name="ShowAbilityDebug"
-                          Content="显示能力技判定Log(调试用)" Width="200" Height="25" Margin="10"
+                          Content="{Binding Language.Toggle_ShowDebugLog}" Width="200" Height="25" Margin="10"
                           HorizontalAlignment="Left"
                           IsChecked="{Binding GeneralSettings.ShowAbilityDebugLog}" />
 
                 <CheckBox Name="ShowBattleTime"
-                          Content="Overlay显示战斗时间" Width="200" Height="25" Margin="10"
+                          Content="{Binding Language.Toggle_ShowBattleTime}" Width="200" Height="25" Margin="10"
                           HorizontalAlignment="Left"
                           IsChecked="{Binding GeneralSettings.ShowBattleTime}" />
-
-                <!-- <CheckBox  -->
-                <!--           Content="显示屏幕中间提示" Width="200" Height="25" Margin="10" -->
-                <!--           HorizontalAlignment="Left" -->
-                <!--           IsChecked="{Binding GeneralSettings.ShowToast}" /> -->
-
             </StackPanel>
         </TabItem>
 
-        <TabItem Header="快捷键">
+        <TabItem Header="{Binding Language.TabItem_Hotkey}">
             <StackPanel>
                 <CheckBox Name="UseHotkey"
-                          Content="使用快捷键" Width="200" Height="25" Margin="10"
+                          Content="{Binding Language.Toggle_UseHotkey}" Width="200" Height="25" Margin="10"
                           HorizontalAlignment="Left"
                           IsChecked="{Binding HotkeySetting.UseHotkey}" />
-                <!-- <Button Name="LoadTriggerLine" -->
-                <!--         Content="时间轴设置" Width="150" Height="25" Margin="10" -->
-                <!--         HorizontalAlignment="Left" -->
-                <!--         Click="LoadTriggerLine_OnClick"/> -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="停手快捷键" Width="100" />
+                    <Label Content="{Binding Language.Combox_Hotkey_Stop}" Width="100" />
                     <ComboBox IsEditable="False" Name="Hotkey_Stop" Width="150" DisplayMemberPath="Name"
                               SelectedValuePath="Key" SelectionChanged="Hotkey_Stop_OnSelectionChanged" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="关闭爆发快捷键" Width="100" />
+                    <Label Content="{Binding Language.Combox_Hotkey_BurstOff}" Width="100" />
                     <ComboBox IsEditable="False" Name="Hotkey_CloseBuff" Width="150" DisplayMemberPath="Name"
                               SelectedValuePath="Key" SelectionChanged="Hotkey_CloseBuff_OnSelectionChanged" />
                 </StackPanel>
             </StackPanel>
         </TabItem>
 
-        <TabItem Header="基本设置">
+        <TabItem Header="{Binding Language.TabItem_BaseSetting}">
             <StackPanel HorizontalAlignment="Left" Margin="10">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="能力技窗口时间" Width="150" />
+                    <Label Content="{Binding Language.Textbox_AnimationLockMs}" Width="150" />
                     <TextBox Width="150" Text="{Binding GeneralSettings.AnimationLockMs,Mode=TwoWay}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="GCD队列时间" Width="150" />
+                    <Label Content="{Binding Language.Textbox_GCDQueueMs}" Width="150" />
                     <TextBox Width="150" Text="{Binding GeneralSettings.ActionQueueMs,Mode=TwoWay}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="GCD插入能力技次数" Width="150" />
+                    <Label Content="{Binding Language.Textbox_AbilityTimesInGCD}" Width="150" />
                     <TextBox Width="150" Text="{Binding GeneralSettings.MaxAbilityTimsInGCD,Mode=TwoWay}" />
                 </StackPanel>
-                <!-- <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10"> -->
-                <!--     <Label Content="倒计时多少ms使用爆发药" Width="150" /> -->
-                <!--     <TextBox Width="150" Text="{Binding GeneralSettings.UsePotionCountDown,Mode=TwoWay}" /> -->
-                <!-- </StackPanel> -->
             </StackPanel>
         </TabItem>
 
-        <TabItem Header="TTK设置">
+        <TabItem Header="{Binding Language.TabItem_TTKSetting}">
             <StackPanel HorizontalAlignment="Left" Margin="10">
-                <CheckBox Content="开启TTK" Margin="10" HorizontalAlignment="Left"
+                <CheckBox Content="{Binding Language.Toggle_UseTTK}" Margin="10" HorizontalAlignment="Left"
                           IsChecked="{Binding GeneralSettings.OpenTTK,Mode=TwoWay}" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="X秒内死亡" Width="100" />
+                    <Label Content="{Binding Language.Textbox_TTK_TimeInSec}" Width="100" />
                     <TextBox Width="150" Text="{Binding GeneralSettings.TimeToKill_TimeInSec,Mode=TwoWay}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="伤害阈值" Width="100" />
+                    <Label Content="{Binding Language.Textbox_TTK_IgnoreDamage}" Width="100" />
                     <TextBox Width="150" Text="{Binding GeneralSettings.TTK_IgnoreDamage,Mode=TwoWay}" />
                 </StackPanel>
             </StackPanel>

@@ -67,7 +67,7 @@ namespace AEAssist.Helper
         {
             if (!SettingMgr.GetSetting<GeneralSettings>().UsePotion)
                 return false;
-            if (AIRoot.Instance.CloseBuff)
+            if (AIRoot.Instance.BurstOff)
                 return false;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return false;

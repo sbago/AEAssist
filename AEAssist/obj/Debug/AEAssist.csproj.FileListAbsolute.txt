@@ -76,3 +76,6 @@ D:\Github\AEAssist\AEAssist\obj\Debug\View\ReaperSettingView.g.cs
 D:\Github\AEAssist\AEAssist\obj\Debug\View\ReaperSettingView.baml
 D:\Github\AEAssist\AEAssist\obj\Debug\View\CommonOverlay.g.cs
 D:\Github\AEAssist\AEAssist\obj\Debug\View\CommonOverlay.baml
+D:\Github\AEAssist\Output\AEAssist\Resources\Lan_en.json
+D:\Github\AEAssist\Output\AEAssist\Resources\Lan_cn-en.json
+D:\Github\AEAssist\Output\AEAssist\Resources\Lan_cn-jp.json

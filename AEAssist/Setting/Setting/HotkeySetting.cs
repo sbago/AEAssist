@@ -50,13 +50,13 @@ namespace AEAssist
         {
             if (UseHotkey)
             {
-                StopBtnName = $"停手 {StopKey}";
-                CloseBuffBtnName = $"关闭爆发 {CloseBuffKey}";
+                StopBtnName = $"{Language.Instance.Toggle_Stop} {StopKey}";
+                CloseBuffBtnName = $"{Language.Instance.Toggle_BurstOff} {CloseBuffKey}";
             }
             else
             {
-                StopBtnName = "停手";
-                CloseBuffBtnName = "关闭爆发";
+                StopBtnName = Language.Instance.Toggle_Stop;
+                CloseBuffBtnName = Language.Instance.Toggle_BurstOff;
             }
         }
 
@@ -92,8 +92,8 @@ namespace AEAssist
 
                 Hotkeys.Add(HotkeyManager.Register("ControlBuff", closeBuffKey, ModifierKeys.None, v =>
                 {
-                    AIRoot.Instance.CloseBuff =
-                        !AIRoot.Instance.CloseBuff;
+                    AIRoot.Instance.BurstOff =
+                        !AIRoot.Instance.BurstOff;
                 }));
             }
             catch (Exception e)

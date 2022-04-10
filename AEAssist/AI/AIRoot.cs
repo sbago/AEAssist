@@ -49,10 +49,10 @@ namespace AEAssist.AI
             set => DataBinding.Instance.Stop = value;
         }
 
-        public bool CloseBuff
+        public bool BurstOff
         {
-            get => DataBinding.Instance.CloseBuff;
-            set => DataBinding.Instance.CloseBuff = value;
+            get => DataBinding.Instance.BurstOff;
+            set => DataBinding.Instance.BurstOff = value;
         }
 
         public void Clear()

@@ -13,7 +13,7 @@ namespace AEAssist.AI.Reaper.Ability
         {
             if (!SpellsDefine.Gluttony.IsReady())
                 return -1;
-            if (AIRoot.Instance.CloseBuff)
+            if (AIRoot.Instance.BurstOff)
                 return -2;
             if (Core.Me.HasAura(AurasDefine.SoulReaver))
                 return -3;

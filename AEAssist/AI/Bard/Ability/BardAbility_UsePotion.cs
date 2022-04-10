@@ -11,7 +11,7 @@ namespace AEAssist.AI
         {
             if (!SettingMgr.GetSetting<GeneralSettings>().UsePotion)
                 return -1;
-            if (AIRoot.Instance.CloseBuff)
+            if (AIRoot.Instance.BurstOff)
                 return -2;
             if (AIRoot.Instance.BattleData.maxAbilityTimes <
                 SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD)

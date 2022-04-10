@@ -11,6 +11,11 @@ namespace AEAssist
 {
     public static class MongoHelper
     {
+        public static JsonWriterSettings Settings = new JsonWriterSettings
+        {
+            Indent = true,
+            OutputMode = JsonOutputMode.Strict,
+        };
         static MongoHelper()
         {
             // 自动注册IgnoreExtraElements
@@ -39,7 +44,7 @@ namespace AEAssist
 
         public static string ToJson(object obj)
         {
-            return obj.ToJson();
+            return obj.ToJson(Settings);
         }
 
         public static string ToJson(object obj, JsonWriterSettings settings)

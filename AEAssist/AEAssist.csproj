@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -46,17 +46,17 @@
             <HintPath>..\References\RebornBuddy.exe</HintPath>
             <Private>False</Private>
         </Reference>
-        <Reference Include="System"/>
-        <Reference Include="System.Core"/>
-        <Reference Include="System.Data"/>
-        <Reference Include="System.Windows.Forms"/>
-        <Reference Include="System.Xml"/>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Xml" />
         <Reference Include="System.Xaml">
             <RequiredTargetFramework>4.0</RequiredTargetFramework>
         </Reference>
-        <Reference Include="WindowsBase"/>
-        <Reference Include="PresentationCore"/>
-        <Reference Include="PresentationFramework"/>
+        <Reference Include="WindowsBase" />
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="..\AETriggers\TriggerModel\ITriggerAction.cs">
@@ -122,75 +122,75 @@
         <Compile Include="..\AETriggers\TriggerModel\TriggerMgr.cs">
             <Link>TriggerModel\TriggerMgr.cs</Link>
         </Compile>
-        <Compile Include="AI\AIMgrs.cs"/>
-        <Compile Include="AI\Bard\Ability\BardAbility_Barrage.cs"/>
-        <Compile Include="AI\Bard\Ability\BardAbility_Bloodletter.cs"/>
-        <Compile Include="AI\Bard\Ability\BardAbility_Buffs.cs"/>
-        <Compile Include="AI\Bard\Ability\BardAbility_EmpyrealArrow.cs"/>
-        <Compile Include="AI\Bard\Ability\BardAbility_MaxChargeBloodletter.cs"/>
-        <Compile Include="AI\Bard\Ability\BardAbility_PitchPerfect.cs"/>
-        <Compile Include="AI\Bard\Ability\BardAbility_RagingStrikes.cs"/>
-        <Compile Include="AI\Bard\Ability\BardAbility_Sidewinder.cs"/>
-        <Compile Include="AI\Bard\Ability\BardAbility_Songs.cs"/>
-        <Compile Include="AI\Bard\Ability\BardAbility_UsePotion.cs"/>
-        <Compile Include="AI\Bard\Bard_AIPriorityQueue.cs"/>
-        <Compile Include="AI\Bard\BardBattleData.cs"/>
-        <Compile Include="AI\Bard\BardSpellHelper.cs"/>
-        <Compile Include="AI\Bard\GCD\BardGCD_ApexArrow.cs"/>
-        <Compile Include="AI\Bard\GCD\BardGCD_Barrage_RefulgentArrow.cs"/>
-        <Compile Include="AI\Bard\GCD\BardGCD_BlastArrow.cs"/>
-        <Compile Include="AI\Bard\GCD\BardGCD_Dot.cs"/>
-        <Compile Include="AI\Bard\GCD\BardGCD_HeavyShot.cs"/>
-        <Compile Include="AI\Bard\GCD\BardGCD_QuickNock.cs"/>
-        <Compile Include="AI\BattleData.cs"/>
-        <Compile Include="AI\IAIHandler.cs"/>
-        <Compile Include="AI\IAIPriorityQueue.cs"/>
-        <Compile Include="AI\Reaper\Ability\ReaperAbility_ArcaneCircle.cs"/>
-        <Compile Include="AI\Reaper\Ability\ReaperAbility_BloodStalk.cs"/>
-        <Compile Include="AI\Reaper\Ability\ReaperAbility_Enshroud.cs"/>
-        <Compile Include="AI\Reaper\Ability\ReaperAbility_Gluttony.cs"/>
-        <Compile Include="AI\Reaper\Ability\ReaperAbility_Lemure.cs"/>
-        <Compile Include="AI\Reaper\Ability\ReaperAbility_TrueNorth.cs"/>
-        <Compile Include="AI\Reaper\Ability\ReaperAbility_UsePotion.cs"/>
-        <Compile Include="AI\Reaper\GCD\ReaperGCD_BaseGCDCombo.cs"/>
-        <Compile Include="AI\Reaper\GCD\ReaperGCD_EnshroudGCD.cs"/>
-        <Compile Include="AI\Reaper\GCD\ReaperGCD_Gibbit_Gallows.cs"/>
-        <Compile Include="AI\Reaper\GCD\ReaperGCD_PlentifulHarvest.cs"/>
-        <Compile Include="AI\Reaper\GCD\ReaperGCD_PullRangeGCD.cs"/>
-        <Compile Include="AI\Reaper\GCD\ReaperGCD_ShadowOfDeath.cs"/>
-        <Compile Include="AI\Reaper\GCD\ReaperGCD_SoulSlice.cs"/>
-        <Compile Include="AI\Reaper\Reaper_AIPriorityQueue.cs"/>
-        <Compile Include="AI\Reaper\ReaperBattleData.cs"/>
-        <Compile Include="AI\Reaper\ReaperSpellHelper.cs"/>
-        <Compile Include="AI\SpellHistoryMgr.cs"/>
-        <Compile Include="DataBinding\DebugCenter.cs"/>
-        <Compile Include="DataBinding\HotkeyData.cs"/>
-        <Compile Include="DataBinding\Language.cs"/>
-        <Compile Include="DataBinding\LanguageOptionData.cs"/>
-        <Compile Include="DataBinding\PotionData.cs"/>
-        <Compile Include="DataBinding\SongData.cs"/>
-        <Compile Include="Define\DataStruct\CircleList.cs"/>
-        <Compile Include="Define\LanguageHelper.cs"/>
-        <Compile Include="Gamelog\AEGamelogManager.cs"/>
-        <Compile Include="Helper\SpellHistoryHelper.cs"/>
-        <Compile Include="Rotations\ReaperRotation.cs"/>
-        <Compile Include="Setting\Setting\HotkeySetting.cs"/>
-        <Compile Include="Setting\Setting\ReaperSettings.cs"/>
-        <Compile Include="TriggerSystem\ITriggerActionHandler.cs"/>
-        <Compile Include="TriggerSystem\ITriggerCondHandler.cs"/>
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_CastAbility.cs"/>
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_NextSong.cs"/>
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchAOE.cs"/>
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchApex.cs"/>
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchBurst.cs"/>
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchDOT.cs"/>
-        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterBattleStart.cs"/>
-        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterOtherTrigger.cs"/>
-        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyCastSpellByName.cs"/>
-        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyHpPct.cs"/>
-        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyInLOS.cs"/>
-        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_GameLog.cs"/>
-        <Compile Include="TriggerSystem\TriggerSystemMgr.cs"/>
+        <Compile Include="AI\AIMgrs.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_Barrage.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_Bloodletter.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_Buffs.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_EmpyrealArrow.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_MaxChargeBloodletter.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_PitchPerfect.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_RagingStrikes.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_Sidewinder.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_Songs.cs" />
+        <Compile Include="AI\Bard\Ability\BardAbility_UsePotion.cs" />
+        <Compile Include="AI\Bard\Bard_AIPriorityQueue.cs" />
+        <Compile Include="AI\Bard\BardBattleData.cs" />
+        <Compile Include="AI\Bard\BardSpellHelper.cs" />
+        <Compile Include="AI\Bard\GCD\BardGCD_ApexArrow.cs" />
+        <Compile Include="AI\Bard\GCD\BardGCD_Barrage_RefulgentArrow.cs" />
+        <Compile Include="AI\Bard\GCD\BardGCD_BlastArrow.cs" />
+        <Compile Include="AI\Bard\GCD\BardGCD_Dot.cs" />
+        <Compile Include="AI\Bard\GCD\BardGCD_HeavyShot.cs" />
+        <Compile Include="AI\Bard\GCD\BardGCD_QuickNock.cs" />
+        <Compile Include="AI\BattleData.cs" />
+        <Compile Include="AI\IAIHandler.cs" />
+        <Compile Include="AI\IAIPriorityQueue.cs" />
+        <Compile Include="AI\Reaper\Ability\ReaperAbility_ArcaneCircle.cs" />
+        <Compile Include="AI\Reaper\Ability\ReaperAbility_BloodStalk.cs" />
+        <Compile Include="AI\Reaper\Ability\ReaperAbility_Enshroud.cs" />
+        <Compile Include="AI\Reaper\Ability\ReaperAbility_Gluttony.cs" />
+        <Compile Include="AI\Reaper\Ability\ReaperAbility_Lemure.cs" />
+        <Compile Include="AI\Reaper\Ability\ReaperAbility_TrueNorth.cs" />
+        <Compile Include="AI\Reaper\Ability\ReaperAbility_UsePotion.cs" />
+        <Compile Include="AI\Reaper\GCD\ReaperGCD_BaseGCDCombo.cs" />
+        <Compile Include="AI\Reaper\GCD\ReaperGCD_EnshroudGCD.cs" />
+        <Compile Include="AI\Reaper\GCD\ReaperGCD_Gibbit_Gallows.cs" />
+        <Compile Include="AI\Reaper\GCD\ReaperGCD_PlentifulHarvest.cs" />
+        <Compile Include="AI\Reaper\GCD\ReaperGCD_PullRangeGCD.cs" />
+        <Compile Include="AI\Reaper\GCD\ReaperGCD_ShadowOfDeath.cs" />
+        <Compile Include="AI\Reaper\GCD\ReaperGCD_SoulSlice.cs" />
+        <Compile Include="AI\Reaper\Reaper_AIPriorityQueue.cs" />
+        <Compile Include="AI\Reaper\ReaperBattleData.cs" />
+        <Compile Include="AI\Reaper\ReaperSpellHelper.cs" />
+        <Compile Include="AI\SpellHistoryMgr.cs" />
+        <Compile Include="DataBinding\DebugCenter.cs" />
+        <Compile Include="DataBinding\HotkeyData.cs" />
+        <Compile Include="DataBinding\Language.cs" />
+        <Compile Include="DataBinding\LanguageOptionData.cs" />
+        <Compile Include="DataBinding\PotionData.cs" />
+        <Compile Include="DataBinding\SongData.cs" />
+        <Compile Include="Define\DataStruct\CircleList.cs" />
+        <Compile Include="Gamelog\AEGamelogManager.cs" />
+        <Compile Include="Helper\LanguageHelper.cs" />
+        <Compile Include="Helper\SpellHistoryHelper.cs" />
+        <Compile Include="Rotations\ReaperRotation.cs" />
+        <Compile Include="Setting\Setting\HotkeySetting.cs" />
+        <Compile Include="Setting\Setting\ReaperSettings.cs" />
+        <Compile Include="TriggerSystem\ITriggerActionHandler.cs" />
+        <Compile Include="TriggerSystem\ITriggerCondHandler.cs" />
+        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_CastAbility.cs" />
+        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_NextSong.cs" />
+        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchAOE.cs" />
+        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchApex.cs" />
+        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchBurst.cs" />
+        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchDOT.cs" />
+        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterBattleStart.cs" />
+        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterOtherTrigger.cs" />
+        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyCastSpellByName.cs" />
+        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyHpPct.cs" />
+        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyInLOS.cs" />
+        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_GameLog.cs" />
+        <Compile Include="TriggerSystem\TriggerSystemMgr.cs" />
         <Compile Include="View\BardSettingView.xaml.cs">
             <DependentUpon>BardSettingView.xaml</DependentUpon>
         </Compile>
@@ -200,12 +200,12 @@
         <Compile Include="View\GeneralSettingView.xaml.cs">
             <DependentUpon>GeneralSettingView.xaml</DependentUpon>
         </Compile>
-        <Compile Include="View\OverlayManager.cs"/>
+        <Compile Include="View\OverlayManager.cs" />
         <Compile Include="View\Overlay\BardOverlayWindow.xaml.cs">
             <DependentUpon>BardOverlayWindow.xaml</DependentUpon>
         </Compile>
-        <Compile Include="View\Overlay\OverlayUIComponent_BardOverlay.cs"/>
-        <Compile Include="View\Overlay\OverlayUIComponent_ReaperOverlay.cs"/>
+        <Compile Include="View\Overlay\OverlayUIComponent_BardOverlay.cs" />
+        <Compile Include="View\Overlay\OverlayUIComponent_ReaperOverlay.cs" />
         <Compile Include="View\Overlay\ReaperOverlay.xaml.cs">
             <DependentUpon>ReaperOverlay.xaml</DependentUpon>
         </Compile>
@@ -219,146 +219,155 @@
             <Link>AEAssistLoader.cs</Link>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
-        <Compile Include="DataBinding\DataBinding.cs"/>
-        <Compile Include="Entry.cs"/>
-        <Compile Include="Properties\Annotations.cs"/>
+        <Compile Include="DataBinding\DataBinding.cs" />
+        <Compile Include="Entry.cs" />
+        <Compile Include="Properties\Annotations.cs" />
         <Compile Include="Resources\Icons.Designer.cs">
             <DesignTime>True</DesignTime>
             <AutoGen>True</AutoGen>
             <DependentUpon>Icons.resx</DependentUpon>
         </Compile>
-        <Compile Include="Setting\BaseSetting.cs"/>
-        <Compile Include="Setting\ConstValue.cs"/>
-        <Compile Include="Setting\SettingAttribute.cs"/>
-        <Compile Include="Setting\SettingMgr.cs"/>
-        <Compile Include="Setting\Setting\BardSettings.cs"/>
-        <Compile Include="Setting\Setting\GeneralSettings.cs"/>
-        <Compile Include="Setting\Setting\VersionSetting.cs"/>
+        <Compile Include="Setting\BaseSetting.cs" />
+        <Compile Include="Setting\ConstValue.cs" />
+        <Compile Include="Setting\SettingAttribute.cs" />
+        <Compile Include="Setting\SettingMgr.cs" />
+        <Compile Include="Setting\Setting\BardSettings.cs" />
+        <Compile Include="Setting\Setting\GeneralSettings.cs" />
+        <Compile Include="Setting\Setting\VersionSetting.cs" />
         <Content Include="Resources\BossDictionary.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
-        <Resource Include="Resources\Spells\Potion.png"/>
-        <Resource Include="Resources\Spells\SecondWind.png"/>
-        <Resource Include="Resources\Spells\Sprint.png"/>
-        <Resource Include="Resources\Spells\TrueNorth.png"/>
-        <Resource Include="Resources\Spells\ArcaneCrest.png"/>
-        <Resource Include="Resources\Spells\Feint.png"/>
-        <Resource Include="Resources\Spells\Reset.jpeg"/>
-        <Resource Include="Resources\Spells\ArmsLength.png"/>
-        <Resource Include="Resources\Spells\Troubadour.png"/>
-        <Page Include="View\CommonOverlay.xaml"/>
-        <Page Include="View\Overlay\ReaperOverlay.xaml"/>
-        <Page Include="View\ReaperSettingView.xaml"/>
-        <Page Include="View\TriggerLineWindow.xaml"/>
-        <Resource Include="Resources\jobs\acn.png"/>
-        <Resource Include="Resources\jobs\alc.png"/>
-        <Resource Include="Resources\jobs\arc.png"/>
-        <Resource Include="Resources\jobs\arm.png"/>
-        <Resource Include="Resources\jobs\ast-framed.png"/>
-        <Resource Include="Resources\jobs\ast-large.png"/>
-        <Resource Include="Resources\jobs\ast.png"/>
-        <Resource Include="Resources\jobs\blm-framed.png"/>
-        <Resource Include="Resources\jobs\blm-large.png"/>
-        <Resource Include="Resources\jobs\blm.png"/>
-        <Resource Include="Resources\jobs\blu-framed.png"/>
-        <Resource Include="Resources\jobs\blu-large.png"/>
-        <Resource Include="Resources\jobs\blu.png"/>
-        <Resource Include="Resources\jobs\bot.png"/>
-        <Resource Include="Resources\jobs\brd-framed.png"/>
-        <Resource Include="Resources\jobs\brd-large.png"/>
-        <Resource Include="Resources\jobs\brd.png"/>
-        <Resource Include="Resources\jobs\bsm.png"/>
-        <Resource Include="Resources\jobs\cho.png"/>
-        <Resource Include="Resources\jobs\cnj.png"/>
-        <Resource Include="Resources\jobs\crp.png"/>
-        <Resource Include="Resources\jobs\cul.png"/>
-        <Resource Include="Resources\jobs\dnc-framed.png"/>
-        <Resource Include="Resources\jobs\dnc-large.png"/>
-        <Resource Include="Resources\jobs\dnc.png"/>
-        <Resource Include="Resources\jobs\drg-framed.png"/>
-        <Resource Include="Resources\jobs\drg-large.png"/>
-        <Resource Include="Resources\jobs\drg.png"/>
-        <Resource Include="Resources\jobs\drk-framed.png"/>
-        <Resource Include="Resources\jobs\drk-large.png"/>
-        <Resource Include="Resources\jobs\drk.png"/>
-        <Resource Include="Resources\jobs\fsh.png"/>
-        <Resource Include="Resources\jobs\gla.png"/>
-        <Resource Include="Resources\jobs\gnb-framed.png"/>
-        <Resource Include="Resources\jobs\gnb-large.png"/>
-        <Resource Include="Resources\jobs\gnb.png"/>
-        <Resource Include="Resources\jobs\gsm.png"/>
-        <Resource Include="Resources\jobs\limit break.png"/>
-        <Resource Include="Resources\jobs\lnc.png"/>
-        <Resource Include="Resources\jobs\ltw.png"/>
-        <Resource Include="Resources\jobs\mch-framed.png"/>
-        <Resource Include="Resources\jobs\mch-large.png"/>
-        <Resource Include="Resources\jobs\mch.png"/>
-        <Resource Include="Resources\jobs\min.png"/>
-        <Resource Include="Resources\jobs\mnk-framed.png"/>
-        <Resource Include="Resources\jobs\mnk-large.png"/>
-        <Resource Include="Resources\jobs\mnk.png"/>
-        <Resource Include="Resources\jobs\mrd.png"/>
-        <Resource Include="Resources\jobs\nin-framed.png"/>
-        <Resource Include="Resources\jobs\nin-large.png"/>
-        <Resource Include="Resources\jobs\nin.png"/>
-        <Resource Include="Resources\jobs\pet.png"/>
-        <Resource Include="Resources\jobs\pgl.png"/>
-        <Resource Include="Resources\jobs\pld-framed.png"/>
-        <Resource Include="Resources\jobs\pld-large.png"/>
-        <Resource Include="Resources\jobs\pld.png"/>
-        <Resource Include="Resources\jobs\rdm-framed.png"/>
-        <Resource Include="Resources\jobs\rdm-large.png"/>
-        <Resource Include="Resources\jobs\rdm.png"/>
-        <Resource Include="Resources\jobs\rog.png"/>
-        <Resource Include="Resources\jobs\rpr-framed.png"/>
-        <Resource Include="Resources\jobs\rpr.png"/>
-        <Resource Include="Resources\jobs\sam-framed.png"/>
-        <Resource Include="Resources\jobs\sam-large.png"/>
-        <Resource Include="Resources\jobs\sam.png"/>
-        <Resource Include="Resources\jobs\sch-framed.png"/>
-        <Resource Include="Resources\jobs\sch-large.png"/>
-        <Resource Include="Resources\jobs\sch.png"/>
-        <Resource Include="Resources\jobs\sge-framed.png"/>
-        <Resource Include="Resources\jobs\sge.png"/>
-        <Resource Include="Resources\jobs\smn-framed.png"/>
-        <Resource Include="Resources\jobs\smn-large.png"/>
-        <Resource Include="Resources\jobs\smn.png"/>
-        <Resource Include="Resources\jobs\thm.png"/>
-        <Resource Include="Resources\jobs\war-framed.png"/>
-        <Resource Include="Resources\jobs\war-large.png"/>
-        <Resource Include="Resources\jobs\war.png"/>
-        <Resource Include="Resources\jobs\whm-framed.png"/>
-        <Resource Include="Resources\jobs\whm-large.png"/>
-        <Resource Include="Resources\jobs\whm.png"/>
-        <Resource Include="Resources\jobs\wvr.png"/>
-        <Page Include="View\BardSettingView.xaml"/>
-        <Page Include="View\GeneralSettingView.xaml"/>
-        <Page Include="View\Overlay\BardOverlayWindow.xaml"/>
-        <Resource Include="Resources\Icon.png"/>
+        <Content Include="Resources\Lan_pre-en.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Resources\Lan_pre-jp.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Resources\Lan_en.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Resource Include="Resources\Spells\Potion.png" />
+        <Resource Include="Resources\Spells\SecondWind.png" />
+        <Resource Include="Resources\Spells\Sprint.png" />
+        <Resource Include="Resources\Spells\TrueNorth.png" />
+        <Resource Include="Resources\Spells\ArcaneCrest.png" />
+        <Resource Include="Resources\Spells\Feint.png" />
+        <Resource Include="Resources\Spells\Reset.jpeg" />
+        <Resource Include="Resources\Spells\ArmsLength.png" />
+        <Resource Include="Resources\Spells\Troubadour.png" />
+        <Page Include="View\CommonOverlay.xaml" />
+        <Page Include="View\Overlay\ReaperOverlay.xaml" />
+        <Page Include="View\ReaperSettingView.xaml" />
+        <Page Include="View\TriggerLineWindow.xaml" />
+        <Resource Include="Resources\jobs\acn.png" />
+        <Resource Include="Resources\jobs\alc.png" />
+        <Resource Include="Resources\jobs\arc.png" />
+        <Resource Include="Resources\jobs\arm.png" />
+        <Resource Include="Resources\jobs\ast-framed.png" />
+        <Resource Include="Resources\jobs\ast-large.png" />
+        <Resource Include="Resources\jobs\ast.png" />
+        <Resource Include="Resources\jobs\blm-framed.png" />
+        <Resource Include="Resources\jobs\blm-large.png" />
+        <Resource Include="Resources\jobs\blm.png" />
+        <Resource Include="Resources\jobs\blu-framed.png" />
+        <Resource Include="Resources\jobs\blu-large.png" />
+        <Resource Include="Resources\jobs\blu.png" />
+        <Resource Include="Resources\jobs\bot.png" />
+        <Resource Include="Resources\jobs\brd-framed.png" />
+        <Resource Include="Resources\jobs\brd-large.png" />
+        <Resource Include="Resources\jobs\brd.png" />
+        <Resource Include="Resources\jobs\bsm.png" />
+        <Resource Include="Resources\jobs\cho.png" />
+        <Resource Include="Resources\jobs\cnj.png" />
+        <Resource Include="Resources\jobs\crp.png" />
+        <Resource Include="Resources\jobs\cul.png" />
+        <Resource Include="Resources\jobs\dnc-framed.png" />
+        <Resource Include="Resources\jobs\dnc-large.png" />
+        <Resource Include="Resources\jobs\dnc.png" />
+        <Resource Include="Resources\jobs\drg-framed.png" />
+        <Resource Include="Resources\jobs\drg-large.png" />
+        <Resource Include="Resources\jobs\drg.png" />
+        <Resource Include="Resources\jobs\drk-framed.png" />
+        <Resource Include="Resources\jobs\drk-large.png" />
+        <Resource Include="Resources\jobs\drk.png" />
+        <Resource Include="Resources\jobs\fsh.png" />
+        <Resource Include="Resources\jobs\gla.png" />
+        <Resource Include="Resources\jobs\gnb-framed.png" />
+        <Resource Include="Resources\jobs\gnb-large.png" />
+        <Resource Include="Resources\jobs\gnb.png" />
+        <Resource Include="Resources\jobs\gsm.png" />
+        <Resource Include="Resources\jobs\limit break.png" />
+        <Resource Include="Resources\jobs\lnc.png" />
+        <Resource Include="Resources\jobs\ltw.png" />
+        <Resource Include="Resources\jobs\mch-framed.png" />
+        <Resource Include="Resources\jobs\mch-large.png" />
+        <Resource Include="Resources\jobs\mch.png" />
+        <Resource Include="Resources\jobs\min.png" />
+        <Resource Include="Resources\jobs\mnk-framed.png" />
+        <Resource Include="Resources\jobs\mnk-large.png" />
+        <Resource Include="Resources\jobs\mnk.png" />
+        <Resource Include="Resources\jobs\mrd.png" />
+        <Resource Include="Resources\jobs\nin-framed.png" />
+        <Resource Include="Resources\jobs\nin-large.png" />
+        <Resource Include="Resources\jobs\nin.png" />
+        <Resource Include="Resources\jobs\pet.png" />
+        <Resource Include="Resources\jobs\pgl.png" />
+        <Resource Include="Resources\jobs\pld-framed.png" />
+        <Resource Include="Resources\jobs\pld-large.png" />
+        <Resource Include="Resources\jobs\pld.png" />
+        <Resource Include="Resources\jobs\rdm-framed.png" />
+        <Resource Include="Resources\jobs\rdm-large.png" />
+        <Resource Include="Resources\jobs\rdm.png" />
+        <Resource Include="Resources\jobs\rog.png" />
+        <Resource Include="Resources\jobs\rpr-framed.png" />
+        <Resource Include="Resources\jobs\rpr.png" />
+        <Resource Include="Resources\jobs\sam-framed.png" />
+        <Resource Include="Resources\jobs\sam-large.png" />
+        <Resource Include="Resources\jobs\sam.png" />
+        <Resource Include="Resources\jobs\sch-framed.png" />
+        <Resource Include="Resources\jobs\sch-large.png" />
+        <Resource Include="Resources\jobs\sch.png" />
+        <Resource Include="Resources\jobs\sge-framed.png" />
+        <Resource Include="Resources\jobs\sge.png" />
+        <Resource Include="Resources\jobs\smn-framed.png" />
+        <Resource Include="Resources\jobs\smn-large.png" />
+        <Resource Include="Resources\jobs\smn.png" />
+        <Resource Include="Resources\jobs\thm.png" />
+        <Resource Include="Resources\jobs\war-framed.png" />
+        <Resource Include="Resources\jobs\war-large.png" />
+        <Resource Include="Resources\jobs\war.png" />
+        <Resource Include="Resources\jobs\whm-framed.png" />
+        <Resource Include="Resources\jobs\whm-large.png" />
+        <Resource Include="Resources\jobs\whm.png" />
+        <Resource Include="Resources\jobs\wvr.png" />
+        <Page Include="View\BardSettingView.xaml" />
+        <Page Include="View\GeneralSettingView.xaml" />
+        <Page Include="View\Overlay\BardOverlayWindow.xaml" />
+        <Resource Include="Resources\Icon.png" />
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </Page>
-        <Compile Include="AI\AIRoot.cs"/>
-        <Compile Include="AI\CountDownHandler.cs"/>
-        <Compile Include="AI\TargetMgr.cs"/>
-        <Compile Include="Define\AurasDefine.cs"/>
-        <Compile Include="Define\SpellsDefine.cs"/>
-        <Compile Include="Helper\AuraHelper.cs"/>
-        <Compile Include="Helper\DataHelper.cs"/>
-        <Compile Include="Helper\GUIHelper.cs"/>
-        <Compile Include="Helper\LogHelper.cs"/>
-        <Compile Include="Helper\PotionHelper.cs"/>
-        <Compile Include="Helper\RandomHelper.cs"/>
-        <Compile Include="Helper\SpellHelper.cs"/>
-        <Compile Include="Helper\TargetHelper.cs"/>
-        <Compile Include="Helper\TimeHelper.cs"/>
-        <Compile Include="Helper\TTKHelper.cs"/>
-        <Compile Include="Rotations\BardRotation.cs"/>
-        <Compile Include="Rotations\Core\DefaultRotation.cs"/>
-        <Compile Include="Rotations\Core\IRotation.cs"/>
-        <Compile Include="Rotations\Core\RotationAttribute.cs"/>
-        <Compile Include="Rotations\Core\RotationManager.cs"/>
+        <Compile Include="AI\AIRoot.cs" />
+        <Compile Include="AI\CountDownHandler.cs" />
+        <Compile Include="AI\TargetMgr.cs" />
+        <Compile Include="Define\AurasDefine.cs" />
+        <Compile Include="Define\SpellsDefine.cs" />
+        <Compile Include="Helper\AuraHelper.cs" />
+        <Compile Include="Helper\DataHelper.cs" />
+        <Compile Include="Helper\GUIHelper.cs" />
+        <Compile Include="Helper\LogHelper.cs" />
+        <Compile Include="Helper\PotionHelper.cs" />
+        <Compile Include="Helper\RandomHelper.cs" />
+        <Compile Include="Helper\SpellHelper.cs" />
+        <Compile Include="Helper\TargetHelper.cs" />
+        <Compile Include="Helper\TimeHelper.cs" />
+        <Compile Include="Helper\TTKHelper.cs" />
+        <Compile Include="Rotations\BardRotation.cs" />
+        <Compile Include="Rotations\Core\DefaultRotation.cs" />
+        <Compile Include="Rotations\Core\IRotation.cs" />
+        <Compile Include="Rotations\Core\RotationAttribute.cs" />
+        <Compile Include="Rotations\Core\RotationManager.cs" />
         <Compile Include="MainWindow.xaml.cs">
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
@@ -383,14 +392,14 @@
         </EmbeddedResource>
     </ItemGroup>
     <ItemGroup>
-        <None Include="App.config"/>
+        <None Include="App.config" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="MaterialDesignColors" Version="2.0.6-ci125"/>
-        <PackageReference Include="MaterialDesignExtensions" Version="4.0.0-a02"/>
-        <PackageReference Include="MaterialDesignThemes" Version="4.5.0-ci125"/>
-        <PackageReference Include="PropertyChanged.Fody" Version="3.4.0"/>
-        <PackageReference Include="System.ObjectModel" Version="4.3.0"/>
+        <PackageReference Include="MaterialDesignColors" Version="2.0.6-ci125" />
+        <PackageReference Include="MaterialDesignExtensions" Version="4.0.0-a02" />
+        <PackageReference Include="MaterialDesignThemes" Version="4.5.0-ci125" />
+        <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
+        <PackageReference Include="System.ObjectModel" Version="4.3.0" />
     </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

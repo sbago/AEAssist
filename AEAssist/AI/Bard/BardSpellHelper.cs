@@ -260,7 +260,7 @@ namespace AEAssist.Define
 
         public static bool Prepare2BurstBuffs(int time = 10000)
         {
-            if (AIRoot.Instance.CloseBuff)
+            if (AIRoot.Instance.BurstOff)
                 return false;
             if (SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds < time) return true;
 
@@ -340,7 +340,7 @@ namespace AEAssist.Define
             var remainTime = ActionResourceManager.Bard.Timer.TotalMilliseconds;
 
 
-            if (!AIRoot.Instance.CloseBuff)
+            if (!AIRoot.Instance.BurstOff)
             {
                 if (AIRoot.Instance.BardBattleData.nextSong == ActionResourceManager.Bard.BardSong.None
                     && currSong != ActionResourceManager.Bard.BardSong.None

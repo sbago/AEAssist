@@ -110,7 +110,7 @@
                               Width="80"
                               Height="30"
                               Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                              IsChecked="{Binding CloseBuff,Mode=TwoWay}" />
+                              IsChecked="{Binding BurstOff,Mode=TwoWay}" />
 
                     <CheckBox HorizontalContentAlignment="Center"
                               Content="AOE"
@@ -121,7 +121,7 @@
                               IsChecked="{Binding UseAOE,Mode=TwoWay}" />
 
                     <CheckBox HorizontalContentAlignment="Center"
-                              Content="爆发药"
+                              Content="{Binding Language.Toggle_Potion}"
                               FontSize="12"
                               Width="80"
                               Height="30"
@@ -129,7 +129,7 @@
                               IsChecked="{Binding GeneralSettings.UsePotion,Mode=TwoWay}" />
 
                     <CheckBox HorizontalContentAlignment="Center"
-                              Content="绝峰箭"
+                              Content="{Binding Language.Toggle_Apex}"
                               FontSize="12"
                               Width="80"
                               Height="30"
@@ -145,7 +145,7 @@
                               IsChecked="{Binding UseDot,Mode=TwoWay}" />
 
                     <CheckBox HorizontalContentAlignment="Center"
-                              Content="主动攻击目标"
+                              Content="{Binding Language.Toggle_ActiveAttack}"
                               FontSize="12"
                               Width="80"
                               Height="30"

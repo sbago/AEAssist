@@ -22,7 +22,7 @@ namespace AEAssist.View
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             var value = PotionHelper.CheckNum(SettingMgr.GetSetting<BardSettings>().UsePotionId);
-            PotionCount.Content = "数量: " + value;
+            PotionCount.Content = value.ToString();
         }
     }
 }

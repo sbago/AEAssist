@@ -1,4 +1,5 @@
-﻿using AEAssist.AI;
+﻿using System.Text.RegularExpressions;
+using AEAssist.AI;
 using ff14bot.Enums;
 using ff14bot.Managers;
 using QuickGraph.Collections;
@@ -51,11 +52,15 @@ namespace AEAssist.Gamelog
 
             if (e.ChatLogEntry.MessageType == MessageType.SystemMessages)
             {
-                if (e.ChatLogEntry.Contents.Contains(Language.Instance.MessageLog_CountDown_BattleStartIn5sec))
+                // 5秒倒计时触发
+                if (Regex.IsMatch(e.ChatLogEntry.Contents,
+                    Language.Instance.MessageLog_CountDown_BattleStartIn5sec))
                 {
                     CountDownHandler.Instance.StartCountDown();
                 }
-                else if (e.ChatLogEntry.Contents.Contains(Language.Instance.MessageLog_CountDown_CancelBattleStart))
+                // 有人取消
+                else if (Regex.IsMatch(e.ChatLogEntry.Contents,
+                    Language.Instance.MessageLog_CountDown_CancelBattleStart))
                 {
                     CountDownHandler.Instance.Close();
                     GUIHelper.ShowInfo(e.ChatLogEntry.Contents, 1000, false);

@@ -24,6 +24,10 @@ namespace AEAssist.View
             Hotkey_Stop.SelectedValue = Enum.Parse(typeof(Keys), SettingMgr.GetSetting<HotkeySetting>().StopKey);
             Hotkey_CloseBuff.SelectedValue =
                 Enum.Parse(typeof(Keys), SettingMgr.GetSetting<HotkeySetting>().CloseBuffKey);
+
+            SwitchLan.ItemsSource = LanguageHelper.LanOptions;
+            SwitchLan.SelectedValue = AEAssist.Language.Instance.LanType;
+
         }
 
         private List<HotkeyData> GetHotkeyData()
@@ -62,6 +66,11 @@ namespace AEAssist.View
             SettingMgr.GetSetting<HotkeySetting>().CloseBuffKey = Hotkey_CloseBuff.SelectedValue.ToString();
             SettingMgr.GetSetting<HotkeySetting>().ResetHotkeyName();
             SettingMgr.GetSetting<HotkeySetting>().RegisHotkey();
+        }
+
+        private void SwitchLan_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LanguageHelper.SwitchLan((string)SwitchLan.SelectedValue);
         }
     }
 }

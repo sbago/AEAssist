@@ -28,7 +28,7 @@ namespace AEAssist.AI.Reaper.Ability
                 return -6;
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -7;
-            if (!AIRoot.Instance.CloseBuff && SpellsDefine.Gluttony.Cooldown.TotalMilliseconds < 10000) return -8;
+            if (!AIRoot.Instance.BurstOff && SpellsDefine.Gluttony.Cooldown.TotalMilliseconds < 10000) return -8;
 
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
                 return -9;

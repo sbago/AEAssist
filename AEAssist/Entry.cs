@@ -1,6 +1,7 @@
 ﻿//using Clio.Utilities.Collections;
 
 using System;
+using AEAssist.Define;
 using AEAssist.Gamelog;
 using AEAssist.Helper;
 using AEAssist.View;
@@ -50,6 +51,7 @@ namespace AEAssist
             try
             {
                 SettingMgr.Instance.InitSetting();
+                LanguageHelper.Init();
                 DataHelper.Init();
                 RotationManager.Instance.Init();
                 HookBehaviors();

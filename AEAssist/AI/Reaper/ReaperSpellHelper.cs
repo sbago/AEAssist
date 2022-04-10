@@ -169,7 +169,7 @@ namespace AEAssist.AI.Reaper
 
         public static int ReadyToEnshroud()
         {
-            if (AIRoot.Instance.CloseBuff)
+            if (AIRoot.Instance.BurstOff)
                 return -100;
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -101;

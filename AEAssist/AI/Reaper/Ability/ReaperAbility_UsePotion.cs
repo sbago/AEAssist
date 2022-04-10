@@ -13,7 +13,7 @@ namespace AEAssist.AI
         {
             if (!SettingMgr.GetSetting<GeneralSettings>().UsePotion)
                 return -1;
-            if (AIRoot.Instance.CloseBuff)
+            if (AIRoot.Instance.BurstOff)
                 return -2;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return -3;

@@ -66,7 +66,7 @@ namespace AEAssist.AI
             SpellData spell = null;
             forceNextDuration = false;
             forceNextSong = false;
-            if (AIRoot.Instance.CloseBuff)
+            if (AIRoot.Instance.BurstOff)
             {
                 // 关爆发的时候,让歌唱完
                 if (currSong != ActionResourceManager.Bard.BardSong.None)
@@ -180,7 +180,7 @@ namespace AEAssist.AI
                 i--;
                 if (spellData == null || !spellData.IsReady()) continue;
 
-                if (spellData == SpellsDefine.TheWanderersMinuet && AIRoot.Instance.CloseBuff) continue;
+                if (spellData == SpellsDefine.TheWanderersMinuet && AIRoot.Instance.BurstOff) continue;
 
                 if (spellData == origin)
                     continue;
