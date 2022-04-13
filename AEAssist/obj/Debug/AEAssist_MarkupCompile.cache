@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-8-1239645025
+9-550562242
 51973500664
-134-1661697738
+1531316454032
 171690616272
-View\CommonOverlay.xaml;View\Overlay\ReaperOverlay.xaml;View\ReaperSettingView.xaml;View\TriggerLineWindow.xaml;View\BardSettingView.xaml;View\GeneralSettingView.xaml;View\Overlay\BardOverlayWindow.xaml;MainWindow.xaml;
+View\CommonOverlay.xaml;View\Overlay\MCHOverlayWindow.xaml;View\Overlay\ReaperOverlay.xaml;View\ReaperSettingView.xaml;View\TriggerLineWindow.xaml;View\BardSettingView.xaml;View\GeneralSettingView.xaml;View\Overlay\BardOverlayWindow.xaml;MainWindow.xaml;
 
 False
 

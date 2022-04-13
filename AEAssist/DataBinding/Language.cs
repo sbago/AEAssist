@@ -38,6 +38,8 @@ namespace AEAssist
         public string TabItem_BaseSetting { get; set; } = "基本设置";
         public string TabItem_TTKSetting { get; set; } = "TTK设置";
 
+        public string TabItem_PotionSetting { get; set; } = "爆发药设置";
+
         public string TabItem_SongSetting { get; set; } = "歌曲设置";
         public string SongSettingToolTips { get; set; } = "开爆发状态下,歌曲剩多久(毫秒)后切换";
         public string SongSetting_WM { get; set; } = "旅神";
@@ -65,7 +67,8 @@ namespace AEAssist
         
 
         public string Label_CurrTriggerLine { get; set; } = "当前加载时间轴:";
-        public string Label_ChoosePotion { get; set; } = "爆发药选择";
+        public string Label_DexChoosePotion { get; set; } = "敏捷爆发药";
+        public string Label_StrChoosePotion { get; set; } = "力量爆发药";
 
         public string Label_PotionNum { get; set; } = "数量:";
 
@@ -97,7 +100,7 @@ namespace AEAssist
         public string Title_LoadTriggerLine { get; set; } = "加载时间轴";
 
         public string MessageLog_CountDown_BattleStart { get; set; } = "战斗开始";
-        public string MessageLog_CountDown_BattleStartIn5sec { get; set; } = "战斗开始.*5";
+        public string MessageLog_CountDown_BattleStartInTime { get; set; } = "[0-9]+";
         public string MessageLog_CountDown_CancelBattleStart { get; set; } = "取消了战斗开始";
     }
 }

@@ -4,6 +4,8 @@ using AEAssist.Gamelog;
 using AEAssist.Helper;
 using AEAssist.TriggerSystem;
 using ff14bot;
+using ff14bot.Enums;
+using ff14bot.Managers;
 using ff14bot.Objects;
 
 namespace AEAssist.AI
@@ -24,6 +26,8 @@ namespace AEAssist.AI
         public SpellData lastGCDSpell;
         public int maxAbilityTimes;
 
+        public bool LimitAbility;
+
         public int NearbyEnemyCount_Range12_12;
         public int NearbyEnemyCount_Range25_5;
         public int NearbyEnemyCount_Range25_8;
@@ -39,7 +43,19 @@ namespace AEAssist.AI
 
         public BattleData()
         {
+            ResetMaxAbilityTimes();
+        }
+
+        public void ResetMaxAbilityTimes()
+        {
             maxAbilityTimes = SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD;
+
+            if (LimitAbility)
+            {
+                LogHelper.Info( "limit maxAbilityTimes => 1");
+                maxAbilityTimes = 1;
+                LimitAbility = false;
+            }
         }
 
         public long BattleTime { get; private set; }

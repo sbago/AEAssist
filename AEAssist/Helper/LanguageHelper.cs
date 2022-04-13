@@ -33,8 +33,7 @@ namespace AEAssist
                 try
                 {
                     var lan = MongoHelper.FromJson<Language>(File.ReadAllText(v));
-                    if (lan.LanType == Language.Instance.LanType
-                        && lan.LanVersion != Language.Instance.LanVersion)
+                    if (lan.LanType == Language.Instance.LanType)
                     {
                         AllLans.Add(lan.LanType,MongoHelper.Clone(Language.Instance));
                         continue;

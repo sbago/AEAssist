@@ -24,7 +24,7 @@
   "Textbox_TTK_TimeInSec" : "TTK_TimeInSec",
   "Textbox_TTK_IgnoreDamage" : "TTK_IgnoreDamage",
   "MessageLog_CountDown_BattleStart" : "Battle commencing in",
-  "MessageLog_CountDown_BattleStartIn5sec" : "Battle commencing in.*5",
+  "MessageLog_CountDown_BattleStartInTime" : "[0-9]+",
   "MessageLog_CountDown_CancelBattleStart" : "Countdown canceled",
   "Toggle_Potion" : "Potion",
   "Toggle_Apex" : "Apex",

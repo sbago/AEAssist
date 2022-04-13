@@ -22,7 +22,7 @@ namespace AEAssist.AI
                 SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD)
                 return -4;
 
-            if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<ReaperSettings>().UsePotionId))
+            if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<GeneralSettings>().StrPotionId))
                 return -5;
 
             if (SpellsDefine.PlentifulHarvest.IsReady()
@@ -39,7 +39,7 @@ namespace AEAssist.AI
 
         public async Task<SpellData> Run()
         {
-            var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<ReaperSettings>().UsePotionId);
+            var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().StrPotionId);
             if (ret) AIRoot.Instance.MuteAbilityTime();
 
             await Task.CompletedTask;

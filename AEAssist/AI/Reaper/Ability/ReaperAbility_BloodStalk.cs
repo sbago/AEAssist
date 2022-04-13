@@ -15,6 +15,10 @@ namespace AEAssist.AI.Reaper.Ability
                 return -1;
             if (!DataBinding.Instance.UseSoulGauge)
                 return -2;
+
+            if (AIRoot.Instance.BurstOff && !SpellsDefine.Enshroud.IsUnlock())
+                return -10;
+            
             if (ActionResourceManager.Reaper.SoulGauge < 50)
                 return -3;
             if (ReaperSpellHelper.IfHasSoulReaver())

@@ -41,7 +41,11 @@ namespace AEAssist.AI.Reaper.GCD
                 return null;
             if (spell == SpellsDefine.Communio) MovementManager.MoveStop();
 
-            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget)) return spell;
+            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
+            {
+                AIRoot.Instance.BattleData.LimitAbility = true;
+                return spell;
+            }
 
             return null;
         }

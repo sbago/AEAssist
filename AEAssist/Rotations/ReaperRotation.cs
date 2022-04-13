@@ -19,6 +19,12 @@ namespace AEAssist
 
         public void Init()
         {
+            CountDownHandler.Instance.AddListener(1500, () =>
+            {
+                if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
+                    _ = SpellHelper.CastGCD(SpellsDefine.Harpe, Core.Me.CurrentTarget);
+            });
+            DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<ReaperSettings>().EarlyDecisionMode;
         }
 
         public Task<bool> Rest()
@@ -64,9 +70,7 @@ namespace AEAssist
 
         public Task<bool> Heal()
         {
-            CountDownHandler.Instance.Update();
-            TargetMgr.Instance.Update();
-            return AiRoot.Update();
+            return Task.FromResult(false);
         }
 
         public Task<bool> CombatBuff()
@@ -87,12 +91,6 @@ namespace AEAssist
         public SpellData GetBaseGCDSpell()
         {
             return SpellsDefine.Slice;
-        }
-
-        public void HandleInCountDown1500()
-        {
-            if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
-                _ = SpellHelper.CastGCD(SpellsDefine.Harpe, Core.Me.CurrentTarget);
         }
     }
 }

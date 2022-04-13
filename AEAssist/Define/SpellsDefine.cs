@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
@@ -1039,5 +1040,18 @@ namespace AEAssist.Define
         public static readonly SpellData FluidAuraPvp = DataManager.GetSpellData(8900);
 
         #endregion
+
+
+
+
+        public static HashSet<uint> OffGCD_NoCharge = new HashSet<uint>()
+        {
+            AirAnchor.Id,
+            Drill.Id,
+            Bioblaster.Id,
+            HotShot.Id,
+            ChainSaw.Id,
+        };
+
     }
 }

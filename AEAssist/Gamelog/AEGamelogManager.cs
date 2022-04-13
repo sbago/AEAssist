@@ -46,22 +46,27 @@ namespace AEAssist.Gamelog
         private void MessageRecevied(object sender, ChatEventArgs e)
         {
             AddBuffers((int) e.ChatLogEntry.MessageType, e.ChatLogEntry.Contents);
-            if ((ushort) e.ChatLogEntry.MessageType == 185)
-                if (e.ChatLogEntry.Contents.Contains(Language.Instance.MessageLog_CountDown_BattleStart))
-                    GUIHelper.ShowInfo(e.ChatLogEntry.Contents, 1000, false);
-
-            if (e.ChatLogEntry.MessageType == MessageType.SystemMessages)
+            var type = (ushort) e.ChatLogEntry.MessageType;
+            if (type == 185 || type == 313)
             {
-                // 5秒倒计时触发
-                if (Regex.IsMatch(e.ChatLogEntry.Contents,
-                    Language.Instance.MessageLog_CountDown_BattleStartIn5sec))
+                if (e.ChatLogEntry.Contents.Contains(Language.Instance.MessageLog_CountDown_BattleStart))
                 {
-                    CountDownHandler.Instance.StartCountDown();
+                    var match = Regex.Match(e.ChatLogEntry.Contents,
+                        Language.Instance.MessageLog_CountDown_BattleStartInTime);
+                    // 倒计时触发
+                    if (match.Success && int.TryParse(match.Value, out var restTime))
+                    {
+                        LogHelper.Info("StartCountDown: " + e.ChatLogEntry.Contents);
+                        CountDownHandler.Instance.SyncRestTime(restTime);
+                    }
+
+                    GUIHelper.ShowInfo(e.ChatLogEntry.Contents, 1000, false);
                 }
+                
                 // 有人取消
-                else if (Regex.IsMatch(e.ChatLogEntry.Contents,
-                    Language.Instance.MessageLog_CountDown_CancelBattleStart))
+                if (e.ChatLogEntry.Contents.Contains(Language.Instance.MessageLog_CountDown_CancelBattleStart))
                 {
+                    LogHelper.Info("CountDownEnd: " +e.ChatLogEntry.Contents);
                     CountDownHandler.Instance.Close();
                     GUIHelper.ShowInfo(e.ChatLogEntry.Contents, 1000, false);
                 }

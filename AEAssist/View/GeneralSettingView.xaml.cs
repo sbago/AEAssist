@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using AEAssist.Define;
+using AEAssist.Helper;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace AEAssist.View
@@ -28,6 +29,13 @@ namespace AEAssist.View
             SwitchLan.ItemsSource = LanguageHelper.LanOptions;
             SwitchLan.SelectedValue = AEAssist.Language.Instance.LanType;
 
+            
+            Dex_ChoosePotion.ItemsSource = PotionHelper.DexPotions;
+            Dex_ChoosePotion.SelectedValue = SettingMgr.GetSetting<GeneralSettings>().DexPotionId;
+            
+            Str_ChoosePotion.ItemsSource = PotionHelper.StrPotions;
+            Str_ChoosePotion.SelectedValue = SettingMgr.GetSetting<GeneralSettings>().StrPotionId;
+            
         }
 
         private List<HotkeyData> GetHotkeyData()
@@ -71,6 +79,16 @@ namespace AEAssist.View
         private void SwitchLan_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             LanguageHelper.SwitchLan((string)SwitchLan.SelectedValue);
+        }
+
+        private void Dex_ChoosePotion_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SettingMgr.GetSetting<GeneralSettings>().DexPotionId = (int) Dex_ChoosePotion.SelectedValue;
+        }
+
+        private void Str_ChoosePotion_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SettingMgr.GetSetting<GeneralSettings>().StrPotionId = (int) Str_ChoosePotion.SelectedValue;
         }
     }
 }

@@ -43,16 +43,10 @@
         <TabItem Header="{Binding Language.TabItem_BaseSetting}">
             <StackPanel HorizontalAlignment="Left" Margin="10">
                 <CheckBox Content="{Binding Language.Toggle_PreferGallow}" IsChecked="{Binding ReaperSettings.GallowsPrefer,Mode=TwoWay}" />
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="{Binding Language.Label_ChoosePotion}" Width="100" />
-                    <ComboBox IsEditable="False" Name="ChoosePotion" Width="150" DisplayMemberPath="Name"
-                              SelectedValuePath="ID" SelectionChanged="ChoosePotion_OnSelectionChanged" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Button Content="{Binding Language.Btn_CheckPotionNum}" Width="150" Click="ButtonBase_OnClick" />
-                    <Label Margin="5,0,0,0" Content="{Binding Language.Label_PotionNum}" VerticalAlignment="Center"/>
-                    <Label Margin="5,0,0,0" Name="PotionCount" Width="100" Content="0" VerticalAlignment="Center" />
-                </StackPanel>
+                <CheckBox Name="EarlyDecisionMode"
+                          Content="{Binding Language.Toggle_EarlyDecisionMode}" Width="200" Height="25"
+                          HorizontalAlignment="Left"
+                          IsChecked="{Binding ReaperSettings.EarlyDecisionMode}" />
             </StackPanel>
         </TabItem>
 

@@ -18,7 +18,7 @@ namespace AEAssist.AI
                 return -3;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return -4;
-            if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<BardSettings>().UsePotionId))
+            if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId))
                 return -5;
 
             return 0;
@@ -27,7 +27,7 @@ namespace AEAssist.AI
         public async Task<SpellData> Run()
         {
             LogHelper.Debug("===>Try using Potion   1111");
-            var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<BardSettings>().UsePotionId);
+            var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId);
             if (ret) AIRoot.Instance.MuteAbilityTime();
 
             await Task.CompletedTask;

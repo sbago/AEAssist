@@ -14,12 +14,7 @@ namespace AEAssist.Helper
     {
         public static List<PotionData> DexPotions { get; set; } = new List<PotionData>();
         public static List<PotionData> StrPotions { get; set; } = new List<PotionData>();
-
-        public string GetPotionName()
-        {
-            return DexPotions.FindLast(v => v.ID == SettingMgr.GetSetting<BardSettings>().UsePotionId).Name;
-        }
-
+        
         public static void Init()
         {
             if (DexPotions == null)
@@ -84,7 +79,7 @@ namespace AEAssist.Helper
             for (var i = 0; i < 15; i++)
             {
                 item.UseItem(Core.Me);
-                await Coroutine.Sleep(100);
+                await Coroutine.Wait(100,()=>false);
                 if (item == null || !item.CanUse())
                     return true;
             }

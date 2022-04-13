@@ -145,6 +145,22 @@
         <Compile Include="AI\BattleData.cs" />
         <Compile Include="AI\IAIHandler.cs" />
         <Compile Include="AI\IAIPriorityQueue.cs" />
+        <Compile Include="AI\Machinist\Ability\MCHAbility_BarrelStabilizer.cs" />
+        <Compile Include="AI\Machinist\Ability\MCHAbility_HyperCharge.cs" />
+        <Compile Include="AI\Machinist\Ability\MCHAbility_Reassemble.cs" />
+        <Compile Include="AI\Machinist\Ability\MCHAbility_UseBattery.cs" />
+        <Compile Include="AI\Machinist\Ability\MCHAbility_UseGaussRound.cs" />
+        <Compile Include="AI\Machinist\Ability\MCHAbility_UsePotion.cs" />
+        <Compile Include="AI\Machinist\Ability\MCHAbility_WildFire.cs" />
+        <Compile Include="AI\Machinist\GCD\MCHGCD_AirAnchor.cs" />
+        <Compile Include="AI\Machinist\GCD\MCHGCD_BaseCombo.cs" />
+        <Compile Include="AI\Machinist\GCD\MCHGCD_ChainSaw.cs" />
+        <Compile Include="AI\Machinist\GCD\MCHGCD_Drill.cs" />
+        <Compile Include="AI\Machinist\GCD\MCHGCD_ReassembleGCD.cs" />
+        <Compile Include="AI\Machinist\GCD\MCHGCD_UnderHyperCharge.cs" />
+        <Compile Include="AI\Machinist\MCHBattleData.cs" />
+        <Compile Include="AI\Machinist\MCHSpellHelper.cs" />
+        <Compile Include="AI\Machinist\MCH_AIPriorityQueue.cs" />
         <Compile Include="AI\Reaper\Ability\ReaperAbility_ArcaneCircle.cs" />
         <Compile Include="AI\Reaper\Ability\ReaperAbility_BloodStalk.cs" />
         <Compile Include="AI\Reaper\Ability\ReaperAbility_Enshroud.cs" />
@@ -173,6 +189,7 @@
         <Compile Include="Gamelog\AEGamelogManager.cs" />
         <Compile Include="Helper\LanguageHelper.cs" />
         <Compile Include="Helper\SpellHistoryHelper.cs" />
+        <Compile Include="Rotations\MachinistRotation.cs" />
         <Compile Include="Rotations\ReaperRotation.cs" />
         <Compile Include="Setting\Setting\HotkeySetting.cs" />
         <Compile Include="Setting\Setting\ReaperSettings.cs" />
@@ -204,7 +221,11 @@
         <Compile Include="View\Overlay\BardOverlayWindow.xaml.cs">
             <DependentUpon>BardOverlayWindow.xaml</DependentUpon>
         </Compile>
+        <Compile Include="View\Overlay\MCHOverlayWindow.xaml.cs">
+          <DependentUpon>MCHOverlayWindow.xaml</DependentUpon>
+        </Compile>
         <Compile Include="View\Overlay\OverlayUIComponent_BardOverlay.cs" />
+        <Compile Include="View\Overlay\OverlayUIComponent_MCHOverlay.cs" />
         <Compile Include="View\Overlay\OverlayUIComponent_ReaperOverlay.cs" />
         <Compile Include="View\Overlay\ReaperOverlay.xaml.cs">
             <DependentUpon>ReaperOverlay.xaml</DependentUpon>
@@ -246,6 +267,7 @@
         <Content Include="Resources\Lan_en.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+        <Resource Include="Resources\Spells\Tactician.png" />
         <Resource Include="Resources\Spells\Potion.png" />
         <Resource Include="Resources\Spells\SecondWind.png" />
         <Resource Include="Resources\Spells\Sprint.png" />
@@ -256,6 +278,7 @@
         <Resource Include="Resources\Spells\ArmsLength.png" />
         <Resource Include="Resources\Spells\Troubadour.png" />
         <Page Include="View\CommonOverlay.xaml" />
+        <Page Include="View\Overlay\MCHOverlayWindow.xaml" />
         <Page Include="View\Overlay\ReaperOverlay.xaml" />
         <Page Include="View\ReaperSettingView.xaml" />
         <Page Include="View\TriggerLineWindow.xaml" />

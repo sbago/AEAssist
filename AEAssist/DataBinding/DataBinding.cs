@@ -82,6 +82,7 @@ namespace AEAssist
         public bool UseSoulGauge { get; set; } = true;
 
         public bool DoubleEnshroudPrefer { get; set; } = true;
+        public bool EarlyDecisionMode { get; set; }
 
         #endregion
     }

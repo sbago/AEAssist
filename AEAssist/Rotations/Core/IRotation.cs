@@ -15,7 +15,5 @@ namespace AEAssist
         Task<bool> PullBuff();
 
         SpellData GetBaseGCDSpell();
-
-        void HandleInCountDown1500();
     }
 }

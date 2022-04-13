@@ -2,6 +2,7 @@
 using Buddy.Overlay;
 using ff14bot;
 using ff14bot.Enums;
+using QuickGraph.Algorithms.ConnectedComponents;
 
 namespace AEAssist.View
 {
@@ -20,6 +21,7 @@ namespace AEAssist.View
         {
             AllOverlays[ClassJobType.Bard] = new OverlayUIComponent_BardOverlay(true);
             AllOverlays[ClassJobType.Reaper] = new OverlayUIComponent_ReaperOverlay(true);
+            AllOverlays[ClassJobType.Machinist] = new OverlayUIComponent_MCHOverlay(true);
         }
 
         public void SwitchJob()

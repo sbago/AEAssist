@@ -34,7 +34,7 @@ namespace AEAssist.Helper
             }
             else
             {
-                if (SettingMgr.GetSetting<GeneralSettings>().EarlyDecisionMode)
+                if (DataBinding.Instance.EarlyDecisionMode)
                 {
                     if (!ActionManager.CanCastOrQueue(spell, target))
                         return false;
@@ -104,9 +104,15 @@ namespace AEAssist.Helper
         public static bool IsReady(this SpellData spellData)
         {
             // LogHelper.Debug($"检测技能 {spellData.Name} {spellData.LocalizedName} AdCoolDown {spellData.AdjustedCooldown.TotalMilliseconds}");
-            if (!spellData.IsUnlock()
-                || spellData.Cooldown.TotalMilliseconds > 0)
+            if (!spellData.IsUnlock())
                 return false;
+
+            if (spellData.SpellType == SpellType.Ability || SpellsDefine.OffGCD_NoCharge.Contains(spellData.Id))
+            {
+                if (spellData.Cooldown.TotalMilliseconds > 0)
+                    return false;
+            }
+
             return true;
         }
 
@@ -115,6 +121,15 @@ namespace AEAssist.Helper
             // LogHelper.Debug($"检测技能 {spellData.Name} {spellData.LocalizedName} AdCoolDown {spellData.AdjustedCooldown.TotalMilliseconds}");
             if (!spellData.IsUnlock()
                 || spellData.Charges < 1)
+                return false;
+            return true;
+        }
+        
+        public static bool IsMaxChargeReady(this SpellData spellData)
+        {
+            // LogHelper.Debug($"检测技能 {spellData.Name} {spellData.LocalizedName} AdCoolDown {spellData.AdjustedCooldown.TotalMilliseconds}");
+            if (!spellData.IsUnlock()
+                || spellData.Charges < spellData.MaxCharges - 0.2f)
                 return false;
             return true;
         }

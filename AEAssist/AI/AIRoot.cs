@@ -36,6 +36,13 @@ namespace AEAssist.AI
             set => _reaperBattleData = value;
         }
 
+        private MCHBattleData _MCHBattleData;
+        public MCHBattleData MchBattleData
+        {
+            get => _MCHBattleData ?? (_MCHBattleData = new MCHBattleData());
+            set => _MCHBattleData = value;
+        }
+
         public BattleData BattleData
         {
             get => _battleData ?? (_battleData = new BattleData());
@@ -69,6 +76,7 @@ namespace AEAssist.AI
             BattleData = new BattleData();
             BardBattleData = new BardBattleData();
             ReaperBattleData = new ReaperBattleData();
+            MchBattleData = new MCHBattleData();
             DataBinding.Instance.Reset();
 
             SpellHistoryMgr.Instance.Clear();
@@ -173,7 +181,7 @@ namespace AEAssist.AI
                     BattleData.lastGCDIndex++;
                     BattleData.lastGCDSpell = ret;
                     BattleData.lastCastTime = timeNow;
-                    BattleData.maxAbilityTimes = SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD;
+                    BattleData.ResetMaxAbilityTimes();
                     BattleData.lastAbilitySpell = null;
                 }
             }
@@ -238,17 +246,15 @@ namespace AEAssist.AI
         // 当前是否是GCD后半段
         public bool Is2ndAbilityTime()
         {
-            if (BattleData.lastGCDSpell == null)
-                return false;
-            if (BattleData.maxAbilityTimes == 1)
+            if (SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD < 2)
                 return true;
-            if (SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD != 2)
+            if (BattleData.maxAbilityTimes < SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD)
+            {
+                if (GetGCDDuration() <= 1.8f)
+                    return false;
                 return true;
-            var timeNow = TimeHelper.Now();
-            var delta = timeNow - BattleData.lastCastTime;
-            var coolDown = BattleData.lastGCDSpell.AdjustedCooldown.TotalMilliseconds;
-            if (delta > coolDown / SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD)
-                return true;
+            }
+
             return false;
         }
 

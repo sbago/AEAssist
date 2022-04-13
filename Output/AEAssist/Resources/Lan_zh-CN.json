@@ -64,6 +64,6 @@
   "Content_BattleTime" : "战斗时间",
   "Title_LoadTriggerLine" : "加载时间轴",
   "MessageLog_CountDown_BattleStart" : "战斗开始",
-  "MessageLog_CountDown_BattleStartIn5sec" : "战斗开始.*5",
+  "MessageLog_CountDown_BattleStartInTime" : "[0-9]+",
   "MessageLog_CountDown_CancelBattleStart" : "取消了战斗开始"
 }

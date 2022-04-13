@@ -33,7 +33,7 @@ namespace AEAssist.Define
 
         public async Task<bool> UsePotion()
         {
-            return await PotionHelper.ForceUsePotion(SettingMgr.GetSetting<ReaperSettings>().UsePotionId);
+            return await PotionHelper.ForceUsePotion(SettingMgr.GetSetting<GeneralSettings>().StrPotionId);
         }
     }
 }

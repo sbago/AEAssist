@@ -32,6 +32,10 @@ namespace AEAssist
 
         public bool ShowBattleTime { get; set; }
 
+        public int DexPotionId { get; set; }
+        
+        public int StrPotionId { get; set; }
+
         public void Reset()
         {
             UserLatencyOffset = 50;
@@ -47,6 +51,10 @@ namespace AEAssist
             ShowAbilityDebugLog = false;
             ShowToast = false;
             EarlyDecisionMode = true;
+
+            DexPotionId = 36105; // 5级巧力
+            StrPotionId = 36104; // 5级刚力
         }
+        
     }
 }

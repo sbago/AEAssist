@@ -93,10 +93,6 @@
 
         <TabItem Header="{Binding Language.TabItem_BaseSetting}">
             <StackPanel HorizontalAlignment="Left" Margin="10">
-                <CheckBox Name="EarlyDecisionMode"
-                          Content="{Binding Language.Toggle_EarlyDecisionMode}" Width="200" Height="25" Margin="10"
-                          HorizontalAlignment="Left"
-                          IsChecked="{Binding GeneralSettings.EarlyDecisionMode}" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="{Binding Language.Textbox_AnimationLockMs}" Width="150" />
                     <TextBox Width="150" Text="{Binding GeneralSettings.AnimationLockMs,Mode=TwoWay}" />
@@ -125,6 +121,21 @@
                     <TextBox Width="150" Text="{Binding GeneralSettings.TTK_IgnoreDamage,Mode=TwoWay}" />
                 </StackPanel>
             </StackPanel>
+        </TabItem>
+        
+        <TabItem Header="{Binding Language.TabItem_PotionSetting}">
+            <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                <Label Content="{Binding Language.Label_DexChoosePotion}" Width="100" />
+                <ComboBox IsEditable="False" Name="Dex_ChoosePotion" Width="150" DisplayMemberPath="Name"
+                          SelectedValuePath="ID" SelectionChanged="Dex_ChoosePotion_OnSelectionChanged" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                <Label Content="{Binding Language.Label_StrChoosePotion}" Width="100" />
+                <ComboBox IsEditable="False" Name="Str_ChoosePotion" Width="150" DisplayMemberPath="Name"
+                          SelectedValuePath="ID" SelectionChanged="Str_ChoosePotion_OnSelectionChanged" />
+            </StackPanel>
+                </StackPanel>
         </TabItem>
     </TabControl>
 </UserControl>

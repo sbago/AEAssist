@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AEAssist.AI;
 using ff14bot;
 using ff14bot.Enums;
+using ff14bot.Managers;
 using ff14bot.Objects;
 
 namespace AEAssist
@@ -14,6 +16,8 @@ namespace AEAssist
         public Dictionary<ClassJobType, IRotation> AllRotations = new Dictionary<ClassJobType, IRotation>();
 
         public DefaultRotation DefaultRotation = new DefaultRotation();
+
+        private ClassJobType _classJobType;
 
         public void Init()
         {
@@ -38,8 +42,15 @@ namespace AEAssist
                 AllRotations[attr.ClassJobType] = Activator.CreateInstance(type) as IRotation;
                 LogHelper.Info("Load Rotation: " + attr.ClassJobType);
             }
+        }
 
-            foreach (var v in AllRotations) v.Value.Init();
+        public void CheckChangeJob()
+        {
+            if (_classJobType != Core.Me.CurrentJob)
+            {
+                _classJobType = Core.Me.CurrentJob;
+                GetRotation().Init();
+            }
         }
 
         private IRotation GetRotation()
@@ -66,7 +77,9 @@ namespace AEAssist
 
         public Task<bool> Heal()
         {
-            return GetRotation().Heal();
+            CountDownHandler.Instance.Update();
+            TargetMgr.Instance.Update();
+            return AIRoot.Instance.Update();
         }
 
         public Task<bool> CombatBuff()
@@ -87,11 +100,6 @@ namespace AEAssist
         public SpellData GetBaseGCDSpell()
         {
             return GetRotation().GetBaseGCDSpell();
-        }
-
-        public void HandleInCountDown1500()
-        {
-            GetRotation().HandleInCountDown1500();
         }
     }
 }

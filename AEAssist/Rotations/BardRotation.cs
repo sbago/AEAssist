@@ -20,6 +20,11 @@ namespace AEAssist
         public void Init()
         {
             BardSpellHelper.Init();
+            CountDownHandler.Instance.AddListener(1500, () =>
+            {
+                _ = PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId);
+            });
+            DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<BardSettings>().EarlyDecisionMode;
         }
 
         public Task<bool> Rest()
@@ -44,6 +49,11 @@ namespace AEAssist
                     return false;
 
             if (!MovementManager.IsMoving)
+                return false;
+            
+            CountDownHandler.Instance.Update();
+
+            if (CountDownHandler.Instance.Start)
                 return false;
 
             if (!SettingMgr.GetSetting<BardSettings>().UsePeloton)
@@ -92,9 +102,7 @@ namespace AEAssist
 
         public Task<bool> Heal()
         {
-            CountDownHandler.Instance.Update();
-            TargetMgr.Instance.Update();
-            return AiRoot.Update();
+            return Task.FromResult(false);
         }
 
         public Task<bool> CombatBuff()
@@ -116,10 +124,6 @@ namespace AEAssist
         {
             return BardSpellHelper.GetHeavyShot();
         }
-
-        public void HandleInCountDown1500()
-        {
-            _ = PotionHelper.UsePotion(SettingMgr.GetSetting<BardSettings>().UsePotionId);
-        }
+        
     }
 }

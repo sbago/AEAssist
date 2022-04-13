@@ -73,6 +73,7 @@ namespace AEAssist
 
         public void Pulse()
         {
+            RotationManager.Instance.CheckChangeJob();
             OverlayManager.Instance.SwitchJob();
             GamelogManager.Pulse();
         }

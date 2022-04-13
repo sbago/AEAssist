@@ -17,6 +17,7 @@ namespace AEAssist.AI
         {
             JobPriorityQueue.Add(ClassJobType.Reaper, new Reaper_AIPriorityQueue());
             JobPriorityQueue.Add(ClassJobType.Bard, new Bard_AIPriorityQueue());
+            JobPriorityQueue.Add(ClassJobType.Machinist,new MCH_AIPriorityQueue());
         }
 
         public async Task<SpellData> HandleGCD(ClassJobType classJobType, SpellData lastGCD)
