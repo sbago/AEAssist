@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Buddy.Overlay;
 using ff14bot;
 using ff14bot.Enums;
@@ -19,9 +20,20 @@ namespace AEAssist.View
 
         public void Init()
         {
-            AllOverlays[ClassJobType.Bard] = new OverlayUIComponent_BardOverlay(true);
-            AllOverlays[ClassJobType.Reaper] = new OverlayUIComponent_ReaperOverlay(true);
-            AllOverlays[ClassJobType.Machinist] = new OverlayUIComponent_MCHOverlay(true);
+            foreach (var type in GetType().Assembly.GetTypes())
+            {
+                if (type.IsAbstract || type.IsInterface)
+                    continue;
+                var attrs = type.GetCustomAttributes(typeof(OverlayAttribute), false);
+                if (attrs.Length == 0)
+                {
+                    continue;
+                }
+
+                var attr = attrs[0] as OverlayAttribute;
+                AllOverlays[attr.ClassJobType] = Activator.CreateInstance(type) as OverlayUIComponent;
+                LogHelper.Info("Load Overlay: " + attr.ClassJobType);
+            }
         }
 
         public void SwitchJob()

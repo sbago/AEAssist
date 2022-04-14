@@ -2,6 +2,7 @@
 using AEAssist.AI;
 using AEAssist.Define;
 using AEAssist.Helper;
+using Buddy.Coroutines;
 using ff14bot;
 using ff14bot.Enums;
 using ff14bot.Managers;
@@ -9,29 +10,26 @@ using ff14bot.Objects;
 
 namespace AEAssist
 {
-    [Rotation(ClassJobType.Bard)]
-    public class BardRotation : IRotation
+    [Rotation(ClassJobType.Machinist)]
+    public class MachinistRotation : IRotation
     {
-        private long _lastTime;
-        private readonly AIRoot AiRoot = AIRoot.Instance;
-
-        private long randomTime;
-
         public void Init()
         {
-            BardSpellHelper.Init();
             CountDownHandler.Instance.AddListener(1500, () =>
             {
                 _ = PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId);
             });
-            DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<BardSettings>().EarlyDecisionMode;
+            
+            CountDownHandler.Instance.AddListener(4800, () =>
+            {
+                _ = SpellHelper.CastAbility(SpellsDefine.Reassemble, Core.Me);
+            },false);
         }
 
-        public Task<bool> Rest()
-        {
-            var needRest = Core.Me.CurrentHealthPercent < SettingMgr.GetSetting<BardSettings>().RestHealthPercent;
-            return Task.FromResult(needRest);
-        }
+      public Task<bool> Rest()
+      {
+          return Task.FromResult(false);
+      }
 
         // 战斗之前处理buff的?
         public async Task<bool> PreCombatBuff()
@@ -69,26 +67,10 @@ namespace AEAssist
 
             if (Core.Me.ContainAura(AurasDefine.Peloton, 100))
                 return false;
-
-            if (_lastTime == 0)
-            {
-                _lastTime = TimeHelper.Now();
-            }
-            else
-            {
-                var now = TimeHelper.Now();
-                randomTime += now - _lastTime;
-                _lastTime = TimeHelper.Now();
-            }
-
-            // 防止每次都立即开疾行,搞的很假
-            if (RandomHelper.RandomInt(2000, 5000) > randomTime)
-                return false;
-
+            
             if (await SpellHelper.CastAbility(SpellsDefine.Peloton, Core.Me))
             {
                 GUIHelper.ShowInfo(Language.Instance.Content_Bard_PreCombat3);
-                randomTime = 0;
                 return true;
             }
 
@@ -122,8 +104,7 @@ namespace AEAssist
 
         public SpellData GetBaseGCDSpell()
         {
-            return BardSpellHelper.GetHeavyShot();
+            return MCHSpellHelper.GetSplitShot();
         }
-        
     }
 }

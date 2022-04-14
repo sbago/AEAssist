@@ -62,7 +62,7 @@ namespace AEAssist
 
         public Task<bool> Rest()
         {
-            return GetRotation().Rest();
+            return Task.FromResult(false);
         }
 
         public Task<bool> PreCombatBuff()
@@ -72,7 +72,7 @@ namespace AEAssist
 
         public Task<bool> Pull()
         {
-            return GetRotation().Pull();
+            return Task.FromResult(false);
         }
 
         public Task<bool> Heal()
@@ -84,17 +84,17 @@ namespace AEAssist
 
         public Task<bool> CombatBuff()
         {
-            return GetRotation().CombatBuff();
+            return Task.FromResult(false);
         }
 
         public Task<bool> Combat()
         {
-            return GetRotation().Combat();
+            return Task.FromResult(false);
         }
 
         public Task<bool> PullBuff()
         {
-            return GetRotation().PullBuff();
+            return Task.FromResult(false);
         }
 
         public SpellData GetBaseGCDSpell()

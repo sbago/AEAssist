@@ -133,6 +133,7 @@
         <Compile Include="AI\Bard\Ability\BardAbility_Sidewinder.cs" />
         <Compile Include="AI\Bard\Ability\BardAbility_Songs.cs" />
         <Compile Include="AI\Bard\Ability\BardAbility_UsePotion.cs" />
+        <Compile Include="AI\Bard\BardRotation.cs" />
         <Compile Include="AI\Bard\Bard_AIPriorityQueue.cs" />
         <Compile Include="AI\Bard\BardBattleData.cs" />
         <Compile Include="AI\Bard\BardSpellHelper.cs" />
@@ -143,6 +144,7 @@
         <Compile Include="AI\Bard\GCD\BardGCD_HeavyShot.cs" />
         <Compile Include="AI\Bard\GCD\BardGCD_QuickNock.cs" />
         <Compile Include="AI\BattleData.cs" />
+        <Compile Include="AI\Dancer\DancerRotation.cs" />
         <Compile Include="AI\IAIHandler.cs" />
         <Compile Include="AI\IAIPriorityQueue.cs" />
         <Compile Include="AI\Machinist\Ability\MCHAbility_BarrelStabilizer.cs" />
@@ -158,6 +160,7 @@
         <Compile Include="AI\Machinist\GCD\MCHGCD_Drill.cs" />
         <Compile Include="AI\Machinist\GCD\MCHGCD_ReassembleGCD.cs" />
         <Compile Include="AI\Machinist\GCD\MCHGCD_UnderHyperCharge.cs" />
+        <Compile Include="AI\Machinist\MachinistRotation.cs" />
         <Compile Include="AI\Machinist\MCHBattleData.cs" />
         <Compile Include="AI\Machinist\MCHSpellHelper.cs" />
         <Compile Include="AI\Machinist\MCH_AIPriorityQueue.cs" />
@@ -175,6 +178,7 @@
         <Compile Include="AI\Reaper\GCD\ReaperGCD_PullRangeGCD.cs" />
         <Compile Include="AI\Reaper\GCD\ReaperGCD_ShadowOfDeath.cs" />
         <Compile Include="AI\Reaper\GCD\ReaperGCD_SoulSlice.cs" />
+        <Compile Include="AI\Reaper\ReaperRotation.cs" />
         <Compile Include="AI\Reaper\Reaper_AIPriorityQueue.cs" />
         <Compile Include="AI\Reaper\ReaperBattleData.cs" />
         <Compile Include="AI\Reaper\ReaperSpellHelper.cs" />
@@ -189,8 +193,10 @@
         <Compile Include="Gamelog\AEGamelogManager.cs" />
         <Compile Include="Helper\LanguageHelper.cs" />
         <Compile Include="Helper\SpellHistoryHelper.cs" />
-        <Compile Include="Rotations\MachinistRotation.cs" />
-        <Compile Include="Rotations\ReaperRotation.cs" />
+        <Compile Include="Rotations\Core\DefaultRotation.cs" />
+        <Compile Include="Rotations\Core\IRotation.cs" />
+        <Compile Include="Rotations\Core\RotationAttribute.cs" />
+        <Compile Include="Rotations\Core\RotationManager.cs" />
         <Compile Include="Setting\Setting\HotkeySetting.cs" />
         <Compile Include="Setting\Setting\ReaperSettings.cs" />
         <Compile Include="TriggerSystem\ITriggerActionHandler.cs" />
@@ -217,19 +223,24 @@
         <Compile Include="View\GeneralSettingView.xaml.cs">
             <DependentUpon>GeneralSettingView.xaml</DependentUpon>
         </Compile>
-        <Compile Include="View\OverlayManager.cs" />
+        <Compile Include="View\OverlayManager\OverlayAttribute.cs" />
+        <Compile Include="View\OverlayManager\OverlayManager.cs" />
         <Compile Include="View\Overlay\BardOverlayWindow.xaml.cs">
             <DependentUpon>BardOverlayWindow.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\Overlay\DancerOverlayWindow.xaml.cs">
+          <DependentUpon>DancerOverlayWindow.xaml</DependentUpon>
         </Compile>
         <Compile Include="View\Overlay\MCHOverlayWindow.xaml.cs">
           <DependentUpon>MCHOverlayWindow.xaml</DependentUpon>
         </Compile>
-        <Compile Include="View\Overlay\OverlayUIComponent_BardOverlay.cs" />
-        <Compile Include="View\Overlay\OverlayUIComponent_MCHOverlay.cs" />
-        <Compile Include="View\Overlay\OverlayUIComponent_ReaperOverlay.cs" />
         <Compile Include="View\Overlay\ReaperOverlay.xaml.cs">
             <DependentUpon>ReaperOverlay.xaml</DependentUpon>
         </Compile>
+        <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BardOverlay.cs" />
+        <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_DancerOverlay.cs" />
+        <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_MCHOverlay.cs" />
+        <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_ReaperOverlay.cs" />
         <Compile Include="View\ReaperSettingView.xaml.cs">
             <DependentUpon>ReaperSettingView.xaml</DependentUpon>
         </Compile>
@@ -267,6 +278,7 @@
         <Content Include="Resources\Lan_en.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+        <Resource Include="Resources\Spells\ShieldSamba.png" />
         <Resource Include="Resources\Spells\Tactician.png" />
         <Resource Include="Resources\Spells\Potion.png" />
         <Resource Include="Resources\Spells\SecondWind.png" />
@@ -278,6 +290,7 @@
         <Resource Include="Resources\Spells\ArmsLength.png" />
         <Resource Include="Resources\Spells\Troubadour.png" />
         <Page Include="View\CommonOverlay.xaml" />
+        <Page Include="View\Overlay\DancerOverlayWindow.xaml" />
         <Page Include="View\Overlay\MCHOverlayWindow.xaml" />
         <Page Include="View\Overlay\ReaperOverlay.xaml" />
         <Page Include="View\ReaperSettingView.xaml" />
@@ -386,11 +399,6 @@
         <Compile Include="Helper\TargetHelper.cs" />
         <Compile Include="Helper\TimeHelper.cs" />
         <Compile Include="Helper\TTKHelper.cs" />
-        <Compile Include="Rotations\BardRotation.cs" />
-        <Compile Include="Rotations\Core\DefaultRotation.cs" />
-        <Compile Include="Rotations\Core\IRotation.cs" />
-        <Compile Include="Rotations\Core\RotationAttribute.cs" />
-        <Compile Include="Rotations\Core\RotationManager.cs" />
         <Compile Include="MainWindow.xaml.cs">
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>

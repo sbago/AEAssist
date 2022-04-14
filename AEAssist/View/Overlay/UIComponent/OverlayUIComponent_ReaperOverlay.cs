@@ -1,13 +1,16 @@
-﻿using Buddy.Overlay;
+﻿using AEAssist.View.Overlay;
+using Buddy.Overlay;
 using Buddy.Overlay.Controls;
+using ff14bot.Enums;
 
 namespace AEAssist.View
 {
-    public class OverlayUIComponent_MCHOverlay : OverlayUIComponent
+    [Overlay(ClassJobType.Reaper)]
+    public class OverlayUIComponent_ReaperOverlay : OverlayUIComponent
     {
         private OverlayControl _control;
 
-        public OverlayUIComponent_MCHOverlay(bool isHitTestable) : base(isHitTestable)
+        public OverlayUIComponent_ReaperOverlay() : base(true)
         {
         }
 
@@ -18,11 +21,11 @@ namespace AEAssist.View
                 if (_control != null)
                     return _control;
 
-                var overlayUc = new MCHOverlayWindow();
+                var overlayUc = new ReaperOverlay();
 
                 _control = new OverlayControl
                 {
-                    Name = "MCHOverlay",
+                    Name = overlayUc.GetType().Name,
                     Content = overlayUc,
                     Width = overlayUc.Width + 5,
                     Height = overlayUc.Height,

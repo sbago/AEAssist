@@ -144,7 +144,7 @@ namespace AEAssist.Define
             if (buffCountInEnd >= 1 && !AIRoot.Instance.BardBattleData.IsTargetLastIronJawWithBuff())
             {
                 if (ttk_ironJaws > 0 && target.ContainMyAura((uint) ve_id, ttk_ironJaws * 1000) &&
-                    TTKHelper.IsTargetTTK(target, ttk_ironJaws))
+                    TTKHelper.IsTargetTTK(target, ttk_ironJaws,true))
                     return NormalCheck();
                 return true;
             }

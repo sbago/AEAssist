@@ -1,13 +1,15 @@
 ﻿using Buddy.Overlay;
 using Buddy.Overlay.Controls;
+using ff14bot.Enums;
 
 namespace AEAssist.View
 {
-    public class OverlayUIComponent_BardOverlay : OverlayUIComponent
+    [Overlay(ClassJobType.Dancer)]
+    public class OverlayUIComponent_DancerOverlay : OverlayUIComponent
     {
         private OverlayControl _control;
 
-        public OverlayUIComponent_BardOverlay(bool isHitTestable) : base(isHitTestable)
+        public OverlayUIComponent_DancerOverlay() : base(true)
         {
         }
 
@@ -18,11 +20,11 @@ namespace AEAssist.View
                 if (_control != null)
                     return _control;
 
-                var overlayUc = new BardOverlayWindow();
+                var overlayUc = new DancerOverlayWindow();
 
                 _control = new OverlayControl
                 {
-                    Name = "BardOverlay",
+                    Name = overlayUc.GetType().Name,
                     Content = overlayUc,
                     Width = overlayUc.Width + 5,
                     Height = overlayUc.Height,
