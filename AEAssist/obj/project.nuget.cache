@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "grs1VDHSTCaQ2/quY+91ZGa7/nSnedH88P+o+ry23+4/9QpKt1lk155OKATRI9582xfw9YmLS21in03yPDyJ6Q==",
+  "dgSpecHash": "xTaP6+kLeHO5nuVfnxuNYT3t66dUv/AkCXzspEIdzt2cXRIYSK1xYb7RqUNMsNwTJS+hbLbdAImqJ81vCm3r6w==",
   "success": true,
-  "projectFilePath": "D:\\Github\\AEAssist\\AEAssist\\AEAssist.csproj",
+  "projectFilePath": "C:\\Users\\kuro\\Documents\\GitHub\\AEAssist\\AEAssist\\AEAssist.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Administrator\\.nuget\\packages\\fody\\6.5.1\\fody.6.5.1.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\materialdesigncolors\\2.0.6-ci125\\materialdesigncolors.2.0.6-ci125.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\materialdesignextensions\\4.0.0-a02\\materialdesignextensions.4.0.0-a02.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\materialdesignthemes\\4.5.0-ci125\\materialdesignthemes.4.5.0-ci125.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\propertychanged.fody\\3.4.0\\propertychanged.fody.3.4.0.nupkg.sha512",
-    "C:\\Users\\Administrator\\.nuget\\packages\\system.objectmodel\\4.3.0\\system.objectmodel.4.3.0.nupkg.sha512"
+    "C:\\Users\\kuro\\.nuget\\packages\\fody\\6.5.1\\fody.6.5.1.nupkg.sha512",
+    "C:\\Users\\kuro\\.nuget\\packages\\materialdesigncolors\\2.0.6-ci125\\materialdesigncolors.2.0.6-ci125.nupkg.sha512",
+    "C:\\Users\\kuro\\.nuget\\packages\\materialdesignextensions\\4.0.0-a02\\materialdesignextensions.4.0.0-a02.nupkg.sha512",
+    "C:\\Users\\kuro\\.nuget\\packages\\materialdesignthemes\\4.5.0-ci125\\materialdesignthemes.4.5.0-ci125.nupkg.sha512",
+    "C:\\Users\\kuro\\.nuget\\packages\\propertychanged.fody\\3.4.0\\propertychanged.fody.3.4.0.nupkg.sha512",
+    "C:\\Users\\kuro\\.nuget\\packages\\system.objectmodel\\4.3.0\\system.objectmodel.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

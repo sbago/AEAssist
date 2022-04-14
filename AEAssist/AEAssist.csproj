@@ -193,6 +193,10 @@
         <Compile Include="Gamelog\AEGamelogManager.cs" />
         <Compile Include="Helper\LanguageHelper.cs" />
         <Compile Include="Helper\SpellHistoryHelper.cs" />
+        <Compile Include="Opener\IOpener.cs" />
+        <Compile Include="Opener\MCH\Opener_MCH_90.cs" />
+        <Compile Include="Opener\OpenerAttribute.cs" />
+        <Compile Include="Opener\OpenerMgr.cs" />
         <Compile Include="Rotations\Core\DefaultRotation.cs" />
         <Compile Include="Rotations\Core\IRotation.cs" />
         <Compile Include="Rotations\Core\RotationAttribute.cs" />
