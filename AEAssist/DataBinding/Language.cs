@@ -40,6 +40,8 @@ namespace AEAssist
 
         public string TabItem_PotionSetting { get; set; } = "爆发药设置";
 
+        public string TabItem_DotBlacklist { get; set; } = "Dot黑名单";
+
         public string TabItem_SongSetting { get; set; } = "歌曲设置";
         public string SongSettingToolTips { get; set; } = "开爆发状态下,歌曲剩多久(毫秒)后切换";
         public string SongSetting_WM { get; set; } = "旅神";
@@ -64,13 +66,15 @@ namespace AEAssist
 
         public string Textbox_Bard_ApexArrow_SoulVoiceGauge { get; set; } = "绝峰箭能量要求";
         public string Textbox_Bard_TTK2BuffEnhancedIronJaw { get; set; } = "X秒内死亡不刷强化伶牙";
-        
+        public string Textbox_Bard_DotTimeLeft { get; set; } = "Dot剩余时间";
 
         public string Label_CurrTriggerLine { get; set; } = "当前加载时间轴:";
         public string Label_DexChoosePotion { get; set; } = "敏捷爆发药";
         public string Label_StrChoosePotion { get; set; } = "力量爆发药";
 
         public string Label_PotionNum { get; set; } = "数量:";
+
+        public string Label_DotblackList { get; set; } = "输入目标名字(包含)";
 
         public string Toggle_PreferGallow { get; set; } = "优先打缢杀";
 

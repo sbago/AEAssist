@@ -30,6 +30,8 @@ namespace AEAssist
         public bool UseAOE { get; set; } = true;
 
         public string TimeStr { get; set; }
+        
+        public bool EarlyDecisionMode { get; set; }
 
 
         public GeneralSettings GeneralSettings { get; } = SettingMgr.GetSetting<GeneralSettings>();
@@ -82,7 +84,6 @@ namespace AEAssist
         public bool UseSoulGauge { get; set; } = true;
 
         public bool DoubleEnshroudPrefer { get; set; } = true;
-        public bool EarlyDecisionMode { get; set; }
 
         #endregion
     }

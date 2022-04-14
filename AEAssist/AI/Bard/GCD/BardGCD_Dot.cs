@@ -15,6 +15,10 @@ namespace AEAssist.AI
                 return -1;
             if (TTKHelper.IsTargetTTK(tar))
                 return -2;
+
+            if (DotBlacklistHelper.IsBlackList(Core.Me.CurrentTarget))
+                return -10;
+            
             var dots = 0;
             if (BardSpellHelper.IsTargetHasAura_WindBite(tar)) dots++;
 

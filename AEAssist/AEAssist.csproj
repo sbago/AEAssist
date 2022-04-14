@@ -191,6 +191,7 @@
         <Compile Include="DataBinding\SongData.cs" />
         <Compile Include="Define\DataStruct\CircleList.cs" />
         <Compile Include="Gamelog\AEGamelogManager.cs" />
+        <Compile Include="Helper\DotBlacklistHelper.cs" />
         <Compile Include="Helper\LanguageHelper.cs" />
         <Compile Include="Helper\SpellHistoryHelper.cs" />
         <Compile Include="Opener\IOpener.cs" />

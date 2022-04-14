@@ -9,7 +9,7 @@ namespace AEAssist.TriggerSystem.TriggerCond
         {
             foreach (var v in AEGamelogManager.Instance.GameLogBuffers)
             {
-                if (v.MsgType != cond.MsgType)
+                if (cond.MsgType != 0 && v.MsgType != cond.MsgType)
                     continue;
                 if (v.Content.Contains(cond.ContainValue))
                     return true;

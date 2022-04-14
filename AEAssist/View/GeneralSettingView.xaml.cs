@@ -35,7 +35,8 @@ namespace AEAssist.View
             
             Str_ChoosePotion.ItemsSource = PotionHelper.StrPotions;
             Str_ChoosePotion.SelectedValue = SettingMgr.GetSetting<GeneralSettings>().StrPotionId;
-            
+
+            RefreshDotBlackList();
         }
 
         private List<HotkeyData> GetHotkeyData()
@@ -89,6 +90,41 @@ namespace AEAssist.View
         private void Str_ChoosePotion_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SettingMgr.GetSetting<GeneralSettings>().StrPotionId = (int) Str_ChoosePotion.SelectedValue;
+        }
+
+        private void DotBlackList_Add_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(this.DotBlackList_Input.Text))
+                return;
+            if (SettingMgr.GetSetting<GeneralSettings>().DotBlacklist.Add(this.DotBlackList_Input.Text))
+            {
+                RefreshDotBlackList();
+            }
+        }
+
+        private void DotBlackList_Remove_OnClick(object sender, RoutedEventArgs e)
+        {
+            var currSelect = this.DotBlackList.SelectedItem as ListBoxItem;
+            if (currSelect == null)
+                return;
+            if (SettingMgr.GetSetting<GeneralSettings>().DotBlacklist.Remove(currSelect.Content.ToString()))
+            {
+                RefreshDotBlackList();
+            }
+        }
+
+        void RefreshDotBlackList()
+        {
+            this.DotBlackList.SelectedItem = null;
+            this.DotBlackList.Items.Clear();
+            foreach (var v in SettingMgr.GetSetting<GeneralSettings>().DotBlacklist)
+            {
+                this.DotBlackList.Items.Add(new ListBoxItem()
+                {
+                    Content = v
+                });
+            }
+            
         }
     }
 }

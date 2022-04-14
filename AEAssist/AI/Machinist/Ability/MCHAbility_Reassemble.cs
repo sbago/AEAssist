@@ -2,6 +2,7 @@
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
+using ff14bot.Managers;
 using ff14bot.Objects;
 
 namespace AEAssist.AI
@@ -12,6 +13,8 @@ namespace AEAssist.AI
         {
             if (!SpellsDefine.Reassemble.IsChargeReady())
                 return -1;
+            if (ActionResourceManager.Machinist.OverheatRemaining.TotalMilliseconds > 0)
+                return -10;
             if (SpellsDefine.ChainSaw.IsReady())
             {
                 if (MCHSpellHelper.ReadyToUseChainSaw() > 0)

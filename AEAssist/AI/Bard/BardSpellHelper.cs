@@ -135,8 +135,12 @@ namespace AEAssist.Define
 
             bool NormalCheck()
             {
-                return !target.ContainMyAura((uint) ve_id, ConstValue.AuraTick)
-                       || !target.ContainAura((uint) wind_id, ConstValue.AuraTick);
+                var timeLeft = SettingMgr.GetSetting<BardSettings>().Dot_TimeLeft;
+                if (DataBinding.Instance.EarlyDecisionMode)
+                    timeLeft += SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
+                
+                return !target.ContainMyAura((uint) ve_id, timeLeft)
+                       || !target.ContainAura((uint) wind_id, timeLeft);
             }
 
             var buffCountInEnd = HasBuffsCountInEnd();

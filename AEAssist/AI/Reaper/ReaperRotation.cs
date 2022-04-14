@@ -26,6 +26,7 @@ namespace AEAssist
                 return Task.FromResult(false);
             });
             DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<ReaperSettings>().EarlyDecisionMode;
+            LogHelper.Info("EarlyDecisionMode: "+ DataBinding.Instance.EarlyDecisionMode);
         }
 
         public Task<bool> Rest()

@@ -1,4 +1,5 @@
-﻿using AEAssist.Annotations;
+﻿using System.Collections.Generic;
+using AEAssist.Annotations;
 using PropertyChanged;
 
 namespace AEAssist
@@ -35,6 +36,8 @@ namespace AEAssist
         public int DexPotionId { get; set; }
         
         public int StrPotionId { get; set; }
+
+        public HashSet<string> DotBlacklist { get; set; } = new HashSet<string>();
 
         public void Reset()
         {

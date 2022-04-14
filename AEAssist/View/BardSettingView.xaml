@@ -47,7 +47,7 @@
                 <CheckBox Name="EarlyDecisionMode"
                           Content="{Binding Language.Toggle_EarlyDecisionMode}" Width="200" Height="25"
                           HorizontalAlignment="Left"
-                          IsChecked="{Binding BardSetting.EarlyDecisionMode}" />
+                          IsChecked="{Binding BardSettings.EarlyDecisionMode,Mode=TwoWay}" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="{Binding Language.Textbox_Bard_ApexArrow_SoulVoiceGauge}" Width="200" />
                     <TextBox Width="100" Text="{Binding BardSettings.ApexArrowValue,Mode=TwoWay}" />
@@ -56,6 +56,12 @@
                     <Label Content="{Binding Language.Textbox_Bard_TTK2BuffEnhancedIronJaw}" Width="200" />
                     <TextBox Width="100" Text="{Binding BardSettings.TTK_IronJaws,Mode=TwoWay}" />
                 </StackPanel>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="{Binding Language.Textbox_Bard_DotTimeLeft}" Width="200" />
+                    <TextBox Width="100" Text="{Binding BardSettings.Dot_TimeLeft,Mode=TwoWay}" />
+                </StackPanel>
+                
             </StackPanel>
         </TabItem>
 

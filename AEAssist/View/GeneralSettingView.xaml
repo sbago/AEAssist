@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:viewModels="clr-namespace:AEAssist"
              mc:Ignorable="d"
-             d:DesignHeight="350" d:DesignWidth="300">
+             Height="350" Width="600">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -27,19 +27,25 @@
                 <ResourceDictionary
                     Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/MaterialDesignLightTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            
+            
         </ResourceDictionary>
+        
+        
     </UserControl.Resources>
 
     <UserControl.DataContext>
         <Binding Source="{x:Static viewModels:DataBinding.Instance}" />
     </UserControl.DataContext>
-
+    
     <TabControl Style="{StaticResource MaterialDesignTabControl}"
                 TabStripPlacement="Top"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Width="500"
                 materialDesign:ShadowAssist.ShadowDepth="Depth3"
                 materialDesign:ColorZoneAssist.Mode="PrimaryDark"
                 materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
-
         <TabItem Header="Lan">
             <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
@@ -136,6 +142,24 @@
                           SelectedValuePath="ID" SelectionChanged="Str_ChoosePotion_OnSelectionChanged" />
             </StackPanel>
                 </StackPanel>
+        </TabItem>
+        
+        <TabItem Header="{Binding Language.TabItem_DotBlacklist}">
+            <StackPanel Margin="10" HorizontalAlignment="Center">
+                <Border Background="#89696969">
+                <ListBox Margin="5" Name="DotBlackList" MinHeight="50">
+                  
+                </ListBox>
+                </Border>
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <Label Width="120" Content="{Binding Language.Label_DotblackList}" VerticalAlignment="Center"/> 
+                    <TextBox Name="DotBlackList_Input" Width="200" Height="30" />
+                </StackPanel>
+                
+                <Button Width="200" Margin="5" Name="DotBlackList_Add" Content="Add" Click="DotBlackList_Add_OnClick" />
+                <Button Width="200" Margin="5" Name="DotBlackList_Remove" Content="Remove" Click="DotBlackList_Remove_OnClick" />
+            </StackPanel>
+            
         </TabItem>
     </TabControl>
 </UserControl>

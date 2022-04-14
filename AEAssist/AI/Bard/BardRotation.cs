@@ -23,6 +23,7 @@ namespace AEAssist
             CountDownHandler.Instance.AddListener(1500, () =>
                 PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId));
             DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<BardSettings>().EarlyDecisionMode;
+            LogHelper.Info("EarlyDecisionMode: "+ DataBinding.Instance.EarlyDecisionMode);
         }
 
         public Task<bool> Rest()
