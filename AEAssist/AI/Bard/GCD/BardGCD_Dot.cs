@@ -13,7 +13,7 @@ namespace AEAssist.AI
             var tar = Core.Me.CurrentTarget as Character;
             if (!DataBinding.Instance.UseDot)
                 return -1;
-            if (TTKHelper.IsTargetTTK(tar,true))
+            if (TTKHelper.IsTargetTTK(tar))
                 return -2;
             var dots = 0;
             if (BardSpellHelper.IsTargetHasAura_WindBite(tar)) dots++;

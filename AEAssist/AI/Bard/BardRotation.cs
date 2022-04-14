@@ -21,9 +21,7 @@ namespace AEAssist
         {
             BardSpellHelper.Init();
             CountDownHandler.Instance.AddListener(1500, () =>
-            {
-                _ = PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId);
-            });
+                PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId));
             DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<BardSettings>().EarlyDecisionMode;
         }
 
@@ -50,7 +48,7 @@ namespace AEAssist
             if (!MovementManager.IsMoving)
                 return false;
             
-            CountDownHandler.Instance.Update();
+            await CountDownHandler.Instance.Update();
 
             if (CountDownHandler.Instance.Start)
                 return false;

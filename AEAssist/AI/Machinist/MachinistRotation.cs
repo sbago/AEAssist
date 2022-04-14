@@ -15,15 +15,11 @@ namespace AEAssist
     {
         public void Init()
         {
-            CountDownHandler.Instance.AddListener(1500, () =>
-            {
-                _ = PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId);
-            });
+            CountDownHandler.Instance.AddListener(1500, 
+                () => PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId));
             
-            CountDownHandler.Instance.AddListener(4800, () =>
-            {
-                _ = SpellHelper.CastAbility(SpellsDefine.Reassemble, Core.Me);
-            },false);
+            CountDownHandler.Instance.AddListener(4800, 
+                () => SpellHelper.CastAbility(SpellsDefine.Reassemble, Core.Me), false);
         }
 
       public Task<bool> Rest()
@@ -49,7 +45,7 @@ namespace AEAssist
             if (!MovementManager.IsMoving)
                 return false;
             
-            CountDownHandler.Instance.Update();
+            await CountDownHandler.Instance.Update();
 
             if (CountDownHandler.Instance.Start)
                 return false;

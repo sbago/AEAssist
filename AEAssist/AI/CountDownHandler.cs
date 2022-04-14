@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using AEAssist.Helper;
 
 namespace AEAssist.AI
@@ -14,11 +15,11 @@ namespace AEAssist.AI
 
         public bool CanDoAction { get; private set; }
 
-        private Dictionary<long, Action> CountDownActions = new Dictionary<long, Action>();
+        private Dictionary<long, Func<Task>> CountDownActions = new Dictionary<long, Func<Task>>();
 
         private HashSet<long> HasDone = new HashSet<long>();
 
-        public void Update()
+        public async Task Update()
         {
             if (!Start)
                 return;
@@ -36,7 +37,7 @@ namespace AEAssist.AI
                     try
                     {
                         LogHelper.Info("DoCountDownAction: "+ v.Key);
-                        v.Value.Invoke();
+                        await v.Value.Invoke();
                     }
                     catch (Exception e)
                     {
@@ -87,7 +88,7 @@ namespace AEAssist.AI
             HasDone.Clear();
         }
 
-        public void AddListener(int timeLeft, Action action, bool clearPre = true)
+        public void AddListener(int timeLeft, Func<Task> action, bool clearPre = true)
         {
             if(clearPre)
                 this.CountDownActions.Clear();

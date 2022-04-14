@@ -75,11 +75,11 @@ namespace AEAssist
             return Task.FromResult(false);
         }
 
-        public Task<bool> Heal()
+        public async Task<bool> Heal()
         {
-            CountDownHandler.Instance.Update();
+            await CountDownHandler.Instance.Update();
             TargetMgr.Instance.Update();
-            return AIRoot.Instance.Update();
+            return await AIRoot.Instance.Update();
         }
 
         public Task<bool> CombatBuff()

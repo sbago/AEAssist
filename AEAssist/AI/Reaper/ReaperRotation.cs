@@ -22,7 +22,8 @@ namespace AEAssist
             CountDownHandler.Instance.AddListener(1500, () =>
             {
                 if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
-                    _ = SpellHelper.CastGCD(SpellsDefine.Harpe, Core.Me.CurrentTarget);
+                    return SpellHelper.CastGCD(SpellsDefine.Harpe, Core.Me.CurrentTarget);
+                return Task.FromResult(false);
             });
             DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<ReaperSettings>().EarlyDecisionMode;
         }
