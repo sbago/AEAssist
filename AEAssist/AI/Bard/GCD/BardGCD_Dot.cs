@@ -26,7 +26,8 @@ namespace AEAssist.AI
 
             if (dots >= 2)
             {
-                if (BardSpellHelper.IsTargetNeedIronJaws(tar))
+                var timeLeft = SettingMgr.GetSetting<BardSettings>().Dot_TimeLeft;
+                if (BardSpellHelper.IsTargetNeedIronJaws(tar,timeLeft))
                     return 1;
                 return -3;
             }
@@ -37,12 +38,13 @@ namespace AEAssist.AI
         public async Task<SpellData> Run()
         {
             SpellData spell = null;
+            var timeLeft = SettingMgr.GetSetting<BardSettings>().Dot_TimeLeft;
             var target = Core.Me.CurrentTarget as Character;
             if (!BardSpellHelper.IsTargetHasAura_WindBite(target))
                 spell = BardSpellHelper.GetWindBite();
             else if (!BardSpellHelper.IsTargetHasAura_VenomousBite(target))
                 spell = BardSpellHelper.GetVenomousBite();
-            else if (BardSpellHelper.IsTargetNeedIronJaws(target)) spell = SpellsDefine.IronJaws;
+            else if (BardSpellHelper.IsTargetNeedIronJaws(target,timeLeft)) spell = SpellsDefine.IronJaws;
 
             if (spell == null)
                 return null;

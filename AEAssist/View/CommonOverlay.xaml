@@ -9,46 +9,25 @@
              FontSize="12"
              Background="#B5808080">
 
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/Generic.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/Generic.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/MaterialDesignLightTheme.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
-        </ResourceDictionary>
-    </UserControl.Resources>
-
     <UserControl.DataContext>
         <Binding Source="{x:Static viewModels:DataBinding.Instance}" />
     </UserControl.DataContext>
     <StackPanel>
         <StackPanel Margin="5" Width="250" HorizontalAlignment="Center">
-            <Button Name="Reset" FontSize="12" Content="{Binding Language.Btn_Reset}" Width="200" Height="25"
+            <StackPanel Orientation="Horizontal" Height="30" HorizontalAlignment="Center">
+            <Button Name="Reset" FontSize="12" Content="{Binding Language.Btn_Reset}" Width="100"  Height="25" Margin="5,0,5,0"
                     Click="Reset_OnClick"
                     HorizontalAlignment="Center" />
+            <Button Name="Close" FontSize="12" Content="{Binding Language.Btn_Close}" Width="100"  Height="25" Margin="5,0,5,0"
+                    Click="Close_OnClick"
+                    HorizontalAlignment="Center" />
+            </StackPanel>
             <StackPanel Orientation="Horizontal" Height="30">
                 <Label Content="{Binding Language.Label_CurrTriggerLine}" Foreground="Aqua" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
                 <Label Name="CurrTriggerLine" Margin="2,0,0,0" Content="NULL" Foreground="Aqua" Width="120" FontSize="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </StackPanel>
             <Button Name="ChangeTriggerLine" FontSize="12" Margin="5,0,5,0" Content="{Binding Language.SetTriggerLine}" Width="200" Height="25"
-                    Click="ChangeTriggerLine_OnClick" />
+                                   Click="ChangeTriggerLine_OnClick" />
 
         </StackPanel>
         <Border Margin="5,5,5,0" VerticalAlignment="Top" CornerRadius="5" Padding="10">
@@ -57,7 +36,7 @@
             </Border.Background>
             <StackPanel>
                 <Label Name="TimeLabel" Content="{Binding TimeStr}" Foreground="Aqua" />
-                <Label MaxWidth="250" Height="34" Margin="0" Style="{StaticResource MaterialDesignLabel}">
+                <Label MaxWidth="250" Height="34" Margin="0">
                     <TextBlock
                         FontSize="10"
                         TextWrapping="Wrap"

@@ -14,7 +14,7 @@ namespace AEAssist
         public static JsonWriterSettings Settings = new JsonWriterSettings
         {
             Indent = true,
-            OutputMode = JsonOutputMode.Strict,
+            OutputMode = JsonOutputMode.CanonicalExtendedJson,
         };
         static MongoHelper()
         {

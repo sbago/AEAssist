@@ -2,7 +2,7 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger("AfterOtherTrigger", "某组触发器")]
+    [Trigger("AfterOtherTrigger")]
     public class TriggerCond_AfterOtherTrigger : ITriggerCond
     {
         public int Time;
@@ -14,14 +14,14 @@ namespace AETriggers.TriggerModel
 #if Trigger
             if (!Entry.AllExcelData.ContainsKey(this.TriggerId))
             {
-                throw new Exception($"不存在组Id: {values[0]}!\n");
+                throw new Exception($"Id not found: {values[0]}!\n");
             }
 #endif
 
-            if (!int.TryParse(values[1], out var time)) throw new Exception($"{values[1]}格式错误!\n");
+            if (!int.TryParse(values[1], out var time)) throw new Exception($"{values[1]}Error!\n");
 
             Time = time;
-            if (Time < 0) throw new Exception("参数配置了小于0的值");
+            if (Time < 0) throw new Exception("out of range!");
         }
     }
 }

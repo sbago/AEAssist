@@ -77,8 +77,14 @@
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_CastAbility.cs">
             <Link>TriggerModel\TriggerAction\TriggerAction_CastAbility.cs</Link>
         </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_CastGCD.cs">
+          <Link>TriggerModel\TriggerAction\TriggerAction_CastGCD.cs</Link>
+        </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_NextSong.cs">
             <Link>TriggerModel\TriggerAction\TriggerAction_NextSong.cs</Link>
+        </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SongList.cs">
+          <Link>TriggerModel\TriggerAction\TriggerAction_SongList.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchAOE.cs">
             <Link>TriggerModel\TriggerAction\TriggerAction_SwitchAOE.cs</Link>
@@ -91,6 +97,9 @@
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchDOT.cs">
             <Link>TriggerModel\TriggerAction\TriggerAction_SwitchDOT.cs</Link>
+        </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchSong.cs">
+          <Link>TriggerModel\TriggerAction\TriggerAction_SwitchSong.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAttribute.cs">
             <Link>TriggerModel\TriggerAttribute.cs</Link>
@@ -271,6 +280,8 @@
         <Compile Include="Setting\Setting\BardSettings.cs" />
         <Compile Include="Setting\Setting\GeneralSettings.cs" />
         <Compile Include="Setting\Setting\VersionSetting.cs" />
+        <Resource Include="Resources\Background\Sky.jpeg" />
+        <Resource Include="Resources\Background\Black_1.jpeg" />
         <Content Include="Resources\BossDictionary.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
@@ -431,9 +442,6 @@
         <None Include="App.config" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="MaterialDesignColors" Version="2.0.6-ci125" />
-        <PackageReference Include="MaterialDesignExtensions" Version="4.0.0-a02" />
-        <PackageReference Include="MaterialDesignThemes" Version="4.5.0-ci125" />
         <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
         <PackageReference Include="System.ObjectModel" Version="4.3.0" />
     </ItemGroup>

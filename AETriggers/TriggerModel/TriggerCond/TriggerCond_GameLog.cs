@@ -2,7 +2,7 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger("GameLog", "副本内台词/系统提示的监控")]
+    [Trigger("GameLog")]
     public class TriggerCond_GameLog : ITriggerCond
     {
         public string ContainValue;
@@ -11,7 +11,7 @@ namespace AETriggers.TriggerModel
 
         public void WriteFromJson(string[] values)
         {
-            if (!int.TryParse(values[0], out var msgtype)) throw new Exception($"{values[0]} 格式错误!");
+            if (!int.TryParse(values[0], out var msgtype)) throw new Exception($"{values[0]} Error!");
 
             MsgType = msgtype;
             ContainValue = values[1];

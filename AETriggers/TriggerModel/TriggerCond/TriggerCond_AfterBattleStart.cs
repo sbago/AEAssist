@@ -2,17 +2,17 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger("AfterBattleStart", "战斗开始后")]
+    [Trigger("AfterBattleStart")]
     public class TriggerCond_AfterBattleStart : ITriggerCond
     {
         public int Time;
 
         public void WriteFromJson(string[] values)
         {
-            if (!int.TryParse(values[0], out var time)) throw new Exception($"{values[0]}格式错误!\n");
+            if (!int.TryParse(values[0], out var time)) throw new Exception($"{values[0]}Error!\n");
 
             Time = time;
-            if (Time < 0) throw new Exception("参数配置了小于0的值");
+            if (Time < 0) throw new Exception("Out of range!");
         }
     }
 }

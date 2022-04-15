@@ -2,14 +2,14 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger("Burst", "是否允许爆发")]
+    [Trigger("Burst")]
     public class TriggerAction_SwitchBurst : ITriggerAction
     {
         public bool value;
 
         public void WriteFromJson(string[] values)
         {
-            if (!int.TryParse(values[0], out var va)) throw new Exception($"{values[0]}格式错误!\n");
+            if (!int.TryParse(values[0], out var va)) throw new Exception($"{values[0]}Error!\n");
 
             value = va == 1;
         }

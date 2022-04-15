@@ -16,26 +16,6 @@
     <!-- AllowsTransparency="True" -->
     <UserControl.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/Generic.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/Generic.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/MaterialDesignLightTheme.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
-            </ResourceDictionary.MergedDictionaries>
 
             <Style TargetType="{x:Type CheckBox}" x:Key="CheckBoxOverlayCustomToggle">
                 <Setter Property="FontWeight" Value="Bold" />
@@ -137,22 +117,22 @@
                               IsChecked="{Binding AutoAttack,Mode=TwoWay}" />
                 </WrapPanel>
                 <WrapPanel Margin="10">
-                    <Button Margin="5,2,5,2" Name="UseTactician" Click="UseTactician_OnClick">
+                    <Button Width="30" Height="30" Margin="5,2,5,2" Name="UseTactician" Click="UseTactician_OnClick">
                         <Button.Background>
                             <ImageBrush ImageSource="../../Resources/Spells/ShieldSamba.png" Stretch="Uniform" />
                         </Button.Background>
                     </Button>
-                    <Button Margin="5,2,5,2" Name="UseArmsLength" Click="UseArmsLength_OnClick">
+                    <Button Width="30" Height="30" Margin="5,2,5,2" Name="UseArmsLength" Click="UseArmsLength_OnClick">
                         <Button.Background>
                             <ImageBrush ImageSource="../../Resources/Spells/ArmsLength.png" Stretch="Uniform" />
                         </Button.Background>
                     </Button>
-                    <Button Margin="5,2,5,2" Name="UseSprint" Click="UseSprint_OnClick">
+                    <Button Width="30" Height="30" Margin="5,2,5,2" Name="UseSprint" Click="UseSprint_OnClick">
                         <Button.Background>
                             <ImageBrush ImageSource="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
                         </Button.Background>
                     </Button>
-                    <Button Margin="5,2,5,2" Name="UsePotion" Click="UsePotion_OnClick">
+                    <Button Width="30" Height="30" Margin="5,2,5,2" Name="UsePotion" Click="UsePotion_OnClick">
                         <Button.Background>
                             <ImageBrush ImageSource="../../Resources/Spells/Potion.png" Stretch="Uniform" />
                         </Button.Background>

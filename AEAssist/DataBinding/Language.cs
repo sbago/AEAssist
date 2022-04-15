@@ -50,6 +50,7 @@ namespace AEAssist
 
         public string Btn_SwitchOverlay { get; set; } = "显示/隐藏Overlay";
         public string Btn_Reset { get; set; } = "重置";
+        public string Btn_Close { get; set; } = "隐藏";
 
         public string Btn_CheckPotionNum { get; set; } = "检查爆发药数量";
 

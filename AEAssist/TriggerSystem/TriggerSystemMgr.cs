@@ -50,6 +50,8 @@ namespace AEAssist.TriggerSystem
                 if (!HandleCond(v))
                     return false;
 
+            LogHelper.Info("Hit Trigger: " + trigger.Id);
+            
             foreach (var v in trigger.TriggerActions) HandleAction(v);
 
             return true;
@@ -84,6 +86,7 @@ namespace AEAssist.TriggerSystem
                 return;
             }
 
+            LogHelper.Info("HandleAction : " + action.GetType().Name);
             try
             {
                 handler.Run(action);

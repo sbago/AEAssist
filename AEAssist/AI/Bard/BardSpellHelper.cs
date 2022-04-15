@@ -119,7 +119,7 @@ namespace AEAssist.Define
             return target.ContainMyAura((uint) id);
         }
 
-        public static bool IsTargetNeedIronJaws(Character target)
+        public static bool IsTargetNeedIronJaws(Character target,int timeLeft)
         {
             if (Core.Me.ClassLevel < SpellsDefine.IronJaws.LevelAcquired)
                 return false;
@@ -135,7 +135,6 @@ namespace AEAssist.Define
 
             bool NormalCheck()
             {
-                var timeLeft = SettingMgr.GetSetting<BardSettings>().Dot_TimeLeft;
                 if (DataBinding.Instance.EarlyDecisionMode)
                     timeLeft += SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
                 

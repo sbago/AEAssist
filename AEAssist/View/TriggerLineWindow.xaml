@@ -9,29 +9,6 @@
         ResizeMode="NoResize"
         ShowInTaskbar="False"
         Title="{Binding Language.Title_LoadTriggerLine}" Height="200" Width="250">
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/Generic.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/Generic.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MaterialDesignExtensions;component/Themes/MaterialDesignLightTheme.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
-        </ResourceDictionary>
-    </Window.Resources>
 
     <Window.DataContext>
         <Binding Source="{x:Static viewModels:DataBinding.Instance}" />
@@ -40,8 +17,8 @@
 
     <StackPanel Margin="10" Width="200">
         <StackPanel Orientation="Horizontal">
-            <Button Name="LoadTriggerLine" Width="100" Margin="2" Content="{Binding Language.Btn_LoadTriggerLine}" Click="LoadTriggerLine_OnClick" />
-            <Button Name="ClearTriggerLine" Width="100" Content="{Binding Language.Btn_ClearTriggerLine}" Click="ClearTriggerLine_OnClick" />
+            <Button Name="LoadTriggerLine" Width="100" Height="30" Margin="2" Content="{Binding Language.Btn_LoadTriggerLine}" Click="LoadTriggerLine_OnClick" />
+            <Button Name="ClearTriggerLine" Width="100" Height="30" Content="{Binding Language.Btn_ClearTriggerLine}" Click="ClearTriggerLine_OnClick" />
         </StackPanel>
         <Label Name="TriggerLineAuthor" Content="" />
         <Label Name="TriggerLineVersion" Content="" />

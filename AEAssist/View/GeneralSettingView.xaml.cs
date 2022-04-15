@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Media;
 using AEAssist.Define;
 using AEAssist.Helper;
+using HorizontalAlignment = System.Windows.HorizontalAlignment;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace AEAssist.View
@@ -13,6 +16,12 @@ namespace AEAssist.View
     {
         private readonly List<HotkeyData> HotkeyDatas;
 
+        class DotBlackList_Data
+        {
+            public string Name { get; set; }
+        }
+        
+        private ObservableCollection<DotBlackList_Data> Ob_DotBlackList = new ObservableCollection<DotBlackList_Data>();
 
         public GeneralSettingView()
         {
@@ -36,7 +45,11 @@ namespace AEAssist.View
             Str_ChoosePotion.ItemsSource = PotionHelper.StrPotions;
             Str_ChoosePotion.SelectedValue = SettingMgr.GetSetting<GeneralSettings>().StrPotionId;
 
+           
+            
             RefreshDotBlackList();
+            
+            
         }
 
         private List<HotkeyData> GetHotkeyData()
@@ -105,8 +118,11 @@ namespace AEAssist.View
         private void DotBlackList_Remove_OnClick(object sender, RoutedEventArgs e)
         {
             var currSelect = this.DotBlackList.SelectedItem as ListBoxItem;
+      
             if (currSelect == null)
                 return;
+            LogHelper.Info(currSelect.GetType().ToString());
+            LogHelper.Info(currSelect.Content.GetType().ToString());
             if (SettingMgr.GetSetting<GeneralSettings>().DotBlacklist.Remove(currSelect.Content.ToString()))
             {
                 RefreshDotBlackList();
@@ -117,11 +133,19 @@ namespace AEAssist.View
         {
             this.DotBlackList.SelectedItem = null;
             this.DotBlackList.Items.Clear();
+          
+            
             foreach (var v in SettingMgr.GetSetting<GeneralSettings>().DotBlacklist)
             {
                 this.DotBlackList.Items.Add(new ListBoxItem()
                 {
-                    Content = v
+                    Content = v,
+                    Foreground =  Brushes.Aqua,
+                    Height = 25,
+                    Width = 100,
+                    FontSize = 10,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center
                 });
             }
             

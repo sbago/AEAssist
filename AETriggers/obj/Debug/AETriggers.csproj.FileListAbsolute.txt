@@ -22,11 +22,9 @@ D:\Github\AEAssist\AETriggers\bin\Debug\Ru\MaterialDesignExtensions.resources.dl
 D:\Github\AEAssist\AETriggers\bin\Debug\ru-ru\MaterialDesignExtensions.resources.dll
 D:\Github\AEAssist\AETriggers\bin\Debug\uz-Latn-UZ\MaterialDesignExtensions.resources.dll
 D:\Github\AEAssist\AETriggers\obj\Debug\AETriggers.csproj.AssemblyReference.cache
-D:\Github\AEAssist\AETriggers\obj\Debug\AETriggers.exe.config
 D:\Github\AEAssist\AETriggers\obj\Debug\MainWindow.g.cs
 D:\Github\AEAssist\AETriggers\obj\Debug\App.g.cs
 D:\Github\AEAssist\AETriggers\obj\Debug\AETriggers_MarkupCompile.cache
-D:\Github\AEAssist\AETriggers\obj\Debug\App.baml
 D:\Github\AEAssist\AETriggers\obj\Debug\MainWindow.baml
 D:\Github\AEAssist\AETriggers\obj\Debug\AETriggers.g.resources
 D:\Github\AEAssist\AETriggers\obj\Debug\AETriggers.Properties.Resources.resources
@@ -76,3 +74,6 @@ D:\Github\AEAssist\AETriggers\bin\AE时间轴导出工具\System.Runtime.Compile
 D:\Github\AEAssist\Output\AE时间轴导出工具\AETriggers.exe.config
 D:\Github\AEAssist\Output\AE时间轴导出工具\AETriggers.exe
 D:\Github\AEAssist\Output\AE时间轴导出工具\AETriggers.pdb
+D:\Github\AEAssist\Output\AETriggers\AETriggers.exe.config
+D:\Github\AEAssist\Output\AETriggers\AETriggers.exe
+D:\Github\AEAssist\Output\AETriggers\AETriggers.pdb

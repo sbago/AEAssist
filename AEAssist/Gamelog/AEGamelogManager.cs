@@ -25,7 +25,11 @@ namespace AEAssist.Gamelog
 
         public void CheckLog()
         {
-            while (GameLogBuffers.Count >= 20) GameLogBuffers.Dequeue();
+            while (GameLogBuffers.Count >= 100)
+            {
+                var deq = GameLogBuffers.Dequeue();
+                LogHelper.Info("RemoveGameLog=> " + deq.Content);
+            }
         }
 
         private void AddBuffers(int msgType, string content)

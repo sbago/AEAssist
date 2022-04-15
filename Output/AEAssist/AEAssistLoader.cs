@@ -24,9 +24,6 @@ namespace AEAssist
 
         public static readonly HashSet<string> ExternelDlls = new HashSet<string>
         {
-            "MaterialDesignColors",
-            "MaterialDesignThemes.Wpf",
-            "MaterialDesignExtensions",
             "MongoDB.Bson"
         };
 

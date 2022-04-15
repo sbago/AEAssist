@@ -32,6 +32,7 @@
   "SongSetting_AP" : "军神",
   "Btn_SwitchOverlay" : "显示/隐藏Overlay",
   "Btn_Reset" : "重置",
+  "Btn_Close" : "隐藏",
   "Btn_CheckPotionNum" : "检查爆发药数量",
   "SetTriggerLine" : "设置时间轴",
   "Combox_Hotkey_Stop" : "停手",

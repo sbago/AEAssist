@@ -2,7 +2,7 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger("EnemyHPPct", "某敌人血量百分比")]
+    [Trigger("EnemyHPPct")]
     public class TriggerCond_EnemyHPPct : ITriggerCond
     {
         public float HpPct; // xx.xxx
@@ -11,9 +11,9 @@ namespace AETriggers.TriggerModel
         public void WriteFromJson(string[] values)
         {
             Name = values[0];
-            if (string.IsNullOrEmpty(Name)) throw new Exception($"{values[0]} 为空!");
+            if (string.IsNullOrEmpty(Name)) throw new Exception($"{values[0]} is null!");
 
-            if (!float.TryParse(values[1], out var va)) throw new Exception($"{values[1]} 格式错误!");
+            if (!float.TryParse(values[1], out var va)) throw new Exception($"{values[1]} Error!");
 
             HpPct = va;
         }

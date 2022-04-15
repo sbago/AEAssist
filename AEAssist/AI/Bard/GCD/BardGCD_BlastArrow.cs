@@ -17,11 +17,21 @@ namespace AEAssist.AI
 
             if (SpellsDefine.RagingStrikes.RecentlyUsed() || BardSpellHelper.HasBuffsCount() >= 1)
                 return 1;
+            
 
             var aura = Core.Me.GetAuraById(AurasDefine.BlastArrowReady);
             var buffTime = SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds;
             if (SpellsDefine.RagingStrikes.IsReady())
                 buffTime = 0;
+
+            if (DataBinding.Instance.EarlyDecisionMode)
+                buffTime += SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
+            
+            // Buff持续时间内需要补毒,那么立即打出去
+            if (BardSpellHelper.IsTargetNeedIronJaws(Core.Me.CurrentTarget as Character, (int)aura.TimespanLeft.TotalMilliseconds))
+                return 3;
+            
+            // 如果可以等到猛者,就等一下
             if (aura.TimespanLeft.TotalMilliseconds >= buffTime + ConstValue.AuraTick) return -4;
 
             return 0;

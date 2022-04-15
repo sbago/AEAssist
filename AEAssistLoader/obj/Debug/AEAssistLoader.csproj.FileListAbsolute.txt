@@ -20,3 +20,4 @@ D:\Github\AEAssist\AEAssistLoader\bin\Debug\MongoDB.Bson.xml
 D:\Github\AEAssist\AEAssistLoader\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\Github\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.csproj.Fody.CopyLocal.cache
 D:\Github\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.exe
+D:\Github\AEAssist\AEAssistLoader\obj\Debug\AEAssistLoader.csproj.CopyComplete
