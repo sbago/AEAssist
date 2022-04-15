@@ -9,6 +9,15 @@
         ResizeMode="NoResize"
         ShowInTaskbar="False"
         Title="{Binding Language.Title_LoadTriggerLine}" Height="200" Width="250">
+    
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/AEAssist;component/View/Style/Button.xaml" />
+                <ResourceDictionary Source="/AEAssist;component/View/Style/CheckBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
 
     <Window.DataContext>
         <Binding Source="{x:Static viewModels:DataBinding.Instance}" />

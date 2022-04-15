@@ -8,7 +8,7 @@ namespace AEAssist.TriggerSystem.TriggerCond
         protected override bool Check(TriggerCond_AfterBattleStart cond)
         {
             var battleTime = AIRoot.Instance.BattleData.BattleTime;
-            return battleTime >= cond.Time;
+            return battleTime >= cond.Time * 1000;
         }
     }
 }

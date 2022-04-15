@@ -31,6 +31,12 @@ namespace AEAssist.Gamelog
                 LogHelper.Info("RemoveGameLog=> " + deq.Content);
             }
         }
+        
+        public void ClearAll()
+        {
+            GameLogBuffers.Clear();
+            LogHelper.Info("ClearAllGameLog");
+        }
 
         private void AddBuffers(int msgType, string content)
         {

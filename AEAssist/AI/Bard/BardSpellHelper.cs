@@ -345,10 +345,9 @@ namespace AEAssist.Define
 
             if (!AIRoot.Instance.BurstOff)
             {
-                if (AIRoot.Instance.BardBattleData.nextSong == ActionResourceManager.Bard.BardSong.None
-                    && currSong != ActionResourceManager.Bard.BardSong.None
-                    && AIRoot.Instance.BardBattleData.nextSongDuration != 0)
-                    if (remainTime <= 45000 - AIRoot.Instance.BardBattleData.nextSongDuration)
+                if (AIRoot.Instance.BardBattleData.nextSongQueue.Count > 0
+                    && (int)currSong == AIRoot.Instance.BardBattleData.nextSongQueue.Peek())
+                    if (remainTime <= 45000 - AIRoot.Instance.BardBattleData.nextSongDuration.Peek())
                         return true;
 
                 switch (currSong)
@@ -375,9 +374,9 @@ namespace AEAssist.Define
             // 关爆发的时候,让歌唱完
             if (currSong != ActionResourceManager.Bard.BardSong.None)
             {
-                if (AIRoot.Instance.BardBattleData.nextSong == ActionResourceManager.Bard.BardSong.None
-                    && AIRoot.Instance.BardBattleData.nextSongDuration != 0)
-                    if (remainTime <= 45000 - AIRoot.Instance.BardBattleData.nextSongDuration)
+                if (AIRoot.Instance.BardBattleData.nextSongQueue.Count>0 
+                    && (int)currSong == AIRoot.Instance.BardBattleData.nextSongQueue.Peek())
+                    if (remainTime <= 45000 - AIRoot.Instance.BardBattleData.nextSongDuration.Peek())
                         return true;
 
                 if (remainTime <= ConstValue.SongsTimeLeftCheckWhenCloseBuff)

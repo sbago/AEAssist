@@ -130,7 +130,7 @@ namespace AETriggers
 
                     if (loadRet)
                     {
-                        MessageBox.Show("成功加载数据 ");
+                        MessageBox.Show("Load Success!");
                     }
                     else
                     {
@@ -161,7 +161,7 @@ namespace AETriggers
             if (!ret.HasValue || !ret.Value)
                 return;
             TriggerHelper.SaveTriggerLine(TriggerLine, openFile.FileName);
-            MessageBox.Show("导出成功!");
+            MessageBox.Show("Export Success!");
         }
 
         private bool LoadExcelData()

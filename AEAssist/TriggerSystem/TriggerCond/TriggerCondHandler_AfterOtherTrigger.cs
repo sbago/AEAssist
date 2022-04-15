@@ -11,7 +11,7 @@ namespace AEAssist.TriggerSystem.TriggerCond
             var time = AIRoot.Instance.BattleData.GetExecutedTriggersTime(cond.TriggerId);
             if (time == 0)
                 return false;
-            if (TimeHelper.Now() - time >= cond.Time)
+            if (TimeHelper.Now() - time >= cond.Time * 1000)
                 return true;
             return false;
         }

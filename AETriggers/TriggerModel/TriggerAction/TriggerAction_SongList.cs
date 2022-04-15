@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace AETriggers.TriggerModel
 {
+    [Trigger("SongList")]
     public class TriggerAction_SongList : ITriggerAction
     {
         public List<int> SongIndex = new List<int>();

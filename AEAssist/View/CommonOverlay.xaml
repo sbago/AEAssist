@@ -8,6 +8,15 @@
              Width="250"
              FontSize="12"
              Background="#B5808080">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/AEAssist;component/View/Style/Button.xaml" />
+                <ResourceDictionary Source="/AEAssist;component/View/Style/CheckBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
 
     <UserControl.DataContext>
         <Binding Source="{x:Static viewModels:DataBinding.Instance}" />

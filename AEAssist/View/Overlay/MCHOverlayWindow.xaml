@@ -16,47 +16,10 @@
     <!-- AllowsTransparency="True" -->
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="{x:Type CheckBox}" x:Key="CheckBoxOverlayCustomToggle">
-                <Setter Property="FontWeight" Value="Bold" />
-                <Setter Property="Foreground" Value="LightGray" />
-                <Setter Property="FontSize" Value="9" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type CheckBox}">
-
-                            <Border Name="Background" Margin="2" MaxWidth="85" Height="25" CornerRadius="3"
-                                    Background="#FF282546">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Margin="3" Name="DisplayText" TextWrapping="Wrap" TextAlignment="Center"
-                                               VerticalAlignment="Center" HorizontalAlignment="Center"
-                                               Text="{TemplateBinding Content}" SnapsToDevicePixels="True" FontSize="9"
-                                               TextOptions.TextFormattingMode="Display"
-                                               Foreground="{DynamicResource ClassSelectorBackground}" />
-                                </Grid>
-                            </Border>
-
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsChecked" Value="True">
-                                    <Trigger.Setters>
-                                        <Setter TargetName="Background" Property="Background" Value="DodgerBlue" />
-                                    </Trigger.Setters>
-                                </Trigger>
-                                <Trigger Property="IsChecked" Value="False">
-                                    <Trigger.Setters>
-                                        <Setter TargetName="Background" Property="Background" Value="DimGray" />
-                                    </Trigger.Setters>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/AEAssist;component/View/Style/Button.xaml"/>
+                <ResourceDictionary Source="/AEAssist;component/View/Style/CheckBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
 

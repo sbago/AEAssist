@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AEAssist.AI.Reaper;
 using AEAssist.Define;
+using AEAssist.Gamelog;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Managers;
@@ -80,6 +81,7 @@ namespace AEAssist.AI
             DataBinding.Instance.Reset();
 
             SpellHistoryMgr.Instance.Clear();
+            AEGamelogManager.Instance.ClearAll();
 
             ClearBattleData = true;
             LogHelper.Debug("Clear battle data");

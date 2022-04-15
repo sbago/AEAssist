@@ -65,5 +65,12 @@
   "Content_AIRoot_CanAttack" : "Prepare!",
   "Content_LocalTime" : "LocalTime",
   "Content_BattleTime" : "BattleTime",
-  "Title_LoadTriggerLine" : "LoadTriggerLine"
+  "Title_LoadTriggerLine" : "LoadTriggerLine",
+  "Btn_Close" : "Hide",
+  "Textbox_Bard_DotTimeLeft" : "DOT time to refresh",
+  "Label_DexChoosePotion" : "Dex Potion",
+  "Label_StrChoosePotion" : "Str Potion",
+  "Label_DotblackList" : "TargetName(Contains)",
+  "TabItem_PotionSetting" : "Potion Setting",
+  "TabItem_DotBlacklist" : "Dot Blacklist"
 }

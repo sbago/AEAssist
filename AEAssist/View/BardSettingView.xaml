@@ -7,18 +7,29 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
 
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/AEAssist;component/View/Style/Button.xaml" />
+                <ResourceDictionary Source="/AEAssist;component/View/Style/CheckBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <UserControl.DataContext>
         <Binding Source="{x:Static viewModels:DataBinding.Instance}" />
     </UserControl.DataContext>
 
     <TabControl
-                Margin="20"
-                TabStripPlacement="Top">
+        Margin="20"
+        TabStripPlacement="Top">
 
         <TabItem Header="{Binding Language.TabItem_BaseSetting}">
             <StackPanel HorizontalAlignment="Left" Margin="10">
-                <CheckBox Content="{Binding Language.Toggle_UsePoleton}" IsChecked="{Binding BardSettings.UsePeloton,Mode=TwoWay}" />
-                <CheckBox Content="{Binding Language.Toggle_Bard_Delay1GCDToUseBuffs}" IsChecked="{Binding BardSettings.BuffsDelay2GCD,Mode=TwoWay}" />
+                <CheckBox Content="{Binding Language.Toggle_UsePoleton}"
+                          IsChecked="{Binding BardSettings.UsePeloton,Mode=TwoWay}" />
+                <CheckBox Content="{Binding Language.Toggle_Bard_Delay1GCDToUseBuffs}"
+                          IsChecked="{Binding BardSettings.BuffsDelay2GCD,Mode=TwoWay}" />
                 <CheckBox Name="EarlyDecisionMode"
                           Content="{Binding Language.Toggle_EarlyDecisionMode}" Width="200" Height="25"
                           HorizontalAlignment="Left"
@@ -31,12 +42,12 @@
                     <Label Content="{Binding Language.Textbox_Bard_TTK2BuffEnhancedIronJaw}" Width="200" />
                     <TextBox Width="100" Text="{Binding BardSettings.TTK_IronJaws,Mode=TwoWay}" />
                 </StackPanel>
-                
+
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="{Binding Language.Textbox_Bard_DotTimeLeft}" Width="200" />
                     <TextBox Width="100" Text="{Binding BardSettings.Dot_TimeLeft,Mode=TwoWay}" />
                 </StackPanel>
-                
+
             </StackPanel>
         </TabItem>
 

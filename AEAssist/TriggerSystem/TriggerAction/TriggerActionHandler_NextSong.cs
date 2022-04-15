@@ -8,8 +8,9 @@ namespace AEAssist.TriggerSystem.TriggerAction
     {
         protected override void Handle(TriggerAction_NextSong t)
         {
-            AIRoot.Instance.BardBattleData.nextSong = (ActionResourceManager.Bard.BardSong) t.value;
-            AIRoot.Instance.BardBattleData.nextSongDuration = t.Duration;
+            // todo: replace by songlist
+            // AIRoot.Instance.BardBattleData.nextSong = (ActionResourceManager.Bard.BardSong) t.value;
+            // AIRoot.Instance.BardBattleData.nextSongDuration = t.Duration;
         }
     }
 }

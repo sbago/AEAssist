@@ -18,8 +18,8 @@ namespace AEAssist.Define
 
         #region NextSongs
 
-        public ActionResourceManager.Bard.BardSong nextSong = ActionResourceManager.Bard.BardSong.None;
-        public int nextSongDuration;
+        public Queue<int> nextSongQueue = new Queue<int>();
+        public Queue<int> nextSongDuration =new Queue<int>();
 
         #endregion
     }

@@ -124,3 +124,5 @@ C:\Users\kuro\Documents\GitHub\AEAssist\AEAssist\obj\Debug\AEAssist.csproj.Fody.
 C:\Users\kuro\Documents\GitHub\AEAssist\AEAssist\obj\Debug\AEAssist.csproj.CopyComplete
 C:\Users\kuro\Documents\GitHub\AEAssist\AEAssist\obj\Debug\AEAssist.dll
 C:\Users\kuro\Documents\GitHub\AEAssist\AEAssist\obj\Debug\AEAssist.pdb
+D:\Github\AEAssist\AEAssist\obj\Debug\View\Style\Button.baml
+D:\Github\AEAssist\AEAssist\obj\Debug\View\Style\CheckBox.baml
