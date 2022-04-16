@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using AEAssist.AI;
 using ff14bot;
 using ff14bot.Managers;
 
-namespace AEAssist.Define
+namespace AEAssist.AI
 {
-    public class BardBattleData
+    public class BardBattleData : IBattleData
     {
         public long lastCastSongTime;
         public Dictionary<uint, bool> lastIronJawWithBuffWithObj = new Dictionary<uint, bool>();

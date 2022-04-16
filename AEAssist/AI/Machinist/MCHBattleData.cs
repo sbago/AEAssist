@@ -8,7 +8,7 @@
         SpreadShot
     }
     
-    public class MCHBattleData
+    public class MCHBattleData : IBattleData
     {
         public MCHComboStages ComboStages;
     }

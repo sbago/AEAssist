@@ -51,7 +51,7 @@ namespace AEAssist.Opener
             spellData = null;
             if (!AllOpeners.TryGetValue((classJobType,Core.Me.ClassLevel), out var opener))
                 return false;
-            var currGCDIndex = AIRoot.Instance.BattleData.lastGCDIndex;
+            var currGCDIndex = AIRoot.GetBattleData<BattleData>().lastGCDIndex;
             return opener.NextGCD(currGCDIndex,out spellData);
         }
 
@@ -60,8 +60,8 @@ namespace AEAssist.Opener
             spellData = null;
             if (!AllOpeners.TryGetValue((classJobType,Core.Me.ClassLevel), out var opener))
                 return false;
-            var currGCDIndex = AIRoot.Instance.BattleData.lastGCDIndex;
-            var abilityTimes = 2 - AIRoot.Instance.BattleData.maxAbilityTimes;
+            var currGCDIndex = AIRoot.GetBattleData<BattleData>().lastGCDIndex;
+            var abilityTimes = 2 - AIRoot.GetBattleData<BattleData>().maxAbilityTimes;
             if (abilityTimes < 0)
                 abilityTimes = 0;
             if (abilityTimes > 1)

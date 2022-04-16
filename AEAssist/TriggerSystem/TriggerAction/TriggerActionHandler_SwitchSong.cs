@@ -13,13 +13,13 @@ namespace AEAssist.TriggerSystem.TriggerAction
             switch ((ActionResourceManager.Bard.BardSong)t.index)
             {
                 case ActionResourceManager.Bard.BardSong.MagesBallad:
-                    AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.MagesBallad.Id;
+                    AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.MagesBallad.Id;
                     break;
                 case ActionResourceManager.Bard.BardSong.ArmysPaeon:
-                    AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.ArmysPaeon.Id;
+                    AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmysPaeon.Id;
                     break;
                 case ActionResourceManager.Bard.BardSong.WanderersMinuet:
-                    AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.TheWanderersMinuet.Id;
+                    AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.TheWanderersMinuet.Id;
                     break;
             }
         }

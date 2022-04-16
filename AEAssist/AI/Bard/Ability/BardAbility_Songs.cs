@@ -15,7 +15,7 @@ namespace AEAssist.AI
                 lastSpell == SpellsDefine.ArmysPaeon)
                 return -1;
             // 可能会发生短时间内rb的song的Timer还是上一首歌的 (rb的bug),导致连续的GCD内连续切换两次歌的情况
-            if (TimeHelper.Now() - AIRoot.Instance.BardBattleData.lastCastSongTime < 3000)
+            if (TimeHelper.Now() - AIRoot.GetBattleData<BardBattleData>().lastCastSongTime < 3000)
                 return -2;
 
             if (!SpellsDefine.TheWanderersMinuet.IsReady()
@@ -47,11 +47,11 @@ namespace AEAssist.AI
             {
                 if (forceNextSong)
                 {
-                    AIRoot.Instance.BardBattleData.nextSongQueue.Dequeue();
-                    AIRoot.Instance.BardBattleData.nextSongDuration.Dequeue();
+                    AIRoot.GetBattleData<BardBattleData>().nextSongQueue.Dequeue();
+                    AIRoot.GetBattleData<BardBattleData>().nextSongDuration.Dequeue();
                 }
 
-                AIRoot.Instance.BardBattleData.lastCastSongTime = TimeHelper.Now();
+                AIRoot.GetBattleData<BardBattleData>().lastCastSongTime = TimeHelper.Now();
                 if (castPitch) AIRoot.Instance.MuteAbilityTime();
 
                 return spell;
@@ -72,11 +72,11 @@ namespace AEAssist.AI
                 // 关爆发的时候,让歌唱完
                 if (currSong != ActionResourceManager.Bard.BardSong.None)
                 {
-                    var nextSongQueue = AIRoot.Instance.BardBattleData.nextSongQueue;
+                    var nextSongQueue = AIRoot.GetBattleData<BardBattleData>().nextSongQueue;
                     if (nextSongQueue.Count >0
                         && nextSongQueue.Peek() == (int)ActionResourceManager.Bard.ActiveSong)
                     {
-                        if (remainTime <= 45000 - AIRoot.Instance.BardBattleData.nextSongDuration.Peek())
+                        if (remainTime <= 45000 - AIRoot.GetBattleData<BardBattleData>().nextSongDuration.Peek())
                         {
                             spell = GetSongsByOrder(null, out forceNextSong);
                         }
@@ -97,10 +97,10 @@ namespace AEAssist.AI
             }
             else
             {
-                var nextSongQueue = AIRoot.Instance.BardBattleData.nextSongQueue;
+                var nextSongQueue = AIRoot.GetBattleData<BardBattleData>().nextSongQueue;
                 if (nextSongQueue.Count>0 && nextSongQueue.Peek() == (int) ActionResourceManager.Bard.ActiveSong)
                 {
-                    if (remainTime <= 45000 - AIRoot.Instance.BardBattleData.nextSongDuration.Peek())
+                    if (remainTime <= 45000 - AIRoot.GetBattleData<BardBattleData>().nextSongDuration.Peek())
                     {
                         spell = GetSongsByOrder(null, out forceNextSong);
                     }
@@ -141,10 +141,10 @@ namespace AEAssist.AI
         {
             SpellData spell = null;
             forceNextSong = false;
-            if (AIRoot.Instance.BardBattleData.nextSongQueue.Count>0 &&
-                (int)ActionResourceManager.Bard.ActiveSong == AIRoot.Instance.BardBattleData.nextSongQueue.Peek())
+            if (AIRoot.GetBattleData<BardBattleData>().nextSongQueue.Count>0 &&
+                (int)ActionResourceManager.Bard.ActiveSong == AIRoot.GetBattleData<BardBattleData>().nextSongQueue.Peek())
             {
-                switch ((ActionResourceManager.Bard.BardSong)AIRoot.Instance.BardBattleData.nextSongQueue.Peek())
+                switch ((ActionResourceManager.Bard.BardSong)AIRoot.GetBattleData<BardBattleData>().nextSongQueue.Peek())
                 {
                     case ActionResourceManager.Bard.BardSong.MagesBallad:
                         spell = SpellsDefine.MagesBallad;

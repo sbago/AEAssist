@@ -8,7 +8,7 @@ namespace AEAssist.TriggerSystem.TriggerCond
     {
         protected override bool Check(TriggerCond_AfterOtherTrigger cond)
         {
-            var time = AIRoot.Instance.BattleData.GetExecutedTriggersTime(cond.TriggerId);
+            var time = AIRoot.GetBattleData<BattleData>().GetExecutedTriggersTime(cond.TriggerId);
             if (time == 0)
                 return false;
             if (TimeHelper.Now() - time >= cond.Time * 1000)

@@ -13,7 +13,7 @@ namespace AEAssist.AI
                 return -1;
             if (AIRoot.Instance.BurstOff)
                 return -2;
-            if (AIRoot.Instance.BattleData.maxAbilityTimes <
+            if (AIRoot.GetBattleData<BattleData>().maxAbilityTimes <
                 SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD)
                 return -3;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))

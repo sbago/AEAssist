@@ -10,7 +10,7 @@ using ff14bot.Objects;
 
 namespace AEAssist.AI
 {
-    public class BattleData
+    public class BattleData : IBattleData
     {
         private readonly Dictionary<long, List<TaskCompletionSource<bool>>> AllBattleTimeTcs =
             new Dictionary<long, List<TaskCompletionSource<bool>>>();

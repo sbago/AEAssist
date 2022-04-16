@@ -24,7 +24,7 @@ namespace AEAssist.AI.Reaper.Ability
                     return -4;
                 if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 {
-                    var delta = AIRoot.Instance.BattleData.lastGCDIndex -
+                    var delta = AIRoot.GetBattleData<BattleData>().lastGCDIndex -
                                 SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.Enshroud.Id);
                     if (delta < 2)
                         return -5;

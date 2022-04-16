@@ -23,7 +23,7 @@ namespace AEAssist.AI
             if (SpellsDefine.BarrelStabilizer.IsReady())
                 return -101;
             var lastGCDIndex = SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.BarrelStabilizer.Id);
-            if (AIRoot.Instance.BattleData.lastGCDIndex - lastGCDIndex < 3)
+            if (AIRoot.GetBattleData<BattleData>().lastGCDIndex - lastGCDIndex < 3)
             {
                 return -102;
             }

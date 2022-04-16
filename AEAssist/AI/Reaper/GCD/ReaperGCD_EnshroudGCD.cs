@@ -43,7 +43,7 @@ namespace AEAssist.AI.Reaper.GCD
 
             if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
             {
-                AIRoot.Instance.BattleData.LimitAbility = true;
+                AIRoot.GetBattleData<BattleData>().LimitAbility = true;
                 return spell;
             }
 

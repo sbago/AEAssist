@@ -46,9 +46,9 @@ namespace AEAssist.AI.Reaper.Ability
                 spell = SpellsDefine.GrimSwathe;
 
             if (await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget))
-                // if (AIRoot.Instance.BattleData.maxAbilityTimes>1 && await ReaperSpellHelper.UseTruthNorth() != null)
+                // if (AIRoot.GetBattleData<BattleData>().maxAbilityTimes>1 && await ReaperSpellHelper.UseTruthNorth() != null)
                 // {
-                //     if (AIRoot.Instance.BattleData.maxAbilityTimes > 1)
+                //     if (AIRoot.GetBattleData<BattleData>().maxAbilityTimes > 1)
                 //         AIRoot.Instance.MuteAbilityTime();
                 // }
 

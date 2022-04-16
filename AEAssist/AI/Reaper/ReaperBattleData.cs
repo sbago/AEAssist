@@ -9,7 +9,7 @@
         NightmareScythe
     }
 
-    public class ReaperBattleData
+    public class ReaperBattleData : IBattleData
     {
         public ReaperComboStages CurrCombo = ReaperComboStages.Slice;
     }

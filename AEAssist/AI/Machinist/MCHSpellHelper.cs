@@ -46,14 +46,14 @@ namespace AEAssist.AI
                 var aoeGCD = GetSpreadShot();
                 if (await SpellHelper.CastGCD(aoeGCD, target))
                 {
-                    AIRoot.Instance.MchBattleData.ComboStages = MCHComboStages.SpreadShot;
+                    AIRoot.GetBattleData<MCHBattleData>().ComboStages = MCHComboStages.SpreadShot;
                     return aoeGCD;
                 }
             }
 
         
 
-            switch (AIRoot.Instance.MchBattleData.ComboStages)
+            switch (AIRoot.GetBattleData<MCHBattleData>().ComboStages)
             {
                 case MCHComboStages.SlugShot:
                     var slugShot = GetSlugShot();
@@ -61,7 +61,7 @@ namespace AEAssist.AI
                     {
                         if (await SpellHelper.CastGCD(slugShot, target))
                         {
-                            AIRoot.Instance.MchBattleData.ComboStages = MCHComboStages.CleanShot;
+                            AIRoot.GetBattleData<MCHBattleData>().ComboStages = MCHComboStages.CleanShot;
                             return slugShot;
                         }
                     }
@@ -73,7 +73,7 @@ namespace AEAssist.AI
                     {
                         if (await SpellHelper.CastGCD(cleanShot, target))
                         {
-                            AIRoot.Instance.MchBattleData.ComboStages = MCHComboStages.SplitShot;
+                            AIRoot.GetBattleData<MCHBattleData>().ComboStages = MCHComboStages.SplitShot;
                             return cleanShot;
                         }
                     }
@@ -82,7 +82,7 @@ namespace AEAssist.AI
             var splitShot = GetSplitShot();
             if (await SpellHelper.CastGCD(splitShot, target))
             {
-                AIRoot.Instance.MchBattleData.ComboStages = MCHComboStages.SlugShot;
+                AIRoot.GetBattleData<MCHBattleData>().ComboStages = MCHComboStages.SlugShot;
                 return splitShot;
             }
             
@@ -106,7 +106,7 @@ namespace AEAssist.AI
             if (SpellsDefine.BarrelStabilizer.IsReady())
                 return -101;
             var lastGCDIndex = SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.BarrelStabilizer.Id);
-            if (AIRoot.Instance.BattleData.lastGCDIndex - lastGCDIndex < 2)
+            if (AIRoot.GetBattleData<BattleData>().lastGCDIndex - lastGCDIndex < 2)
             {
                 return -102;
             }

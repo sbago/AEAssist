@@ -7,15 +7,15 @@ namespace AEAssist.TriggerSystem.TriggerAction
     {
         protected override void Handle(TriggerAction_SongList t)
         {
-            AIRoot.Instance.BardBattleData.nextSongQueue.Clear();
-            AIRoot.Instance.BardBattleData.nextSongDuration.Clear();
+            AIRoot.GetBattleData<BardBattleData>().nextSongQueue.Clear();
+            AIRoot.GetBattleData<BardBattleData>().nextSongDuration.Clear();
             foreach (var v in t.SongIndex)
             {
-                AIRoot.Instance.BardBattleData.nextSongQueue.Enqueue(v);   
+                AIRoot.GetBattleData<BardBattleData>().nextSongQueue.Enqueue(v);   
             }
             foreach (var v in t.Durations)
             {
-                AIRoot.Instance.BardBattleData.nextSongDuration.Enqueue(v*1000);   
+                AIRoot.GetBattleData<BardBattleData>().nextSongDuration.Enqueue(v*1000);   
             }
         }
     }

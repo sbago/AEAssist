@@ -11,18 +11,18 @@ namespace AEAssist.AI.Reaper
     {
         private static async Task<SpellData> UseAOECombo(GameObject target)
         {
-            if (AIRoot.Instance.ReaperBattleData.CurrCombo != ReaperComboStages.NightmareScythe
+            if (AIRoot.GetBattleData<ReaperBattleData>().CurrCombo != ReaperComboStages.NightmareScythe
                 || ActionManager.ComboTimeLeft <= 0)
             {
                 if (await SpellHelper.CastGCD(SpellsDefine.SpinningScythe, target))
                 {
-                    AIRoot.Instance.ReaperBattleData.CurrCombo = ReaperComboStages.NightmareScythe;
+                    AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.NightmareScythe;
                     return SpellsDefine.SpinningScythe;
                 }
             }
             else if (await SpellHelper.CastGCD(SpellsDefine.NightmareScythe, target))
             {
-                AIRoot.Instance.ReaperBattleData.CurrCombo = ReaperComboStages.SpinningScythe;
+                AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.SpinningScythe;
                 return SpellsDefine.NightmareScythe;
             }
 
@@ -33,19 +33,19 @@ namespace AEAssist.AI.Reaper
         {
             if (ActionManager.ComboTimeLeft > 0)
             {
-                if (AIRoot.Instance.ReaperBattleData.CurrCombo == ReaperComboStages.InfernalSlice)
+                if (AIRoot.GetBattleData<ReaperBattleData>().CurrCombo == ReaperComboStages.InfernalSlice)
                 {
                     if (await SpellHelper.CastGCD(SpellsDefine.InfernalSlice, target))
                     {
-                        AIRoot.Instance.ReaperBattleData.CurrCombo = ReaperComboStages.Slice;
+                        AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.Slice;
                         return SpellsDefine.InfernalSlice;
                     }
                 }
-                else if (AIRoot.Instance.ReaperBattleData.CurrCombo == ReaperComboStages.WaxingSlice)
+                else if (AIRoot.GetBattleData<ReaperBattleData>().CurrCombo == ReaperComboStages.WaxingSlice)
                 {
                     if (await SpellHelper.CastGCD(SpellsDefine.WaxingSlice, target))
                     {
-                        AIRoot.Instance.ReaperBattleData.CurrCombo = ReaperComboStages.InfernalSlice;
+                        AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.InfernalSlice;
                         return SpellsDefine.WaxingSlice;
                     }
                 }
@@ -53,7 +53,7 @@ namespace AEAssist.AI.Reaper
 
             if (await SpellHelper.CastGCD(SpellsDefine.Slice, target))
             {
-                AIRoot.Instance.ReaperBattleData.CurrCombo = ReaperComboStages.WaxingSlice;
+                AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.WaxingSlice;
                 return SpellsDefine.Slice;
             }
 
@@ -196,7 +196,7 @@ namespace AEAssist.AI.Reaper
                 && SpellsDefine.PlentifulHarvest.IsUnlock()
                 && ActionResourceManager.Reaper.ShroudGauge < 90
                 && coolDown <= 2000
-                && AIRoot.Instance.ReaperBattleData.CurrCombo == ReaperComboStages.InfernalSlice)
+                && AIRoot.GetBattleData<ReaperBattleData>().CurrCombo == ReaperComboStages.InfernalSlice)
                 return -107;
 
             return 0;

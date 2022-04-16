@@ -7,7 +7,7 @@ namespace AEAssist.TriggerSystem.TriggerAction
     {
         protected override void Handle(TriggerAction_CastGCD t)
         {
-            AIRoot.Instance.BattleData.NextGCDSpellId = t.SpellId;
+            AIRoot.GetBattleData<BattleData>().NextGCDSpellId = t.SpellId;
         }
     }
 }

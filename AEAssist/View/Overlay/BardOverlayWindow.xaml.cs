@@ -26,23 +26,23 @@ namespace AEAssist.View
 
         private void UseTroubadour_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.Troubadour.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Troubadour.Id;
         }
 
         private void UseArmsLength_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.ArmsLength.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength.Id;
         }
 
         private void UseSprint_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.Sprint.Id;
-            AIRoot.Instance.BattleData.NextAbilityUsePotion = false;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Sprint.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilityUsePotion = false;
         }
 
         private void UsePotion_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.Instance.BattleData.NextAbilityUsePotion = true;
+            AIRoot.GetBattleData<BattleData>().NextAbilityUsePotion = true;
         }
     }
 }

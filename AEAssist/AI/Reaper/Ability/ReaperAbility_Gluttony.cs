@@ -42,9 +42,9 @@ namespace AEAssist.AI.Reaper.Ability
         public async Task<SpellData> Run()
         {
             if (await SpellHelper.CastAbility(SpellsDefine.Gluttony, Core.Me.CurrentTarget))
-                // if (AIRoot.Instance.BattleData.maxAbilityTimes>0 && await ReaperSpellHelper.UseTruthNorth() != null)
+                // if (AIRoot.GetBattleData<BattleData>().maxAbilityTimes>0 && await ReaperSpellHelper.UseTruthNorth() != null)
                 // {
-                //     if (AIRoot.Instance.BattleData.maxAbilityTimes > 1)
+                //     if (AIRoot.GetBattleData<BattleData>().maxAbilityTimes > 1)
                 //         AIRoot.Instance.MuteAbilityTime();
                 // }
 

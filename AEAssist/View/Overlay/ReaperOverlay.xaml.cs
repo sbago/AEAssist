@@ -14,33 +14,33 @@ namespace AEAssist.View.Overlay
 
         private void UseArcaneCrest_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.ArcaneCrest.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArcaneCrest.Id;
         }
 
         private void UseArmsLength_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.ArmsLength.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength.Id;
         }
 
         private void UseFeint_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.Feint.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Feint.Id;
         }
 
         private void UseSprint_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.Sprint.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Sprint.Id;
         }
 
         private void UseTrueNorth_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.Instance.BattleData.NextAbilitySpellId = SpellsDefine.TrueNorth.Id;
-            AIRoot.Instance.BattleData.NextAbilityUsePotion = false;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.TrueNorth.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilityUsePotion = false;
         }
 
         private void UsePotion_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.Instance.BattleData.NextAbilityUsePotion = true;
+            AIRoot.GetBattleData<BattleData>().NextAbilityUsePotion = true;
         }
     }
 }

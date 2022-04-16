@@ -144,7 +144,7 @@ namespace AEAssist.Define
 
             var buffCountInEnd = HasBuffsCountInEnd();
             //LogHelper.Info("当前快要结束的Buff数量 : " + buffCountInEnd);
-            if (buffCountInEnd >= 1 && !AIRoot.Instance.BardBattleData.IsTargetLastIronJawWithBuff())
+            if (buffCountInEnd >= 1 && !AIRoot.GetBattleData<BardBattleData>().IsTargetLastIronJawWithBuff())
             {
                 if (ttk_ironJaws > 0 && target.ContainMyAura((uint) ve_id, ttk_ironJaws * 1000) &&
                     TTKHelper.IsTargetTTK(target, ttk_ironJaws,false))
@@ -159,13 +159,13 @@ namespace AEAssist.Define
         public static void RecordIronJaw()
         {
             var targetId = Core.Me.CurrentTarget.ObjectId;
-            AIRoot.Instance.BardBattleData.lastIronJawWithBuffWithObj[targetId] = HasBuffsCount() >= 1;
+            AIRoot.GetBattleData<BardBattleData>().lastIronJawWithBuffWithObj[targetId] = HasBuffsCount() >= 1;
         }
 
         public static void RemoveRecordIronJaw()
         {
             var targetId = Core.Me.CurrentTarget.ObjectId;
-            AIRoot.Instance.BardBattleData.lastIronJawWithBuffWithObj[targetId] = false;
+            AIRoot.GetBattleData<BardBattleData>().lastIronJawWithBuffWithObj[targetId] = false;
         }
 
         public static SpellData GetRefulgentArrow()
@@ -298,7 +298,7 @@ namespace AEAssist.Define
 
             if (SpellsDefine.RagingStrikes.RecentlyUsed() || Core.Me.HasMyAura(AurasDefine.RagingStrikes))
             {
-                if (AIRoot.Instance.BattleData.lastGCDIndex
+                if (AIRoot.GetBattleData<BattleData>().lastGCDIndex
                     - SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.RagingStrikes.Id) >
                     delayGCD)
                     return true;
@@ -345,9 +345,9 @@ namespace AEAssist.Define
 
             if (!AIRoot.Instance.BurstOff)
             {
-                if (AIRoot.Instance.BardBattleData.nextSongQueue.Count > 0
-                    && (int)currSong == AIRoot.Instance.BardBattleData.nextSongQueue.Peek())
-                    if (remainTime <= 45000 - AIRoot.Instance.BardBattleData.nextSongDuration.Peek())
+                if (AIRoot.GetBattleData<BardBattleData>().nextSongQueue.Count > 0
+                    && (int)currSong == AIRoot.GetBattleData<BardBattleData>().nextSongQueue.Peek())
+                    if (remainTime <= 45000 - AIRoot.GetBattleData<BardBattleData>().nextSongDuration.Peek())
                         return true;
 
                 switch (currSong)
@@ -374,9 +374,9 @@ namespace AEAssist.Define
             // 关爆发的时候,让歌唱完
             if (currSong != ActionResourceManager.Bard.BardSong.None)
             {
-                if (AIRoot.Instance.BardBattleData.nextSongQueue.Count>0 
-                    && (int)currSong == AIRoot.Instance.BardBattleData.nextSongQueue.Peek())
-                    if (remainTime <= 45000 - AIRoot.Instance.BardBattleData.nextSongDuration.Peek())
+                if (AIRoot.GetBattleData<BardBattleData>().nextSongQueue.Count>0 
+                    && (int)currSong == AIRoot.GetBattleData<BardBattleData>().nextSongQueue.Peek())
+                    if (remainTime <= 45000 - AIRoot.GetBattleData<BardBattleData>().nextSongDuration.Peek())
                         return true;
 
                 if (remainTime <= ConstValue.SongsTimeLeftCheckWhenCloseBuff)

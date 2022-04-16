@@ -156,6 +156,7 @@
         <Compile Include="AI\Dancer\DancerRotation.cs" />
         <Compile Include="AI\IAIHandler.cs" />
         <Compile Include="AI\IAIPriorityQueue.cs" />
+        <Compile Include="AI\IBattleData.cs" />
         <Compile Include="AI\Machinist\Ability\MCHAbility_BarrelStabilizer.cs" />
         <Compile Include="AI\Machinist\Ability\MCHAbility_HyperCharge.cs" />
         <Compile Include="AI\Machinist\Ability\MCHAbility_Reassemble.cs" />

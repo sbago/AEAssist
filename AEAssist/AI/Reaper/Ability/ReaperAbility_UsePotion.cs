@@ -18,7 +18,7 @@ namespace AEAssist.AI
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return -3;
 
-            if (AIRoot.Instance.BattleData.maxAbilityTimes <
+            if (AIRoot.GetBattleData<BattleData>().maxAbilityTimes <
                 SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD)
                 return -4;
 

@@ -31,28 +31,28 @@ namespace AEAssist.AI.Reaper.GCD
             {
                 if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 5, 5))
                 {
-                    if (AIRoot.Instance.ReaperBattleData.CurrCombo == ReaperComboStages.NightmareScythe)
+                    if (AIRoot.GetBattleData<ReaperBattleData>().CurrCombo == ReaperComboStages.NightmareScythe)
                         if (await SpellHelper.CastGCD(SpellsDefine.NightmareScythe, Core.Me.CurrentTarget))
                         {
-                            AIRoot.Instance.ReaperBattleData.CurrCombo = ReaperComboStages.SpinningScythe;
+                            AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.SpinningScythe;
                             return SpellsDefine.NightmareScythe;
                         }
                 }
                 else
                 {
-                    if (AIRoot.Instance.ReaperBattleData.CurrCombo == ReaperComboStages.InfernalSlice)
+                    if (AIRoot.GetBattleData<ReaperBattleData>().CurrCombo == ReaperComboStages.InfernalSlice)
                     {
                         if (await SpellHelper.CastGCD(SpellsDefine.InfernalSlice, Core.Me.CurrentTarget))
                         {
-                            AIRoot.Instance.ReaperBattleData.CurrCombo = ReaperComboStages.Slice;
+                            AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.Slice;
                             return SpellsDefine.InfernalSlice;
                         }
                     }
-                    else if (AIRoot.Instance.ReaperBattleData.CurrCombo == ReaperComboStages.WaxingSlice)
+                    else if (AIRoot.GetBattleData<ReaperBattleData>().CurrCombo == ReaperComboStages.WaxingSlice)
                     {
                         if (await SpellHelper.CastGCD(SpellsDefine.WaxingSlice, Core.Me.CurrentTarget))
                         {
-                            AIRoot.Instance.ReaperBattleData.CurrCombo = ReaperComboStages.InfernalSlice;
+                            AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.InfernalSlice;
                             return SpellsDefine.WaxingSlice;
                         }
                     }
