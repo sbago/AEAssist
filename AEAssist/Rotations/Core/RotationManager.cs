@@ -40,7 +40,7 @@ namespace AEAssist
 
                 var attr = attrs[0] as RotationAttribute;
                 AllRotations[attr.ClassJobType] = Activator.CreateInstance(type) as IRotation;
-                LogHelper.Info("Load Rotation: " + attr.ClassJobType);
+                LogHelper.Debug("Load Rotation: " + attr.ClassJobType);
             }
         }
 

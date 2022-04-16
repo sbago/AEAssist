@@ -2,9 +2,11 @@
 using System.Threading.Tasks;
 using AEAssist.AI.GCD;
 using AEAssist.Helper;
+using ff14bot.Enums;
 
 namespace AEAssist.AI
 {
+    [AIPriorityQueue(ClassJobType.Machinist)]
     public class MCH_AIPriorityQueue : IAIPriorityQueue
     {
         public List<IAIHandler> GCDQueue { get; } =new List<IAIHandler>()

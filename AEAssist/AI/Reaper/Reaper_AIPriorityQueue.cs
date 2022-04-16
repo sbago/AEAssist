@@ -4,9 +4,11 @@ using AEAssist.AI;
 using AEAssist.AI.Reaper.Ability;
 using AEAssist.AI.Reaper.GCD;
 using AEAssist.Helper;
+using ff14bot.Enums;
 
 namespace AEAssist.Define
 {
+    [AIPriorityQueue(ClassJobType.Reaper)]
     public class Reaper_AIPriorityQueue : IAIPriorityQueue
     {
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>

@@ -1,8 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using ff14bot.Enums;
 
 namespace AEAssist.AI
 {
+    public class AIPriorityQueueAttribute : Attribute
+    {
+        public ClassJobType ClassJobType;
+
+        public AIPriorityQueueAttribute(ClassJobType classJobType)
+        {
+            this.ClassJobType = classJobType;
+        }
+    }
+    
     public interface IAIPriorityQueue
     {
         List<IAIHandler> GCDQueue { get; }

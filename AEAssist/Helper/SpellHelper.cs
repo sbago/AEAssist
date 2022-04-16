@@ -13,12 +13,6 @@ namespace AEAssist.Helper
     {
         public static async Task<bool> CastGCD(SpellData spell, GameObject target)
         {
-            if (spell.SpellType == SpellType.Ability)
-            {
-                LogHelper.Error($"{spell.Name} is not a GCD");
-                return false;
-            }
-
             if (!ActionManager.HasSpell(spell.Id))
                 return false;
 
@@ -48,8 +42,7 @@ namespace AEAssist.Helper
                 if (!ActionManager.DoAction(spell, target))
                     return false;
             }
-
-            // 等待cast 结束
+            
             if (spell.AdjustedCastTime != TimeSpan.Zero)
                 if (!await Coroutine.Wait(spell.BaseCastTime + TimeSpan.FromMilliseconds(500), () => Core.Me.IsCasting))
                     return false;
@@ -62,16 +55,7 @@ namespace AEAssist.Helper
         {
             if (waitTime == 0)
                 waitTime = SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs;
-
-
-            if (spell.Id != SpellsDefine.Sprint.Id && spell.SpellType != SpellType.Ability)
-            {
-                LogHelper.Error($"{spell.Name} is not a Ability");
-                return false;
-            }
-
-            //LogHelper.Debug("准备使用能力 : " + spell.Name);
-
+            
             if (!ActionManager.HasSpell(spell.Id))
                 return false;
 

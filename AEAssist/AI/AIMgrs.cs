@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.Define;
 using ff14bot.Enums;
@@ -15,9 +16,25 @@ namespace AEAssist.AI
 
         public AIMgrs()
         {
-            JobPriorityQueue.Add(ClassJobType.Reaper, new Reaper_AIPriorityQueue());
-            JobPriorityQueue.Add(ClassJobType.Bard, new Bard_AIPriorityQueue());
-            JobPriorityQueue.Add(ClassJobType.Machinist,new MCH_AIPriorityQueue());
+            JobPriorityQueue.Clear();
+            var baseType = typeof(IAIPriorityQueue);
+            foreach (var type in GetType().Assembly.GetTypes())
+            {
+                if (type.IsAbstract || type.IsInterface)
+                    continue;
+                if (!baseType.IsAssignableFrom(type))
+                    continue;
+                var attrs = type.GetCustomAttributes(typeof(AIPriorityQueueAttribute), false);
+                if (attrs.Length == 0)
+                {
+                    LogHelper.Error($"AIPriorityQueue class [{type}] need AIPriorityQueueAttribute");
+                    continue;
+                }
+
+                var attr = attrs[0] as RotationAttribute;
+                JobPriorityQueue[attr.ClassJobType] = Activator.CreateInstance(type) as IAIPriorityQueue;
+                LogHelper.Debug("Load AIPriorityQueue: " + attr.ClassJobType);
+            }
         }
 
         public async Task<SpellData> HandleGCD(ClassJobType classJobType, SpellData lastGCD)
