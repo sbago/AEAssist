@@ -59,7 +59,7 @@ namespace AETriggers
 
                     if (workbook == null)
                     {
-                        MessageBox.Show("加载表格失败!");
+                        MessageBox.Show("Load excel failed!");
                         return;
                     }
 
@@ -253,7 +253,7 @@ namespace AETriggers
                 return;
             var file = openFile.FileName;
             TriggerLine = TriggerHelper.LoadTriggerLine(file);
-            MessageBox.Show("加载成功!");
+            MessageBox.Show("Load Success!");
         }
     }
 }

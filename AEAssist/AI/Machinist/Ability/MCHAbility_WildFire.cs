@@ -17,9 +17,6 @@ namespace AEAssist.AI.MCH
                 return -2;
             if (ActionResourceManager.Machinist.Heat < 50)
                 return -3;
-            if (!AIRoot.Instance.Is2ndAbilityTime())
-                return -4;
-            
             if (SpellsDefine.BarrelStabilizer.IsReady())
                 return -101;
             var lastGCDIndex = SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.BarrelStabilizer.Id);

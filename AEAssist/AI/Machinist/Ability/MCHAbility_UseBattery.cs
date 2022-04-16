@@ -14,12 +14,14 @@ namespace AEAssist.AI.MCH
         {
             if (AIRoot.Instance.BurstOff)
                 return -1;
+            if (!DataBinding.Instance.UseBattery)
+                return -2;
             if (ActionResourceManager.Machinist.Battery < 50)
                 return -3;
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
-                return -2;
-            if (SpellsDefine.Hypercharge.RecentlyUsed())
                 return -4;
+            if (SpellsDefine.Hypercharge.RecentlyUsed())
+                return -5;
             return 0;
         }
 

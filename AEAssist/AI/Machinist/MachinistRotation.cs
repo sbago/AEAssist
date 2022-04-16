@@ -20,6 +20,8 @@ namespace AEAssist
             
             CountDownHandler.Instance.AddListener(4800, 
                 () => SpellHelper.CastAbility(SpellsDefine.Reassemble, Core.Me), false);
+
+            DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<MCHSettings>().EarlyDecisionMode;
         }
         
 

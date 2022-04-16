@@ -16,7 +16,7 @@ namespace AEAssist.AI
     {
         public static readonly AIRoot Instance = new AIRoot();
 
-        public AIRoot()
+        public void Init()
         {
             _allBattleDatas.Clear();
             var baseType = typeof(IBattleData);

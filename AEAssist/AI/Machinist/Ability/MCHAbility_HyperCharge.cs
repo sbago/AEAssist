@@ -18,7 +18,10 @@ namespace AEAssist.AI.MCH
             if (ActionResourceManager.Machinist.Heat < 50)
                 return -3;
             
-            if (SpellsDefine.BarrelStabilizer.IsReady())
+            if (ActionResourceManager.Machinist.Heat >= 80)
+                return 10;
+            
+            if (SpellsDefine.BarrelStabilizer.Cooldown.TotalMilliseconds<5000)
             {
                 return 1;
             }

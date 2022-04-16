@@ -91,9 +91,18 @@ namespace AEAssist.Helper
             if (!spellData.IsUnlock())
                 return false;
 
-            if (spellData.SpellType == SpellType.Ability || SpellsDefine.OffGCD_NoCharge.Contains(spellData.Id))
+            if (spellData.SpellType == SpellType.Ability)
             {
                 if (spellData.Cooldown.TotalMilliseconds > 0)
+                    return false;
+            }
+
+            if (SpellsDefine.OffGCD_NoCharge.Contains(spellData.Id))
+            {
+                var time = 0;
+                if (DataBinding.Instance.EarlyDecisionMode)
+                    time = SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs;
+                if (spellData.Cooldown.TotalMilliseconds > time)
                     return false;
             }
 

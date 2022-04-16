@@ -213,6 +213,7 @@
         <Compile Include="Rotations\Core\RotationAttribute.cs" />
         <Compile Include="Rotations\Core\RotationManager.cs" />
         <Compile Include="Setting\Setting\HotkeySetting.cs" />
+        <Compile Include="Setting\Setting\MCHSettings.cs" />
         <Compile Include="Setting\Setting\ReaperSettings.cs" />
         <Compile Include="TriggerSystem\ITriggerActionHandler.cs" />
         <Compile Include="TriggerSystem\ITriggerCondHandler.cs" />
@@ -240,6 +241,9 @@
         </Compile>
         <Compile Include="View\GeneralSettingView.xaml.cs">
             <DependentUpon>GeneralSettingView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\MCHSettingView.xaml.cs">
+          <DependentUpon>MCHSettingView.xaml</DependentUpon>
         </Compile>
         <Compile Include="View\OverlayManager\OverlayAttribute.cs" />
         <Compile Include="View\OverlayManager\OverlayManager.cs" />
@@ -310,6 +314,7 @@
         <Resource Include="Resources\Spells\ArmsLength.png" />
         <Resource Include="Resources\Spells\Troubadour.png" />
         <Page Include="View\CommonOverlay.xaml" />
+        <Page Include="View\MCHSettingView.xaml" />
         <Page Include="View\Overlay\DancerOverlayWindow.xaml" />
         <Page Include="View\Overlay\MCHOverlayWindow.xaml" />
         <Page Include="View\Overlay\ReaperOverlay.xaml" />

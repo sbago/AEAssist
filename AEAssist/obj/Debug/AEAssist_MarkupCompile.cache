@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-12-463662740
+13-1946817950
 51973500664
-1692064589006
+171-1717628781
 14626590163
-View\CommonOverlay.xaml;View\Overlay\DancerOverlayWindow.xaml;View\Overlay\MCHOverlayWindow.xaml;View\Overlay\ReaperOverlay.xaml;View\ReaperSettingView.xaml;View\Style\Button.xaml;View\Style\CheckBox.xaml;View\TriggerLineWindow.xaml;View\BardSettingView.xaml;View\GeneralSettingView.xaml;View\Overlay\BardOverlayWindow.xaml;MainWindow.xaml;
+View\CommonOverlay.xaml;View\MCHSettingView.xaml;View\Overlay\DancerOverlayWindow.xaml;View\Overlay\MCHOverlayWindow.xaml;View\Overlay\ReaperOverlay.xaml;View\ReaperSettingView.xaml;View\Style\Button.xaml;View\Style\CheckBox.xaml;View\TriggerLineWindow.xaml;View\BardSettingView.xaml;View\GeneralSettingView.xaml;View\Overlay\BardOverlayWindow.xaml;MainWindow.xaml;
 
 False
 

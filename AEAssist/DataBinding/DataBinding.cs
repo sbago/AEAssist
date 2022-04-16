@@ -28,6 +28,8 @@ namespace AEAssist
         public bool UseTrueNorth { get; set; }
 
         public bool UseAOE { get; set; } = true;
+        
+        public bool UseBattery { get; set; } = true;
 
         public string TimeStr { get; set; }
         
@@ -37,6 +39,8 @@ namespace AEAssist
         public GeneralSettings GeneralSettings { get; } = SettingMgr.GetSetting<GeneralSettings>();
         public BardSettings BardSettings => SettingMgr.GetSetting<BardSettings>();
         public ReaperSettings ReaperSettings => SettingMgr.GetSetting<ReaperSettings>();
+        
+        public MCHSettings MCHSettings => SettingMgr.GetSetting<MCHSettings>();
 
         public DebugCenter DebugCenter => DebugCenter.Intance;
 
@@ -58,6 +62,7 @@ namespace AEAssist
             DoubleEnshroudPrefer = true;
             UseAOE = true;
             TimeStr = "";
+            UseBattery = true;
         }
 
 

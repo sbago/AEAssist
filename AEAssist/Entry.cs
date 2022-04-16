@@ -1,6 +1,7 @@
 ﻿//using Clio.Utilities.Collections;
 
 using System;
+using AEAssist.AI;
 using AEAssist.Define;
 using AEAssist.Gamelog;
 using AEAssist.Helper;
@@ -60,12 +61,14 @@ namespace AEAssist
                 OverlayManager.Instance.Init();
                 PotionHelper.Init();
                 // PotionHelper.DebugAllItems();
-                GUIHelper.ShowInfo("插件初始化完成, 请检查ATB是否开启!");
+                AIRoot.Instance.Init();
+                AIMgrs.Instance.Init();
+                
+                GUIHelper.ShowInfo("Initialized");
             }
             catch (Exception e)
             {
                 LogHelper.Error(e.ToString());
-                GUIHelper.ShowInfo("插件初始化失败, 请联系作者!");
             }
 
             LogHelper.Info("Initialized!");

@@ -24,6 +24,7 @@ namespace AEAssist
         public string Toggle_UseTTK { get; set; } = "使用TTK(目标濒死机制)";
 
         public string Toggle_Potion { get; set; } = "爆发药";
+        public string Toggle_Battery { get; set; } = "电能";
         public string Toggle_Apex { get; set; } = "绝峰箭";
         public string Toggle_ActiveAttack { get; set; } = "主动攻击目标";
         public string Toggle_PreferDoubleEnshroud { get; set; } = "优先双附体";

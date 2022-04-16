@@ -63,6 +63,14 @@
                               IsChecked="{Binding UseAOE,Mode=TwoWay}" />
 
                     <CheckBox HorizontalContentAlignment="Center"
+                              Content="{Binding Language.Toggle_Battery}"
+                              FontSize="12"
+                              Width="80"
+                              Height="30"
+                              Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                              IsChecked="{Binding UseBattery,Mode=TwoWay}" />
+                    
+                    <CheckBox HorizontalContentAlignment="Center"
                               Content="{Binding Language.Toggle_Potion}"
                               FontSize="12"
                               Width="80"

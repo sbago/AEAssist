@@ -14,7 +14,7 @@ namespace AEAssist.AI
         public Dictionary<ClassJobType, IAIPriorityQueue> JobPriorityQueue =
             new Dictionary<ClassJobType, IAIPriorityQueue>();
 
-        public AIMgrs()
+        public void Init()
         {
             JobPriorityQueue.Clear();
             var baseType = typeof(IAIPriorityQueue);
@@ -31,7 +31,7 @@ namespace AEAssist.AI
                     continue;
                 }
 
-                var attr = attrs[0] as RotationAttribute;
+                var attr = attrs[0] as AIPriorityQueueAttribute;
                 JobPriorityQueue[attr.ClassJobType] = Activator.CreateInstance(type) as IAIPriorityQueue;
                 LogHelper.Debug("Load AIPriorityQueue: " + attr.ClassJobType);
             }
