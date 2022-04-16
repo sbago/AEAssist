@@ -14,6 +14,10 @@ namespace AEAssist.AI
                 return -1;
             if (!Core.Me.HasAura(AurasDefine.BlastArrowReady))
                 return -2;
+            var tar = Core.Me.CurrentTarget as Character;
+            var timeLeft = SettingMgr.GetSetting<BardSettings>().Dot_TimeLeft;
+            if (BardSpellHelper.IsTargetNeedIronJaws(tar,timeLeft))
+                return -3;
 
             if (SpellsDefine.RagingStrikes.RecentlyUsed() || BardSpellHelper.HasBuffsCount() >= 1)
                 return 1;

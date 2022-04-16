@@ -32,10 +32,9 @@
                       Width="40" Height="20"
                       IsChecked="{Binding OverlayVisibility,Mode=TwoWay}" VerticalAlignment="Center" />
             
-            <Button Name="Close" Width="20" Height="20"   Click="Close_OnClick">
-                <Button.Background>
-                    <ImageBrush ImageSource="../Resources/Close_1.png" />
-                </Button.Background>
+            <Button Style="{StaticResource ImageButton}"
+                    Name="Close" Width="20" Height="20"   Click="Close_OnClick">
+                <Image Source="../Resources/Close_1.png"/>
             </Button>
         </StackPanel>
     </DockPanel>

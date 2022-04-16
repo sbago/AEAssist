@@ -142,7 +142,7 @@
                    <Button Width="80" Height="20" Margin="5" Name="DotBlackList_Remove" Content="Remove" Click="DotBlackList_Remove_OnClick" />
                </StackPanel>
                 <StackPanel Margin="5" Orientation="Horizontal">
-                    <Label Width="150" Content="{Binding Language.Label_DotblackList}" VerticalAlignment="Center"/> 
+                    <Label Width="200" Content="{Binding Language.Label_DotblackList}" VerticalAlignment="Center"/> 
                     <TextBox Name="DotBlackList_Input" Width="150" Height="30" />
                     <Button Width="100" Margin="5" Name="DotBlackList_Add" Content="Add" Click="DotBlackList_Add_OnClick" />
                 </StackPanel>

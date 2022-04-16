@@ -76,7 +76,7 @@ namespace AEAssist
 
         public string Label_PotionNum { get; set; } = "数量:";
 
-        public string Label_DotblackList { get; set; } = "输入目标名字(包含)";
+        public string Label_DotblackList { get; set; } = "输入目标名字(包含)或者id:";
 
         public string Toggle_PreferGallow { get; set; } = "优先打缢杀";
 

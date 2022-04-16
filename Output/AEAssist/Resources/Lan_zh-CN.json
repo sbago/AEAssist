@@ -50,7 +50,7 @@
   "Label_DexChoosePotion" : "敏捷爆发药",
   "Label_StrChoosePotion" : "力量爆发药",
   "Label_PotionNum" : "数量:",
-  "Label_DotblackList" : "输入目标名字(包含)",
+  "Label_DotblackList" : "输入目标名字(包含)或者id:",
   "Toggle_PreferGallow" : "优先打缢杀",
   "Btn_LoadTriggerLine" : "加载文件",
   "Btn_ClearTriggerLine" : "清理",

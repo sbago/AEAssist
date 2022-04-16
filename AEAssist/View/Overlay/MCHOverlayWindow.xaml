@@ -69,27 +69,27 @@
                                       IsChecked="{Binding AutoAttack,Mode=TwoWay}" />
                         </WrapPanel>
                         <WrapPanel Margin="10">
-                            <Button Width="30" Height="30" Margin="5,2,5,2" Name="UseTactician"
+                            <Button Style="{StaticResource ImageButton}"  
+                                    Width="30" Height="30" Margin="5,2,5,2" Name="UseTactician"
                                     Click="UseTactician_OnClick">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="../../Resources/Spells/Tactician.png" Stretch="Uniform" />
-                                </Button.Background>
+                                <Image Source="../../Resources/Spells/Tactician.png" Stretch="Uniform" />
                             </Button>
-                            <Button Width="30" Height="30" Margin="5,2,5,2" Name="UseArmsLength"
+                            <Button Style="{StaticResource ImageButton}" 
+                                    Width="30" Height="30" Margin="5,2,5,2" Name="UseArmsLength"
                                     Click="UseArmsLength_OnClick">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="../../Resources/Spells/ArmsLength.png" Stretch="Uniform" />
-                                </Button.Background>
+                           
+                                    <Image Source="../../Resources/Spells/ArmsLength.png" Stretch="Uniform" />
+                             
                             </Button>
-                            <Button Width="30" Height="30" Margin="5,2,5,2" Name="UseSprint" Click="UseSprint_OnClick">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
-                                </Button.Background>
+                            <Button Style="{StaticResource ImageButton}"  
+                                    Width="30" Height="30" Margin="5,2,5,2" Name="UseSprint" Click="UseSprint_OnClick">
+                             
+                                    < Image Source="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
+                          
                             </Button>
-                            <Button Width="30" Height="30" Margin="5,2,5,2" Name="UsePotion" Click="UsePotion_OnClick">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="../../Resources/Spells/Potion.png" Stretch="Uniform" />
-                                </Button.Background>
+                            <Button Style="{StaticResource ImageButton}" 
+                                    Width="30" Height="30" Margin="5,2,5,2" Name="UsePotion" Click="UsePotion_OnClick">
+                                <Image Source="../../Resources/Spells/Potion.png" Stretch="Uniform" />
                             </Button>
                         </WrapPanel>
                     </WrapPanel>

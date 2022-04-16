@@ -4,12 +4,16 @@ namespace AEAssist.Helper
 {
     public static class DotBlacklistHelper
     {
-        public static bool IsBlackList(GameObject gameObject)
+        public static bool IsBlackList(Character gameObject)
         {
             foreach (var v in SettingMgr.GetSetting<GeneralSettings>().DotBlacklist)
             {
-                LogHelper.Debug($"Check Dot blacklist: TargetName {gameObject.Name} compare: {v}");
+                LogHelper.Debug($"Check Dot blacklist: TargetName {gameObject.Name}  " +
+                                $"NpcId: {gameObject.NpcId}" +
+                                $" compare: {v}");
                 if (gameObject.Name.Contains(v))
+                    return true;
+                if (gameObject.NpcId.ToString() == v)
                     return true;
             }
 

@@ -35,7 +35,16 @@ namespace AEAssist.AI
         public int NearbyEnemyCount_Range5_5;
         public int NearbyEnemyCount_Range8_8;
 
-        public uint NextAbilitySpellId;
+        private uint _NextAbilitySpellId;
+        public uint NextAbilitySpellId
+        {
+            get => _NextAbilitySpellId;
+            set
+            {
+                _NextAbilitySpellId = value;
+                LogHelper.Info("NextAbility: " + NextAbilitySpellId);
+            }
+        }
         public bool NextAbilityUsePotion;
         public uint NextGCDSpellId;
 

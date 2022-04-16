@@ -86,7 +86,8 @@ namespace AETriggers
                         Version = version,
                         Author = authorName,
                         TargetDuty = targetDuty,
-                        TargetJob = job
+                        TargetJob = job,
+                        ConfigVersion = TriggerLine.CurrConfigVersion
                     };
 
                     var AllExcelData = Entry.AllExcelData;

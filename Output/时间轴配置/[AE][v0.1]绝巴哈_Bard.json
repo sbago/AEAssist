@@ -10,7 +10,7 @@
         }],
       "TriggerConds" : [{
           "_t" : "TriggerCond_AfterBattleStart",
-          "Time" : 20000
+          "Time" : { "$numberInt" : "20" }
         }]
     }, {
       "_id" : "2",
@@ -20,22 +20,11 @@
         }],
       "TriggerConds" : [{
           "_t" : "TriggerCond_AfterOtherTrigger",
-          "Time" : 60000,
+          "Time" : { "$numberInt" : "60" },
           "TriggerId" : "1"
         }, {
           "_t" : "TriggerCond_EnemyInLOS",
           "name" : "奈尔"
-        }]
-    }, {
-      "_id" : "3",
-      "TriggerActions" : [{
-          "_t" : "TriggerAction_SwitchBurst",
-          "value" : false
-        }],
-      "TriggerConds" : [{
-          "_t" : "TriggerCond_AfterOtherTrigger",
-          "Time" : 20000,
-          "TriggerId" : "2"
         }]
     }, {
       "_id" : "4",
@@ -45,7 +34,7 @@
         }],
       "TriggerConds" : [{
           "_t" : "TriggerCond_AfterOtherTrigger",
-          "Time" : 60000,
+          "Time" : { "$numberInt" : "60" },
           "TriggerId" : "2"
         }, {
           "_t" : "TriggerCond_EnemyInLOS",
@@ -53,5 +42,6 @@
         }]
     }],
   "Version" : "v0.1",
-  "Author" : "AE"
+  "Author" : "AE",
+  "ConfigVersion" : { "$numberInt" : "1" }
 }

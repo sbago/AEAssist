@@ -39,10 +39,6 @@ namespace AEAssist.View.Overlay
                     TriggerLineVersion.Content = $"Version: {DataBinding.Instance.CurrTriggerLine.Version}";
                     OnTriggerLineLoad?.Invoke(Path.GetFileNameWithoutExtension(file));
                 }
-                else
-                {
-                    MessageBox.Show("Load Failed!");
-                }
             }
         }
 

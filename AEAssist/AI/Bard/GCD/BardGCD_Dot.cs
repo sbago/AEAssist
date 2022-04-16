@@ -16,7 +16,7 @@ namespace AEAssist.AI
             if (TTKHelper.IsTargetTTK(tar))
                 return -2;
 
-            if (DotBlacklistHelper.IsBlackList(Core.Me.CurrentTarget))
+            if (DotBlacklistHelper.IsBlackList(Core.Me.CurrentTarget as Character))
                 return -10;
             
             var dots = 0;

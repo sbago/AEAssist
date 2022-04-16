@@ -22,6 +22,7 @@ namespace AETriggers.TriggerModel
 
             Time = time;
             if (Time < 0) throw new Exception("out of range!");
+            if (Time > 2000) throw new Exception($"Time is too large! : Sec: {Time}");
         }
     }
 }

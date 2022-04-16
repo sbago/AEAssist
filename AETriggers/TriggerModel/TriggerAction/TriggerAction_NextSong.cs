@@ -18,7 +18,7 @@ namespace AETriggers.TriggerModel
 
             if (!int.TryParse(values[1], out var dura)) throw new Exception($"{values[1]}Error!\n");
 
-            if (dura < 0 || dura > 45000) throw new Exception($"{values[1]} Out of range!\n");
+            if (dura < 0 || dura > 45) throw new Exception($"{values[1]} Out of range!\n");
 
             Duration = dura;
         }

@@ -14,12 +14,18 @@ namespace AETriggers.TriggerModel
             try
             {
                 var line = MongoHelper.FromJson<TriggerLine>(File.ReadAllText(path));
+                if (line.ConfigVersion < TriggerLine.CurrConfigVersion)
+                {
+                    MessageBox.Show("Load failed: Old version!");
+                    line = null;
+                }
+
                 return line;
             }
             catch (Exception e)
             {
                 LogHelper.Error(e.ToString());
-                MessageBox.Show("加载失败: " + e);
+                MessageBox.Show("LoadFailed: Exception:\n " + e);
                 return null;
             }
         }

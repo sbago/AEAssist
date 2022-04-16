@@ -93,8 +93,7 @@
                 <TextBox Text="{Binding Language.QQGroup}" Margin="10" HorizontalAlignment="Left" IsReadOnly="True" />
                 <TextBox Text="Discord:    https://discord.gg/9WKppshjww" Margin="10" IsReadOnly="True"
                          HorizontalAlignment="Left" />
-                <Button Style="{StaticResource CustomButton}" 
-                    Name="SaveSetting"
+                <Button Name="SaveSetting"
                         Content="{Binding Language.SaveSetting}" Width="150" Height="25" Margin="10"
                         HorizontalAlignment="Left"
                         Click="SaveSetting_OnClick" />
