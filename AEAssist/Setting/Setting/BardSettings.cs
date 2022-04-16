@@ -1,4 +1,5 @@
-﻿using AEAssist.Define;
+﻿using AEAssist.AI;
+using AEAssist.Define;
 using PropertyChanged;
 
 namespace AEAssist

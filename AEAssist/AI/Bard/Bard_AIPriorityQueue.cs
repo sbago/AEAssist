@@ -4,7 +4,7 @@ using AEAssist.AI;
 using AEAssist.Helper;
 using ff14bot.Enums;
 
-namespace AEAssist.Define
+namespace AEAssist.AI
 {
     [AIPriorityQueue(ClassJobType.Bard)]
     public class Bard_AIPriorityQueue : IAIPriorityQueue

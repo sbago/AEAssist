@@ -4,7 +4,7 @@ using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Objects;
 
-namespace AEAssist.AI.Reaper.GCD
+namespace AEAssist.AI.Reaper
 {
     public class ReaperGCD_PlentifulHarvest : IAIHandler
     {

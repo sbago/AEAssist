@@ -4,7 +4,7 @@ using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Objects;
 
-namespace AEAssist.AI.Reaper.GCD
+namespace AEAssist.AI.Reaper
 {
     // 近战之外的范围的GCD
     public class ReaperGCD_PullRangeGCD : IAIHandler

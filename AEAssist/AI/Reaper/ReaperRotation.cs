@@ -28,13 +28,7 @@ namespace AEAssist
             DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<ReaperSettings>().EarlyDecisionMode;
             LogHelper.Info("EarlyDecisionMode: "+ DataBinding.Instance.EarlyDecisionMode);
         }
-
-        public Task<bool> Rest()
-        {
-            // var needRest = Core.Me.CurrentHealthPercent < SettingMgr.GetSetting<BardSettings>().RestHealthPercent;
-            return Task.FromResult(false);
-        }
-
+        
         // 战斗之前处理buff的?
         public async Task<bool> PreCombatBuff()
         {
@@ -63,31 +57,6 @@ namespace AEAssist
             }
 
             return false;
-        }
-
-        public Task<bool> Pull()
-        {
-            return Task.FromResult(false);
-        }
-
-        public Task<bool> Heal()
-        {
-            return Task.FromResult(false);
-        }
-
-        public Task<bool> CombatBuff()
-        {
-            return Task.FromResult(false);
-        }
-
-        public Task<bool> Combat()
-        {
-            return Task.FromResult(false);
-        }
-
-        public Task<bool> PullBuff()
-        {
-            return Task.FromResult(false);
         }
 
         public SpellData GetBaseGCDSpell()

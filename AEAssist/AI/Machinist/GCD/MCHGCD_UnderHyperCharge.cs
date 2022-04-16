@@ -5,7 +5,7 @@ using ff14bot;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
-namespace AEAssist.AI.GCD
+namespace AEAssist.AI.MCH
 {
     public class MCHGCD_UnderHyperCharge : IAIHandler
     {

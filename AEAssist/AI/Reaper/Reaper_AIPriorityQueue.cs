@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.AI;
-using AEAssist.AI.Reaper.Ability;
-using AEAssist.AI.Reaper.GCD;
+using AEAssist.AI.Reaper;
 using AEAssist.Helper;
 using ff14bot.Enums;
 

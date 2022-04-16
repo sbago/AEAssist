@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AEAssist.AI.GCD;
+using AEAssist.AI;
 using AEAssist.Helper;
 using ff14bot.Enums;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.MCH
 {
     [AIPriorityQueue(ClassJobType.Machinist)]
     public class MCH_AIPriorityQueue : IAIPriorityQueue

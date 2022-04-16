@@ -5,7 +5,7 @@ using ff14bot;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
-namespace AEAssist.AI.Reaper.Ability
+namespace AEAssist.AI.Reaper
 {
     public class ReaperAbility_Gluttony : IAIHandler
     {

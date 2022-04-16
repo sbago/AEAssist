@@ -21,11 +21,7 @@ namespace AEAssist
             CountDownHandler.Instance.AddListener(4800, 
                 () => SpellHelper.CastAbility(SpellsDefine.Reassemble, Core.Me), false);
         }
-
-      public Task<bool> Rest()
-      {
-          return Task.FromResult(false);
-      }
+        
 
         // 战斗之前处理buff的?
         public async Task<bool> PreCombatBuff()
@@ -72,32 +68,7 @@ namespace AEAssist
 
             return false;
         }
-
-        public Task<bool> Pull()
-        {
-            return Task.FromResult(false);
-        }
-
-        public Task<bool> Heal()
-        {
-            return Task.FromResult(false);
-        }
-
-        public Task<bool> CombatBuff()
-        {
-            return Task.FromResult(false);
-        }
-
-        public Task<bool> Combat()
-        {
-            return Task.FromResult(false);
-        }
-
-        public Task<bool> PullBuff()
-        {
-            return Task.FromResult(false);
-        }
-
+        
         public SpellData GetBaseGCDSpell()
         {
             return MCHSpellHelper.GetSplitShot();

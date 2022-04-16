@@ -4,7 +4,7 @@ using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Objects;
 
-namespace AEAssist.AI.GCD
+namespace AEAssist.AI.MCH
 {
     public class MCHGCD_AirAnchor : IAIHandler
     {

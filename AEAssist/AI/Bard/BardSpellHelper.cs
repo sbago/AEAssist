@@ -1,10 +1,11 @@
 ﻿using AEAssist.AI;
+using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
-namespace AEAssist.Define
+namespace AEAssist.AI
 {
     public enum SongStrategyEnum
     {
