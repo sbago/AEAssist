@@ -122,8 +122,12 @@ namespace AEAssist.AI.Reaper
             if (SpellsDefine.PlentifulHarvest.RecentlyUsed())
                 return -300;
 
+            var time = 0;
+            if (DataBinding.Instance.EarlyDecisionMode)
+                time = SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs;
+            
             // 死亡祭祀
-            if (Core.Me.HasAura(AurasDefine.BloodsownCircle))
+            if (Core.Me.ContainMyAura(AurasDefine.BloodsownCircle,time))
                 return -201;
 
             // 妖异

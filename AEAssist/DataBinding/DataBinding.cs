@@ -59,7 +59,7 @@ namespace AEAssist
             AutoAttack = false;
             UseHarpe = false;
             UseSoulGauge = true;
-            DoubleEnshroudPrefer = true;
+            DoubleEnshroudPrefer = false;
             UseAOE = true;
             TimeStr = "";
             UseBattery = true;
