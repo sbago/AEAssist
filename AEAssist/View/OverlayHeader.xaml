@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="AEAssist.View.OverlayHeader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:AEAssist.View"
+             xmlns:viewModels="clr-namespace:AEAssist"
+             mc:Ignorable="d"
+             d:DesignHeight="30" d:DesignWidth="250">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/AEAssist;component/View/Style/Button.xaml" />
+                <ResourceDictionary Source="/AEAssist;component/View/Style/CheckBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <UserControl.DataContext>
+        <Binding Source="{x:Static viewModels:DataBinding.Instance}" />
+    </UserControl.DataContext>
+    
+    <DockPanel>
+        <Label Content="AEAssist" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
+
+        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,5,0">
+            <CheckBox Margin="5"
+                      DockPanel.Dock="Right"
+                      Style="{StaticResource OverlayHideTogglesCheckbox}"
+                      Name="Expander"
+                      Width="40" Height="20"
+                      IsChecked="{Binding OverlayVisibility,Mode=TwoWay}" VerticalAlignment="Center" />
+            
+            <Button Name="Close" Width="20" Height="20"   Click="Close_OnClick">
+                <Button.Background>
+                    <ImageBrush ImageSource="../Resources/Close_1.png" />
+                </Button.Background>
+            </Button>
+        </StackPanel>
+    </DockPanel>
+</UserControl>

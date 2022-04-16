@@ -42,5 +42,10 @@ namespace AEAssist.View
         {
             AIRoot.GetBattleData<BattleData>().NextAbilityUsePotion = true;
         }
+
+        private void Close_OnClick(object sender, RoutedEventArgs e)
+        {
+            OverlayManager.Instance.Close();
+        }
     }
 }

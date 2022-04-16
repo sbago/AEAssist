@@ -8,6 +8,7 @@ namespace AEAssist.Helper
         {
             foreach (var v in SettingMgr.GetSetting<GeneralSettings>().DotBlacklist)
             {
+                LogHelper.Debug($"Check Dot blacklist: TargetName {gameObject.Name} compare: {v}");
                 if (gameObject.Name.Contains(v))
                     return true;
             }

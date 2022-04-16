@@ -24,12 +24,12 @@
     <StackPanel>
         <StackPanel Margin="5" Width="250" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" Height="30" HorizontalAlignment="Center">
-            <Button Name="Reset" FontSize="12" Content="{Binding Language.Btn_Reset}" Width="100"  Height="25" Margin="5,0,5,0"
+            <Button Name="Reset" FontSize="12" Content="{Binding Language.Btn_Reset}" Width="200"  Height="25" Margin="5,0,5,0"
                     Click="Reset_OnClick"
                     HorizontalAlignment="Center" />
-            <Button Name="Close" FontSize="12" Content="{Binding Language.Btn_Close}" Width="100"  Height="25" Margin="5,0,5,0"
-                    Click="Close_OnClick"
-                    HorizontalAlignment="Center" />
+            <!-- <Button Name="Close" FontSize="12" Content="{Binding Language.Btn_Close}" Width="100"  Height="25" Margin="5,0,5,0" -->
+            <!--         Click="Close_OnClick" -->
+            <!--         HorizontalAlignment="Center" /> -->
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="30">
                 <Label Content="{Binding Language.Label_CurrTriggerLine}" Foreground="Aqua" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />

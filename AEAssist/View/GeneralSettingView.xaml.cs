@@ -121,8 +121,6 @@ namespace AEAssist.View
       
             if (currSelect == null)
                 return;
-            LogHelper.Info(currSelect.GetType().ToString());
-            LogHelper.Info(currSelect.Content.GetType().ToString());
             if (SettingMgr.GetSetting<GeneralSettings>().DotBlacklist.Remove(currSelect.Content.ToString()))
             {
                 RefreshDotBlackList();

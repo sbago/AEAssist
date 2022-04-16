@@ -50,8 +50,8 @@ namespace AEAssist
         {
             if (UseHotkey)
             {
-                StopBtnName = $"{Language.Instance.Toggle_Stop} {StopKey}";
-                CloseBuffBtnName = $"{Language.Instance.Toggle_BurstOff} {CloseBuffKey}";
+                StopBtnName = $"{Language.Instance.Toggle_Stop} [{StopKey}]";
+                CloseBuffBtnName = $"{Language.Instance.Toggle_BurstOff} [{CloseBuffKey}]";
             }
             else
             {

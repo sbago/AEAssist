@@ -128,3 +128,5 @@ D:\Github\AEAssist\AEAssist\obj\Debug\View\Style\Button.baml
 D:\Github\AEAssist\AEAssist\obj\Debug\View\Style\CheckBox.baml
 D:\Github\AEAssist\AEAssist\obj\Debug\View\MCHSettingView.g.cs
 D:\Github\AEAssist\AEAssist\obj\Debug\View\MCHSettingView.baml
+D:\Github\AEAssist\AEAssist\obj\Debug\View\OverlayHeader.g.cs
+D:\Github\AEAssist\AEAssist\obj\Debug\View\OverlayHeader.baml

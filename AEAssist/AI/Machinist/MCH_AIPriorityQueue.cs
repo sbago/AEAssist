@@ -22,10 +22,10 @@ namespace AEAssist.AI.MCH
         public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()
         {
                 new MCHAbility_UseGaussRound(),
-                new MCHAbility_HyperCharge(),
-                new MCHAbility_BarrelStabilizer(),
                 new MCHAbility_Reassemble(),
                 new MCHAbility_WildFire(),
+                new MCHAbility_HyperCharge(),
+                new MCHAbility_BarrelStabilizer(),
                 new MCHAbility_UseBattery(),
                 new MCHAbility_UsePotion(),
                 

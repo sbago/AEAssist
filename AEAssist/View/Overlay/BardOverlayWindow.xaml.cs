@@ -4,12 +4,17 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using AEAssist.AI;
 using AEAssist.Define;
+using PropertyChanged;
+using TreeSharp;
 
 namespace AEAssist.View
 {
+    [AddINotifyPropertyChangedInterface]
     public partial class BardOverlayWindow : UserControl
     {
         public List<SongData> SongDatas;
+
+        public System.Action DragMove;
 
         public BardOverlayWindow()
         {
@@ -43,6 +48,19 @@ namespace AEAssist.View
         private void UsePotion_OnClick(object sender, RoutedEventArgs e)
         {
             AIRoot.GetBattleData<BattleData>().NextAbilityUsePotion = true;
+        }
+
+        private void Expander_OnMouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove?.Invoke();
+            }
+        }
+
+        private void Close_OnClick(object sender, RoutedEventArgs e)
+        {
+            OverlayManager.Instance.Close();
         }
     }
 }

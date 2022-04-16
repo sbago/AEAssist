@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using AEAssist.AI;
 using AETriggers.TriggerModel;
 using PropertyChanged;
@@ -91,5 +92,7 @@ namespace AEAssist
         public bool DoubleEnshroudPrefer { get; set; } = true;
 
         #endregion
+
+        public bool OverlayVisibility { get; set; } = true;
     }
 }

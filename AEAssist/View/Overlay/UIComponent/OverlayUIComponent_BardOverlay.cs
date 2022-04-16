@@ -35,9 +35,14 @@ namespace AEAssist.View
                 };
                 LogHelper.Info("CreateOverlay " + _control.Width + "  " + _control.Height);
 
-                _control.MouseLeave += (sender, args) => { };
+                _control.MouseLeftButtonUp += (sender, args) => { };
 
-                _control.MouseLeftButtonDown += (sender, args) => { _control.DragMove(); };
+                _control.MouseLeftButtonDown += (sender, args) => 
+                { 
+                    _control.DragMove();
+                };
+
+                overlayUc.DragMove = _control.DragMove;
 
                 return _control;
             }

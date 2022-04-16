@@ -18,7 +18,7 @@ namespace AEAssist.View
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                // this.DragMove();
+                
             }
         }
 
@@ -41,6 +41,20 @@ namespace AEAssist.View
         private void UsePotion_OnClick(object sender, RoutedEventArgs e)
         {
             AIRoot.GetBattleData<BattleData>().NextAbilityUsePotion = true;
+        }
+        
+
+        private void UIElement_OnMouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                
+            }
+        }
+
+        private void Close_OnClick(object sender, RoutedEventArgs e)
+        {
+            OverlayManager.Instance.Close();
         }
     }
 }

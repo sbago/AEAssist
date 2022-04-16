@@ -8,108 +8,93 @@
              mc:Ignorable="d"
              Width="250"
              FontSize="12"
-             Background="#82FFECE0">
-    <!-- SizeToContent="Height" -->
-    <!-- WindowStyle="None" -->
-    <!-- ShowInTaskbar="False" -->
-    <!-- Topmost="True" -->
-    <!-- AllowsTransparency="True" -->
+             Background="#62808080">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/AEAssist;component/View/Style/Button.xaml"/>
-                <ResourceDictionary Source="/AEAssist;component/View/Style/CheckBox.xaml"/>
+                <ResourceDictionary Source="/AEAssist;component/View/Style/Button.xaml" />
+                <ResourceDictionary Source="/AEAssist;component/View/Style/CheckBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            
+            <BooleanToVisibilityConverter x:Key="BoolToVis" />
         </ResourceDictionary>
     </UserControl.Resources>
 
     <UserControl.DataContext>
         <Binding Source="{x:Static viewModels:DataBinding.Instance}" />
     </UserControl.DataContext>
-    <Border VerticalAlignment="Top" CornerRadius="5" Padding="10">
-        <Border.Background>
-            <SolidColorBrush Color="#101011" Opacity="0.6" />
-        </Border.Background>
-        <StackPanel>
+    <StackPanel>
+        <local:OverlayHeader />
+        <Border Visibility="{Binding OverlayVisibility, Converter={StaticResource BoolToVis}}" VerticalAlignment="Top" CornerRadius="5" Padding="10">
+                <Border.Background>
+                    <SolidColorBrush Color="#101011" Opacity="0.6" />
+                </Border.Background>
+                <StackPanel>
 
 
-            <WrapPanel Width="250" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <WrapPanel Width="250" Orientation="Horizontal" HorizontalAlignment="Center"
+                               VerticalAlignment="Top">
 
 
-                <WrapPanel>
-                    <CheckBox
-                        Content="{Binding HotkeySetting.StopBtnName}"
-                        Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                        Width="80"
-                        Height="30"
-                        FontSize="12"
-                        IsChecked="{Binding Stop,Mode=TwoWay}" />
+                        <WrapPanel>
+                            <CheckBox
+                                Content="{Binding HotkeySetting.StopBtnName}"
+                                Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                IsChecked="{Binding Stop,Mode=TwoWay}" />
 
 
-                    <CheckBox HorizontalContentAlignment="Center"
-                              Content="{Binding HotkeySetting.CloseBuffBtnName}"
-                              FontSize="12"
-                              Width="80"
-                              Height="30"
-                              Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                              IsChecked="{Binding BurstOff,Mode=TwoWay}" />
+                            <CheckBox HorizontalContentAlignment="Center"
+                                      Content="{Binding HotkeySetting.CloseBuffBtnName}"
+                                      Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                      IsChecked="{Binding BurstOff,Mode=TwoWay}" />
 
-                    <CheckBox HorizontalContentAlignment="Center"
-                              Content="AOE"
-                              FontSize="12"
-                              Width="80"
-                              Height="30"
-                              Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                              IsChecked="{Binding UseAOE,Mode=TwoWay}" />
+                            <CheckBox HorizontalContentAlignment="Center"
+                                      Content="AOE"
+                                      Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                      IsChecked="{Binding UseAOE,Mode=TwoWay}" />
 
-                    <CheckBox HorizontalContentAlignment="Center"
-                              Content="{Binding Language.Toggle_Battery}"
-                              FontSize="12"
-                              Width="80"
-                              Height="30"
-                              Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                              IsChecked="{Binding UseBattery,Mode=TwoWay}" />
-                    
-                    <CheckBox HorizontalContentAlignment="Center"
-                              Content="{Binding Language.Toggle_Potion}"
-                              FontSize="12"
-                              Width="80"
-                              Height="30"
-                              Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                              IsChecked="{Binding GeneralSettings.UsePotion,Mode=TwoWay}" />
+                            <CheckBox HorizontalContentAlignment="Center"
+                                      Content="{Binding Language.Toggle_Battery}"
+                                      Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                      IsChecked="{Binding UseBattery,Mode=TwoWay}" />
 
-                    <CheckBox HorizontalContentAlignment="Center"
-                              Content="{Binding Language.Toggle_ActiveAttack}"
-                              FontSize="12"
-                              Width="80"
-                              Height="30"
-                              Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                              IsChecked="{Binding AutoAttack,Mode=TwoWay}" />
-                </WrapPanel>
-                <WrapPanel Margin="10">
-                    <Button Width="30" Height="30" Margin="5,2,5,2" Name="UseTactician" Click="UseTactician_OnClick">
-                        <Button.Background>
-                            <ImageBrush ImageSource="../../Resources/Spells/Tactician.png" Stretch="Uniform" />
-                        </Button.Background>
-                    </Button>
-                    <Button Width="30" Height="30" Margin="5,2,5,2" Name="UseArmsLength" Click="UseArmsLength_OnClick">
-                        <Button.Background>
-                            <ImageBrush ImageSource="../../Resources/Spells/ArmsLength.png" Stretch="Uniform" />
-                        </Button.Background>
-                    </Button>
-                    <Button Width="30" Height="30" Margin="5,2,5,2" Name="UseSprint" Click="UseSprint_OnClick">
-                        <Button.Background>
-                            <ImageBrush ImageSource="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
-                        </Button.Background>
-                    </Button>
-                    <Button Width="30" Height="30" Margin="5,2,5,2" Name="UsePotion" Click="UsePotion_OnClick">
-                        <Button.Background>
-                            <ImageBrush ImageSource="../../Resources/Spells/Potion.png" Stretch="Uniform" />
-                        </Button.Background>
-                    </Button>
-                </WrapPanel>
-            </WrapPanel>
-            <local:CommonOverlay HorizontalAlignment="Center" />
-        </StackPanel>
-    </Border>
+                            <CheckBox HorizontalContentAlignment="Center"
+                                      Content="{Binding Language.Toggle_Potion}"
+                                      Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                      IsChecked="{Binding GeneralSettings.UsePotion,Mode=TwoWay}" />
+
+                            <CheckBox HorizontalContentAlignment="Center"
+                                      Content="{Binding Language.Toggle_ActiveAttack}"
+                                      Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                      IsChecked="{Binding AutoAttack,Mode=TwoWay}" />
+                        </WrapPanel>
+                        <WrapPanel Margin="10">
+                            <Button Width="30" Height="30" Margin="5,2,5,2" Name="UseTactician"
+                                    Click="UseTactician_OnClick">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="../../Resources/Spells/Tactician.png" Stretch="Uniform" />
+                                </Button.Background>
+                            </Button>
+                            <Button Width="30" Height="30" Margin="5,2,5,2" Name="UseArmsLength"
+                                    Click="UseArmsLength_OnClick">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="../../Resources/Spells/ArmsLength.png" Stretch="Uniform" />
+                                </Button.Background>
+                            </Button>
+                            <Button Width="30" Height="30" Margin="5,2,5,2" Name="UseSprint" Click="UseSprint_OnClick">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
+                                </Button.Background>
+                            </Button>
+                            <Button Width="30" Height="30" Margin="5,2,5,2" Name="UsePotion" Click="UsePotion_OnClick">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="../../Resources/Spells/Potion.png" Stretch="Uniform" />
+                                </Button.Background>
+                            </Button>
+                        </WrapPanel>
+                    </WrapPanel>
+                    <local:CommonOverlay HorizontalAlignment="Center" />
+                </StackPanel>
+            </Border>
+    </StackPanel>
 </UserControl>

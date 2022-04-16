@@ -4,8 +4,8 @@ using ff14bot.Objects;
 
 namespace AEAssist.AI
 {
-    [Rotation(ClassJobType.Dancer)]
-    public class DancerRotation : IRotation
+   // [Rotation(ClassJobType.Dancer)]
+    public class DancerRotation 
     {
         public void Init()
         {

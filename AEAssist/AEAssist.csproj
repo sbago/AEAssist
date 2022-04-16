@@ -245,6 +245,9 @@
         <Compile Include="View\MCHSettingView.xaml.cs">
           <DependentUpon>MCHSettingView.xaml</DependentUpon>
         </Compile>
+        <Compile Include="View\OverlayHeader.xaml.cs">
+          <DependentUpon>OverlayHeader.xaml</DependentUpon>
+        </Compile>
         <Compile Include="View\OverlayManager\OverlayAttribute.cs" />
         <Compile Include="View\OverlayManager\OverlayManager.cs" />
         <Compile Include="View\Overlay\BardOverlayWindow.xaml.cs">
@@ -293,6 +296,8 @@
         <Content Include="Resources\BossDictionary.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+        <Resource Include="Resources\Expand_3.png" />
+        <Resource Include="Resources\Close_1.png" />
         <Content Include="Resources\Lan_cn-en.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
@@ -315,6 +320,7 @@
         <Resource Include="Resources\Spells\Troubadour.png" />
         <Page Include="View\CommonOverlay.xaml" />
         <Page Include="View\MCHSettingView.xaml" />
+        <Page Include="View\OverlayHeader.xaml" />
         <Page Include="View\Overlay\DancerOverlayWindow.xaml" />
         <Page Include="View\Overlay\MCHOverlayWindow.xaml" />
         <Page Include="View\Overlay\ReaperOverlay.xaml" />
