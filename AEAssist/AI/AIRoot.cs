@@ -145,9 +145,9 @@ namespace AEAssist.AI
             if (canUseGCD)
             {
                 SpellData ret = null;
-                if (battleData.NextGCDSpellId != 0)
+                if (battleData.NextGcdSpellId != 0)
                 {
-                    ret = DataManager.GetSpellData(battleData.NextGCDSpellId);
+                    ret = DataManager.GetSpellData(battleData.NextGcdSpellId);
                     if (ret != null && ret.IsUnlock())
                     {
                         if (SpellHelper.CanCastGCD(ret, Core.Me.CurrentTarget))
@@ -155,13 +155,23 @@ namespace AEAssist.AI
                             if (!await SpellHelper.CastGCD(ret, Core.Me.CurrentTarget))
                                 ret = null;
                             else
-                                battleData.NextGCDSpellId = 0;
+                                battleData.NextGcdSpellId = 0;
+                        }
+                        else
+                        {
+                            ret = null;
                         }
                     }
                     else
                     {
                         ret = null;
-                        battleData.NextGCDSpellId = 0;
+                        battleData.NextGcdSpellId = 0;
+                    }
+                    
+                    if (ret == null && battleData.GCDRetryEndTime < TimeHelper.Now())
+                    {
+                        LogHelper.Debug($"RetryEndTime : NextGCD {battleData.NextGcdSpellId}");
+                        battleData.NextGcdSpellId = 0;
                     }
                 }
 
@@ -220,10 +230,20 @@ namespace AEAssist.AI
                             else
                                 battleData.NextAbilitySpellId = 0;
                         }
+                        else
+                        {
+                            ret = null;
+                        }
                     }
                     else
                     {
                         ret = null;
+                        battleData.NextAbilitySpellId = 0;
+                    }
+
+                    if (ret == null && battleData.AbilityRetryEndTime < TimeHelper.Now())
+                    {
+                        LogHelper.Debug($"RetryEndTime : NextAbility {battleData.NextAbilitySpellId}");
                         battleData.NextAbilitySpellId = 0;
                     }
                 }

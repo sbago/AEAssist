@@ -42,11 +42,32 @@ namespace AEAssist.AI
             set
             {
                 _NextAbilitySpellId = value;
+                if (_NextAbilitySpellId != 0)
+                {
+                    AbilityRetryEndTime = TimeHelper.Now() + 6000;
+                }
+
                 LogHelper.Info("NextAbility: " + NextAbilitySpellId);
             }
         }
         public bool NextAbilityUsePotion;
-        public uint NextGCDSpellId;
+
+        private uint _NextGcdSpellId;
+        public uint NextGcdSpellId
+        {
+            get => _NextGcdSpellId;
+            set
+            {
+                _NextGcdSpellId = value;
+                if (_NextGcdSpellId != 0)
+                {
+                    GCDRetryEndTime = TimeHelper.Now() + 6000;
+                }
+            }
+        }
+
+        public long GCDRetryEndTime;
+        public long AbilityRetryEndTime;
 
         private readonly HashSet<long> TempKeys = new HashSet<long>();
 

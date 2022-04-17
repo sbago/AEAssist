@@ -65,7 +65,7 @@ namespace AEAssist.View
 
         private void UseApex_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextGCDSpellId = SpellsDefine.ApexArrow.Id;
+            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.ApexArrow.Id;
         }
     }
 }
