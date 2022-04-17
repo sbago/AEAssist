@@ -13,6 +13,29 @@ namespace AEAssist.Helper
     {
         public static async Task<bool> CastGCD(SpellData spell, GameObject target)
         {
+            if (!CanCastGCD(spell, target))
+                return false;
+            if (spell.GroundTarget)
+            {
+                if (!ActionManager.DoActionLocation(spell.Id, target.Location))
+                    return false;
+            }
+            else
+            {
+                if (!ActionManager.DoAction(spell, target))
+                    return false;
+            }
+            
+            if (spell.AdjustedCastTime != TimeSpan.Zero)
+                if (!await Coroutine.Wait(spell.BaseCastTime + TimeSpan.FromMilliseconds(500), () => Core.Me.IsCasting))
+                    return false;
+
+            return true;
+        }
+
+
+        public static bool CanCastGCD(SpellData spell, GameObject target)
+        {
             if (!ActionManager.HasSpell(spell.Id))
                 return false;
 
@@ -22,8 +45,6 @@ namespace AEAssist.Helper
             if (spell.GroundTarget)
             {
                 if (!ActionManager.CanCastLocation(spell.Id, target.Location))
-                    return false;
-                if (!ActionManager.DoActionLocation(spell.Id, target.Location))
                     return false;
             }
             else
@@ -38,18 +59,10 @@ namespace AEAssist.Helper
                     if (!ActionManager.CanCast(spell, target))
                         return false;
                 }
-
-                if (!ActionManager.DoAction(spell, target))
-                    return false;
             }
-            
-            if (spell.AdjustedCastTime != TimeSpan.Zero)
-                if (!await Coroutine.Wait(spell.BaseCastTime + TimeSpan.FromMilliseconds(500), () => Core.Me.IsCasting))
-                    return false;
 
             return true;
         }
-
 
         public static async Task<bool> CastAbility(SpellData spell, GameObject target, int waitTime = 0)
         {

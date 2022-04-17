@@ -84,7 +84,7 @@
                             <Button Style="{StaticResource ImageButton}"  
                                     Width="30" Height="30" Margin="5,2,5,2" Name="UseSprint" Click="UseSprint_OnClick">
                              
-                                    < Image Source="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
+                                    <Image Source="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
                           
                             </Button>
                             <Button Style="{StaticResource ImageButton}" 

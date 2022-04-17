@@ -291,6 +291,7 @@
         <Compile Include="Setting\Setting\BardSettings.cs" />
         <Compile Include="Setting\Setting\GeneralSettings.cs" />
         <Compile Include="Setting\Setting\VersionSetting.cs" />
+        <Resource Include="Resources\Spells\Apex.png" />
         <Resource Include="Resources\Background\Sky.jpeg" />
         <Resource Include="Resources\Background\Black_1.jpeg" />
         <Content Include="Resources\BossDictionary.json">

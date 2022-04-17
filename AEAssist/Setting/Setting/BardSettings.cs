@@ -29,6 +29,8 @@ namespace AEAssist
 
         public int Dot_TimeLeft { get; set; } = ConstValue.AuraTick;
 
+        public bool EarlyEmpyrealArrow { get; set; }
+
         public bool EarlyDecisionMode { get; set; }
 
         public void Reset()
@@ -44,6 +46,7 @@ namespace AEAssist
             TTK_IronJaws = 28;
             EarlyDecisionMode = true;
             Dot_TimeLeft = ConstValue.AuraTick;
+            EarlyEmpyrealArrow = false;
         }
     }
 }

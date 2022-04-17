@@ -62,5 +62,10 @@ namespace AEAssist.View
         {
             OverlayManager.Instance.Close();
         }
+
+        private void UseApex_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextGCDSpellId = SpellsDefine.ApexArrow.Id;
+        }
     }
 }

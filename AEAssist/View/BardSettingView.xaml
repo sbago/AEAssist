@@ -34,6 +34,11 @@
                           Content="{Binding Language.Toggle_EarlyDecisionMode}" Width="200" Height="25"
                           HorizontalAlignment="Left"
                           IsChecked="{Binding BardSettings.EarlyDecisionMode,Mode=TwoWay}" />
+                <CheckBox Name="EarlyEmpyrealArrow"
+                          Content="{Binding Language.Textbox_Bard_EmpyrealArrow}" Width="200" Height="25"
+                          HorizontalAlignment="Left"
+                          IsChecked="{Binding BardSettings.EarlyEmpyrealArrow,Mode=TwoWay}" />
+                
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="{Binding Language.Textbox_Bard_ApexArrow_SoulVoiceGauge}" Width="200" />
                     <TextBox Width="100" Text="{Binding BardSettings.ApexArrowValue,Mode=TwoWay}" />

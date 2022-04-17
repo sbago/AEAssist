@@ -11,15 +11,23 @@ namespace AEAssist.AI
         public int Check(SpellData lastSpell)
         {
             if (!SpellsDefine.Barrage.IsReady()) return -1;
-
+            
             if (Core.Me.HasAura(AurasDefine.ShadowBiteReady)
                 && TargetHelper.CheckNeedUseAOE(25, 5, ConstValue.BardAOECount))
                 return 1;
-
-            if (Core.Me.HasAura(AurasDefine.StraighterShot))
-                return -2;
+            
             if (BardSpellHelper.UnlockBuffsCount() > 1 && BardSpellHelper.HasBuffsCount() <= 1)
                 return -3;
+
+            var burstShot = BardSpellHelper.GetHeavyShot();
+
+            if (AIRoot.GetBattleData<BattleData>().lastGCDSpell == burstShot
+                && !AIRoot.Instance.Is2ndAbilityTime())
+            {
+                return -4;
+            }
+            if (Core.Me.HasAura(AurasDefine.StraighterShot))
+                return -2;
 
             return 0;
         }

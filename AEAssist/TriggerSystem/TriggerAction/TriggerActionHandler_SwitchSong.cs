@@ -10,6 +10,20 @@ namespace AEAssist.TriggerSystem.TriggerAction
     {
         protected override void Handle(TriggerAction_SwitchSong t)
         {
+            if (t.index <= 0)
+            {
+                if (t.index == 0)
+                {
+                    DataBinding.Instance.UseSong = true;
+                }
+                else
+                {
+                    DataBinding.Instance.UseSong = false;
+                }
+
+                return;
+            }
+
             switch ((ActionResourceManager.Bard.BardSong)t.index)
             {
                 case ActionResourceManager.Bard.BardSong.MagesBallad:

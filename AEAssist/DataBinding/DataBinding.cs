@@ -64,6 +64,7 @@ namespace AEAssist
             UseAOE = true;
             TimeStr = "";
             UseBattery = true;
+            UseSong = true;
         }
 
 
@@ -81,6 +82,8 @@ namespace AEAssist
         public bool UseDot { get; set; } = true;
 
         public bool UseApex { get; set; } = true;
+
+        public bool UseSong { get; set; } = true;
 
         #endregion
 

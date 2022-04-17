@@ -187,7 +187,7 @@ namespace AEAssist.AI
             return SpellsDefine.BlastArrow;
         }
 
-        public static SpellData GetHeavyShot()
+        public static SpellData GetBaseGCD()
         {
             if (Core.Me.HasAura(AurasDefine.StraighterShot))
             {
@@ -199,6 +199,11 @@ namespace AEAssist.AI
             }
 
 
+            return GetHeavyShot();
+        }
+
+        public static SpellData GetHeavyShot()
+        {
             if (Core.Me.ClassLevel < SpellsDefine.BurstShot.LevelAcquired)
                 return SpellsDefine.HeavyShot;
             return SpellsDefine.BurstShot;
@@ -338,54 +343,64 @@ namespace AEAssist.AI
             return false;
         }
 
-        public static bool PrepareSwitchSong()
+        public static int PrepareSwitchSong()
         {
+            if (!DataBinding.Instance.UseSong)
+                return -110;
             var currSong = ActionResourceManager.Bard.ActiveSong;
             var remainTime = ActionResourceManager.Bard.Timer.TotalMilliseconds;
 
 
             if (!AIRoot.Instance.BurstOff)
             {
-                if (AIRoot.GetBattleData<BardBattleData>().nextSongQueue.Count > 0
-                    && (int)currSong == AIRoot.GetBattleData<BardBattleData>().nextSongQueue.Peek())
-                    if (remainTime <= 45000 - AIRoot.GetBattleData<BardBattleData>().nextSongDuration.Peek())
-                        return true;
+                if (SpellsDefine.ArmysPaeon.Cooldown.TotalMilliseconds > 1000
+                    && SpellsDefine.MagesBallad.Cooldown.TotalMilliseconds > 1000
+                    && SpellsDefine.TheWanderersMinuet.Cooldown.TotalMilliseconds>1000)
+                    return -103;
+                
+                if (AIRoot.GetBattleData<BardBattleData>().NeedSwitchByNextSongQueue((int)currSong,remainTime))
+                        return 100;
 
                 switch (currSong)
                 {
                     case ActionResourceManager.Bard.BardSong.None:
-                        return true;
+                        return 101;
                     case ActionResourceManager.Bard.BardSong.MagesBallad:
                         if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_MB_TimeLeftForSwitch)
-                            return true;
+                            return 102;
                         break;
                     case ActionResourceManager.Bard.BardSong.ArmysPaeon:
                         if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_AP_TimeLeftForSwitch)
-                            return true;
+                            return 103;
                         break;
                     case ActionResourceManager.Bard.BardSong.WanderersMinuet:
                         if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_WM_TimeLeftForSwitch)
-                            return true;
+                            return 104;
                         break;
                 }
 
-                return false;
+                return -100;
             }
 
             // 关爆发的时候,让歌唱完
             if (currSong != ActionResourceManager.Bard.BardSong.None)
             {
-                if (AIRoot.GetBattleData<BardBattleData>().nextSongQueue.Count>0 
-                    && (int)currSong == AIRoot.GetBattleData<BardBattleData>().nextSongQueue.Peek())
-                    if (remainTime <= 45000 - AIRoot.GetBattleData<BardBattleData>().nextSongDuration.Peek())
-                        return true;
+                if (SpellsDefine.ArmysPaeon.Cooldown.TotalMilliseconds > 1000
+                    && SpellsDefine.MagesBallad.Cooldown.TotalMilliseconds > 1000)
+                    return -102;
+                
+                if (AIRoot.GetBattleData<BardBattleData>().NeedSwitchByNextSongQueue((int)currSong,remainTime))
+                    return 201;
 
                 if (remainTime <= ConstValue.SongsTimeLeftCheckWhenCloseBuff)
-                    return true;
-                return false;
+                {
+                    return 202;
+                }
+
+                return -101;
             }
 
-            return true;
+            return 301;
         }
     }
 }

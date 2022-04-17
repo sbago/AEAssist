@@ -121,52 +121,55 @@ namespace AEAssist.AI
                     GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_CanAttack);
                 return false;
             }
-
+            var battleData = GetBattleData<BattleData>();
             if (Core.Me.InCombat)
             {
-                if (ClearBattleData) GetBattleData<BattleData>().battleStartTime = timeNow;
+                if (ClearBattleData) battleData.battleStartTime = timeNow;
 
                 ClearBattleData = false;
             }
 
             var canUseAbility = true;
-            var delta = timeNow - GetBattleData<BattleData>().lastCastTime;
+            var delta = timeNow -battleData.lastCastTime;
             var coolDown = GetGCDDuration();
 
             var canUseGCD = CanUseGCD();
 
-            if (!canUseGCD && GetBattleData<BattleData>().maxAbilityTimes > 0 && coolDown - delta >= coolDown * 0.33f)
+            if (!canUseGCD && battleData.maxAbilityTimes > 0 && coolDown - delta >= coolDown * 0.33f)
                 canUseAbility = true;
             else
                 // LogHelper.Debug(
-                //     $"NoAbility==> Need:{needDura} Times:{GetBattleData<BattleData>().maxAbilityTimes} Delta: {coolDown - delta}");
+                //     $"NoAbility==> Need:{needDura} Times:{battleData.maxAbilityTimes} Delta: {coolDown - delta}");
                 canUseAbility = false;
 
             if (canUseGCD)
             {
                 SpellData ret = null;
-                if (GetBattleData<BattleData>().NextGCDSpellId != 0)
+                if (battleData.NextGCDSpellId != 0)
                 {
-                    ret = DataManager.GetSpellData(GetBattleData<BattleData>().NextGCDSpellId);
-                    if (ret != null && ret.IsUnlock() && ActionManager.CanCast(ret, Core.Me.CurrentTarget))
+                    ret = DataManager.GetSpellData(battleData.NextGCDSpellId);
+                    if (ret != null && ret.IsUnlock())
                     {
-                        if (!await SpellHelper.CastGCD(ret, Core.Me.CurrentTarget))
-                            ret = null;
-                        else
-                            GetBattleData<BattleData>().NextGCDSpellId = 0;
+                        if (SpellHelper.CanCastGCD(ret, Core.Me.CurrentTarget))
+                        {
+                            if (!await SpellHelper.CastGCD(ret, Core.Me.CurrentTarget))
+                                ret = null;
+                            else
+                                battleData.NextGCDSpellId = 0;
+                        }
                     }
                     else
                     {
                         ret = null;
-                        GetBattleData<BattleData>().NextGCDSpellId = 0;
+                        battleData.NextGCDSpellId = 0;
                     }
                 }
 
                 if (ret == null)
-                    ret = await AIMgrs.Instance.HandleGCD(Core.Me.CurrentJob, GetBattleData<BattleData>().lastGCDSpell);
+                    ret = await AIMgrs.Instance.HandleGCD(Core.Me.CurrentJob, battleData.lastGCDSpell);
                 if (ret != null)
                 {
-                    var msg = "Cast GCD: " + ret.LocalizedName;
+                    var msg = $"{battleData.BattleTime/1000} Cast GCD: {ret.Id} " + ret.LocalizedName;
                     LogHelper.Info(msg);
                     GUIHelper.ShowInfo(msg, 100);
                     var history = new SpellHistory
@@ -176,14 +179,15 @@ namespace AEAssist.AI
                         Name = ret.LocalizedName
                     };
                     SpellHistoryMgr.Instance.AddGCDHistory(history);
-
-                    if (GetBattleData<BattleData>().lastGCDSpell == null)
+                    
+                    
+                    if (battleData.lastGCDSpell == null)
                         CountDownHandler.Instance.Close();
-                    GetBattleData<BattleData>().lastGCDIndex++;
-                    GetBattleData<BattleData>().lastGCDSpell = ret;
-                    GetBattleData<BattleData>().lastCastTime = timeNow;
-                    GetBattleData<BattleData>().ResetMaxAbilityTimes();
-                    GetBattleData<BattleData>().lastAbilitySpell = null;
+                    battleData.lastGCDIndex++;
+                    battleData.lastGCDSpell = ret;
+                    battleData.lastCastTime = timeNow;
+                    battleData.ResetMaxAbilityTimes();
+                    battleData.lastAbilitySpell = null;
                 }
             }
 
@@ -191,41 +195,44 @@ namespace AEAssist.AI
             {
                 SpellData ret = null;
 
-                if (GetBattleData<BattleData>().maxAbilityTimes == SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD &&
-                    GetBattleData<BattleData>().NextAbilityUsePotion)
+                if (battleData.maxAbilityTimes == SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD &&
+                    battleData.NextAbilityUsePotion)
                 {
-                    GetBattleData<BattleData>().NextAbilitySpellId = 0;
+                    battleData.NextAbilitySpellId = 0;
                     var msg = "===>Try using Potion";
                     LogHelper.Info(msg);
                     var boolRet = await AIMgrs.Instance.UsePotion(Core.Me.CurrentJob);
                     if (boolRet)
                     {
-                        GetBattleData<BattleData>().NextAbilityUsePotion = false;
+                        battleData.NextAbilityUsePotion = false;
                         return false;
                     }
                 }
-                else if (GetBattleData<BattleData>().NextAbilitySpellId != 0)
+                else if (battleData.NextAbilitySpellId != 0)
                 {
-                    ret = DataManager.GetSpellData(GetBattleData<BattleData>().NextAbilitySpellId);
-                    if (ret != null && ret.IsUnlock() && ActionManager.CanCast(ret, Core.Me.CurrentTarget))
+                    ret = DataManager.GetSpellData(battleData.NextAbilitySpellId);
+                    if (ret != null && ret.IsUnlock())
                     {
-                        if (!await SpellHelper.CastAbility(ret, Core.Me.CurrentTarget))
-                            ret = null;
-                        else
-                            GetBattleData<BattleData>().NextAbilitySpellId = 0;
+                        if (ActionManager.CanCast(ret, Core.Me.CurrentTarget))
+                        {
+                            if (!await SpellHelper.CastAbility(ret, Core.Me.CurrentTarget))
+                                ret = null;
+                            else
+                                battleData.NextAbilitySpellId = 0;
+                        }
                     }
                     else
                     {
                         ret = null;
-                        GetBattleData<BattleData>().NextAbilitySpellId = 0;
+                        battleData.NextAbilitySpellId = 0;
                     }
                 }
 
                 if (ret == null)
-                    ret = await AIMgrs.Instance.HandleAbility(Core.Me.CurrentJob, GetBattleData<BattleData>().lastAbilitySpell);
+                    ret = await AIMgrs.Instance.HandleAbility(Core.Me.CurrentJob, battleData.lastAbilitySpell);
                 if (ret != null)
                 {
-                    var msg = "Cast Ability: " + ret.LocalizedName;
+                    var msg = $"{battleData.BattleTime/1000} Cast Ability: {ret.Id} " + ret.LocalizedName;
                     LogHelper.Info(msg);
                     GUIHelper.ShowInfo(msg, 100);
                     var history = new SpellHistory
@@ -233,10 +240,10 @@ namespace AEAssist.AI
                         SpellId = ret.Id,
                         CastTime = timeNow,
                         Name = ret.LocalizedName,
-                        GCDIndex = GetBattleData<BattleData>().lastGCDIndex
+                        GCDIndex = battleData.lastGCDIndex
                     };
                     SpellHistoryMgr.Instance.AddAbilityHistory(history);
-                    GetBattleData<BattleData>().maxAbilityTimes--;
+                    battleData.maxAbilityTimes--;
                     //LogHelper.Info($"剩余使用能力技能次数: {_maxAbilityTimes}");
                 }
             }
@@ -251,11 +258,14 @@ namespace AEAssist.AI
                 return true;
             if (GetBattleData<BattleData>().maxAbilityTimes < SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD)
             {
-                if (GetGCDDuration() <= 1.8f)
-                    return false;
                 return true;
             }
+            
+            var delta = TimeHelper.Now() - GetBattleData<BattleData>().lastCastTime;
+            var coolDown = GetGCDDuration();
 
+            if (coolDown - delta < coolDown * 0.5f)
+                return true;
             return false;
         }
 

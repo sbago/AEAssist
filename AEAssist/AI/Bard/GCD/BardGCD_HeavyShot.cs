@@ -15,7 +15,7 @@ namespace AEAssist.AI
 
         public async Task<SpellData> Run()
         {
-            var spellData = BardSpellHelper.GetHeavyShot();
+            var spellData = BardSpellHelper.GetBaseGCD();
             if (await SpellHelper.CastGCD(spellData, Core.Me.CurrentTarget)) return spellData;
 
             return null;

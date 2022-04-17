@@ -90,7 +90,7 @@ namespace AEAssist
 
         public SpellData GetBaseGCDSpell()
         {
-            return BardSpellHelper.GetHeavyShot();
+            return BardSpellHelper.GetBaseGCD();
         }
         
     }

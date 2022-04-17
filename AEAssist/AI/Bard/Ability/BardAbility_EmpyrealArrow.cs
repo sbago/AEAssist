@@ -10,10 +10,27 @@ namespace AEAssist.AI
     {
         public int Check(SpellData lastSpell)
         {
-            if (!SpellsDefine.EmpyrealArrow.IsReady())
+            if (!SpellsDefine.EmpyrealArrow.IsUnlock())
                 return -1;
-            if (BardSpellHelper.PrepareSwitchSong())
-                return -2;
+
+            if (SettingMgr.GetSetting<BardSettings>().EarlyEmpyrealArrow)
+            {
+                if (SpellsDefine.EmpyrealArrow.Cooldown.TotalMilliseconds > 300)
+                    return -2;
+            }
+            else
+            {
+                if (SpellsDefine.EmpyrealArrow.Cooldown.TotalMilliseconds > 50)
+                    return -3; 
+            }
+
+   
+            
+            var ret = BardSpellHelper.PrepareSwitchSong();
+            if (ret > 0)
+            {
+                return -4;
+            }
 
             return 0;
         }

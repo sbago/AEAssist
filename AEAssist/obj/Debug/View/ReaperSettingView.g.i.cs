@@ -10,7 +10,6 @@
 //------------------------------------------------------------------------------
 
 using AEAssist;
-using AEAssist.View;
 using System;
 using System.Diagnostics;
 using System.Windows;

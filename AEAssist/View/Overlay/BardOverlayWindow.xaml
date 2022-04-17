@@ -72,6 +72,12 @@
                                           Content="{Binding Language.Toggle_ActiveAttack}"
                                           Style="{StaticResource CheckBoxOverlayCustomToggle}"
                                           IsChecked="{Binding AutoAttack,Mode=TwoWay}" />
+                                
+                                <CheckBox HorizontalContentAlignment="Center"
+                                          Content="{Binding Language.Bard_SwitchSong}"
+                                          Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                          IsChecked="{Binding UseSong,Mode=TwoWay}" />
+                                
                             </WrapPanel>
                             <WrapPanel Margin="10">
                                 <Button Style="{StaticResource ImageButton}" 
@@ -97,6 +103,14 @@
                                     <Image Source="../../Resources/Spells/Potion.png" Stretch="Uniform" />
                                 
                                 </Button>
+                                
+                                <Button  Style="{StaticResource ImageButton}" 
+                                         Width="30" Height="30" Margin="5,2,5,2" Name="UseApex"
+                                         Click="UseApex_OnClick">
+                                    <Image Source="../../Resources/Spells/Apex.png" Stretch="Uniform" />
+                                
+                                </Button>
+                                
                             </WrapPanel>
                         </WrapPanel>
                         <local:CommonOverlay HorizontalAlignment="Center" />

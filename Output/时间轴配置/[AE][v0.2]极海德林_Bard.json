@@ -1,0 +1,20 @@
+{
+  "_t" : "TriggerLine",
+  "TargetDuty" : "极海德林",
+  "TargetJob" : "Bard",
+  "Triggers" : [{
+      "_id" : "1",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SongList",
+          "SongIndex" : [{ "$numberInt" : "3" }, { "$numberInt" : "1" }, { "$numberInt" : "2" }, { "$numberInt" : "3" }, { "$numberInt" : "1" }, { "$numberInt" : "2" }, { "$numberInt" : "3" }, { "$numberInt" : "1" }, { "$numberInt" : "2" }],
+          "Durations" : [{ "$numberInt" : "40" }, { "$numberInt" : "40" }, { "$numberInt" : "40" }, { "$numberInt" : "45" }, { "$numberInt" : "35" }, { "$numberInt" : "40" }, { "$numberInt" : "35" }, { "$numberInt" : "40" }, { "$numberInt" : "45" }]
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "0" }
+        }]
+    }],
+  "Version" : "v0.1",
+  "Author" : "AE",
+  "ConfigVersion" : { "$numberInt" : "1" }
+}

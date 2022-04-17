@@ -57,6 +57,8 @@ namespace AEAssist
 
         public string SetTriggerLine { get; set; } = "设置时间轴";
 
+        public string ClearTriggerLine { get; set; } = "清理";
+        
         public string Combox_Hotkey_Stop { get; set; } = "停手";
         public string Combox_Hotkey_BurstOff { get; set; } = "关闭爆发";
 
@@ -69,7 +71,7 @@ namespace AEAssist
         public string Textbox_Bard_ApexArrow_SoulVoiceGauge { get; set; } = "绝峰箭能量要求";
         public string Textbox_Bard_TTK2BuffEnhancedIronJaw { get; set; } = "X秒内死亡不刷强化伶牙";
         public string Textbox_Bard_DotTimeLeft { get; set; } = "Dot剩余时间";
-
+        public string Textbox_Bard_EmpyrealArrow { get; set; } = "提前计算九天";
         public string Label_CurrTriggerLine { get; set; } = "当前加载时间轴:";
         public string Label_DexChoosePotion { get; set; } = "敏捷爆发药";
         public string Label_StrChoosePotion { get; set; } = "力量爆发药";
@@ -108,5 +110,7 @@ namespace AEAssist
         public string MessageLog_CountDown_BattleStart { get; set; } = "战斗开始";
         public string MessageLog_CountDown_BattleStartInTime { get; set; } = "[0-9]+";
         public string MessageLog_CountDown_CancelBattleStart { get; set; } = "取消了战斗开始";
+
+        public string Bard_SwitchSong { get; set; } = "使用歌曲";
     }
 }
