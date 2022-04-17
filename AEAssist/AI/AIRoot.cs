@@ -54,10 +54,10 @@ namespace AEAssist.AI
             set => DataBinding.Instance.Stop = value;
         }
 
-        public bool BurstOff
+        public bool CloseBurst
         {
-            get => DataBinding.Instance.BurstOff;
-            set => DataBinding.Instance.BurstOff = value;
+            get => !DataBinding.Instance.Burst;
+            set => DataBinding.Instance.Burst = !value;
         }
 
         public void Clear()

@@ -13,7 +13,7 @@ namespace AEAssist.AI.MCH
         {
             if (!SpellsDefine.BarrelStabilizer.IsReady())
                 return -1;
-            if (AIRoot.Instance.BurstOff)
+            if (AIRoot.Instance.CloseBurst)
                 return -2;
             if (ActionResourceManager.Machinist.Heat > 50)
                 return -3;

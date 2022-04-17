@@ -12,7 +12,7 @@ namespace AEAssist
         public string LanVersion = "2";
 
         public string Toggle_Stop { get; set; } = "停手";
-        public string Toggle_BurstOff { get; set; } = "关闭爆发";
+        public string Toggle_BurstOff { get; set; } = "爆发";
         public string Toggle_AOE { get; set; } = "AOE";
         public string Toggle_ShowGameLog { get; set; } = "显示GameLog(编辑时间轴必备)";
         public string Toggle_ShowDebugLog { get; set; } = "显示优先级判定Log(调试用)";

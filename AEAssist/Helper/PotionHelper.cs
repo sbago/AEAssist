@@ -58,11 +58,6 @@ namespace AEAssist.Helper
             });
             StrPotions.Add(new PotionData
             {
-                ID = 36104,
-                Name = "Grade 5 Str/5级刚力之幻药"
-            });
-            StrPotions.Add(new PotionData
-            {
                 ID = 31893,
                 Name = "Grade 4 Str/4级刚力之幻药"
             });
@@ -77,7 +72,7 @@ namespace AEAssist.Helper
         {
             if (!SettingMgr.GetSetting<GeneralSettings>().UsePotion)
                 return false;
-            if (AIRoot.Instance.BurstOff)
+            if (AIRoot.Instance.CloseBurst)
                 return false;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return false;

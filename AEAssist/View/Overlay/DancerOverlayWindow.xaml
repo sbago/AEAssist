@@ -46,7 +46,7 @@
                             <CheckBox HorizontalContentAlignment="Center"
                                       Content="{Binding HotkeySetting.CloseBuffBtnName}"
                                       Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                      IsChecked="{Binding BurstOff,Mode=TwoWay}" />
+                                      IsChecked="{Binding Burst,Mode=TwoWay}" />
 
                             <CheckBox HorizontalContentAlignment="Center"
                                       Content="AOE"

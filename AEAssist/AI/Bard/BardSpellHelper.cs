@@ -269,7 +269,7 @@ namespace AEAssist.AI
 
         public static bool Prepare2BurstBuffs(int time = 10000)
         {
-            if (AIRoot.Instance.BurstOff)
+            if (AIRoot.Instance.CloseBurst)
                 return false;
             if (SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds < time) return true;
 
@@ -351,7 +351,7 @@ namespace AEAssist.AI
             var remainTime = ActionResourceManager.Bard.Timer.TotalMilliseconds;
 
 
-            if (!AIRoot.Instance.BurstOff)
+            if (!AIRoot.Instance.CloseBurst)
             {
                 if (SpellsDefine.ArmysPaeon.Cooldown.TotalMilliseconds > 1000
                     && SpellsDefine.MagesBallad.Cooldown.TotalMilliseconds > 1000
@@ -382,13 +382,13 @@ namespace AEAssist.AI
                 return -100;
             }
 
+            if (SpellsDefine.ArmysPaeon.Cooldown.TotalMilliseconds > 1000
+                && SpellsDefine.MagesBallad.Cooldown.TotalMilliseconds > 1000)
+                return -102;
+            
             // 关爆发的时候,让歌唱完
             if (currSong != ActionResourceManager.Bard.BardSong.None)
             {
-                if (SpellsDefine.ArmysPaeon.Cooldown.TotalMilliseconds > 1000
-                    && SpellsDefine.MagesBallad.Cooldown.TotalMilliseconds > 1000)
-                    return -102;
-                
                 if (AIRoot.GetBattleData<BardBattleData>().NeedSwitchByNextSongQueue((int)currSong,remainTime))
                     return 201;
 

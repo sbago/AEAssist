@@ -14,7 +14,7 @@ namespace AEAssist
 
         public static DataBinding Instance => _instance ?? (_instance = new DataBinding());
 
-        public bool BurstOff
+        public bool Burst
         {
             get;
             set;
@@ -53,7 +53,7 @@ namespace AEAssist
 
         public void Reset()
         {
-            BurstOff = false;
+            Burst = true;
             Stop = false;
             UseApex = true;
             UseDot = true;

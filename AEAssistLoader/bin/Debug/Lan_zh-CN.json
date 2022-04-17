@@ -12,6 +12,7 @@
   "Toggle_UseHotkey" : "使用快捷键",
   "Toggle_UseTTK" : "使用TTK(目标濒死机制)",
   "Toggle_Potion" : "爆发药",
+  "Toggle_Battery" : "电能",
   "Toggle_Apex" : "绝峰箭",
   "Toggle_ActiveAttack" : "主动攻击目标",
   "Toggle_PreferDoubleEnshroud" : "优先双附体",
@@ -35,6 +36,7 @@
   "Btn_Close" : "隐藏",
   "Btn_CheckPotionNum" : "检查爆发药数量",
   "SetTriggerLine" : "设置时间轴",
+  "ClearTriggerLine" : "清理",
   "Combox_Hotkey_Stop" : "停手",
   "Combox_Hotkey_BurstOff" : "关闭爆发",
   "Textbox_AnimationLockMs" : "能力技动画时间",
@@ -45,11 +47,12 @@
   "Textbox_Bard_ApexArrow_SoulVoiceGauge" : "绝峰箭能量要求",
   "Textbox_Bard_TTK2BuffEnhancedIronJaw" : "X秒内死亡不刷强化伶牙",
   "Textbox_Bard_DotTimeLeft" : "Dot剩余时间",
+  "Textbox_Bard_EmpyrealArrow" : "提前计算九天",
   "Label_CurrTriggerLine" : "当前加载时间轴:",
   "Label_DexChoosePotion" : "敏捷爆发药",
   "Label_StrChoosePotion" : "力量爆发药",
   "Label_PotionNum" : "数量:",
-  "Label_DotblackList" : "输入目标名字(包含)",
+  "Label_DotblackList" : "输入目标名字(包含)或者id:",
   "Toggle_PreferGallow" : "优先打缢杀",
   "Btn_LoadTriggerLine" : "加载文件",
   "Btn_ClearTriggerLine" : "清理",
@@ -71,5 +74,6 @@
   "Title_LoadTriggerLine" : "加载时间轴",
   "MessageLog_CountDown_BattleStart" : "战斗开始",
   "MessageLog_CountDown_BattleStartInTime" : "[0-9]+",
-  "MessageLog_CountDown_CancelBattleStart" : "取消了战斗开始"
+  "MessageLog_CountDown_CancelBattleStart" : "取消了战斗开始",
+  "Bard_SwitchSong" : "使用歌曲"
 }

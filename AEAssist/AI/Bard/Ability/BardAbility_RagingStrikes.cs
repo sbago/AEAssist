@@ -10,7 +10,7 @@ namespace AEAssist.AI
     {
         public int Check(SpellData lastSpell)
         {
-            if (AIRoot.Instance.BurstOff)
+            if (AIRoot.Instance.CloseBurst)
                 return -1;
             if (!SpellsDefine.RagingStrikes.IsReady())
                 return -2;

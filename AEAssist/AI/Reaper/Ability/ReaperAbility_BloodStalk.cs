@@ -16,7 +16,7 @@ namespace AEAssist.AI.Reaper
             if (!DataBinding.Instance.UseSoulGauge)
                 return -2;
 
-            if (AIRoot.Instance.BurstOff && !SpellsDefine.Enshroud.IsUnlock())
+            if (AIRoot.Instance.CloseBurst && !SpellsDefine.Enshroud.IsUnlock())
                 return -10;
             
             if (ActionResourceManager.Reaper.SoulGauge < 50)
@@ -32,7 +32,7 @@ namespace AEAssist.AI.Reaper
                 return -6;
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -7;
-            if (SpellsDefine.Gluttony.IsUnlock()&& !AIRoot.Instance.BurstOff && SpellsDefine.Gluttony.Cooldown.TotalMilliseconds < 10000) return -8;
+            if (SpellsDefine.Gluttony.IsUnlock()&& !AIRoot.Instance.CloseBurst && SpellsDefine.Gluttony.Cooldown.TotalMilliseconds < 10000) return -8;
 
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
                 return -9;

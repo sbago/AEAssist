@@ -13,7 +13,7 @@ namespace AEAssist.AI.Reaper
         {
             if (!SettingMgr.GetSetting<GeneralSettings>().UsePotion)
                 return -1;
-            if (AIRoot.Instance.BurstOff)
+            if (AIRoot.Instance.CloseBurst)
                 return -2;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return -3;

@@ -3,7 +3,7 @@
   "LanType" : "zh-CN",
   "LanVersion" : "2",
   "Toggle_Stop" : "停手",
-  "Toggle_BurstOff" : "关闭爆发",
+  "Toggle_BurstOff" : "爆发",
   "Toggle_AOE" : "AOE",
   "Toggle_ShowGameLog" : "显示GameLog(编辑时间轴必备)",
   "Toggle_ShowDebugLog" : "显示优先级判定Log(调试用)",

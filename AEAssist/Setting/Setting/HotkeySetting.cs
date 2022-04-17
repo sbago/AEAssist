@@ -92,8 +92,8 @@ namespace AEAssist
 
                 Hotkeys.Add(HotkeyManager.Register("ControlBuff", closeBuffKey, ModifierKeys.None, v =>
                 {
-                    AIRoot.Instance.BurstOff =
-                        !AIRoot.Instance.BurstOff;
+                    AIRoot.Instance.CloseBurst =
+                        !AIRoot.Instance.CloseBurst;
                 }));
             }
             catch (Exception e)

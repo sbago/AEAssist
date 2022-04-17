@@ -26,7 +26,7 @@ namespace AEAssist.AI
 
         public bool ControlByNextSongQueue(int currSong)
         {
-            LogHelper.Debug("Check NextSongQueue: " + nextSongList.Count);
+          //  LogHelper.Debug("Check NextSongQueue: " + nextSongList.Count);
             if (nextSongList.Count == 0)
                 return false;
 

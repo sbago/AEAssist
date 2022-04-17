@@ -13,7 +13,7 @@ namespace AEAssist.AI.Reaper
         {
             if (!SpellsDefine.ArcaneCircle.IsReady())
                 return -1;
-            if (AIRoot.Instance.BurstOff)
+            if (AIRoot.Instance.CloseBurst)
                 return -2;
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
                 return -3;

@@ -12,7 +12,7 @@ namespace AEAssist.AI.MCH
     {
         public int Check(SpellData lastSpell)
         {
-            if (AIRoot.Instance.BurstOff)
+            if (AIRoot.Instance.CloseBurst)
                 return -1;
             if (!DataBinding.Instance.UseBattery)
                 return -2;
