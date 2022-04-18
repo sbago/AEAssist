@@ -80,6 +80,9 @@
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_CastGCD.cs">
           <Link>TriggerModel\TriggerAction\TriggerAction_CastGCD.cs</Link>
         </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_LockSpell.cs">
+          <Link>TriggerModel\TriggerAction\TriggerAction_LockSpell.cs</Link>
+        </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_NextSong.cs">
             <Link>TriggerModel\TriggerAction\TriggerAction_NextSong.cs</Link>
         </Compile>
@@ -100,6 +103,9 @@
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchSong.cs">
           <Link>TriggerModel\TriggerAction\TriggerAction_SwitchSong.cs</Link>
+        </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_UsePotion.cs">
+          <Link>TriggerModel\TriggerAction\TriggerAction_UsePotion.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAttribute.cs">
             <Link>TriggerModel\TriggerAttribute.cs</Link>
@@ -219,6 +225,7 @@
         <Compile Include="TriggerSystem\ITriggerCondHandler.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_CastAbility.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_CastGCD.cs" />
+        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_LockSpell.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_NextSong.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SongList.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchAOE.cs" />
@@ -226,6 +233,7 @@
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchBurst.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchDOT.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchSong.cs" />
+        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_UsePotion.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterBattleStart.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterOtherTrigger.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyCastSpellByName.cs" />

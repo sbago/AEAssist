@@ -215,6 +215,7 @@ namespace AEAssist.AI
                     if (boolRet)
                     {
                         battleData.NextAbilityUsePotion = false;
+                        MuteAbilityTime();
                         return false;
                     }
                 }

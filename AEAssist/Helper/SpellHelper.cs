@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AEAssist.AI;
 using AEAssist.Define;
 using Buddy.Coroutines;
 using ff14bot;
@@ -95,6 +96,10 @@ namespace AEAssist.Helper
             if (Core.Me.ClassLevel < spellData.LevelAcquired
                 || !ActionManager.HasSpell(spellData.Id))
                 return false;
+
+            if (AIRoot.GetBattleData<BattleData>().LockSpellId.Contains(spellData.Id))
+                return false;
+            
             return true;
         }
 

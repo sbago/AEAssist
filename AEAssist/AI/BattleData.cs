@@ -35,6 +35,8 @@ namespace AEAssist.AI
         public int NearbyEnemyCount_Range5_5;
         public int NearbyEnemyCount_Range8_8;
 
+        public HashSet<uint> LockSpellId = new HashSet<uint>();
+
         private uint _NextAbilitySpellId;
         public uint NextAbilitySpellId
         {
