@@ -30,23 +30,10 @@ namespace AEAssist
         }
 
         // 战斗之前处理buff的?
-        public async Task<bool> PreCombatBuff()
+        public Task<bool> PreCombatBuff()
         {
-            if (Core.Me.InCombat) return false;
-
-
             AIRoot.Instance.Clear();
-
-            if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
-                return false;
-
-            if (!MovementManager.IsMoving)
-                return false;
-
-            if (await SpellHelper.CastGCD(SpellsDefine.Soulsow, Core.Me))
-                return true;
-
-            return false;
+            return Task.FromResult(false);
         }
 
         public SpellData GetBaseGCDSpell()

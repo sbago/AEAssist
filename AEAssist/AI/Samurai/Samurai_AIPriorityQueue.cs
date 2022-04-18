@@ -30,7 +30,7 @@ namespace AEAssist.AI
 
         public Task<bool> UsePotion()
         {
-            return PotionHelper.ForceUsePotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId);
+            return PotionHelper.ForceUsePotion(SettingMgr.GetSetting<GeneralSettings>().StrPotionId);
         }
     }
 }

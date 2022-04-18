@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using AEAssist.AI;
+using AEAssist.View;
 using AETriggers.TriggerModel;
 using PropertyChanged;
 
@@ -42,6 +43,8 @@ namespace AEAssist
         public ReaperSettings ReaperSettings => SettingMgr.GetSetting<ReaperSettings>();
         
         public MCHSettings MCHSettings => SettingMgr.GetSetting<MCHSettings>();
+
+        public SamuraiSettings SamuraiSettings => SettingMgr.GetSetting<SamuraiSettings>();
 
         public DebugCenter DebugCenter => DebugCenter.Intance;
 

@@ -48,6 +48,7 @@ namespace AEAssist
                 {
                     case ClassJobType.Bard:
                     case ClassJobType.Reaper:
+                    case ClassJobType.Samurai:
                         return new[] {Core.Me.CurrentJob};
                     default:
                     {

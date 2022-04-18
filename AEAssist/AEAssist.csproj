@@ -198,6 +198,20 @@
         <Compile Include="AI\Reaper\Reaper_AIPriorityQueue.cs" />
         <Compile Include="AI\Reaper\ReaperBattleData.cs" />
         <Compile Include="AI\Reaper\ReaperSpellHelper.cs" />
+        <Compile Include="AI\Samurai\Ability\SamuraiAbility_HissatsuKaiten.cs" />
+        <Compile Include="AI\Samurai\Ability\SamuraiAbility_HissatsuSenei.cs" />
+        <Compile Include="AI\Samurai\Ability\SamuraiAbility_HissatsuShinten.cs" />
+        <Compile Include="AI\Samurai\Ability\SamuraiAbility_Ikishoten.cs" />
+        <Compile Include="AI\Samurai\Ability\SamuraiAbility_MeikyoShisui.cs" />
+        <Compile Include="AI\Samurai\Ability\SamuraiAbility_Shoha.cs" />
+        <Compile Include="AI\Samurai\GCD\SamuraiGCD_BaseGCDCombo.cs" />
+        <Compile Include="AI\Samurai\GCD\SamuraiGCD_Iaijutsu.cs" />
+        <Compile Include="AI\Samurai\GCD\SamuraiGCD_Kaeshi.cs" />
+        <Compile Include="AI\Samurai\GCD\SamuraiGCD_OgiNamikiri.cs" />
+        <Compile Include="AI\Samurai\SamuraiBattleData.cs" />
+        <Compile Include="AI\Samurai\SamuraiRotation.cs" />
+        <Compile Include="AI\Samurai\SamuraiSpellHelper.cs" />
+        <Compile Include="AI\Samurai\Samurai_AIPriorityQueue.cs" />
         <Compile Include="AI\SpellHistoryMgr.cs" />
         <Compile Include="DataBinding\DebugCenter.cs" />
         <Compile Include="DataBinding\HotkeyData.cs" />
@@ -221,6 +235,7 @@
         <Compile Include="Setting\Setting\HotkeySetting.cs" />
         <Compile Include="Setting\Setting\MCHSettings.cs" />
         <Compile Include="Setting\Setting\ReaperSettings.cs" />
+        <Compile Include="Setting\Setting\SamuraiSettings.cs" />
         <Compile Include="TriggerSystem\ITriggerActionHandler.cs" />
         <Compile Include="TriggerSystem\ITriggerCondHandler.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_CastAbility.cs" />
@@ -270,13 +285,16 @@
         <Compile Include="View\Overlay\ReaperOverlay.xaml.cs">
             <DependentUpon>ReaperOverlay.xaml</DependentUpon>
         </Compile>
+        <Compile Include="View\Overlay\SamuraiOverlayWindow.xaml.cs" />
         <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BardOverlay.cs" />
         <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_DancerOverlay.cs" />
         <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_MCHOverlay.cs" />
         <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_ReaperOverlay.cs" />
+        <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_SamuraiOverlay.cs" />
         <Compile Include="View\ReaperSettingView.xaml.cs">
             <DependentUpon>ReaperSettingView.xaml</DependentUpon>
         </Compile>
+        <Compile Include="View\SamuraiSettingView.xaml.cs" />
         <Compile Include="View\TriggerLineWindow.xaml.cs">
             <DependentUpon>TriggerLineWindow.xaml</DependentUpon>
         </Compile>
@@ -299,6 +317,7 @@
         <Compile Include="Setting\Setting\BardSettings.cs" />
         <Compile Include="Setting\Setting\GeneralSettings.cs" />
         <Compile Include="Setting\Setting\VersionSetting.cs" />
+        <Resource Include="Resources\Spells\ThirdEye.png" />
         <Resource Include="Resources\Spells\Apex.png" />
         <Resource Include="Resources\Background\Sky.jpeg" />
         <Resource Include="Resources\Background\Black_1.jpeg" />
@@ -333,7 +352,9 @@
         <Page Include="View\Overlay\DancerOverlayWindow.xaml" />
         <Page Include="View\Overlay\MCHOverlayWindow.xaml" />
         <Page Include="View\Overlay\ReaperOverlay.xaml" />
+        <Page Include="View\Overlay\SamuraiOverlayWindow.xaml" />
         <Page Include="View\ReaperSettingView.xaml" />
+        <Page Include="View\SamuraiSettingView.xaml" />
         <Page Include="View\Style\Button.xaml" />
         <Page Include="View\Style\CheckBox.xaml" />
         <Page Include="View\TriggerLineWindow.xaml" />
