@@ -8,6 +8,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
 using AEAssist.AI;
 using ff14bot;
@@ -21,6 +22,8 @@ namespace AEAssist.Opener
         public static OpenerMgr Instance = new OpenerMgr();
 
         public Dictionary<(ClassJobType,int), IOpener> AllOpeners = new Dictionary<(ClassJobType,int), IOpener>();
+
+        public Dictionary<(Type,int), MethodInfo> AllSteps = new Dictionary<(Type,int), MethodInfo>();
 
         public OpenerMgr()
         {
@@ -40,33 +43,80 @@ namespace AEAssist.Opener
                 }
 
                 var attr = attrs[0] as OpenerAttribute;
-                AllOpeners[(attr.ClassJobType,attr.Level)] = Activator.CreateInstance(type) as IOpener;
+                var opener = Activator.CreateInstance(type) as IOpener;
+                AllOpeners[(attr.ClassJobType,attr.Level)] = opener;
+
+                var openerMethods = type.GetMethods(BindingFlags.Instance| BindingFlags.Public| BindingFlags.NonPublic);
+
+                HashSet<int> stepsSet = new HashSet<int>();
+                foreach (var method in openerMethods)
+                {
+                    var stepAttr = method.GetCustomAttribute<OpenerStepAttribute>();
+                    if(stepAttr == null)
+                        continue;
+                    var key = (type, stepAttr.StepIndex);
+                    if (!stepsSet.Add(stepAttr.StepIndex) || stepAttr.StepIndex<0 || stepAttr.StepIndex>=opener.StepCount)
+                    {
+                        LogHelper.Error($"StepIndexError: {type.Name} Index: {stepAttr.StepIndex}");
+                        continue;
+                    }
+
+                    if (method.ReturnType != typeof(SpellQueueSlot))
+                    {
+                        LogHelper.Error($"StepReturnTypeError: {type.Name} Method:{method.Name} ");
+                    }
+
+                    var param = method.GetParameters();
+                    
+                    if (param != null && param.Length>0)
+                    {
+                        LogHelper.Error($"StepMethodParamsError: {type.Name} Method:{method.Name} ");
+                    }
+
+                    AllSteps.Add(key,method);
+                }
+
+                if (stepsSet.Count != opener.StepCount)
+                {
+                    LogHelper.Error($"StepCountError: {type.Name}  Cal:{stepsSet.Count} Define:{opener.StepCount} ");
+                }
+
+
                 LogHelper.Info($"Load Opener: {attr.ClassJobType} Level: {attr.Level}");
             }
         }
-        //todo: 由AIRoot那边引用. 返回值true说明处于opner控制,spellData为空说明这时候没有行动.
 
-        public bool UseOpenerGCD(ClassJobType classJobType,out SpellData spellData)
+        public async Task<bool> UseOpener(ClassJobType classJobType)
         {
-            spellData = null;
-            if (!AllOpeners.TryGetValue((classJobType,Core.Me.ClassLevel), out var opener))
-                return false;
-            var currGCDIndex = AIRoot.GetBattleData<BattleData>().lastGCDIndex;
-            return opener.NextGCD(currGCDIndex,out spellData);
-        }
+            var battleData = AIRoot.GetBattleData<BattleData>();
 
-        public bool UseOpenerAbility(ClassJobType classJobType,out SpellData spellData)
-        {
-            spellData = null;
-            if (!AllOpeners.TryGetValue((classJobType,Core.Me.ClassLevel), out var opener))
+            if (!AllOpeners.TryGetValue((classJobType, Core.Me.ClassLevel), out var opener))
                 return false;
-            var currGCDIndex = AIRoot.GetBattleData<BattleData>().lastGCDIndex;
-            var abilityTimes = 2 - AIRoot.GetBattleData<BattleData>().maxAbilityTimes;
-            if (abilityTimes < 0)
-                abilityTimes = 0;
-            if (abilityTimes > 1)
-                abilityTimes = 1;
-            return opener.NextAbility(currGCDIndex,abilityTimes,out spellData);
+
+            if (opener.StepCount <= battleData.OpenerIndex)
+            {
+                return false;
+            }
+
+            var spellQueue = AIRoot.GetBattleData<SpellQueueData>();
+            
+            if (!await spellQueue.ApplySlot())
+            {
+                if (AllSteps.TryGetValue((opener.GetType(), battleData.OpenerIndex), out var method))
+                {
+                    var slot = (SpellQueueSlot) method.Invoke(opener, null);
+                    if (slot != null)
+                        spellQueue.Add(slot);
+                    else
+                    {
+                        LogHelper.Error(method.Name +" Cant Get SpellQueueSlot");
+                    }
+                }
+                battleData.OpenerIndex++;
+            }
+
+        
+            return true;
         }
 
     }

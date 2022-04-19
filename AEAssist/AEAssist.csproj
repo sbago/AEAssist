@@ -162,6 +162,7 @@
         <Compile Include="AI\Dancer\DancerRotation.cs" />
         <Compile Include="AI\IAIHandler.cs" />
         <Compile Include="AI\IAIPriorityQueue.cs" />
+        <Compile Include="AI\IAISpellQueue.cs" />
         <Compile Include="AI\IBattleData.cs" />
         <Compile Include="AI\Machinist\Ability\MCHAbility_BarrelStabilizer.cs" />
         <Compile Include="AI\Machinist\Ability\MCHAbility_HyperCharge.cs" />
@@ -213,13 +214,16 @@
         <Compile Include="AI\Samurai\SamuraiSpellHelper.cs" />
         <Compile Include="AI\Samurai\Samurai_AIPriorityQueue.cs" />
         <Compile Include="AI\SpellHistoryMgr.cs" />
+        <Compile Include="AI\SpellQueueData.cs" />
         <Compile Include="DataBinding\DebugCenter.cs" />
         <Compile Include="DataBinding\HotkeyData.cs" />
         <Compile Include="DataBinding\Language.cs" />
         <Compile Include="DataBinding\LanguageOptionData.cs" />
         <Compile Include="DataBinding\PotionData.cs" />
         <Compile Include="DataBinding\SongData.cs" />
+        <Compile Include="Define\ConstValue.cs" />
         <Compile Include="Define\DataStruct\CircleList.cs" />
+        <Compile Include="Define\ObjectPool.cs" />
         <Compile Include="Gamelog\AEGamelogManager.cs" />
         <Compile Include="Helper\DotBlacklistHelper.cs" />
         <Compile Include="Helper\LanguageHelper.cs" />
@@ -228,6 +232,7 @@
         <Compile Include="Opener\MCH\Opener_MCH_90.cs" />
         <Compile Include="Opener\OpenerAttribute.cs" />
         <Compile Include="Opener\OpenerMgr.cs" />
+        <Compile Include="Opener\OpenerStep.cs" />
         <Compile Include="Rotations\Core\DefaultRotation.cs" />
         <Compile Include="Rotations\Core\IRotation.cs" />
         <Compile Include="Rotations\Core\RotationAttribute.cs" />
@@ -311,7 +316,6 @@
             <DependentUpon>Icons.resx</DependentUpon>
         </Compile>
         <Compile Include="Setting\BaseSetting.cs" />
-        <Compile Include="Setting\ConstValue.cs" />
         <Compile Include="Setting\SettingAttribute.cs" />
         <Compile Include="Setting\SettingMgr.cs" />
         <Compile Include="Setting\Setting\BardSettings.cs" />

@@ -48,7 +48,7 @@ namespace AEAssist.AI
                     return await v.Run();
                 if (SettingMgr.GetSetting<GeneralSettings>().ShowAbilityDebugLog)
                     LogHelper.Debug(
-                        $"{AIRoot.GetBattleData<BattleData>().BattleTime / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
+                        $"{AIRoot.GetBattleData<BattleData>().CurrBattleTime / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
             }
 
             return null;
@@ -66,7 +66,7 @@ namespace AEAssist.AI
                 if (SettingMgr.GetSetting<GeneralSettings>().ShowAbilityDebugLog)
                     //   if(v.GetType() == typeof(BardAbility_Bloodletter))
                     LogHelper.Debug(
-                        $"{AIRoot.GetBattleData<BattleData>().BattleTime / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
+                        $"{AIRoot.GetBattleData<BattleData>().CurrBattleTime / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
             }
 
             return null;

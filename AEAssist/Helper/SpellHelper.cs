@@ -109,6 +109,23 @@ namespace AEAssist.Helper
             if (!spellData.IsUnlock())
                 return false;
 
+            if (spellData.MaxCharges >= 1)
+            {
+                if (spellData.Charges < 1)
+                {
+                    //LogHelper.Debug($"Spell: {spellData.LocalizedName} {spellData.SpellType.ToString()}");
+                    if (spellData.SpellType == SpellType.Ability)
+                        return false;
+                    var time = 0;
+                    if (DataBinding.Instance.EarlyDecisionMode)
+                        time = SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs;
+                    if (spellData.Cooldown.TotalMilliseconds > time)
+                        return false;
+                    return true;
+                }
+                return true;
+            }
+
             if (spellData.SpellType == SpellType.Ability)
             {
                 if (spellData.Cooldown.TotalMilliseconds > 0)

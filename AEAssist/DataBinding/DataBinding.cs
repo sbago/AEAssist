@@ -21,7 +21,7 @@ namespace AEAssist
             set;
             // var msg = !_closeBuff ? "Burst On" : "Burst Off";
             // GUIHelper.ShowToast(msg,2000);
-        }
+        } = true;
 
         public bool Stop { get; set; }
 
@@ -74,7 +74,7 @@ namespace AEAssist
         public void Update()
         {
             if (GeneralSettings.ShowBattleTime)
-                TimeStr = $"{Language.Instance.Content_BattleTime}:  {AIRoot.GetBattleData<BattleData>().BattleTime / 1000}";
+                TimeStr = $"{Language.Instance.Content_BattleTime}:  {AIRoot.GetBattleData<BattleData>().CurrBattleTime / 1000}";
             else
                 TimeStr = $"{Language.Instance.Content_LocalTime}:  {DateTime.Now:hh:mm:ss}";
         }

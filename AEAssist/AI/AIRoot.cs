@@ -5,6 +5,7 @@ using AEAssist.AI.Reaper;
 using AEAssist.Define;
 using AEAssist.Gamelog;
 using AEAssist.Helper;
+using AEAssist.Opener;
 using ff14bot;
 using ff14bot.Enums;
 using ff14bot.Managers;
@@ -124,9 +125,20 @@ namespace AEAssist.AI
             var battleData = GetBattleData<BattleData>();
             if (Core.Me.InCombat)
             {
-                if (ClearBattleData) battleData.battleStartTime = timeNow;
+                if (ClearBattleData) battleData.BattleStartTime = timeNow;
 
                 ClearBattleData = false;
+            }
+
+            if (await OpenerMgr.Instance.UseOpener(Core.Me.CurrentJob))
+            {
+                return false;
+            }
+
+            // 技能队列
+            if (await GetBattleData<SpellQueueData>().ApplySlot())
+            {
+                return false;
             }
 
             var canUseAbility = true;
@@ -179,25 +191,7 @@ namespace AEAssist.AI
                     ret = await AIMgrs.Instance.HandleGCD(Core.Me.CurrentJob, battleData.lastGCDSpell);
                 if (ret != null)
                 {
-                    var msg = $"{battleData.BattleTime/1000} Cast GCD: {ret.Id} " + ret.LocalizedName;
-                    LogHelper.Info(msg);
-                    GUIHelper.ShowInfo(msg, 100);
-                    var history = new SpellHistory
-                    {
-                        SpellId = ret.Id,
-                        CastTime = timeNow,
-                        Name = ret.LocalizedName
-                    };
-                    SpellHistoryMgr.Instance.AddGCDHistory(history);
-                    
-                    
-                    if (battleData.lastGCDSpell == null)
-                        CountDownHandler.Instance.Close();
-                    battleData.lastGCDIndex++;
-                    battleData.lastGCDSpell = ret;
-                    battleData.lastCastTime = timeNow;
-                    battleData.ResetMaxAbilityTimes();
-                    battleData.lastAbilitySpell = null;
+                    RecordGCD(ret);
                 }
             }
 
@@ -253,23 +247,55 @@ namespace AEAssist.AI
                     ret = await AIMgrs.Instance.HandleAbility(Core.Me.CurrentJob, battleData.lastAbilitySpell);
                 if (ret != null)
                 {
-                    var msg = $"{battleData.BattleTime/1000} Cast Ability: {ret.Id} " + ret.LocalizedName;
-                    LogHelper.Info(msg);
-                    GUIHelper.ShowInfo(msg, 100);
-                    var history = new SpellHistory
-                    {
-                        SpellId = ret.Id,
-                        CastTime = timeNow,
-                        Name = ret.LocalizedName,
-                        GCDIndex = battleData.lastGCDIndex
-                    };
-                    SpellHistoryMgr.Instance.AddAbilityHistory(history);
-                    battleData.maxAbilityTimes--;
+                    RecordAbility(ret);
                     //LogHelper.Info($"剩余使用能力技能次数: {_maxAbilityTimes}");
                 }
             }
 
             return false;
+        }
+
+        public void RecordGCD(SpellData ret)
+        {
+            var battleData = GetBattleData<BattleData>();
+            var timeNow = TimeHelper.Now();
+            var msg = $"{battleData.CurrBattleTime/1000} Cast GCD: {ret.Id} " + ret.LocalizedName;
+            LogHelper.Info(msg);
+            GUIHelper.ShowInfo(msg, 100);
+            var history = new SpellHistory
+            {
+                SpellId = ret.Id,
+                CastTime = timeNow,
+                Name = ret.LocalizedName
+            };
+            SpellHistoryMgr.Instance.AddGCDHistory(history);
+                    
+                    
+            if (battleData.lastGCDSpell == null)
+                CountDownHandler.Instance.Close();
+            battleData.lastGCDIndex++;
+            battleData.lastGCDSpell = ret;
+            battleData.lastCastTime = timeNow;
+            battleData.ResetMaxAbilityTimes();
+            battleData.lastAbilitySpell = null;
+        }
+
+        public void RecordAbility(SpellData ret)
+        {
+            var battleData = GetBattleData<BattleData>();
+            var timeNow = TimeHelper.Now();
+            var msg = $"{battleData.CurrBattleTime/1000} Cast Ability: {ret.Id} " + ret.LocalizedName;
+            LogHelper.Info(msg);
+            GUIHelper.ShowInfo(msg, 100);
+            var history = new SpellHistory
+            {
+                SpellId = ret.Id,
+                CastTime = timeNow,
+                Name = ret.LocalizedName,
+                GCDIndex = battleData.lastGCDIndex
+            };
+            SpellHistoryMgr.Instance.AddAbilityHistory(history);
+            battleData.maxAbilityTimes--;
         }
 
         // 当前是否是GCD后半段

@@ -57,12 +57,15 @@ namespace AEAssist
                 RotationManager.Instance.Init();
                 HookBehaviors();
                 SettingMgr.GetSetting<HotkeySetting>().RegisHotkey();
+                SettingMgr.GetSetting<HotkeySetting>().ResetHotkeyName();
                 AEGamelogManager.Instance.Init();
                 OverlayManager.Instance.Init();
                 PotionHelper.Init();
                 // PotionHelper.DebugAllItems();
                 AIRoot.Instance.Init();
                 AIMgrs.Instance.Init();
+                
+                
                 
                 GUIHelper.ShowInfo("Initialized");
             }
