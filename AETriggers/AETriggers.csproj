@@ -95,6 +95,7 @@
         <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchApex.cs" />
         <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs" />
         <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchDOT.cs" />
+        <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchFinalBurst.cs" />
         <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchSong.cs" />
         <Compile Include="TriggerModel\TriggerAction\TriggerAction_UsePotion.cs" />
         <Compile Include="TriggerModel\TriggerAttribute.cs" />

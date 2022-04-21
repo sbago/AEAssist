@@ -134,3 +134,5 @@ D:\Github\AEAssist\AEAssist\obj\Debug\View\Overlay\SamuraiOverlayWindow.g.cs
 D:\Github\AEAssist\AEAssist\obj\Debug\View\SamuraiSettingView.g.cs
 D:\Github\AEAssist\AEAssist\obj\Debug\View\Overlay\SamuraiOverlayWindow.baml
 D:\Github\AEAssist\AEAssist\obj\Debug\View\SamuraiSettingView.baml
+D:\Github\AEAssist\AEAssist\obj\Debug\View\Style\HotkeyControl.g.cs
+D:\Github\AEAssist\AEAssist\obj\Debug\View\Style\HotkeyControl.baml

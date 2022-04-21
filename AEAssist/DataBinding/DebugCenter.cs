@@ -1,4 +1,5 @@
-﻿using PropertyChanged;
+﻿using AEAssist.View;
+using PropertyChanged;
 
 namespace AEAssist
 {
@@ -12,6 +13,7 @@ namespace AEAssist
         public void ShowMsg(string msg)
         {
             Msg = msg;
+            UIHelper.RfreshCurrOverlay();
         }
     }
 }

@@ -38,6 +38,9 @@ namespace AEAssist.AI
 
         public Dictionary<uint, TargetStat> TargetStats = new Dictionary<uint, TargetStat>();
 
+
+        private HashSet<uint> LastNpcIds = new HashSet<uint>();
+
         public void Update()
         {
             var tars = GameObjectManager.GetObjectsOfType<BattleCharacter>().Where(r => (r.TaggerType > 0
@@ -69,6 +72,11 @@ namespace AEAssist.AI
 
 
                 Enemys.Add(unit.ObjectId, unit);
+
+                if (SettingMgr.GetSetting<GeneralSettings>().ShowGameLog && LastNpcIds.Add(unit.NpcId))
+                {
+                    LogHelper.Info($"Find new enemy : {unit.Name} NpcId: {unit.NpcId}");
+                }
             }
 
 

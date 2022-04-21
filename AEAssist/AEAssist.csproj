@@ -101,6 +101,9 @@
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchDOT.cs">
             <Link>TriggerModel\TriggerAction\TriggerAction_SwitchDOT.cs</Link>
         </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchFinalBurst.cs">
+          <Link>TriggerModel\TriggerAction\TriggerAction_SwitchFinalBurst.cs</Link>
+        </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchSong.cs">
           <Link>TriggerModel\TriggerAction\TriggerAction_SwitchSong.cs</Link>
         </Compile>
@@ -216,7 +219,6 @@
         <Compile Include="AI\SpellHistoryMgr.cs" />
         <Compile Include="AI\SpellQueueData.cs" />
         <Compile Include="DataBinding\DebugCenter.cs" />
-        <Compile Include="DataBinding\HotkeyData.cs" />
         <Compile Include="DataBinding\Language.cs" />
         <Compile Include="DataBinding\LanguageOptionData.cs" />
         <Compile Include="DataBinding\PotionData.cs" />
@@ -252,6 +254,7 @@
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchApex.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchBurst.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchDOT.cs" />
+        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchFinalBurstHandler.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchSong.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_UsePotion.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterBattleStart.cs" />
@@ -270,6 +273,7 @@
         <Compile Include="View\GeneralSettingView.xaml.cs">
             <DependentUpon>GeneralSettingView.xaml</DependentUpon>
         </Compile>
+        <Compile Include="View\Hotkey\HotkeySetting.cs" />
         <Compile Include="View\MCHSettingView.xaml.cs">
           <DependentUpon>MCHSettingView.xaml</DependentUpon>
         </Compile>
@@ -300,9 +304,13 @@
             <DependentUpon>ReaperSettingView.xaml</DependentUpon>
         </Compile>
         <Compile Include="View\SamuraiSettingView.xaml.cs" />
+        <Compile Include="View\Style\HotkeyControl.xaml.cs">
+          <DependentUpon>HotkeyControl.xaml</DependentUpon>
+        </Compile>
         <Compile Include="View\TriggerLineWindow.xaml.cs">
             <DependentUpon>TriggerLineWindow.xaml</DependentUpon>
         </Compile>
+        <Compile Include="View\UIHelper.cs" />
         <Content Include="..\AEAssistLoader\AEAssistLoader.cs">
             <Link>AEAssistLoader.cs</Link>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -321,6 +329,9 @@
         <Compile Include="Setting\Setting\BardSettings.cs" />
         <Compile Include="Setting\Setting\GeneralSettings.cs" />
         <Compile Include="Setting\Setting\VersionSetting.cs" />
+        <Resource Include="Resources\Spells\AP.png" />
+        <Resource Include="Resources\Spells\MB.png" />
+        <Resource Include="Resources\Spells\WM.png" />
         <Resource Include="Resources\Spells\ThirdEye.png" />
         <Resource Include="Resources\Spells\Apex.png" />
         <Resource Include="Resources\Background\Sky.jpeg" />
@@ -361,6 +372,7 @@
         <Page Include="View\SamuraiSettingView.xaml" />
         <Page Include="View\Style\Button.xaml" />
         <Page Include="View\Style\CheckBox.xaml" />
+        <Page Include="View\Style\HotkeyControl.xaml" />
         <Page Include="View\TriggerLineWindow.xaml" />
         <Resource Include="Resources\jobs\acn.png" />
         <Resource Include="Resources\jobs\alc.png" />

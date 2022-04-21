@@ -16,11 +16,16 @@ namespace AEAssist.AI
             if (ActionResourceManager.Bard.SoulVoice >= SettingMgr.GetSetting<BardSettings>().ApexArrowValue)
                 return 1;
 
+            if (ActionResourceManager.Bard.SoulVoice >= 20 && DataBinding.Instance.FinalBurst)
+            {
+                return 2;
+            }
+
             if (ActionResourceManager.Bard.SoulVoice >= 80 &&
                 (BardSpellHelper.HasBuffsCount() >= BardSpellHelper.UnlockBuffsCount() || TargetHelper.CheckNeedUseAOE(
                     ConstValue.BardAOETargetRange,
                     2, ConstValue.BardAOECount)))
-                return 2;
+                return 3;
 
             return -2;
         }

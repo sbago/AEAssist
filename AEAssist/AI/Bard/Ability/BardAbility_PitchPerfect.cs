@@ -35,6 +35,11 @@ namespace AEAssist.AI
                 && SpellsDefine.EmpyrealArrow.IsReady())
 
                 return 3;
+            
+            if (DataBinding.Instance.FinalBurst)
+            {
+                return 4;
+            }
 
 
             return -4;

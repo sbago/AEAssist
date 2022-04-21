@@ -58,7 +58,6 @@ namespace AEAssist.AI
 
         public void StartCountDown()
         {
-            GUIHelper.ShowInfo("倒计时准备开始");
             _lastTime = TimeHelper.Now();
             CanDoAction = false;
             Start = true;

@@ -14,8 +14,6 @@ namespace AEAssist.View
 {
     public partial class GeneralSettingView : UserControl
     {
-        private readonly List<HotkeyData> HotkeyDatas;
-
         class DotBlackList_Data
         {
             public string Name { get; set; }
@@ -26,14 +24,7 @@ namespace AEAssist.View
         public GeneralSettingView()
         {
             InitializeComponent();
-
-            HotkeyDatas = GetHotkeyData();
-
-            Hotkey_Stop.ItemsSource = HotkeyDatas;
-            Hotkey_CloseBuff.ItemsSource = HotkeyDatas;
-            Hotkey_Stop.SelectedValue = Enum.Parse(typeof(Keys), SettingMgr.GetSetting<HotkeySetting>().StopKey);
-            Hotkey_CloseBuff.SelectedValue =
-                Enum.Parse(typeof(Keys), SettingMgr.GetSetting<HotkeySetting>().CloseBuffKey);
+            
 
             SwitchLan.ItemsSource = LanguageHelper.LanOptions;
             SwitchLan.SelectedValue = AEAssist.Language.Instance.LanType;
@@ -45,51 +36,15 @@ namespace AEAssist.View
             Str_ChoosePotion.ItemsSource = PotionHelper.StrPotions;
             Str_ChoosePotion.SelectedValue = SettingMgr.GetSetting<GeneralSettings>().StrPotionId;
 
-           
-            
             RefreshDotBlackList();
-            
-            
+
         }
-
-        private List<HotkeyData> GetHotkeyData()
-        {
-            var HotkeyDatas = new List<HotkeyData>();
-            var array = Enum.GetValues(typeof(Keys));
-            foreach (var v in array)
-            {
-                var key = (Keys) v;
-                if (key == Keys.None)
-                    continue;
-                HotkeyDatas.Add(new HotkeyData
-                {
-                    Key = key,
-                    Name = key.ToString()
-                });
-            }
-
-            return HotkeyDatas;
-        }
-
+        
         private void ShowOverlay_OnClick(object sender, RoutedEventArgs e)
         {
             OverlayManager.Instance.SwitchOverlay();
         }
-
-        private void Hotkey_Stop_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SettingMgr.GetSetting<HotkeySetting>().StopKey = Hotkey_Stop.SelectedValue.ToString();
-            SettingMgr.GetSetting<HotkeySetting>().ResetHotkeyName();
-            SettingMgr.GetSetting<HotkeySetting>().RegisHotkey();
-        }
-
-        private void Hotkey_CloseBuff_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SettingMgr.GetSetting<HotkeySetting>().CloseBuffKey = Hotkey_CloseBuff.SelectedValue.ToString();
-            SettingMgr.GetSetting<HotkeySetting>().ResetHotkeyName();
-            SettingMgr.GetSetting<HotkeySetting>().RegisHotkey();
-        }
-
+        
         private void SwitchLan_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             LanguageHelper.SwitchLan((string)SwitchLan.SelectedValue);
@@ -147,6 +102,12 @@ namespace AEAssist.View
                 });
             }
             
+        }
+
+        private void RefreshHotkey_OnClick(object sender, RoutedEventArgs e)
+        {
+            SettingMgr.GetSetting<HotkeySetting>().RegisHotkey();
+            SettingMgr.GetSetting<HotkeySetting>().ResetHotkeyName();
         }
     }
 }

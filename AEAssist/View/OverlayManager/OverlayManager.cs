@@ -16,7 +16,7 @@ namespace AEAssist.View
         private readonly Dictionary<ClassJobType, OverlayUIComponent> AllOverlays =
             new Dictionary<ClassJobType, OverlayUIComponent>();
 
-        private OverlayUIComponent lastOverlay;
+        public OverlayUIComponent lastOverlay;
 
         public void Init()
         {

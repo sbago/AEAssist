@@ -15,7 +15,7 @@ namespace AEAssist.AI
             if (Core.Me.HasAura(AurasDefine.ShadowBiteReady)
                 && TargetHelper.CheckNeedUseAOE(25, 5, ConstValue.BardAOECount))
                 return 1;
-            
+
             if (BardSpellHelper.UnlockBuffsCount() > 1 && BardSpellHelper.HasBuffsCount() <= 1)
                 return -3;
 

@@ -286,7 +286,7 @@ namespace AEAssist
         public override void ShutDown()
         {
             base.ShutDown();
-            if (!Methods.TryGetValue("ShutDown", out var method)) return;
+            if (!Methods.TryGetValue("Shutdown", out var method)) return;
 
             method.Invoke(Entry, null);
         }

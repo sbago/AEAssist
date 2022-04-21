@@ -23,6 +23,9 @@ namespace AEAssist
             // GUIHelper.ShowToast(msg,2000);
         } = true;
 
+        // 有什么资源用什么,使劲倾泻. 部分逻辑依赖
+        public bool FinalBurst { get; set; }
+
         public bool Stop { get; set; }
 
         public bool AutoAttack { get; set; }
@@ -68,6 +71,7 @@ namespace AEAssist
             TimeStr = "";
             UseBattery = true;
             UseSong = true;
+            FinalBurst = false;
         }
 
 

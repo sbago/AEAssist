@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-16-1316314502
+171897149171
 51973500664
-198-1164707137
+202-1426952153
 14626590163
-View\CommonOverlay.xaml;View\MCHSettingView.xaml;View\OverlayHeader.xaml;View\Overlay\DancerOverlayWindow.xaml;View\Overlay\MCHOverlayWindow.xaml;View\Overlay\ReaperOverlay.xaml;View\Overlay\SamuraiOverlayWindow.xaml;View\ReaperSettingView.xaml;View\SamuraiSettingView.xaml;View\Style\Button.xaml;View\Style\CheckBox.xaml;View\TriggerLineWindow.xaml;View\BardSettingView.xaml;View\GeneralSettingView.xaml;View\Overlay\BardOverlayWindow.xaml;MainWindow.xaml;
+View\CommonOverlay.xaml;View\MCHSettingView.xaml;View\OverlayHeader.xaml;View\Overlay\DancerOverlayWindow.xaml;View\Overlay\MCHOverlayWindow.xaml;View\Overlay\ReaperOverlay.xaml;View\Overlay\SamuraiOverlayWindow.xaml;View\ReaperSettingView.xaml;View\SamuraiSettingView.xaml;View\Style\Button.xaml;View\Style\CheckBox.xaml;View\Style\HotkeyControl.xaml;View\TriggerLineWindow.xaml;View\BardSettingView.xaml;View\GeneralSettingView.xaml;View\Overlay\BardOverlayWindow.xaml;MainWindow.xaml;
 
 False
 

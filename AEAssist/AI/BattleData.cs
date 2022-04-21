@@ -115,6 +115,7 @@ namespace AEAssist.AI
 
         public void Update(long currTime)
         {
+            CurrBattleTime = currTime - BattleStartTime;
             // var enemys = TargetMgr.Instance.EnemysIn25;
             // foreach (var v in enemys.Values)
             // {

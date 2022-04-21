@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Input;
 using AEAssist.AI;
+using AEAssist.View;
 using ff14bot.Managers;
 using Newtonsoft.Json;
 using PropertyChanged;
@@ -24,8 +25,8 @@ namespace AEAssist
         public string StopBtnName { get; set; }
         public string CloseBuffBtnName { get; set; }
 
-        public string StopKey { get; set; }
-        public string CloseBuffKey { get; set; }
+        public HotkeyData Hotkey_Stop { get; set; } = new HotkeyData();
+        public HotkeyData Hotkey_Burst { get; set; } = new HotkeyData();
 
         public bool UseHotkey
         {
@@ -40,8 +41,8 @@ namespace AEAssist
 
         public void Reset()
         {
-            StopKey = Key.F8.ToString();
-            CloseBuffKey = Key.F9.ToString();
+            Hotkey_Stop.Reset();
+            Hotkey_Burst.Reset();
             UseHotkey = true;
             ResetHotkeyName();
         }
@@ -50,8 +51,8 @@ namespace AEAssist
         {
             if (UseHotkey)
             {
-                StopBtnName = $"{Language.Instance.Toggle_Stop} [{StopKey}]";
-                CloseBuffBtnName = $"{Language.Instance.Toggle_BurstOff} [{CloseBuffKey}]";
+                StopBtnName = $"{Language.Instance.Toggle_Stop} [{Hotkey_Stop.GetDisplayString()}]";
+                CloseBuffBtnName = $"{Language.Instance.Toggle_BurstOff} [{Hotkey_Burst.GetDisplayString()}]";
             }
             else
             {
@@ -73,27 +74,26 @@ namespace AEAssist
 
                 // Hotkeys.Add(HotkeyManager.Register("BattleStartNow", Keys.F9, ModifierKeys.None,
                 //     v => { CountDownHandler.Instance.StartNow(); }));
-                if (StopKey == null || CloseBuffKey == null)
+                if (Hotkey_Stop == null || Hotkey_Burst == null)
                     Reset();
                 //  LogHelper.Info("Hotkey_Stop: " + this.StopKey);
                 //  LogHelper.Info("Hotkey_CloseBuff: " + this.CloseBuffKey);
 
                 if (!UseHotkey)
                     return;
-
-                var stopKey = (Keys) Enum.Parse(typeof(Keys), StopKey);
-                var closeBuffKey = (Keys) Enum.Parse(typeof(Keys), CloseBuffKey);
-
-                Hotkeys.Add(HotkeyManager.Register("BattleStop", stopKey, ModifierKeys.None, v =>
+                
+                Hotkeys.Add(HotkeyManager.Register("AEAssist_BattleStop", Hotkey_Stop.Key, Hotkey_Stop.ModifierKey, v =>
                 {
                     AIRoot.Instance.Stop =
                         !AIRoot.Instance.Stop;
+                    UIHelper.RfreshCurrOverlay();
                 }));
 
-                Hotkeys.Add(HotkeyManager.Register("ControlBuff", closeBuffKey, ModifierKeys.None, v =>
+                Hotkeys.Add(HotkeyManager.Register("AEAssist_Burst", Hotkey_Burst.Key,Hotkey_Burst.ModifierKey, v =>
                 {
                     AIRoot.Instance.CloseBurst =
                         !AIRoot.Instance.CloseBurst;
+                    UIHelper.RfreshCurrOverlay();
                 }));
             }
             catch (Exception e)

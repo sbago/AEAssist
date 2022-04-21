@@ -112,5 +112,9 @@ namespace AEAssist
         public string MessageLog_CountDown_CancelBattleStart { get; set; } = "取消了战斗开始";
 
         public string Bard_SwitchSong { get; set; } = "使用歌曲";
+
+        public string Btn_ApplyHotkey { get; set; } = "应用快捷键";
+
+        public string Toggle_FinalBurst { get; set; } = "资源倾泻";
     }
 }

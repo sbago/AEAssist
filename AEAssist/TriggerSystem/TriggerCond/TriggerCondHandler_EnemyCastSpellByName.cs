@@ -14,6 +14,8 @@ namespace AEAssist.TriggerSystem.TriggerCond
                     continue;
                 //LogHelper.Info($"Character {v.Name} Casting===>{v.SpellCastInfo.SpellData.LocalizedName}");
                 if (v.SpellCastInfo.SpellData.LocalizedName.Contains(cond.spellName)) return true;
+
+                if (v.SpellCastInfo.SpellData.Id.ToString() == cond.spellName) return true;
             }
 
             return false;

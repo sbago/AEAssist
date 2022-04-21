@@ -67,5 +67,20 @@ namespace AEAssist.View
         {
             AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.ApexArrow.Id;
         }
+
+        private void UseWM_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.TheWanderersMinuet.Id;
+        }
+
+        private void UseMB_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.MagesBallad.Id;
+        }
+
+        private void UseAP_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmysPaeon.Id;
+        }
     }
 }

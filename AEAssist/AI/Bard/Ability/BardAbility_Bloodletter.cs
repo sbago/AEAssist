@@ -16,17 +16,22 @@ namespace AEAssist.AI
             if (!SpellsDefine.Bloodletter.IsChargeReady())
                 return -2;
 
+            if (DataBinding.Instance.FinalBurst)
+            {
+                return 2;
+            }
+            
             if (SettingMgr.GetSetting<GeneralSettings>().ShowAbilityDebugLog)
                 LogHelper.Debug(
                     $"Bloodletter: {SpellsDefine.Bloodletter.Charges} Max:{SpellsDefine.Bloodletter.MaxCharges}");
 
             if (AIRoot.Instance.CloseBurst)
-                return 2;
+                return 3;
 
             // 起手爆发期间, 失血箭尽量打进团辅
 
             if (BardSpellHelper.HasBuffsCount() >= BardSpellHelper.UnlockBuffsCount())
-                return 1;
+                return 4;
 
             if (BardSpellHelper.Prepare2BurstBuffs())
                 return -4;

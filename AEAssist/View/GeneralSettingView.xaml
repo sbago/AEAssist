@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:AEAssist"
+             xmlns:view="clr-namespace:AEAssist.View"
              mc:Ignorable="d"
              Height="350" Width="600">
     <UserControl.Resources>
@@ -18,21 +19,21 @@
     <UserControl.DataContext>
         <Binding Source="{x:Static viewModels:DataBinding.Instance}" />
     </UserControl.DataContext>
-    
+
     <TabControl
         TabStripPlacement="Top"
-                Margin="20"
-                Width="500">
+        Margin="20"
+        Width="500">
         <TabItem Header="Lan">
             <StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                <Label Content="Curr Language:" Width="100" />
-                <ComboBox IsEditable="False" Name="SwitchLan" Width="100" DisplayMemberPath="Name"
-                          SelectedValuePath="Key" SelectionChanged="SwitchLan_OnSelectionChanged" />
-            </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="Curr Language:" Width="100" />
+                    <ComboBox IsEditable="False" Name="SwitchLan" Width="100" DisplayMemberPath="Name"
+                              SelectedValuePath="Key" SelectionChanged="SwitchLan_OnSelectionChanged" />
+                </StackPanel>
             </StackPanel>
         </TabItem>
-        
+
         <TabItem Header="{Binding Language.TabItem_General}">
             <StackPanel HorizontalAlignment="Left" Margin="10">
                 <Button Name="ShowOverlay"
@@ -61,16 +62,19 @@
                           Content="{Binding Language.Toggle_UseHotkey}" Width="200" Height="25" Margin="10"
                           HorizontalAlignment="Left"
                           IsChecked="{Binding HotkeySetting.UseHotkey}" />
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="{Binding Language.Combox_Hotkey_Stop}" Width="100" />
-                    <ComboBox IsEditable="False" Name="Hotkey_Stop" Width="150" DisplayMemberPath="Name"
-                              SelectedValuePath="Key" SelectionChanged="Hotkey_Stop_OnSelectionChanged" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="{Binding Language.Combox_Hotkey_BurstOff}" Width="100" />
-                    <ComboBox IsEditable="False" Name="Hotkey_CloseBuff" Width="150" DisplayMemberPath="Name"
-                              SelectedValuePath="Key" SelectionChanged="Hotkey_CloseBuff_OnSelectionChanged" />
-                </StackPanel>
+
+                <view:HotkeyControl
+                    KeySetting="{Binding  HotkeySetting.Hotkey_Stop.Key, Mode=TwoWay}"
+                    ModKeySetting="{Binding HotkeySetting.Hotkey_Stop.ModifierKey, Mode=TwoWay}"
+                    Text="{Binding Language.Combox_Hotkey_Stop}" />
+                <view:HotkeyControl
+                    KeySetting="{Binding  HotkeySetting.Hotkey_Burst.Key, Mode=TwoWay}"
+                    ModKeySetting="{Binding HotkeySetting.Hotkey_Burst.ModifierKey, Mode=TwoWay}"
+                    Text="{Binding Language.Combox_Hotkey_BurstOff}" />
+
+                <Button Content="{Binding Language.Btn_ApplyHotkey}" 
+                        Width="150" Margin="5"
+                        Name="RefreshHotkey" Click="RefreshHotkey_OnClick"/>
             </StackPanel>
         </TabItem>
 
@@ -105,49 +109,49 @@
                 </StackPanel>
             </StackPanel>
         </TabItem>
-        
+
         <TabItem Header="{Binding Language.TabItem_PotionSetting}">
             <StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                <Label Content="{Binding Language.Label_DexChoosePotion}" Width="100" />
-                <ComboBox IsEditable="False" Name="Dex_ChoosePotion" Width="150" DisplayMemberPath="Name"
-                          SelectedValuePath="ID" SelectionChanged="Dex_ChoosePotion_OnSelectionChanged" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                <Label Content="{Binding Language.Label_StrChoosePotion}" Width="100" />
-                <ComboBox IsEditable="False" Name="Str_ChoosePotion" Width="150" DisplayMemberPath="Name"
-                          SelectedValuePath="ID" SelectionChanged="Str_ChoosePotion_OnSelectionChanged" />
-            </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="{Binding Language.Label_DexChoosePotion}" Width="100" />
+                    <ComboBox IsEditable="False" Name="Dex_ChoosePotion" Width="150" DisplayMemberPath="Name"
+                              SelectedValuePath="ID" SelectionChanged="Dex_ChoosePotion_OnSelectionChanged" />
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="{Binding Language.Label_StrChoosePotion}" Width="100" />
+                    <ComboBox IsEditable="False" Name="Str_ChoosePotion" Width="150" DisplayMemberPath="Name"
+                              SelectedValuePath="ID" SelectionChanged="Str_ChoosePotion_OnSelectionChanged" />
+                </StackPanel>
+            </StackPanel>
         </TabItem>
-        
+
         <TabItem Header="{Binding Language.TabItem_DotBlacklist}">
             <StackPanel Margin="10" HorizontalAlignment="Center">
-               <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                   
-             
-          
-                <ListBox Margin="5" Name="DotBlackList" 
-                         Width="160"
-                         Height="150"
-                         HorizontalContentAlignment="Center"
-                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                         ScrollViewer.VerticalScrollBarVisibility="Visible"
-                         >
-                    
-                    <ListBoxItem Content="12313" />
-                    
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+
+                    <ListBox Margin="5" Name="DotBlackList"
+                             Width="160"
+                             Height="150"
+                             HorizontalContentAlignment="Center"
+                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                             ScrollViewer.VerticalScrollBarVisibility="Visible">
+
+                        <ListBoxItem Content="12313" />
+
                     </ListBox>
-             
-                   <Button Width="80" Height="20" Margin="5" Name="DotBlackList_Remove" Content="Remove" Click="DotBlackList_Remove_OnClick" />
-               </StackPanel>
+
+                    <Button Width="80" Height="20" Margin="5" Name="DotBlackList_Remove" Content="Remove"
+                            Click="DotBlackList_Remove_OnClick" />
+                </StackPanel>
                 <StackPanel Margin="5" Orientation="Horizontal">
-                    <Label Width="200" Content="{Binding Language.Label_DotblackList}" VerticalAlignment="Center"/> 
+                    <Label Width="200" Content="{Binding Language.Label_DotblackList}" VerticalAlignment="Center" />
                     <TextBox Name="DotBlackList_Input" Width="150" Height="30" />
-                    <Button Width="100" Margin="5" Name="DotBlackList_Add" Content="Add" Click="DotBlackList_Add_OnClick" />
+                    <Button Width="100" Margin="5" Name="DotBlackList_Add" Content="Add"
+                            Click="DotBlackList_Add_OnClick" />
                 </StackPanel>
             </StackPanel>
-            
+
         </TabItem>
     </TabControl>
 </UserControl>
