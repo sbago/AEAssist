@@ -17,7 +17,7 @@
   "TabItem_TTKSetting" : "TTK Setting",
   "Btn_SwitchOverlay" : "Switch Overlay",
   "Combox_Hotkey_Stop" : "Hotkey_Stop",
-  "Combox_Hotkey_BurstOff" : "Hotkey_BurstOff",
+  "Combox_Hotkey_BurstOff" : "Hotkey_Burst",
   "Textbox_AnimationLockMs" : "Ability AnimationLock(ms)",
   "Textbox_GCDQueueMs" : "GCD Queue(ms)",
   "Textbox_AbilityTimesInGCD" : "Ability times in GCD",
@@ -76,5 +76,7 @@
   "Toggle_Battery" : "Battery",
   "ClearTriggerLine" : "Clear",
   "Textbox_Bard_EmpyrealArrow" : "Early EmpyrealArrow",
-  "Bard_SwitchSong" : "Song"
+  "Bard_SwitchSong" : "Song",
+  "Btn_ApplyHotkey" : "Apply change",
+  "Toggle_FinalBurst" : "Final Burst"
 }

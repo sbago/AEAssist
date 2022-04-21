@@ -36,7 +36,7 @@
         }],
       "TriggerConds" : [{
           "_t" : "TriggerCond_AfterBattleStart",
-          "Time" : { "$numberInt" : "999999" }
+          "Time" : { "$numberInt" : "999" }
         }, {
           "_t" : "TriggerCond_EnemyCastSpellByName",
           "spellName" : "Halo"
@@ -51,5 +51,6 @@
         }]
     }],
   "Version" : "v0.1",
-  "Author" : "AE"
+  "Author" : "AE",
+  "ConfigVersion" : { "$numberInt" : "1" }
 }
