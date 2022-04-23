@@ -59,5 +59,15 @@ namespace AEAssist.View
             var spellId = MCHSpellHelper.GetQueenOverdrive();
             AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = spellId.Id;
         }
+
+        private void UseWildfire_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Wildfire.Id;
+        }
+
+        private void UseDetonator_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Detonator.Id;
+        }
     }
 }

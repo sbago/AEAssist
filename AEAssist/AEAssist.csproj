@@ -331,6 +331,8 @@
         <Compile Include="Setting\Setting\BardSettings.cs" />
         <Compile Include="Setting\Setting\GeneralSettings.cs" />
         <Compile Include="Setting\Setting\VersionSetting.cs" />
+        <Resource Include="Resources\Spells\Detonator.png" />
+        <Resource Include="Resources\Spells\Wildfire.png" />
         <Resource Include="Resources\Spells\QueenOverdrive.png" />
         <Resource Include="Resources\Spells\AutomatonQueen.png" />
         <Resource Include="Resources\Spells\HarvestMoon.png" />

@@ -21,7 +21,13 @@ namespace AEAssist.AI.MCH
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return -4;
             
-            if (MCHSpellHelper.CheckReassmableGCD(8000))
+            var character = Core.Me.CurrentTarget as Character;
+            if (SpellsDefine.Wildfire.RecentlyUsed() || Core.Me.HasAura(AurasDefine.WildfireBuff))
+            {
+                return 2;
+            }
+            
+            if (MCHSpellHelper.CheckReassmableGCD(SettingMgr.GetSetting<MCHSettings>().StrongGCDCheckTime))
                 return -5;
             
             if (ActionResourceManager.Machinist.Heat >= 95)
@@ -32,12 +38,6 @@ namespace AEAssist.AI.MCH
                 return 1;
             }
 
-            var character = Core.Me.CurrentTarget as Character;
-            
-            if (SpellsDefine.Wildfire.RecentlyUsed() || Core.Me.HasAura(AurasDefine.WildfireBuff))
-            {
-                return 2;
-            }
 
             // 25秒是积累50点热度需要的时间
             if (SpellsDefine.Wildfire.Cooldown.TotalMilliseconds < 25000)

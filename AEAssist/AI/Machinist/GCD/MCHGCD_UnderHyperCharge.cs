@@ -24,23 +24,13 @@ namespace AEAssist.AI.MCH
 
         public async Task<SpellData> Run()
         {
-            if (SpellsDefine.AutoCrossbow.IsUnlock() && TargetHelper.CheckNeedUseAOE(12, 12))
-            {
-                if (await SpellHelper.CastGCD(SpellsDefine.AutoCrossbow, Core.Me.CurrentTarget))
-                {
-                    AIRoot.GetBattleData<BattleData>().LimitAbility = true;
-                    AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount--;
-                    return SpellsDefine.AutoCrossbow;
-                }
-            }
-            
-            if (await SpellHelper.CastGCD(SpellsDefine.HeatBlast, Core.Me.CurrentTarget))
+            var spell = MCHSpellHelper.GetUnderHyperChargeGCD();
+            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
             {
                 AIRoot.GetBattleData<BattleData>().LimitAbility = true;
                 AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount--;
-                return SpellsDefine.HeatBlast;
+                return spell;
             }
-
             return null;
         }
     }

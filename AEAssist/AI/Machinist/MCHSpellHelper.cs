@@ -140,5 +140,26 @@ namespace AEAssist.AI
                 return true;
             return false;
         }
+
+        public static SpellData GetDrillIfWithAOE()
+        {
+            if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 12, 12))
+            {
+
+                return SpellsDefine.Bioblaster;
+
+            }
+            return SpellsDefine.Drill;
+        }
+
+        public static SpellData GetUnderHyperChargeGCD()
+        {
+            if (SpellsDefine.AutoCrossbow.IsUnlock() && TargetHelper.CheckNeedUseAOE(12, 12))
+            {
+                return SpellsDefine.AutoCrossbow;
+            }
+            
+            return SpellsDefine.HeatBlast;
+        }
     }
 }

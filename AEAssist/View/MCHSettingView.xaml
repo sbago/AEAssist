@@ -30,6 +30,11 @@
                           Content="{Binding Language.Toggle_EarlyDecisionMode}" Width="200" Height="25"
                           HorizontalAlignment="Left"
                           IsChecked="{Binding MCHSettings.EarlyDecisionMode}" />
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="{Binding Language.Toggle_StrongGCDCheckTime}" Width="200" />
+                    <TextBox Width="100" Text="{Binding MCHSettings.StrongGCDCheckTime,Mode=TwoWay}" />
+                </StackPanel>
             </StackPanel>
         </TabItem>
 

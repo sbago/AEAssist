@@ -96,10 +96,13 @@
                                 <Image Source="../../Resources/Spells/AutomatonQueen.png" Stretch="Uniform" />
                             </Button>
                             <Button Style="{StaticResource ImageButton}" 
-                                    Width="30" Height="30" Margin="5,2,5,2" Name="UseQueueOverdrive" Click="UseQueueOverdrive_OnClick">
-                                <Image Source="../../Resources/Spells/QueenOverdrive.png" Stretch="Uniform" />
+                                    Width="30" Height="30" Margin="5,2,5,2" Name="UseWildfire" Click="UseWildfire_OnClick">
+                                <Image Source="../../Resources/Spells/Wildfire.png" Stretch="Uniform" />
                             </Button>
-                            
+                            <Button Style="{StaticResource ImageButton}" 
+                                    Width="30" Height="30" Margin="5,2,5,2" Name="UseDetonator" Click="UseDetonator_OnClick">
+                                <Image Source="../../Resources/Spells/Detonator.png" Stretch="Uniform" />
+                            </Button>
                         </WrapPanel>
                     </WrapPanel>
                     <local:CommonOverlay HorizontalAlignment="Center" />

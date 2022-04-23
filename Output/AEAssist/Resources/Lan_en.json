@@ -78,5 +78,7 @@
   "Textbox_Bard_EmpyrealArrow" : "Early EmpyrealArrow",
   "Bard_SwitchSong" : "Song",
   "Btn_ApplyHotkey" : "Apply change",
-  "Toggle_FinalBurst" : "Final Burst"
+  "Toggle_FinalBurst" : "Final Burst",
+  "Toggle_StrongGCDCheckTime" : "Strong GCDs check time",
+  "Toggle_DoubleShroundPrefer" : "2*Enshroud Prefer"
 }

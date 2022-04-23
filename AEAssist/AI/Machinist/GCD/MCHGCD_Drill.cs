@@ -24,17 +24,11 @@ namespace AEAssist.AI.MCH
 
         public async Task<SpellData> Run()
         {
-            if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 12, 12))
-            {
-                if (await SpellHelper.CastGCD(SpellsDefine.Bioblaster, Core.Me.CurrentTarget))
-                {
-                    return SpellsDefine.Bioblaster;
-                }
-            }
+            var spell = MCHSpellHelper.GetDrillIfWithAOE();
 
-            if (await SpellHelper.CastGCD(SpellsDefine.Drill, Core.Me.CurrentTarget))
+            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
             {
-                return SpellsDefine.Drill;
+                return spell;
             }
 
             return null;
