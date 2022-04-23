@@ -16,6 +16,7 @@ namespace AEAssist.Opener
 {
     public interface IOpener
     {
+        int Check();
         int StepCount { get; }
     }
 }

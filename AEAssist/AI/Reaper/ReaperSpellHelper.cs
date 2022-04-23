@@ -69,7 +69,7 @@ namespace AEAssist.AI.Reaper
 
         public static SpellData CanUseSoulSlice_Scythe(GameObject target)
         {
-            if (!SpellsDefine.SoulSlice.IsChargeReady())
+            if (!SpellsDefine.SoulSlice.IsReady())
                 return null;
             if (TargetHelper.CheckNeedUseAOE(target, 5, 5)) return SpellsDefine.SoulScythe;
 

@@ -27,7 +27,7 @@ namespace AEAssist
         [ValueRange(1000, 5000)] public long UsePotionCountDown { get; set; } // 倒计时多少ms的时候使用爆发药
 
         public bool ShowGameLog { get; set; }
-        public bool ShowAbilityDebugLog { get; set; }
+        public bool ShowDebugLog { get; set; }
 
         public bool ShowToast { get; set; }
 
@@ -51,7 +51,7 @@ namespace AEAssist
             UsePotionCountDown = 1500;
             AnimationLockMs = 500;
             ShowGameLog = true;
-            ShowAbilityDebugLog = false;
+            ShowDebugLog = false;
             ShowToast = false;
             EarlyDecisionMode = true;
 

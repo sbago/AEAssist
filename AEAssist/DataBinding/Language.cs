@@ -19,7 +19,9 @@ namespace AEAssist
         public string Toggle_ShowBattleTime { get; set; } = "Overlay显示战斗时间";
 
         public string Toggle_EarlyDecisionMode { get; set; } = "提前决策模式";
-        
+
+        public string Toggle_DoubleShroundPrefer { get; set; } = "默认双附体";
+
         public string Toggle_UseHotkey { get; set; } = "使用快捷键";
         public string Toggle_UseTTK { get; set; } = "使用TTK(目标濒死机制)";
 

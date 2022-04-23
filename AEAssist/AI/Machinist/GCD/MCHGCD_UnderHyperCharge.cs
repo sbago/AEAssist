@@ -13,6 +13,12 @@ namespace AEAssist.AI.MCH
         {
             if (ActionResourceManager.Machinist.OverheatRemaining.TotalMilliseconds <= 0)
                 return -1;
+            
+            if (AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount <= 0)
+            {
+                return -2;
+            }
+
             return 0;
         }
 
@@ -22,6 +28,8 @@ namespace AEAssist.AI.MCH
             {
                 if (await SpellHelper.CastGCD(SpellsDefine.AutoCrossbow, Core.Me.CurrentTarget))
                 {
+                    AIRoot.GetBattleData<BattleData>().LimitAbility = true;
+                    AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount--;
                     return SpellsDefine.AutoCrossbow;
                 }
             }
@@ -29,7 +37,7 @@ namespace AEAssist.AI.MCH
             if (await SpellHelper.CastGCD(SpellsDefine.HeatBlast, Core.Me.CurrentTarget))
             {
                 AIRoot.GetBattleData<BattleData>().LimitAbility = true;
-                
+                AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount--;
                 return SpellsDefine.HeatBlast;
             }
 

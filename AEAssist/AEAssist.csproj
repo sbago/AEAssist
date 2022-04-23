@@ -184,6 +184,9 @@
         <Compile Include="AI\Machinist\MCHBattleData.cs" />
         <Compile Include="AI\Machinist\MCHSpellHelper.cs" />
         <Compile Include="AI\Machinist\MCH_AIPriorityQueue.cs" />
+        <Compile Include="AI\Machinist\Opener_MCH_70.cs" />
+        <Compile Include="AI\Machinist\Opener_MCH_80.cs" />
+        <Compile Include="AI\Machinist\Opener_MCH_90.cs" />
         <Compile Include="AI\Reaper\Ability\ReaperAbility_ArcaneCircle.cs" />
         <Compile Include="AI\Reaper\Ability\ReaperAbility_BloodStalk.cs" />
         <Compile Include="AI\Reaper\Ability\ReaperAbility_Enshroud.cs" />
@@ -231,7 +234,6 @@
         <Compile Include="Helper\LanguageHelper.cs" />
         <Compile Include="Helper\SpellHistoryHelper.cs" />
         <Compile Include="Opener\IOpener.cs" />
-        <Compile Include="Opener\MCH\Opener_MCH_90.cs" />
         <Compile Include="Opener\OpenerAttribute.cs" />
         <Compile Include="Opener\OpenerMgr.cs" />
         <Compile Include="Opener\OpenerStep.cs" />
@@ -329,6 +331,8 @@
         <Compile Include="Setting\Setting\BardSettings.cs" />
         <Compile Include="Setting\Setting\GeneralSettings.cs" />
         <Compile Include="Setting\Setting\VersionSetting.cs" />
+        <Resource Include="Resources\Spells\AutomatonQueen.png" />
+        <Resource Include="Resources\Spells\HarvestMoon.png" />
         <Resource Include="Resources\Spells\AP.png" />
         <Resource Include="Resources\Spells\MB.png" />
         <Resource Include="Resources\Spells\WM.png" />

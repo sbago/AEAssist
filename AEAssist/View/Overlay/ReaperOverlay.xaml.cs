@@ -47,5 +47,10 @@ namespace AEAssist.View.Overlay
         {
             OverlayManager.Instance.Close();
         }
+
+        private void UseHarvestMoon_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.HarvestMoon.Id;
+        }
     }
 }

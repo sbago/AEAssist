@@ -11,5 +11,6 @@
     public class MCHBattleData : IBattleData
     {
         public MCHComboStages ComboStages;
+        public int HyperchargeGCDCount = 0;
     }
 }

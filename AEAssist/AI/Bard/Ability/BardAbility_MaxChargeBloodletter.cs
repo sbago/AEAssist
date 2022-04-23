@@ -14,9 +14,12 @@ namespace AEAssist.AI
                 return -1;
             if (!SpellsDefine.Bloodletter.IsReady())
                 return -2;
-            // 接近溢出 要优先用
-            if (SpellsDefine.Bloodletter.Charges >= SpellsDefine.Bloodletter.MaxCharges -
-                SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs)
+            var checkMax = SpellsDefine.Bloodletter.MaxCharges - 0.5f;
+            // // 接近溢出 要优先用
+            // LogHelper.Debug($"{SpellsDefine.Bloodletter.LocalizedName } " +
+            //                 $"Charges: {SpellsDefine.Bloodletter.Charges} " +
+            //                 $"MaxCharge: {checkMax}");
+            if (SpellsDefine.Bloodletter.Charges >= checkMax)
                 return 0;
             return -3;
         }

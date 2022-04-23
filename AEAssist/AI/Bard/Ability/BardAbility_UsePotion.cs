@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Objects;
@@ -18,15 +19,23 @@ namespace AEAssist.AI
                 return -3;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return -4;
-            if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId))
+            
+            // 准备爆发的时候才用
+            if (!SpellsDefine.RagingStrikes.RecentlyUsed() 
+                && !Core.Me.ContainMyAura(AurasDefine.RagingStrikes)
+                && SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds < 5000)
+            {
                 return -5;
+            }
+
+            if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId))
+                return -6;
 
             return 0;
         }
 
         public async Task<SpellData> Run()
         {
-            LogHelper.Debug("===>Try using Potion   1111");
             var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId);
             if (ret) AIRoot.Instance.MuteAbilityTime();
 

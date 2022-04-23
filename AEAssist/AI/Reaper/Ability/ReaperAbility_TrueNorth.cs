@@ -13,7 +13,7 @@ namespace AEAssist.AI.Reaper
             if (!DataBinding.Instance.UseTrueNorth)
                 return -10;
 
-            if (!SpellsDefine.TrueNorth.IsChargeReady())
+            if (!SpellsDefine.TrueNorth.IsReady())
                 return -1;
 
             if (Core.Me.HasAura(AurasDefine.TrueNorth)

@@ -10,7 +10,7 @@ namespace AEAssist.AI.MCH
     {
         public int Check(SpellData lastSpell)
         {
-            if (!SpellsDefine.GaussRound.IsChargeReady() && !SpellsDefine.Ricochet.IsChargeReady())
+            if (!SpellsDefine.GaussRound.IsReady() && !SpellsDefine.Ricochet.IsReady())
                 return -1;
 
             if (SpellsDefine.GaussRound.IsMaxChargeReady() || SpellsDefine.Ricochet.IsMaxChargeReady())

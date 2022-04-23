@@ -47,5 +47,11 @@ namespace AEAssist.View
         {
             OverlayManager.Instance.Close();
         }
+
+        private void UseBattery_OnClick(object sender, RoutedEventArgs e)
+        {
+            var spellId = MCHSpellHelper.GetAutomatonQueen();
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = spellId.Id;
+        }
     }
 }

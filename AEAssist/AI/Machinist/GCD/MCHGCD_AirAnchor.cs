@@ -19,6 +19,12 @@ namespace AEAssist.AI.MCH
             if (spell == SpellsDefine.HotShot && SpellsDefine.Drill.IsReady())
                 return -2;
             
+            // 整备只有1层的时候,如果5秒内能冷却好,等一下
+            if (!SpellsDefine.Reassemble.RecentlyUsed() && SpellsDefine.Reassemble.MaxCharges < 1.5f && SpellsDefine.Reassemble.Cooldown.TotalMilliseconds < 5000)
+            {
+                return -3;
+            }
+
             return 0;
         }
 

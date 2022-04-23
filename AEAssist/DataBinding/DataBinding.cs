@@ -66,7 +66,7 @@ namespace AEAssist
             AutoAttack = false;
             UseHarpe = false;
             UseSoulGauge = true;
-            DoubleEnshroudPrefer = false;
+            DoubleEnshroudPrefer = ReaperSettings.DoubleEnshroudPrefer;
             UseAOE = true;
             TimeStr = "";
             UseBattery = true;

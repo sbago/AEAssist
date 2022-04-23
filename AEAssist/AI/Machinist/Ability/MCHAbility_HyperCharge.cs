@@ -33,7 +33,10 @@ namespace AEAssist.AI.MCH
                 return 2;
             }
 
-            if (SpellsDefine.Wildfire.IsReady() || SpellsDefine.Wildfire.Cooldown.TotalMilliseconds < 15000)
+            if (SpellsDefine.Drill.Cooldown.TotalMilliseconds < 4000)
+                return -4;
+
+            if (SpellsDefine.Wildfire.IsReady() || SpellsDefine.Wildfire.Cooldown.TotalMilliseconds < 10000)
             {
                 return -3;
             }
@@ -45,6 +48,7 @@ namespace AEAssist.AI.MCH
         {
             if (await SpellHelper.CastAbility(SpellsDefine.Hypercharge, Core.Me))
             {
+                AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount = 5;
                 return SpellsDefine.Hypercharge;
             }
 

@@ -46,8 +46,7 @@ namespace AEAssist.AI
                 var ret = v.Check(lastGCD);
                 if (ret >= 0)
                     return await v.Run();
-                if (SettingMgr.GetSetting<GeneralSettings>().ShowAbilityDebugLog)
-                    LogHelper.Debug(
+                LogHelper.Debug(
                         $"{AIRoot.GetBattleData<BattleData>().CurrBattleTime / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
             }
 
@@ -63,8 +62,7 @@ namespace AEAssist.AI
                 var ret = v.Check(lastAbility);
                 if (ret >= 0)
                     return await v.Run();
-                if (SettingMgr.GetSetting<GeneralSettings>().ShowAbilityDebugLog)
-                    //   if(v.GetType() == typeof(BardAbility_Bloodletter))
+                //   if(v.GetType() == typeof(BardAbility_Bloodletter))
                     LogHelper.Debug(
                         $"{AIRoot.GetBattleData<BattleData>().CurrBattleTime / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
             }

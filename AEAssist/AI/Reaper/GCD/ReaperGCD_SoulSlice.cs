@@ -11,7 +11,7 @@ namespace AEAssist.AI.Reaper
     {
         public int Check(SpellData lastSpell)
         {
-            if (!SpellsDefine.SoulSlice.IsChargeReady())
+            if (!SpellsDefine.SoulSlice.IsReady())
                 return -1;
 
             if (ActionResourceManager.Reaper.SoulGauge > 50)

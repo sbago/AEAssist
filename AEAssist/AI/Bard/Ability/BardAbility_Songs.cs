@@ -77,7 +77,8 @@ namespace AEAssist.AI
             var currSong = ActionResourceManager.Bard.ActiveSong;
             if (currSong == ActionResourceManager.Bard.BardSong.None)
                 currSong = bardBattleData.lastSong;
-            var remainTime = ActionResourceManager.Bard.Timer.TotalMilliseconds;
+            // 500是因为考虑到能力技窗口期
+            var remainTime = ActionResourceManager.Bard.Timer.TotalMilliseconds - 500;
             SpellData spell = null;
             forceNextSong = false;
             if (AIRoot.Instance.CloseBurst)

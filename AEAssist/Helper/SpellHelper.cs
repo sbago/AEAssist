@@ -69,16 +69,12 @@ namespace AEAssist.Helper
         {
             if (waitTime == 0)
                 waitTime = SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs;
-            
+
             if (!ActionManager.HasSpell(spell.Id))
                 return false;
-
             if (!GameSettingsManager.FaceTargetOnAction)
                 GameSettingsManager.FaceTargetOnAction = true;
-
-
-            if (!ActionManager.CanCast(spell.Id, target))
-                return false;
+            
             if (!ActionManager.DoAction(spell, target))
                 return false;
 
@@ -111,18 +107,18 @@ namespace AEAssist.Helper
 
             if (spellData.MaxCharges >= 1)
             {
-                if (spellData.Charges < 1)
-                {
-                    //LogHelper.Debug($"Spell: {spellData.LocalizedName} {spellData.SpellType.ToString()}");
-                    if (spellData.SpellType == SpellType.Ability)
-                        return false;
-                    var time = 0;
-                    if (DataBinding.Instance.EarlyDecisionMode)
-                        time = SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs;
-                    if (spellData.Cooldown.TotalMilliseconds > time)
-                        return false;
+                if (spellData.Charges >= 1)
                     return true;
-                }
+
+                LogHelper.Debug($" {spellData.LocalizedName} Charge {spellData.Charges} MaxCharge {spellData.MaxCharges}!");
+                
+                if (spellData.SpellType == SpellType.Ability)
+                    return false;
+                var time = 0;
+                if (DataBinding.Instance.EarlyDecisionMode)
+                    time = SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs;
+                if (spellData.Cooldown.TotalMilliseconds > time)
+                    return false;
                 return true;
             }
 
@@ -144,15 +140,7 @@ namespace AEAssist.Helper
             return true;
         }
 
-        public static bool IsChargeReady(this SpellData spellData)
-        {
-            // LogHelper.Debug($"检测技能 {spellData.Name} {spellData.LocalizedName} AdCoolDown {spellData.AdjustedCooldown.TotalMilliseconds}");
-            if (!spellData.IsUnlock()
-                || spellData.Charges < 1)
-                return false;
-            return true;
-        }
-        
+
         public static bool IsMaxChargeReady(this SpellData spellData)
         {
             // LogHelper.Debug($"检测技能 {spellData.Name} {spellData.LocalizedName} AdCoolDown {spellData.AdjustedCooldown.TotalMilliseconds}");
@@ -160,6 +148,17 @@ namespace AEAssist.Helper
                 || spellData.Charges < spellData.MaxCharges - 0.2f)
                 return false;
             return true;
+        }
+
+        public static bool CoolDownInGCDs(this SpellData spellData,int count)
+        {
+            var baseGCD = RotationManager.Instance.GetBaseGCDSpell().AdjustedCooldown.TotalMilliseconds;
+            if (spellData.Cooldown.TotalMilliseconds <= baseGCD * count)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

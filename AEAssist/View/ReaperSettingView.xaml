@@ -31,6 +31,10 @@
                           Content="{Binding Language.Toggle_EarlyDecisionMode}" Width="200" Height="25"
                           HorizontalAlignment="Left"
                           IsChecked="{Binding ReaperSettings.EarlyDecisionMode}" />
+                <CheckBox Name="DoubleEnshourdPrefer"
+                          Content="{Binding Language.Toggle_DoubleShroundPrefer}" Width="200" Height="25"
+                          HorizontalAlignment="Left"
+                          IsChecked="{Binding ReaperSettings.DoubleEnshroudPrefer}" />
             </StackPanel>
         </TabItem>
 

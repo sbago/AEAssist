@@ -47,7 +47,7 @@
                 <CheckBox Name="ShowAbilityDebug"
                           Content="{Binding Language.Toggle_ShowDebugLog}" Width="200" Height="25" Margin="10"
                           HorizontalAlignment="Left"
-                          IsChecked="{Binding GeneralSettings.ShowAbilityDebugLog}" />
+                          IsChecked="{Binding GeneralSettings.ShowDebugLog}" />
 
                 <CheckBox Name="ShowBattleTime"
                           Content="{Binding Language.Toggle_ShowBattleTime}" Width="200" Height="25" Margin="10"

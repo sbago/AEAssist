@@ -348,7 +348,7 @@ namespace AEAssist.AI
             if (!DataBinding.Instance.UseSong)
                 return -110;
             var currSong = ActionResourceManager.Bard.ActiveSong;
-            var remainTime = ActionResourceManager.Bard.Timer.TotalMilliseconds;
+            var remainTime = ActionResourceManager.Bard.Timer.TotalMilliseconds - 500;
 
 
             if (!AIRoot.Instance.CloseBurst)

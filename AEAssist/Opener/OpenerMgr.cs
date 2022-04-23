@@ -44,7 +44,10 @@ namespace AEAssist.Opener
 
                 var attr = attrs[0] as OpenerAttribute;
                 var opener = Activator.CreateInstance(type) as IOpener;
-                AllOpeners[(attr.ClassJobType,attr.Level)] = opener;
+                var openerKey = (attr.ClassJobType, attr.Level);
+                if(AllOpeners.ContainsKey(openerKey))
+                    LogHelper.Error("Multi opener "+ type.Name);
+                AllOpeners[openerKey] = opener;
 
                 var openerMethods = type.GetMethods(BindingFlags.Instance| BindingFlags.Public| BindingFlags.NonPublic);
 
@@ -92,6 +95,17 @@ namespace AEAssist.Opener
 
             if (!AllOpeners.TryGetValue((classJobType, Core.Me.ClassLevel), out var opener))
                 return false;
+
+            if (battleData.OpenerIndex == 0)
+            {
+                var ret = opener.Check();
+                if (ret < 0)
+                {
+                    LogHelper.Debug($"Opener Check: {opener.GetType().Name} ret: {ret}");
+                    return false;
+                }
+            }
+
 
             if (opener.StepCount <= battleData.OpenerIndex)
             {

@@ -91,6 +91,11 @@
                                     Width="30" Height="30" Margin="5,2,5,2" Name="UsePotion" Click="UsePotion_OnClick">
                                 <Image Source="../../Resources/Spells/Potion.png" Stretch="Uniform" />
                             </Button>
+                            <Button Style="{StaticResource ImageButton}" 
+                                    Width="30" Height="30" Margin="5,2,5,2" Name="UseBattery" Click="UseBattery_OnClick">
+                                <Image Source="../../Resources/Spells/AutomatonQueen.png" Stretch="Uniform" />
+                            </Button>
+                            
                         </WrapPanel>
                     </WrapPanel>
                     <local:CommonOverlay HorizontalAlignment="Center" />

@@ -11,7 +11,7 @@ namespace AEAssist.AI.MCH
     {
         public int Check(SpellData lastSpell)
         {
-            if (!SpellsDefine.Reassemble.IsChargeReady())
+            if (!SpellsDefine.Reassemble.IsReady())
                 return -1;
             if (ActionResourceManager.Machinist.OverheatRemaining.TotalMilliseconds > 0)
                 return -10;
@@ -21,7 +21,7 @@ namespace AEAssist.AI.MCH
                     return 1;
                 return -2;
             }
-
+            
             var time = AIRoot.Instance.GetGCDDuration() * 0.66f -
                        (2 - AIRoot.GetBattleData<BattleData>().maxAbilityTimes)
                        * SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;

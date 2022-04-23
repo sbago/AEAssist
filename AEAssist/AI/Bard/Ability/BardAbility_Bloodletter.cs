@@ -13,32 +13,28 @@ namespace AEAssist.AI
         {
             if (lastSpell == SpellsDefine.Bloodletter)
                 return -1;
-            if (!SpellsDefine.Bloodletter.IsChargeReady())
+            if (!SpellsDefine.Bloodletter.IsReady())
                 return -2;
 
             if (DataBinding.Instance.FinalBurst)
             {
                 return 2;
             }
-            
-            if (SettingMgr.GetSetting<GeneralSettings>().ShowAbilityDebugLog)
-                LogHelper.Debug(
-                    $"Bloodletter: {SpellsDefine.Bloodletter.Charges} Max:{SpellsDefine.Bloodletter.MaxCharges}");
 
             if (AIRoot.Instance.CloseBurst)
                 return 3;
 
-            // 起手爆发期间, 失血箭尽量打进团辅
+
 
             if (BardSpellHelper.HasBuffsCount() >= BardSpellHelper.UnlockBuffsCount())
                 return 4;
-
+            // 起手爆发期间, 失血箭尽量打进团辅
             if (BardSpellHelper.Prepare2BurstBuffs())
                 return -4;
 
-            // 军神期间,小于2.5 不用失血
-            if (ActionResourceManager.Bard.ActiveSong == ActionResourceManager.Bard.BardSong.ArmysPaeon
-                && SpellsDefine.Bloodletter.Charges < SpellsDefine.Bloodletter.MaxCharges - 0.6f)
+            // 军神期间,小于2.5 不用失血. 但是RB的失血箭次数在最大2层的时候,不准.所以做个保险
+            if (Core.Me.ClassLevel >= 84 &&
+                ActionResourceManager.Bard.ActiveSong == ActionResourceManager.Bard.BardSong.ArmysPaeon)
                 return -5;
 
             return 0;
@@ -47,7 +43,7 @@ namespace AEAssist.AI
         public async Task<SpellData> Run()
         {
             SpellData spellData = null;
-            if (SpellsDefine.RainofDeath.IsChargeReady() &&
+            if (SpellsDefine.RainofDeath.IsReady() &&
                 TargetHelper.CheckNeedUseAOE(25, 8, ConstValue.BardAOECount))
             {
                 spellData = SpellsDefine.RainofDeath;

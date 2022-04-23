@@ -48,7 +48,7 @@ namespace AEAssist
 
         public void Initialize()
         {
-            LogHelper.Debug("Init....Version " + ConstValue.ProjectVersion);
+            LogHelper.Info("Init....Version " + ConstValue.ProjectVersion);
             try
             {
                 SettingMgr.Instance.InitSetting();

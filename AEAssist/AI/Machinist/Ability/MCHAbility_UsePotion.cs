@@ -26,7 +26,6 @@ namespace AEAssist.AI.MCH
 
         public async Task<SpellData> Run()
         {
-            LogHelper.Debug("===>Try using Potion   1111");
             var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId);
             if (ret) AIRoot.Instance.MuteAbilityTime();
 
