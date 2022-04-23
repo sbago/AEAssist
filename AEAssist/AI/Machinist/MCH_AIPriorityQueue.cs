@@ -13,8 +13,8 @@ namespace AEAssist.AI.MCH
         {
             new MCHGCD_ReassembleGCD(),
             new MCHGCD_UnderHyperCharge(),
-            new MCHGCD_AirAnchor(),
             new MCHGCD_Drill(),
+            new MCHGCD_AirAnchor(),
             new MCHGCD_ChainSaw(),
             new MCHGCD_BaseCombo()
         };

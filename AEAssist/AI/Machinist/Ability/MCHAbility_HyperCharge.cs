@@ -17,8 +17,14 @@ namespace AEAssist.AI.MCH
                 return -2;
             if (ActionResourceManager.Machinist.Heat < 50)
                 return -3;
+
+            if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
+                return -4;
             
-            if (ActionResourceManager.Machinist.Heat >= 80)
+            if (MCHSpellHelper.CheckReassmableGCD(8000))
+                return -5;
+            
+            if (ActionResourceManager.Machinist.Heat >= 95)
                 return 10;
             
             if (SpellsDefine.BarrelStabilizer.Cooldown.TotalMilliseconds<5000)
@@ -33,12 +39,10 @@ namespace AEAssist.AI.MCH
                 return 2;
             }
 
-            if (SpellsDefine.Drill.Cooldown.TotalMilliseconds < 4000)
-                return -4;
-
-            if (SpellsDefine.Wildfire.IsReady() || SpellsDefine.Wildfire.Cooldown.TotalMilliseconds < 10000)
+            // 25秒是积累50点热度需要的时间
+            if (SpellsDefine.Wildfire.Cooldown.TotalMilliseconds < 25000)
             {
-                return -3;
+                return -6;
             }
 
             return 0;

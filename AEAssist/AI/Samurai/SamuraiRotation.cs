@@ -32,7 +32,6 @@ namespace AEAssist
         // 战斗之前处理buff的?
         public Task<bool> PreCombatBuff()
         {
-            AIRoot.Instance.Clear();
             return Task.FromResult(false);
         }
 

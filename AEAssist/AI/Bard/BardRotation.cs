@@ -29,34 +29,16 @@ namespace AEAssist
         // 战斗之前处理buff的?
         public async Task<bool> PreCombatBuff()
         {
-            if (Core.Me.InCombat) return false;
-
-
-            AIRoot.Instance.Clear();
-
-            if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
-                return false;
-
             if (PartyManager.IsInParty)
                 if (TargetMgr.Instance.EnemysIn25.Count > 0)
                     return false;
-
-            if (!MovementManager.IsMoving)
-                return false;
-            
-            await CountDownHandler.Instance.Update();
-
-            if (CountDownHandler.Instance.Start)
-                return false;
 
             if (!SettingMgr.GetSetting<BardSettings>().UsePeloton)
             {
                 GUIHelper.ShowInfo(Language.Instance.Content_Bard_PreCombat1);
                 return false;
             }
-
-            GUIHelper.ShowInfo(Language.Instance.Content_Bard_PreCombat2);
-
+            
             if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
                 return false;
 

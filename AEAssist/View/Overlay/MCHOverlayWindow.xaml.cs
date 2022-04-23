@@ -53,5 +53,11 @@ namespace AEAssist.View
             var spellId = MCHSpellHelper.GetAutomatonQueen();
             AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = spellId.Id;
         }
+
+        private void UseQueueOverdrive_OnClick(object sender, RoutedEventArgs e)
+        {
+            var spellId = MCHSpellHelper.GetQueenOverdrive();
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = spellId.Id;
+        }
     }
 }

@@ -12,7 +12,14 @@ namespace AEAssist.View
 
         public static void Refresh(this UIElement uiElement)
         {
-            uiElement.Dispatcher.Invoke(DispatcherPriority.Render, EmptyDelegate);
+            try
+            {
+                uiElement.Dispatcher.Invoke(DispatcherPriority.Render, EmptyDelegate);
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error(e.ToString());
+            }
         }
     }
 

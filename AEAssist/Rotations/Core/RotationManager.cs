@@ -65,9 +65,20 @@ namespace AEAssist
             return Task.FromResult(false);
         }
 
-        public Task<bool> PreCombatBuff()
+        public async Task<bool> PreCombatBuff()
         {
-            return GetRotation().PreCombatBuff();
+            await CountDownHandler.Instance.Update();
+            if (CountDownHandler.Instance.Start)
+                return false;
+            if (Core.Me.InCombat) return false;
+            AIRoot.Instance.Clear();
+
+            if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
+                return false;
+
+            if (MovementManager.IsMoving)
+                return false;
+            return await GetRotation().PreCombatBuff();
         }
 
         public Task<bool> Pull()

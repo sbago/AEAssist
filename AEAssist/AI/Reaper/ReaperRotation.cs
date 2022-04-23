@@ -32,30 +32,14 @@ namespace AEAssist
         // 战斗之前处理buff的?
         public async Task<bool> PreCombatBuff()
         {
-            if (Core.Me.InCombat) return false;
-
-
-            AIRoot.Instance.Clear();
-
-            if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
-                return false;
-
-            if (MovementManager.IsMoving)
-                return false;
-
-            GUIHelper.ShowInfo(Language.Instance.Content_Reaper_PreCombat1);
-
-
             if (Core.Me.HasAura(AurasDefine.Soulsow))
                 return true;
-
             if (await SpellHelper.CastGCD(SpellsDefine.Soulsow, Core.Me))
             {
-                GUIHelper.ShowInfo(Language.Instance.Content_Reaper_PreCombat2);
+                GUIHelper.ShowInfo(Language.Instance.Content_Reaper_PreCombat2,500,false);
                 randomTime = 0;
                 return true;
             }
-
             return false;
         }
 

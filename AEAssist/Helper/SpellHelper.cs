@@ -105,6 +105,9 @@ namespace AEAssist.Helper
             if (!spellData.IsUnlock())
                 return false;
 
+            if (spellData.RecentlyUsed())
+                return false;
+            
             if (spellData.MaxCharges >= 1)
             {
                 if (spellData.Charges >= 1)
@@ -144,8 +147,9 @@ namespace AEAssist.Helper
         public static bool IsMaxChargeReady(this SpellData spellData)
         {
             // LogHelper.Debug($"检测技能 {spellData.Name} {spellData.LocalizedName} AdCoolDown {spellData.AdjustedCooldown.TotalMilliseconds}");
+            var checkMax = spellData.MaxCharges - 0.5f;
             if (!spellData.IsUnlock()
-                || spellData.Charges < spellData.MaxCharges - 0.2f)
+                || spellData.Charges < checkMax)
                 return false;
             return true;
         }

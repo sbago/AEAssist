@@ -13,10 +13,13 @@ namespace AEAssist.AI.MCH
         {
             if (!SpellsDefine.BarrelStabilizer.IsReady())
                 return -1;
-            if (AIRoot.Instance.CloseBurst)
-                return -2;
             if (ActionResourceManager.Machinist.Heat > 50)
+                return -2;
+            if (AIRoot.Instance.CloseBurst)
                 return -3;
+            if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
+                return -4;
+
             return 0;
         }
 

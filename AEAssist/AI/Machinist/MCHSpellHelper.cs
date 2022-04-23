@@ -97,23 +97,6 @@ namespace AEAssist.AI
                 return SpellsDefine.HotShot;
             return null;
         }
-        
-        public static int ReadyToUseChainSaw()
-        {
-            if (!SpellsDefine.ChainSaw.IsReady())
-                return -100;
-
-            if (SpellsDefine.BarrelStabilizer.IsReady())
-                return -101;
-            var lastGCDIndex = SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.BarrelStabilizer.Id);
-            if (AIRoot.GetBattleData<BattleData>().lastGCDIndex - lastGCDIndex < 2)
-            {
-                return -102;
-            }
-
-            return 100;
-        }
-
         public static SpellData GetReassembleGCD()
         {
             SpellData spell = null;
@@ -138,6 +121,24 @@ namespace AEAssist.AI
             if (SpellsDefine.AutomationQueen.IsUnlock())
                 return SpellsDefine.AutomationQueen;
             return SpellsDefine.RookAutoturret;
+        }
+        
+        public static SpellData GetQueenOverdrive()
+        {
+            if (SpellsDefine.QueenOverdrive.IsUnlock())
+                return SpellsDefine.QueenOverdrive;
+            return SpellsDefine.RookOverdrive;
+        }
+
+        public static bool CheckReassmableGCD(int timeleft)
+        {
+            if (SpellsDefine.ChainSaw.IsUnlock() && SpellsDefine.ChainSaw.Cooldown.TotalMilliseconds < timeleft)
+                return true;
+            if (SpellsDefine.Drill.IsUnlock() && SpellsDefine.Drill.Cooldown.TotalMilliseconds < timeleft)
+                return true;
+            if (SpellsDefine.AirAnchor.IsUnlock() && SpellsDefine.AirAnchor.Cooldown.TotalMilliseconds < timeleft)
+                return true;
+            return false;
         }
     }
 }

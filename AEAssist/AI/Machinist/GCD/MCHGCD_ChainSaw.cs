@@ -10,9 +10,8 @@ namespace AEAssist.AI.MCH
     {
         public int Check(SpellData lastSpell)
         {
-            var ret = MCHSpellHelper.ReadyToUseChainSaw();
-            if (ret < 0)
-                return ret;
+            if (!SpellsDefine.ChainSaw.IsReady())
+                return -1;
             return 0;
         }
 

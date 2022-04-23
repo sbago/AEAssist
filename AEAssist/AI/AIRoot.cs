@@ -111,7 +111,7 @@ namespace AEAssist.AI
             if (!Core.Me.HasTarget || !Core.Me.CurrentTarget.CanAttack)
             {
                 if (CanNotice("key1", 1000))
-                    GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_NoTarget);
+                    GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_NoTarget,500);
                 return false;
             }
 
@@ -119,7 +119,7 @@ namespace AEAssist.AI
                                                                && !DataBinding.Instance.AutoAttack)
             {
                 if (CanNotice("key2", 1000))
-                    GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_CanAttack);
+                    GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_CanAttack,500);
                 return false;
             }
             var battleData = GetBattleData<BattleData>();
@@ -261,7 +261,7 @@ namespace AEAssist.AI
             var timeNow = TimeHelper.Now();
             var msg = $"{battleData.CurrBattleTime/1000} Cast GCD: {ret.Id} " + ret.LocalizedName;
             LogHelper.Info(msg);
-            GUIHelper.ShowInfo(msg, 100);
+            GUIHelper.ShowInfo(msg, 100,false);
             var history = new SpellHistory
             {
                 SpellId = ret.Id,
@@ -286,7 +286,7 @@ namespace AEAssist.AI
             var timeNow = TimeHelper.Now();
             var msg = $"{battleData.CurrBattleTime/1000} Cast Ability: {ret.Id} " + ret.LocalizedName;
             LogHelper.Info(msg);
-            GUIHelper.ShowInfo(msg, 100);
+            GUIHelper.ShowInfo(msg, 100,false);
             var history = new SpellHistory
             {
                 SpellId = ret.Id,

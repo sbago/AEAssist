@@ -16,6 +16,8 @@ namespace AEAssist.AI.MCH
                 return -1;
             if (!DataBinding.Instance.UseBattery)
                 return -2;
+            if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
+                return -10;
             if (ActionResourceManager.Machinist.Battery < 50)
                 return -3;
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)

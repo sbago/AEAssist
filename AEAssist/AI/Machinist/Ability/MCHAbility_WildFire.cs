@@ -17,12 +17,14 @@ namespace AEAssist.AI.MCH
                 return -2;
             if (ActionResourceManager.Machinist.Heat < 50)
                 return -3;
+            if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
+                return -10;
             if (ActionResourceManager.Machinist.OverheatRemaining.TotalMilliseconds >0
             || SpellsDefine.Hypercharge.RecentlyUsed())
                 return -4;
             if (SpellsDefine.BarrelStabilizer.IsReady())
                 return -101;
-            if (SpellsDefine.Drill.Cooldown.TotalMilliseconds < 3000)
+            if (MCHSpellHelper.CheckReassmableGCD(8000))
                 return -5;
             
             return 0;
