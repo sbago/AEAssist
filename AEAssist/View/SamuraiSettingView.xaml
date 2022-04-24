@@ -29,7 +29,7 @@
                 <CheckBox Name="EarlyDecisionMode"
                           Content="{Binding Language.Toggle_EarlyDecisionMode}" Width="200" Height="25"
                           HorizontalAlignment="Left"
-                          IsChecked="{Binding SamuraiSettings.EarlyDecisionMode}" />
+                          IsChecked="{Binding SamuraiSettings.EarlyDecisionMode,Mode=TwoWay}" />
             </StackPanel>
         </TabItem>
 

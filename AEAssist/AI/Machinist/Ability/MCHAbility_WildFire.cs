@@ -24,7 +24,7 @@ namespace AEAssist.AI.MCH
                 return -4;
             if (SpellsDefine.BarrelStabilizer.IsReady())
                 return -101;
-            if (MCHSpellHelper.CheckReassmableGCD(SettingMgr.GetSetting<MCHSettings>().StrongGCDCheckTime))
+            if (!DataBinding.Instance.WildfireNoDelay && MCHSpellHelper.CheckReassmableGCD(SettingMgr.GetSetting<MCHSettings>().StrongGCDCheckTime))
                 return -5;
             
             return 0;

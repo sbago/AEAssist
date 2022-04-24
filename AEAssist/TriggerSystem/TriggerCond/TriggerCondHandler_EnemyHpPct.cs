@@ -1,5 +1,6 @@
 ﻿using AEAssist.AI;
 using AETriggers.TriggerModel;
+using ff14bot.Managers;
 
 namespace AEAssist.TriggerSystem.TriggerCond
 {

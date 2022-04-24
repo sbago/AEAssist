@@ -34,7 +34,7 @@ namespace AEAssist
         public string Toggle_UseTrueNorthWhenMissActionDir { get; set; } = "错位真北";
         public string Toggle_UsePoleton { get; set; } = "使用速行";
         public string Toggle_Bard_Delay1GCDToUseBuffs { get; set; } = "团辅推后1个GCD";
-
+        public string Toggle_WildfireNoDelay { get; set; } = "野火优先";
 
         public string TabItem_General { get; set; } = "通用";
         public string TabItem_Hotkey { get; set; } = "快捷键";

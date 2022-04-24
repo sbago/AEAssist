@@ -47,12 +47,7 @@ namespace AEAssist.View
         {
             OverlayManager.Instance.Close();
         }
-
-        private void UseBattery_OnClick(object sender, RoutedEventArgs e)
-        {
-            var spellId = MCHSpellHelper.GetAutomatonQueen();
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = spellId;
-        }
+        
 
         private void UseQueueOverdrive_OnClick(object sender, RoutedEventArgs e)
         {
@@ -68,6 +63,18 @@ namespace AEAssist.View
         private void UseDetonator_OnClick(object sender, RoutedEventArgs e)
         {
             AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Detonator;
+        }
+        
+
+        private void UseAutomatonQueen_OnClick(object sender, RoutedEventArgs e)
+        {
+            var spellId = MCHSpellHelper.GetAutomatonQueen();
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = spellId;
+        }
+
+        private void UseHyperCharge_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Hypercharge;
         }
     }
 }

@@ -22,6 +22,7 @@
   "Toggle_UseTrueNorthWhenMissActionDir" : "错位真北",
   "Toggle_UsePoleton" : "使用速行",
   "Toggle_Bard_Delay1GCDToUseBuffs" : "团辅推后1个GCD",
+  "Toggle_WildfireNoDelay" : "野火优先",
   "TabItem_General" : "通用",
   "TabItem_Hotkey" : "快捷键",
   "TabItem_BaseSetting" : "基本设置",

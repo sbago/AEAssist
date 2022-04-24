@@ -14,10 +14,12 @@ namespace AEAssist
         {
             EarlyDecisionMode = true;
             StrongGCDCheckTime = 6000;
+            WildfireFirst = false;
         }
         
         public bool EarlyDecisionMode { get; set; }
 
         public int StrongGCDCheckTime { get; set; } = 6000;
+        public bool WildfireFirst { get; set; }
     }
 }

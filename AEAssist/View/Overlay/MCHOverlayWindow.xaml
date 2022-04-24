@@ -67,6 +67,11 @@
                                       Content="{Binding Language.Toggle_ActiveAttack}"
                                       Style="{StaticResource CheckBoxOverlayCustomToggle}"
                                       IsChecked="{Binding AutoAttack,Mode=TwoWay}" />
+                            
+                            <CheckBox HorizontalContentAlignment="Center"
+                                      Content="{Binding Language.Toggle_WildfireNoDelay}"
+                                      Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                      IsChecked="{Binding WildfireNoDelay,Mode=TwoWay}" />
                         </WrapPanel>
                         <WrapPanel Margin="10">
                             <Button Style="{StaticResource ImageButton}"  
@@ -92,8 +97,12 @@
                                 <Image Source="../../Resources/Spells/Potion.png" Stretch="Uniform" />
                             </Button>
                             <Button Style="{StaticResource ImageButton}" 
-                                    Width="30" Height="30" Margin="5,2,5,2" Name="UseBattery" Click="UseBattery_OnClick">
+                                    Width="30" Height="30" Margin="5,2,5,2" Name="UseAutomatonQueen" Click="UseAutomatonQueen_OnClick">
                                 <Image Source="../../Resources/Spells/AutomatonQueen.png" Stretch="Uniform" />
+                            </Button>
+                            <Button Style="{StaticResource ImageButton}" 
+                                    Width="30" Height="30" Margin="5,2,5,2" Name="UseQueenOverdrive" Click="UseQueueOverdrive_OnClick">
+                                <Image Source="../../Resources/Spells/QueenOverdrive.png" Stretch="Uniform" />
                             </Button>
                             <Button Style="{StaticResource ImageButton}" 
                                     Width="30" Height="30" Margin="5,2,5,2" Name="UseWildfire" Click="UseWildfire_OnClick">
@@ -102,6 +111,10 @@
                             <Button Style="{StaticResource ImageButton}" 
                                     Width="30" Height="30" Margin="5,2,5,2" Name="UseDetonator" Click="UseDetonator_OnClick">
                                 <Image Source="../../Resources/Spells/Detonator.png" Stretch="Uniform" />
+                            </Button>
+                            <Button Style="{StaticResource ImageButton}" 
+                                    Width="30" Height="30" Margin="5,2,5,2" Name="UseHyperCharge" Click="UseHyperCharge_OnClick">
+                                <Image Source="../../Resources/Spells/Hypercharge.png" Stretch="Uniform" />
                             </Button>
                         </WrapPanel>
                     </WrapPanel>

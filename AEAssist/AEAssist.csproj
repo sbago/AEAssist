@@ -333,6 +333,7 @@
         <Compile Include="Setting\Setting\BardSettings.cs" />
         <Compile Include="Setting\Setting\GeneralSettings.cs" />
         <Compile Include="Setting\Setting\VersionSetting.cs" />
+        <Resource Include="Resources\Spells\Hypercharge.png" />
         <Resource Include="Resources\Spells\NaturesMinne.png" />
         <Resource Include="Resources\Spells\BlastArrow.png" />
         <Resource Include="Resources\Spells\Detonator.png" />

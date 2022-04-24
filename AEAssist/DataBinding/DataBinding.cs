@@ -72,6 +72,7 @@ namespace AEAssist
             UseBattery = true;
             UseSong = true;
             FinalBurst = false;
+            WildfireNoDelay = SettingMgr.GetSetting<MCHSettings>().WildfireFirst;
         }
 
 
@@ -100,6 +101,12 @@ namespace AEAssist
         public bool UseSoulGauge { get; set; } = true;
 
         public bool DoubleEnshroudPrefer { get; set; } = true;
+
+        #endregion
+
+        #region MCH
+
+        public bool WildfireNoDelay { get; set; }
 
         #endregion
 

@@ -29,8 +29,11 @@
                 <CheckBox Name="EarlyDecisionMode"
                           Content="{Binding Language.Toggle_EarlyDecisionMode}" Width="200" Height="25"
                           HorizontalAlignment="Left"
-                          IsChecked="{Binding MCHSettings.EarlyDecisionMode}" />
-                
+                          IsChecked="{Binding MCHSettings.EarlyDecisionMode,Mode=TwoWay}" />
+                <CheckBox Name="WildfireFirst"
+                          Content="{Binding Language.Toggle_WildfireNoDelay}" Width="200" Height="25"
+                          HorizontalAlignment="Left"
+                          IsChecked="{Binding MCHSettings.WildfireFirst,Mode=TwoWay}" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="{Binding Language.Toggle_StrongGCDCheckTime}" Width="200" />
                     <TextBox Width="100" Text="{Binding MCHSettings.StrongGCDCheckTime,Mode=TwoWay}" />
