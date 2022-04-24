@@ -124,8 +124,7 @@ namespace AEAssist.Define
             var target = GetTarget();
             if (target == null)
                 return false;
-            await SpellHelper.CastGCD(SpellData, target);
-            return false;
+            return await SpellHelper.CastGCD(SpellData, target);
         }
         
         public async Task<bool> DoAbility()

@@ -50,10 +50,13 @@ namespace AEAssist
                     case ClassJobType.Reaper:
                     case ClassJobType.Machinist:
                         return new[] {Core.Me.CurrentJob};
+                    case  ClassJobType.Samurai:
+                        Logging.Write(Colors.Red, $@"[AEAssist] {Core.Me.CurrentJob} is only for develop.");
+                        return new[] {Core.Me.CurrentJob};
                     default:
                     {
                         Logging.Write(Colors.Red, $@"[AEAssist] {Core.Me.CurrentJob} is not supported.");
-                        return new[] {Core.Me.CurrentJob};
+                        return new[] {ClassJobType.Adventurer};
                     }
                 }
             }

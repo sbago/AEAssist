@@ -89,9 +89,18 @@ namespace AEAssist
 
         public async Task<bool> Heal()
         {
-            await CountDownHandler.Instance.Update();
-            TargetMgr.Instance.Update();
-            return await AIRoot.Instance.Update();
+            try
+            {
+                await CountDownHandler.Instance.Update();
+                TargetMgr.Instance.Update();
+                return await AIRoot.Instance.Update();
+            }
+            catch (Exception e)
+            {
+               LogHelper.Error(e.ToString());
+            }
+
+            return false;
         }
 
         public Task<bool> CombatBuff()
