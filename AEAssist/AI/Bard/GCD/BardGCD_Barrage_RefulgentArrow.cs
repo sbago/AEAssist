@@ -11,28 +11,28 @@ namespace AEAssist.AI
     /// </summary>
     public class BardGCD_Barrage_RefulgentArrow : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!Core.Me.HasAura(AurasDefine.Barrage))
                 return -1;
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
-            SpellData spell = null;
+            SpellEntity spell = null;
             // 25和5 是 Shadowbite 的攻击距离和伤害距离
             if (BardSpellHelper.IsShadowBiteReady() && TargetHelper.CheckNeedUseAOE(25, 5, ConstValue.BardAOECount))
             {
                 spell = SpellsDefine.Shadowbite;
-                if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
+                if (await spell.DoGCD())
                     return spell;
             }
 
             spell = BardSpellHelper.GetRefulgentArrow();
             if (spell == null)
                 return null;
-            var ret = await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget);
+            var ret = await spell.DoGCD();
             if (ret)
                 return spell;
             return null;

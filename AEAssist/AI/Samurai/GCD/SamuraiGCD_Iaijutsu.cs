@@ -9,7 +9,7 @@ namespace AEAssist.AI
 {
     public class SamuraiGCD_Iaijutsu : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (Core.Me.HasAura(AurasDefine.Kaiten))
             {
@@ -24,11 +24,11 @@ namespace AEAssist.AI
             return -1;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = SamuraiSpellHelper.GetIaijutsuSpell();
             if (spell == null) return null;
-            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
+            if (await spell.DoGCD())
             {
                 if (spell == SpellsDefine.MidareSetsugekka && (SpellsDefine.KaeshiSetsugekka.Cooldown.TotalMilliseconds < 62100))
                     AIRoot.GetBattleData<SamuraiBattleData>().KaeshiSpell = KaeshiSpell.MidareSetsugekka;

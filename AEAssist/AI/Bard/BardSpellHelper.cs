@@ -16,7 +16,7 @@ namespace AEAssist.AI
 
     public static class BardSpellHelper
     {
-        public static CircleList<SpellData> Songs = new CircleList<SpellData>();
+        public static CircleList<SpellEntity> Songs = new CircleList<SpellEntity>();
 
         public static void Init()
         {
@@ -26,13 +26,13 @@ namespace AEAssist.AI
             Songs.Add(SpellsDefine.ArmysPaeon);
         }
 
-        public static SpellData GetWindBite()
+        public static SpellEntity GetWindBite()
         {
-            if (Core.Me.ClassLevel < SpellsDefine.Windbite.LevelAcquired)
+            if (!SpellsDefine.Windbite.IsUnlock())
                 return null;
 
 
-            if (Core.Me.ClassLevel < SpellsDefine.Stormbite.LevelAcquired)
+            if (!SpellsDefine.Stormbite.IsUnlock())
             {
                 if (!ActionManager.HasSpell(SpellsDefine.Windbite.Id))
                     return null;
@@ -47,11 +47,11 @@ namespace AEAssist.AI
 
         public static int GetWindBiteAura()
         {
-            if (Core.Me.ClassLevel < SpellsDefine.Windbite.LevelAcquired)
+            if (!SpellsDefine.Windbite.IsUnlock())
                 return 0;
 
 
-            if (Core.Me.ClassLevel < SpellsDefine.Stormbite.LevelAcquired)
+            if (!SpellsDefine.Stormbite.IsUnlock())
             {
                 if (!ActionManager.HasSpell(SpellsDefine.Windbite.Id))
                     return 0;
@@ -64,13 +64,13 @@ namespace AEAssist.AI
             return AurasDefine.StormBite;
         }
 
-        public static SpellData GetVenomousBite()
+        public static SpellEntity GetVenomousBite()
         {
-            if (Core.Me.ClassLevel < SpellsDefine.VenomousBite.LevelAcquired)
+            if (!SpellsDefine.VenomousBite.IsUnlock())
                 return null;
 
 
-            if (Core.Me.ClassLevel < SpellsDefine.CausticBite.LevelAcquired)
+            if (! SpellsDefine.CausticBite.IsUnlock())
             {
                 if (!ActionManager.HasSpell(SpellsDefine.VenomousBite.Id))
                     return null;
@@ -85,11 +85,11 @@ namespace AEAssist.AI
 
         public static int GetVenomousBiteAura()
         {
-            if (Core.Me.ClassLevel < SpellsDefine.VenomousBite.LevelAcquired)
+            if (! SpellsDefine.VenomousBite.IsUnlock())
                 return 0;
 
 
-            if (Core.Me.ClassLevel < SpellsDefine.CausticBite.LevelAcquired)
+            if (!SpellsDefine.CausticBite.IsUnlock())
             {
                 if (!ActionManager.HasSpell(SpellsDefine.VenomousBite.Id))
                     return 0;
@@ -122,7 +122,7 @@ namespace AEAssist.AI
 
         public static bool IsTargetNeedIronJaws(Character target,int timeLeft)
         {
-            if (Core.Me.ClassLevel < SpellsDefine.IronJaws.LevelAcquired)
+            if (! SpellsDefine.IronJaws.IsUnlock())
                 return false;
 
             var ve_id = GetVenomousBiteAura();
@@ -169,29 +169,29 @@ namespace AEAssist.AI
             AIRoot.GetBattleData<BardBattleData>().lastIronJawWithBuffWithObj[targetId] = false;
         }
 
-        public static SpellData GetRefulgentArrow()
+        public static SpellEntity GetRefulgentArrow()
         {
-            if (Core.Me.ClassLevel < SpellsDefine.StraightShot.LevelAcquired)
+            if (!SpellsDefine.StraightShot.IsUnlock())
                 return null;
-            if (Core.Me.ClassLevel < SpellsDefine.RefulgentArrow.LevelAcquired)
+            if (!SpellsDefine.RefulgentArrow.IsUnlock())
                 return SpellsDefine.StraightShot;
             if (!ActionManager.HasSpell(SpellsDefine.RefulgentArrow.Id)) return SpellsDefine.StraightShot;
 
             return SpellsDefine.RefulgentArrow;
         }
 
-        public static SpellData GetBlastArrow()
+        public static SpellEntity GetBlastArrow()
         {
-            if (Core.Me.ClassLevel < SpellsDefine.BlastArrow.LevelAcquired)
+            if (!SpellsDefine.BlastArrow.IsUnlock())
                 return null;
             return SpellsDefine.BlastArrow;
         }
 
-        public static SpellData GetBaseGCD()
+        public static SpellEntity GetBaseGCD()
         {
             if (Core.Me.HasAura(AurasDefine.StraighterShot))
             {
-                if (Core.Me.ClassLevel < SpellsDefine.RefulgentArrow.LevelAcquired)
+                if (!SpellsDefine.RefulgentArrow.IsUnlock())
                     return SpellsDefine.StraightShot;
                 if (!ActionManager.HasSpell(SpellsDefine.RefulgentArrow.Id)) return SpellsDefine.StraightShot;
 
@@ -202,14 +202,14 @@ namespace AEAssist.AI
             return GetHeavyShot();
         }
 
-        public static SpellData GetHeavyShot()
+        public static SpellEntity GetHeavyShot()
         {
-            if (Core.Me.ClassLevel < SpellsDefine.BurstShot.LevelAcquired)
+            if (!SpellsDefine.BurstShot.IsUnlock())
                 return SpellsDefine.HeavyShot;
             return SpellsDefine.BurstShot;
         }
 
-        public static SpellData GetBuffs()
+        public static SpellEntity GetBuffs()
         {
             if (SpellsDefine.BattleVoice.IsReady()) return SpellsDefine.BattleVoice;
 
@@ -223,10 +223,10 @@ namespace AEAssist.AI
             return null;
         }
 
-        public static bool IsBuff(SpellData spellData)
+        public static bool IsBuff(SpellEntity SpellEntity)
         {
-            if (spellData == SpellsDefine.BattleVoice || spellData == SpellsDefine.RagingStrikes ||
-                spellData == SpellsDefine.RadiantFinale)
+            if (SpellEntity == SpellsDefine.BattleVoice || SpellEntity == SpellsDefine.RagingStrikes ||
+                SpellEntity == SpellsDefine.RadiantFinale)
                 return true;
             return false;
         }
@@ -320,7 +320,7 @@ namespace AEAssist.AI
             return true;
         }
 
-        public static SpellData GetQuickNock()
+        public static SpellEntity GetQuickNock()
         {
             if (IsShadowBiteReady()) return SpellsDefine.Shadowbite;
 

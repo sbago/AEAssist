@@ -8,7 +8,7 @@ namespace AEAssist.AI
 {
     public class BardAbility_EmpyrealArrow : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SpellsDefine.EmpyrealArrow.IsUnlock())
                 return -1;
@@ -35,12 +35,12 @@ namespace AEAssist.AI
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = SpellsDefine.EmpyrealArrow;
             if (spell == null)
                 return null;
-            var ret = await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget);
+            var ret = await spell.DoAbility();
             if (ret)
                 return spell;
             return null;

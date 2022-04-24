@@ -1,26 +1,24 @@
 using System.Collections.Generic;
-using ff14bot.Managers;
-using ff14bot.Objects;
 
 namespace AEAssist.Define
 {
     internal static class SpellsDefine
     {
-        public static readonly SpellData Sprint = DataManager.GetSpellData(3);
+        public static readonly SpellEntity Sprint = new SpellEntity(3,SpellTargetType.Self);
         // DPS Role
 
         #region DPS Role
 
-        public static readonly SpellData SecondWind = DataManager.GetSpellData(7541);
-        public static readonly SpellData Bloodbath = DataManager.GetSpellData(7542);
-        public static readonly SpellData TrueNorth = DataManager.GetSpellData(7546);
-        public static readonly SpellData ArmsLength = DataManager.GetSpellData(7548);
-        public static readonly SpellData Feint = DataManager.GetSpellData(7549);
-        public static readonly SpellData HeadGraze = DataManager.GetSpellData(7551);
-        public static readonly SpellData FootGraze = DataManager.GetSpellData(7553);
-        public static readonly SpellData LegGraze = DataManager.GetSpellData(7554);
-        public static readonly SpellData Peloton = DataManager.GetSpellData(7557);
-        public static readonly SpellData LegSweep = DataManager.GetSpellData(7863);
+        public static readonly SpellEntity SecondWind = new SpellEntity(7541,SpellTargetType.Self);
+        public static readonly SpellEntity Bloodbath = new SpellEntity(7542,SpellTargetType.Self);
+        public static readonly SpellEntity TrueNorth = new SpellEntity(7546,SpellTargetType.Self);
+        public static readonly SpellEntity ArmsLength = new SpellEntity(7548,SpellTargetType.Self);
+        public static readonly SpellEntity Feint = new SpellEntity(7549);
+        public static readonly SpellEntity HeadGraze = new SpellEntity(7551);
+        public static readonly SpellEntity FootGraze = new SpellEntity(7553);
+        public static readonly SpellEntity LegGraze = new SpellEntity(7554);
+        public static readonly SpellEntity Peloton = new SpellEntity(7557,SpellTargetType.Self);
+        public static readonly SpellEntity LegSweep = new SpellEntity(7863);
 
         #endregion
 
@@ -28,13 +26,13 @@ namespace AEAssist.Define
 
         #region Magic Role
 
-        public static readonly SpellData Surecast = DataManager.GetSpellData(7559);
-        public static readonly SpellData Addle = DataManager.GetSpellData(7560);
-        public static readonly SpellData Swiftcast = DataManager.GetSpellData(7561);
-        public static readonly SpellData LucidDreaming = DataManager.GetSpellData(7562);
-        public static readonly SpellData Esuna = DataManager.GetSpellData(7568);
-        public static readonly SpellData Rescue = DataManager.GetSpellData(7571);
-        public static readonly SpellData Repose = DataManager.GetSpellData(16560);
+        public static readonly SpellEntity Surecast = new SpellEntity(7559);
+        public static readonly SpellEntity Addle = new SpellEntity(7560);
+        public static readonly SpellEntity Swiftcast = new SpellEntity(7561);
+        public static readonly SpellEntity LucidDreaming = new SpellEntity(7562);
+        public static readonly SpellEntity Esuna = new SpellEntity(7568);
+        public static readonly SpellEntity Rescue = new SpellEntity(7571);
+        public static readonly SpellEntity Repose = new SpellEntity(16560);
 
         #endregion
 
@@ -42,12 +40,12 @@ namespace AEAssist.Define
 
         #region Tank Role
 
-        public static readonly SpellData Rampart = DataManager.GetSpellData(7531);
-        public static readonly SpellData Provoke = DataManager.GetSpellData(7533);
-        public static readonly SpellData Reprisal = DataManager.GetSpellData(7535);
-        public static readonly SpellData Shirk = DataManager.GetSpellData(7537);
-        public static readonly SpellData Interject = DataManager.GetSpellData(7538);
-        public static readonly SpellData LowBlow = DataManager.GetSpellData(7540);
+        public static readonly SpellEntity Rampart = new SpellEntity(7531);
+        public static readonly SpellEntity Provoke = new SpellEntity(7533);
+        public static readonly SpellEntity Reprisal = new SpellEntity(7535);
+        public static readonly SpellEntity Shirk = new SpellEntity(7537);
+        public static readonly SpellEntity Interject = new SpellEntity(7538);
+        public static readonly SpellEntity LowBlow = new SpellEntity(7540);
 
         #endregion
 
@@ -55,30 +53,30 @@ namespace AEAssist.Define
 
         #region ACN
 
-        public static readonly SpellData Ruin = DataManager.GetSpellData(163);
-        public static readonly SpellData SummonCarbuncle = DataManager.GetSpellData(25798);
-        public static readonly SpellData RadiantAegis = DataManager.GetSpellData(25799);
-        public static readonly SpellData Aethercharge = DataManager.GetSpellData(25800);
-        public static readonly SpellData SummonRuby = DataManager.GetSpellData(25802);
-        public static readonly SpellData Gemshine = DataManager.GetSpellData(25883);
-        public static readonly SpellData RubyRuin = DataManager.GetSpellData(25808);
-        public static readonly SpellData TopazRuin = DataManager.GetSpellData(25809);
-        public static readonly SpellData EmeraldRuin = DataManager.GetSpellData(25810);
-        public static readonly SpellData RubyRuinII = DataManager.GetSpellData(25811);
-        public static readonly SpellData TopazRuinII = DataManager.GetSpellData(25812);
-        public static readonly SpellData EmeraldRuinII = DataManager.GetSpellData(25813);
-        public static readonly SpellData Fester = DataManager.GetSpellData(181);
-        public static readonly SpellData EnergyDrain = DataManager.GetSpellData(16508);
-        public static readonly SpellData Resurrection = DataManager.GetSpellData(173);
-        public static readonly SpellData SummonTopaz = DataManager.GetSpellData(25803);
-        public static readonly SpellData SummonEmerald = DataManager.GetSpellData(25804);
-        public static readonly SpellData Outburst = DataManager.GetSpellData(16511);
-        public static readonly SpellData PreciousBrilliance = DataManager.GetSpellData(25884);
-        public static readonly SpellData RubyOutburst = DataManager.GetSpellData(25814);
-        public static readonly SpellData TopazOutburst = DataManager.GetSpellData(25815);
-        public static readonly SpellData EmeraldOutburst = DataManager.GetSpellData(25816);
-        public static readonly SpellData Ruin2 = DataManager.GetSpellData(172);
-        public static readonly SpellData SmnPhysick = DataManager.GetSpellData(16230);
+        public static readonly SpellEntity Ruin = new SpellEntity(163);
+        public static readonly SpellEntity SummonCarbuncle = new SpellEntity(25798);
+        public static readonly SpellEntity RadiantAegis = new SpellEntity(25799);
+        public static readonly SpellEntity Aethercharge = new SpellEntity(25800);
+        public static readonly SpellEntity SummonRuby = new SpellEntity(25802);
+        public static readonly SpellEntity Gemshine = new SpellEntity(25883);
+        public static readonly SpellEntity RubyRuin = new SpellEntity(25808);
+        public static readonly SpellEntity TopazRuin = new SpellEntity(25809);
+        public static readonly SpellEntity EmeraldRuin = new SpellEntity(25810);
+        public static readonly SpellEntity RubyRuinII = new SpellEntity(25811);
+        public static readonly SpellEntity TopazRuinII = new SpellEntity(25812);
+        public static readonly SpellEntity EmeraldRuinII = new SpellEntity(25813);
+        public static readonly SpellEntity Fester = new SpellEntity(181);
+        public static readonly SpellEntity EnergyDrain = new SpellEntity(16508);
+        public static readonly SpellEntity Resurrection = new SpellEntity(173);
+        public static readonly SpellEntity SummonTopaz = new SpellEntity(25803);
+        public static readonly SpellEntity SummonEmerald = new SpellEntity(25804);
+        public static readonly SpellEntity Outburst = new SpellEntity(16511);
+        public static readonly SpellEntity PreciousBrilliance = new SpellEntity(25884);
+        public static readonly SpellEntity RubyOutburst = new SpellEntity(25814);
+        public static readonly SpellEntity TopazOutburst = new SpellEntity(25815);
+        public static readonly SpellEntity EmeraldOutburst = new SpellEntity(25816);
+        public static readonly SpellEntity Ruin2 = new SpellEntity(172);
+        public static readonly SpellEntity SmnPhysick = new SpellEntity(16230);
 
         #endregion
 
@@ -86,51 +84,51 @@ namespace AEAssist.Define
 
         #region AST
 
-        public static readonly SpellData Draw = DataManager.GetSpellData(3590);
-        public static readonly SpellData Redraw = DataManager.GetSpellData(3593);
-        public static readonly SpellData Benefic = DataManager.GetSpellData(3594);
-        public static readonly SpellData AspectedBenefic = DataManager.GetSpellData(3595);
-        public static readonly SpellData Malefic = DataManager.GetSpellData(3596);
-        public static readonly SpellData Malefic2 = DataManager.GetSpellData(3598);
-        public static readonly SpellData Combust = DataManager.GetSpellData(3599);
-        public static readonly SpellData Helios = DataManager.GetSpellData(3600);
-        public static readonly SpellData AspectedHelios = DataManager.GetSpellData(3601);
-        public static readonly SpellData Ascend = DataManager.GetSpellData(3603);
-        public static readonly SpellData Lightspeed = DataManager.GetSpellData(3606);
-        public static readonly SpellData Combust2 = DataManager.GetSpellData(3608);
-        public static readonly SpellData Benefic2 = DataManager.GetSpellData(3610);
-        public static readonly SpellData Synastry = DataManager.GetSpellData(3612);
-        public static readonly SpellData CollectiveUnconscious = DataManager.GetSpellData(3613);
-        public static readonly SpellData EssentialDignity = DataManager.GetSpellData(3614);
-        public static readonly SpellData Gravity = DataManager.GetSpellData(3615);
-        public static readonly SpellData Balance = DataManager.GetSpellData(4401);
-        public static readonly SpellData Arrow = DataManager.GetSpellData(4402);
-        public static readonly SpellData Spear = DataManager.GetSpellData(4403);
-        public static readonly SpellData Bole = DataManager.GetSpellData(4404);
-        public static readonly SpellData Ewer = DataManager.GetSpellData(4405);
-        public static readonly SpellData Spire = DataManager.GetSpellData(4406);
-        public static readonly SpellData EarthlyStar = DataManager.GetSpellData(7439);
-        public static readonly SpellData Malefic3 = DataManager.GetSpellData(7442);
-        public static readonly SpellData MinorArcana = DataManager.GetSpellData(7443);
-        public static readonly SpellData LordofCrowns = DataManager.GetSpellData(7444);
-        public static readonly SpellData LadyofCrowns = DataManager.GetSpellData(7445);
-        public static readonly SpellData StellarDetonation = DataManager.GetSpellData(8324);
-        public static readonly SpellData Undraw = DataManager.GetSpellData(9629);
-        public static readonly SpellData Divination = DataManager.GetSpellData(16552);
-        public static readonly SpellData CelestialOpposition = DataManager.GetSpellData(16553);
-        public static readonly SpellData Combust3 = DataManager.GetSpellData(16554);
-        public static readonly SpellData Malefic4 = DataManager.GetSpellData(16555);
-        public static readonly SpellData CelestialIntersection = DataManager.GetSpellData(16556);
-        public static readonly SpellData Horoscope = DataManager.GetSpellData(16557);
-        public static readonly SpellData NeutralSect = DataManager.GetSpellData(16559);
-        public static readonly SpellData Play = DataManager.GetSpellData(17055);
-        public static readonly SpellData Astrodyne = DataManager.GetSpellData(25870);
-        public static readonly SpellData CrownPlay = DataManager.GetSpellData(25869);
-        public static readonly SpellData Exaltation = DataManager.GetSpellData(25873);
-        public static readonly SpellData Macrocosmos = DataManager.GetSpellData(25874);
-        public static readonly SpellData Microcosmos = DataManager.GetSpellData(25874);
-        public static readonly SpellData FallMalefic = DataManager.GetSpellData(25871);
-        public static readonly SpellData GravityII = DataManager.GetSpellData(25872);
+        public static readonly SpellEntity Draw = new SpellEntity(3590);
+        public static readonly SpellEntity Redraw = new SpellEntity(3593);
+        public static readonly SpellEntity Benefic = new SpellEntity(3594);
+        public static readonly SpellEntity AspectedBenefic = new SpellEntity(3595);
+        public static readonly SpellEntity Malefic = new SpellEntity(3596);
+        public static readonly SpellEntity Malefic2 = new SpellEntity(3598);
+        public static readonly SpellEntity Combust = new SpellEntity(3599);
+        public static readonly SpellEntity Helios = new SpellEntity(3600);
+        public static readonly SpellEntity AspectedHelios = new SpellEntity(3601);
+        public static readonly SpellEntity Ascend = new SpellEntity(3603);
+        public static readonly SpellEntity Lightspeed = new SpellEntity(3606);
+        public static readonly SpellEntity Combust2 = new SpellEntity(3608);
+        public static readonly SpellEntity Benefic2 = new SpellEntity(3610);
+        public static readonly SpellEntity Synastry = new SpellEntity(3612);
+        public static readonly SpellEntity CollectiveUnconscious = new SpellEntity(3613);
+        public static readonly SpellEntity EssentialDignity = new SpellEntity(3614);
+        public static readonly SpellEntity Gravity = new SpellEntity(3615);
+        public static readonly SpellEntity Balance = new SpellEntity(4401);
+        public static readonly SpellEntity Arrow = new SpellEntity(4402);
+        public static readonly SpellEntity Spear = new SpellEntity(4403);
+        public static readonly SpellEntity Bole = new SpellEntity(4404);
+        public static readonly SpellEntity Ewer = new SpellEntity(4405);
+        public static readonly SpellEntity Spire = new SpellEntity(4406);
+        public static readonly SpellEntity EarthlyStar = new SpellEntity(7439);
+        public static readonly SpellEntity Malefic3 = new SpellEntity(7442);
+        public static readonly SpellEntity MinorArcana = new SpellEntity(7443);
+        public static readonly SpellEntity LordofCrowns = new SpellEntity(7444);
+        public static readonly SpellEntity LadyofCrowns = new SpellEntity(7445);
+        public static readonly SpellEntity StellarDetonation = new SpellEntity(8324);
+        public static readonly SpellEntity Undraw = new SpellEntity(9629);
+        public static readonly SpellEntity Divination = new SpellEntity(16552);
+        public static readonly SpellEntity CelestialOpposition = new SpellEntity(16553);
+        public static readonly SpellEntity Combust3 = new SpellEntity(16554);
+        public static readonly SpellEntity Malefic4 = new SpellEntity(16555);
+        public static readonly SpellEntity CelestialIntersection = new SpellEntity(16556);
+        public static readonly SpellEntity Horoscope = new SpellEntity(16557);
+        public static readonly SpellEntity NeutralSect = new SpellEntity(16559);
+        public static readonly SpellEntity Play = new SpellEntity(17055);
+        public static readonly SpellEntity Astrodyne = new SpellEntity(25870);
+        public static readonly SpellEntity CrownPlay = new SpellEntity(25869);
+        public static readonly SpellEntity Exaltation = new SpellEntity(25873);
+        public static readonly SpellEntity Macrocosmos = new SpellEntity(25874);
+        public static readonly SpellEntity Microcosmos = new SpellEntity(25874);
+        public static readonly SpellEntity FallMalefic = new SpellEntity(25871);
+        public static readonly SpellEntity GravityII = new SpellEntity(25872);
 
         #endregion
 
@@ -138,35 +136,35 @@ namespace AEAssist.Define
 
         #region BLM
 
-        public static readonly SpellData Fire = DataManager.GetSpellData(141);
-        public static readonly SpellData Blizzard = DataManager.GetSpellData(142);
-        public static readonly SpellData Thunder = DataManager.GetSpellData(144);
-        public static readonly SpellData Fire2 = DataManager.GetSpellData(147);
-        public static readonly SpellData Transpose = DataManager.GetSpellData(149);
-        public static readonly SpellData Fire3 = DataManager.GetSpellData(152);
-        public static readonly SpellData Thunder3 = DataManager.GetSpellData(153);
-        public static readonly SpellData Blizzard3 = DataManager.GetSpellData(154);
-        public static readonly SpellData Scathe = DataManager.GetSpellData(156);
-        public static readonly SpellData ManaFont = DataManager.GetSpellData(158);
-        public static readonly SpellData Flare = DataManager.GetSpellData(162);
-        public static readonly SpellData Freeze = DataManager.GetSpellData(159);
-        public static readonly SpellData LeyLines = DataManager.GetSpellData(3573);
-        public static readonly SpellData Sharpcast = DataManager.GetSpellData(3574);
-        public static readonly SpellData Enochian = DataManager.GetSpellData(3575);
-        public static readonly SpellData Blizzard4 = DataManager.GetSpellData(3576);
-        public static readonly SpellData Fire4 = DataManager.GetSpellData(3577);
-        public static readonly SpellData Thunder2 = DataManager.GetSpellData(7447);
-        public static readonly SpellData Thunder4 = DataManager.GetSpellData(7420);
-        public static readonly SpellData Triplecast = DataManager.GetSpellData(7421);
-        public static readonly SpellData Foul = DataManager.GetSpellData(7422);
-        public static readonly SpellData Despair = DataManager.GetSpellData(16505);
-        public static readonly SpellData UmbralSoul = DataManager.GetSpellData(16506);
-        public static readonly SpellData Xenoglossy = DataManager.GetSpellData(16507);
-        public static readonly SpellData Blizzard2 = DataManager.GetSpellData(25793);
-        public static readonly SpellData HighFireII = DataManager.GetSpellData(25794);
-        public static readonly SpellData HighBlizzardII = DataManager.GetSpellData(25795);
-        public static readonly SpellData Amplifier = DataManager.GetSpellData(25796);
-        public static readonly SpellData Paradox = DataManager.GetSpellData(25797);
+        public static readonly SpellEntity Fire = new SpellEntity(141);
+        public static readonly SpellEntity Blizzard = new SpellEntity(142);
+        public static readonly SpellEntity Thunder = new SpellEntity(144);
+        public static readonly SpellEntity Fire2 = new SpellEntity(147);
+        public static readonly SpellEntity Transpose = new SpellEntity(149);
+        public static readonly SpellEntity Fire3 = new SpellEntity(152);
+        public static readonly SpellEntity Thunder3 = new SpellEntity(153);
+        public static readonly SpellEntity Blizzard3 = new SpellEntity(154);
+        public static readonly SpellEntity Scathe = new SpellEntity(156);
+        public static readonly SpellEntity ManaFont = new SpellEntity(158);
+        public static readonly SpellEntity Flare = new SpellEntity(162);
+        public static readonly SpellEntity Freeze = new SpellEntity(159);
+        public static readonly SpellEntity LeyLines = new SpellEntity(3573);
+        public static readonly SpellEntity Sharpcast = new SpellEntity(3574);
+        public static readonly SpellEntity Enochian = new SpellEntity(3575);
+        public static readonly SpellEntity Blizzard4 = new SpellEntity(3576);
+        public static readonly SpellEntity Fire4 = new SpellEntity(3577);
+        public static readonly SpellEntity Thunder2 = new SpellEntity(7447);
+        public static readonly SpellEntity Thunder4 = new SpellEntity(7420);
+        public static readonly SpellEntity Triplecast = new SpellEntity(7421);
+        public static readonly SpellEntity Foul = new SpellEntity(7422);
+        public static readonly SpellEntity Despair = new SpellEntity(16505);
+        public static readonly SpellEntity UmbralSoul = new SpellEntity(16506);
+        public static readonly SpellEntity Xenoglossy = new SpellEntity(16507);
+        public static readonly SpellEntity Blizzard2 = new SpellEntity(25793);
+        public static readonly SpellEntity HighFireII = new SpellEntity(25794);
+        public static readonly SpellEntity HighBlizzardII = new SpellEntity(25795);
+        public static readonly SpellEntity Amplifier = new SpellEntity(25796);
+        public static readonly SpellEntity Paradox = new SpellEntity(25797);
 
         #endregion
 
@@ -176,51 +174,51 @@ namespace AEAssist.Define
 
         //SingleTarget
 
-        public static readonly SpellData HeavyShot = DataManager.GetSpellData(97);
-        public static readonly SpellData StraightShot = DataManager.GetSpellData(98);
-        public static readonly SpellData Bloodletter = DataManager.GetSpellData(110);
-        public static readonly SpellData PitchPerfect = DataManager.GetSpellData(7404);
-        public static readonly SpellData EmpyrealArrow = DataManager.GetSpellData(3558);
-        public static readonly SpellData Sidewinder = DataManager.GetSpellData(3562);
-        public static readonly SpellData RefulgentArrow = DataManager.GetSpellData(7409);
-        public static readonly SpellData BurstShot = DataManager.GetSpellData(16495);
+        public static readonly SpellEntity HeavyShot = new SpellEntity(97);
+        public static readonly SpellEntity StraightShot = new SpellEntity(98);
+        public static readonly SpellEntity Bloodletter = new SpellEntity(110);
+        public static readonly SpellEntity PitchPerfect = new SpellEntity(7404);
+        public static readonly SpellEntity EmpyrealArrow = new SpellEntity(3558);
+        public static readonly SpellEntity Sidewinder = new SpellEntity(3562);
+        public static readonly SpellEntity RefulgentArrow = new SpellEntity(7409);
+        public static readonly SpellEntity BurstShot = new SpellEntity(16495);
 
         //AoE
 
-        public static readonly SpellData QuickNock = DataManager.GetSpellData(106);
-        public static readonly SpellData RainofDeath = DataManager.GetSpellData(117);
-        public static readonly SpellData Shadowbite = DataManager.GetSpellData(16494);
-        public static readonly SpellData ApexArrow = DataManager.GetSpellData(16496);
-        public static readonly SpellData Ladonsbite = DataManager.GetSpellData(25783);
-        public static readonly SpellData BlastArrow = DataManager.GetSpellData(25784);
+        public static readonly SpellEntity QuickNock = new SpellEntity(106);
+        public static readonly SpellEntity RainofDeath = new SpellEntity(117);
+        public static readonly SpellEntity Shadowbite = new SpellEntity(16494);
+        public static readonly SpellEntity ApexArrow = new SpellEntity(16496);
+        public static readonly SpellEntity Ladonsbite = new SpellEntity(25783);
+        public static readonly SpellEntity BlastArrow = new SpellEntity(25784);
 
         //Dot
 
-        public static readonly SpellData VenomousBite = DataManager.GetSpellData(100);
-        public static readonly SpellData Windbite = DataManager.GetSpellData(113);
-        public static readonly SpellData IronJaws = DataManager.GetSpellData(3560); //Not a DoT but will refresh both
-        public static readonly SpellData CausticBite = DataManager.GetSpellData(7406);
-        public static readonly SpellData Stormbite = DataManager.GetSpellData(7407);
+        public static readonly SpellEntity VenomousBite = new SpellEntity(100);
+        public static readonly SpellEntity Windbite = new SpellEntity(113);
+        public static readonly SpellEntity IronJaws = new SpellEntity(3560); //Not a DoT but will refresh both
+        public static readonly SpellEntity CausticBite = new SpellEntity(7406);
+        public static readonly SpellEntity Stormbite = new SpellEntity(7407);
 
         //Cooldowns - unsure about naming this :/
 
-        public static readonly SpellData RagingStrikes = DataManager.GetSpellData(101);
-        public static readonly SpellData Barrage = DataManager.GetSpellData(107);
-        public static readonly SpellData BattleVoice = DataManager.GetSpellData(118);
-        public static readonly SpellData RadiantFinale = DataManager.GetSpellData(25785);
+        public static readonly SpellEntity RagingStrikes = new SpellEntity(101,SpellTargetType.Self);
+        public static readonly SpellEntity Barrage = new SpellEntity(107,SpellTargetType.Self);
+        public static readonly SpellEntity BattleVoice = new SpellEntity(118,SpellTargetType.Self);
+        public static readonly SpellEntity RadiantFinale = new SpellEntity(25785,SpellTargetType.Self);
 
         //Songs
 
-        public static readonly SpellData MagesBallad = DataManager.GetSpellData(114);
-        public static readonly SpellData ArmysPaeon = DataManager.GetSpellData(116);
-        public static readonly SpellData TheWanderersMinuet = DataManager.GetSpellData(3559);
+        public static readonly SpellEntity MagesBallad = new SpellEntity(114);
+        public static readonly SpellEntity ArmysPaeon = new SpellEntity(116);
+        public static readonly SpellEntity TheWanderersMinuet = new SpellEntity(3559);
 
         //Utility/Movement
 
-        public static readonly SpellData RepellingShot = DataManager.GetSpellData(112);
-        public static readonly SpellData TheWardensPaean = DataManager.GetSpellData(3561);
-        public static readonly SpellData Troubadour = DataManager.GetSpellData(7405);
-        public static readonly SpellData NaturesMinne = DataManager.GetSpellData(7408);
+        public static readonly SpellEntity RepellingShot = new SpellEntity(112);
+        public static readonly SpellEntity TheWardensPaean = new SpellEntity(3561,SpellTargetType.Self);
+        public static readonly SpellEntity Troubadour = new SpellEntity(7405,SpellTargetType.Self);
+        public static readonly SpellEntity NaturesMinne = new SpellEntity(7408,SpellTargetType.Self);
 
         #endregion
 
@@ -228,42 +226,42 @@ namespace AEAssist.Define
 
         #region DNC
 
-        public static readonly SpellData Cascade = DataManager.GetSpellData(15989);
-        public static readonly SpellData Fountain = DataManager.GetSpellData(15990);
-        public static readonly SpellData ReverseCascade = DataManager.GetSpellData(15991);
-        public static readonly SpellData Fountainfall = DataManager.GetSpellData(15992);
-        public static readonly SpellData Windmill = DataManager.GetSpellData(15993);
-        public static readonly SpellData Bladeshower = DataManager.GetSpellData(15994);
-        public static readonly SpellData RisingWindmill = DataManager.GetSpellData(15995);
-        public static readonly SpellData Bloodshower = DataManager.GetSpellData(15996);
-        public static readonly SpellData StandardStep = DataManager.GetSpellData(15997);
-        public static readonly SpellData Emboite = DataManager.GetSpellData(15999);
-        public static readonly SpellData Entrechat = DataManager.GetSpellData(16000);
-        public static readonly SpellData Jete = DataManager.GetSpellData(16001);
-        public static readonly SpellData Pirouette = DataManager.GetSpellData(16002);
-        public static readonly SpellData StandardFinish = DataManager.GetSpellData(16003);
-        public static readonly SpellData SaberDance = DataManager.GetSpellData(16005);
-        public static readonly SpellData ClosedPosition = DataManager.GetSpellData(16006);
-        public static readonly SpellData FanDance = DataManager.GetSpellData(16007);
-        public static readonly SpellData FanDance2 = DataManager.GetSpellData(16008);
-        public static readonly SpellData FanDance3 = DataManager.GetSpellData(16009);
-        public static readonly SpellData EnAvant = DataManager.GetSpellData(16010);
-        public static readonly SpellData Devilment = DataManager.GetSpellData(16011);
-        public static readonly SpellData ShieldSamba = DataManager.GetSpellData(16012);
-        public static readonly SpellData Flourish = DataManager.GetSpellData(16013);
-        public static readonly SpellData Improvisation = DataManager.GetSpellData(16014);
-        public static readonly SpellData CuringWaltz = DataManager.GetSpellData(16015);
-        public static readonly SpellData SingleStandardFinish = DataManager.GetSpellData(16191);
-        public static readonly SpellData DoubleStandardFinish = DataManager.GetSpellData(16192);
-        public static readonly SpellData Ending = DataManager.GetSpellData(18073);
-        public static readonly SpellData TechnicalStep = DataManager.GetSpellData(15998);
-        public static readonly SpellData SingleTechnicalFinish = DataManager.GetSpellData(16193);
-        public static readonly SpellData DoubleTechnicalFinish = DataManager.GetSpellData(16194);
-        public static readonly SpellData TripleTechnicalFinish = DataManager.GetSpellData(16195);
-        public static readonly SpellData QuadrupleTechnicalFinish = DataManager.GetSpellData(16196);
-        public static readonly SpellData FanDanceIV = DataManager.GetSpellData(25791);
-        public static readonly SpellData StarfallDance = DataManager.GetSpellData(25792);
-        public static readonly SpellData Tillana = DataManager.GetSpellData(25790);
+        public static readonly SpellEntity Cascade = new SpellEntity(15989);
+        public static readonly SpellEntity Fountain = new SpellEntity(15990);
+        public static readonly SpellEntity ReverseCascade = new SpellEntity(15991);
+        public static readonly SpellEntity Fountainfall = new SpellEntity(15992);
+        public static readonly SpellEntity Windmill = new SpellEntity(15993);
+        public static readonly SpellEntity Bladeshower = new SpellEntity(15994);
+        public static readonly SpellEntity RisingWindmill = new SpellEntity(15995);
+        public static readonly SpellEntity Bloodshower = new SpellEntity(15996);
+        public static readonly SpellEntity StandardStep = new SpellEntity(15997);
+        public static readonly SpellEntity Emboite = new SpellEntity(15999);
+        public static readonly SpellEntity Entrechat = new SpellEntity(16000);
+        public static readonly SpellEntity Jete = new SpellEntity(16001);
+        public static readonly SpellEntity Pirouette = new SpellEntity(16002);
+        public static readonly SpellEntity StandardFinish = new SpellEntity(16003);
+        public static readonly SpellEntity SaberDance = new SpellEntity(16005);
+        public static readonly SpellEntity ClosedPosition = new SpellEntity(16006);
+        public static readonly SpellEntity FanDance = new SpellEntity(16007);
+        public static readonly SpellEntity FanDance2 = new SpellEntity(16008);
+        public static readonly SpellEntity FanDance3 = new SpellEntity(16009);
+        public static readonly SpellEntity EnAvant = new SpellEntity(16010);
+        public static readonly SpellEntity Devilment = new SpellEntity(16011);
+        public static readonly SpellEntity ShieldSamba = new SpellEntity(16012);
+        public static readonly SpellEntity Flourish = new SpellEntity(16013);
+        public static readonly SpellEntity Improvisation = new SpellEntity(16014);
+        public static readonly SpellEntity CuringWaltz = new SpellEntity(16015);
+        public static readonly SpellEntity SingleStandardFinish = new SpellEntity(16191);
+        public static readonly SpellEntity DoubleStandardFinish = new SpellEntity(16192);
+        public static readonly SpellEntity Ending = new SpellEntity(18073);
+        public static readonly SpellEntity TechnicalStep = new SpellEntity(15998);
+        public static readonly SpellEntity SingleTechnicalFinish = new SpellEntity(16193);
+        public static readonly SpellEntity DoubleTechnicalFinish = new SpellEntity(16194);
+        public static readonly SpellEntity TripleTechnicalFinish = new SpellEntity(16195);
+        public static readonly SpellEntity QuadrupleTechnicalFinish = new SpellEntity(16196);
+        public static readonly SpellEntity FanDanceIV = new SpellEntity(25791);
+        public static readonly SpellEntity StarfallDance = new SpellEntity(25792);
+        public static readonly SpellEntity Tillana = new SpellEntity(25790);
 
         #endregion
 
@@ -271,34 +269,34 @@ namespace AEAssist.Define
 
         #region DRG
 
-        public static readonly SpellData TrueThrust = DataManager.GetSpellData(75);
-        public static readonly SpellData VorpalThrust = DataManager.GetSpellData(78);
-        public static readonly SpellData LifeSurge = DataManager.GetSpellData(83);
-        public static readonly SpellData DoomSpike = DataManager.GetSpellData(86);
-        public static readonly SpellData Disembowel = DataManager.GetSpellData(87);
-        public static readonly SpellData ChaosThrust = DataManager.GetSpellData(88);
-        public static readonly SpellData Jump = DataManager.GetSpellData(92);
-        public static readonly SpellData SpineshatterDive = DataManager.GetSpellData(95);
-        public static readonly SpellData DragonfireDive = DataManager.GetSpellData(96);
-        public static readonly SpellData BloodoftheDragon = DataManager.GetSpellData(3553);
-        public static readonly SpellData FangAndClaw = DataManager.GetSpellData(3554);
-        public static readonly SpellData Geirskogul = DataManager.GetSpellData(3555);
-        public static readonly SpellData WheelingThrust = DataManager.GetSpellData(3556);
-        public static readonly SpellData BattleLitany = DataManager.GetSpellData(3557);
-        public static readonly SpellData MirageDive = DataManager.GetSpellData(7399);
-        public static readonly SpellData Nastrond = DataManager.GetSpellData(7400);
-        public static readonly SpellData LanceCharge = DataManager.GetSpellData(85);
-        public static readonly SpellData FullThrust = DataManager.GetSpellData(84);
-        public static readonly SpellData SonicThrust = DataManager.GetSpellData(7397);
-        public static readonly SpellData DragonSight = DataManager.GetSpellData(7398);
-        public static readonly SpellData CoerthanTorment = DataManager.GetSpellData(16477);
-        public static readonly SpellData HighJump = DataManager.GetSpellData(16478);
-        public static readonly SpellData RaidenThrust = DataManager.GetSpellData(16479);
-        public static readonly SpellData Stardiver = DataManager.GetSpellData(16480);
-        public static readonly SpellData HeavensThrust = DataManager.GetSpellData(25771);
-        public static readonly SpellData ChaoticSpring = DataManager.GetSpellData(25772);
-        public static readonly SpellData WyrmwindThrust = DataManager.GetSpellData(25773);
-        public static readonly SpellData DraconianFury = DataManager.GetSpellData(25770);
+        public static readonly SpellEntity TrueThrust = new SpellEntity(75);
+        public static readonly SpellEntity VorpalThrust = new SpellEntity(78);
+        public static readonly SpellEntity LifeSurge = new SpellEntity(83);
+        public static readonly SpellEntity DoomSpike = new SpellEntity(86);
+        public static readonly SpellEntity Disembowel = new SpellEntity(87);
+        public static readonly SpellEntity ChaosThrust = new SpellEntity(88);
+        public static readonly SpellEntity Jump = new SpellEntity(92);
+        public static readonly SpellEntity SpineshatterDive = new SpellEntity(95);
+        public static readonly SpellEntity DragonfireDive = new SpellEntity(96);
+        public static readonly SpellEntity BloodoftheDragon = new SpellEntity(3553);
+        public static readonly SpellEntity FangAndClaw = new SpellEntity(3554);
+        public static readonly SpellEntity Geirskogul = new SpellEntity(3555);
+        public static readonly SpellEntity WheelingThrust = new SpellEntity(3556);
+        public static readonly SpellEntity BattleLitany = new SpellEntity(3557);
+        public static readonly SpellEntity MirageDive = new SpellEntity(7399);
+        public static readonly SpellEntity Nastrond = new SpellEntity(7400);
+        public static readonly SpellEntity LanceCharge = new SpellEntity(85);
+        public static readonly SpellEntity FullThrust = new SpellEntity(84);
+        public static readonly SpellEntity SonicThrust = new SpellEntity(7397);
+        public static readonly SpellEntity DragonSight = new SpellEntity(7398);
+        public static readonly SpellEntity CoerthanTorment = new SpellEntity(16477);
+        public static readonly SpellEntity HighJump = new SpellEntity(16478);
+        public static readonly SpellEntity RaidenThrust = new SpellEntity(16479);
+        public static readonly SpellEntity Stardiver = new SpellEntity(16480);
+        public static readonly SpellEntity HeavensThrust = new SpellEntity(25771);
+        public static readonly SpellEntity ChaoticSpring = new SpellEntity(25772);
+        public static readonly SpellEntity WyrmwindThrust = new SpellEntity(25773);
+        public static readonly SpellEntity DraconianFury = new SpellEntity(25770);
 
         #endregion
 
@@ -306,33 +304,33 @@ namespace AEAssist.Define
 
         #region DRK
 
-        public static readonly SpellData HardSlash = DataManager.GetSpellData(3617);
-        public static readonly SpellData Unleash = DataManager.GetSpellData(3621);
-        public static readonly SpellData SyphonStrike = DataManager.GetSpellData(3623);
-        public static readonly SpellData Unmend = DataManager.GetSpellData(3624);
-        public static readonly SpellData BloodWeapon = DataManager.GetSpellData(3625);
-        public static readonly SpellData Grit = DataManager.GetSpellData(3629);
-        public static readonly SpellData Souleater = DataManager.GetSpellData(3632);
-        public static readonly SpellData DarkMind = DataManager.GetSpellData(3634);
-        public static readonly SpellData ShadowWall = DataManager.GetSpellData(3636);
-        public static readonly SpellData LivingDead = DataManager.GetSpellData(3638);
-        public static readonly SpellData SaltedEarth = DataManager.GetSpellData(3639);
-        public static readonly SpellData Plunge = DataManager.GetSpellData(3640);
-        public static readonly SpellData AbyssalDrain = DataManager.GetSpellData(3641);
-        public static readonly SpellData CarveandSpit = DataManager.GetSpellData(3643);
-        public static readonly SpellData Delirium = DataManager.GetSpellData(7390);
-        public static readonly SpellData Quietus = DataManager.GetSpellData(7391);
-        public static readonly SpellData Bloodspiller = DataManager.GetSpellData(7392);
-        public static readonly SpellData TheBlackestNight = DataManager.GetSpellData(7393);
-        public static readonly SpellData FloodofDarkness = DataManager.GetSpellData(16466);
-        public static readonly SpellData EdgeofDarkness = DataManager.GetSpellData(16467);
-        public static readonly SpellData StalwartSoul = DataManager.GetSpellData(16468);
-        public static readonly SpellData FloodofShadow = DataManager.GetSpellData(16469);
-        public static readonly SpellData EdgeofShadow = DataManager.GetSpellData(16470);
-        public static readonly SpellData DarkMissionary = DataManager.GetSpellData(16471);
-        public static readonly SpellData LivingShadow = DataManager.GetSpellData(16472);
-        public static readonly SpellData Oblation = DataManager.GetSpellData(25754);
-        public static readonly SpellData Shadowbringer = DataManager.GetSpellData(25757);
+        public static readonly SpellEntity HardSlash = new SpellEntity(3617);
+        public static readonly SpellEntity Unleash = new SpellEntity(3621);
+        public static readonly SpellEntity SyphonStrike = new SpellEntity(3623);
+        public static readonly SpellEntity Unmend = new SpellEntity(3624);
+        public static readonly SpellEntity BloodWeapon = new SpellEntity(3625);
+        public static readonly SpellEntity Grit = new SpellEntity(3629);
+        public static readonly SpellEntity Souleater = new SpellEntity(3632);
+        public static readonly SpellEntity DarkMind = new SpellEntity(3634);
+        public static readonly SpellEntity ShadowWall = new SpellEntity(3636);
+        public static readonly SpellEntity LivingDead = new SpellEntity(3638);
+        public static readonly SpellEntity SaltedEarth = new SpellEntity(3639);
+        public static readonly SpellEntity Plunge = new SpellEntity(3640);
+        public static readonly SpellEntity AbyssalDrain = new SpellEntity(3641);
+        public static readonly SpellEntity CarveandSpit = new SpellEntity(3643);
+        public static readonly SpellEntity Delirium = new SpellEntity(7390);
+        public static readonly SpellEntity Quietus = new SpellEntity(7391);
+        public static readonly SpellEntity Bloodspiller = new SpellEntity(7392);
+        public static readonly SpellEntity TheBlackestNight = new SpellEntity(7393);
+        public static readonly SpellEntity FloodofDarkness = new SpellEntity(16466);
+        public static readonly SpellEntity EdgeofDarkness = new SpellEntity(16467);
+        public static readonly SpellEntity StalwartSoul = new SpellEntity(16468);
+        public static readonly SpellEntity FloodofShadow = new SpellEntity(16469);
+        public static readonly SpellEntity EdgeofShadow = new SpellEntity(16470);
+        public static readonly SpellEntity DarkMissionary = new SpellEntity(16471);
+        public static readonly SpellEntity LivingShadow = new SpellEntity(16472);
+        public static readonly SpellEntity Oblation = new SpellEntity(25754);
+        public static readonly SpellEntity Shadowbringer = new SpellEntity(25757);
 
         #endregion
 
@@ -340,38 +338,38 @@ namespace AEAssist.Define
 
         #region GNB
 
-        public static readonly SpellData KeenEdge = DataManager.GetSpellData(16137);
-        public static readonly SpellData NoMercy = DataManager.GetSpellData(16138);
-        public static readonly SpellData BrutalShell = DataManager.GetSpellData(16139);
-        public static readonly SpellData Camouflage = DataManager.GetSpellData(16140);
-        public static readonly SpellData DemonSlice = DataManager.GetSpellData(16141);
-        public static readonly SpellData RoyalGuard = DataManager.GetSpellData(16142);
-        public static readonly SpellData LightningShot = DataManager.GetSpellData(16143);
-        public static readonly SpellData DangerZone = DataManager.GetSpellData(16144);
-        public static readonly SpellData SolidBarrel = DataManager.GetSpellData(16145);
-        public static readonly SpellData GnashingFang = DataManager.GetSpellData(16146);
-        public static readonly SpellData SavageClaw = DataManager.GetSpellData(16147);
-        public static readonly SpellData Nebula = DataManager.GetSpellData(16148);
-        public static readonly SpellData DemonSlaughter = DataManager.GetSpellData(16149);
-        public static readonly SpellData WickedTalon = DataManager.GetSpellData(16150);
-        public static readonly SpellData Aurora = DataManager.GetSpellData(16151);
-        public static readonly SpellData Superbolide = DataManager.GetSpellData(16152);
-        public static readonly SpellData SonicBreak = DataManager.GetSpellData(16153);
-        public static readonly SpellData RoughDivide = DataManager.GetSpellData(16154);
-        public static readonly SpellData Continuation = DataManager.GetSpellData(16155);
-        public static readonly SpellData JugularRip = DataManager.GetSpellData(16156);
-        public static readonly SpellData AbdomenTear = DataManager.GetSpellData(16157);
-        public static readonly SpellData EyeGouge = DataManager.GetSpellData(16158);
-        public static readonly SpellData BowShock = DataManager.GetSpellData(16159);
-        public static readonly SpellData HeartofLight = DataManager.GetSpellData(16160);
-        public static readonly SpellData HeartofStone = DataManager.GetSpellData(16161);
-        public static readonly SpellData BurstStrike = DataManager.GetSpellData(16162);
-        public static readonly SpellData FatedCircle = DataManager.GetSpellData(16163);
-        public static readonly SpellData Bloodfest = DataManager.GetSpellData(16164);
-        public static readonly SpellData BlastingZone = DataManager.GetSpellData(16165);
-        public static readonly SpellData HeartOfCorundum = DataManager.GetSpellData(25758);
-        public static readonly SpellData DoubleDown = DataManager.GetSpellData(25760);
-        public static readonly SpellData Hypervelocity = DataManager.GetSpellData(25759);
+        public static readonly SpellEntity KeenEdge = new SpellEntity(16137);
+        public static readonly SpellEntity NoMercy = new SpellEntity(16138);
+        public static readonly SpellEntity BrutalShell = new SpellEntity(16139);
+        public static readonly SpellEntity Camouflage = new SpellEntity(16140);
+        public static readonly SpellEntity DemonSlice = new SpellEntity(16141);
+        public static readonly SpellEntity RoyalGuard = new SpellEntity(16142);
+        public static readonly SpellEntity LightningShot = new SpellEntity(16143);
+        public static readonly SpellEntity DangerZone = new SpellEntity(16144);
+        public static readonly SpellEntity SolidBarrel = new SpellEntity(16145);
+        public static readonly SpellEntity GnashingFang = new SpellEntity(16146);
+        public static readonly SpellEntity SavageClaw = new SpellEntity(16147);
+        public static readonly SpellEntity Nebula = new SpellEntity(16148);
+        public static readonly SpellEntity DemonSlaughter = new SpellEntity(16149);
+        public static readonly SpellEntity WickedTalon = new SpellEntity(16150);
+        public static readonly SpellEntity Aurora = new SpellEntity(16151);
+        public static readonly SpellEntity Superbolide = new SpellEntity(16152);
+        public static readonly SpellEntity SonicBreak = new SpellEntity(16153);
+        public static readonly SpellEntity RoughDivide = new SpellEntity(16154);
+        public static readonly SpellEntity Continuation = new SpellEntity(16155);
+        public static readonly SpellEntity JugularRip = new SpellEntity(16156);
+        public static readonly SpellEntity AbdomenTear = new SpellEntity(16157);
+        public static readonly SpellEntity EyeGouge = new SpellEntity(16158);
+        public static readonly SpellEntity BowShock = new SpellEntity(16159);
+        public static readonly SpellEntity HeartofLight = new SpellEntity(16160);
+        public static readonly SpellEntity HeartofStone = new SpellEntity(16161);
+        public static readonly SpellEntity BurstStrike = new SpellEntity(16162);
+        public static readonly SpellEntity FatedCircle = new SpellEntity(16163);
+        public static readonly SpellEntity Bloodfest = new SpellEntity(16164);
+        public static readonly SpellEntity BlastingZone = new SpellEntity(16165);
+        public static readonly SpellEntity HeartOfCorundum = new SpellEntity(25758);
+        public static readonly SpellEntity DoubleDown = new SpellEntity(25760);
+        public static readonly SpellEntity Hypervelocity = new SpellEntity(25759);
 
         #endregion
 
@@ -379,42 +377,42 @@ namespace AEAssist.Define
 
         #region MCH
 
-        public static readonly SpellData RookAutoturret = DataManager.GetSpellData(2864);
-        public static readonly SpellData SplitShot = DataManager.GetSpellData(2866);
-        public static readonly SpellData SlugShot = DataManager.GetSpellData(2868);
-        public static readonly SpellData SpreadShot = DataManager.GetSpellData(2870);
-        public static readonly SpellData HotShot = DataManager.GetSpellData(2872);
-        public static readonly SpellData CleanShot = DataManager.GetSpellData(2873);
-        public static readonly SpellData GaussRound = DataManager.GetSpellData(2874);
-        public static readonly SpellData Reassemble = DataManager.GetSpellData(2876);
-        public static readonly SpellData Wildfire = DataManager.GetSpellData(2878);
-        public static readonly SpellData Ricochet = DataManager.GetSpellData(2890);
-        public static readonly SpellData HeatBlast = DataManager.GetSpellData(7410);
-        public static readonly SpellData HeatedSplitShot = DataManager.GetSpellData(7411);
-        public static readonly SpellData HeatedSlugShot = DataManager.GetSpellData(7412);
-        public static readonly SpellData HeatedCleanShot = DataManager.GetSpellData(7413);
-        public static readonly SpellData BarrelStabilizer = DataManager.GetSpellData(7414);
-        public static readonly SpellData RookOverdrive = DataManager.GetSpellData(7415);
-        public static readonly SpellData Flamethrower = DataManager.GetSpellData(7418);
-        public static readonly SpellData AutoCrossbow = DataManager.GetSpellData(16497);
-        public static readonly SpellData Drill = DataManager.GetSpellData(16498);
-        public static readonly SpellData Bioblaster = DataManager.GetSpellData(16499);
-        public static readonly SpellData AirAnchor = DataManager.GetSpellData(16500);
-        public static readonly SpellData AutomationQueen = DataManager.GetSpellData(16501);
-        public static readonly SpellData QueenOverdrive = DataManager.GetSpellData(16502);
-        public static readonly SpellData Detonator = DataManager.GetSpellData(16766);
-        public static readonly SpellData Tactician = DataManager.GetSpellData(16889);
-        public static readonly SpellData Hypercharge = DataManager.GetSpellData(17209);
-        public static readonly SpellData Scattergun = DataManager.GetSpellData(25786);
-        public static readonly SpellData ChainSaw = DataManager.GetSpellData(25788);
+        public static readonly SpellEntity RookAutoturret = new SpellEntity(2864);
+        public static readonly SpellEntity SplitShot = new SpellEntity(2866);
+        public static readonly SpellEntity SlugShot = new SpellEntity(2868);
+        public static readonly SpellEntity SpreadShot = new SpellEntity(2870);
+        public static readonly SpellEntity HotShot = new SpellEntity(2872);
+        public static readonly SpellEntity CleanShot = new SpellEntity(2873);
+        public static readonly SpellEntity GaussRound = new SpellEntity(2874);
+        public static readonly SpellEntity Reassemble = new SpellEntity(2876,SpellTargetType.Self);
+        public static readonly SpellEntity Wildfire = new SpellEntity(2878);
+        public static readonly SpellEntity Ricochet = new SpellEntity(2890);
+        public static readonly SpellEntity HeatBlast = new SpellEntity(7410);
+        public static readonly SpellEntity HeatedSplitShot = new SpellEntity(7411);
+        public static readonly SpellEntity HeatedSlugShot = new SpellEntity(7412);
+        public static readonly SpellEntity HeatedCleanShot = new SpellEntity(7413);
+        public static readonly SpellEntity BarrelStabilizer = new SpellEntity(7414);
+        public static readonly SpellEntity RookOverdrive = new SpellEntity(7415);
+        public static readonly SpellEntity Flamethrower = new SpellEntity(7418);
+        public static readonly SpellEntity AutoCrossbow = new SpellEntity(16497);
+        public static readonly SpellEntity Drill = new SpellEntity(16498);
+        public static readonly SpellEntity Bioblaster = new SpellEntity(16499);
+        public static readonly SpellEntity AirAnchor = new SpellEntity(16500);
+        public static readonly SpellEntity AutomationQueen = new SpellEntity(16501);
+        public static readonly SpellEntity QueenOverdrive = new SpellEntity(16502);
+        public static readonly SpellEntity Detonator = new SpellEntity(16766);
+        public static readonly SpellEntity Tactician = new SpellEntity(16889,SpellTargetType.Self);
+        public static readonly SpellEntity Hypercharge = new SpellEntity(17209,SpellTargetType.Self);
+        public static readonly SpellEntity Scattergun = new SpellEntity(25786);
+        public static readonly SpellEntity ChainSaw = new SpellEntity(25788);
 
-        public static readonly SpellData PVPDrill = DataManager.GetSpellData(17749);
-        public static readonly SpellData PVPRicochet = DataManager.GetSpellData(17753);
-        public static readonly SpellData PVPGaussRound = DataManager.GetSpellData(18933);
-        public static readonly SpellData PVPHypercharge = DataManager.GetSpellData(17754);
-        public static readonly SpellData PVPWildfire = DataManager.GetSpellData(8855);
-        public static readonly SpellData PVPAirAnchor = DataManager.GetSpellData(17750);
-        public static readonly SpellData PVPSpreadShot = DataManager.GetSpellData(18932);
+        public static readonly SpellEntity PVPDrill = new SpellEntity(17749);
+        public static readonly SpellEntity PVPRicochet = new SpellEntity(17753);
+        public static readonly SpellEntity PVPGaussRound = new SpellEntity(18933);
+        public static readonly SpellEntity PVPHypercharge = new SpellEntity(17754);
+        public static readonly SpellEntity PVPWildfire = new SpellEntity(8855);
+        public static readonly SpellEntity PVPAirAnchor = new SpellEntity(17750);
+        public static readonly SpellEntity PVPSpreadShot = new SpellEntity(18932);
 
         #endregion
 
@@ -422,35 +420,35 @@ namespace AEAssist.Define
 
         #region MNK
 
-        public static readonly SpellData ArmOfTheDestroyer = DataManager.GetSpellData(62);
-        public static readonly SpellData Bootshine = DataManager.GetSpellData(53);
-        public static readonly SpellData TrueStrike = DataManager.GetSpellData(54);
+        public static readonly SpellEntity ArmOfTheDestroyer = new SpellEntity(62);
+        public static readonly SpellEntity Bootshine = new SpellEntity(53);
+        public static readonly SpellEntity TrueStrike = new SpellEntity(54);
 
-        public static readonly SpellData SnapPunch = DataManager.GetSpellData(56);
+        public static readonly SpellEntity SnapPunch = new SpellEntity(56);
 
-        //public static readonly SpellData FistsOfEarth = DataManager.GetSpellData(60);
-        public static readonly SpellData TwinSnakes = DataManager.GetSpellData(61);
-        public static readonly SpellData Demolish = DataManager.GetSpellData(66);
+        //public static readonly SpellEntity FistsOfEarth = new SpellEntity(60);
+        public static readonly SpellEntity TwinSnakes = new SpellEntity(61);
+        public static readonly SpellEntity Demolish = new SpellEntity(66);
 
-        public static readonly SpellData Rockbreaker = DataManager.GetSpellData(70);
+        public static readonly SpellEntity Rockbreaker = new SpellEntity(70);
 
-        //public static readonly SpellData FistsOfWind = DataManager.GetSpellData(73);
-        //public static readonly SpellData ShoulderTackle = DataManager.GetSpellData(71);
-        //public static readonly SpellData FistsOfFire = DataManager.GetSpellData(63);
-        public static readonly SpellData Mantra = DataManager.GetSpellData(65);
-        public static readonly SpellData PerfectBalance = DataManager.GetSpellData(69);
-        public static readonly SpellData DragonKick = DataManager.GetSpellData(74);
-        public static readonly SpellData TheForbiddenChakra = DataManager.GetSpellData(3547);
-        public static readonly SpellData ElixirField = DataManager.GetSpellData(3545);
-        public static readonly SpellData RiddleofEarth = DataManager.GetSpellData(7394);
-        public static readonly SpellData RiddleofFire = DataManager.GetSpellData(7395);
-        public static readonly SpellData Brotherhood = DataManager.GetSpellData(7396);
-        public static readonly SpellData FormShift = DataManager.GetSpellData(4262);
-        public static readonly SpellData FourPointFury = DataManager.GetSpellData(16473);
-        public static readonly SpellData Enlightenment = DataManager.GetSpellData(16474);
-        public static readonly SpellData TornadoKick = DataManager.GetSpellData(3543);
-        public static readonly SpellData MasterfulBlitz = DataManager.GetSpellData(25764);
-        public static readonly SpellData ShadowOfTheDestroyer = DataManager.GetSpellData(25767);
+        //public static readonly SpellEntity FistsOfWind = new SpellEntity(73);
+        //public static readonly SpellEntity ShoulderTackle = new SpellEntity(71);
+        //public static readonly SpellEntity FistsOfFire = new SpellEntity(63);
+        public static readonly SpellEntity Mantra = new SpellEntity(65);
+        public static readonly SpellEntity PerfectBalance = new SpellEntity(69);
+        public static readonly SpellEntity DragonKick = new SpellEntity(74);
+        public static readonly SpellEntity TheForbiddenChakra = new SpellEntity(3547);
+        public static readonly SpellEntity ElixirField = new SpellEntity(3545);
+        public static readonly SpellEntity RiddleofEarth = new SpellEntity(7394);
+        public static readonly SpellEntity RiddleofFire = new SpellEntity(7395);
+        public static readonly SpellEntity Brotherhood = new SpellEntity(7396);
+        public static readonly SpellEntity FormShift = new SpellEntity(4262);
+        public static readonly SpellEntity FourPointFury = new SpellEntity(16473);
+        public static readonly SpellEntity Enlightenment = new SpellEntity(16474);
+        public static readonly SpellEntity TornadoKick = new SpellEntity(3543);
+        public static readonly SpellEntity MasterfulBlitz = new SpellEntity(25764);
+        public static readonly SpellEntity ShadowOfTheDestroyer = new SpellEntity(25767);
 
         #endregion
 
@@ -458,45 +456,45 @@ namespace AEAssist.Define
 
         #region NIN
 
-        public static readonly SpellData SpinningEdge = DataManager.GetSpellData(2240);
-        public static readonly SpellData ShadeShift = DataManager.GetSpellData(2241);
-        public static readonly SpellData GustSlash = DataManager.GetSpellData(2242);
-        public static readonly SpellData Hide = DataManager.GetSpellData(2245);
-        public static readonly SpellData Assassinate = DataManager.GetSpellData(2246);
-        public static readonly SpellData ThrowingDagger = DataManager.GetSpellData(2247);
-        public static readonly SpellData Mug = DataManager.GetSpellData(2248);
-        public static readonly SpellData DeathBlossom = DataManager.GetSpellData(2254);
-        public static readonly SpellData AeolianEdge = DataManager.GetSpellData(2255);
-        public static readonly SpellData ShadowFang = DataManager.GetSpellData(2257);
-        public static readonly SpellData TrickAttack = DataManager.GetSpellData(2258);
-        public static readonly SpellData Ten = DataManager.GetSpellData(2259);
-        public static readonly SpellData Ninjutsu = DataManager.GetSpellData(2260);
-        public static readonly SpellData Chi = DataManager.GetSpellData(2261);
-        public static readonly SpellData Shukuchi = DataManager.GetSpellData(2262);
-        public static readonly SpellData Jin = DataManager.GetSpellData(2263);
-        public static readonly SpellData Kassatsu = DataManager.GetSpellData(2264);
-        public static readonly SpellData FumaShuriken = DataManager.GetSpellData(2265);
-        public static readonly SpellData Katon = DataManager.GetSpellData(2266);
-        public static readonly SpellData Raiton = DataManager.GetSpellData(2267);
-        public static readonly SpellData Hyoton = DataManager.GetSpellData(2268);
-        public static readonly SpellData Huton = DataManager.GetSpellData(2269);
-        public static readonly SpellData Doton = DataManager.GetSpellData(2270);
-        public static readonly SpellData Suiton = DataManager.GetSpellData(2271);
-        public static readonly SpellData RabbitMedium = DataManager.GetSpellData(2272);
-        public static readonly SpellData ArmorCrush = DataManager.GetSpellData(3563);
-        public static readonly SpellData DreamWithinaDream = DataManager.GetSpellData(3566);
-        public static readonly SpellData HellfrogMedium = DataManager.GetSpellData(7401);
-        public static readonly SpellData Bhavacakra = DataManager.GetSpellData(7402);
-        public static readonly SpellData TenChiJin = DataManager.GetSpellData(7403);
-        public static readonly SpellData HakkeMujinsatsu = DataManager.GetSpellData(16488);
-        public static readonly SpellData Meisui = DataManager.GetSpellData(16489);
-        public static readonly SpellData GokaMekkyaku = DataManager.GetSpellData(16491);
-        public static readonly SpellData HyoshoRanryu = DataManager.GetSpellData(16492);
-        public static readonly SpellData Bunshin = DataManager.GetSpellData(16493);
-        public static readonly SpellData PhantomKamaitachi = DataManager.GetSpellData(25774);
-        public static readonly SpellData ForkedRaiju = DataManager.GetSpellData(25777);
+        public static readonly SpellEntity SpinningEdge = new SpellEntity(2240);
+        public static readonly SpellEntity ShadeShift = new SpellEntity(2241);
+        public static readonly SpellEntity GustSlash = new SpellEntity(2242);
+        public static readonly SpellEntity Hide = new SpellEntity(2245);
+        public static readonly SpellEntity Assassinate = new SpellEntity(2246);
+        public static readonly SpellEntity ThrowingDagger = new SpellEntity(2247);
+        public static readonly SpellEntity Mug = new SpellEntity(2248);
+        public static readonly SpellEntity DeathBlossom = new SpellEntity(2254);
+        public static readonly SpellEntity AeolianEdge = new SpellEntity(2255);
+        public static readonly SpellEntity ShadowFang = new SpellEntity(2257);
+        public static readonly SpellEntity TrickAttack = new SpellEntity(2258);
+        public static readonly SpellEntity Ten = new SpellEntity(2259);
+        public static readonly SpellEntity Ninjutsu = new SpellEntity(2260);
+        public static readonly SpellEntity Chi = new SpellEntity(2261);
+        public static readonly SpellEntity Shukuchi = new SpellEntity(2262);
+        public static readonly SpellEntity Jin = new SpellEntity(2263);
+        public static readonly SpellEntity Kassatsu = new SpellEntity(2264);
+        public static readonly SpellEntity FumaShuriken = new SpellEntity(2265);
+        public static readonly SpellEntity Katon = new SpellEntity(2266);
+        public static readonly SpellEntity Raiton = new SpellEntity(2267);
+        public static readonly SpellEntity Hyoton = new SpellEntity(2268);
+        public static readonly SpellEntity Huton = new SpellEntity(2269);
+        public static readonly SpellEntity Doton = new SpellEntity(2270);
+        public static readonly SpellEntity Suiton = new SpellEntity(2271);
+        public static readonly SpellEntity RabbitMedium = new SpellEntity(2272);
+        public static readonly SpellEntity ArmorCrush = new SpellEntity(3563);
+        public static readonly SpellEntity DreamWithinaDream = new SpellEntity(3566);
+        public static readonly SpellEntity HellfrogMedium = new SpellEntity(7401);
+        public static readonly SpellEntity Bhavacakra = new SpellEntity(7402);
+        public static readonly SpellEntity TenChiJin = new SpellEntity(7403);
+        public static readonly SpellEntity HakkeMujinsatsu = new SpellEntity(16488);
+        public static readonly SpellEntity Meisui = new SpellEntity(16489);
+        public static readonly SpellEntity GokaMekkyaku = new SpellEntity(16491);
+        public static readonly SpellEntity HyoshoRanryu = new SpellEntity(16492);
+        public static readonly SpellEntity Bunshin = new SpellEntity(16493);
+        public static readonly SpellEntity PhantomKamaitachi = new SpellEntity(25774);
+        public static readonly SpellEntity ForkedRaiju = new SpellEntity(25777);
 
-        public static readonly SpellData LimitBreak = DataManager.GetSpellData(209);
+        public static readonly SpellEntity LimitBreak = new SpellEntity(209);
 
         #endregion
 
@@ -504,37 +502,37 @@ namespace AEAssist.Define
 
         #region PLD
 
-        public static readonly SpellData Sentinel = DataManager.GetSpellData(17);
-        public static readonly SpellData FightorFlight = DataManager.GetSpellData(20);
-        public static readonly SpellData Cover = DataManager.GetSpellData(27);
-        public static readonly SpellData HallowedGround = DataManager.GetSpellData(30);
-        public static readonly SpellData DivineVeil = DataManager.GetSpellData(3540);
-        public static readonly SpellData Sheltron = DataManager.GetSpellData(3542);
-        public static readonly SpellData CircleofScorn = DataManager.GetSpellData(23);
-        public static readonly SpellData SpiritsWithin = DataManager.GetSpellData(29);
-        public static readonly SpellData IronWill = DataManager.GetSpellData(28);
-        public static readonly SpellData Clemency = DataManager.GetSpellData(3541);
-        public static readonly SpellData FastBlade = DataManager.GetSpellData(9);
-        public static readonly SpellData RiotBlade = DataManager.GetSpellData(15);
-        public static readonly SpellData ShieldBash = DataManager.GetSpellData(16);
-        public static readonly SpellData RageofHalone = DataManager.GetSpellData(21);
-        public static readonly SpellData ShieldLob = DataManager.GetSpellData(24);
-        public static readonly SpellData GoringBlade = DataManager.GetSpellData(3538);
-        public static readonly SpellData RoyalAuthority = DataManager.GetSpellData(3539);
-        public static readonly SpellData TotalEclipse = DataManager.GetSpellData(7381);
-        public static readonly SpellData Intervention = DataManager.GetSpellData(7382);
-        public static readonly SpellData HolySpirit = DataManager.GetSpellData(7384);
-        public static readonly SpellData Requiescat = DataManager.GetSpellData(7383);
-        public static readonly SpellData Prominance = DataManager.GetSpellData(16457);
-        public static readonly SpellData HolyCircle = DataManager.GetSpellData(16458);
-        public static readonly SpellData Intervene = DataManager.GetSpellData(16461);
-        public static readonly SpellData Atonement = DataManager.GetSpellData(16460);
-        public static readonly SpellData Confiteor = DataManager.GetSpellData(16459);
-        public static readonly SpellData HolySheltron = DataManager.GetSpellData(25746);
-        public static readonly SpellData Expiacion = DataManager.GetSpellData(25747);
-        public static readonly SpellData BladeOfFaith = DataManager.GetSpellData(25748);
-        public static readonly SpellData BladeOfTruth = DataManager.GetSpellData(25749);
-        public static readonly SpellData BladeOfValor = DataManager.GetSpellData(25750);
+        public static readonly SpellEntity Sentinel = new SpellEntity(17);
+        public static readonly SpellEntity FightorFlight = new SpellEntity(20);
+        public static readonly SpellEntity Cover = new SpellEntity(27);
+        public static readonly SpellEntity HallowedGround = new SpellEntity(30);
+        public static readonly SpellEntity DivineVeil = new SpellEntity(3540);
+        public static readonly SpellEntity Sheltron = new SpellEntity(3542);
+        public static readonly SpellEntity CircleofScorn = new SpellEntity(23);
+        public static readonly SpellEntity SpiritsWithin = new SpellEntity(29);
+        public static readonly SpellEntity IronWill = new SpellEntity(28);
+        public static readonly SpellEntity Clemency = new SpellEntity(3541);
+        public static readonly SpellEntity FastBlade = new SpellEntity(9);
+        public static readonly SpellEntity RiotBlade = new SpellEntity(15);
+        public static readonly SpellEntity ShieldBash = new SpellEntity(16);
+        public static readonly SpellEntity RageofHalone = new SpellEntity(21);
+        public static readonly SpellEntity ShieldLob = new SpellEntity(24);
+        public static readonly SpellEntity GoringBlade = new SpellEntity(3538);
+        public static readonly SpellEntity RoyalAuthority = new SpellEntity(3539);
+        public static readonly SpellEntity TotalEclipse = new SpellEntity(7381);
+        public static readonly SpellEntity Intervention = new SpellEntity(7382);
+        public static readonly SpellEntity HolySpirit = new SpellEntity(7384);
+        public static readonly SpellEntity Requiescat = new SpellEntity(7383);
+        public static readonly SpellEntity Prominance = new SpellEntity(16457);
+        public static readonly SpellEntity HolyCircle = new SpellEntity(16458);
+        public static readonly SpellEntity Intervene = new SpellEntity(16461);
+        public static readonly SpellEntity Atonement = new SpellEntity(16460);
+        public static readonly SpellEntity Confiteor = new SpellEntity(16459);
+        public static readonly SpellEntity HolySheltron = new SpellEntity(25746);
+        public static readonly SpellEntity Expiacion = new SpellEntity(25747);
+        public static readonly SpellEntity BladeOfFaith = new SpellEntity(25748);
+        public static readonly SpellEntity BladeOfTruth = new SpellEntity(25749);
+        public static readonly SpellEntity BladeOfValor = new SpellEntity(25750);
 
         #endregion
 
@@ -542,39 +540,39 @@ namespace AEAssist.Define
 
         #region RDM
 
-        public static readonly SpellData Jolt = DataManager.GetSpellData(7503);
-        public static readonly SpellData Riposte = DataManager.GetSpellData(7504);
-        public static readonly SpellData Verthunder = DataManager.GetSpellData(7505);
-        public static readonly SpellData CorpsACorps = DataManager.GetSpellData(7506);
-        public static readonly SpellData Veraero = DataManager.GetSpellData(7507);
-        public static readonly SpellData Scatter = DataManager.GetSpellData(7509);
-        public static readonly SpellData Verfire = DataManager.GetSpellData(7510);
-        public static readonly SpellData Verstone = DataManager.GetSpellData(7511);
-        public static readonly SpellData Zwerchhau = DataManager.GetSpellData(7512);
-        public static readonly SpellData Moulinet = DataManager.GetSpellData(7530);
-        public static readonly SpellData Vercure = DataManager.GetSpellData(7514);
-        public static readonly SpellData Displacement = DataManager.GetSpellData(7515);
-        public static readonly SpellData Redoublement = DataManager.GetSpellData(7516);
-        public static readonly SpellData Fleche = DataManager.GetSpellData(7517);
-        public static readonly SpellData Acceleration = DataManager.GetSpellData(7518);
-        public static readonly SpellData ContreSixte = DataManager.GetSpellData(7519);
-        public static readonly SpellData Embolden = DataManager.GetSpellData(7520);
-        public static readonly SpellData Manafication = DataManager.GetSpellData(7521);
-        public static readonly SpellData Verraise = DataManager.GetSpellData(7523);
-        public static readonly SpellData Jolt2 = DataManager.GetSpellData(7524);
-        public static readonly SpellData Verflare = DataManager.GetSpellData(7525);
-        public static readonly SpellData Verholy = DataManager.GetSpellData(7526);
-        public static readonly SpellData EnchantedRedoublement = DataManager.GetSpellData(7529);
-        public static readonly SpellData Verthunder2 = DataManager.GetSpellData(16524);
-        public static readonly SpellData Veraero2 = DataManager.GetSpellData(16525);
-        public static readonly SpellData Impact = DataManager.GetSpellData(16526);
-        public static readonly SpellData Engagement = DataManager.GetSpellData(16527);
-        public static readonly SpellData Reprise = DataManager.GetSpellData(16528);
-        public static readonly SpellData Scorch = DataManager.GetSpellData(16530);
-        public static readonly SpellData Resolution = DataManager.GetSpellData(25858);
-        public static readonly SpellData VerthunderIII = DataManager.GetSpellData(25855);
-        public static readonly SpellData VeraeroIII = DataManager.GetSpellData(25856);
-        public static readonly SpellData MagickBarrier = DataManager.GetSpellData(25857);
+        public static readonly SpellEntity Jolt = new SpellEntity(7503);
+        public static readonly SpellEntity Riposte = new SpellEntity(7504);
+        public static readonly SpellEntity Verthunder = new SpellEntity(7505);
+        public static readonly SpellEntity CorpsACorps = new SpellEntity(7506);
+        public static readonly SpellEntity Veraero = new SpellEntity(7507);
+        public static readonly SpellEntity Scatter = new SpellEntity(7509);
+        public static readonly SpellEntity Verfire = new SpellEntity(7510);
+        public static readonly SpellEntity Verstone = new SpellEntity(7511);
+        public static readonly SpellEntity Zwerchhau = new SpellEntity(7512);
+        public static readonly SpellEntity Moulinet = new SpellEntity(7530);
+        public static readonly SpellEntity Vercure = new SpellEntity(7514);
+        public static readonly SpellEntity Displacement = new SpellEntity(7515);
+        public static readonly SpellEntity Redoublement = new SpellEntity(7516);
+        public static readonly SpellEntity Fleche = new SpellEntity(7517);
+        public static readonly SpellEntity Acceleration = new SpellEntity(7518);
+        public static readonly SpellEntity ContreSixte = new SpellEntity(7519);
+        public static readonly SpellEntity Embolden = new SpellEntity(7520);
+        public static readonly SpellEntity Manafication = new SpellEntity(7521);
+        public static readonly SpellEntity Verraise = new SpellEntity(7523);
+        public static readonly SpellEntity Jolt2 = new SpellEntity(7524);
+        public static readonly SpellEntity Verflare = new SpellEntity(7525);
+        public static readonly SpellEntity Verholy = new SpellEntity(7526);
+        public static readonly SpellEntity EnchantedRedoublement = new SpellEntity(7529);
+        public static readonly SpellEntity Verthunder2 = new SpellEntity(16524);
+        public static readonly SpellEntity Veraero2 = new SpellEntity(16525);
+        public static readonly SpellEntity Impact = new SpellEntity(16526);
+        public static readonly SpellEntity Engagement = new SpellEntity(16527);
+        public static readonly SpellEntity Reprise = new SpellEntity(16528);
+        public static readonly SpellEntity Scorch = new SpellEntity(16530);
+        public static readonly SpellEntity Resolution = new SpellEntity(25858);
+        public static readonly SpellEntity VerthunderIII = new SpellEntity(25855);
+        public static readonly SpellEntity VeraeroIII = new SpellEntity(25856);
+        public static readonly SpellEntity MagickBarrier = new SpellEntity(25857);
 
         #endregion
 
@@ -582,40 +580,40 @@ namespace AEAssist.Define
 
         #region SAM
 
-        public static readonly SpellData Hakaze = DataManager.GetSpellData(7477);
-        public static readonly SpellData Shoha = DataManager.GetSpellData(16487);
-        public static readonly SpellData Jinpu = DataManager.GetSpellData(7478);
-        public static readonly SpellData Shifu = DataManager.GetSpellData(7479);
-        public static readonly SpellData Yukikaze = DataManager.GetSpellData(7480);
-        public static readonly SpellData Gekko = DataManager.GetSpellData(7481);
-        public static readonly SpellData Kasha = DataManager.GetSpellData(7482);
-        public static readonly SpellData Fuga = DataManager.GetSpellData(7483);
-        public static readonly SpellData Mangetsu = DataManager.GetSpellData(7484);
-        public static readonly SpellData Oka = DataManager.GetSpellData(7485);
-        public static readonly SpellData Enpi = DataManager.GetSpellData(7486);
-        public static readonly SpellData MidareSetsugekka = DataManager.GetSpellData(7487);
-        public static readonly SpellData KaeshiSetsugekka = DataManager.GetSpellData(16486);
-        public static readonly SpellData TenkaGoken = DataManager.GetSpellData(7488);
-        public static readonly SpellData KaeshiGoken = DataManager.GetSpellData(16485);
-        public static readonly SpellData Higanbana = DataManager.GetSpellData(7489);
-        public static readonly SpellData KaeshiHiganbana = DataManager.GetSpellData(16484);
-        public static readonly SpellData HissatsuShinten = DataManager.GetSpellData(7490);
-        public static readonly SpellData HissatsuKyuten = DataManager.GetSpellData(7491);
-        public static readonly SpellData HissatsuKaiten = DataManager.GetSpellData(7494);
-        public static readonly SpellData Ikishoten = DataManager.GetSpellData(16482);
-        public static readonly SpellData HissatsuGuren = DataManager.GetSpellData(7496);
-        public static readonly SpellData HissatsuSenei = DataManager.GetSpellData(16481);
-        public static readonly SpellData Meditate = DataManager.GetSpellData(7497);
-        public static readonly SpellData ThirdEye = DataManager.GetSpellData(7498);
+        public static readonly SpellEntity Hakaze = new SpellEntity(7477);
+        public static readonly SpellEntity Shoha = new SpellEntity(16487);
+        public static readonly SpellEntity Jinpu = new SpellEntity(7478);
+        public static readonly SpellEntity Shifu = new SpellEntity(7479);
+        public static readonly SpellEntity Yukikaze = new SpellEntity(7480);
+        public static readonly SpellEntity Gekko = new SpellEntity(7481);
+        public static readonly SpellEntity Kasha = new SpellEntity(7482);
+        public static readonly SpellEntity Fuga = new SpellEntity(7483);
+        public static readonly SpellEntity Mangetsu = new SpellEntity(7484);
+        public static readonly SpellEntity Oka = new SpellEntity(7485);
+        public static readonly SpellEntity Enpi = new SpellEntity(7486);
+        public static readonly SpellEntity MidareSetsugekka = new SpellEntity(7487);
+        public static readonly SpellEntity KaeshiSetsugekka = new SpellEntity(16486);
+        public static readonly SpellEntity TenkaGoken = new SpellEntity(7488);
+        public static readonly SpellEntity KaeshiGoken = new SpellEntity(16485);
+        public static readonly SpellEntity Higanbana = new SpellEntity(7489);
+        public static readonly SpellEntity KaeshiHiganbana = new SpellEntity(16484);
+        public static readonly SpellEntity HissatsuShinten = new SpellEntity(7490);
+        public static readonly SpellEntity HissatsuKyuten = new SpellEntity(7491);
+        public static readonly SpellEntity HissatsuKaiten = new SpellEntity(7494);
+        public static readonly SpellEntity Ikishoten = new SpellEntity(16482);
+        public static readonly SpellEntity HissatsuGuren = new SpellEntity(7496);
+        public static readonly SpellEntity HissatsuSenei = new SpellEntity(16481);
+        public static readonly SpellEntity Meditate = new SpellEntity(7497);
+        public static readonly SpellEntity ThirdEye = new SpellEntity(7498,SpellTargetType.Self);
 
-        public static readonly SpellData MeikyoShisui = DataManager.GetSpellData(7499);
+        public static readonly SpellEntity MeikyoShisui = new SpellEntity(7499);
 
-        //public static readonly SpellData HissatsuSeigan = DataManager.GetSpellData(7501);
-        public static readonly SpellData Meditation = DataManager.GetSpellData(3546);
-        public static readonly SpellData ShohaII = DataManager.GetSpellData(25779);
-        public static readonly SpellData Fuko = DataManager.GetSpellData(25780);
-        public static readonly SpellData OgiNamikiri = DataManager.GetSpellData(25781);
-        public static readonly SpellData KaeshiNamikiri = DataManager.GetSpellData(25782);
+        //public static readonly SpellEntity HissatsuSeigan = new SpellEntity(7501);
+        public static readonly SpellEntity Meditation = new SpellEntity(3546,SpellTargetType.Self);
+        public static readonly SpellEntity ShohaII = new SpellEntity(25779);
+        public static readonly SpellEntity Fuko = new SpellEntity(25780);
+        public static readonly SpellEntity OgiNamikiri = new SpellEntity(25781);
+        public static readonly SpellEntity KaeshiNamikiri = new SpellEntity(25782);
 
         #endregion
 
@@ -623,41 +621,41 @@ namespace AEAssist.Define
 
         #region SGE
 
-        public static readonly SpellData Dosis = DataManager.GetSpellData(24283);
-        public static readonly SpellData Diagnosis = DataManager.GetSpellData(24284);
-        public static readonly SpellData Kardia = DataManager.GetSpellData(24285);
-        public static readonly SpellData Prognosis = DataManager.GetSpellData(24286);
-        public static readonly SpellData Egeiro = DataManager.GetSpellData(24287);
-        public static readonly SpellData Physis = DataManager.GetSpellData(24288);
-        public static readonly SpellData PhysisII = DataManager.GetSpellData(24302);
-        public static readonly SpellData Phlegma = DataManager.GetSpellData(24289);
-        public static readonly SpellData PhlegmaII = DataManager.GetSpellData(24307);
-        public static readonly SpellData PhlegmaIII = DataManager.GetSpellData(24313);
-        public static readonly SpellData Eukrasia = DataManager.GetSpellData(24290);
-        public static readonly SpellData EukrasianDiagnosis = DataManager.GetSpellData(24291);
-        public static readonly SpellData EukrasianPrognosis = DataManager.GetSpellData(24292);
-        public static readonly SpellData EukrasianDosis = DataManager.GetSpellData(24293);
-        public static readonly SpellData Soteria = DataManager.GetSpellData(24294);
-        public static readonly SpellData Druochole = DataManager.GetSpellData(24296);
-        public static readonly SpellData Dyskrasia = DataManager.GetSpellData(24297);
-        public static readonly SpellData Kerachole = DataManager.GetSpellData(24298);
-        public static readonly SpellData Ixochole = DataManager.GetSpellData(24299);
-        public static readonly SpellData Zoe = DataManager.GetSpellData(24300);
-        public static readonly SpellData Pepsis = DataManager.GetSpellData(24301);
-        public static readonly SpellData Taurochole = DataManager.GetSpellData(24303);
-        public static readonly SpellData Toxikon = DataManager.GetSpellData(24304);
-        public static readonly SpellData ToxikonII = DataManager.GetSpellData(24316);
-        public static readonly SpellData Haima = DataManager.GetSpellData(24305);
-        public static readonly SpellData DosisII = DataManager.GetSpellData(24306);
-        public static readonly SpellData EukrasianDosisII = DataManager.GetSpellData(24308);
-        public static readonly SpellData Rhizomata = DataManager.GetSpellData(24309);
-        public static readonly SpellData Holos = DataManager.GetSpellData(24310);
-        public static readonly SpellData Panhaima = DataManager.GetSpellData(24311);
-        public static readonly SpellData DosisIII = DataManager.GetSpellData(24312);
-        public static readonly SpellData EukrasianDosisIII = DataManager.GetSpellData(24314);
-        public static readonly SpellData DyskrasiaII = DataManager.GetSpellData(24315);
-        public static readonly SpellData Krasis = DataManager.GetSpellData(24317);
-        public static readonly SpellData Pneuma = DataManager.GetSpellData(24318);
+        public static readonly SpellEntity Dosis = new SpellEntity(24283);
+        public static readonly SpellEntity Diagnosis = new SpellEntity(24284);
+        public static readonly SpellEntity Kardia = new SpellEntity(24285);
+        public static readonly SpellEntity Prognosis = new SpellEntity(24286);
+        public static readonly SpellEntity Egeiro = new SpellEntity(24287);
+        public static readonly SpellEntity Physis = new SpellEntity(24288);
+        public static readonly SpellEntity PhysisII = new SpellEntity(24302);
+        public static readonly SpellEntity Phlegma = new SpellEntity(24289);
+        public static readonly SpellEntity PhlegmaII = new SpellEntity(24307);
+        public static readonly SpellEntity PhlegmaIII = new SpellEntity(24313);
+        public static readonly SpellEntity Eukrasia = new SpellEntity(24290);
+        public static readonly SpellEntity EukrasianDiagnosis = new SpellEntity(24291);
+        public static readonly SpellEntity EukrasianPrognosis = new SpellEntity(24292);
+        public static readonly SpellEntity EukrasianDosis = new SpellEntity(24293);
+        public static readonly SpellEntity Soteria = new SpellEntity(24294);
+        public static readonly SpellEntity Druochole = new SpellEntity(24296);
+        public static readonly SpellEntity Dyskrasia = new SpellEntity(24297);
+        public static readonly SpellEntity Kerachole = new SpellEntity(24298);
+        public static readonly SpellEntity Ixochole = new SpellEntity(24299);
+        public static readonly SpellEntity Zoe = new SpellEntity(24300);
+        public static readonly SpellEntity Pepsis = new SpellEntity(24301);
+        public static readonly SpellEntity Taurochole = new SpellEntity(24303);
+        public static readonly SpellEntity Toxikon = new SpellEntity(24304);
+        public static readonly SpellEntity ToxikonII = new SpellEntity(24316);
+        public static readonly SpellEntity Haima = new SpellEntity(24305);
+        public static readonly SpellEntity DosisII = new SpellEntity(24306);
+        public static readonly SpellEntity EukrasianDosisII = new SpellEntity(24308);
+        public static readonly SpellEntity Rhizomata = new SpellEntity(24309);
+        public static readonly SpellEntity Holos = new SpellEntity(24310);
+        public static readonly SpellEntity Panhaima = new SpellEntity(24311);
+        public static readonly SpellEntity DosisIII = new SpellEntity(24312);
+        public static readonly SpellEntity EukrasianDosisIII = new SpellEntity(24314);
+        public static readonly SpellEntity DyskrasiaII = new SpellEntity(24315);
+        public static readonly SpellEntity Krasis = new SpellEntity(24317);
+        public static readonly SpellEntity Pneuma = new SpellEntity(24318);
 
         #endregion
 
@@ -665,41 +663,41 @@ namespace AEAssist.Define
 
         #region SCH
 
-        public static readonly SpellData Aetherflow = DataManager.GetSpellData(166);
-        public static readonly SpellData EnergyDrain2 = DataManager.GetSpellData(167);
-        public static readonly SpellData Adloquium = DataManager.GetSpellData(185);
-        public static readonly SpellData Succor = DataManager.GetSpellData(186);
-        public static readonly SpellData SacredSoil = DataManager.GetSpellData(188);
-        public static readonly SpellData Lustrate = DataManager.GetSpellData(189);
-        public static readonly SpellData Physick = DataManager.GetSpellData(190);
-        public static readonly SpellData Indomitability = DataManager.GetSpellData(3583);
-        public static readonly SpellData SchRuin = DataManager.GetSpellData(17869);
-        public static readonly SpellData Broil = DataManager.GetSpellData(3584);
-        public static readonly SpellData DeploymentTactics = DataManager.GetSpellData(3585);
-        public static readonly SpellData EmergencyTactics = DataManager.GetSpellData(3586);
-        public static readonly SpellData Dissipation = DataManager.GetSpellData(3587);
-        public static readonly SpellData Excogitation = DataManager.GetSpellData(7434);
-        public static readonly SpellData Broil2 = DataManager.GetSpellData(7435);
-        public static readonly SpellData ChainStrategem = DataManager.GetSpellData(7436);
-        public static readonly SpellData Aetherpact = DataManager.GetSpellData(7437);
-        public static readonly SpellData DissolveUnion = DataManager.GetSpellData(7869);
-        public static readonly SpellData WhisperingDawn = DataManager.GetSpellData(16537);
-        public static readonly SpellData FeyIllumination = DataManager.GetSpellData(16538);
-        public static readonly SpellData ArtOfWar = DataManager.GetSpellData(16539);
-        public static readonly SpellData Biolysis = DataManager.GetSpellData(16540);
-        public static readonly SpellData Broil3 = DataManager.GetSpellData(16541);
-        public static readonly SpellData Recitation = DataManager.GetSpellData(16542);
-        public static readonly SpellData FeyBlessing = DataManager.GetSpellData(16543);
-        public static readonly SpellData SummonSeraph = DataManager.GetSpellData(16545);
-        public static readonly SpellData Consolation = DataManager.GetSpellData(16546);
-        public static readonly SpellData SummonEos = DataManager.GetSpellData(17215);
-        public static readonly SpellData SummonSelene = DataManager.GetSpellData(17216);
-        public static readonly SpellData BroilIV = DataManager.GetSpellData(25865);
-        public static readonly SpellData ArtOfWarII = DataManager.GetSpellData(25866);
-        public static readonly SpellData Protraction = DataManager.GetSpellData(25867);
-        public static readonly SpellData Expedient = DataManager.GetSpellData(25868);
-        public static readonly SpellData Bio = DataManager.GetSpellData(17864);
-        public static readonly SpellData Enkindle = DataManager.GetSpellData(184);
+        public static readonly SpellEntity Aetherflow = new SpellEntity(166);
+        public static readonly SpellEntity EnergyDrain2 = new SpellEntity(167);
+        public static readonly SpellEntity Adloquium = new SpellEntity(185);
+        public static readonly SpellEntity Succor = new SpellEntity(186);
+        public static readonly SpellEntity SacredSoil = new SpellEntity(188);
+        public static readonly SpellEntity Lustrate = new SpellEntity(189);
+        public static readonly SpellEntity Physick = new SpellEntity(190);
+        public static readonly SpellEntity Indomitability = new SpellEntity(3583);
+        public static readonly SpellEntity SchRuin = new SpellEntity(17869);
+        public static readonly SpellEntity Broil = new SpellEntity(3584);
+        public static readonly SpellEntity DeploymentTactics = new SpellEntity(3585);
+        public static readonly SpellEntity EmergencyTactics = new SpellEntity(3586);
+        public static readonly SpellEntity Dissipation = new SpellEntity(3587);
+        public static readonly SpellEntity Excogitation = new SpellEntity(7434);
+        public static readonly SpellEntity Broil2 = new SpellEntity(7435);
+        public static readonly SpellEntity ChainStrategem = new SpellEntity(7436);
+        public static readonly SpellEntity Aetherpact = new SpellEntity(7437);
+        public static readonly SpellEntity DissolveUnion = new SpellEntity(7869);
+        public static readonly SpellEntity WhisperingDawn = new SpellEntity(16537);
+        public static readonly SpellEntity FeyIllumination = new SpellEntity(16538);
+        public static readonly SpellEntity ArtOfWar = new SpellEntity(16539);
+        public static readonly SpellEntity Biolysis = new SpellEntity(16540);
+        public static readonly SpellEntity Broil3 = new SpellEntity(16541);
+        public static readonly SpellEntity Recitation = new SpellEntity(16542);
+        public static readonly SpellEntity FeyBlessing = new SpellEntity(16543);
+        public static readonly SpellEntity SummonSeraph = new SpellEntity(16545);
+        public static readonly SpellEntity Consolation = new SpellEntity(16546);
+        public static readonly SpellEntity SummonEos = new SpellEntity(17215);
+        public static readonly SpellEntity SummonSelene = new SpellEntity(17216);
+        public static readonly SpellEntity BroilIV = new SpellEntity(25865);
+        public static readonly SpellEntity ArtOfWarII = new SpellEntity(25866);
+        public static readonly SpellEntity Protraction = new SpellEntity(25867);
+        public static readonly SpellEntity Expedient = new SpellEntity(25868);
+        public static readonly SpellEntity Bio = new SpellEntity(17864);
+        public static readonly SpellEntity Enkindle = new SpellEntity(184);
 
         #endregion
 
@@ -707,51 +705,51 @@ namespace AEAssist.Define
 
         #region SMN
 
-        public static readonly SpellData SummonIfrit = DataManager.GetSpellData(25805);
-        public static readonly SpellData SummonTitan = DataManager.GetSpellData(25806);
-        public static readonly SpellData Painflare = DataManager.GetSpellData(3578);
-        public static readonly SpellData SummonGaruda = DataManager.GetSpellData(25807);
-        public static readonly SpellData EnergySiphon = DataManager.GetSpellData(16510);
-        public static readonly SpellData Ruin3 = DataManager.GetSpellData(3579);
-        public static readonly SpellData RubyRuinIII = DataManager.GetSpellData(25817);
-        public static readonly SpellData TopazRuinIII = DataManager.GetSpellData(25818);
-        public static readonly SpellData EmeraldRuinIII = DataManager.GetSpellData(25819);
-        public static readonly SpellData DreadwyrmTrance = DataManager.GetSpellData(3581);
-        public static readonly SpellData AstralFlow = DataManager.GetSpellData(25822);
-        public static readonly SpellData Ruin4 = DataManager.GetSpellData(7426);
-        public static readonly SpellData SearingLight = DataManager.GetSpellData(25801);
-        public static readonly SpellData SummonBahamut = DataManager.GetSpellData(7427);
-        public static readonly SpellData EnkindleBahamut = DataManager.GetSpellData(7429);
-        public static readonly SpellData TriDisaster = DataManager.GetSpellData(25826);
-        public static readonly SpellData SummonIfrit2 = DataManager.GetSpellData(25838);
-        public static readonly SpellData SummonTitan2 = DataManager.GetSpellData(25839);
-        public static readonly SpellData SummonGaruda2 = DataManager.GetSpellData(25840);
-        public static readonly SpellData AstralImpulse = DataManager.GetSpellData(25820);
-        public static readonly SpellData AstralFlare = DataManager.GetSpellData(25821);
-        public static readonly SpellData Deathflare = DataManager.GetSpellData(3582);
-        public static readonly SpellData Wyrmwave = DataManager.GetSpellData(7428);
-        public static readonly SpellData AkhMorn = DataManager.GetSpellData(3010);
-        public static readonly SpellData RubyRite = DataManager.GetSpellData(25823);
-        public static readonly SpellData TopazRite = DataManager.GetSpellData(25824);
-        public static readonly SpellData EmeraldRite = DataManager.GetSpellData(25825);
-        public static readonly SpellData FountainofFire = DataManager.GetSpellData(16514);
-        public static readonly SpellData BrandofPurgatory = DataManager.GetSpellData(16515);
-        public static readonly SpellData SummonPhoenix = DataManager.GetSpellData(25831);
-        public static readonly SpellData EverlastingFlight = DataManager.GetSpellData(16517);
-        public static readonly SpellData Rekindle = DataManager.GetSpellData(25830);
-        public static readonly SpellData ScarletFlame = DataManager.GetSpellData(16508);
-        public static readonly SpellData EnkindlePhoenix = DataManager.GetSpellData(16516);
-        public static readonly SpellData Revelation = DataManager.GetSpellData(2951);
-        public static readonly SpellData RubyDisaster = DataManager.GetSpellData(25827);
-        public static readonly SpellData TopazDisaster = DataManager.GetSpellData(25828);
-        public static readonly SpellData EmeraldDisaster = DataManager.GetSpellData(25829);
-        public static readonly SpellData RubyCatastrophe = DataManager.GetSpellData(25832);
-        public static readonly SpellData TopazCatastrophe = DataManager.GetSpellData(25833);
-        public static readonly SpellData EmeraldCatastrophe = DataManager.GetSpellData(25834);
-        public static readonly SpellData CrimsonCyclone = DataManager.GetSpellData(25835);
-        public static readonly SpellData CrimsonStrike = DataManager.GetSpellData(25885);
-        public static readonly SpellData MountainBuster = DataManager.GetSpellData(25836);
-        public static readonly SpellData Slipstream = DataManager.GetSpellData(25837);
+        public static readonly SpellEntity SummonIfrit = new SpellEntity(25805);
+        public static readonly SpellEntity SummonTitan = new SpellEntity(25806);
+        public static readonly SpellEntity Painflare = new SpellEntity(3578);
+        public static readonly SpellEntity SummonGaruda = new SpellEntity(25807);
+        public static readonly SpellEntity EnergySiphon = new SpellEntity(16510);
+        public static readonly SpellEntity Ruin3 = new SpellEntity(3579);
+        public static readonly SpellEntity RubyRuinIII = new SpellEntity(25817);
+        public static readonly SpellEntity TopazRuinIII = new SpellEntity(25818);
+        public static readonly SpellEntity EmeraldRuinIII = new SpellEntity(25819);
+        public static readonly SpellEntity DreadwyrmTrance = new SpellEntity(3581);
+        public static readonly SpellEntity AstralFlow = new SpellEntity(25822);
+        public static readonly SpellEntity Ruin4 = new SpellEntity(7426);
+        public static readonly SpellEntity SearingLight = new SpellEntity(25801);
+        public static readonly SpellEntity SummonBahamut = new SpellEntity(7427);
+        public static readonly SpellEntity EnkindleBahamut = new SpellEntity(7429);
+        public static readonly SpellEntity TriDisaster = new SpellEntity(25826);
+        public static readonly SpellEntity SummonIfrit2 = new SpellEntity(25838);
+        public static readonly SpellEntity SummonTitan2 = new SpellEntity(25839);
+        public static readonly SpellEntity SummonGaruda2 = new SpellEntity(25840);
+        public static readonly SpellEntity AstralImpulse = new SpellEntity(25820);
+        public static readonly SpellEntity AstralFlare = new SpellEntity(25821);
+        public static readonly SpellEntity Deathflare = new SpellEntity(3582);
+        public static readonly SpellEntity Wyrmwave = new SpellEntity(7428);
+        public static readonly SpellEntity AkhMorn = new SpellEntity(3010);
+        public static readonly SpellEntity RubyRite = new SpellEntity(25823);
+        public static readonly SpellEntity TopazRite = new SpellEntity(25824);
+        public static readonly SpellEntity EmeraldRite = new SpellEntity(25825);
+        public static readonly SpellEntity FountainofFire = new SpellEntity(16514);
+        public static readonly SpellEntity BrandofPurgatory = new SpellEntity(16515);
+        public static readonly SpellEntity SummonPhoenix = new SpellEntity(25831);
+        public static readonly SpellEntity EverlastingFlight = new SpellEntity(16517);
+        public static readonly SpellEntity Rekindle = new SpellEntity(25830);
+        public static readonly SpellEntity ScarletFlame = new SpellEntity(16508);
+        public static readonly SpellEntity EnkindlePhoenix = new SpellEntity(16516);
+        public static readonly SpellEntity Revelation = new SpellEntity(2951);
+        public static readonly SpellEntity RubyDisaster = new SpellEntity(25827);
+        public static readonly SpellEntity TopazDisaster = new SpellEntity(25828);
+        public static readonly SpellEntity EmeraldDisaster = new SpellEntity(25829);
+        public static readonly SpellEntity RubyCatastrophe = new SpellEntity(25832);
+        public static readonly SpellEntity TopazCatastrophe = new SpellEntity(25833);
+        public static readonly SpellEntity EmeraldCatastrophe = new SpellEntity(25834);
+        public static readonly SpellEntity CrimsonCyclone = new SpellEntity(25835);
+        public static readonly SpellEntity CrimsonStrike = new SpellEntity(25885);
+        public static readonly SpellEntity MountainBuster = new SpellEntity(25836);
+        public static readonly SpellEntity Slipstream = new SpellEntity(25837);
 
         #endregion
 
@@ -759,35 +757,35 @@ namespace AEAssist.Define
 
         #region WAR
 
-        public static readonly SpellData HeavySwing = DataManager.GetSpellData(31);
-        public static readonly SpellData Maim = DataManager.GetSpellData(37);
-        public static readonly SpellData Berserk = DataManager.GetSpellData(38);
-        public static readonly SpellData ThrillofBattle = DataManager.GetSpellData(40);
-        public static readonly SpellData Overpower = DataManager.GetSpellData(41);
-        public static readonly SpellData StormsPath = DataManager.GetSpellData(42);
-        public static readonly SpellData Holmgang = DataManager.GetSpellData(43);
-        public static readonly SpellData Vengeance = DataManager.GetSpellData(44);
-        public static readonly SpellData StormsEye = DataManager.GetSpellData(45);
-        public static readonly SpellData Tomahawk = DataManager.GetSpellData(46);
-        public static readonly SpellData Defiance = DataManager.GetSpellData(48);
-        public static readonly SpellData InnerBeast = DataManager.GetSpellData(49);
-        public static readonly SpellData SteelCyclone = DataManager.GetSpellData(51);
-        public static readonly SpellData Infuriate = DataManager.GetSpellData(52);
-        public static readonly SpellData FellCleave = DataManager.GetSpellData(3549);
-        public static readonly SpellData Decimate = DataManager.GetSpellData(3550);
-        public static readonly SpellData RawIntuition = DataManager.GetSpellData(3551);
-        public static readonly SpellData Equilibrium = DataManager.GetSpellData(3552);
-        public static readonly SpellData Onslaught = DataManager.GetSpellData(7386);
-        public static readonly SpellData Upheaval = DataManager.GetSpellData(7387);
-        public static readonly SpellData ShakeItOff = DataManager.GetSpellData(7388);
-        public static readonly SpellData InnerRelease = DataManager.GetSpellData(7389);
-        public static readonly SpellData MythrilTempest = DataManager.GetSpellData(16462);
-        public static readonly SpellData InnerChaos = DataManager.GetSpellData(16465);
-        public static readonly SpellData ChaoticCyclone = DataManager.GetSpellData(16463);
-        public static readonly SpellData Bloodwhetting = DataManager.GetSpellData(25751);
-        public static readonly SpellData Orogeny = DataManager.GetSpellData(25752);
-        public static readonly SpellData PrimalRend = DataManager.GetSpellData(25753);
-        public static readonly SpellData NascentFlash = DataManager.GetSpellData(16464);
+        public static readonly SpellEntity HeavySwing = new SpellEntity(31);
+        public static readonly SpellEntity Maim = new SpellEntity(37);
+        public static readonly SpellEntity Berserk = new SpellEntity(38);
+        public static readonly SpellEntity ThrillofBattle = new SpellEntity(40);
+        public static readonly SpellEntity Overpower = new SpellEntity(41);
+        public static readonly SpellEntity StormsPath = new SpellEntity(42);
+        public static readonly SpellEntity Holmgang = new SpellEntity(43);
+        public static readonly SpellEntity Vengeance = new SpellEntity(44);
+        public static readonly SpellEntity StormsEye = new SpellEntity(45);
+        public static readonly SpellEntity Tomahawk = new SpellEntity(46);
+        public static readonly SpellEntity Defiance = new SpellEntity(48);
+        public static readonly SpellEntity InnerBeast = new SpellEntity(49);
+        public static readonly SpellEntity SteelCyclone = new SpellEntity(51);
+        public static readonly SpellEntity Infuriate = new SpellEntity(52);
+        public static readonly SpellEntity FellCleave = new SpellEntity(3549);
+        public static readonly SpellEntity Decimate = new SpellEntity(3550);
+        public static readonly SpellEntity RawIntuition = new SpellEntity(3551);
+        public static readonly SpellEntity Equilibrium = new SpellEntity(3552);
+        public static readonly SpellEntity Onslaught = new SpellEntity(7386);
+        public static readonly SpellEntity Upheaval = new SpellEntity(7387);
+        public static readonly SpellEntity ShakeItOff = new SpellEntity(7388);
+        public static readonly SpellEntity InnerRelease = new SpellEntity(7389);
+        public static readonly SpellEntity MythrilTempest = new SpellEntity(16462);
+        public static readonly SpellEntity InnerChaos = new SpellEntity(16465);
+        public static readonly SpellEntity ChaoticCyclone = new SpellEntity(16463);
+        public static readonly SpellEntity Bloodwhetting = new SpellEntity(25751);
+        public static readonly SpellEntity Orogeny = new SpellEntity(25752);
+        public static readonly SpellEntity PrimalRend = new SpellEntity(25753);
+        public static readonly SpellEntity NascentFlash = new SpellEntity(16464);
 
         #endregion
 
@@ -795,41 +793,41 @@ namespace AEAssist.Define
 
         #region WHM
 
-        public static readonly SpellData Stone = DataManager.GetSpellData(119);
-        public static readonly SpellData Cure = DataManager.GetSpellData(120);
-        public static readonly SpellData Aero = DataManager.GetSpellData(121);
-        public static readonly SpellData Medica = DataManager.GetSpellData(124);
-        public static readonly SpellData Raise = DataManager.GetSpellData(125);
-        public static readonly SpellData Stone2 = DataManager.GetSpellData(127);
-        public static readonly SpellData Cure3 = DataManager.GetSpellData(131);
-        public static readonly SpellData Aero2 = DataManager.GetSpellData(132);
+        public static readonly SpellEntity Stone = new SpellEntity(119);
+        public static readonly SpellEntity Cure = new SpellEntity(120);
+        public static readonly SpellEntity Aero = new SpellEntity(121);
+        public static readonly SpellEntity Medica = new SpellEntity(124);
+        public static readonly SpellEntity Raise = new SpellEntity(125);
+        public static readonly SpellEntity Stone2 = new SpellEntity(127);
+        public static readonly SpellEntity Cure3 = new SpellEntity(131);
+        public static readonly SpellEntity Aero2 = new SpellEntity(132);
 
-        public static readonly SpellData Medica2 = DataManager.GetSpellData(133);
+        public static readonly SpellEntity Medica2 = new SpellEntity(133);
 
-        //public static readonly SpellData FluidAura = DataManager.GetSpellData(134);
-        public static readonly SpellData Cure2 = DataManager.GetSpellData(135);
-        public static readonly SpellData PresenceofMind = DataManager.GetSpellData(136);
-        public static readonly SpellData Regen = DataManager.GetSpellData(137);
-        public static readonly SpellData Holy = DataManager.GetSpellData(139);
-        public static readonly SpellData Benediction = DataManager.GetSpellData(140);
-        public static readonly SpellData Stone3 = DataManager.GetSpellData(3568);
-        public static readonly SpellData Asylum = DataManager.GetSpellData(3569);
-        public static readonly SpellData Tetragrammaton = DataManager.GetSpellData(3570);
-        public static readonly SpellData Assize = DataManager.GetSpellData(3571);
-        public static readonly SpellData ThinAir = DataManager.GetSpellData(7430);
-        public static readonly SpellData Stone4 = DataManager.GetSpellData(7431);
-        public static readonly SpellData DivineBenison = DataManager.GetSpellData(7432);
-        public static readonly SpellData PlenaryIndulgence = DataManager.GetSpellData(7433);
-        public static readonly SpellData AfflatusSolace = DataManager.GetSpellData(16531);
-        public static readonly SpellData Dia = DataManager.GetSpellData(16532);
-        public static readonly SpellData Glare = DataManager.GetSpellData(16533);
-        public static readonly SpellData AfflatusRapture = DataManager.GetSpellData(16534);
-        public static readonly SpellData AfflatusMisery = DataManager.GetSpellData(16535);
-        public static readonly SpellData Temperance = DataManager.GetSpellData(16536);
-        public static readonly SpellData GlareIII = DataManager.GetSpellData(25859);
-        public static readonly SpellData HolyIII = DataManager.GetSpellData(25860);
-        public static readonly SpellData Aquaveil = DataManager.GetSpellData(25861);
-        public static readonly SpellData LiturgyOfTheBell = DataManager.GetSpellData(25862);
+        //public static readonly SpellEntity FluidAura = new SpellEntity(134);
+        public static readonly SpellEntity Cure2 = new SpellEntity(135);
+        public static readonly SpellEntity PresenceofMind = new SpellEntity(136);
+        public static readonly SpellEntity Regen = new SpellEntity(137);
+        public static readonly SpellEntity Holy = new SpellEntity(139);
+        public static readonly SpellEntity Benediction = new SpellEntity(140);
+        public static readonly SpellEntity Stone3 = new SpellEntity(3568);
+        public static readonly SpellEntity Asylum = new SpellEntity(3569);
+        public static readonly SpellEntity Tetragrammaton = new SpellEntity(3570);
+        public static readonly SpellEntity Assize = new SpellEntity(3571);
+        public static readonly SpellEntity ThinAir = new SpellEntity(7430);
+        public static readonly SpellEntity Stone4 = new SpellEntity(7431);
+        public static readonly SpellEntity DivineBenison = new SpellEntity(7432);
+        public static readonly SpellEntity PlenaryIndulgence = new SpellEntity(7433);
+        public static readonly SpellEntity AfflatusSolace = new SpellEntity(16531);
+        public static readonly SpellEntity Dia = new SpellEntity(16532);
+        public static readonly SpellEntity Glare = new SpellEntity(16533);
+        public static readonly SpellEntity AfflatusRapture = new SpellEntity(16534);
+        public static readonly SpellEntity AfflatusMisery = new SpellEntity(16535);
+        public static readonly SpellEntity Temperance = new SpellEntity(16536);
+        public static readonly SpellEntity GlareIII = new SpellEntity(25859);
+        public static readonly SpellEntity HolyIII = new SpellEntity(25860);
+        public static readonly SpellEntity Aquaveil = new SpellEntity(25861);
+        public static readonly SpellEntity LiturgyOfTheBell = new SpellEntity(25862);
 
         #endregion
 
@@ -837,113 +835,113 @@ namespace AEAssist.Define
 
         #region BLU
 
-        public static readonly SpellData Snort = DataManager.GetSpellData(11383);
-        public static readonly SpellData FourTonzWeight = DataManager.GetSpellData(11384);
-        public static readonly SpellData WaterCannon = DataManager.GetSpellData(11385);
-        public static readonly SpellData SongOfTorment = DataManager.GetSpellData(11386);
-        public static readonly SpellData HighVoltage = DataManager.GetSpellData(11387);
-        public static readonly SpellData BadBreath = DataManager.GetSpellData(11388);
-        public static readonly SpellData FlyingFrenzy = DataManager.GetSpellData(11389);
-        public static readonly SpellData AquaBreath = DataManager.GetSpellData(11390);
-        public static readonly SpellData Plaincracker = DataManager.GetSpellData(11391);
-        public static readonly SpellData AcornBomb = DataManager.GetSpellData(11392);
-        public static readonly SpellData Bristle = DataManager.GetSpellData(11393);
-        public static readonly SpellData MindBlast = DataManager.GetSpellData(11394);
-        public static readonly SpellData BloodDrain = DataManager.GetSpellData(11395);
-        public static readonly SpellData BombToss = DataManager.GetSpellData(11396);
-        public static readonly SpellData ThousandNeedles = DataManager.GetSpellData(11397);
-        public static readonly SpellData DrillCannons = DataManager.GetSpellData(11398);
-        public static readonly SpellData TheLook = DataManager.GetSpellData(11399);
-        public static readonly SpellData SharpKnife = DataManager.GetSpellData(11400);
-        public static readonly SpellData Loom = DataManager.GetSpellData(11401);
-        public static readonly SpellData FlameThrower = DataManager.GetSpellData(11402);
-        public static readonly SpellData Faze = DataManager.GetSpellData(11403);
-        public static readonly SpellData Glower = DataManager.GetSpellData(11404);
-        public static readonly SpellData Missile = DataManager.GetSpellData(11405);
-        public static readonly SpellData WhiteWind = DataManager.GetSpellData(11406);
-        public static readonly SpellData FinalSting = DataManager.GetSpellData(11407);
-        public static readonly SpellData SelfDestruct = DataManager.GetSpellData(11408);
-        public static readonly SpellData Transfusion = DataManager.GetSpellData(11409);
-        public static readonly SpellData ToadOil = DataManager.GetSpellData(11410);
-        public static readonly SpellData OffGuard = DataManager.GetSpellData(11411);
-        public static readonly SpellData StickyTong = DataManager.GetSpellData(11412);
-        public static readonly SpellData TailScrew = DataManager.GetSpellData(11413);
-        public static readonly SpellData LevelFivePetrify = DataManager.GetSpellData(11414);
-        public static readonly SpellData MoonFlute = DataManager.GetSpellData(11415);
-        public static readonly SpellData Doom = DataManager.GetSpellData(11416);
-        public static readonly SpellData MightyGuard = DataManager.GetSpellData(11417);
-        public static readonly SpellData IceSpikes = DataManager.GetSpellData(11418);
-        public static readonly SpellData TheRamVoice = DataManager.GetSpellData(11419);
-        public static readonly SpellData TheDragonVoice = DataManager.GetSpellData(11420);
-        public static readonly SpellData PeculiarLight = DataManager.GetSpellData(11421);
-        public static readonly SpellData InkJet = DataManager.GetSpellData(11422);
-        public static readonly SpellData FlyingSardine = DataManager.GetSpellData(11423);
-        public static readonly SpellData DiamondBack = DataManager.GetSpellData(11424);
-        public static readonly SpellData FireAngon = DataManager.GetSpellData(11425);
-        public static readonly SpellData FeatherRain = DataManager.GetSpellData(11426);
-        public static readonly SpellData Eruption = DataManager.GetSpellData(11427);
-        public static readonly SpellData BluMountainBuster = DataManager.GetSpellData(11428);
-        public static readonly SpellData ShockStrike = DataManager.GetSpellData(11429);
-        public static readonly SpellData GlassDance = DataManager.GetSpellData(11430);
-        public static readonly SpellData VeilOfTheWhorl = DataManager.GetSpellData(11431);
-        public static readonly SpellData AlpineDraft = DataManager.GetSpellData(18295);
-        public static readonly SpellData ProteanWave = DataManager.GetSpellData(18296);
-        public static readonly SpellData Northerlies = DataManager.GetSpellData(118297);
-        public static readonly SpellData Electrogenesis = DataManager.GetSpellData(18298);
-        public static readonly SpellData Kaltstrahl = DataManager.GetSpellData(18299);
-        public static readonly SpellData AbyssalTransfixion = DataManager.GetSpellData(18300);
-        public static readonly SpellData Chirp = DataManager.GetSpellData(18301);
-        public static readonly SpellData EerieSoundwave = DataManager.GetSpellData(18302);
-        public static readonly SpellData PomCure = DataManager.GetSpellData(18303);
-        public static readonly SpellData GobSkin = DataManager.GetSpellData(18304);
-        public static readonly SpellData MagicHammer = DataManager.GetSpellData(18305);
-        public static readonly SpellData Avail = DataManager.GetSpellData(18306);
-        public static readonly SpellData FrogLegs = DataManager.GetSpellData(18307);
-        public static readonly SpellData SonicBoom = DataManager.GetSpellData(18308);
-        public static readonly SpellData Whistle = DataManager.GetSpellData(18309);
-        public static readonly SpellData WhiteKnightsTour = DataManager.GetSpellData(18310);
-        public static readonly SpellData BlackKnightsTour = DataManager.GetSpellData(18311);
-        public static readonly SpellData LevelFiveDeath = DataManager.GetSpellData(18312);
-        public static readonly SpellData Launcher = DataManager.GetSpellData(18313);
-        public static readonly SpellData PerpetualRay = DataManager.GetSpellData(18314);
-        public static readonly SpellData Cactguard = DataManager.GetSpellData(18315);
-        public static readonly SpellData RevengeBlast = DataManager.GetSpellData(18316);
-        public static readonly SpellData AngelWhisper = DataManager.GetSpellData(18317);
-        public static readonly SpellData Exuviation = DataManager.GetSpellData(18318);
-        public static readonly SpellData Reflux = DataManager.GetSpellData(18319);
-        public static readonly SpellData Devour = DataManager.GetSpellData(18320);
-        public static readonly SpellData CondensedLibra = DataManager.GetSpellData(18321);
-        public static readonly SpellData AetherialMimicry = DataManager.GetSpellData(18322);
-        public static readonly SpellData Surpanakha = DataManager.GetSpellData(18323);
-        public static readonly SpellData Quasar = DataManager.GetSpellData(18324);
-        public static readonly SpellData JKick = DataManager.GetSpellData(18325);
-        public static readonly SpellData TripleTrident = DataManager.GetSpellData(23264);
-        public static readonly SpellData Tingle = DataManager.GetSpellData(23265);
-        public static readonly SpellData TatamiGaeshi = DataManager.GetSpellData(23266);
-        public static readonly SpellData ColdFog = DataManager.GetSpellData(23267);
-        public static readonly SpellData WhiteDeath = DataManager.GetSpellData(23268);
-        public static readonly SpellData SaintlyBeam = DataManager.GetSpellData(23270);
-        public static readonly SpellData FeculentFlood = DataManager.GetSpellData(23271);
-        public static readonly SpellData AngelsSnack = DataManager.GetSpellData(23272);
-        public static readonly SpellData ChelonianGate = DataManager.GetSpellData(23273);
-        public static readonly SpellData DivineCataract = DataManager.GetSpellData(23274);
-        public static readonly SpellData TheRoseOfDestruction = DataManager.GetSpellData(23275);
-        public static readonly SpellData BasicInstinct = DataManager.GetSpellData(23276);
-        public static readonly SpellData Ultravibration = DataManager.GetSpellData(23277);
-        public static readonly SpellData Blaze = DataManager.GetSpellData(23278);
-        public static readonly SpellData MustardBomb = DataManager.GetSpellData(23279);
-        public static readonly SpellData DragonForce = DataManager.GetSpellData(23280);
-        public static readonly SpellData AetherialSpark = DataManager.GetSpellData(23281);
-        public static readonly SpellData HydroPull = DataManager.GetSpellData(23282);
-        public static readonly SpellData MaledictionOfWater = DataManager.GetSpellData(23283);
-        public static readonly SpellData ChocoMeteor = DataManager.GetSpellData(23284);
-        public static readonly SpellData MatraMagic = DataManager.GetSpellData(23285);
-        public static readonly SpellData PeripheralSynthesis = DataManager.GetSpellData(23286);
-        public static readonly SpellData BothEnds = DataManager.GetSpellData(23287);
-        public static readonly SpellData PhantomFlurry = DataManager.GetSpellData(23288);
-        public static readonly SpellData PhantomFlurryEnd = DataManager.GetSpellData(23289);
-        public static readonly SpellData NightBloom = DataManager.GetSpellData(23290);
-        public static readonly SpellData Stotram = DataManager.GetSpellData(23416);
+        public static readonly SpellEntity Snort = new SpellEntity(11383);
+        public static readonly SpellEntity FourTonzWeight = new SpellEntity(11384);
+        public static readonly SpellEntity WaterCannon = new SpellEntity(11385);
+        public static readonly SpellEntity SongOfTorment = new SpellEntity(11386);
+        public static readonly SpellEntity HighVoltage = new SpellEntity(11387);
+        public static readonly SpellEntity BadBreath = new SpellEntity(11388);
+        public static readonly SpellEntity FlyingFrenzy = new SpellEntity(11389);
+        public static readonly SpellEntity AquaBreath = new SpellEntity(11390);
+        public static readonly SpellEntity Plaincracker = new SpellEntity(11391);
+        public static readonly SpellEntity AcornBomb = new SpellEntity(11392);
+        public static readonly SpellEntity Bristle = new SpellEntity(11393);
+        public static readonly SpellEntity MindBlast = new SpellEntity(11394);
+        public static readonly SpellEntity BloodDrain = new SpellEntity(11395);
+        public static readonly SpellEntity BombToss = new SpellEntity(11396);
+        public static readonly SpellEntity ThousandNeedles = new SpellEntity(11397);
+        public static readonly SpellEntity DrillCannons = new SpellEntity(11398);
+        public static readonly SpellEntity TheLook = new SpellEntity(11399);
+        public static readonly SpellEntity SharpKnife = new SpellEntity(11400);
+        public static readonly SpellEntity Loom = new SpellEntity(11401);
+        public static readonly SpellEntity FlameThrower = new SpellEntity(11402);
+        public static readonly SpellEntity Faze = new SpellEntity(11403);
+        public static readonly SpellEntity Glower = new SpellEntity(11404);
+        public static readonly SpellEntity Missile = new SpellEntity(11405);
+        public static readonly SpellEntity WhiteWind = new SpellEntity(11406);
+        public static readonly SpellEntity FinalSting = new SpellEntity(11407);
+        public static readonly SpellEntity SelfDestruct = new SpellEntity(11408);
+        public static readonly SpellEntity Transfusion = new SpellEntity(11409);
+        public static readonly SpellEntity ToadOil = new SpellEntity(11410);
+        public static readonly SpellEntity OffGuard = new SpellEntity(11411);
+        public static readonly SpellEntity StickyTong = new SpellEntity(11412);
+        public static readonly SpellEntity TailScrew = new SpellEntity(11413);
+        public static readonly SpellEntity LevelFivePetrify = new SpellEntity(11414);
+        public static readonly SpellEntity MoonFlute = new SpellEntity(11415);
+        public static readonly SpellEntity Doom = new SpellEntity(11416);
+        public static readonly SpellEntity MightyGuard = new SpellEntity(11417);
+        public static readonly SpellEntity IceSpikes = new SpellEntity(11418);
+        public static readonly SpellEntity TheRamVoice = new SpellEntity(11419);
+        public static readonly SpellEntity TheDragonVoice = new SpellEntity(11420);
+        public static readonly SpellEntity PeculiarLight = new SpellEntity(11421);
+        public static readonly SpellEntity InkJet = new SpellEntity(11422);
+        public static readonly SpellEntity FlyingSardine = new SpellEntity(11423);
+        public static readonly SpellEntity DiamondBack = new SpellEntity(11424);
+        public static readonly SpellEntity FireAngon = new SpellEntity(11425);
+        public static readonly SpellEntity FeatherRain = new SpellEntity(11426);
+        public static readonly SpellEntity Eruption = new SpellEntity(11427);
+        public static readonly SpellEntity BluMountainBuster = new SpellEntity(11428);
+        public static readonly SpellEntity ShockStrike = new SpellEntity(11429);
+        public static readonly SpellEntity GlassDance = new SpellEntity(11430);
+        public static readonly SpellEntity VeilOfTheWhorl = new SpellEntity(11431);
+        public static readonly SpellEntity AlpineDraft = new SpellEntity(18295);
+        public static readonly SpellEntity ProteanWave = new SpellEntity(18296);
+        public static readonly SpellEntity Northerlies = new SpellEntity(118297);
+        public static readonly SpellEntity Electrogenesis = new SpellEntity(18298);
+        public static readonly SpellEntity Kaltstrahl = new SpellEntity(18299);
+        public static readonly SpellEntity AbyssalTransfixion = new SpellEntity(18300);
+        public static readonly SpellEntity Chirp = new SpellEntity(18301);
+        public static readonly SpellEntity EerieSoundwave = new SpellEntity(18302);
+        public static readonly SpellEntity PomCure = new SpellEntity(18303);
+        public static readonly SpellEntity GobSkin = new SpellEntity(18304);
+        public static readonly SpellEntity MagicHammer = new SpellEntity(18305);
+        public static readonly SpellEntity Avail = new SpellEntity(18306);
+        public static readonly SpellEntity FrogLegs = new SpellEntity(18307);
+        public static readonly SpellEntity SonicBoom = new SpellEntity(18308);
+        public static readonly SpellEntity Whistle = new SpellEntity(18309);
+        public static readonly SpellEntity WhiteKnightsTour = new SpellEntity(18310);
+        public static readonly SpellEntity BlackKnightsTour = new SpellEntity(18311);
+        public static readonly SpellEntity LevelFiveDeath = new SpellEntity(18312);
+        public static readonly SpellEntity Launcher = new SpellEntity(18313);
+        public static readonly SpellEntity PerpetualRay = new SpellEntity(18314);
+        public static readonly SpellEntity Cactguard = new SpellEntity(18315);
+        public static readonly SpellEntity RevengeBlast = new SpellEntity(18316);
+        public static readonly SpellEntity AngelWhisper = new SpellEntity(18317);
+        public static readonly SpellEntity Exuviation = new SpellEntity(18318);
+        public static readonly SpellEntity Reflux = new SpellEntity(18319);
+        public static readonly SpellEntity Devour = new SpellEntity(18320);
+        public static readonly SpellEntity CondensedLibra = new SpellEntity(18321);
+        public static readonly SpellEntity AetherialMimicry = new SpellEntity(18322);
+        public static readonly SpellEntity Surpanakha = new SpellEntity(18323);
+        public static readonly SpellEntity Quasar = new SpellEntity(18324);
+        public static readonly SpellEntity JKick = new SpellEntity(18325);
+        public static readonly SpellEntity TripleTrident = new SpellEntity(23264);
+        public static readonly SpellEntity Tingle = new SpellEntity(23265);
+        public static readonly SpellEntity TatamiGaeshi = new SpellEntity(23266);
+        public static readonly SpellEntity ColdFog = new SpellEntity(23267);
+        public static readonly SpellEntity WhiteDeath = new SpellEntity(23268);
+        public static readonly SpellEntity SaintlyBeam = new SpellEntity(23270);
+        public static readonly SpellEntity FeculentFlood = new SpellEntity(23271);
+        public static readonly SpellEntity AngelsSnack = new SpellEntity(23272);
+        public static readonly SpellEntity ChelonianGate = new SpellEntity(23273);
+        public static readonly SpellEntity DivineCataract = new SpellEntity(23274);
+        public static readonly SpellEntity TheRoseOfDestruction = new SpellEntity(23275);
+        public static readonly SpellEntity BasicInstinct = new SpellEntity(23276);
+        public static readonly SpellEntity Ultravibration = new SpellEntity(23277);
+        public static readonly SpellEntity Blaze = new SpellEntity(23278);
+        public static readonly SpellEntity MustardBomb = new SpellEntity(23279);
+        public static readonly SpellEntity DragonForce = new SpellEntity(23280);
+        public static readonly SpellEntity AetherialSpark = new SpellEntity(23281);
+        public static readonly SpellEntity HydroPull = new SpellEntity(23282);
+        public static readonly SpellEntity MaledictionOfWater = new SpellEntity(23283);
+        public static readonly SpellEntity ChocoMeteor = new SpellEntity(23284);
+        public static readonly SpellEntity MatraMagic = new SpellEntity(23285);
+        public static readonly SpellEntity PeripheralSynthesis = new SpellEntity(23286);
+        public static readonly SpellEntity BothEnds = new SpellEntity(23287);
+        public static readonly SpellEntity PhantomFlurry = new SpellEntity(23288);
+        public static readonly SpellEntity PhantomFlurryEnd = new SpellEntity(23289);
+        public static readonly SpellEntity NightBloom = new SpellEntity(23290);
+        public static readonly SpellEntity Stotram = new SpellEntity(23416);
 
         #endregion
 
@@ -951,42 +949,42 @@ namespace AEAssist.Define
 
         #region RPR
 
-        public static readonly SpellData Slice = DataManager.GetSpellData(24373); // [24373, Slice]
-        public static readonly SpellData WaxingSlice = DataManager.GetSpellData(24374); // [24374, Waxing Slice]
-        public static readonly SpellData InfernalSlice = DataManager.GetSpellData(24375); // [24375, Infernal Slice]
-        public static readonly SpellData SpinningScythe = DataManager.GetSpellData(24376); // [24376, Spinning Scythe]
-        public static readonly SpellData NightmareScythe = DataManager.GetSpellData(24377); // [24377, Nightmare Scythe]
-        public static readonly SpellData ShadowOfDeath = DataManager.GetSpellData(24378); // [24378, Shadow of Death]
-        public static readonly SpellData WhorlOfDeath = DataManager.GetSpellData(24379); // [24379, Whorl of Death]
-        public static readonly SpellData SoulSlice = DataManager.GetSpellData(24380); // [24380, Soul Slice]
-        public static readonly SpellData SoulScythe = DataManager.GetSpellData(24381); // [24380, Soul Slice]
-        public static readonly SpellData Gibbet = DataManager.GetSpellData(24382); // [24382, Gibbet]
-        public static readonly SpellData Gallows = DataManager.GetSpellData(24383); // [24383, Gallows]
-        public static readonly SpellData Guillotine = DataManager.GetSpellData(24384); // [24384, Guillotine]
+        public static readonly SpellEntity Slice = new SpellEntity(24373); // [24373, Slice]
+        public static readonly SpellEntity WaxingSlice = new SpellEntity(24374); // [24374, Waxing Slice]
+        public static readonly SpellEntity InfernalSlice = new SpellEntity(24375); // [24375, Infernal Slice]
+        public static readonly SpellEntity SpinningScythe = new SpellEntity(24376); // [24376, Spinning Scythe]
+        public static readonly SpellEntity NightmareScythe = new SpellEntity(24377); // [24377, Nightmare Scythe]
+        public static readonly SpellEntity ShadowOfDeath = new SpellEntity(24378); // [24378, Shadow of Death]
+        public static readonly SpellEntity WhorlOfDeath = new SpellEntity(24379); // [24379, Whorl of Death]
+        public static readonly SpellEntity SoulSlice = new SpellEntity(24380); // [24380, Soul Slice]
+        public static readonly SpellEntity SoulScythe = new SpellEntity(24381); // [24380, Soul Slice]
+        public static readonly SpellEntity Gibbet = new SpellEntity(24382); // [24382, Gibbet]
+        public static readonly SpellEntity Gallows = new SpellEntity(24383); // [24383, Gallows]
+        public static readonly SpellEntity Guillotine = new SpellEntity(24384); // [24384, Guillotine]
 
-        public static readonly SpellData
-            PlentifulHarvest = DataManager.GetSpellData(24385); // [24385, Plentiful Harvest]
+        public static readonly SpellEntity
+            PlentifulHarvest = new SpellEntity(24385); // [24385, Plentiful Harvest]
 
-        public static readonly SpellData Harpe = DataManager.GetSpellData(24386); // [24386, Harpe]
-        public static readonly SpellData Soulsow = DataManager.GetSpellData(24387); // [24387, Soulsow]
-        public static readonly SpellData HarvestMoon = DataManager.GetSpellData(24388); // [24388, Harvest Moon]
-        public static readonly SpellData BloodStalk = DataManager.GetSpellData(24389); // [24389, Blood Stalk]
-        public static readonly SpellData UnveiledGibbet = DataManager.GetSpellData(24390); // [24390, UnveiledGibbet]
-        public static readonly SpellData UnveiledGallows = DataManager.GetSpellData(24391); // [24391, Unveiled Gallows]
-        public static readonly SpellData GrimSwathe = DataManager.GetSpellData(24392); // [24392, Grim Swathe]
-        public static readonly SpellData Gluttony = DataManager.GetSpellData(24393); // [24393, Gluttony]
-        public static readonly SpellData Enshroud = DataManager.GetSpellData(24394); // [24394, Enshroud]
-        public static readonly SpellData VoidReaping = DataManager.GetSpellData(24395); // [24395, Void Reaping]
-        public static readonly SpellData CrossReaping = DataManager.GetSpellData(24396); // [24396, Cross Reaping]
-        public static readonly SpellData GrimReaping = DataManager.GetSpellData(24397); // [24397, Grim Reaping]
-        public static readonly SpellData Communio = DataManager.GetSpellData(24398); // [24398, Communio]
-        public static readonly SpellData LemuresSlice = DataManager.GetSpellData(24399); // [24399, Lemure's Slice]
-        public static readonly SpellData LemuresScythe = DataManager.GetSpellData(24400); // [24400, Lemure's Scythe]
-        public static readonly SpellData HellsIngress = DataManager.GetSpellData(24401); // [24401, Hell's Ingress]
-        public static readonly SpellData HellsEgress = DataManager.GetSpellData(24402); // [24402, Hell's Egress]
-        public static readonly SpellData Regress = DataManager.GetSpellData(24403); // [24403, Regress]
-        public static readonly SpellData ArcaneCrest = DataManager.GetSpellData(24404); // [24404, Arcane Crest]
-        public static readonly SpellData ArcaneCircle = DataManager.GetSpellData(24405); // [24405, Arcane Circle]
+        public static readonly SpellEntity Harpe = new SpellEntity(24386); // [24386, Harpe]
+        public static readonly SpellEntity Soulsow = new SpellEntity(24387); // [24387, Soulsow]
+        public static readonly SpellEntity HarvestMoon = new SpellEntity(24388); // [24388, Harvest Moon]
+        public static readonly SpellEntity BloodStalk = new SpellEntity(24389); // [24389, Blood Stalk]
+        public static readonly SpellEntity UnveiledGibbet = new SpellEntity(24390); // [24390, UnveiledGibbet]
+        public static readonly SpellEntity UnveiledGallows = new SpellEntity(24391); // [24391, Unveiled Gallows]
+        public static readonly SpellEntity GrimSwathe = new SpellEntity(24392); // [24392, Grim Swathe]
+        public static readonly SpellEntity Gluttony = new SpellEntity(24393); // [24393, Gluttony]
+        public static readonly SpellEntity Enshroud = new SpellEntity(24394,SpellTargetType.Self); // [24394, Enshroud]
+        public static readonly SpellEntity VoidReaping = new SpellEntity(24395); // [24395, Void Reaping]
+        public static readonly SpellEntity CrossReaping = new SpellEntity(24396); // [24396, Cross Reaping]
+        public static readonly SpellEntity GrimReaping = new SpellEntity(24397); // [24397, Grim Reaping]
+        public static readonly SpellEntity Communio = new SpellEntity(24398); // [24398, Communio]
+        public static readonly SpellEntity LemuresSlice = new SpellEntity(24399); // [24399, Lemure's Slice]
+        public static readonly SpellEntity LemuresScythe = new SpellEntity(24400); // [24400, Lemure's Scythe]
+        public static readonly SpellEntity HellsIngress = new SpellEntity(24401); // [24401, Hell's Ingress]
+        public static readonly SpellEntity HellsEgress = new SpellEntity(24402); // [24402, Hell's Egress]
+        public static readonly SpellEntity Regress = new SpellEntity(24403); // [24403, Regress]
+        public static readonly SpellEntity ArcaneCrest = new SpellEntity(24404,SpellTargetType.Self); // [24404, Arcane Crest]
+        public static readonly SpellEntity ArcaneCircle = new SpellEntity(24405,SpellTargetType.Self); // [24405, Arcane Circle]
 
         #endregion
 
@@ -994,64 +992,52 @@ namespace AEAssist.Define
 
         #region PVP
 
-        public static readonly SpellData Concentrate = DataManager.GetSpellData(1582);
-        public static readonly SpellData Muse = DataManager.GetSpellData(1583);
-        public static readonly SpellData Safeguard = DataManager.GetSpellData(1585);
-        public static readonly SpellData Enliven = DataManager.GetSpellData(1580);
-        public static readonly SpellData Recuperate = DataManager.GetSpellData(1590);
-        public static readonly SpellData Testudo = DataManager.GetSpellData(1558);
-        public static readonly SpellData GlorySlash = DataManager.GetSpellData(1559);
-        public static readonly SpellData FullSwing = DataManager.GetSpellData(1562);
-        public static readonly SpellData PushBack = DataManager.GetSpellData(1597);
-        public static readonly SpellData EmpyreanRain = DataManager.GetSpellData(3362);
+        public static readonly SpellEntity Concentrate = new SpellEntity(1582);
+        public static readonly SpellEntity Muse = new SpellEntity(1583);
+        public static readonly SpellEntity Safeguard = new SpellEntity(1585);
+        public static readonly SpellEntity Enliven = new SpellEntity(1580);
+        public static readonly SpellEntity Recuperate = new SpellEntity(1590);
+        public static readonly SpellEntity Testudo = new SpellEntity(1558);
+        public static readonly SpellEntity GlorySlash = new SpellEntity(1559);
+        public static readonly SpellEntity FullSwing = new SpellEntity(1562);
+        public static readonly SpellEntity PushBack = new SpellEntity(1597);
+        public static readonly SpellEntity EmpyreanRain = new SpellEntity(3362);
 
-        public static readonly SpellData PvpMalefic3 = DataManager.GetSpellData(8912);
-        public static readonly SpellData PvpEssentialDignity = DataManager.GetSpellData(8916);
-        public static readonly SpellData PvpLightspeed = DataManager.GetSpellData(8917);
-        public static readonly SpellData PvpSynastry = DataManager.GetSpellData(8918);
-        public static readonly SpellData PvpBenefic = DataManager.GetSpellData(8913);
-        public static readonly SpellData PvpBenefic2 = DataManager.GetSpellData(8914);
-        public static readonly SpellData Deorbit = DataManager.GetSpellData(9466);
-        public static readonly SpellData PvpDisable = DataManager.GetSpellData(9623);
-        public static readonly SpellData PvpDraw = DataManager.GetSpellData(10026);
-        public static readonly SpellData PvpPlayDrawn = DataManager.GetSpellData(10026);
+        public static readonly SpellEntity PvpMalefic3 = new SpellEntity(8912);
+        public static readonly SpellEntity PvpEssentialDignity = new SpellEntity(8916);
+        public static readonly SpellEntity PvpLightspeed = new SpellEntity(8917);
+        public static readonly SpellEntity PvpSynastry = new SpellEntity(8918);
+        public static readonly SpellEntity PvpBenefic = new SpellEntity(8913);
+        public static readonly SpellEntity PvpBenefic2 = new SpellEntity(8914);
+        public static readonly SpellEntity Deorbit = new SpellEntity(9466);
+        public static readonly SpellEntity PvpDisable = new SpellEntity(9623);
+        public static readonly SpellEntity PvpDraw = new SpellEntity(10026);
+        public static readonly SpellEntity PvpPlayDrawn = new SpellEntity(10026);
 
-        public static readonly SpellData StraightShotPvp = DataManager.GetSpellData(8835);
-        public static readonly SpellData EmpyrealArrowPvp = DataManager.GetSpellData(8838);
-        public static readonly SpellData RepellingShotPvp = DataManager.GetSpellData(8839);
-        public static readonly SpellData BloodletterPvp = DataManager.GetSpellData(9624);
-        public static readonly SpellData SidewinderPvp = DataManager.GetSpellData(8841);
-        public static readonly SpellData BarragePvp = DataManager.GetSpellData(9625);
-        public static readonly SpellData PitchPerfectPvp = DataManager.GetSpellData(8842);
-        public static readonly SpellData TheWanderersMinuetPvp = DataManager.GetSpellData(8843);
-        public static readonly SpellData ArmysPaeonPvp = DataManager.GetSpellData(8844);
-        public static readonly SpellData TroubadourPvp = DataManager.GetSpellData(10023);
+        public static readonly SpellEntity StraightShotPvp = new SpellEntity(8835);
+        public static readonly SpellEntity EmpyrealArrowPvp = new SpellEntity(8838);
+        public static readonly SpellEntity RepellingShotPvp = new SpellEntity(8839);
+        public static readonly SpellEntity BloodletterPvp = new SpellEntity(9624);
+        public static readonly SpellEntity SidewinderPvp = new SpellEntity(8841);
+        public static readonly SpellEntity BarragePvp = new SpellEntity(9625);
+        public static readonly SpellEntity PitchPerfectPvp = new SpellEntity(8842);
+        public static readonly SpellEntity TheWanderersMinuetPvp = new SpellEntity(8843);
+        public static readonly SpellEntity ArmysPaeonPvp = new SpellEntity(8844);
+        public static readonly SpellEntity TroubadourPvp = new SpellEntity(10023);
 
-        public static readonly SpellData PVPMCH123 = DataManager.GetSpellData(17749);
+        public static readonly SpellEntity PVPMCH123 = new SpellEntity(17749);
 
         //WHM
-        public static readonly SpellData Purify = DataManager.GetSpellData(1584);
-        public static readonly SpellData Stone3Pvp = DataManager.GetSpellData(8894);
-        public static readonly SpellData CurePvp = DataManager.GetSpellData(8895);
-        public static readonly SpellData Cure2Pvp = DataManager.GetSpellData(8896);
-        public static readonly SpellData RegenPvp = DataManager.GetSpellData(8898);
-        public static readonly SpellData DivineBenisonPvp = DataManager.GetSpellData(9621);
-        public static readonly SpellData AssizePvp = DataManager.GetSpellData(9620);
-        public static readonly SpellData FluidAuraPvp = DataManager.GetSpellData(8900);
+        public static readonly SpellEntity Purify = new SpellEntity(1584);
+        public static readonly SpellEntity Stone3Pvp = new SpellEntity(8894);
+        public static readonly SpellEntity CurePvp = new SpellEntity(8895);
+        public static readonly SpellEntity Cure2Pvp = new SpellEntity(8896);
+        public static readonly SpellEntity RegenPvp = new SpellEntity(8898);
+        public static readonly SpellEntity DivineBenisonPvp = new SpellEntity(9621);
+        public static readonly SpellEntity AssizePvp = new SpellEntity(9620);
+        public static readonly SpellEntity FluidAuraPvp = new SpellEntity(8900);
 
         #endregion
-
-
-
-
-        public static HashSet<uint> OffGCD_NoCharge = new HashSet<uint>()
-        {
-            AirAnchor.Id,
-            Drill.Id,
-            Bioblaster.Id,
-            HotShot.Id,
-            ChainSaw.Id,
-        };
-
+        
     }
 }

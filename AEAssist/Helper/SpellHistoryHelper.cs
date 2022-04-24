@@ -1,4 +1,5 @@
 ﻿using AEAssist.AI;
+using AEAssist.Define;
 using ff14bot.Objects;
 
 namespace AEAssist.Helper
@@ -30,5 +31,6 @@ namespace AEAssist.Helper
                 return true;
             return false;
         }
+        
     }
 }

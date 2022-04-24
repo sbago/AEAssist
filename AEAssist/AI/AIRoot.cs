@@ -156,18 +156,18 @@ namespace AEAssist.AI
 
             if (canUseGCD)
             {
-                SpellData ret = null;
-                if (battleData.NextGcdSpellId != 0)
+                SpellEntity ret = null;
+                if (battleData.NextGcdSpellId != null)
                 {
-                    ret = DataManager.GetSpellData(battleData.NextGcdSpellId);
-                    if (ret != null && ret.IsUnlock())
+                    ret = battleData.NextGcdSpellId;
+                    if (ret.SpellData != null && ret.IsUnlock())
                     {
-                        if (SpellHelper.CanCastGCD(ret, Core.Me.CurrentTarget))
+                        if (ret.CanCastGCD())
                         {
-                            if (!await SpellHelper.CastGCD(ret, Core.Me.CurrentTarget))
+                            if (!await ret.DoGCD())
                                 ret = null;
                             else
-                                battleData.NextGcdSpellId = 0;
+                                battleData.NextGcdSpellId = null;
                         }
                         else
                         {
@@ -177,13 +177,13 @@ namespace AEAssist.AI
                     else
                     {
                         ret = null;
-                        battleData.NextGcdSpellId = 0;
+                        battleData.NextGcdSpellId = null;
                     }
                     
                     if (ret == null && battleData.GCDRetryEndTime < TimeHelper.Now())
                     {
                         LogHelper.Debug($"RetryEndTime : NextGCD {battleData.NextGcdSpellId}");
-                        battleData.NextGcdSpellId = 0;
+                        battleData.NextGcdSpellId = null;
                     }
                 }
 
@@ -197,12 +197,12 @@ namespace AEAssist.AI
 
             if (canUseAbility)
             {
-                SpellData ret = null;
+                SpellEntity ret = null;
 
                 if (battleData.maxAbilityTimes == SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD &&
                     battleData.NextAbilityUsePotion)
                 {
-                    battleData.NextAbilitySpellId = 0;
+                    battleData.NextAbilitySpellId = null;
                     var msg = "===>Try using Potion";
                     LogHelper.Info(msg);
                     var boolRet = await AIMgrs.Instance.UsePotion(Core.Me.CurrentJob);
@@ -213,17 +213,19 @@ namespace AEAssist.AI
                         return false;
                     }
                 }
-                else if (battleData.NextAbilitySpellId != 0)
+                else if (battleData.NextAbilitySpellId != null)
                 {
-                    ret = DataManager.GetSpellData(battleData.NextAbilitySpellId);
-                    if (ret != null && ret.IsUnlock())
+                    ret =battleData.NextAbilitySpellId;
+                    if (ret.SpellData != null && ret.IsUnlock())
                     {
-                        if (ActionManager.CanCast(ret, Core.Me.CurrentTarget))
+                        var target = Core.Me.CurrentTarget;
+                        
+                        if (ActionManager.CanCast(ret.SpellData, Core.Me.CurrentTarget))
                         {
-                            if (!await SpellHelper.CastAbility(ret, Core.Me.CurrentTarget))
+                            if (!await ret.DoAbility())
                                 ret = null;
                             else
-                                battleData.NextAbilitySpellId = 0;
+                                battleData.NextAbilitySpellId = null;
                         }
                         else
                         {
@@ -233,13 +235,13 @@ namespace AEAssist.AI
                     else
                     {
                         ret = null;
-                        battleData.NextAbilitySpellId = 0;
+                        battleData.NextAbilitySpellId = null;
                     }
 
                     if (ret == null && battleData.AbilityRetryEndTime < TimeHelper.Now())
                     {
                         LogHelper.Debug($"RetryEndTime : NextAbility {battleData.NextAbilitySpellId}");
-                        battleData.NextAbilitySpellId = 0;
+                        battleData.NextAbilitySpellId = null;
                     }
                 }
 
@@ -255,18 +257,18 @@ namespace AEAssist.AI
             return false;
         }
 
-        public void RecordGCD(SpellData ret)
+        public void RecordGCD(SpellEntity ret)
         {
             var battleData = GetBattleData<BattleData>();
             var timeNow = TimeHelper.Now();
-            var msg = $"{battleData.CurrBattleTime/1000} Cast GCD: {ret.Id} " + ret.LocalizedName;
+            var msg = $"{battleData.CurrBattleTime/1000} Cast GCD: {ret.Id} " + ret.SpellData.LocalizedName;
             LogHelper.Info(msg);
             GUIHelper.ShowInfo(msg, 100,false);
             var history = new SpellHistory
             {
                 SpellId = ret.Id,
                 CastTime = timeNow,
-                Name = ret.LocalizedName
+                Name = ret.SpellData.LocalizedName
             };
             SpellHistoryMgr.Instance.AddGCDHistory(history);
                     
@@ -280,18 +282,18 @@ namespace AEAssist.AI
             battleData.lastAbilitySpell = null;
         }
 
-        public void RecordAbility(SpellData ret)
+        public void RecordAbility(SpellEntity ret)
         {
             var battleData = GetBattleData<BattleData>();
             var timeNow = TimeHelper.Now();
-            var msg = $"{battleData.CurrBattleTime/1000} Cast Ability: {ret.Id} " + ret.LocalizedName;
+            var msg = $"{battleData.CurrBattleTime/1000} Cast Ability: {ret.Id} " + ret.SpellData.LocalizedName;
             LogHelper.Info(msg);
             GUIHelper.ShowInfo(msg, 100,false);
             var history = new SpellHistory
             {
                 SpellId = ret.Id,
                 CastTime = timeNow,
-                Name = ret.LocalizedName,
+                Name = ret.SpellData.LocalizedName,
                 GCDIndex = battleData.lastGCDIndex
             };
             SpellHistoryMgr.Instance.AddAbilityHistory(history);

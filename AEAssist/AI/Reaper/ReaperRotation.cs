@@ -22,7 +22,7 @@ namespace AEAssist
             CountDownHandler.Instance.AddListener(1500, () =>
             {
                 if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
-                    return SpellHelper.CastGCD(SpellsDefine.Harpe, Core.Me.CurrentTarget);
+                    return SpellsDefine.Harpe.DoGCD();
                 return Task.FromResult(false);
             });
             DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<ReaperSettings>().EarlyDecisionMode;
@@ -34,7 +34,7 @@ namespace AEAssist
         {
             if (Core.Me.HasAura(AurasDefine.Soulsow))
                 return true;
-            if (await SpellHelper.CastGCD(SpellsDefine.Soulsow, Core.Me))
+            if (await SpellsDefine.Soulsow.DoGCD())
             {
                 GUIHelper.ShowInfo(Language.Instance.Content_Reaper_PreCombat2,500,false);
                 randomTime = 0;
@@ -43,7 +43,7 @@ namespace AEAssist
             return false;
         }
 
-        public SpellData GetBaseGCDSpell()
+        public SpellEntity GetBaseGCDSpell()
         {
             return SpellsDefine.Slice;
         }

@@ -9,7 +9,7 @@ namespace AEAssist.AI
 {
     public class BardAbility_Bloodletter : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (lastSpell == SpellsDefine.Bloodletter)
                 return -1;
@@ -40,18 +40,17 @@ namespace AEAssist.AI
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
-            SpellData spellData = null;
+            SpellEntity SpellEntity = SpellsDefine.Bloodletter;
             if (SpellsDefine.RainofDeath.IsReady() &&
                 TargetHelper.CheckNeedUseAOE(25, 8, ConstValue.BardAOECount))
             {
-                spellData = SpellsDefine.RainofDeath;
-                if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget)) return spellData;
+                SpellEntity = SpellsDefine.RainofDeath;
+
             }
 
-            spellData = SpellsDefine.Bloodletter;
-            if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget)) return spellData;
+            if (await SpellEntity.DoAbility()) return SpellEntity;
 
             return null;
         }

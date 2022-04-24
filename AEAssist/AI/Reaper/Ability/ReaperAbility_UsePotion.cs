@@ -9,7 +9,7 @@ namespace AEAssist.AI.Reaper
 {
     public class ReaperAbility_UsePotion : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SettingMgr.GetSetting<GeneralSettings>().UsePotion)
                 return -1;
@@ -37,7 +37,7 @@ namespace AEAssist.AI.Reaper
             return -6;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().StrPotionId);
             if (ret) AIRoot.Instance.MuteAbilityTime();

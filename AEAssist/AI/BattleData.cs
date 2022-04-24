@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AEAssist.Define;
 using AEAssist.Gamelog;
 using AEAssist.Helper;
 using AEAssist.TriggerSystem;
@@ -13,12 +14,12 @@ namespace AEAssist.AI
     public class BattleData : IBattleData
     {
         #region BaseSpellControl
-        public SpellData lastAbilitySpell;
+        public SpellEntity lastAbilitySpell;
 
         public long lastCastTime;
 
         public int lastGCDIndex;
-        public SpellData lastGCDSpell;
+        public SpellEntity lastGCDSpell;
         public int maxAbilityTimes;
         public bool LimitAbility;
 
@@ -41,14 +42,14 @@ namespace AEAssist.AI
 
         #region NextSpell
 
-        private uint _NextAbilitySpellId;
-        public uint NextAbilitySpellId
+        private SpellEntity _NextAbilitySpellId;
+        public SpellEntity NextAbilitySpellId
         {
             get => _NextAbilitySpellId;
             set
             {
                 _NextAbilitySpellId = value;
-                if (_NextAbilitySpellId != 0)
+                if (_NextAbilitySpellId != null)
                 {
                     AbilityRetryEndTime = TimeHelper.Now() + 6000;
                 }
@@ -58,14 +59,14 @@ namespace AEAssist.AI
         }
         public bool NextAbilityUsePotion;
 
-        private uint _NextGcdSpellId;
-        public uint NextGcdSpellId
+        private SpellEntity _NextGcdSpellId;
+        public SpellEntity NextGcdSpellId
         {
             get => _NextGcdSpellId;
             set
             {
                 _NextGcdSpellId = value;
-                if (_NextGcdSpellId != 0)
+                if (_NextGcdSpellId != null)
                 {
                     GCDRetryEndTime = TimeHelper.Now() + 6000;
                 }
@@ -121,7 +122,7 @@ namespace AEAssist.AI
             // {
             //     if (v.SpellCastInfo == null || !v.IsCasting)
             //         continue;
-            //     LogHelper.Info($"Character {v.Name} Casting===>{v.SpellCastInfo.SpellData.LocalizedName}");
+            //     LogHelper.Info($"Character {v.Name} Casting===>{v.SpellCastInfo.SpellEntity.LocalizedName}");
             // }
 
             // foreach (var v in Core.Me.CharacterAuras.AuraList)

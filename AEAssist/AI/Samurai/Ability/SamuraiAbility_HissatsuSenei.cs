@@ -9,7 +9,7 @@ namespace AEAssist.AI
 {
     public class SamuraiAbility_HissatsuSenei : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (ActionResourceManager.Samurai.Kenki >=25 && 
                 SpellsDefine.HissatsuSenei.Cooldown.TotalSeconds == 0 &&
@@ -18,10 +18,10 @@ namespace AEAssist.AI
             return -1;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = SpellsDefine.HissatsuSenei;
-            if (await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget))
+            if (await spell.DoAbility())
                 return spell;
             return null;
         }

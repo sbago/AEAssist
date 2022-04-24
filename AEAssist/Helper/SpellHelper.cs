@@ -98,6 +98,12 @@ namespace AEAssist.Helper
             
             return true;
         }
+        
+        public static bool IsUnlock(this SpellEntity spellEntity)
+        {
+            var spellData = spellEntity.SpellData;
+            return spellData.IsUnlock();
+        }
 
         public static bool IsReady(this SpellData spellData)
         {
@@ -130,17 +136,14 @@ namespace AEAssist.Helper
                 if (spellData.Cooldown.TotalMilliseconds > 0)
                     return false;
             }
-
-            if (SpellsDefine.OffGCD_NoCharge.Contains(spellData.Id))
-            {
-                var time = 0;
-                if (DataBinding.Instance.EarlyDecisionMode)
-                    time = SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs;
-                if (spellData.Cooldown.TotalMilliseconds > time)
-                    return false;
-            }
-
+            
             return true;
+        }
+        
+        public static bool IsReady(this SpellEntity spellEntity)
+        {
+            var spellData = spellEntity.SpellData;
+            return spellData.IsReady();
         }
 
 
@@ -153,6 +156,12 @@ namespace AEAssist.Helper
                 return false;
             return true;
         }
+        
+        public static bool IsMaxChargeReady(this SpellEntity spellEntity)
+        {
+            var spellData = spellEntity.SpellData;
+            return spellData.IsMaxChargeReady();
+        }
 
         public static bool CoolDownInGCDs(this SpellData spellData,int count)
         {
@@ -163,6 +172,12 @@ namespace AEAssist.Helper
             }
 
             return false;
+        }
+        
+        public static bool CoolDownInGCDs(this SpellEntity spellEntity,int count)
+        {
+            var SpellData = spellEntity.SpellData;
+            return SpellData.CoolDownInGCDs(count);
         }
     }
 }

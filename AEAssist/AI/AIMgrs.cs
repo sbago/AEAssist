@@ -37,7 +37,7 @@ namespace AEAssist.AI
             }
         }
 
-        public async Task<SpellData> HandleGCD(ClassJobType classJobType, SpellData lastGCD)
+        public async Task<SpellEntity> HandleGCD(ClassJobType classJobType, SpellEntity lastGCD)
         {
             if (!JobPriorityQueue.TryGetValue(classJobType, out var queue)) return null;
 
@@ -53,7 +53,7 @@ namespace AEAssist.AI
             return null;
         }
 
-        public async Task<SpellData> HandleAbility(ClassJobType classJobType, SpellData lastAbility)
+        public async Task<SpellEntity> HandleAbility(ClassJobType classJobType, SpellEntity lastAbility)
         {
             if (!JobPriorityQueue.TryGetValue(classJobType, out var queue)) return null;
 

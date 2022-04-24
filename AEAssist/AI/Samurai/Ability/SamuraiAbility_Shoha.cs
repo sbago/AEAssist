@@ -9,7 +9,7 @@ namespace AEAssist.AI
 {
     public class SamuraiAbility_Shoha : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (ActionResourceManager.Samurai.Meditation == 3)
                 return 0;
@@ -17,10 +17,10 @@ namespace AEAssist.AI
             return -1;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = SpellsDefine.Shoha;
-            if (await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget))
+            if (await spell.DoAbility())
                 return spell;
             return null;
         }

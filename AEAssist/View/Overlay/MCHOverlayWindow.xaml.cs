@@ -24,17 +24,17 @@ namespace AEAssist.View
 
         private void UseTactician_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Tactician.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Tactician;
         }
 
         private void UseArmsLength_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength;
         }
 
         private void UseSprint_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Sprint.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Sprint;
             AIRoot.GetBattleData<BattleData>().NextAbilityUsePotion = false;
         }
 
@@ -51,23 +51,23 @@ namespace AEAssist.View
         private void UseBattery_OnClick(object sender, RoutedEventArgs e)
         {
             var spellId = MCHSpellHelper.GetAutomatonQueen();
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = spellId.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = spellId;
         }
 
         private void UseQueueOverdrive_OnClick(object sender, RoutedEventArgs e)
         {
             var spellId = MCHSpellHelper.GetQueenOverdrive();
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = spellId.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = spellId;
         }
 
         private void UseWildfire_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Wildfire.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Wildfire;
         }
 
         private void UseDetonator_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Detonator.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Detonator;
         }
     }
 }

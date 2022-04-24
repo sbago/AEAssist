@@ -60,7 +60,7 @@ namespace AEAssist
             if (RandomHelper.RandomInt(2000, 5000) > randomTime)
                 return false;
 
-            if (await SpellHelper.CastAbility(SpellsDefine.Peloton, Core.Me))
+            if (await SpellsDefine.Peloton.DoAbility())
             {
                 GUIHelper.ShowInfo(Language.Instance.Content_Bard_PreCombat3);
                 randomTime = 0;
@@ -70,7 +70,7 @@ namespace AEAssist
             return false;
         }
 
-        public SpellData GetBaseGCDSpell()
+        public SpellEntity GetBaseGCDSpell()
         {
             return BardSpellHelper.GetBaseGCD();
         }

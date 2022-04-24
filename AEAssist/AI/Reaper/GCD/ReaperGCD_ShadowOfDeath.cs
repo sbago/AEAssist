@@ -9,7 +9,7 @@ namespace AEAssist.AI.Reaper
 {
     public class ReaperGCD_ShadowOfDeath : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SpellsDefine.ShadowOfDeath.IsUnlock())
                 return -1;
@@ -31,12 +31,12 @@ namespace AEAssist.AI.Reaper
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = SpellsDefine.ShadowOfDeath;
             if (TargetHelper.CheckNeedUseAOE(5, 5)) spell = SpellsDefine.WhorlOfDeath;
 
-            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
+            if (await spell.DoGCD())
                 return spell;
             return null;
         }

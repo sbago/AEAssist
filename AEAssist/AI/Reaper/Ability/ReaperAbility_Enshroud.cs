@@ -8,16 +8,16 @@ namespace AEAssist.AI.Reaper
 {
     public class ReaperAbility_Enshroud : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SpellsDefine.Enshroud.IsReady())
                 return -1;
             return ReaperSpellHelper.ReadyToEnshroud();
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
-            if (await SpellHelper.CastAbility(SpellsDefine.Enshroud, Core.Me)) return SpellsDefine.Enshroud;
+            if (await SpellsDefine.Enshroud.DoAbility()) return SpellsDefine.Enshroud;
 
             return null;
         }

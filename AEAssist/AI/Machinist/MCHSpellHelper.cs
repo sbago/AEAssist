@@ -11,40 +11,40 @@ namespace AEAssist.AI
 {
     public static class MCHSpellHelper
     {
-        public static SpellData GetSplitShot()
+        public static SpellEntity GetSplitShot()
         {
             if (SpellsDefine.HeatedSplitShot.IsUnlock())
                 return SpellsDefine.HeatedSplitShot;
             return SpellsDefine.SplitShot;
         }
 
-        public static SpellData GetSlugShot()
+        public static SpellEntity GetSlugShot()
         {
             if (SpellsDefine.HeatedSlugShot.IsUnlock())
                 return SpellsDefine.HeatedSlugShot;
             return SpellsDefine.SlugShot;
         }
         
-        public static SpellData GetCleanShot()
+        public static SpellEntity GetCleanShot()
         {
             if (SpellsDefine.HeatedCleanShot.IsUnlock())
                 return SpellsDefine.HeatedCleanShot;
             return SpellsDefine.CleanShot;
         }
 
-        public static SpellData GetSpreadShot()
+        public static SpellEntity GetSpreadShot()
         {
             if (SpellsDefine.Scattergun.IsUnlock())
                 return SpellsDefine.Scattergun;
             return SpellsDefine.SpreadShot;
         }
 
-        public static async Task<SpellData> UseBaseComboGCD(GameObject target)
+        public static async Task<SpellEntity> UseBaseComboGCD(GameObject target)
         {
             if (TargetHelper.CheckNeedUseAOE(target,12, 12, 3))
             {
                 var aoeGCD = GetSpreadShot();
-                if (await SpellHelper.CastGCD(aoeGCD, target))
+                if (await aoeGCD.DoGCD())
                 {
                     AIRoot.GetBattleData<MCHBattleData>().ComboStages = MCHComboStages.SpreadShot;
                     return aoeGCD;
@@ -59,7 +59,7 @@ namespace AEAssist.AI
                     var slugShot = GetSlugShot();
                     if (ActionManager.ComboTimeLeft > 0)
                     {
-                        if (await SpellHelper.CastGCD(slugShot, target))
+                        if (await slugShot.DoGCD())
                         {
                             AIRoot.GetBattleData<MCHBattleData>().ComboStages = MCHComboStages.CleanShot;
                             return slugShot;
@@ -71,7 +71,7 @@ namespace AEAssist.AI
                     var cleanShot = GetCleanShot();
                     if (ActionManager.ComboTimeLeft > 0)
                     {
-                        if (await SpellHelper.CastGCD(cleanShot, target))
+                        if (await cleanShot.DoGCD())
                         {
                             AIRoot.GetBattleData<MCHBattleData>().ComboStages = MCHComboStages.SplitShot;
                             return cleanShot;
@@ -80,7 +80,7 @@ namespace AEAssist.AI
                     break;
             }
             var splitShot = GetSplitShot();
-            if (await SpellHelper.CastGCD(splitShot, target))
+            if (await splitShot.DoGCD())
             {
                 AIRoot.GetBattleData<MCHBattleData>().ComboStages = MCHComboStages.SlugShot;
                 return splitShot;
@@ -89,7 +89,7 @@ namespace AEAssist.AI
             return null;
         }
 
-        public static SpellData GetAirAnchor()
+        public static SpellEntity GetAirAnchor()
         {
             if (SpellsDefine.AirAnchor.IsUnlock())
                 return SpellsDefine.AirAnchor;
@@ -97,9 +97,9 @@ namespace AEAssist.AI
                 return SpellsDefine.HotShot;
             return null;
         }
-        public static SpellData GetReassembleGCD()
+        public static SpellEntity GetReassembleGCD()
         {
-            SpellData spell = null;
+            SpellEntity spell = null;
             if (SpellsDefine.AirAnchor.IsReady())
             {
                 spell = SpellsDefine.AirAnchor;
@@ -116,14 +116,14 @@ namespace AEAssist.AI
             return spell;
         }
 
-        public static SpellData GetAutomatonQueen()
+        public static SpellEntity GetAutomatonQueen()
         {
             if (SpellsDefine.AutomationQueen.IsUnlock())
                 return SpellsDefine.AutomationQueen;
             return SpellsDefine.RookAutoturret;
         }
         
-        public static SpellData GetQueenOverdrive()
+        public static SpellEntity GetQueenOverdrive()
         {
             if (SpellsDefine.QueenOverdrive.IsUnlock())
                 return SpellsDefine.QueenOverdrive;
@@ -141,7 +141,7 @@ namespace AEAssist.AI
             return false;
         }
 
-        public static SpellData GetDrillIfWithAOE()
+        public static SpellEntity GetDrillIfWithAOE()
         {
             if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 12, 12))
             {
@@ -152,7 +152,7 @@ namespace AEAssist.AI
             return SpellsDefine.Drill;
         }
 
-        public static SpellData GetUnderHyperChargeGCD()
+        public static SpellEntity GetUnderHyperChargeGCD()
         {
             if (SpellsDefine.AutoCrossbow.IsUnlock() && TargetHelper.CheckNeedUseAOE(12, 12))
             {

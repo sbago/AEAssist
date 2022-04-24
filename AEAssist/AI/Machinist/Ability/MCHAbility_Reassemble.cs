@@ -9,7 +9,7 @@ namespace AEAssist.AI.MCH
 {
     public class MCHAbility_Reassemble : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SpellsDefine.Reassemble.IsReady())
                 return -1;
@@ -27,9 +27,9 @@ namespace AEAssist.AI.MCH
 
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
-            if (await SpellHelper.CastAbility(SpellsDefine.Reassemble, Core.Me))
+            if (await SpellsDefine.Reassemble.DoAbility())
             {
                 return SpellsDefine.Reassemble;
             }

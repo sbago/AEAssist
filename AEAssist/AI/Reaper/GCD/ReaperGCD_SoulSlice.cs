@@ -9,7 +9,7 @@ namespace AEAssist.AI.Reaper
 {
     public class ReaperGCD_SoulSlice : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SpellsDefine.SoulSlice.IsReady())
                 return -1;
@@ -23,16 +23,16 @@ namespace AEAssist.AI.Reaper
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             // 不是满充能,而且准备附体,先把连击状态打掉
-            if (SpellsDefine.SoulSlice.Charges < SpellsDefine.SoulSlice.MaxCharges
+            if (SpellsDefine.SoulSlice.SpellData.Charges < SpellsDefine.SoulSlice.SpellData.MaxCharges
                 && ReaperSpellHelper.ReadyToEnshroud() >= 0)
             {
                 if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 5, 5))
                 {
                     if (AIRoot.GetBattleData<ReaperBattleData>().CurrCombo == ReaperComboStages.NightmareScythe)
-                        if (await SpellHelper.CastGCD(SpellsDefine.NightmareScythe, Core.Me.CurrentTarget))
+                        if (await SpellsDefine.NightmareScythe.DoGCD())
                         {
                             AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.SpinningScythe;
                             return SpellsDefine.NightmareScythe;
@@ -42,7 +42,7 @@ namespace AEAssist.AI.Reaper
                 {
                     if (AIRoot.GetBattleData<ReaperBattleData>().CurrCombo == ReaperComboStages.InfernalSlice)
                     {
-                        if (await SpellHelper.CastGCD(SpellsDefine.InfernalSlice, Core.Me.CurrentTarget))
+                        if (await SpellsDefine.InfernalSlice.DoGCD())
                         {
                             AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.Slice;
                             return SpellsDefine.InfernalSlice;
@@ -50,7 +50,7 @@ namespace AEAssist.AI.Reaper
                     }
                     else if (AIRoot.GetBattleData<ReaperBattleData>().CurrCombo == ReaperComboStages.WaxingSlice)
                     {
-                        if (await SpellHelper.CastGCD(SpellsDefine.WaxingSlice, Core.Me.CurrentTarget))
+                        if (await SpellsDefine.WaxingSlice.DoGCD())
                         {
                             AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.InfernalSlice;
                             return SpellsDefine.WaxingSlice;
@@ -62,7 +62,7 @@ namespace AEAssist.AI.Reaper
             var spell = ReaperSpellHelper.CanUseSoulSlice_Scythe(Core.Me.CurrentTarget);
             if (spell == null)
                 return null;
-            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget)) return spell;
+            if (await spell.DoGCD()) return spell;
 
             return null;
         }

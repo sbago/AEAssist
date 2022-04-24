@@ -9,7 +9,7 @@ namespace AEAssist.AI.Reaper
 {
     public class ReaperAbility_BloodStalk : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SpellsDefine.BloodStalk.IsUnlock())
                 return -1;
@@ -39,13 +39,13 @@ namespace AEAssist.AI.Reaper
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = SpellsDefine.BloodStalk;
             if (SpellsDefine.GrimSwathe.IsUnlock() && TargetHelper.CheckNeedUseAOE(8, 8))
                 spell = SpellsDefine.GrimSwathe;
 
-            if (await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget))
+            if (await spell.DoAbility())
                 // if (AIRoot.GetBattleData<BattleData>().maxAbilityTimes>1 && await ReaperSpellHelper.UseTruthNorth() != null)
                 // {
                 //     if (AIRoot.GetBattleData<BattleData>().maxAbilityTimes > 1)

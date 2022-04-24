@@ -9,18 +9,18 @@ namespace AEAssist.AI
 {
     public class SamuraiGCD_Kaeshi : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (AIRoot.GetBattleData<SamuraiBattleData>().KaeshiSpell != KaeshiSpell.NoUse)
                 return 10;
             return -1;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = SamuraiSpellHelper.KaeshiCanSpell();
             if (spell == null) return null;
-            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
+            if (await spell.DoGCD())
             {
                 AIRoot.GetBattleData<SamuraiBattleData>().KaeshiSpell = KaeshiSpell.NoUse;
                 return spell;

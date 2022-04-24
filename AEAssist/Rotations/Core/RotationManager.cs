@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.AI;
+using AEAssist.Define;
 using ff14bot;
 using ff14bot.Enums;
 using ff14bot.Managers;
@@ -108,7 +109,7 @@ namespace AEAssist
             return Task.FromResult(false);
         }
 
-        public SpellData GetBaseGCDSpell()
+        public SpellEntity GetBaseGCDSpell()
         {
             return GetRotation().GetBaseGCDSpell();
         }

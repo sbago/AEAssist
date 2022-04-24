@@ -8,7 +8,7 @@ namespace AEAssist.AI
 {
     public class BardAbility_RagingStrikes : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (AIRoot.Instance.CloseBurst)
                 return -1;
@@ -22,15 +22,15 @@ namespace AEAssist.AI
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             // if (!AIRoot.Instance.Is2ndAbilityTime())
             //     return null;
-            var spellData = SpellsDefine.RagingStrikes;
-            if (await SpellHelper.CastAbility(spellData, Core.Me))
+            var SpellEntity = SpellsDefine.RagingStrikes;
+            if (await SpellEntity.DoAbility())
             {
                 BardSpellHelper.RecordUsingRagingStrikesTime();
-                return spellData;
+                return SpellEntity;
             }
 
             return null;

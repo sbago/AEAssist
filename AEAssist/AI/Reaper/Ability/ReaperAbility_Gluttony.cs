@@ -9,7 +9,7 @@ namespace AEAssist.AI.Reaper
 {
     public class ReaperAbility_Gluttony : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SpellsDefine.Gluttony.IsReady())
                 return -1;
@@ -39,9 +39,9 @@ namespace AEAssist.AI.Reaper
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
-            if (await SpellHelper.CastAbility(SpellsDefine.Gluttony, Core.Me.CurrentTarget))
+            if (await SpellsDefine.Gluttony.DoAbility())
                 // if (AIRoot.GetBattleData<BattleData>().maxAbilityTimes>0 && await ReaperSpellHelper.UseTruthNorth() != null)
                 // {
                 //     if (AIRoot.GetBattleData<BattleData>().maxAbilityTimes > 1)

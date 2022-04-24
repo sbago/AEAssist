@@ -9,7 +9,7 @@ namespace AEAssist.AI
 {
     public class BardGCD_ApexArrow : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!DataBinding.Instance.UseApex)
                 return -1;
@@ -30,12 +30,12 @@ namespace AEAssist.AI
             return -2;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = SpellsDefine.ApexArrow;
             if (spell == null)
                 return null;
-            var ret = await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget);
+            var ret = await spell.DoGCD();
             if (ret)
                 return spell;
             return null;

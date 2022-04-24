@@ -8,7 +8,7 @@ namespace AEAssist.AI
 {
     public class BardAbility_Sidewinder : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SpellsDefine.Sidewinder.IsReady())
                 return -1;
@@ -25,10 +25,10 @@ namespace AEAssist.AI
             return -4;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spellData = SpellsDefine.Sidewinder;
-            if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget)) return spellData;
+            if (await spellData.DoAbility()) return spellData;
 
             return null;
         }

@@ -9,7 +9,7 @@ namespace AEAssist.Define
 
         private Dictionary<Type, Queue<object>> AllObjs = new Dictionary<Type, Queue<object>>();
 
-        public T Fetch<T>() where T : class, IDisposable, new()
+        public T Fetch<T>() where T : Entity, new()
         {
             var type = typeof(T);
             if (!AllObjs.TryGetValue(type, out var pool))
@@ -20,7 +20,9 @@ namespace AEAssist.Define
             if (pool.Count == 0)
                 return Activator.CreateInstance<T>();
 
-            return pool.Dequeue() as T;
+            var ret = pool.Dequeue() as T;
+            ret.IsDisposed = false;
+            return ret;
         }
 
         public void Return<T>(T t) where T : class, IDisposable, new()

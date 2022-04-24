@@ -9,7 +9,7 @@ namespace AEAssist.AI.Reaper
 {
     public class ReaperGCD_EnshroudGCD : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SpellsDefine.CrossReaping.IsUnlock())
                 return -1;
@@ -34,14 +34,14 @@ namespace AEAssist.AI.Reaper
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = ReaperSpellHelper.GetEnshroudGCDSpell(Core.Me.CurrentTarget);
             if (spell == null)
                 return null;
             if (spell == SpellsDefine.Communio) MovementManager.MoveStop();
 
-            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
+            if (await spell.DoGCD())
             {
                 AIRoot.GetBattleData<BattleData>().LimitAbility = true;
                 return spell;

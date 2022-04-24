@@ -9,7 +9,7 @@ namespace AEAssist.AI
 {
     public class SamuraiAbility_HissatsuKaiten : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             var ta = Core.Me.CurrentTarget as Character;
             if (Core.Me.HasAura(AurasDefine.Kaiten))
@@ -33,10 +33,10 @@ namespace AEAssist.AI
             return 10;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = SpellsDefine.HissatsuKaiten;
-            if (await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget))
+            if (await spell.DoAbility())
                 return spell;
             return null;
         }

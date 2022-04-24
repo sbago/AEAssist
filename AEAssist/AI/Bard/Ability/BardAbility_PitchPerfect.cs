@@ -9,7 +9,7 @@ namespace AEAssist.AI
 {
     public class BardAbility_PitchPerfect : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SpellsDefine.PitchPerfect.IsReady())
                 return -1;
@@ -45,12 +45,12 @@ namespace AEAssist.AI
             return -4;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = SpellsDefine.PitchPerfect;
             if (spell == null)
                 return null;
-            var ret = await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget);
+            var ret = await spell.DoAbility();
             if (ret)
                 return spell;
             return null;

@@ -8,7 +8,7 @@ namespace AEAssist.AI
 {
     public class BardGCD_Dot : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             var tar = Core.Me.CurrentTarget as Character;
             if (!DataBinding.Instance.UseDot)
@@ -35,9 +35,9 @@ namespace AEAssist.AI
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
-            SpellData spell = null;
+            SpellEntity spell = null;
             var timeLeft = SettingMgr.GetSetting<BardSettings>().Dot_TimeLeft;
             var target = Core.Me.CurrentTarget as Character;
             if (!BardSpellHelper.IsTargetHasAura_WindBite(target))
@@ -48,7 +48,7 @@ namespace AEAssist.AI
 
             if (spell == null)
                 return null;
-            var ret = await SpellHelper.CastGCD(spell, target);
+            var ret = await spell.DoGCD();
             if (ret)
             {
                 if (spell == SpellsDefine.IronJaws)

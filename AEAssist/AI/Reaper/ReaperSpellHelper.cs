@@ -9,18 +9,18 @@ namespace AEAssist.AI.Reaper
 {
     public static class ReaperSpellHelper
     {
-        private static async Task<SpellData> UseAOECombo(GameObject target)
+        private static async Task<SpellEntity> UseAOECombo(GameObject target)
         {
             if (AIRoot.GetBattleData<ReaperBattleData>().CurrCombo != ReaperComboStages.NightmareScythe
                 || ActionManager.ComboTimeLeft <= 0)
             {
-                if (await SpellHelper.CastGCD(SpellsDefine.SpinningScythe, target))
+                if (await SpellsDefine.SpinningScythe.DoGCD())
                 {
                     AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.NightmareScythe;
                     return SpellsDefine.SpinningScythe;
                 }
             }
-            else if (await SpellHelper.CastGCD(SpellsDefine.NightmareScythe, target))
+            else if (await SpellsDefine.NightmareScythe.DoGCD())
             {
                 AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.SpinningScythe;
                 return SpellsDefine.NightmareScythe;
@@ -29,13 +29,13 @@ namespace AEAssist.AI.Reaper
             return null;
         }
 
-        private static async Task<SpellData> UseSingleCombo(GameObject target)
+        private static async Task<SpellEntity> UseSingleCombo(GameObject target)
         {
             if (ActionManager.ComboTimeLeft > 0)
             {
                 if (AIRoot.GetBattleData<ReaperBattleData>().CurrCombo == ReaperComboStages.InfernalSlice)
                 {
-                    if (await SpellHelper.CastGCD(SpellsDefine.InfernalSlice, target))
+                    if (await SpellsDefine.InfernalSlice.DoGCD())
                     {
                         AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.Slice;
                         return SpellsDefine.InfernalSlice;
@@ -43,7 +43,7 @@ namespace AEAssist.AI.Reaper
                 }
                 else if (AIRoot.GetBattleData<ReaperBattleData>().CurrCombo == ReaperComboStages.WaxingSlice)
                 {
-                    if (await SpellHelper.CastGCD(SpellsDefine.WaxingSlice, target))
+                    if (await SpellsDefine.WaxingSlice.DoGCD())
                     {
                         AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.InfernalSlice;
                         return SpellsDefine.WaxingSlice;
@@ -51,7 +51,7 @@ namespace AEAssist.AI.Reaper
                 }
             }
 
-            if (await SpellHelper.CastGCD(SpellsDefine.Slice, target))
+            if (await SpellsDefine.Slice.DoGCD())
             {
                 AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.WaxingSlice;
                 return SpellsDefine.Slice;
@@ -60,14 +60,14 @@ namespace AEAssist.AI.Reaper
             return null;
         }
 
-        public static async Task<SpellData> BaseGCDCombo(GameObject target)
+        public static async Task<SpellEntity> BaseGCDCombo(GameObject target)
         {
             if (TargetHelper.CheckNeedUseAOE(target, 5, 5)) return await UseAOECombo(target);
 
             return await UseSingleCombo(target);
         }
 
-        public static SpellData CanUseSoulSlice_Scythe(GameObject target)
+        public static SpellEntity CanUseSoulSlice_Scythe(GameObject target)
         {
             if (!SpellsDefine.SoulSlice.IsReady())
                 return null;
@@ -76,7 +76,7 @@ namespace AEAssist.AI.Reaper
             return SpellsDefine.SoulSlice;
         }
 
-        public static SpellData Gibbit_Gallows(GameObject target)
+        public static SpellEntity Gibbit_Gallows(GameObject target)
         {
             if (!Core.Me.HasAura(AurasDefine.SoulReaver)) return null;
 
@@ -95,7 +95,7 @@ namespace AEAssist.AI.Reaper
             return SpellsDefine.Gibbet;
         }
 
-        public static SpellData GetEnshroudGCDSpell(GameObject target)
+        public static SpellEntity GetEnshroudGCDSpell(GameObject target)
         {
             if (!Core.Me.HasAura(AurasDefine.Enshrouded))
                 return null;
@@ -160,13 +160,13 @@ namespace AEAssist.AI.Reaper
             return false;
         }
 
-        public static async Task<SpellData> UseTruthNorth()
+        public static async Task<SpellEntity> UseTruthNorth()
         {
             if (!DataBinding.Instance.UseTrueNorth)
                 return null;
             if (!CheckIfNeedTrueNorth())
                 return null;
-            if (await SpellHelper.CastAbility(SpellsDefine.TrueNorth, Core.Me, 100)) return SpellsDefine.TrueNorth;
+            if (await SpellsDefine.TrueNorth.DoAbility()) return SpellsDefine.TrueNorth;
 
             return null;
         }

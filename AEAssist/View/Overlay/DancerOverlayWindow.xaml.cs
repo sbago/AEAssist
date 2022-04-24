@@ -24,17 +24,17 @@ namespace AEAssist.View
 
         private void UseTactician_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ShieldSamba.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ShieldSamba;
         }
 
         private void UseArmsLength_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength;
         }
 
         private void UseSprint_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Sprint.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Sprint;
             AIRoot.GetBattleData<BattleData>().NextAbilityUsePotion = false;
         }
 

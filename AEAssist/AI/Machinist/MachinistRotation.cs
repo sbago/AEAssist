@@ -19,7 +19,7 @@ namespace AEAssist
                 () => PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId));
             
             CountDownHandler.Instance.AddListener(4800, 
-                () => SpellHelper.CastAbility(SpellsDefine.Reassemble, Core.Me), false);
+                () => SpellsDefine.Reassemble.DoAbility(), false);
 
             DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<MCHSettings>().EarlyDecisionMode;
         }
@@ -45,7 +45,7 @@ namespace AEAssist
             if (Core.Me.ContainAura(AurasDefine.Peloton, 100))
                 return false;
             
-            if (await SpellHelper.CastAbility(SpellsDefine.Peloton, Core.Me))
+            if (await SpellsDefine.Peloton.DoAbility())
             {
                 GUIHelper.ShowInfo(Language.Instance.Content_Bard_PreCombat3);
                 return true;
@@ -54,7 +54,7 @@ namespace AEAssist
             return false;
         }
         
-        public SpellData GetBaseGCDSpell()
+        public SpellEntity GetBaseGCDSpell()
         {
             return MCHSpellHelper.GetSplitShot();
         }

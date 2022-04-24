@@ -49,9 +49,8 @@ namespace AEAssist.AI
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
             slot.GCDSpellId = MCHSpellHelper.GetDrillIfWithAOE().Id;
-            slot.GCDTargetIsSelf = false;
-            slot.Abilitys.Enqueue((SpellsDefine.GaussRound.Id,false));
-            slot.Abilitys.Enqueue((SpellsDefine.Ricochet.Id,false));
+            slot.Abilitys.Enqueue((SpellsDefine.GaussRound.Id,SpellTargetType.CurrTarget));
+            slot.Abilitys.Enqueue((SpellsDefine.Ricochet.Id,SpellTargetType.CurrTarget));
             return slot;
         }
         [OpenerStep(1)]
@@ -61,8 +60,7 @@ namespace AEAssist.AI
 
             var air = MCHSpellHelper.GetAirAnchor();
             slot.GCDSpellId = air.Id;
-            slot.GCDTargetIsSelf = false;
-            slot.Abilitys.Enqueue((SpellsDefine.BarrelStabilizer.Id,false));
+            slot.Abilitys.Enqueue((SpellsDefine.BarrelStabilizer.Id,SpellTargetType.CurrTarget));
             return slot;
         }
         [OpenerStep(2)]
@@ -71,7 +69,6 @@ namespace AEAssist.AI
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
             //todo: 根据情况返回AOE版本?
             slot.GCDSpellId = SpellsDefine.HeatedSplitShot.Id;
-            slot.GCDTargetIsSelf = false;
             return slot;
         }
         [OpenerStep(3)]
@@ -80,9 +77,8 @@ namespace AEAssist.AI
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
             slot.GCDSpellId = SpellsDefine.HeatedSlugShot.Id;
-            slot.GCDTargetIsSelf = false;
-            slot.Abilitys.Enqueue((SpellsDefine.GaussRound.Id,false));
-            slot.Abilitys.Enqueue((SpellsDefine.Ricochet.Id,false));
+            slot.Abilitys.Enqueue((SpellsDefine.GaussRound.Id,SpellTargetType.CurrTarget));
+            slot.Abilitys.Enqueue((SpellsDefine.Ricochet.Id,SpellTargetType.CurrTarget));
 
             return slot;
         }
@@ -92,9 +88,8 @@ namespace AEAssist.AI
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
             slot.GCDSpellId = SpellsDefine.HeatedCleanShot.Id;
-            slot.GCDTargetIsSelf = false;
-            slot.Abilitys.Enqueue((SpellsDefine.Hypercharge.Id,false));
-            slot.Abilitys.Enqueue((SpellsDefine.Wildfire.Id,false));
+            slot.Abilitys.Enqueue((SpellsDefine.Hypercharge.Id,SpellTargetType.CurrTarget));
+            slot.Abilitys.Enqueue((SpellsDefine.Wildfire.Id,SpellTargetType.CurrTarget));
 
             return slot;
         }
@@ -118,7 +113,7 @@ namespace AEAssist.AI
             //todo: 根据情况返回AOE版本?
             
             slot.GCDSpellId = MCHSpellHelper.GetUnderHyperChargeGCD().Id;
-            slot.Abilitys.Enqueue((SpellsDefine.GaussRound.Id, false));
+            slot.Abilitys.Enqueue((SpellsDefine.GaussRound.Id, SpellTargetType.CurrTarget));
             return slot;
         }
         
@@ -130,7 +125,7 @@ namespace AEAssist.AI
             //todo: 根据情况返回AOE版本?
             
             slot.GCDSpellId = MCHSpellHelper.GetUnderHyperChargeGCD().Id;
-            slot.Abilitys.Enqueue((SpellsDefine.Ricochet.Id, false));
+            slot.Abilitys.Enqueue((SpellsDefine.Ricochet.Id, SpellTargetType.CurrTarget));
 
             return slot;
         }
@@ -144,7 +139,7 @@ namespace AEAssist.AI
             //todo: 根据情况返回AOE版本?
             
             slot.GCDSpellId = MCHSpellHelper.GetUnderHyperChargeGCD().Id;
-            slot.Abilitys.Enqueue((SpellsDefine.GaussRound.Id, false));
+            slot.Abilitys.Enqueue((SpellsDefine.GaussRound.Id, SpellTargetType.CurrTarget));
             return slot;
         }
         
@@ -157,7 +152,7 @@ namespace AEAssist.AI
             //todo: 根据情况返回AOE版本?
             
             slot.GCDSpellId = MCHSpellHelper.GetUnderHyperChargeGCD().Id;
-            slot.Abilitys.Enqueue((SpellsDefine.Ricochet.Id, false));
+            slot.Abilitys.Enqueue((SpellsDefine.Ricochet.Id, SpellTargetType.CurrTarget));
 
             return slot;
         }

@@ -10,22 +10,22 @@ using ff14bot.Managers;
 namespace AEAssist.AI
 {
     // 以一个GCD技能为起点
-    public class SpellQueueSlot : IDisposable
+    public class SpellQueueSlot : Entity
     {
         public uint GCDSpellId;
 
-        public bool GCDTargetIsSelf; // 目标是否是自己
+        public SpellTargetType SpellTargetType; // 目标是否是自己
         // 有0就说明对应的能力技槽位是空的
-        public Queue<(uint spellId, bool targetIsSelf)> Abilitys = new Queue<(uint spellId, bool targetIsSelf)>();
+        public Queue<(uint spellId, SpellTargetType SpellTargetType)> Abilitys = new Queue<(uint spellId, SpellTargetType SpellTargetType)>();
         
         public int AnimationLockMs = 500;
 
-        public void Dispose()
+        protected override void OnDestroy()
         {
             this.Abilitys.Clear();
             GCDSpellId = 0;
             AnimationLockMs = 500;
-            GCDTargetIsSelf = false;
+            SpellTargetType = SpellTargetType.CurrTarget;
         }
     }
 
@@ -66,8 +66,8 @@ namespace AEAssist.AI
                 }
 
                 var abilityId = slot.Abilitys.Peek();
-                var spellData = DataManager.GetSpellData(abilityId.spellId);
-                if (abilityId.spellId == 0 || spellData == null || !spellData.IsReady())
+                var spellData = SpellEntity.Create(abilityId.spellId);
+                if (abilityId.spellId == 0 || spellData.SpellData == null || !spellData.IsReady())
                 {
                     // 配置的技能不能使用,就等个技能动画时间
                     await Coroutine.Sleep(slot.AnimationLockMs);
@@ -75,8 +75,9 @@ namespace AEAssist.AI
                 }
                 else
                 {
-                    var target = abilityId.targetIsSelf ? Core.Me : Core.Me.CurrentTarget;
-                    if (await SpellHelper.CastAbility(spellData, target))
+                    var spellEntity = new SpellEntity(spellData.Id, slot.SpellTargetType);
+
+                    if (await spellEntity.DoAbility())
                     {
                         slot.Abilitys.Dequeue();
                         AIRoot.Instance.RecordAbility(spellData);
@@ -97,10 +98,10 @@ namespace AEAssist.AI
 
                 if (spellData.IsReady())
                 {
-                    var target = slot.GCDTargetIsSelf ? Core.Me : Core.Me.CurrentTarget;
-                    if (await SpellHelper.CastGCD(spellData, target))
+                    var spellEntity = new SpellEntity(spellData.Id, slot.SpellTargetType);
+                    if (await spellEntity.DoGCD())
                     {
-                        AIRoot.Instance.RecordGCD(spellData);
+                        AIRoot.Instance.RecordGCD(spellEntity);
                         isLock = true;
                     }
                 }

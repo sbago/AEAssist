@@ -9,7 +9,7 @@ namespace AEAssist.AI
 {
     public class BardAbility_Songs : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
 
             if (!DataBinding.Instance.UseSong)
@@ -33,7 +33,7 @@ namespace AEAssist.AI
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = CheckNeedChangeSong(out var forceNextSong);
             if (spell == null)
@@ -43,10 +43,10 @@ namespace AEAssist.AI
 
             if (ActionResourceManager.Bard.ActiveSong == ActionResourceManager.Bard.BardSong.WanderersMinuet)
                 if (SpellsDefine.PitchPerfect.IsReady())
-                    if (await SpellHelper.CastAbility(SpellsDefine.PitchPerfect, Core.Me.CurrentTarget, 100))
+                    if (await SpellsDefine.PitchPerfect.DoAbility())
                         castPitch = true;
 
-            var ret = await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget);
+            var ret = await spell.DoAbility();
             if (ret)
             {
                 var battleData = AIRoot.GetBattleData<BardBattleData>();
@@ -71,7 +71,7 @@ namespace AEAssist.AI
         }
 
 
-        private SpellData CheckNeedChangeSong(out bool forceNextSong)
+        private SpellEntity CheckNeedChangeSong(out bool forceNextSong)
         {
             var bardBattleData = AIRoot.GetBattleData<BardBattleData>();
             var currSong = ActionResourceManager.Bard.ActiveSong;
@@ -79,7 +79,7 @@ namespace AEAssist.AI
                 currSong = bardBattleData.lastSong;
             // 500是因为考虑到能力技窗口期
             var remainTime = ActionResourceManager.Bard.Timer.TotalMilliseconds - 500;
-            SpellData spell = null;
+            SpellEntity spell = null;
             forceNextSong = false;
             if (AIRoot.Instance.CloseBurst)
             {
@@ -143,14 +143,14 @@ namespace AEAssist.AI
                 }
             }
 
-            if (spell != null) GUIHelper.ShowInfo($"Song: {spell.LocalizedName} remainTime: {remainTime}", 1000, false);
+            if (spell != null) GUIHelper.ShowInfo($"Song: {spell.SpellData.LocalizedName} remainTime: {remainTime}", 1000, false);
 
             return spell;
         }
 
-        private SpellData GetSongsByOrder(SpellData passSpell, out bool forceNextSong)
+        private SpellEntity GetSongsByOrder(SpellEntity passSpell, out bool forceNextSong)
         {
-            SpellData spell = null;
+            SpellEntity spell = null;
             forceNextSong = false;
             var bardBattleData = AIRoot.GetBattleData<BardBattleData>();
             var currSong = ActionResourceManager.Bard.ActiveSong;
@@ -192,21 +192,21 @@ namespace AEAssist.AI
             return null;
         }
 
-        private SpellData NextSong(SpellData spellData)
+        private SpellEntity NextSong(SpellEntity SpellEntity)
         {
             var i = BardSpellHelper.Songs.Count;
-            var origin = spellData;
+            var origin = SpellEntity;
             while (i > 0)
             {
-                spellData = BardSpellHelper.Songs.GetNext(spellData);
+                SpellEntity = BardSpellHelper.Songs.GetNext(SpellEntity);
                 i--;
-                if (spellData == null || !spellData.IsReady()) continue;
+                if (SpellEntity == null || !SpellEntity.IsReady()) continue;
 
-                if (spellData == SpellsDefine.TheWanderersMinuet && AIRoot.Instance.CloseBurst) continue;
+                if (SpellEntity == SpellsDefine.TheWanderersMinuet && AIRoot.Instance.CloseBurst) continue;
 
-                if (spellData == origin)
+                if (SpellEntity == origin)
                     continue;
-                return spellData;
+                return SpellEntity;
             }
 
             return null;

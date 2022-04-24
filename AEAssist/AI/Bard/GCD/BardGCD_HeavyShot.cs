@@ -8,15 +8,15 @@ namespace AEAssist.AI
 {
     public class BardGCD_HeavyShot : IAIHandler
     {
-        public int Check(SpellData lastGCD)
+        public int Check(SpellEntity lastGCD)
         {
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spellData = BardSpellHelper.GetBaseGCD();
-            if (await SpellHelper.CastGCD(spellData, Core.Me.CurrentTarget)) return spellData;
+            if (await spellData.DoGCD()) return spellData;
 
             return null;
         }

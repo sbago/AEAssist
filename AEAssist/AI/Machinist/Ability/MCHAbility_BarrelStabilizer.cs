@@ -9,7 +9,7 @@ namespace AEAssist.AI.MCH
 {
     public class MCHAbility_BarrelStabilizer : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SpellsDefine.BarrelStabilizer.IsReady())
                 return -1;
@@ -23,9 +23,9 @@ namespace AEAssist.AI.MCH
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
-            if (await SpellHelper.CastAbility(SpellsDefine.BarrelStabilizer, Core.Me))
+            if (await SpellsDefine.BarrelStabilizer.DoAbility())
             {
                 return SpellsDefine.BarrelStabilizer;
             }

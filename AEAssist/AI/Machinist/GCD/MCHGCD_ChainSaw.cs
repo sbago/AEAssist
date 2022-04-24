@@ -8,16 +8,16 @@ namespace AEAssist.AI.MCH
 {
     public class MCHGCD_ChainSaw : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SpellsDefine.ChainSaw.IsReady())
                 return -1;
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
-            if (await SpellHelper.CastGCD(SpellsDefine.ChainSaw, Core.Me.CurrentTarget))
+            if (await SpellsDefine.ChainSaw.DoGCD())
             {
                 return SpellsDefine.ChainSaw;
             }

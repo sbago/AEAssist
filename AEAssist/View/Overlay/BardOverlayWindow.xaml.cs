@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using AEAssist.AI;
 using AEAssist.Define;
+using ff14bot;
 using PropertyChanged;
 using TreeSharp;
 
@@ -31,17 +32,17 @@ namespace AEAssist.View
 
         private void UseTroubadour_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Troubadour.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Troubadour;
         }
 
         private void UseArmsLength_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength;
         }
 
         private void UseSprint_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Sprint.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Sprint;
             AIRoot.GetBattleData<BattleData>().NextAbilityUsePotion = false;
         }
 
@@ -65,22 +66,32 @@ namespace AEAssist.View
 
         private void UseApex_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.ApexArrow.Id;
+            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.ApexArrow;
         }
 
         private void UseWM_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.TheWanderersMinuet.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.TheWanderersMinuet;
         }
 
         private void UseMB_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.MagesBallad.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.MagesBallad;
         }
 
         private void UseAP_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmysPaeon.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmysPaeon;
+        }
+
+        private void UseBlastArrow_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.BlastArrow;
+        }
+
+        private void UseNaturesMinne_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.NaturesMinne;
         }
     }
 }

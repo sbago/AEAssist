@@ -228,7 +228,9 @@
         <Compile Include="DataBinding\SongData.cs" />
         <Compile Include="Define\ConstValue.cs" />
         <Compile Include="Define\DataStruct\CircleList.cs" />
+        <Compile Include="Define\DataStruct\Entity.cs" />
         <Compile Include="Define\ObjectPool.cs" />
+        <Compile Include="Define\SpellEntity.cs" />
         <Compile Include="Gamelog\AEGamelogManager.cs" />
         <Compile Include="Helper\DotBlacklistHelper.cs" />
         <Compile Include="Helper\LanguageHelper.cs" />
@@ -331,6 +333,8 @@
         <Compile Include="Setting\Setting\BardSettings.cs" />
         <Compile Include="Setting\Setting\GeneralSettings.cs" />
         <Compile Include="Setting\Setting\VersionSetting.cs" />
+        <Resource Include="Resources\Spells\NaturesMinne.png" />
+        <Resource Include="Resources\Spells\BlastArrow.png" />
         <Resource Include="Resources\Spells\Detonator.png" />
         <Resource Include="Resources\Spells\Wildfire.png" />
         <Resource Include="Resources\Spells\QueenOverdrive.png" />

@@ -10,7 +10,7 @@ namespace AEAssist.AI.MCH
 {
     public class MCHAbility_UseBattery : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (AIRoot.Instance.CloseBurst)
                 return -1;
@@ -27,10 +27,10 @@ namespace AEAssist.AI.MCH
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = MCHSpellHelper.GetAutomatonQueen();
-            if (await SpellHelper.CastAbility(spell, Core.Me))
+            if (await spell.DoAbility())
             {
                 return spell;
             }

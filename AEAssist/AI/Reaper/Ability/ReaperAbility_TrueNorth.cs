@@ -8,7 +8,7 @@ namespace AEAssist.AI.Reaper
 {
     public class ReaperAbility_TrueNorth : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!DataBinding.Instance.UseTrueNorth)
                 return -10;
@@ -41,10 +41,10 @@ namespace AEAssist.AI.Reaper
             return -5;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = SpellsDefine.TrueNorth;
-            if (await SpellHelper.CastAbility(spell, Core.Me)) return spell;
+            if (await spell.DoAbility()) return spell;
 
             return null;
         }

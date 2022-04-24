@@ -9,7 +9,7 @@ namespace AEAssist.AI.MCH
 {
     public class MCHAbility_WildFire : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SpellsDefine.Wildfire.IsReady())
                 return -1;
@@ -30,9 +30,9 @@ namespace AEAssist.AI.MCH
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
-            if (await SpellHelper.CastAbility(SpellsDefine.Wildfire, Core.Me.CurrentTarget))
+            if (await SpellsDefine.Wildfire.DoAbility())
             {
                 return SpellsDefine.Wildfire;
             }

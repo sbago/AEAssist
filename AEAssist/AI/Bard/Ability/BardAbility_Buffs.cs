@@ -8,7 +8,7 @@ namespace AEAssist.AI
 {
     public class BardAbility_Buffs : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (AIRoot.Instance.CloseBurst)
                 return -1;
@@ -29,14 +29,14 @@ namespace AEAssist.AI
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             // if (!AIRoot.Instance.Is2ndAbilityTime())
             //     return null;
             var buff = BardSpellHelper.GetBuffs();
             if (buff == null)
                 return null;
-            var ret = await SpellHelper.CastAbility(buff, Core.Me);
+            var ret = await buff.DoAbility();
             if (ret)
             {
                 var lastBuff = buff;

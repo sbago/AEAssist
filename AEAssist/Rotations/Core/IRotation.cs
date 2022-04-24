@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using ff14bot.Objects;
+using AEAssist.Define;
 
 namespace AEAssist
 {
@@ -10,6 +10,6 @@ namespace AEAssist
         /// </summary>
         void Init(); 
         Task<bool> PreCombatBuff();
-        SpellData GetBaseGCDSpell();
+        SpellEntity GetBaseGCDSpell();
     }
 }

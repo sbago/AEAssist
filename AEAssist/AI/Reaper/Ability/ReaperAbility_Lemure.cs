@@ -9,7 +9,7 @@ namespace AEAssist.AI.Reaper
 {
     public class ReaperAbility_Lemure : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SpellsDefine.LemuresSlice.IsUnlock())
                 return -1;
@@ -20,12 +20,12 @@ namespace AEAssist.AI.Reaper
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = SpellsDefine.LemuresSlice;
             if (TargetHelper.CheckNeedUseAOE(8, 8)) spell = SpellsDefine.LemuresScythe;
 
-            if (await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget))
+            if (await spell.DoAbility())
             {
                 AIRoot.Instance.MuteAbilityTime();
                 return spell;

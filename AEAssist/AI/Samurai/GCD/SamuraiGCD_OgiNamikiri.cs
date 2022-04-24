@@ -9,7 +9,7 @@ namespace AEAssist.AI
 {
     public class SamuraiGCD_OgiNamikiri : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (Core.Me.HasAura(AurasDefine.Kaiten))
             {
@@ -21,9 +21,9 @@ namespace AEAssist.AI
             return -1;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
-            if (await SpellHelper.CastGCD(SpellsDefine.OgiNamikiri, Core.Me.CurrentTarget))
+            if (await SpellsDefine.OgiNamikiri.DoGCD())
             {
                 AIRoot.GetBattleData<SamuraiBattleData>().KaeshiSpell = KaeshiSpell.OgiNamikiri;
                 return SpellsDefine.OgiNamikiri;

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Objects;
@@ -7,7 +8,7 @@ namespace AEAssist.AI.MCH
 {
     public class MCHAbility_UsePotion : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SettingMgr.GetSetting<GeneralSettings>().UsePotion)
                 return -1;
@@ -24,7 +25,7 @@ namespace AEAssist.AI.MCH
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId);
             if (ret) AIRoot.Instance.MuteAbilityTime();

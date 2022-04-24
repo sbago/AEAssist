@@ -22,7 +22,7 @@ namespace AEAssist
             CountDownHandler.Instance.AddListener(1500, () =>
             {
                 if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
-                    return SpellHelper.CastGCD(SpellsDefine.Harpe, Core.Me.CurrentTarget);
+                    return SpellsDefine.Harpe.DoGCD();
                 return Task.FromResult(false);
             });
             DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<SamuraiSettings>().EarlyDecisionMode; 
@@ -35,7 +35,7 @@ namespace AEAssist
             return Task.FromResult(false);
         }
 
-        public SpellData GetBaseGCDSpell()
+        public SpellEntity GetBaseGCDSpell()
         {
             return SpellsDefine.Hakaze;
         }

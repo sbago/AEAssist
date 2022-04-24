@@ -8,7 +8,7 @@ namespace AEAssist.AI.MCH
 {
     public class MCHGCD_ReassembleGCD : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             var spell = MCHSpellHelper.GetReassembleGCD();
             if (spell == null)
@@ -22,12 +22,12 @@ namespace AEAssist.AI.MCH
             return -2;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = MCHSpellHelper.GetReassembleGCD();
             if (spell == null)
                 return null;
-            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
+            if (await spell.DoGCD())
             {
                 return spell;
             }

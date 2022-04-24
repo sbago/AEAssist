@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
-using ff14bot.Objects;
+using AEAssist.Define;
 
 namespace AEAssist.AI
 {
     public interface IAIHandler
     {
-        int Check(SpellData lastSpell);
+        int Check(SpellEntity lastSpell);
 
-        Task<SpellData> Run();
+        Task<SpellEntity> Run();
     }
 }

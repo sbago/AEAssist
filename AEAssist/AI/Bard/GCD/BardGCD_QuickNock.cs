@@ -8,7 +8,7 @@ namespace AEAssist.AI
 {
     public class BardGCD_QuickNock : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             var spell = BardSpellHelper.GetQuickNock();
             if (spell == null)
@@ -18,12 +18,12 @@ namespace AEAssist.AI
             return -2;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = BardSpellHelper.GetQuickNock();
             if (spell == null)
                 return null;
-            var ret = await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget);
+            var ret = await spell.DoGCD();
             if (ret)
                 return spell;
             return null;

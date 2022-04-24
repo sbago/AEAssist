@@ -110,9 +110,23 @@
                                 </Button>
                                 
                                 <Button  Style="{StaticResource ImageButton}" 
+                                         Width="30" Height="30" Margin="5,2,5,2" Name="UseNaturesMinne"
+                                         Click="UseNaturesMinne_OnClick">
+                                    <Image Source="../../Resources/Spells/NaturesMinne.png" Stretch="Uniform" />
+                                
+                                </Button>
+                                
+                                <Button  Style="{StaticResource ImageButton}" 
                                          Width="30" Height="30" Margin="5,2,5,2" Name="UseApex"
                                          Click="UseApex_OnClick">
                                     <Image Source="../../Resources/Spells/Apex.png" Stretch="Uniform" />
+                                
+                                </Button>
+                                
+                                <Button  Style="{StaticResource ImageButton}" 
+                                         Width="30" Height="30" Margin="5,2,5,2" Name="UseBlastArrow"
+                                         Click="UseBlastArrow_OnClick">
+                                    <Image Source="../../Resources/Spells/BlastArrow.png" Stretch="Uniform" />
                                 
                                 </Button>
                                 

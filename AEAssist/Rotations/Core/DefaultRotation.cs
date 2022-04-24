@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AEAssist.Define;
 using ff14bot.Objects;
 
 namespace AEAssist
@@ -51,7 +52,7 @@ namespace AEAssist
             return Task.FromResult(true);
         }
 
-        public SpellData GetBaseGCDSpell()
+        public SpellEntity GetBaseGCDSpell()
         {
             return null;
         }

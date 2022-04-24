@@ -9,7 +9,7 @@ namespace AEAssist.AI.MCH
 {
     public class MCHGCD_UnderHyperCharge : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (ActionResourceManager.Machinist.OverheatRemaining.TotalMilliseconds <= 0)
                 return -1;
@@ -22,10 +22,10 @@ namespace AEAssist.AI.MCH
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = MCHSpellHelper.GetUnderHyperChargeGCD();
-            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget))
+            if (await spell.DoGCD())
             {
                 AIRoot.GetBattleData<BattleData>().LimitAbility = true;
                 AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount--;

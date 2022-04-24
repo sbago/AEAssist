@@ -9,50 +9,50 @@ namespace AEAssist.AI
 {
     public class SamuraiSpellHelper
     {
-        public static async Task<SpellData> GetBaseSpell()
+        public static async Task<SpellEntity> GetBaseSpell()
         {
             if (Core.Me.HasAura(AurasDefine.Kaiten))
                 return null;
             if (!Core.Me.HasAura(AurasDefine.MeikyoShisui))
             {
-                if (ActionManager.LastSpell == SpellsDefine.Hakaze)
+                if (ActionManager.LastSpell == SpellsDefine.Hakaze.SpellData)
                 {
                     if (!ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Setsu))
-                        if(await SpellHelper.CastGCD(SpellsDefine.Yukikaze , Core.Me.CurrentTarget))
+                        if(await SpellsDefine.Yukikaze.DoGCD())
                             return SpellsDefine.Yukikaze;
                     //if (!ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Ka))
                     if ((Core.Me.GetAuraById(AurasDefine.Shifu)?.TimeLeft < (Core.Me.GetAuraById(AurasDefine.Jinpu)?.TimeLeft))||
                         !Core.Me.HasAura(AurasDefine.Shifu))
-                        if (await SpellHelper.CastGCD(SpellsDefine.Shifu, Core.Me.CurrentTarget))
+                        if (await SpellsDefine.Shifu.DoGCD())
                             return SpellsDefine.Shifu;
                     // if (ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Getsu))
-                    if (await SpellHelper.CastGCD(SpellsDefine.Jinpu, Core.Me.CurrentTarget))
+                    if (await SpellsDefine.Jinpu.DoGCD())
                         return SpellsDefine.Jinpu;
                 }
-                if (ActionManager.LastSpell == SpellsDefine.Shifu)
-                    if (await SpellHelper.CastGCD(SpellsDefine.Kasha, Core.Me.CurrentTarget))
+                if (ActionManager.LastSpell == SpellsDefine.Shifu.SpellData)
+                    if (await SpellsDefine.Kasha.DoGCD())
                         return SpellsDefine.Kasha;
-                if (ActionManager.LastSpell == SpellsDefine.Jinpu)
-                    if (await SpellHelper.CastGCD(SpellsDefine.Gekko, Core.Me.CurrentTarget))
+                if (ActionManager.LastSpell == SpellsDefine.Jinpu.SpellData)
+                    if (await SpellsDefine.Gekko.DoGCD())
                         return SpellsDefine.Gekko;
-                if (await SpellHelper.CastGCD(SpellsDefine.Hakaze, Core.Me.CurrentTarget))
+                if (await SpellsDefine.Hakaze.DoGCD())
                     return SpellsDefine.Hakaze;
             }
             if(Core.Me.HasAura(AurasDefine.MeikyoShisui))
             {         
                 if (!ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Ka))
-                    if (await SpellHelper.CastGCD(SpellsDefine.Kasha, Core.Me.CurrentTarget))
+                    if (await SpellsDefine.Kasha.DoGCD())
                         return SpellsDefine.Kasha;
                 if (!ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Getsu))
-                    if (await SpellHelper.CastGCD(SpellsDefine.Gekko, Core.Me.CurrentTarget))
+                    if (await SpellsDefine.Gekko.DoGCD())
                         return SpellsDefine.Gekko;
                 if (!ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Setsu))
-                    if (await SpellHelper.CastGCD(SpellsDefine.Yukikaze, Core.Me.CurrentTarget))
+                    if (await SpellsDefine.Yukikaze.DoGCD())
                         return SpellsDefine.Yukikaze;
             }
             return null;
         }
-        public static SpellData IaijutsuCanSpell()
+        public static SpellEntity IaijutsuCanSpell()
         {
             if (!Core.Me.HasAura(AurasDefine.Kaiten))
                 return null;
@@ -81,7 +81,7 @@ namespace AEAssist.AI
                 return false;
             return true;
         }
-        public static SpellData GetIaijutsuSpell()
+        public static SpellEntity GetIaijutsuSpell()
         {
             var spell = SpellsDefine.MidareSetsugekka;
             var Sen = SamuraiSpellHelper.SenCounts();
@@ -100,7 +100,7 @@ namespace AEAssist.AI
             return spell;
         }
 
-        public static SpellData KaeshiCanSpell()
+        public static SpellEntity KaeshiCanSpell()
         {
             if (AIRoot.GetBattleData<SamuraiBattleData>().KaeshiSpell == KaeshiSpell.MidareSetsugekka)
                 return SpellsDefine.KaeshiSetsugekka;

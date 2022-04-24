@@ -9,7 +9,7 @@ namespace AEAssist.AI
 {
     public  class SamuraiGCD_BaseGCDCombo : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (Core.Me.HasAura(AurasDefine.Kaiten))
                 return -1;
@@ -20,7 +20,7 @@ namespace AEAssist.AI
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             //var spell = SamuraiSpellHelper.GetBaseSpell();
             //if (spell == null) return null;

@@ -1,4 +1,5 @@
 ﻿using AEAssist.AI;
+using AEAssist.Define;
 using AETriggers.TriggerModel;
 
 namespace AEAssist.TriggerSystem.TriggerAction
@@ -7,7 +8,7 @@ namespace AEAssist.TriggerSystem.TriggerAction
     {
         protected override void Handle(TriggerAction_CastAbility t)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = t.SpellId;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = new SpellEntity(t.SpellId);
         }
     }
 }

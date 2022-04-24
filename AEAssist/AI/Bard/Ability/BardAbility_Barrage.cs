@@ -8,16 +8,16 @@ namespace AEAssist.AI
 {
     public class BardAbility_Barrage : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SpellsDefine.Barrage.IsReady()) return -1;
+
+            if (BardSpellHelper.UnlockBuffsCount() > 1 && BardSpellHelper.HasBuffsCount() <= 1)
+                return -3;
             
             if (Core.Me.HasAura(AurasDefine.ShadowBiteReady)
                 && TargetHelper.CheckNeedUseAOE(25, 5, ConstValue.BardAOECount))
                 return 1;
-
-            if (BardSpellHelper.UnlockBuffsCount() > 1 && BardSpellHelper.HasBuffsCount() <= 1)
-                return -3;
 
             var burstShot = BardSpellHelper.GetHeavyShot();
 
@@ -32,12 +32,12 @@ namespace AEAssist.AI
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = SpellsDefine.Barrage;
             if (spell == null)
                 return null;
-            var ret = await SpellHelper.CastAbility(spell, Core.Me);
+            var ret = await spell.DoAbility();
             if (ret)
                 return spell;
             return null;

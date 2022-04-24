@@ -9,7 +9,7 @@ namespace AEAssist.AI.MCH
 {
     public class MCHAbility_HyperCharge : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SpellsDefine.Hypercharge.IsReady())
                 return -1;
@@ -48,9 +48,9 @@ namespace AEAssist.AI.MCH
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
-            if (await SpellHelper.CastAbility(SpellsDefine.Hypercharge, Core.Me))
+            if (await SpellsDefine.Hypercharge.DoAbility())
             {
                 AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount = 5;
                 return SpellsDefine.Hypercharge;

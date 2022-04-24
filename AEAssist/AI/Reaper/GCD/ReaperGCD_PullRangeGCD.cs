@@ -9,21 +9,21 @@ namespace AEAssist.AI.Reaper
     // 近战之外的范围的GCD
     public class ReaperGCD_PullRangeGCD : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget, 6))
                 return -1;
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = SpellsDefine.Harpe;
             if (SpellsDefine.HarvestMoon.IsUnlock() && Core.Me.HasAura(AurasDefine.Soulsow))
                 spell = SpellsDefine.HarvestMoon;
             else if (!DataBinding.Instance.UseHarpe) return null;
 
-            if (await SpellHelper.CastGCD(spell, Core.Me.CurrentTarget)) return spell;
+            if (await spell.DoGCD()) return spell;
 
             return null;
         }

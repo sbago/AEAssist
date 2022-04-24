@@ -14,27 +14,27 @@ namespace AEAssist.View.Overlay
 
         private void UseArcaneCrest_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArcaneCrest.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArcaneCrest;
         }
 
         private void UseArmsLength_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength;
         }
 
         private void UseFeint_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Feint.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Feint;
         }
 
         private void UseSprint_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Sprint.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Sprint;
         }
 
         private void UseTrueNorth_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.TrueNorth.Id;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.TrueNorth;
             AIRoot.GetBattleData<BattleData>().NextAbilityUsePotion = false;
         }
 
@@ -50,7 +50,7 @@ namespace AEAssist.View.Overlay
 
         private void UseHarvestMoon_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.HarvestMoon.Id;
+            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.HarvestMoon;
         }
     }
 }

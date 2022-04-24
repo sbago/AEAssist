@@ -9,7 +9,7 @@ namespace AEAssist.AI
 {
     public class SamuraiAbility_HissatsuShinten : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (ActionResourceManager.Samurai.Kenki >= 80)
                 return 2;
@@ -20,10 +20,10 @@ namespace AEAssist.AI
             return -1;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = SpellsDefine.HissatsuShinten;
-            if (await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget))
+            if (await spell.DoAbility())
                 return spell;
             return null;
         }

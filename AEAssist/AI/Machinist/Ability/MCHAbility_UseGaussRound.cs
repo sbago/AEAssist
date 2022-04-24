@@ -8,7 +8,7 @@ namespace AEAssist.AI.MCH
 {
     public class MCHAbility_UseGaussRound : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (!SpellsDefine.GaussRound.IsReady() && !SpellsDefine.Ricochet.IsReady())
                 return -1;
@@ -32,15 +32,15 @@ namespace AEAssist.AI.MCH
             return 0;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
-            SpellData spellData;
-            if (SpellsDefine.GaussRound.Charges >= SpellsDefine.Ricochet.Charges)
+            SpellEntity spellData;
+            if (SpellsDefine.GaussRound.SpellData.Charges >= SpellsDefine.Ricochet.SpellData.Charges)
                 spellData = SpellsDefine.GaussRound;
             else
                 spellData = SpellsDefine.Ricochet;
             
-            if (await SpellHelper.CastAbility(spellData, Core.Me.CurrentTarget))
+            if (await spellData.DoAbility())
             {
                 return spellData;
             }

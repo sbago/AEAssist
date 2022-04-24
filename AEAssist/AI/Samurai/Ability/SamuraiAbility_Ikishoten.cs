@@ -9,7 +9,7 @@ namespace AEAssist.AI
 {
     public class SamuraiAbility_Ikishoten : IAIHandler
     {
-        public int Check(SpellData lastSpell)
+        public int Check(SpellEntity lastSpell)
         {
             if (SpellsDefine.Ikishoten.Cooldown.TotalSeconds == 0 &&
                 ActionResourceManager.Samurai.Kenki < 50)
@@ -17,10 +17,10 @@ namespace AEAssist.AI
             return -1;
         }
 
-        public async Task<SpellData> Run()
+        public async Task<SpellEntity> Run()
         {
             var spell = SpellsDefine.Ikishoten;
-            if (await SpellHelper.CastAbility(spell, Core.Me.CurrentTarget))
+            if (await spell.DoAbility())
                 return spell;
             return null;
         }
