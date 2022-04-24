@@ -150,5 +150,10 @@ namespace AEAssist.Define
         {
             return SpellHelper.CanCastGCD(SpellData, GetTarget());
         }
+        
+        public bool CanCastAbility()
+        {
+            return ActionManager.CanCast(SpellData,GetTarget());
+        }
     }
 }

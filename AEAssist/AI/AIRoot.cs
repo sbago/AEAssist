@@ -220,7 +220,7 @@ namespace AEAssist.AI
                     {
                         var target = Core.Me.CurrentTarget;
                         
-                        if (ActionManager.CanCast(ret.SpellData, Core.Me.CurrentTarget))
+                        if (ret.CanCastAbility())
                         {
                             if (!await ret.DoAbility())
                                 ret = null;
