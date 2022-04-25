@@ -104,6 +104,9 @@
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchFinalBurst.cs">
           <Link>TriggerModel\TriggerAction\TriggerAction_SwitchFinalBurst.cs</Link>
         </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchPotion.cs">
+          <Link>TriggerModel\TriggerAction\TriggerAction_SwitchPotion.cs</Link>
+        </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchSong.cs">
           <Link>TriggerModel\TriggerAction\TriggerAction_SwitchSong.cs</Link>
         </Compile>
@@ -201,6 +204,7 @@
         <Compile Include="AI\Reaper\GCD\ReaperGCD_PullRangeGCD.cs" />
         <Compile Include="AI\Reaper\GCD\ReaperGCD_ShadowOfDeath.cs" />
         <Compile Include="AI\Reaper\GCD\ReaperGCD_SoulSlice.cs" />
+        <Compile Include="AI\Reaper\Opener_Reaper_90.cs" />
         <Compile Include="AI\Reaper\ReaperRotation.cs" />
         <Compile Include="AI\Reaper\Reaper_AIPriorityQueue.cs" />
         <Compile Include="AI\Reaper\ReaperBattleData.cs" />
@@ -225,10 +229,9 @@
         <Compile Include="DataBinding\Language.cs" />
         <Compile Include="DataBinding\LanguageOptionData.cs" />
         <Compile Include="DataBinding\PotionData.cs" />
-        <Compile Include="DataBinding\SongData.cs" />
         <Compile Include="Define\ConstValue.cs" />
         <Compile Include="Define\DataStruct\CircleList.cs" />
-        <Compile Include="Define\DataStruct\Entity.cs" />
+        <Compile Include="Define\Entity.cs" />
         <Compile Include="Define\ObjectPool.cs" />
         <Compile Include="Define\SpellEntity.cs" />
         <Compile Include="Gamelog\AEGamelogManager.cs" />
@@ -259,6 +262,7 @@
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchBurst.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchDOT.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchFinalBurstHandler.cs" />
+        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchPotion.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchSong.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_UsePotion.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterBattleStart.cs" />

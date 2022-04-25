@@ -21,11 +21,11 @@ namespace AEAssist.AI
 
         public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>
         {
-            new BardAbility_UsePotion(),
-            new BardAbility_PitchPerfect(),
             new BardAbility_Buffs(),
+            new BardAbility_PitchPerfect(),
             new BardAbility_Songs(),
             new BardAbility_RagingStrikes(),
+            new BardAbility_UsePotion(),
             new BardAbility_EmpyrealArrow(),
             new BardAbility_MaxChargeBloodletter(),
             new BardAbility_Barrage(),

@@ -14,7 +14,7 @@ namespace AEAssist.AI.MCH
             if (ActionResourceManager.Machinist.OverheatRemaining.TotalMilliseconds <= 0)
                 return -1;
             
-            if (AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount <= 0)
+            if (AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount >= 5)
             {
                 return -2;
             }
@@ -28,7 +28,7 @@ namespace AEAssist.AI.MCH
             if (await spell.DoGCD())
             {
                 AIRoot.GetBattleData<BattleData>().LimitAbility = true;
-                AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount--;
+                AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount++;
                 return spell;
             }
             return null;

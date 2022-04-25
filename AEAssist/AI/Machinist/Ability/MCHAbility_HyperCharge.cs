@@ -52,7 +52,7 @@ namespace AEAssist.AI.MCH
         {
             if (await SpellsDefine.Hypercharge.DoAbility())
             {
-                AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount = 5;
+                AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount = 0;
                 return SpellsDefine.Hypercharge;
             }
 

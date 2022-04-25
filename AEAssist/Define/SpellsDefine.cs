@@ -966,7 +966,7 @@ namespace AEAssist.Define
             PlentifulHarvest = new SpellEntity(24385); // [24385, Plentiful Harvest]
 
         public static readonly SpellEntity Harpe = new SpellEntity(24386); // [24386, Harpe]
-        public static readonly SpellEntity Soulsow = new SpellEntity(24387); // [24387, Soulsow]
+        public static readonly SpellEntity Soulsow = new SpellEntity(24387,SpellTargetType.Self); // [24387, Soulsow]
         public static readonly SpellEntity HarvestMoon = new SpellEntity(24388); // [24388, Harvest Moon]
         public static readonly SpellEntity BloodStalk = new SpellEntity(24389); // [24389, Blood Stalk]
         public static readonly SpellEntity UnveiledGibbet = new SpellEntity(24390); // [24390, UnveiledGibbet]
@@ -1038,6 +1038,11 @@ namespace AEAssist.Define
         public static readonly SpellEntity FluidAuraPvp = new SpellEntity(8900);
 
         #endregion
-        
+
+
+        public static HashSet<uint> IgnoreEarlyDecisionSet = new HashSet<uint>()
+        {
+            SpellsDefine.PlentifulHarvest.Id
+        };
     }
 }

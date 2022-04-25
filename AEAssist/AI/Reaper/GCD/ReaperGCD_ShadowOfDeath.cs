@@ -20,22 +20,23 @@ namespace AEAssist.AI.Reaper
             if (Core.Me.HasAura(AurasDefine.SoulReaver))
                 return -2;
 
+            if (ReaperSpellHelper.PrepareEnterDoubleEnshroud())
+                return -3;
+
             if (!target.ContainMyAura(AurasDefine.DeathsDesign, 10000)
                 && (ActionResourceManager.Reaper.SoulGauge > 50
                     || ActionResourceManager.Reaper.ShroudGauge > 50 || SpellsDefine.PlentifulHarvest.RecentlyUsed()))
                 return 1;
 
             if (target.ContainMyAura(AurasDefine.DeathsDesign, 3000))
-                return -3;
+                return -4;
 
             return 0;
         }
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.ShadowOfDeath;
-            if (TargetHelper.CheckNeedUseAOE(5, 5)) spell = SpellsDefine.WhorlOfDeath;
-
+            var spell = ReaperSpellHelper.GetShadowOfDeath();
             if (await spell.DoGCD())
                 return spell;
             return null;

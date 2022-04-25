@@ -18,16 +18,9 @@ namespace AEAssist.AI.Reaper
             // DoubleEnshroudPrefer 填充 这期间用不了普通GCD Combo所以只能填充这些
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.ContainMyAura(AurasDefine.Enshrouded))
             {
-                if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 5, 5))
-                {
-                    if (await SpellsDefine.WhorlOfDeath.DoGCD())
-                        return SpellsDefine.WhorlOfDeath;
-                }
-                else
-                {
-                    if (await SpellsDefine.ShadowOfDeath.DoGCD())
-                        return SpellsDefine.ShadowOfDeath;
-                }
+                var spell = ReaperSpellHelper.GetShadowOfDeath();
+                if (await spell.DoGCD())
+                    return spell;
             }
 
             return await ReaperSpellHelper.BaseGCDCombo(Core.Me.CurrentTarget);

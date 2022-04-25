@@ -41,7 +41,7 @@ namespace AEAssist.AI
             return 0;
         }
 
-        public int StepCount => 11;
+        public int StepCount => 5;
         
         [OpenerStep(0)]
         SpellQueueSlot Step0()
@@ -91,80 +91,6 @@ namespace AEAssist.AI
             slot.Abilitys.Enqueue((SpellsDefine.Hypercharge.Id,SpellTargetType.CurrTarget));
             slot.Abilitys.Enqueue((SpellsDefine.Wildfire.Id,SpellTargetType.CurrTarget));
 
-            return slot;
-        }
-        
-        [OpenerStep(5)]
-        SpellQueueSlot Step6()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-
-            //todo: 根据情况返回AOE版本?
-            
-            slot.GCDSpellId = MCHSpellHelper.GetUnderHyperChargeGCD().Id;
-            return slot;
-        }
-        
-        [OpenerStep(6)]
-        SpellQueueSlot Step7()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-
-            //todo: 根据情况返回AOE版本?
-            
-            slot.GCDSpellId = MCHSpellHelper.GetUnderHyperChargeGCD().Id;
-            slot.Abilitys.Enqueue((SpellsDefine.GaussRound.Id, SpellTargetType.CurrTarget));
-            return slot;
-        }
-        
-        [OpenerStep(7)]
-        SpellQueueSlot Step8()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-
-            //todo: 根据情况返回AOE版本?
-            
-            slot.GCDSpellId = MCHSpellHelper.GetUnderHyperChargeGCD().Id;
-            slot.Abilitys.Enqueue((SpellsDefine.Ricochet.Id, SpellTargetType.CurrTarget));
-
-            return slot;
-        }
-        
-              
-        [OpenerStep(8)]
-        SpellQueueSlot Step9()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-
-            //todo: 根据情况返回AOE版本?
-            
-            slot.GCDSpellId = MCHSpellHelper.GetUnderHyperChargeGCD().Id;
-            slot.Abilitys.Enqueue((SpellsDefine.GaussRound.Id, SpellTargetType.CurrTarget));
-            return slot;
-        }
-        
-             
-        [OpenerStep(9)]
-        SpellQueueSlot Step10()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-
-            //todo: 根据情况返回AOE版本?
-            
-            slot.GCDSpellId = MCHSpellHelper.GetUnderHyperChargeGCD().Id;
-            slot.Abilitys.Enqueue((SpellsDefine.Ricochet.Id, SpellTargetType.CurrTarget));
-
-            return slot;
-        }
-
-        [OpenerStep(10)]
-        SpellQueueSlot Step11()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-
-
-            slot.GCDSpellId = SpellsDefine.Drill.Id;
-    
             return slot;
         }
     }

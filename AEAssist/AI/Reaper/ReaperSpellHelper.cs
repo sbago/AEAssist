@@ -69,8 +69,6 @@ namespace AEAssist.AI.Reaper
 
         public static SpellEntity CanUseSoulSlice_Scythe(GameObject target)
         {
-            if (!SpellsDefine.SoulSlice.IsReady())
-                return null;
             if (TargetHelper.CheckNeedUseAOE(target, 5, 5)) return SpellsDefine.SoulScythe;
 
             return SpellsDefine.SoulSlice;
@@ -192,18 +190,31 @@ namespace AEAssist.AI.Reaper
             if (DataBinding.Instance.DoubleEnshroudPrefer
                 && SpellsDefine.PlentifulHarvest.IsUnlock()
                 && ActionResourceManager.Reaper.ShroudGauge < 90
-                && coolDown > 2000
+                && coolDown > 5000
                 && coolDown < ConstValue.ReaperDoubleEnshroudMaxCheckTime)
                 return -106;
 
+            if (PrepareEnterDoubleEnshroud())
+            {
+                // 连击3不能断,太亏
+                if (AIRoot.GetBattleData<ReaperBattleData>().CurrCombo == ReaperComboStages.InfernalSlice)
+                    return -107;
+            }
+            return 0;
+        }
+
+        public static bool PrepareEnterDoubleEnshroud()
+        {
+            var coolDown = SpellsDefine.ArcaneCircle.Cooldown.TotalMilliseconds;
             if (DataBinding.Instance.DoubleEnshroudPrefer
                 && SpellsDefine.PlentifulHarvest.IsUnlock()
-                && ActionResourceManager.Reaper.ShroudGauge < 90
-                && coolDown <= 2000
-                && AIRoot.GetBattleData<ReaperBattleData>().CurrCombo == ReaperComboStages.InfernalSlice)
-                return -107;
+                && ActionResourceManager.Reaper.ShroudGauge < 90)
+            {
+                if (coolDown <= 5000)
+                    return true;
+            }
 
-            return 0;
+            return false;
         }
 
         public static bool IfHasSoulReaver()
@@ -214,6 +225,13 @@ namespace AEAssist.AI.Reaper
                 || Core.Me.HasAura(AurasDefine.SoulReaver))
                 return true;
             return false;
+        }
+
+        public static SpellEntity GetShadowOfDeath()
+        {
+            var spell = SpellsDefine.ShadowOfDeath;
+            if (TargetHelper.CheckNeedUseAOE(5, 5)) spell = SpellsDefine.WhorlOfDeath;
+            return spell;
         }
     }
 }

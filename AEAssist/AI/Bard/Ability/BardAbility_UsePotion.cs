@@ -19,19 +19,16 @@ namespace AEAssist.AI
                 return -3;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return -4;
-            
-            // 准备爆发的时候才用
-            if (!SpellsDefine.RagingStrikes.RecentlyUsed() 
-                && !Core.Me.ContainMyAura(AurasDefine.RagingStrikes)
-                && SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds < 5000)
-            {
-                return -5;
-            }
-
             if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId))
                 return -6;
+            // 准备爆发的时候才用
+            if (Core.Me.ContainMyAura(AurasDefine.RagingStrikes)
+                || SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds < 5000)
+            {
+                return 0;
+            }
 
-            return 0;
+            return -7;
         }
 
         public async Task<SpellEntity> Run()

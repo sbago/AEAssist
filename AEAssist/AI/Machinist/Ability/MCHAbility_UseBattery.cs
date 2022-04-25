@@ -24,6 +24,8 @@ namespace AEAssist.AI.MCH
                 return -4;
             if (SpellsDefine.Hypercharge.RecentlyUsed())
                 return -5;
+            if (ActionResourceManager.Machinist.SummonRemaining > TimeSpan.Zero)
+                return -6;
             return 0;
         }
 

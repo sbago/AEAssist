@@ -31,6 +31,7 @@ namespace AEAssist.Helper
                 if (!await Coroutine.Wait(spell.BaseCastTime + TimeSpan.FromMilliseconds(500), () => Core.Me.IsCasting))
                     return false;
 
+
             return true;
         }
 
@@ -50,7 +51,7 @@ namespace AEAssist.Helper
             }
             else
             {
-                if (DataBinding.Instance.EarlyDecisionMode)
+                if (DataBinding.Instance.EarlyDecisionMode && !SpellsDefine.IgnoreEarlyDecisionSet.Contains(spell.Id))
                 {
                     if (!ActionManager.CanCastOrQueue(spell, target))
                         return false;
@@ -147,20 +148,20 @@ namespace AEAssist.Helper
         }
 
 
-        public static bool IsMaxChargeReady(this SpellData spellData)
+        public static bool IsMaxChargeReady(this SpellData spellData,float delta = 0.5f)
         {
             // LogHelper.Debug($"检测技能 {spellData.Name} {spellData.LocalizedName} AdCoolDown {spellData.AdjustedCooldown.TotalMilliseconds}");
-            var checkMax = spellData.MaxCharges - 0.5f;
+            var checkMax = spellData.MaxCharges - delta;
             if (!spellData.IsUnlock()
                 || spellData.Charges < checkMax)
                 return false;
             return true;
         }
         
-        public static bool IsMaxChargeReady(this SpellEntity spellEntity)
+        public static bool IsMaxChargeReady(this SpellEntity spellEntity,float delta = 0.5f)
         {
             var spellData = spellEntity.SpellData;
-            return spellData.IsMaxChargeReady();
+            return spellData.IsMaxChargeReady(delta);
         }
 
         public static bool CoolDownInGCDs(this SpellData spellData,int count)

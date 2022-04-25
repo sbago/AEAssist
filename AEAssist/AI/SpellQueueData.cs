@@ -17,6 +17,8 @@ namespace AEAssist.AI
         public SpellTargetType SpellTargetType; // 目标是否是自己
         // 有0就说明对应的能力技槽位是空的
         public Queue<(uint spellId, SpellTargetType SpellTargetType)> Abilitys = new Queue<(uint spellId, SpellTargetType SpellTargetType)>();
+
+        public bool UsePotion;
         
         public int AnimationLockMs = 500;
 
@@ -24,6 +26,7 @@ namespace AEAssist.AI
         {
             this.Abilitys.Clear();
             GCDSpellId = 0;
+            UsePotion = false;
             AnimationLockMs = 500;
             SpellTargetType = SpellTargetType.CurrTarget;
         }
@@ -58,6 +61,14 @@ namespace AEAssist.AI
             if (isLock)
             {
                 var slot = this.Queue.Peek();
+                if (slot.UsePotion)
+                {
+                    await AIMgrs.Instance.UsePotion(Core.Me.CurrentJob);
+                    isLock = false;
+                    ObjectPool.Instance.Return(this.Queue.Dequeue());
+                    return await ApplySlot();
+                }
+
                 if (slot.Abilitys.Count == 0)
                 {
                     isLock = false;

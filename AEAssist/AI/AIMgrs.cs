@@ -44,10 +44,10 @@ namespace AEAssist.AI
             foreach (var v in queue.GCDQueue)
             {
                 var ret = v.Check(lastGCD);
+                LogHelper.Debug(
+                    $"{AIRoot.GetBattleData<BattleData>().CurrBattleTime / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
                 if (ret >= 0)
                     return await v.Run();
-                LogHelper.Debug(
-                        $"{AIRoot.GetBattleData<BattleData>().CurrBattleTime / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
             }
 
             return null;
@@ -60,11 +60,11 @@ namespace AEAssist.AI
             foreach (var v in queue.AbilityQueue)
             {
                 var ret = v.Check(lastAbility);
+                LogHelper.Debug(
+                    $"{AIRoot.GetBattleData<BattleData>().CurrBattleTime / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
                 if (ret >= 0)
                     return await v.Run();
                 //   if(v.GetType() == typeof(BardAbility_Bloodletter))
-                    LogHelper.Debug(
-                        $"{AIRoot.GetBattleData<BattleData>().CurrBattleTime / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
             }
 
             return null;
@@ -73,7 +73,8 @@ namespace AEAssist.AI
         public async Task<bool> UsePotion(ClassJobType classJobType)
         {
             if (!JobPriorityQueue.TryGetValue(classJobType, out var queue)) return false;
-
+            if (!SettingMgr.GetSetting<GeneralSettings>().UsePotion)
+                return false;
             return await queue.UsePotion();
         }
     }

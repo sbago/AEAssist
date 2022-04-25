@@ -25,13 +25,14 @@ namespace AEAssist.AI.Reaper
             if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<GeneralSettings>().StrPotionId))
                 return -5;
 
-            if (SpellsDefine.PlentifulHarvest.IsReady()
-                && Core.Me.ContainsMyInEndAura(AurasDefine.BloodsownCircle, 3000))
+            if (SpellsDefine.PlentifulHarvest.IsUnlock()
+                && (SpellsDefine.ArcaneCircle.Cooldown.TotalMilliseconds<=2000
+                || Core.Me.ContainMyAura(AurasDefine.ArcaneCircle)))
                 return 1;
 
 
             //todo: 优化,如果没冷却好圣餐或者没解锁, 就绑定附体状态用
-            if (!SpellsDefine.PlentifulHarvest.IsReady() && ActionResourceManager.Reaper.ShroudGauge > 50)
+            if (!SpellsDefine.PlentifulHarvest.IsUnlock() && ActionResourceManager.Reaper.ShroudGauge >= 50)
                 return 2;
 
             return -6;

@@ -13,7 +13,6 @@ namespace AEAssist.View
     [AddINotifyPropertyChangedInterface]
     public partial class BardOverlayWindow : UserControl
     {
-        public List<SongData> SongDatas;
 
         public System.Action DragMove;
 

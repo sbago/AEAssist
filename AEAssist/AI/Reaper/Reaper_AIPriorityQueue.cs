@@ -24,8 +24,8 @@ namespace AEAssist.Define
         public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>
         {
             new ReaperAbility_ArcaneCircle(),
-            new ReaperAbility_Lemure(),
             new ReaperAbility_UsePotion(),
+            new ReaperAbility_Lemure(),
             new ReaperAbility_Enshroud(),
             new ReaperAbility_Gluttony(),
             new ReaperAbility_BloodStalk(),
