@@ -63,6 +63,8 @@ namespace AEAssist
         
         public string Combox_Hotkey_Stop { get; set; } = "停手";
         public string Combox_Hotkey_BurstOff { get; set; } = "关闭爆发";
+        
+        public string Combox_Hotkey_ArmLength_Surecast { get; set; } = "防击退";
 
         public string Textbox_AnimationLockMs { get; set; } = "能力技动画时间";
         public string Textbox_GCDQueueMs { get; set; } = "GCD队列时间";

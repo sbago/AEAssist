@@ -140,6 +140,12 @@ namespace AEAssist.AI
             {
                 return false;
             }
+            
+            // boss低血量自动开资源倾泻模式
+            if (TTKHelper.IsBossTTK(Core.Me.CurrentTarget as Character))
+            {
+                DataBinding.Instance.FinalBurst = true;
+            }
 
             var canUseAbility = true;
             var delta = timeNow -battleData.lastCastTime;

@@ -81,5 +81,6 @@
   "Toggle_FinalBurst" : "Final Burst",
   "Toggle_StrongGCDCheckTime" : "Strong GCDs check time",
   "Toggle_DoubleShroundPrefer" : "2*Enshroud Prefer",
-  "Toggle_WildfireNoDelay" : "Wildfire 1st"
+  "Toggle_WildfireNoDelay" : "Wildfire 1st",
+  "Combox_Hotkey_ArmLength_Surecast" : "Hotkey_ArmLength_Surecast"
 }

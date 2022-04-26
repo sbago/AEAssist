@@ -72,6 +72,11 @@
                     ModKeySetting="{Binding HotkeySetting.Hotkey_Burst.ModifierKey, Mode=TwoWay}"
                     Text="{Binding Language.Combox_Hotkey_BurstOff}" />
 
+                <view:HotkeyControl
+                    KeySetting="{Binding  HotkeySetting.Hotkey_ArmLength_Surecast.Key, Mode=TwoWay}"
+                    ModKeySetting="{Binding HotkeySetting.Hotkey_ArmLength_Surecast.ModifierKey, Mode=TwoWay}"
+                    Text="{Binding Language.Combox_Hotkey_ArmLength_Surecast}" />
+                
                 <Button Content="{Binding Language.Btn_ApplyHotkey}" 
                         Width="150" Margin="5"
                         Name="RefreshHotkey" Click="RefreshHotkey_OnClick"/>

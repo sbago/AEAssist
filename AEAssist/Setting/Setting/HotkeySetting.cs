@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Input;
 using AEAssist.AI;
+using AEAssist.Define;
 using AEAssist.View;
 using ff14bot.Managers;
 using Newtonsoft.Json;
@@ -28,6 +29,9 @@ namespace AEAssist
         public HotkeyData Hotkey_Stop { get; set; } = new HotkeyData();
         public HotkeyData Hotkey_Burst { get; set; } = new HotkeyData();
 
+        public HotkeyData Hotkey_ArmLength_Surecast { get; set; } = new HotkeyData();
+        
+
         public bool UseHotkey
         {
             get => _UseHotkey;
@@ -43,6 +47,7 @@ namespace AEAssist
         {
             Hotkey_Stop.Reset();
             Hotkey_Burst.Reset();
+            Hotkey_ArmLength_Surecast.Reset();
             UseHotkey = true;
             ResetHotkeyName();
         }
@@ -74,27 +79,39 @@ namespace AEAssist
 
                 // Hotkeys.Add(HotkeyManager.Register("BattleStartNow", Keys.F9, ModifierKeys.None,
                 //     v => { CountDownHandler.Instance.StartNow(); }));
-                if (Hotkey_Stop == null || Hotkey_Burst == null)
+                if (Hotkey_Stop == null || Hotkey_Burst == null || Hotkey_ArmLength_Surecast == null)
                     Reset();
                 //  LogHelper.Info("Hotkey_Stop: " + this.StopKey);
                 //  LogHelper.Info("Hotkey_CloseBuff: " + this.CloseBuffKey);
 
                 if (!UseHotkey)
                     return;
-                
-                Hotkeys.Add(HotkeyManager.Register("AEAssist_BattleStop", Hotkey_Stop.Key, Hotkey_Stop.ModifierKey, v =>
-                {
-                    AIRoot.Instance.Stop =
-                        !AIRoot.Instance.Stop;
-                    UIHelper.RfreshCurrOverlay();
-                }));
 
-                Hotkeys.Add(HotkeyManager.Register("AEAssist_Burst", Hotkey_Burst.Key,Hotkey_Burst.ModifierKey, v =>
-                {
-                    AIRoot.Instance.CloseBurst =
-                        !AIRoot.Instance.CloseBurst;
-                    UIHelper.RfreshCurrOverlay();
-                }));
+                if (Hotkey_Stop.Key != Keys.None)
+                    Hotkeys.Add(HotkeyManager.Register("AEAssist_BattleStop", Hotkey_Stop.Key, Hotkey_Stop.ModifierKey,
+                        v =>
+                        {
+                            AIRoot.Instance.Stop =
+                                !AIRoot.Instance.Stop;
+                            UIHelper.RfreshCurrOverlay();
+                        }));
+                if (Hotkey_Burst.Key != Keys.None)
+                    Hotkeys.Add(HotkeyManager.Register("AEAssist_Burst", Hotkey_Burst.Key, Hotkey_Burst.ModifierKey,
+                        v =>
+                        {
+                            AIRoot.Instance.CloseBurst =
+                                !AIRoot.Instance.CloseBurst;
+                            UIHelper.RfreshCurrOverlay();
+                        }));
+                if (Hotkey_ArmLength_Surecast.Key != Keys.None)
+                    Hotkeys.Add(HotkeyManager.Register("AEAssist_ArmLength_Surecast", Hotkey_ArmLength_Surecast.Key,
+                        Hotkey_ArmLength_Surecast.ModifierKey, v =>
+                        {
+                            if (ActionManager.HasSpell(SpellsDefine.ArmsLength.Id))
+                                AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength;
+                            else
+                                AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Surecast;
+                        }));
             }
             catch (Exception e)
             {
