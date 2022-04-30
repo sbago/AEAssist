@@ -32,10 +32,10 @@ namespace AEAssist.AI.Reaper
             if (spell == null)
                 return -4;
 
-            if (spell == SpellsDefine.Gibbet && !Core.Me.CurrentTarget.IsFlanking)
+            if (spell.Id == SpellsDefine.Gibbet && !Core.Me.CurrentTarget.IsFlanking)
                 return 1;
 
-            if (spell == SpellsDefine.Gallows && !Core.Me.CurrentTarget.IsBehind)
+            if (spell.Id == SpellsDefine.Gallows && !Core.Me.CurrentTarget.IsBehind)
                 return 2;
 
             return -5;
@@ -43,7 +43,7 @@ namespace AEAssist.AI.Reaper
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.TrueNorth;
+            var spell = SpellsDefine.TrueNorth.GetSpellEntity();
             if (await spell.DoAbility()) return spell;
 
             return null;

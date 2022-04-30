@@ -130,6 +130,47 @@ namespace AEAssist.AI
                 ClearBattleData = false;
             }
 
+            if (SettingMgr.GetSetting<GeneralSettings>().AbilityFirst)
+            {
+                if (battleData.NextAbilitySpellId != null)
+                {
+                    var ret = battleData.NextAbilitySpellId;
+                    if (ret.SpellData != null && ret.IsUnlock())
+                    {
+                        if (ret.CanCastAbility())
+                        {
+                            if (!await ret.DoAbility())
+                                ret = null;
+                            else
+                                battleData.NextAbilitySpellId = null;
+                        }
+                        else
+                        {
+                            ret = null;
+                        }
+                    }
+                    else
+                    {
+                        ret = null;
+                        battleData.NextAbilitySpellId = null;
+                    }
+
+                    if (ret == null && battleData.AbilityRetryEndTime < TimeHelper.Now())
+                    {
+                        LogHelper.Debug($"RetryEndTime : NextAbility {battleData.NextAbilitySpellId}");
+                        battleData.NextAbilitySpellId = null;
+                    }
+                    
+                    if (ret != null)
+                    {
+                        RecordGCD(ret);
+                    }
+
+                    return false;
+                }
+            }
+
+
             if (await OpenerMgr.Instance.UseOpener(Core.Me.CurrentJob))
             {
                 return false;
@@ -226,8 +267,6 @@ namespace AEAssist.AI
                     ret =battleData.NextAbilitySpellId;
                     if (ret.SpellData != null && ret.IsUnlock())
                     {
-                        var target = Core.Me.CurrentTarget;
-                        
                         if (ret.CanCastAbility())
                         {
                             if (!await ret.DoAbility())
@@ -269,7 +308,7 @@ namespace AEAssist.AI
         {
             var battleData = GetBattleData<BattleData>();
             var timeNow = TimeHelper.Now();
-            var msg = $"{battleData.CurrBattleTime/1000} Cast GCD: {ret.Id} " + ret.SpellData.LocalizedName;
+            var msg = $"{battleData.CurrBattleTimeInMs/1000} Cast GCD: {ret.Id} " + ret.SpellData.LocalizedName;
             LogHelper.Info(msg);
             GUIHelper.ShowInfo(msg, 100,false);
             var history = new SpellHistory
@@ -294,7 +333,7 @@ namespace AEAssist.AI
         {
             var battleData = GetBattleData<BattleData>();
             var timeNow = TimeHelper.Now();
-            var msg = $"{battleData.CurrBattleTime/1000} Cast Ability: {ret.Id} " + ret.SpellData.LocalizedName;
+            var msg = $"{battleData.CurrBattleTimeInMs/1000} Cast Ability: {ret.Id} " + ret.SpellData.LocalizedName;
             LogHelper.Info(msg);
             GUIHelper.ShowInfo(msg, 100,false);
             var history = new SpellHistory
@@ -321,7 +360,7 @@ namespace AEAssist.AI
             var delta = TimeHelper.Now() - GetBattleData<BattleData>().lastCastTime;
             var coolDown = GetGCDDuration();
 
-            if (coolDown - delta < coolDown * 0.5f)
+            if (coolDown - delta < coolDown * 0.6f)
                 return true;
             return false;
         }

@@ -32,7 +32,7 @@ namespace AEAssist.AI
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.ApexArrow;
+            var spell = SpellsDefine.ApexArrow.GetSpellEntity();
             if (spell == null)
                 return null;
             var ret = await spell.DoGCD();

@@ -40,7 +40,7 @@ namespace AEAssist.AI
 
 
         private HashSet<uint> LastNpcIds = new HashSet<uint>();
-
+        
         public void Update()
         {
             var tars = GameObjectManager.GetObjectsOfType<BattleCharacter>().Where(r => (r.TaggerType > 0
@@ -76,6 +76,12 @@ namespace AEAssist.AI
                 if (SettingMgr.GetSetting<GeneralSettings>().ShowGameLog && LastNpcIds.Add(unit.NpcId))
                 {
                     LogHelper.Info($"Find new enemy : {unit.Name} NpcId: {unit.NpcId}");
+                }
+
+                if (SettingMgr.GetSetting<GeneralSettings>().ShowGameLog && unit.IsCasting)
+                {
+                    LogHelper.Info($"Find enemy casting spell : {unit.Name} NpcId: {unit.NpcId} " +
+                                   $"CastingSpell {unit.SpellCastInfo.SpellData.LocalizedName} : {unit.SpellCastInfo.SpellData.Id} ");
                 }
             }
 

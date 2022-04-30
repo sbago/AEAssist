@@ -86,68 +86,76 @@
                             </WrapPanel>
                             <WrapPanel Margin="10">
                                 <Button Style="{StaticResource ImageButton}" 
-                                    Width="30" Height="30" Margin="5,2,5,2" Name="UseTroubadour"
+                                    Width="30" Height="30" Margin="2" Name="UseTroubadour"
                                         Click="UseTroubadour_OnClick">
                                     <Image Source="../../Resources/Spells/Troubadour.png"
                                            Stretch="Uniform" />
                                 </Button>
                                 <Button Style="{StaticResource ImageButton}"  
-                                        Width="30" Height="30" Margin="5,2,5,2" Name="UseArmsLength"
+                                        Width="30" Height="30" Margin="2" Name="UseArmsLength"
                                         Click="UseArmsLength_OnClick">
                                     <Image Source="../../Resources/Spells/ArmsLength.png"
                                                 Stretch="Uniform" />
                                 </Button>
                                 <Button  Style="{StaticResource ImageButton}" 
-                                         Width="30" Height="30" Margin="5,2,5,2" Name="UseSprint"
+                                         Width="30" Height="30" Margin="2" Name="UseSprint"
                                          Click="UseSprint_OnClick">
                                     <Image Source="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
                                 </Button>
                                 <Button  Style="{StaticResource ImageButton}" 
-                                         Width="30" Height="30" Margin="5,2,5,2" Name="UsePotion"
+                                         Width="30" Height="30" Margin="2" Name="UsePotion"
                                          Click="UsePotion_OnClick">
                                     <Image Source="../../Resources/Spells/Potion.png" Stretch="Uniform" />
                                 
                                 </Button>
                                 
                                 <Button  Style="{StaticResource ImageButton}" 
-                                         Width="30" Height="30" Margin="5,2,5,2" Name="UseNaturesMinne"
+                                         Width="30" Height="30" Margin="2" Name="UseNaturesMinne"
                                          Click="UseNaturesMinne_OnClick">
                                     <Image Source="../../Resources/Spells/NaturesMinne.png" Stretch="Uniform" />
                                 
                                 </Button>
                                 
                                 <Button  Style="{StaticResource ImageButton}" 
-                                         Width="30" Height="30" Margin="5,2,5,2" Name="UseApex"
+                                         Width="30" Height="30" Margin="2" Name="UseIronJaw"
+                                         Click="UseIronJaw_OnClick">
+                                    <Image Source="../../Resources/Spells/IronJaws.png" Stretch="Uniform" />
+                                
+                                </Button>
+                                
+                                <Button  Style="{StaticResource ImageButton}" 
+                                         Width="30" Height="30" Margin="2" Name="UseApex"
                                          Click="UseApex_OnClick">
                                     <Image Source="../../Resources/Spells/Apex.png" Stretch="Uniform" />
                                 
                                 </Button>
                                 
                                 <Button  Style="{StaticResource ImageButton}" 
-                                         Width="30" Height="30" Margin="5,2,5,2" Name="UseBlastArrow"
+                                         Width="30" Height="30" Margin="2" Name="UseBlastArrow"
                                          Click="UseBlastArrow_OnClick">
                                     <Image Source="../../Resources/Spells/BlastArrow.png" Stretch="Uniform" />
                                 
                                 </Button>
                                 
                                 <Button  Style="{StaticResource ImageButton}" 
-                                         Width="30" Height="30" Margin="5,2,5,2" Name="UseWM"
+                                         Width="30" Height="30" Margin="2" Name="UseWM"
                                          Click="UseWM_OnClick">
                                     <Image Source="../../Resources/Spells/WM.png" Stretch="Uniform" />
                                 
                                 </Button>
                                 <Button  Style="{StaticResource ImageButton}" 
-                                         Width="30" Height="30" Margin="5,2,5,2" Name="UseMB"
+                                         Width="30" Height="30" Margin="2" Name="UseMB"
                                          Click="UseMB_OnClick">
                                     <Image Source="../../Resources/Spells/MB.png" Stretch="Uniform" />
                                 
                                 </Button>
                                 <Button  Style="{StaticResource ImageButton}" 
-                                         Width="30" Height="30" Margin="5,2,5,2" Name="UseAP"
+                                         Width="30" Height="30" Margin="2" Name="UseAP"
                                          Click="UseAP_OnClick">
                                     <Image Source="../../Resources/Spells/AP.png" Stretch="Uniform" />
                                 
                                 </Button>
+  
                        
                                 
                             </WrapPanel>

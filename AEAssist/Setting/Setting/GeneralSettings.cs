@@ -39,6 +39,11 @@ namespace AEAssist
 
         public HashSet<string> DotBlacklist { get; set; } = new HashSet<string>();
 
+        public bool AutoFinalBurst = true;
+        public int AutoFinalBurstCheckTime { get; set; } = 6000;
+
+        public bool AbilityFirst { get; set; } = false;
+
         public void Reset()
         {
             UserLatencyOffset = 50;
@@ -54,9 +59,12 @@ namespace AEAssist
             ShowDebugLog = false;
             ShowToast = false;
             EarlyDecisionMode = true;
+            AutoFinalBurst = true;
+            AutoFinalBurstCheckTime = 6000;
 
             DexPotionId = 36105; // 5级巧力
             StrPotionId = 36104; // 5级刚力
+            AbilityFirst = false;
         }
         
     }

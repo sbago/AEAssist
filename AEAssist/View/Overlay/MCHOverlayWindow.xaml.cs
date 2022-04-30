@@ -24,17 +24,17 @@ namespace AEAssist.View
 
         private void UseTactician_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Tactician;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Tactician.GetSpellEntity();
         }
 
         private void UseArmsLength_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength.GetSpellEntity();
         }
 
         private void UseSprint_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Sprint;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Sprint.GetSpellEntity();
             AIRoot.GetBattleData<BattleData>().NextAbilityUsePotion = false;
         }
 
@@ -57,12 +57,12 @@ namespace AEAssist.View
 
         private void UseWildfire_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Wildfire;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Wildfire.GetSpellEntity();
         }
 
         private void UseDetonator_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Detonator;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Detonator.GetSpellEntity();
         }
         
 
@@ -74,7 +74,7 @@ namespace AEAssist.View
 
         private void UseHyperCharge_OnClick(object sender, RoutedEventArgs e)
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Hypercharge;
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Hypercharge.GetSpellEntity();
         }
     }
 }

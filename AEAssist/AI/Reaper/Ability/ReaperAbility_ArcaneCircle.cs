@@ -25,7 +25,7 @@ namespace AEAssist.AI.Reaper
                 if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 {
                     var delta = AIRoot.GetBattleData<BattleData>().lastGCDIndex -
-                                SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.Enshroud.Id);
+                                SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.Enshroud);
                     if (delta < 2)
                         return -5;
                 }
@@ -36,7 +36,7 @@ namespace AEAssist.AI.Reaper
 
         public async Task<SpellEntity> Run()
         {
-            if (await SpellsDefine.ArcaneCircle.DoAbility()) return SpellsDefine.ArcaneCircle;
+            if (await SpellsDefine.ArcaneCircle.DoAbility()) return SpellsDefine.ArcaneCircle.GetSpellEntity();
 
             return null;
         }

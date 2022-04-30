@@ -31,7 +31,7 @@ namespace AEAssist.AI.MCH
         {
             if (await SpellsDefine.Reassemble.DoAbility())
             {
-                return SpellsDefine.Reassemble;
+                return SpellsDefine.Reassemble.GetSpellEntity();
             }
 
             return null;

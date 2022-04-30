@@ -22,7 +22,7 @@ namespace AEAssist.AI.MCH
             if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId))
                 return -5;
 
-            if (SpellsDefine.Wildfire.RecentlyUsed() || SpellsDefine.Wildfire.Cooldown.TotalMilliseconds < 10000)
+            if (SpellsDefine.Wildfire.RecentlyUsed() || SpellsDefine.Wildfire.GetSpellEntity().Cooldown.TotalMilliseconds < 10000)
                 return 0;
             return -10;
         }

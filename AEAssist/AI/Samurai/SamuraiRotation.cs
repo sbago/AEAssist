@@ -37,7 +37,7 @@ namespace AEAssist
 
         public SpellEntity GetBaseGCDSpell()
         {
-            return SpellsDefine.Hakaze;
+            return SpellsDefine.Hakaze.GetSpellEntity();
         }
     }
 

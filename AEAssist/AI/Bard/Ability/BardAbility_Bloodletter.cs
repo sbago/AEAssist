@@ -11,7 +11,7 @@ namespace AEAssist.AI
     {
         public int Check(SpellEntity lastSpell)
         {
-            if (lastSpell == SpellsDefine.Bloodletter)
+            if (lastSpell.Id == SpellsDefine.Bloodletter)
                 return -1;
             if (!SpellsDefine.Bloodletter.IsReady())
                 return -2;
@@ -42,11 +42,11 @@ namespace AEAssist.AI
 
         public async Task<SpellEntity> Run()
         {
-            SpellEntity SpellEntity = SpellsDefine.Bloodletter;
+            SpellEntity SpellEntity = SpellsDefine.Bloodletter.GetSpellEntity();
             if (SpellsDefine.RainofDeath.IsReady() &&
                 TargetHelper.CheckNeedUseAOE(25, 8, ConstValue.BardAOECount))
             {
-                SpellEntity = SpellsDefine.RainofDeath;
+                SpellEntity = SpellsDefine.RainofDeath.GetSpellEntity();
 
             }
 

@@ -16,9 +16,27 @@ namespace AEAssist.AI
                 return -2;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return -3;
-            if (SpellsDefine.TheWanderersMinuet.IsUnlock() && !SpellsDefine.TheWanderersMinuet.RecentlyUsed() &&
-                !Core.Me.ContainMyAura(AurasDefine.TheWanderersMinuet))
-                return -4;
+            if (SpellsDefine.TheWanderersMinuet.IsUnlock())
+            {
+                if (AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs<10000)
+                {
+                    if (SpellsDefine.TheWanderersMinuet.RecentlyUsed()
+                        || Core.Me.ContainMyAura(AurasDefine.TheWanderersMinuet))
+                        return 0;
+                    return -4;
+                }
+                else
+                {
+                    if (!SpellsDefine.TheWanderersMinuet.RecentlyUsed()
+                        && !Core.Me.ContainMyAura(AurasDefine.TheWanderersMinuet))
+                        return -5;
+                    if (AIRoot.GetBattleData<BattleData>().lastGCDIndex
+                        - SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.TheWanderersMinuet) >=1)
+                        return 1;
+                    return -6;
+                }
+            }
+
             return 0;
         }
 
@@ -26,10 +44,9 @@ namespace AEAssist.AI
         {
             // if (!AIRoot.Instance.Is2ndAbilityTime())
             //     return null;
-            var SpellEntity = SpellsDefine.RagingStrikes;
+            var SpellEntity = SpellsDefine.RagingStrikes.GetSpellEntity();
             if (await SpellEntity.DoAbility())
             {
-                BardSpellHelper.RecordUsingRagingStrikesTime();
                 return SpellEntity;
             }
 

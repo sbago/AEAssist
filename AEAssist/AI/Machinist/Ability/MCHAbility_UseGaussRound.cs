@@ -22,7 +22,7 @@ namespace AEAssist.AI.MCH
             {
                 if (SpellsDefine.BarrelStabilizer.IsReady())
                     return -2;
-                var lastGCDIndex = SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.BarrelStabilizer.Id);
+                var lastGCDIndex = SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.BarrelStabilizer);
                 if (AIRoot.GetBattleData<BattleData>().lastGCDIndex - lastGCDIndex < 2)
                 {
                     return -3;
@@ -35,10 +35,10 @@ namespace AEAssist.AI.MCH
         public async Task<SpellEntity> Run()
         {
             SpellEntity spellData;
-            if (SpellsDefine.GaussRound.SpellData.Charges >= SpellsDefine.Ricochet.SpellData.Charges)
-                spellData = SpellsDefine.GaussRound;
+            if (SpellsDefine.GaussRound.GetSpellEntity().SpellData.Charges >= SpellsDefine.Ricochet.GetSpellEntity().SpellData.Charges)
+                spellData = SpellsDefine.GaussRound.GetSpellEntity();
             else
-                spellData = SpellsDefine.Ricochet;
+                spellData = SpellsDefine.Ricochet.GetSpellEntity();
             
             if (await spellData.DoAbility())
             {

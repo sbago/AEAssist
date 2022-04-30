@@ -21,9 +21,9 @@ namespace AEAssist.AI
         public static void Init()
         {
             Songs.Clear();
-            Songs.Add(SpellsDefine.TheWanderersMinuet);
-            Songs.Add(SpellsDefine.MagesBallad);
-            Songs.Add(SpellsDefine.ArmysPaeon);
+            Songs.Add(SpellsDefine.TheWanderersMinuet.GetSpellEntity());
+            Songs.Add(SpellsDefine.MagesBallad.GetSpellEntity());
+            Songs.Add(SpellsDefine.ArmysPaeon.GetSpellEntity());
         }
 
         public static SpellEntity GetWindBite()
@@ -34,15 +34,15 @@ namespace AEAssist.AI
 
             if (!SpellsDefine.Stormbite.IsUnlock())
             {
-                if (!ActionManager.HasSpell(SpellsDefine.Windbite.Id))
+                if (!ActionManager.HasSpell(SpellsDefine.Windbite))
                     return null;
-                return SpellsDefine.Windbite;
+                return SpellsDefine.Windbite.GetSpellEntity();
             }
 
-            if (!ActionManager.HasSpell(SpellsDefine.Stormbite.Id))
+            if (!ActionManager.HasSpell(SpellsDefine.Stormbite))
                 return null;
 
-            return SpellsDefine.Stormbite;
+            return SpellsDefine.Stormbite.GetSpellEntity();
         }
 
         public static int GetWindBiteAura()
@@ -53,12 +53,12 @@ namespace AEAssist.AI
 
             if (!SpellsDefine.Stormbite.IsUnlock())
             {
-                if (!ActionManager.HasSpell(SpellsDefine.Windbite.Id))
+                if (!ActionManager.HasSpell(SpellsDefine.Windbite))
                     return 0;
                 return AurasDefine.Windbite;
             }
 
-            if (!ActionManager.HasSpell(SpellsDefine.Stormbite.Id))
+            if (!ActionManager.HasSpell(SpellsDefine.Stormbite))
                 return 0;
 
             return AurasDefine.StormBite;
@@ -72,15 +72,15 @@ namespace AEAssist.AI
 
             if (! SpellsDefine.CausticBite.IsUnlock())
             {
-                if (!ActionManager.HasSpell(SpellsDefine.VenomousBite.Id))
+                if (!ActionManager.HasSpell(SpellsDefine.VenomousBite))
                     return null;
-                return SpellsDefine.VenomousBite;
+                return SpellsDefine.VenomousBite.GetSpellEntity();
             }
 
-            if (!ActionManager.HasSpell(SpellsDefine.CausticBite.Id))
+            if (!ActionManager.HasSpell(SpellsDefine.CausticBite))
                 return null;
 
-            return SpellsDefine.CausticBite;
+            return SpellsDefine.CausticBite.GetSpellEntity();
         }
 
         public static int GetVenomousBiteAura()
@@ -91,12 +91,12 @@ namespace AEAssist.AI
 
             if (!SpellsDefine.CausticBite.IsUnlock())
             {
-                if (!ActionManager.HasSpell(SpellsDefine.VenomousBite.Id))
+                if (!ActionManager.HasSpell(SpellsDefine.VenomousBite))
                     return 0;
                 return AurasDefine.VenomousBite;
             }
 
-            if (!ActionManager.HasSpell(SpellsDefine.CausticBite.Id))
+            if (!ActionManager.HasSpell(SpellsDefine.CausticBite))
                 return 0;
 
             return AurasDefine.CausticBite;
@@ -174,28 +174,28 @@ namespace AEAssist.AI
             if (!SpellsDefine.StraightShot.IsUnlock())
                 return null;
             if (!SpellsDefine.RefulgentArrow.IsUnlock())
-                return SpellsDefine.StraightShot;
-            if (!ActionManager.HasSpell(SpellsDefine.RefulgentArrow.Id)) return SpellsDefine.StraightShot;
+                return SpellsDefine.StraightShot.GetSpellEntity();
+            if (!ActionManager.HasSpell(SpellsDefine.RefulgentArrow)) return SpellsDefine.StraightShot.GetSpellEntity();
 
-            return SpellsDefine.RefulgentArrow;
+            return SpellsDefine.RefulgentArrow.GetSpellEntity();
         }
 
         public static SpellEntity GetBlastArrow()
         {
             if (!SpellsDefine.BlastArrow.IsUnlock())
                 return null;
-            return SpellsDefine.BlastArrow;
+            return SpellsDefine.BlastArrow.GetSpellEntity();
         }
 
         public static SpellEntity GetBaseGCD()
         {
-            if (Core.Me.HasAura(AurasDefine.StraighterShot))
+            if (Core.Me.HasAura(AurasDefine.StraighterShot) || SpellsDefine.Barrage.RecentlyUsed())
             {
                 if (!SpellsDefine.RefulgentArrow.IsUnlock())
-                    return SpellsDefine.StraightShot;
-                if (!ActionManager.HasSpell(SpellsDefine.RefulgentArrow.Id)) return SpellsDefine.StraightShot;
+                    return SpellsDefine.StraightShot.GetSpellEntity();
+                if (!ActionManager.HasSpell(SpellsDefine.RefulgentArrow)) return SpellsDefine.StraightShot.GetSpellEntity();
 
-                return SpellsDefine.RefulgentArrow;
+                return SpellsDefine.RefulgentArrow.GetSpellEntity();
             }
 
 
@@ -205,15 +205,15 @@ namespace AEAssist.AI
         public static SpellEntity GetHeavyShot()
         {
             if (!SpellsDefine.BurstShot.IsUnlock())
-                return SpellsDefine.HeavyShot;
-            return SpellsDefine.BurstShot;
+                return SpellsDefine.HeavyShot.GetSpellEntity();
+            return SpellsDefine.BurstShot.GetSpellEntity();
         }
 
         public static SpellEntity GetBuffs()
         {
-            if (SpellsDefine.BattleVoice.IsReady()) return SpellsDefine.BattleVoice;
+            if (SpellsDefine.BattleVoice.IsReady()) return SpellsDefine.BattleVoice.GetSpellEntity();
 
-            if (SpellsDefine.RadiantFinale.IsReady()) return SpellsDefine.RadiantFinale;
+            if (SpellsDefine.RadiantFinale.IsReady()) return SpellsDefine.RadiantFinale.GetSpellEntity();
 
             // if (Spells.RagingStrikes.IsReady())
             // {
@@ -225,8 +225,8 @@ namespace AEAssist.AI
 
         public static bool IsBuff(SpellEntity SpellEntity)
         {
-            if (SpellEntity == SpellsDefine.BattleVoice || SpellEntity == SpellsDefine.RagingStrikes ||
-                SpellEntity == SpellsDefine.RadiantFinale)
+            if (SpellEntity.Id == SpellsDefine.BattleVoice || SpellEntity.Id == SpellsDefine.RagingStrikes ||
+                SpellEntity.Id == SpellsDefine.RadiantFinale)
                 return true;
             return false;
         }
@@ -271,11 +271,11 @@ namespace AEAssist.AI
         {
             if (AIRoot.Instance.CloseBurst)
                 return false;
-            if (SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds < time) return true;
+            if (SpellsDefine.RagingStrikes.GetSpellEntity().Cooldown.TotalMilliseconds < time) return true;
 
             if (!SpellsDefine.RagingStrikes.RecentlyUsed() && !Core.Me.HasAura(AurasDefine.RagingStrikes)) return false;
 
-            if (SpellsDefine.BattleVoice.Cooldown.TotalMilliseconds < time) return true;
+            if (SpellsDefine.BattleVoice.GetSpellEntity().Cooldown.TotalMilliseconds < time) return true;
 
             return false;
         }
@@ -305,7 +305,7 @@ namespace AEAssist.AI
             if (SpellsDefine.RagingStrikes.RecentlyUsed() || Core.Me.HasMyAura(AurasDefine.RagingStrikes))
             {
                 if (AIRoot.GetBattleData<BattleData>().lastGCDIndex
-                    - SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.RagingStrikes.Id) >
+                    - SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.RagingStrikes) >
                     delayGCD)
                     return true;
 
@@ -314,24 +314,24 @@ namespace AEAssist.AI
 
             if (SpellsDefine.RagingStrikes.IsReady()) return false;
 
-            if (SpellsDefine.RadiantFinale.IsReady() &&
-                SpellsDefine.BattleVoice.Cooldown.TotalMilliseconds < 15000) return false;
+            if (SpellsDefine.RagingStrikes.GetSpellEntity().Cooldown.TotalMilliseconds > 60000)
+                return true;
 
-            return true;
+            return false;
         }
 
         public static SpellEntity GetQuickNock()
         {
-            if (IsShadowBiteReady()) return SpellsDefine.Shadowbite;
+            if (IsShadowBiteReady()) return SpellsDefine.Shadowbite.GetSpellEntity();
 
             if (!SpellsDefine.Ladonsbite.IsReady())
             {
                 if (!SpellsDefine.QuickNock.IsReady())
                     return null;
-                return SpellsDefine.QuickNock;
+                return SpellsDefine.QuickNock.GetSpellEntity();
             }
 
-            return SpellsDefine.Ladonsbite;
+            return SpellsDefine.Ladonsbite.GetSpellEntity();
         }
 
         public static bool IsShadowBiteReady()
@@ -353,9 +353,9 @@ namespace AEAssist.AI
 
             if (!AIRoot.Instance.CloseBurst)
             {
-                if (SpellsDefine.ArmysPaeon.Cooldown.TotalMilliseconds > 1000
-                    && SpellsDefine.MagesBallad.Cooldown.TotalMilliseconds > 1000
-                    && SpellsDefine.TheWanderersMinuet.Cooldown.TotalMilliseconds>1000)
+                if (SpellsDefine.ArmysPaeon.GetSpellEntity().Cooldown.TotalMilliseconds > 1000
+                    && SpellsDefine.MagesBallad.GetSpellEntity().Cooldown.TotalMilliseconds > 1000
+                    && SpellsDefine.TheWanderersMinuet.GetSpellEntity().Cooldown.TotalMilliseconds>1000)
                     return -103;
                 
                 if (AIRoot.GetBattleData<BardBattleData>().NeedSwitchByNextSongQueue((int)currSong,remainTime))
@@ -382,8 +382,8 @@ namespace AEAssist.AI
                 return -100;
             }
 
-            if (SpellsDefine.ArmysPaeon.Cooldown.TotalMilliseconds > 1000
-                && SpellsDefine.MagesBallad.Cooldown.TotalMilliseconds > 1000)
+            if (SpellsDefine.ArmysPaeon.GetSpellEntity().Cooldown.TotalMilliseconds > 1000
+                && SpellsDefine.MagesBallad.GetSpellEntity().Cooldown.TotalMilliseconds > 1000)
                 return -102;
             
             // 关爆发的时候,让歌唱完

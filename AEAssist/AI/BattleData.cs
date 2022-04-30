@@ -4,6 +4,7 @@ using AEAssist.Define;
 using AEAssist.Gamelog;
 using AEAssist.Helper;
 using AEAssist.TriggerSystem;
+using AETriggers.TriggerModel;
 using ff14bot;
 using ff14bot.Enums;
 using ff14bot.Managers;
@@ -54,7 +55,7 @@ namespace AEAssist.AI
                     AbilityRetryEndTime = TimeHelper.Now() + 6000;
                 }
 
-                LogHelper.Info("NextAbility: " + NextAbilitySpellId);
+                LogHelper.Debug("NextAbility: " + NextAbilitySpellId);
             }
         }
         public bool NextAbilityUsePotion;
@@ -82,6 +83,7 @@ namespace AEAssist.AI
 
         private readonly Dictionary<string, long> ExecutedTriggers = new Dictionary<string, long>();
 
+        private readonly Dictionary<ITriggerCond, long> CondHitTime = new Dictionary<ITriggerCond, long>();
 
         private void CalTriggerLine()
         {
@@ -103,6 +105,17 @@ namespace AEAssist.AI
             ExecutedTriggers.TryGetValue(id, out var time);
             return time;
         }
+
+        public void RecordCondHitTime(ITriggerCond cond)
+        {
+            CondHitTime[cond] = TimeHelper.Now();
+        }
+
+        public bool GetCondHitTime(ITriggerCond cond,out long time)
+        {
+            return CondHitTime.TryGetValue(cond, out time);
+        }
+
         #endregion
 
         public BattleData()
@@ -111,12 +124,12 @@ namespace AEAssist.AI
         }
 
         public long BattleStartTime { get; set; }
-        public long CurrBattleTime { get; private set; }
+        public long CurrBattleTimeInMs { get; private set; }
         public int OpenerIndex;
 
         public void Update(long currTime)
         {
-            CurrBattleTime = currTime - BattleStartTime;
+            CurrBattleTimeInMs = currTime - BattleStartTime;
             // var enemys = TargetMgr.Instance.EnemysIn25;
             // foreach (var v in enemys.Values)
             // {

@@ -14,7 +14,9 @@ namespace AEAssist.AI.MCH
                 return -1;
             
             // 整备只有1层的时候,如果3秒内能冷却好,等一下
-            if (!SpellsDefine.Reassemble.RecentlyUsed() && SpellsDefine.Reassemble.SpellData.MaxCharges < 1.5f && SpellsDefine.Reassemble.Cooldown.TotalMilliseconds < 3000)
+            if (!SpellsDefine.Reassemble.RecentlyUsed() 
+                && SpellsDefine.Reassemble.GetSpellEntity().SpellData.MaxCharges < 1.5f 
+                && SpellsDefine.Reassemble.GetSpellEntity().Cooldown.TotalMilliseconds < 3000)
             {
                 return -3;
             }
@@ -24,7 +26,7 @@ namespace AEAssist.AI.MCH
 
         public async Task<SpellEntity> Run()
         {
-            var spell = MCHSpellHelper.GetDrillIfWithAOE();
+            var spell = MCHSpellHelper.GetDrillIfWithAOE().GetSpellEntity();
 
             if (await spell.DoGCD())
             {

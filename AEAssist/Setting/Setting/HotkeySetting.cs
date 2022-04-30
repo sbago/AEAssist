@@ -107,10 +107,10 @@ namespace AEAssist
                     Hotkeys.Add(HotkeyManager.Register("AEAssist_ArmLength_Surecast", Hotkey_ArmLength_Surecast.Key,
                         Hotkey_ArmLength_Surecast.ModifierKey, v =>
                         {
-                            if (ActionManager.HasSpell(SpellsDefine.ArmsLength.Id))
-                                AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength;
+                            if (ActionManager.HasSpell(SpellsDefine.ArmsLength))
+                                AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength.GetSpellEntity();
                             else
-                                AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Surecast;
+                                AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Surecast.GetSpellEntity();
                         }));
             }
             catch (Exception e)

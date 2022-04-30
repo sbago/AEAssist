@@ -11,7 +11,7 @@ namespace AEAssist.AI.MCH
         public int Check(SpellEntity lastSpell)
         {
             var spell = MCHSpellHelper.GetAirAnchor();
-            if (spell == null || !spell.IsReady())
+            if (spell ==0 || !spell.IsReady())
                 return -1;
             
 
@@ -20,7 +20,9 @@ namespace AEAssist.AI.MCH
                 return -2;
             
             // 整备只有1层的时候,如果5秒内能冷却好,等一下
-            if (!SpellsDefine.Reassemble.RecentlyUsed() && SpellsDefine.Reassemble.SpellData.MaxCharges < 1.5f && SpellsDefine.Reassemble.Cooldown.TotalMilliseconds < 5000)
+            if (!SpellsDefine.Reassemble.RecentlyUsed() 
+                && SpellsDefine.Reassemble.GetSpellEntity().SpellData.MaxCharges < 1.5f 
+                && SpellsDefine.Reassemble.GetSpellEntity().Cooldown.TotalMilliseconds < 5000)
             {
                 return -3;
             }
@@ -30,7 +32,7 @@ namespace AEAssist.AI.MCH
 
         public async Task<SpellEntity> Run()
         {
-            var spell = MCHSpellHelper.GetAirAnchor();
+            var spell = MCHSpellHelper.GetAirAnchor().GetSpellEntity();
             
             if (await spell.DoGCD())
             {

@@ -19,7 +19,7 @@ namespace AEAssist.AI.MCH
         {
             if (await SpellsDefine.ChainSaw.DoGCD())
             {
-                return SpellsDefine.ChainSaw;
+                return SpellsDefine.ChainSaw.GetSpellEntity();
             }
 
             return null;

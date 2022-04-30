@@ -14,14 +14,14 @@ namespace AEAssist.AI
             var ta = Core.Me.CurrentTarget as Character;
             if (Core.Me.HasAura(AurasDefine.Kaiten))
                 return -1;
-            if (Core.Me.HasAura(AurasDefine.OgiReady) && SpellsDefine.KaeshiSetsugekka.Cooldown.TotalMilliseconds != 0 && ta.HasAura(AurasDefine.Higanbana))
+            if (Core.Me.HasAura(AurasDefine.OgiReady) && SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalMilliseconds != 0 && ta.HasAura(AurasDefine.Higanbana))
                 return 1;
 
             if(SamuraiSpellHelper.SenCounts() == 0) return -1;
 
             if (SamuraiSpellHelper.SenCounts() == 1)
             {
-                if (SpellsDefine.KaeshiSetsugekka.Cooldown.TotalSeconds == 0)
+                if (SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalSeconds == 0)
                     return -2;
 
                 if (ta.HasMyAura(AurasDefine.Higanbana) && ta.GetAuraById(AurasDefine.Higanbana)?.TimeLeft > 3)
@@ -37,7 +37,7 @@ namespace AEAssist.AI
         {
             var spell = SpellsDefine.HissatsuKaiten;
             if (await spell.DoAbility())
-                return spell;
+                return spell.GetSpellEntity();
             return null;
         }
     }

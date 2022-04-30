@@ -19,30 +19,29 @@ namespace AEAssist.AI
                 return 1;
             var aura = Core.Me.GetAuraById(AurasDefine.BlastArrowReady);
             var tar = Core.Me.CurrentTarget as Character;
-
-            if (aura.TimespanLeft.TotalMilliseconds <= 5000)
-                return 2;
             
-            if (BardSpellHelper.IsTargetNeedIronJaws(tar,3000))
-                return -2;
+            // Buff持续时间内需要补毒,那么先等补毒
+            if (BardSpellHelper.IsTargetNeedIronJaws(Core.Me.CurrentTarget as Character, (int)aura.TimespanLeft.TotalMilliseconds - 2500))
+                return -3;
+
+            if (aura.TimespanLeft.TotalMilliseconds <= 2500)
+                return 3;
 
             if (SpellsDefine.RagingStrikes.RecentlyUsed() || BardSpellHelper.HasBuffsCount() >= 1)
-                return 3;
-            
-            if (TargetHelper.CheckNeedUseAOE(25, 2, ConstValue.BardAOECount))
                 return 4;
             
+            if (TargetHelper.CheckNeedUseAOE(25, 2, ConstValue.BardAOECount))
+                return 5;
             
-            var buffTime = SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds;
+            
+            var buffTime = SpellsDefine.RagingStrikes.GetSpellEntity().Cooldown.TotalMilliseconds;
             if (SpellsDefine.RagingStrikes.IsReady())
                 buffTime = 0;
 
             if (DataBinding.Instance.EarlyDecisionMode)
                 buffTime += SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
             
-            // Buff持续时间内需要补毒,那么立即打出去
-            if (BardSpellHelper.IsTargetNeedIronJaws(Core.Me.CurrentTarget as Character, (int)aura.TimespanLeft.TotalMilliseconds))
-                return 5;
+            
             
             // 如果可以等到猛者,就等一下
             if (aura.TimespanLeft.TotalMilliseconds >= buffTime + ConstValue.AuraTick) return -4;

@@ -23,16 +23,18 @@ namespace AEAssist.AI.Reaper
                 return -3;
             if (ReaperSpellHelper.IfHasSoulReaver())
                 return -4;
-            if (SpellsDefine.Enshroud.Cooldown.TotalMilliseconds > 0
-                && SpellsDefine.Enshroud.Cooldown.TotalMilliseconds < 5000
+            if (SpellsDefine.Enshroud.GetSpellEntity().Cooldown.TotalMilliseconds > 0
+                && SpellsDefine.Enshroud.GetSpellEntity().Cooldown.TotalMilliseconds < 5000
                 && ReaperSpellHelper.ReadyToEnshroud() >= 0)
                 return -5;
 
-            if (TimeHelper.Now() - SpellHistoryHelper.GetLastSpellTime(SpellsDefine.Enshroud.Id) < 3000)
+            if (TimeHelper.Now() - SpellHistoryHelper.GetLastSpellTime(SpellsDefine.Enshroud) < 3000)
                 return -6;
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -7;
-            if (SpellsDefine.Gluttony.IsUnlock()&& !AIRoot.Instance.CloseBurst && SpellsDefine.Gluttony.Cooldown.TotalMilliseconds < 10000) return -8;
+            if (SpellsDefine.Gluttony.IsUnlock()
+                && !AIRoot.Instance.CloseBurst 
+                && SpellsDefine.Gluttony.GetSpellEntity().Cooldown.TotalMilliseconds < 10000) return -8;
 
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
                 return -9;
@@ -52,7 +54,7 @@ namespace AEAssist.AI.Reaper
                 //         AIRoot.Instance.MuteAbilityTime();
                 // }
 
-                return spell;
+                return spell.GetSpellEntity();
 
             return null;
         }

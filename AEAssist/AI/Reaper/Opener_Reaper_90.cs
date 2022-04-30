@@ -32,7 +32,7 @@ namespace AEAssist.AI.Reaper
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
             slot.GCDSpellId = ReaperSpellHelper.GetShadowOfDeath().Id;
-            slot.Abilitys.Enqueue((SpellsDefine.ArcaneCircle.Id,SpellTargetType.Self));
+            slot.Abilitys.Enqueue((SpellsDefine.ArcaneCircle,SpellTargetType.Self));
             return slot;
         }
         
@@ -59,8 +59,8 @@ namespace AEAssist.AI.Reaper
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.PlentifulHarvest.Id;
-            slot.Abilitys.Enqueue((SpellsDefine.Enshroud.Id,SpellTargetType.Self));
+            slot.GCDSpellId = SpellsDefine.PlentifulHarvest;
+            slot.Abilitys.Enqueue((SpellsDefine.Enshroud,SpellTargetType.Self));
             return slot;
         }
     }

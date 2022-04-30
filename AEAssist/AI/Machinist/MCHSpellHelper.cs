@@ -14,29 +14,29 @@ namespace AEAssist.AI
         public static SpellEntity GetSplitShot()
         {
             if (SpellsDefine.HeatedSplitShot.IsUnlock())
-                return SpellsDefine.HeatedSplitShot;
-            return SpellsDefine.SplitShot;
+                return SpellsDefine.HeatedSplitShot.GetSpellEntity();
+            return SpellsDefine.SplitShot.GetSpellEntity();
         }
 
         public static SpellEntity GetSlugShot()
         {
             if (SpellsDefine.HeatedSlugShot.IsUnlock())
-                return SpellsDefine.HeatedSlugShot;
-            return SpellsDefine.SlugShot;
+                return SpellsDefine.HeatedSlugShot.GetSpellEntity();
+            return SpellsDefine.SlugShot.GetSpellEntity();
         }
         
         public static SpellEntity GetCleanShot()
         {
             if (SpellsDefine.HeatedCleanShot.IsUnlock())
-                return SpellsDefine.HeatedCleanShot;
-            return SpellsDefine.CleanShot;
+                return SpellsDefine.HeatedCleanShot.GetSpellEntity();
+            return SpellsDefine.CleanShot.GetSpellEntity();
         }
 
         public static SpellEntity GetSpreadShot()
         {
             if (SpellsDefine.Scattergun.IsUnlock())
-                return SpellsDefine.Scattergun;
-            return SpellsDefine.SpreadShot;
+                return SpellsDefine.Scattergun.GetSpellEntity();
+            return SpellsDefine.SpreadShot.GetSpellEntity();
         }
 
         public static async Task<SpellEntity> UseBaseComboGCD(GameObject target)
@@ -89,28 +89,28 @@ namespace AEAssist.AI
             return null;
         }
 
-        public static SpellEntity GetAirAnchor()
+        public static uint GetAirAnchor()
         {
             if (SpellsDefine.AirAnchor.IsUnlock())
                 return SpellsDefine.AirAnchor;
             if (SpellsDefine.HotShot.IsUnlock())
                 return SpellsDefine.HotShot;
-            return null;
+            return 0;
         }
         public static SpellEntity GetReassembleGCD()
         {
             SpellEntity spell = null;
             if (SpellsDefine.AirAnchor.IsReady())
             {
-                spell = SpellsDefine.AirAnchor;
+                spell = SpellsDefine.AirAnchor.GetSpellEntity();
             }
             else if (SpellsDefine.Drill.IsReady())
             {
-                spell = SpellsDefine.Drill;
+                spell = SpellsDefine.Drill.GetSpellEntity();
             }
             else if (SpellsDefine.ChainSaw.IsReady())
             {
-                spell = SpellsDefine.ChainSaw;
+                spell = SpellsDefine.ChainSaw.GetSpellEntity();
             }
 
             return spell;
@@ -119,29 +119,29 @@ namespace AEAssist.AI
         public static SpellEntity GetAutomatonQueen()
         {
             if (SpellsDefine.AutomationQueen.IsUnlock())
-                return SpellsDefine.AutomationQueen;
-            return SpellsDefine.RookAutoturret;
+                return SpellsDefine.AutomationQueen.GetSpellEntity();
+            return SpellsDefine.RookAutoturret.GetSpellEntity();
         }
         
         public static SpellEntity GetQueenOverdrive()
         {
             if (SpellsDefine.QueenOverdrive.IsUnlock())
-                return SpellsDefine.QueenOverdrive;
-            return SpellsDefine.RookOverdrive;
+                return SpellsDefine.QueenOverdrive.GetSpellEntity();
+            return SpellsDefine.RookOverdrive.GetSpellEntity();
         }
 
         public static bool CheckReassmableGCD(int timeleft)
         {
-            if (SpellsDefine.ChainSaw.IsUnlock() && SpellsDefine.ChainSaw.Cooldown.TotalMilliseconds < timeleft)
+            if (SpellsDefine.ChainSaw.IsUnlock() && SpellsDefine.ChainSaw.GetSpellEntity().Cooldown.TotalMilliseconds < timeleft)
                 return true;
-            if (SpellsDefine.Drill.IsUnlock() && SpellsDefine.Drill.Cooldown.TotalMilliseconds < timeleft)
+            if (SpellsDefine.Drill.IsUnlock() && SpellsDefine.Drill.GetSpellEntity().Cooldown.TotalMilliseconds < timeleft)
                 return true;
-            if (SpellsDefine.AirAnchor.IsUnlock() && SpellsDefine.AirAnchor.Cooldown.TotalMilliseconds < timeleft)
+            if (SpellsDefine.AirAnchor.IsUnlock() && SpellsDefine.AirAnchor.GetSpellEntity().Cooldown.TotalMilliseconds < timeleft)
                 return true;
             return false;
         }
 
-        public static SpellEntity GetDrillIfWithAOE()
+        public static uint GetDrillIfWithAOE()
         {
             if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 12, 12))
             {
@@ -156,10 +156,10 @@ namespace AEAssist.AI
         {
             if (SpellsDefine.AutoCrossbow.IsUnlock() && TargetHelper.CheckNeedUseAOE(12, 12))
             {
-                return SpellsDefine.AutoCrossbow;
+                return SpellsDefine.AutoCrossbow.GetSpellEntity();
             }
             
-            return SpellsDefine.HeatBlast;
+            return SpellsDefine.HeatBlast.GetSpellEntity();
         }
     }
 }

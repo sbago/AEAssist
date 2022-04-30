@@ -23,7 +23,7 @@ namespace AEAssist.AI
                 return -6;
             // 准备爆发的时候才用
             if (Core.Me.ContainMyAura(AurasDefine.RagingStrikes)
-                || SpellsDefine.RagingStrikes.Cooldown.TotalMilliseconds < 5000)
+                || SpellsDefine.RagingStrikes.GetSpellEntity().Cooldown.TotalMilliseconds < 5000)
             {
                 return 0;
             }

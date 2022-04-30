@@ -1,0 +1,68 @@
+{
+  "_t" : "TriggerLine",
+  "TargetDuty" : "P4S",
+  "TargetJob" : "Bard",
+  "Triggers" : [{
+      "_id" : "1",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SongList",
+          "SongIndex" : [{ "$numberInt" : "3" }, { "$numberInt" : "1" }, { "$numberInt" : "2" }, { "$numberInt" : "3" }],
+          "Durations" : [{ "$numberInt" : "43" }, { "$numberInt" : "36" }, { "$numberInt" : "43" }, { "$numberInt" : "43" }]
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "0" }
+        }]
+    }, {
+      "_id" : "2",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchBurst",
+          "value" : false
+        }, {
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "3559" }
+        }, {
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "101" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "120" }
+        }, {
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "122" }
+        }]
+    }, {
+      "_id" : "3",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchBurst",
+          "value" : true
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "125" }
+        }]
+    }, {
+      "_id" : "4",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "7548" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "135" }
+        }]
+    }, {
+      "_id" : "5",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_UsePotion"
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "363" }
+        }]
+    }],
+  "Version" : "v0.1",
+  "Author" : "AE",
+  "ConfigVersion" : { "$numberInt" : "2" }
+}

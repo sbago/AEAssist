@@ -45,7 +45,7 @@ namespace AEAssist.AI
             {
                 var ret = v.Check(lastGCD);
                 LogHelper.Debug(
-                    $"{AIRoot.GetBattleData<BattleData>().CurrBattleTime / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
+                    $"{AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
                 if (ret >= 0)
                     return await v.Run();
             }
@@ -61,7 +61,7 @@ namespace AEAssist.AI
             {
                 var ret = v.Check(lastAbility);
                 LogHelper.Debug(
-                    $"{AIRoot.GetBattleData<BattleData>().CurrBattleTime / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
+                    $"{AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
                 if (ret >= 0)
                     return await v.Run();
                 //   if(v.GetType() == typeof(BardAbility_Bloodletter))

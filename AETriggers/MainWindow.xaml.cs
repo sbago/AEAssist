@@ -96,10 +96,10 @@ namespace AETriggers
                     for (var i = 6; i < sheet.LastRowNum; i++)
                     {
                         var row = sheet.GetRow(i);
-                        var cell = row.GetCell(1);
-                        var notData = cell != null && cell.ToString().StartsWith("#");
-                        if (notData)
-                            continue;
+                        // var cell = row.GetCell(1);
+                        // var notData = cell != null && cell.ToString().StartsWith("#");
+                        // if (notData)
+                        //     continue;
                         var groupId = row.GetCell(2)?.ToString();
                         var type = row.GetCell(3)?.ToString();
                         var valueType = row.GetCell(4)?.ToString();
@@ -137,6 +137,7 @@ namespace AETriggers
                     {
                         Entry.TriggerLine = null;
                         AllExcelData.Clear();
+                        MessageBox.Show("Load Failed!");
                     }
 
                     RefreshUI();
@@ -204,6 +205,7 @@ namespace AETriggers
                     {
                         var pre = $"Type: {data.valueType} TypeName {typeName} Params : [{ListToString(data.valueParams)}]\n ";
                         MessageBox.Show(pre + e);
+                        return false;
                     }
                 }
             }

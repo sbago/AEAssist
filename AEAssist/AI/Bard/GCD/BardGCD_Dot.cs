@@ -44,18 +44,13 @@ namespace AEAssist.AI
                 spell = BardSpellHelper.GetWindBite();
             else if (!BardSpellHelper.IsTargetHasAura_VenomousBite(target))
                 spell = BardSpellHelper.GetVenomousBite();
-            else if (BardSpellHelper.IsTargetNeedIronJaws(target,timeLeft)) spell = SpellsDefine.IronJaws;
+            else if (BardSpellHelper.IsTargetNeedIronJaws(target,timeLeft)) spell = SpellsDefine.IronJaws.GetSpellEntity();
 
             if (spell == null)
                 return null;
             var ret = await spell.DoGCD();
             if (ret)
             {
-                if (spell == SpellsDefine.IronJaws)
-                    BardSpellHelper.RecordIronJaw();
-                else
-                    BardSpellHelper.RemoveRecordIronJaw();
-
                 return spell;
             }
 

@@ -26,7 +26,7 @@ namespace AEAssist.AI.Reaper
         public async Task<SpellEntity> Run()
         {
             // 不是满充能,而且准备附体,先把连击状态打掉
-            if (SpellsDefine.SoulSlice.SpellData.Charges < SpellsDefine.SoulSlice.SpellData.MaxCharges
+            if (!SpellsDefine.SoulSlice.IsMaxChargeReady(0.2f)
                 && ReaperSpellHelper.ReadyToEnshroud() >= 0)
             {
                 if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 5, 5))
@@ -35,7 +35,7 @@ namespace AEAssist.AI.Reaper
                         if (await SpellsDefine.NightmareScythe.DoGCD())
                         {
                             AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.SpinningScythe;
-                            return SpellsDefine.NightmareScythe;
+                            return SpellsDefine.NightmareScythe.GetSpellEntity();
                         }
                 }
                 else
@@ -45,7 +45,7 @@ namespace AEAssist.AI.Reaper
                         if (await SpellsDefine.InfernalSlice.DoGCD())
                         {
                             AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.Slice;
-                            return SpellsDefine.InfernalSlice;
+                            return SpellsDefine.InfernalSlice.GetSpellEntity();
                         }
                     }
                     else if (AIRoot.GetBattleData<ReaperBattleData>().CurrCombo == ReaperComboStages.WaxingSlice)
@@ -53,7 +53,7 @@ namespace AEAssist.AI.Reaper
                         if (await SpellsDefine.WaxingSlice.DoGCD())
                         {
                             AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.InfernalSlice;
-                            return SpellsDefine.WaxingSlice;
+                            return SpellsDefine.WaxingSlice.GetSpellEntity();
                         }
                     }
                 }

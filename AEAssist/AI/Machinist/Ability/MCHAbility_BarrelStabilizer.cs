@@ -27,7 +27,7 @@ namespace AEAssist.AI.MCH
         {
             if (await SpellsDefine.BarrelStabilizer.DoAbility())
             {
-                return SpellsDefine.BarrelStabilizer;
+                return SpellsDefine.BarrelStabilizer.GetSpellEntity();
             }
 
             return null;

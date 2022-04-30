@@ -7,7 +7,14 @@
       "TriggerActions" : [{
           "_t" : "TriggerAction_SwitchAOE",
           "value" : false
-        }, {
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "0" }
+        }]
+    }, {
+      "_id" : "2",
+      "TriggerActions" : [{
           "_t" : "TriggerAction_SwitchBurst",
           "value" : false
         }, {
@@ -16,14 +23,42 @@
           "Durations" : [{ "$numberInt" : "43" }, { "$numberInt" : "45" }]
         }, {
           "_t" : "TriggerAction_SwitchApex",
-          "value" : false
+          "value" : true
+        }, {
+          "_t" : "TriggerAction_SwitchAOE",
+          "value" : true
         }],
       "TriggerConds" : [{
           "_t" : "TriggerCond_AfterBattleStart",
           "Time" : { "$numberInt" : "155" }
         }]
     }, {
-      "_id" : "2",
+      "_id" : "3",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchDOT",
+          "value" : false
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterOtherTrigger",
+          "Time" : { "$numberInt" : "5" },
+          "TriggerId" : "2"
+        }]
+    }, {
+      "_id" : "4",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchDOT",
+          "value" : true
+        }, {
+          "_t" : "TriggerAction_SwitchApex",
+          "value" : false
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterOtherTrigger",
+          "Time" : { "$numberInt" : "45" },
+          "TriggerId" : "3"
+        }]
+    }, {
+      "_id" : "5",
       "TriggerActions" : [{
           "_t" : "TriggerAction_SwitchBurst",
           "value" : true
@@ -33,14 +68,11 @@
         }],
       "TriggerConds" : [{
           "_t" : "TriggerCond_AfterOtherTrigger",
-          "Time" : { "$numberInt" : "60" },
-          "TriggerId" : "1"
-        }, {
-          "_t" : "TriggerCond_EnemyInLOS",
-          "name" : "phoinix"
+          "Time" : { "$numberInt" : "102" },
+          "TriggerId" : "2"
         }]
     }],
   "Version" : "v0.1",
   "Author" : "AE",
-  "ConfigVersion" : { "$numberInt" : "1" }
+  "ConfigVersion" : { "$numberInt" : "2" }
 }

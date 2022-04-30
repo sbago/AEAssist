@@ -26,7 +26,7 @@ namespace AEAssist.AI
             if (await SpellsDefine.OgiNamikiri.DoGCD())
             {
                 AIRoot.GetBattleData<SamuraiBattleData>().KaeshiSpell = KaeshiSpell.OgiNamikiri;
-                return SpellsDefine.OgiNamikiri;
+                return SpellsDefine.OgiNamikiri.GetSpellEntity();
             }
             return null;
         }

@@ -15,7 +15,7 @@ namespace AEAssist.AI
             if (ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Setsu) &&
                 (SamuraiSpellHelper.SenCounts() != 0) &&
                 !Core.Me.HasAura(AurasDefine.MeikyoShisui) &&
-                ((SpellsDefine.KaeshiSetsugekka.Cooldown.TotalMilliseconds % 60000) > 40000 ) && 
+                ((SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalMilliseconds % 60000) > 40000 ) && 
                 !(ta.GetAuraById(AurasDefine.Higanbana)?.TimeLeft < 5) &&
                 (ActionManager.LastSpell == null ))
                 return 1;
@@ -27,7 +27,7 @@ namespace AEAssist.AI
         {
             var spell = SpellsDefine.MeikyoShisui;
             if(await spell.DoAbility())
-                return spell;
+                return spell.GetSpellEntity();
             return null;
         }
     }

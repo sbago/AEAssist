@@ -15,12 +15,12 @@ namespace AEAssist.AI
 
             if (SettingMgr.GetSetting<BardSettings>().EarlyEmpyrealArrow)
             {
-                if (SpellsDefine.EmpyrealArrow.Cooldown.TotalMilliseconds > 300)
+                if (SpellsDefine.EmpyrealArrow.GetSpellEntity().Cooldown.TotalMilliseconds > 300)
                     return -2;
             }
             else
             {
-                if (SpellsDefine.EmpyrealArrow.Cooldown.TotalMilliseconds > 50)
+                if (SpellsDefine.EmpyrealArrow.GetSpellEntity().Cooldown.TotalMilliseconds > 50)
                     return -3; 
             }
 
@@ -37,7 +37,7 @@ namespace AEAssist.AI
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.EmpyrealArrow;
+            var spell = SpellsDefine.EmpyrealArrow.GetSpellEntity();
             if (spell == null)
                 return null;
             var ret = await spell.DoAbility();

@@ -1,4 +1,6 @@
-﻿using AEAssist.Gamelog;
+﻿using AEAssist.AI;
+using AEAssist.Gamelog;
+using AEAssist.Helper;
 using AETriggers.TriggerModel;
 
 namespace AEAssist.TriggerSystem.TriggerCond
@@ -7,13 +9,28 @@ namespace AEAssist.TriggerSystem.TriggerCond
     {
         protected override bool Check(TriggerCond_GameLog cond)
         {
-            foreach (var v in AEGamelogManager.Instance.GameLogBuffers)
+            if (AIRoot.GetBattleData<BattleData>().GetCondHitTime(cond, out var time))
             {
-                if (cond.MsgType != 0 && v.MsgType != cond.MsgType)
-                    continue;
-                if (v.Content.Contains(cond.ContainValue))
+                if (TimeHelper.Now() >= time + cond.delayTime * 1000)
+                {
                     return true;
+                }
             }
+            else
+            {
+                foreach (var v in AEGamelogManager.Instance.GameLogBuffers)
+                {
+                    if (cond.MsgType != 0 && v.MsgType != cond.MsgType)
+                        continue;
+                    if (v.Content.Contains(cond.ContainValue))
+                    {
+                        AIRoot.GetBattleData<BattleData>().RecordCondHitTime(cond);
+                        return false;
+                    }
+                }
+            }
+            
+
 
             return false;
         }

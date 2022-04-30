@@ -164,13 +164,22 @@
         <Compile Include="AI\Bard\GCD\BardGCD_Dot.cs" />
         <Compile Include="AI\Bard\GCD\BardGCD_HeavyShot.cs" />
         <Compile Include="AI\Bard\GCD\BardGCD_QuickNock.cs" />
+        <Compile Include="AI\Bard\SpellEvent\SpellEvent_Dot.cs" />
+        <Compile Include="AI\Bard\SpellEvent\SpellEvent_RagingStrikes.cs" />
+        <Compile Include="AI\Bard\SpellEvent\SpellEvent_Songs.cs" />
         <Compile Include="AI\BattleData.cs" />
         <Compile Include="AI\Dancer\DancerRotation.cs" />
         <Compile Include="AI\IAIHandler.cs" />
         <Compile Include="AI\IAIPriorityQueue.cs" />
         <Compile Include="AI\IAISpellQueue.cs" />
         <Compile Include="AI\IBattleData.cs" />
+        <Compile Include="AI\Machinist\SpellEvent\SpellEvent_Hypercharge.cs" />
+        <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UnderHyperChargetGCD.cs" />
+        <Compile Include="AI\Reaper\SpellEvent\SpellEvent_EnshourdGCD.cs" />
+        <Compile Include="AI\Reaper\SpellEvent\SpellEvent_Lemure.cs" />
+        <Compile Include="AI\SpellEvent.cs" />
         <Compile Include="AI\Machinist\Ability\MCHAbility_BarrelStabilizer.cs" />
+        <Compile Include="AI\Machinist\Ability\MCHAbility_FinalBurst.cs" />
         <Compile Include="AI\Machinist\Ability\MCHAbility_HyperCharge.cs" />
         <Compile Include="AI\Machinist\Ability\MCHAbility_Reassemble.cs" />
         <Compile Include="AI\Machinist\Ability\MCHAbility_UseBattery.cs" />
@@ -234,6 +243,7 @@
         <Compile Include="Define\Entity.cs" />
         <Compile Include="Define\ObjectPool.cs" />
         <Compile Include="Define\SpellEntity.cs" />
+        <Compile Include="Define\SpellsDefine.cs" />
         <Compile Include="Gamelog\AEGamelogManager.cs" />
         <Compile Include="Helper\DotBlacklistHelper.cs" />
         <Compile Include="Helper\LanguageHelper.cs" />
@@ -337,6 +347,7 @@
         <Compile Include="Setting\Setting\BardSettings.cs" />
         <Compile Include="Setting\Setting\GeneralSettings.cs" />
         <Compile Include="Setting\Setting\VersionSetting.cs" />
+        <Resource Include="Resources\Spells\IronJaws.png" />
         <Resource Include="Resources\Spells\Hypercharge.png" />
         <Resource Include="Resources\Spells\NaturesMinne.png" />
         <Resource Include="Resources\Spells\BlastArrow.png" />
@@ -483,7 +494,6 @@
         <Compile Include="AI\CountDownHandler.cs" />
         <Compile Include="AI\TargetMgr.cs" />
         <Compile Include="Define\AurasDefine.cs" />
-        <Compile Include="Define\SpellsDefine.cs" />
         <Compile Include="Helper\AuraHelper.cs" />
         <Compile Include="Helper\DataHelper.cs" />
         <Compile Include="Helper\GUIHelper.cs" />

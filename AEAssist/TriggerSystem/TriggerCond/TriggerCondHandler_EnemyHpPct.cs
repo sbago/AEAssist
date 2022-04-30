@@ -1,4 +1,5 @@
 ﻿using AEAssist.AI;
+using AEAssist.Helper;
 using AETriggers.TriggerModel;
 using ff14bot.Managers;
 
@@ -8,14 +9,27 @@ namespace AEAssist.TriggerSystem.TriggerCond
     {
         protected override bool Check(TriggerCond_EnemyHPPct cond)
         {
-            var enemys = TargetMgr.Instance.Enemys;
-            foreach (var v in enemys.Values)
+            if (AIRoot.GetBattleData<BattleData>().GetCondHitTime(cond, out var time))
             {
-                LogHelper.Info($"HPPct {v.Name} {v.CurrentHealthPercent}");
-                if (!v.Name.Contains(cond.Name) && v.NpcId.ToString() != cond.Name)
-                    continue;
-                if (v.CurrentHealthPercent * 100 <= cond.HpPct)
+                if (TimeHelper.Now() >= time + cond.delayTime * 1000)
+                {
                     return true;
+                }
+            }
+            else
+            {
+                var enemys = TargetMgr.Instance.Enemys;
+                foreach (var v in enemys.Values)
+                {
+                    LogHelper.Info($"HPPct {v.Name} {v.CurrentHealthPercent}");
+                    if (!v.Name.Contains(cond.Name) && v.NpcId.ToString() != cond.Name)
+                        continue;
+                    if (v.CurrentHealthPercent * 100 <= cond.HpPct)
+                    {
+                        AIRoot.GetBattleData<BattleData>().RecordCondHitTime(cond);
+                        return false;
+                    }
+                }
             }
 
             return false;

@@ -19,7 +19,7 @@ namespace AEAssist.AI.Reaper
                 return -4;
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -4;
-            if (TimeHelper.Now() - SpellHistoryHelper.GetLastSpellTime(SpellsDefine.Enshroud.Id) < 3000)
+            if (TimeHelper.Now() - SpellHistoryHelper.GetLastSpellTime(SpellsDefine.Enshroud) < 3000)
                 return -5;
             // 死亡祭祀
             if (Core.Me.HasAura(AurasDefine.BloodsownCircle))
@@ -48,7 +48,7 @@ namespace AEAssist.AI.Reaper
                 //         AIRoot.Instance.MuteAbilityTime();
                 // }
 
-                return SpellsDefine.Gluttony;
+                return SpellsDefine.Gluttony.GetSpellEntity();
 
             return null;
         }

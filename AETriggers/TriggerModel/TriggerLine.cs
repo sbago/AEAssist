@@ -12,6 +12,6 @@ namespace AETriggers.TriggerModel
 
         public int ConfigVersion;
 
-        public static int CurrConfigVersion = 1;
+        public static int CurrConfigVersion = 2;
     }
 }

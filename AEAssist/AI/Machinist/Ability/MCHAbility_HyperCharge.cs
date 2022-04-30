@@ -33,14 +33,14 @@ namespace AEAssist.AI.MCH
             if (ActionResourceManager.Machinist.Heat >= 95)
                 return 10;
             
-            if (SpellsDefine.BarrelStabilizer.Cooldown.TotalMilliseconds<5000)
+            if (SpellsDefine.BarrelStabilizer.GetSpellEntity().Cooldown.TotalMilliseconds<5000)
             {
                 return 1;
             }
 
 
             // 25秒是积累50点热度需要的时间
-            if (SpellsDefine.Wildfire.Cooldown.TotalMilliseconds < 25000)
+            if (SpellsDefine.Wildfire.GetSpellEntity().Cooldown.TotalMilliseconds < 25000)
             {
                 return -6;
             }
@@ -52,8 +52,7 @@ namespace AEAssist.AI.MCH
         {
             if (await SpellsDefine.Hypercharge.DoAbility())
             {
-                AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount = 0;
-                return SpellsDefine.Hypercharge;
+                return SpellsDefine.Hypercharge.GetSpellEntity();
             }
 
             return null;

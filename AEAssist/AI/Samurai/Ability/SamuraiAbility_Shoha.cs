@@ -21,7 +21,7 @@ namespace AEAssist.AI
         {
             var spell = SpellsDefine.Shoha;
             if (await spell.DoAbility())
-                return spell;
+                return spell.GetSpellEntity();
             return null;
         }
     }

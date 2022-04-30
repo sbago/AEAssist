@@ -17,7 +17,7 @@ namespace AEAssist.AI.Reaper
 
         public async Task<SpellEntity> Run()
         {
-            if (await SpellsDefine.Enshroud.DoAbility()) return SpellsDefine.Enshroud;
+            if (await SpellsDefine.Enshroud.DoAbility()) return SpellsDefine.Enshroud.GetSpellEntity();
 
             return null;
         }

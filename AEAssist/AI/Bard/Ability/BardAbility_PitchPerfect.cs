@@ -40,14 +40,19 @@ namespace AEAssist.AI
             {
                 return 4;
             }
-
+            
+            var buffCountInEnd = BardSpellHelper.HasBuffsCountInEnd(3000);
+            if (ActionResourceManager.Bard.Repertoire == 2 && buffCountInEnd > 1)
+            {
+                return 5;
+            }
 
             return -4;
         }
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.PitchPerfect;
+            var spell = SpellsDefine.PitchPerfect.GetSpellEntity();
             if (spell == null)
                 return null;
             var ret = await spell.DoAbility();

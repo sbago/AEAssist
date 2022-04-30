@@ -1,4 +1,5 @@
 ﻿using AEAssist.AI;
+using AEAssist.Helper;
 using AETriggers.TriggerModel;
 
 namespace AEAssist.TriggerSystem.TriggerCond
@@ -7,15 +8,29 @@ namespace AEAssist.TriggerSystem.TriggerCond
     {
         protected override bool Check(TriggerCond_EnemyCastSpellByName cond)
         {
-            var enemys = TargetMgr.Instance.Enemys;
-            foreach (var v in enemys.Values)
+            if (AIRoot.GetBattleData<BattleData>().GetCondHitTime(cond, out var time))
             {
-                if (v.SpellCastInfo == null || !v.IsCasting)
-                    continue;
-                //LogHelper.Info($"Character {v.Name} Casting===>{v.SpellCastInfo.SpellData.LocalizedName}");
-                if (v.SpellCastInfo.SpellData.LocalizedName.Contains(cond.spellName)) return true;
+                if (TimeHelper.Now() >= time + cond.delayTime * 1000)
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                var enemys = TargetMgr.Instance.Enemys;
+                foreach (var v in enemys.Values)
+                {
+                    if (v.SpellCastInfo == null || !v.IsCasting)
+                        continue;
+                    //LogHelper.Info($"Character {v.Name} Casting===>{v.SpellCastInfo.SpellData.LocalizedName}");
+                    if (v.SpellCastInfo.SpellData.LocalizedName.Contains(cond.spellName)
+                        || v.SpellCastInfo.SpellData.Id.ToString() == cond.spellName)
+                    {
+                        AIRoot.GetBattleData<BattleData>().RecordCondHitTime(cond);
+                        return false;
+                    }
+                }
 
-                if (v.SpellCastInfo.SpellData.Id.ToString() == cond.spellName) return true;
             }
 
             return false;

@@ -1,17 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.AI;
 using AEAssist.Define;
+using AEAssist.Helper;
 using Buddy.Coroutines;
 using ff14bot;
 using ff14bot.Enums;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
-namespace AEAssist.Helper
+namespace AEAssist
 {
     public static class SpellHelper
     {
+        private static Dictionary<uint, SpellEntity> SpellEntities = new Dictionary<uint, SpellEntity>();
+        
+        public static SpellEntity GetSpellEntity(this uint id)
+        {
+            if (id == 0)
+                return null;
+            if (!SpellEntities.TryGetValue(id, out var entity))
+            {
+                if (DataManager.GetSpellData(id) == null)
+                    return null;
+                entity = new SpellEntity(id);
+                if (SpellsDefine.TargetIsSelfs.Contains(id))
+                    entity.SpellTargetType = SpellTargetType.Self;
+                SpellEntities[id] = entity;
+            }
+
+            return entity;
+        }
+
         public static async Task<bool> CastGCD(SpellData spell, GameObject target)
         {
             if (!CanCastGCD(spell, target))
@@ -31,6 +52,7 @@ namespace AEAssist.Helper
                 if (!await Coroutine.Wait(spell.BaseCastTime + TimeSpan.FromMilliseconds(500), () => Core.Me.IsCasting))
                     return false;
 
+            SpellEventMgr.Instance.Run(spell.Id);
 
             return true;
         }
@@ -80,11 +102,11 @@ namespace AEAssist.Helper
                 return false;
 
             var needTime = (int) spell.AdjustedCastTime.TotalMilliseconds + waitTime;
-
+            SpellEventMgr.Instance.Run(spell.Id);
             if (needTime <= 10)
                 return true;
 
-            await Coroutine.Wait(needTime, () => false);
+            await Coroutine.Sleep(needTime);
             return true;
         }
 
@@ -100,9 +122,15 @@ namespace AEAssist.Helper
             return true;
         }
         
-        public static bool IsUnlock(this SpellEntity spellEntity)
+        public static bool IsUnlock(this uint spellId)
         {
-            var spellData = spellEntity.SpellData;
+            var spellData = spellId.GetSpellEntity().SpellData;
+            return spellData.IsUnlock();
+        }
+        
+        public static bool IsUnlock(this SpellEntity spellId)
+        {
+            var spellData = spellId.SpellData;
             return spellData.IsUnlock();
         }
 
@@ -141,9 +169,15 @@ namespace AEAssist.Helper
             return true;
         }
         
-        public static bool IsReady(this SpellEntity spellEntity)
+        public static bool IsReady(this uint spellId)
         {
-            var spellData = spellEntity.SpellData;
+            var spellData = spellId.GetSpellEntity().SpellData;
+            return spellData.IsReady();
+        }
+        
+        public static bool IsReady(this SpellEntity spell)
+        {
+            var spellData = spell.SpellData;
             return spellData.IsReady();
         }
 
@@ -158,9 +192,15 @@ namespace AEAssist.Helper
             return true;
         }
         
-        public static bool IsMaxChargeReady(this SpellEntity spellEntity,float delta = 0.5f)
+        public static bool IsMaxChargeReady(this uint spellId,float delta = 0.5f)
         {
-            var spellData = spellEntity.SpellData;
+            var spellData = spellId.GetSpellEntity().SpellData;
+            return spellData.IsMaxChargeReady(delta);
+        }
+        
+        public static bool IsMaxChargeReady(this SpellEntity spellId,float delta = 0.5f)
+        {
+            var spellData = spellId.SpellData;
             return spellData.IsMaxChargeReady(delta);
         }
 
@@ -175,10 +215,26 @@ namespace AEAssist.Helper
             return false;
         }
         
-        public static bool CoolDownInGCDs(this SpellEntity spellEntity,int count)
+        public static bool CoolDownInGCDs(this uint spellId,int count)
         {
-            var SpellData = spellEntity.SpellData;
+            var SpellData = spellId.GetSpellEntity().SpellData;
             return SpellData.CoolDownInGCDs(count);
+        }
+        
+        
+        public static Task<bool> DoGCD(this uint spellId)
+        {
+            return spellId.GetSpellEntity().DoGCD();
+        }
+        
+        public static Task<bool> DoAbility(this uint spellId)
+        {
+            return spellId.GetSpellEntity().DoAbility();
+        }
+        
+        public static bool RecentlyUsed(this uint spellId)
+        {
+            return spellId.GetSpellEntity().RecentlyUsed();
         }
     }
 }

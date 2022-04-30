@@ -17,13 +17,13 @@ namespace AEAssist.AI.Reaper
                 if (await SpellsDefine.SpinningScythe.DoGCD())
                 {
                     AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.NightmareScythe;
-                    return SpellsDefine.SpinningScythe;
+                    return SpellsDefine.SpinningScythe.GetSpellEntity();
                 }
             }
             else if (await SpellsDefine.NightmareScythe.DoGCD())
             {
                 AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.SpinningScythe;
-                return SpellsDefine.NightmareScythe;
+                return SpellsDefine.NightmareScythe.GetSpellEntity();
             }
 
             return null;
@@ -38,7 +38,7 @@ namespace AEAssist.AI.Reaper
                     if (await SpellsDefine.InfernalSlice.DoGCD())
                     {
                         AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.Slice;
-                        return SpellsDefine.InfernalSlice;
+                        return SpellsDefine.InfernalSlice.GetSpellEntity();
                     }
                 }
                 else if (AIRoot.GetBattleData<ReaperBattleData>().CurrCombo == ReaperComboStages.WaxingSlice)
@@ -46,7 +46,7 @@ namespace AEAssist.AI.Reaper
                     if (await SpellsDefine.WaxingSlice.DoGCD())
                     {
                         AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.InfernalSlice;
-                        return SpellsDefine.WaxingSlice;
+                        return SpellsDefine.WaxingSlice.GetSpellEntity();
                     }
                 }
             }
@@ -54,7 +54,7 @@ namespace AEAssist.AI.Reaper
             if (await SpellsDefine.Slice.DoGCD())
             {
                 AIRoot.GetBattleData<ReaperBattleData>().CurrCombo = ReaperComboStages.WaxingSlice;
-                return SpellsDefine.Slice;
+                return SpellsDefine.Slice.GetSpellEntity();
             }
 
             return null;
@@ -69,9 +69,9 @@ namespace AEAssist.AI.Reaper
 
         public static SpellEntity CanUseSoulSlice_Scythe(GameObject target)
         {
-            if (TargetHelper.CheckNeedUseAOE(target, 5, 5)) return SpellsDefine.SoulScythe;
+            if (TargetHelper.CheckNeedUseAOE(target, 5, 5)) return SpellsDefine.SoulScythe.GetSpellEntity();
 
-            return SpellsDefine.SoulSlice;
+            return SpellsDefine.SoulSlice.GetSpellEntity();
         }
 
         public static SpellEntity Gibbit_Gallows(GameObject target)
@@ -79,18 +79,18 @@ namespace AEAssist.AI.Reaper
             if (!Core.Me.HasAura(AurasDefine.SoulReaver)) return null;
 
             if (SpellsDefine.Guillotine.IsUnlock() && TargetHelper.CheckNeedUseAOE(8, 8))
-                return SpellsDefine.Guillotine;
+                return SpellsDefine.Guillotine.GetSpellEntity();
 
-            if (Core.Me.HasAura(AurasDefine.EnhancedGibbet)) return SpellsDefine.Gibbet;
+            if (Core.Me.HasAura(AurasDefine.EnhancedGibbet)) return SpellsDefine.Gibbet.GetSpellEntity();
 
             if (Core.Me.HasAura(AurasDefine.EnhancedGallows))
             {
-                return SpellsDefine.Gallows;
+                return SpellsDefine.Gallows.GetSpellEntity();
             }
 
             if (SettingMgr.GetSetting<ReaperSettings>().GallowsPrefer)
-                return SpellsDefine.Gallows;
-            return SpellsDefine.Gibbet;
+                return SpellsDefine.Gallows.GetSpellEntity();
+            return SpellsDefine.Gibbet.GetSpellEntity();
         }
 
         public static SpellEntity GetEnshroudGCDSpell(GameObject target)
@@ -100,16 +100,16 @@ namespace AEAssist.AI.Reaper
 
             if (ActionResourceManager.Reaper.LemureShroud < 2
                 && SpellsDefine.Communio.IsUnlock())
-                return SpellsDefine.Communio;
+                return SpellsDefine.Communio.GetSpellEntity();
 
-            if (TargetHelper.CheckNeedUseAOE(target, 8, 8)) return SpellsDefine.GrimReaping;
+            if (TargetHelper.CheckNeedUseAOE(target, 8, 8)) return SpellsDefine.GrimReaping.GetSpellEntity();
 
             if (Core.Me.HasAura(AurasDefine.EnhancedVoidReaping))
-                return SpellsDefine.VoidReaping;
+                return SpellsDefine.VoidReaping.GetSpellEntity();
 
-            if (Core.Me.HasAura(AurasDefine.EnhancedCrossReaping)) return SpellsDefine.CrossReaping;
+            if (Core.Me.HasAura(AurasDefine.EnhancedCrossReaping)) return SpellsDefine.CrossReaping.GetSpellEntity();
 
-            return SpellsDefine.VoidReaping;
+            return SpellsDefine.VoidReaping.GetSpellEntity();
         }
 
         public static int CheckCanUsePlentifulHarvest()
@@ -148,12 +148,12 @@ namespace AEAssist.AI.Reaper
             var target = Core.Me.CurrentTarget;
             var targetSpell = Gibbit_Gallows(target);
 
-            if (targetSpell == SpellsDefine.Guillotine)
+            if (targetSpell == SpellsDefine.Guillotine.GetSpellEntity())
                 return false;
 
-            if (target.IsFlanking && targetSpell == SpellsDefine.Gallows) return true;
+            if (target.IsFlanking && targetSpell == SpellsDefine.Gallows.GetSpellEntity()) return true;
 
-            if (target.IsBehind && targetSpell == SpellsDefine.Gibbet) return true;
+            if (target.IsBehind && targetSpell == SpellsDefine.Gibbet.GetSpellEntity()) return true;
 
             return false;
         }
@@ -164,7 +164,7 @@ namespace AEAssist.AI.Reaper
                 return null;
             if (!CheckIfNeedTrueNorth())
                 return null;
-            if (await SpellsDefine.TrueNorth.DoAbility()) return SpellsDefine.TrueNorth;
+            if (await SpellsDefine.TrueNorth.DoAbility()) return SpellsDefine.TrueNorth.GetSpellEntity();
 
             return null;
         }
@@ -185,7 +185,7 @@ namespace AEAssist.AI.Reaper
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
                 return -105;
 
-            var coolDown = SpellsDefine.ArcaneCircle.Cooldown.TotalMilliseconds;
+            var coolDown = SpellsDefine.ArcaneCircle.GetSpellEntity().Cooldown.TotalMilliseconds;
 
             if (DataBinding.Instance.DoubleEnshroudPrefer
                 && SpellsDefine.PlentifulHarvest.IsUnlock()
@@ -205,7 +205,7 @@ namespace AEAssist.AI.Reaper
 
         public static bool PrepareEnterDoubleEnshroud()
         {
-            var coolDown = SpellsDefine.ArcaneCircle.Cooldown.TotalMilliseconds;
+            var coolDown = SpellsDefine.ArcaneCircle.GetSpellEntity().Cooldown.TotalMilliseconds;
             if (DataBinding.Instance.DoubleEnshroudPrefer
                 && SpellsDefine.PlentifulHarvest.IsUnlock()
                 && ActionResourceManager.Reaper.ShroudGauge < 90)
@@ -231,7 +231,7 @@ namespace AEAssist.AI.Reaper
         {
             var spell = SpellsDefine.ShadowOfDeath;
             if (TargetHelper.CheckNeedUseAOE(5, 5)) spell = SpellsDefine.WhorlOfDeath;
-            return spell;
+            return spell.GetSpellEntity();
         }
     }
 }

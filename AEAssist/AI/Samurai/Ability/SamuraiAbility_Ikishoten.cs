@@ -11,7 +11,7 @@ namespace AEAssist.AI
     {
         public int Check(SpellEntity lastSpell)
         {
-            if (SpellsDefine.Ikishoten.Cooldown.TotalSeconds == 0 &&
+            if (SpellsDefine.Ikishoten.GetSpellEntity().Cooldown.TotalSeconds == 0 &&
                 ActionResourceManager.Samurai.Kenki < 50)
                 return 1;
             return -1;
@@ -21,7 +21,7 @@ namespace AEAssist.AI
         {
             var spell = SpellsDefine.Ikishoten;
             if (await spell.DoAbility())
-                return spell;
+                return spell.GetSpellEntity();
             return null;
         }
     }

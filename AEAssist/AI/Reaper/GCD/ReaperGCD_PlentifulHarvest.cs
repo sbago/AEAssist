@@ -15,7 +15,7 @@ namespace AEAssist.AI.Reaper
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.PlentifulHarvest;
+            var spell = SpellsDefine.PlentifulHarvest.GetSpellEntity();
             if (await spell.DoGCD()) return spell;
 
             return null;

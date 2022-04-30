@@ -45,7 +45,7 @@ namespace AEAssist
 
         public SpellEntity GetBaseGCDSpell()
         {
-            return SpellsDefine.Slice;
+            return SpellsDefine.Slice.GetSpellEntity();
         }
     }
 }

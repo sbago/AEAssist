@@ -23,7 +23,7 @@ namespace AEAssist.AI.Reaper
                 spell = SpellsDefine.HarvestMoon;
             else if (!DataBinding.Instance.UseHarpe) return null;
 
-            if (await spell.DoGCD()) return spell;
+            if (await spell.DoGCD()) return spell.GetSpellEntity();
 
             return null;
         }

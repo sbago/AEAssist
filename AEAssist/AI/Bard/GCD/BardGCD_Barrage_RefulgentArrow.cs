@@ -24,7 +24,7 @@ namespace AEAssist.AI
             // 25和5 是 Shadowbite 的攻击距离和伤害距离
             if (BardSpellHelper.IsShadowBiteReady() && TargetHelper.CheckNeedUseAOE(25, 5, ConstValue.BardAOECount))
             {
-                spell = SpellsDefine.Shadowbite;
+                spell = SpellsDefine.Shadowbite.GetSpellEntity();
                 if (await spell.DoGCD())
                     return spell;
             }

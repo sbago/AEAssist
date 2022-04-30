@@ -27,7 +27,7 @@ namespace AEAssist.AI
 
         public async Task<SpellEntity> Run()
         {
-            var spellData = SpellsDefine.Sidewinder;
+            var spellData = SpellsDefine.Sidewinder.GetSpellEntity();
             if (await spellData.DoAbility()) return spellData;
 
             return null;

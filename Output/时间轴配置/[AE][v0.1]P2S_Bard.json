@@ -1,0 +1,51 @@
+{
+  "_t" : "TriggerLine",
+  "TargetDuty" : "P2S",
+  "TargetJob" : "Bard",
+  "Triggers" : [{
+      "_id" : "1",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SongList",
+          "SongIndex" : [{ "$numberInt" : "3" }, { "$numberInt" : "1" }, { "$numberInt" : "2" }, { "$numberInt" : "3" }, { "$numberInt" : "1" }, { "$numberInt" : "2" }],
+          "Durations" : [{ "$numberInt" : "43" }, { "$numberInt" : "36" }, { "$numberInt" : "41" }, { "$numberInt" : "43" }, { "$numberInt" : "43" }, { "$numberInt" : "40" }]
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "0" }
+        }]
+    }, {
+      "_id" : "2",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchBurst",
+          "value" : false
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "220" }
+        }]
+    }, {
+      "_id" : "3",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchBurst",
+          "value" : true
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterOtherTrigger",
+          "Time" : { "$numberInt" : "42" },
+          "TriggerId" : "2"
+        }]
+    }, {
+      "_id" : "4",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastGCD",
+          "SpellId" : { "$numberInt" : "3560" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "226" }
+        }]
+    }],
+  "Version" : "v0.1",
+  "Author" : "AE",
+  "ConfigVersion" : { "$numberInt" : "1" }
+}

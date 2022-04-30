@@ -28,7 +28,7 @@ namespace AEAssist.AI.MCH
                 new MCHAbility_HyperCharge(),
                 new MCHAbility_BarrelStabilizer(),
                 new MCHAbility_UseBattery(),
-
+                new MCHAbility_FinalBurst()
         };
         
         public Task<bool> UsePotion()

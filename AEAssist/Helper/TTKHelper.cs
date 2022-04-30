@@ -37,14 +37,15 @@ namespace AEAssist.Helper
         {
             if (!SettingMgr.GetSetting<GeneralSettings>().OpenTTK)
                 return false;
+            if (!SettingMgr.GetSetting<GeneralSettings>().AutoFinalBurst)
+                return false;
             if (!target.IsBoss())
                 return false;
-                   
             if (!TargetMgr.Instance.TargetStats.TryGetValue(target.ObjectId, out var stat)) return false;
 
             if (stat.DeathPrediction == 0) return false;
 
-            var config = 6000;
+            var config = SettingMgr.GetSetting<GeneralSettings>().AutoFinalBurstCheckTime;
 
             // LogHelper.Debug($"{target.ObjectId} Hp {target.CurrentHealth} DeathPre {stat.DeathPrediction} Config {config}");
 

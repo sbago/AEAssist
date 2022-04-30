@@ -13,9 +13,9 @@ namespace AEAssist.AI
         {
             if (ActionResourceManager.Samurai.Kenki >= 80)
                 return 2;
-            if (SpellsDefine.KaeshiSetsugekka.Cooldown.TotalMilliseconds < 65000 && ActionResourceManager.Samurai.Kenki < 50)
+            if (SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalMilliseconds < 65000 && ActionResourceManager.Samurai.Kenki < 50)
                 return -2;
-            if (SpellsDefine.Ikishoten.Cooldown.TotalSeconds < 3 && ActionResourceManager.Samurai.Kenki >50)
+            if (SpellsDefine.Ikishoten.GetSpellEntity().Cooldown.TotalSeconds < 3 && ActionResourceManager.Samurai.Kenki >50)
                 return 2;
             return -1;
         }
@@ -24,7 +24,7 @@ namespace AEAssist.AI
         {
             var spell = SpellsDefine.HissatsuShinten;
             if (await spell.DoAbility())
-                return spell;
+                return spell.GetSpellEntity();
             return null;
         }
     }

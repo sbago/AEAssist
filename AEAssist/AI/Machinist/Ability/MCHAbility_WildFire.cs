@@ -34,7 +34,7 @@ namespace AEAssist.AI.MCH
         {
             if (await SpellsDefine.Wildfire.DoAbility())
             {
-                return SpellsDefine.Wildfire;
+                return SpellsDefine.Wildfire.GetSpellEntity();
             }
 
             return null;

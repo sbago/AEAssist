@@ -27,8 +27,7 @@ namespace AEAssist.AI.Reaper
 
             if (await spell.DoAbility())
             {
-                AIRoot.Instance.MuteAbilityTime();
-                return spell;
+                return spell.GetSpellEntity();
             }
 
             return null;

@@ -12,7 +12,7 @@ namespace AEAssist.AI
         public int Check(SpellEntity lastSpell)
         {
             if (ActionResourceManager.Samurai.Kenki >=25 && 
-                SpellsDefine.HissatsuSenei.Cooldown.TotalSeconds == 0 &&
+                SpellsDefine.HissatsuSenei.GetSpellEntity().Cooldown.TotalSeconds == 0 &&
                 Core.Me.HasAura(AurasDefine.Shifu))
                 return 1;
             return -1;
@@ -22,7 +22,7 @@ namespace AEAssist.AI
         {
             var spell = SpellsDefine.HissatsuSenei;
             if (await spell.DoAbility())
-                return spell;
+                return spell.GetSpellEntity();
             return null;
         }
     }

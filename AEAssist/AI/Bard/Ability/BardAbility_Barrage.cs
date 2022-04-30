@@ -34,7 +34,7 @@ namespace AEAssist.AI
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.Barrage;
+            var spell = SpellsDefine.Barrage.GetSpellEntity();
             if (spell == null)
                 return null;
             var ret = await spell.DoAbility();

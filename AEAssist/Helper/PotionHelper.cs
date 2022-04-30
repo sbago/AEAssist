@@ -74,8 +74,6 @@ namespace AEAssist.Helper
                 return false;
             if (AIRoot.Instance.CloseBurst)
                 return false;
-            if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
-                return false;
             return await ForceUsePotion(potionRawId);
         }
 

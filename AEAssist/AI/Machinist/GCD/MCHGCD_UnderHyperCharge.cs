@@ -27,8 +27,6 @@ namespace AEAssist.AI.MCH
             var spell = MCHSpellHelper.GetUnderHyperChargeGCD();
             if (await spell.DoGCD())
             {
-                AIRoot.GetBattleData<BattleData>().LimitAbility = true;
-                AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount++;
                 return spell;
             }
             return null;
