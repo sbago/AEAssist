@@ -4,9 +4,9 @@ using AETriggers.TriggerModel;
 
 namespace AEAssist.TriggerSystem.TriggerCond
 {
-    public class TriggerCondHandler_EnemyCastSpellByName : ATriggerCondHandler<TriggerCond_EnemyCastSpellByName>
+    public class TriggerCondHandler_EnemyCastSpell : ATriggerCondHandler<TriggerCond_EnemyCastSpell>
     {
-        protected override bool Check(TriggerCond_EnemyCastSpellByName cond)
+        protected override bool Check(TriggerCond_EnemyCastSpell cond)
         {
             if (AIRoot.GetBattleData<BattleData>().GetCondHitTime(cond, out var time))
             {

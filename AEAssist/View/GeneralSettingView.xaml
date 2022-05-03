@@ -169,5 +169,16 @@
             </StackPanel>
 
         </TabItem>
+        
+        <TabItem Header="{Binding Language.TabItem_TriggerLine}">
+            <StackPanel Margin="10" HorizontalAlignment="Center">
+                <CheckBox Name="AutoSwitchTriggerLine"
+                          Content="{Binding Language.Toggle_AutoSwitchTriggerLine}" Width="200" Height="25" Margin="10"
+                          HorizontalAlignment="Left"
+                          IsChecked="{Binding GeneralSettings.AutoSwitchTriggerLine}" />
+                <Button Width="100" Height="30" Name="LoadTriggerLine" Content="{Binding Language.Button_ReloadTriggerLine}" Click="LoadTriggerLine_OnClick" />
+               
+            </StackPanel>
+        </TabItem>
     </TabControl>
 </UserControl>

@@ -83,5 +83,8 @@
   "MessageLog_CountDown_CancelBattleStart" : "取消了战斗开始",
   "Bard_SwitchSong" : "使用歌曲",
   "Btn_ApplyHotkey" : "应用快捷键",
-  "Toggle_FinalBurst" : "资源倾泻"
+  "Toggle_FinalBurst" : "资源倾泻",
+  "Button_ReloadTriggerLine": "重新加载",
+  "TabItem_TriggerLine": "时间轴配置",
+  "Toggle_AutoSwitchTriggerLine": "自动切换时间轴"
 }

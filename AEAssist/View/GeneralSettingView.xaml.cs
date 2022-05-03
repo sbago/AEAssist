@@ -109,5 +109,10 @@ namespace AEAssist.View
             SettingMgr.GetSetting<HotkeySetting>().RegisHotkey();
             SettingMgr.GetSetting<HotkeySetting>().ResetHotkeyName();
         }
+
+        private void LoadTriggerLine_OnClick(object sender, RoutedEventArgs e)
+        {
+            TriggerLineSwitchHelper.LoadAll();
+        }
     }
 }

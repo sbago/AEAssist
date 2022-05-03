@@ -4,14 +4,15 @@ namespace AETriggers.TriggerModel
 {
     public class TriggerLine
     {        
-        public string TargetDuty;
+        public ushort RawZoneId;
+        public uint SubZoneId;
         public string TargetJob;
         public List<Trigger> Triggers = new List<Trigger>();
-        public string Version;
         public string Author;
+        public string Name;
 
         public int ConfigVersion;
 
-        public static int CurrConfigVersion = 2;
+        public static int CurrConfigVersion = 3;
     }
 }

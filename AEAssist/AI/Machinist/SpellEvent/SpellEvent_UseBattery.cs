@@ -6,7 +6,7 @@
     {
         public void Run(uint spellId)
         {
-            AIRoot.GetBattleData<MCHBattleData>().ResetBattery();
+            
         }
     }
 }

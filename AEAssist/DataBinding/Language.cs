@@ -16,7 +16,12 @@ namespace AEAssist
             {
                 if(v.PropertyType != typeof(string))
                     continue;
-                v.SetValue(this,v.Name);
+                if (v.Name.Contains("_"))
+                    v.SetValue(this, v.Name.Split('_')[1]);
+                else
+                {
+                    v.SetValue(this, v.Name);
+                }
             }
         }
 
@@ -32,7 +37,10 @@ namespace AEAssist
         public string Toggle_ShowBattleTime { get; set; } 
         
         public string Toggle_NextAbilityFirst { get; set; } 
-        public string Toggle_KnockAgainstFirst { get; set; } 
+        public string Toggle_AutoSwitchTriggerLine { get; set; } 
+        public string Toggle_KnockAgainstFirst { get; set; }
+
+        public string Button_ReloadTriggerLine { get; set; }
 
         public string Toggle_EarlyDecisionMode { get; set; } 
         public string Toggle_StrongGCDCheckTime { get; set; } 
@@ -59,7 +67,9 @@ namespace AEAssist
 
         public string TabItem_PotionSetting { get; set; } 
 
-        public string TabItem_DotBlacklist { get; set; } 
+        public string TabItem_DotBlacklist { get; set; }
+
+        public string TabItem_TriggerLine { get; set; }
 
         public string TabItem_SongSetting { get; set; } 
         public string SongSettingToolTips { get; set; } 

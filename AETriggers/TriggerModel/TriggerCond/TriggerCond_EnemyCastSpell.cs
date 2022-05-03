@@ -2,8 +2,8 @@
 
 namespace AETriggers.TriggerModel
 {
-    [Trigger("EnemyCastSpellByName")]
-    public class TriggerCond_EnemyCastSpellByName : ITriggerCond
+    [Trigger("EnemyCastSpell")]
+    public class TriggerCond_EnemyCastSpell : ITriggerCond
     {
         public string spellName;
         public int delayTime;

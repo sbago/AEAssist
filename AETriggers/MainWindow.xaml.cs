@@ -76,16 +76,31 @@ namespace AETriggers
                     // }
 
 
-                    var authorName = sheet.GetRow(0).GetCell(1).ToString();
-                    var version = sheet.GetRow(1).GetCell(1).ToString();
-                    var targetDuty = sheet.GetRow(2).GetCell(1).ToString();
-                    var job = sheet.GetRow(3).GetCell(1).ToString();
+                    var authorName = sheet.GetRow(0).GetCell(1).ToString().Trim();
+                    var name = sheet.GetRow(1).GetCell(1).ToString().Trim();
+                    var targetZoneIdStr = sheet.GetRow(2).GetCell(1).ToString().Trim();
+                    var subZoneIdStr = sheet.GetRow(2).GetCell(2).ToString().Trim();
+                    var job = sheet.GetRow(3).GetCell(1).ToString().Trim();
+
+                    if (!ushort.TryParse(targetZoneIdStr, out var targetZoneId))
+                    {
+                        MessageBox.Show($"Load excel failed! {targetZoneIdStr} format error");
+                        return;
+                    }
+                    
+                    if (!ushort.TryParse(subZoneIdStr, out var subZoneId))
+                    {
+                        MessageBox.Show($"Load excel failed! {subZoneIdStr} format error");
+                        return;
+                    }
+
 
                     Entry.TriggerLine = new TriggerLine
                     {
-                        Version = version,
                         Author = authorName,
-                        TargetDuty = targetDuty,
+                        Name = name,
+                        RawZoneId = targetZoneId,
+                        SubZoneId = subZoneId,
                         TargetJob = job,
                         ConfigVersion = TriggerLine.CurrConfigVersion
                     };
@@ -96,21 +111,21 @@ namespace AETriggers
                     for (var i = 6; i < sheet.LastRowNum; i++)
                     {
                         var row = sheet.GetRow(i);
-                        // var cell = row.GetCell(1);
-                        // var notData = cell != null && cell.ToString().StartsWith("#");
-                        // if (notData)
-                        //     continue;
-                        var groupId = row.GetCell(2)?.ToString();
-                        var type = row.GetCell(3)?.ToString();
-                        var valueType = row.GetCell(4)?.ToString();
+                        var cell = row.GetCell(1);
+                        var notData = cell != null && cell.ToString().StartsWith("#");
+                        if (notData)
+                            continue;
+                        var groupId = row.GetCell(2)?.ToString().Trim();
+                        var type = row.GetCell(3)?.ToString().Trim();
+                        var valueType = row.GetCell(4)?.ToString().Trim();
 
                         if (groupId == null || type == null || valueType == null)
                             continue;
 
                         var valueParams = new string[3];
-                        valueParams[0] = row.GetCell(5)?.ToString();
-                        valueParams[1] = row.GetCell(6)?.ToString();
-                        valueParams[2] = row.GetCell(7)?.ToString();
+                        valueParams[0] = row.GetCell(5)?.ToString().Trim();
+                        valueParams[1] = row.GetCell(6)?.ToString().Trim();
+                        valueParams[2] = row.GetCell(7)?.ToString().Trim();
 
                         if (!AllExcelData.TryGetValue(groupId, out var list))
                         {
@@ -158,7 +173,7 @@ namespace AETriggers
             openFile.Filter = "Json(*.json)|*.json";
             openFile.InitialDirectory = new DirectoryInfo("../").FullName;
             openFile.FileName =
-                $"[{TriggerLine.Author}][{TriggerLine.Version}]{TriggerLine.TargetDuty}_{TriggerLine.TargetJob}.json";
+                $"[{TriggerLine.Author}][{TriggerLine.Name}]_{TriggerLine.TargetJob}.json";
             var ret = openFile.ShowDialog();
             if (!ret.HasValue || !ret.Value)
                 return;
@@ -230,15 +245,15 @@ namespace AETriggers
             if (TriggerLine == null)
             {
                 AuthorName.Content = string.Empty;
-                Version.Content = string.Empty;
-                TargetDuty.Content = string.Empty;
+                Name.Content = string.Empty;
+                TargetZone.Content = string.Empty;
                 TargetJob.Content = string.Empty;
                 return;
             }
 
             AuthorName.Content = TriggerLine.Author;
-            Version.Content = TriggerLine.Version;
-            TargetDuty.Content = TriggerLine.TargetDuty;
+            Name.Content = TriggerLine.Name;
+            TargetZone.Content = $"{TriggerLine.RawZoneId} | {TriggerLine.SubZoneId}";
             TargetJob.Content = TriggerLine.TargetJob;
         }
     }

@@ -18,8 +18,6 @@ namespace AEAssist
     {
         private static MainWindow _form;
 
-        private static TriggerLineWindow _triggerLineWindow;
-
         private static MainWindow Form
         {
             get
@@ -30,19 +28,7 @@ namespace AEAssist
                 return _form;
             }
         }
-
-        public static TriggerLineWindow TriggerLineWindow
-        {
-            get
-            {
-                if (_triggerLineWindow != null) return _triggerLineWindow;
-                _triggerLineWindow = new TriggerLineWindow();
-                _triggerLineWindow.Closed += (sender, args) => { _triggerLineWindow = null; };
-                return _triggerLineWindow;
-            }
-        }
-
-
+        
         private ClassJobType CurrentJob { get; set; }
         private ushort CurrentZone { get; set; }
 
@@ -81,6 +67,7 @@ namespace AEAssist
         {
             RotationManager.Instance.CheckChangeJob();
             OverlayManager.Instance.SwitchJob();
+            WorldHelper.CheckZone();
             GamelogManager.Pulse();
         }
 

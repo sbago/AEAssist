@@ -32,15 +32,16 @@ namespace AEAssist.View
             var file = openFile.FileName;
             {
                 string str = "";
-                (str,DataBinding.Instance.CurrTriggerLine) = TriggerHelper.LoadTriggerLine(file);
+                TriggerLine line = null;
+                (str,line) = TriggerHelper.LoadTriggerLine(file);
                 if (str != null)
                 {
                     MessageBox.Show(str);
                 }
 
-                if (DataBinding.Instance.CurrTriggerLine != null)
+                if (line != null)
                 {
-                    CurrTriggerLine.Content =Path.GetFileNameWithoutExtension(file);
+                    DataBinding.Instance.ChangeTriggerLine(line);
                 }
             }
         }
@@ -52,8 +53,7 @@ namespace AEAssist.View
 
         private void ClearTriggerLine_OnClick(object sender, RoutedEventArgs e)
         {
-            DataBinding.Instance.CurrTriggerLine = null;
-            CurrTriggerLine.Content = "NULL";
+            DataBinding.Instance.ChangeTriggerLine(null);
         }
     }
 }

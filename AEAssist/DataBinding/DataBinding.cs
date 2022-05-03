@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media.Animation;
 using AEAssist.AI;
 using AEAssist.View;
 using AETriggers.TriggerModel;
@@ -54,8 +55,20 @@ namespace AEAssist
         public HotkeySetting HotkeySetting => SettingMgr.GetSetting<HotkeySetting>();
         
         public Language Language =>Language.Instance;
-        
-        public TriggerLine CurrTriggerLine { get; set; }
+
+        public TriggerLine CurrTriggerLine;
+
+        public string TriggerLineName { get; set; } = "NULL";
+
+        public void ChangeTriggerLine(TriggerLine line)
+        {
+            var oldName = TriggerLineName;
+            this.CurrTriggerLine = line;
+            this.TriggerLineName = "NULL";
+            if (this.CurrTriggerLine != null)
+                this.TriggerLineName = line.Name;
+            LogHelper.Info($"Change TriggerLine: {oldName}==>{TriggerLineName}");
+        }
 
         public void Reset()
         {

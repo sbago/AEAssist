@@ -74,6 +74,9 @@
         <Compile Include="..\AETriggers\TriggerModel\Trigger.cs">
           <Link>TriggerModel\Trigger.cs</Link>
         </Compile>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_BatteryList.cs">
+          <Link>TriggerModel\TriggerAction\TriggerAction_BatteryList.cs</Link>
+        </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_CastAbility.cs">
           <Link>TriggerModel\TriggerAction\TriggerAction_CastAbility.cs</Link>
         </Compile>
@@ -122,8 +125,8 @@
         <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_AfterOtherTrigger.cs">
           <Link>TriggerModel\TriggerCond\TriggerCond_AfterOtherTrigger.cs</Link>
         </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyCastSpellByName.cs">
-          <Link>TriggerModel\TriggerCond\TriggerCond_EnemyCastSpellByName.cs</Link>
+        <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyCastSpell.cs">
+          <Link>TriggerModel\TriggerCond\TriggerCond_EnemyCastSpell.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyHPPct.cs">
           <Link>TriggerModel\TriggerCond\TriggerCond_EnemyHPPct.cs</Link>
@@ -249,6 +252,8 @@
         <Compile Include="Helper\DotBlacklistHelper.cs" />
         <Compile Include="Helper\LanguageHelper.cs" />
         <Compile Include="Helper\SpellHistoryHelper.cs" />
+        <Compile Include="Helper\TriggerLineSwitchHelper.cs" />
+        <Compile Include="Helper\WorldHelper.cs" />
         <Compile Include="Opener\IOpener.cs" />
         <Compile Include="Opener\OpenerAttribute.cs" />
         <Compile Include="Opener\OpenerMgr.cs" />
@@ -263,6 +268,7 @@
         <Compile Include="Setting\Setting\SamuraiSettings.cs" />
         <Compile Include="TriggerSystem\ITriggerActionHandler.cs" />
         <Compile Include="TriggerSystem\ITriggerCondHandler.cs" />
+        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_BatteryList.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_CastAbility.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_CastGCD.cs" />
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_LockSpell.cs" />
@@ -278,7 +284,7 @@
         <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_UsePotion.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterBattleStart.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterOtherTrigger.cs" />
-        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyCastSpellByName.cs" />
+        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyCastSpell.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyHpPct.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyInLOS.cs" />
         <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_GameLog.cs" />
@@ -325,9 +331,6 @@
         <Compile Include="View\SamuraiSettingView.xaml.cs" />
         <Compile Include="View\Style\HotkeyControl.xaml.cs">
           <DependentUpon>HotkeyControl.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\TriggerLineWindow.xaml.cs">
-            <DependentUpon>TriggerLineWindow.xaml</DependentUpon>
         </Compile>
         <Compile Include="View\UIHelper.cs" />
         <Content Include="..\AEAssistLoader\AEAssistLoader.cs">
@@ -404,7 +407,6 @@
         <Page Include="View\Style\Button.xaml" />
         <Page Include="View\Style\CheckBox.xaml" />
         <Page Include="View\Style\HotkeyControl.xaml" />
-        <Page Include="View\TriggerLineWindow.xaml" />
         <Resource Include="Resources\jobs\acn.png" />
         <Resource Include="Resources\jobs\alc.png" />
         <Resource Include="Resources\jobs\arc.png" />

@@ -9,7 +9,7 @@ namespace AEAssist
     {
         public static SettingMgr Instance = new SettingMgr();
 
-        private readonly string SettingPath = @"Settings\AEAssists";
+        public const string SettingPath = @"Settings\AEAssists";
 
         private readonly Dictionary<Type, IBaseSetting> AllSetting = new Dictionary<Type, IBaseSetting>();
 

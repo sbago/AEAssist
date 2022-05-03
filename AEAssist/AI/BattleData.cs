@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Gamelog;
@@ -90,6 +91,26 @@ namespace AEAssist.AI
             var CurrTriggerLine = DataBinding.Instance.CurrTriggerLine;
             if (CurrTriggerLine == null)
                 return;
+            if (CurrTriggerLine.TargetJob != "Any" && CurrTriggerLine.TargetJob != Enum.GetName(typeof(ClassJobType), Core.Me.CurrentJob))
+                return;
+            bool canUse = Core.Me.CurrentTarget != null && Core.Me.CurrentTarget.EnglishName.Contains("Dummy");
+
+            if (!canUse)
+            {
+                if (CurrTriggerLine.RawZoneId == 0)
+                    canUse = true;
+                else if(CurrTriggerLine.RawZoneId == WorldHelper.RawZoneId && CurrTriggerLine.SubZoneId == WorldHelper.SubZoneId)
+                {
+                    canUse = true;
+                }
+            }
+
+
+            if (!canUse)
+            {
+                return;
+            }
+
             if (ExecutedTriggers.Count == CurrTriggerLine.Triggers.Count)
                 return;
             foreach (var v in CurrTriggerLine.Triggers)

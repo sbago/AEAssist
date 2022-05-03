@@ -45,6 +45,8 @@ namespace AEAssist
         public bool NextAbilityFirst { get; set; } = false;
         public bool KnockbackAgainstFirst { get; set; } = true;
 
+        public bool AutoSwitchTriggerLine { get; set; } = false;
+
         public void Reset()
         {
             UserLatencyOffset = 50;
@@ -67,6 +69,7 @@ namespace AEAssist
             StrPotionId = 36104; // 5级刚力
             NextAbilityFirst = false;
             KnockbackAgainstFirst = true;
+            AutoSwitchTriggerLine = false;
         }
         
     }

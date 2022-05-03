@@ -16,12 +16,12 @@
             <Label Name="AuthorName" Content="" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Label Content="Version:" />
-            <Label Name="Version" Content="0" />
+            <Label Content="Name:" />
+            <Label Name="Name" Content="0" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Label Content="TargetDuty:" />
-            <Label Name="TargetDuty" Content="" />
+            <Label Content="TargetZone:" />
+            <Label Name="TargetZone" Content="" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Content="TargetJob:" />

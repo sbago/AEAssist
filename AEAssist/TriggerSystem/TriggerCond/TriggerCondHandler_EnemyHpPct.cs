@@ -21,7 +21,6 @@ namespace AEAssist.TriggerSystem.TriggerCond
                 var enemys = TargetMgr.Instance.Enemys;
                 foreach (var v in enemys.Values)
                 {
-                    LogHelper.Info($"HPPct {v.Name} {v.CurrentHealthPercent}");
                     if (!v.Name.Contains(cond.Name) && v.NpcId.ToString() != cond.Name)
                         continue;
                     if (v.CurrentHealthPercent * 100 <= cond.HpPct)
