@@ -15,8 +15,6 @@ namespace AEAssist.AI
             if (!Core.Me.HasAura(AurasDefine.BlastArrowReady))
                 return -2;
             
-            if (AIRoot.Instance.CloseBurst)
-                return 1;
             var aura = Core.Me.GetAuraById(AurasDefine.BlastArrowReady);
             var tar = Core.Me.CurrentTarget as Character;
             
@@ -26,6 +24,9 @@ namespace AEAssist.AI
 
             if (aura.TimespanLeft.TotalMilliseconds <= 2500)
                 return 3;
+            
+            if (AIRoot.Instance.CloseBurst)
+                return 1;
 
             if (SpellsDefine.RagingStrikes.RecentlyUsed() || BardSpellHelper.HasBuffsCount() >= 1)
                 return 4;

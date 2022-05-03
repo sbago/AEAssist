@@ -1,19 +1,8 @@
 {
   "_t" : "TriggerLine",
   "TargetDuty" : "P4S",
-  "TargetJob" : "Bard",
+  "TargetJob" : "Machinist",
   "Triggers" : [{
-      "_id" : "1",
-      "TriggerActions" : [{
-          "_t" : "TriggerAction_SongList",
-          "SongIndex" : [{ "$numberInt" : "3" }, { "$numberInt" : "1" }, { "$numberInt" : "2" }],
-          "Durations" : [{ "$numberInt" : "43" }, { "$numberInt" : "43" }, { "$numberInt" : "45" }]
-        }],
-      "TriggerConds" : [{
-          "_t" : "TriggerCond_AfterBattleStart",
-          "Time" : { "$numberInt" : "0" }
-        }]
-    }, {
       "_id" : "2",
       "TriggerActions" : [{
           "_t" : "TriggerAction_SwitchBurst",
@@ -21,30 +10,20 @@
         }],
       "TriggerConds" : [{
           "_t" : "TriggerCond_AfterBattleStart",
-          "Time" : { "$numberInt" : "20" }
+          "Time" : { "$numberInt" : "115" }
         }]
     }, {
       "_id" : "3",
-      "TriggerActions" : [{
-          "_t" : "TriggerAction_CastAbility",
-          "SpellId" : { "$numberInt" : "3559" }
-        }],
-      "TriggerConds" : [{
-          "_t" : "TriggerCond_AfterBattleStart",
-          "Time" : { "$numberInt" : "130" }
-        }]
-    }, {
-      "_id" : "4",
       "TriggerActions" : [{
           "_t" : "TriggerAction_SwitchBurst",
           "value" : true
         }],
       "TriggerConds" : [{
           "_t" : "TriggerCond_AfterBattleStart",
-          "Time" : { "$numberInt" : "145" }
+          "Time" : { "$numberInt" : "125" }
         }]
     }, {
-      "_id" : "5",
+      "_id" : "4",
       "TriggerActions" : [{
           "_t" : "TriggerAction_SwitchFinalBurst",
           "value" : true

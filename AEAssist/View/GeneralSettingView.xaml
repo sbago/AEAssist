@@ -53,6 +53,17 @@
                           Content="{Binding Language.Toggle_ShowBattleTime}" Width="200" Height="25" Margin="10"
                           HorizontalAlignment="Left"
                           IsChecked="{Binding GeneralSettings.ShowBattleTime}" />
+                
+                <CheckBox Name="NextAbilityFirst"
+                          Content="{Binding Language.Toggle_NextAbilityFirst}" Width="200" Height="25" Margin="10"
+                          HorizontalAlignment="Left"
+                          IsChecked="{Binding GeneralSettings.NextAbilityFirst}" />
+                
+                <CheckBox Name="KnockbackAgainstFirst"
+                          Content="{Binding Language.Toggle_KnockAgainstFirst}" Width="200" Height="25" Margin="10"
+                          HorizontalAlignment="Left"
+                          IsChecked="{Binding GeneralSettings.KnockbackAgainstFirst}" />
+                
             </StackPanel>
         </TabItem>
 

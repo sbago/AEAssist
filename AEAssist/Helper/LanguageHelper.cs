@@ -25,25 +25,23 @@ namespace AEAssist
                 File.WriteAllText(path,MongoHelper.ToJson(Language.Instance));
             }
             
-            // 从文件中加载并获取
+            // load from file
             files = Directory.GetFiles(dir, "Lan_*.json");
             AllLans.Clear();
+            
+            // add default lan
+            AllLans.Add(Language.Instance.LanType,MongoHelper.Clone(Language.Instance));
+            
             foreach (var v in files)
             {
                 try
                 {
                     var lan = MongoHelper.FromJson<Language>(File.ReadAllText(v));
-                    if (lan.LanType == Language.Instance.LanType)
-                    {
-                        AllLans.Add(lan.LanType,MongoHelper.Clone(Language.Instance));
-                        continue;
-                    }
-
                     AllLans.Add(lan.LanType,lan);
                 }
                 catch (Exception e)
                 {
-                    LogHelper.Error("Load LanguageConfig Failed: \n"+e.ToString());
+                    LogHelper.Error("Loading LanguageConfig failed: \n"+e.ToString());
                 }
             }
 

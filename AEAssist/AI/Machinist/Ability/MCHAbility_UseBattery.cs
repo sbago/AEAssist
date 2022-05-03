@@ -18,7 +18,7 @@ namespace AEAssist.AI.MCH
                 return -2;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return -10;
-            if (ActionResourceManager.Machinist.Battery < 50)
+            if (ActionResourceManager.Machinist.Battery < AIRoot.GetBattleData<MCHBattleData>().NextBattery2Use)
                 return -3;
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return -4;
@@ -34,6 +34,7 @@ namespace AEAssist.AI.MCH
             var spell = MCHSpellHelper.GetAutomatonQueen();
             if (await spell.DoAbility())
             {
+                AIRoot.GetBattleData<MCHBattleData>().ApplyNextBatteryQueue();
                 return spell;
             }
 

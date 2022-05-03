@@ -26,6 +26,8 @@ namespace AEAssist.Define
 
     public class SpellEntity : Entity
     {
+        public static SpellEntity Default = new SpellEntity();
+        
         public static SpellEntity Create()
         {
             return ObjectPool.Instance.Fetch<SpellEntity>();
@@ -61,7 +63,7 @@ namespace AEAssist.Define
         public SpellData SpellData;
         public SpellTargetType SpellTargetType;
 
-        public uint Id => SpellData.Id;
+        public uint Id => SpellData?.Id ?? 0;
 
         public TimeSpan Cooldown => SpellData.Cooldown;
 
@@ -153,6 +155,17 @@ namespace AEAssist.Define
         public bool CanCastAbility()
         {
             return ActionManager.CanCast(SpellData,GetTarget());
+        }
+
+        public bool IsKnockbackAgainst()
+        {
+            if (this.SpellData == null)
+                return false;
+            if (this.SpellData.Id == SpellsDefine.ArmsLength)
+                return true;
+            if (this.SpellData.Id == SpellsDefine.Surecast)
+                return true;
+            return false;
         }
     }
 }

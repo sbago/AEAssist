@@ -10,7 +10,7 @@ namespace AEAssist.AI
     {
         public int Check(SpellEntity lastSpell)
         {
-            if (lastSpell.Id == SpellsDefine.Bloodletter)
+            if (lastSpell == SpellsDefine.Bloodletter.GetSpellEntity())
                 return -1;
             if (!SpellsDefine.Bloodletter.IsReady())
                 return -2;

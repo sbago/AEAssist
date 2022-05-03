@@ -41,6 +41,8 @@ namespace AEAssist.AI
         {
             if (!JobPriorityQueue.TryGetValue(classJobType, out var queue)) return null;
 
+            if(lastGCD == null)
+                lastGCD = SpellEntity.Default;
             foreach (var v in queue.GCDQueue)
             {
                 var ret = v.Check(lastGCD);
@@ -56,7 +58,8 @@ namespace AEAssist.AI
         public async Task<SpellEntity> HandleAbility(ClassJobType classJobType, SpellEntity lastAbility)
         {
             if (!JobPriorityQueue.TryGetValue(classJobType, out var queue)) return null;
-
+            if(lastAbility == null)
+                lastAbility = SpellEntity.Default;
             foreach (var v in queue.AbilityQueue)
             {
                 var ret = v.Check(lastAbility);

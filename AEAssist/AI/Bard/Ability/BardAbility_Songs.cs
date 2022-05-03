@@ -14,10 +14,6 @@ namespace AEAssist.AI
 
             if (!DataBinding.Instance.UseSong)
                 return -10;
-            var lastSpellId = lastSpell.Id;
-            if (lastSpellId == SpellsDefine.TheWanderersMinuet || lastSpellId == SpellsDefine.MagesBallad ||
-                lastSpellId == SpellsDefine.ArmysPaeon)
-                return -1;
             // 可能会发生短时间内rb的song的Timer还是上一首歌的 (rb的bug),导致连续的GCD内连续切换两次歌的情况
             if (TimeHelper.Now() - AIRoot.GetBattleData<BardBattleData>().lastCastSongTime < 3000)
                 return -2;

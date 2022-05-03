@@ -241,22 +241,5 @@ namespace AETriggers
             TargetDuty.Content = TriggerLine.TargetDuty;
             TargetJob.Content = TriggerLine.TargetJob;
         }
-
-        private void LoadJson_OnClick(object sender, RoutedEventArgs e)
-        {
-            var TriggerLine = Entry.TriggerLine;
-            var AllExcelData = Entry.AllExcelData;
-            var openFile = new OpenFileDialog();
-            openFile.Filter = "Json(*.json)|*.json";
-            openFile.InitialDirectory = Environment.CurrentDirectory + @"\..\";
-            openFile.Multiselect = false;
-            var ret = openFile.ShowDialog();
-
-            if (!ret.HasValue || !ret.Value)
-                return;
-            var file = openFile.FileName;
-            TriggerLine = TriggerHelper.LoadTriggerLine(file);
-            MessageBox.Show("Load Success!");
-        }
     }
 }

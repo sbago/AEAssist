@@ -7,26 +7,25 @@ namespace AETriggers.TriggerModel
 {
     public static class TriggerHelper
     {
-        public static TriggerLine LoadTriggerLine(string path)
+        public static (string,TriggerLine) LoadTriggerLine(string path)
         {
             if (!File.Exists(path))
-                return null;
+                return (null,null);
             try
             {
                 var line = MongoHelper.FromJson<TriggerLine>(File.ReadAllText(path));
                 if (line.ConfigVersion < TriggerLine.CurrConfigVersion)
                 {
-                    MessageBox.Show("Load failed: Old version!");
                     line = null;
+                    return ("Loading failed: old version!", line);
                 }
 
-                return line;
+                return  ("Loading success!", line);;
             }
             catch (Exception e)
             {
                 LogHelper.Error(e.ToString());
-                MessageBox.Show("LoadFailed: Exception:\n " + e);
-                return null;
+                return ("LoadFailed: Exception:\n " + e,null);
             }
         }
 

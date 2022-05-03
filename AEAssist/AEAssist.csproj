@@ -60,22 +60,22 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="..\AETriggers\TriggerModel\ITriggerAction.cs">
-            <Link>TriggerModel\ITriggerAction.cs</Link>
+          <Link>TriggerModel\ITriggerAction.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\ITriggerBase.cs">
-            <Link>TriggerModel\ITriggerBase.cs</Link>
+          <Link>TriggerModel\ITriggerBase.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\ITriggerCond.cs">
-            <Link>TriggerModel\ITriggerCond.cs</Link>
+          <Link>TriggerModel\ITriggerCond.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\MongoHelper.cs">
-            <Link>TriggerModel\MongoHelper.cs</Link>
+          <Link>TriggerModel\MongoHelper.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\Trigger.cs">
-            <Link>TriggerModel\Trigger.cs</Link>
+          <Link>TriggerModel\Trigger.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_CastAbility.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_CastAbility.cs</Link>
+          <Link>TriggerModel\TriggerAction\TriggerAction_CastAbility.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_CastGCD.cs">
           <Link>TriggerModel\TriggerAction\TriggerAction_CastGCD.cs</Link>
@@ -84,22 +84,22 @@
           <Link>TriggerModel\TriggerAction\TriggerAction_LockSpell.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_NextSong.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_NextSong.cs</Link>
+          <Link>TriggerModel\TriggerAction\TriggerAction_NextSong.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SongList.cs">
           <Link>TriggerModel\TriggerAction\TriggerAction_SongList.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchAOE.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_SwitchAOE.cs</Link>
+          <Link>TriggerModel\TriggerAction\TriggerAction_SwitchAOE.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchApex.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_SwitchApex.cs</Link>
+          <Link>TriggerModel\TriggerAction\TriggerAction_SwitchApex.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs</Link>
+          <Link>TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchDOT.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_SwitchDOT.cs</Link>
+          <Link>TriggerModel\TriggerAction\TriggerAction_SwitchDOT.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchFinalBurst.cs">
           <Link>TriggerModel\TriggerAction\TriggerAction_SwitchFinalBurst.cs</Link>
@@ -114,34 +114,34 @@
           <Link>TriggerModel\TriggerAction\TriggerAction_UsePotion.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerAttribute.cs">
-            <Link>TriggerModel\TriggerAttribute.cs</Link>
+          <Link>TriggerModel\TriggerAttribute.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_AfterBattleStart.cs">
-            <Link>TriggerModel\TriggerCond\TriggerCond_AfterBattleStart.cs</Link>
+          <Link>TriggerModel\TriggerCond\TriggerCond_AfterBattleStart.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_AfterOtherTrigger.cs">
-            <Link>TriggerModel\TriggerCond\TriggerCond_AfterOtherTrigger.cs</Link>
+          <Link>TriggerModel\TriggerCond\TriggerCond_AfterOtherTrigger.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyCastSpellByName.cs">
-            <Link>TriggerModel\TriggerCond\TriggerCond_EnemyCastSpellByName.cs</Link>
+          <Link>TriggerModel\TriggerCond\TriggerCond_EnemyCastSpellByName.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyHPPct.cs">
-            <Link>TriggerModel\TriggerCond\TriggerCond_EnemyHPPct.cs</Link>
+          <Link>TriggerModel\TriggerCond\TriggerCond_EnemyHPPct.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyInLOS.cs">
-            <Link>TriggerModel\TriggerCond\TriggerCond_EnemyInLOS.cs</Link>
+          <Link>TriggerModel\TriggerCond\TriggerCond_EnemyInLOS.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_GameLog.cs">
-            <Link>TriggerModel\TriggerCond\TriggerCond_GameLog.cs</Link>
+          <Link>TriggerModel\TriggerCond\TriggerCond_GameLog.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerHelper.cs">
-            <Link>TriggerModel\TriggerHelper.cs</Link>
+          <Link>TriggerModel\TriggerHelper.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerLine.cs">
-            <Link>TriggerModel\TriggerLine.cs</Link>
+          <Link>TriggerModel\TriggerLine.cs</Link>
         </Compile>
         <Compile Include="..\AETriggers\TriggerModel\TriggerMgr.cs">
-            <Link>TriggerModel\TriggerMgr.cs</Link>
+          <Link>TriggerModel\TriggerMgr.cs</Link>
         </Compile>
         <Compile Include="AI\AIMgrs.cs" />
         <Compile Include="AI\Bard\Ability\BardAbility_Barrage.cs" />
@@ -175,6 +175,7 @@
         <Compile Include="AI\IBattleData.cs" />
         <Compile Include="AI\Machinist\SpellEvent\SpellEvent_Hypercharge.cs" />
         <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UnderHyperChargetGCD.cs" />
+        <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UseBattery.cs" />
         <Compile Include="AI\Reaper\SpellEvent\SpellEvent_EnshourdGCD.cs" />
         <Compile Include="AI\Reaper\SpellEvent\SpellEvent_Lemure.cs" />
         <Compile Include="AI\SpellEvent.cs" />
@@ -347,6 +348,9 @@
         <Compile Include="Setting\Setting\BardSettings.cs" />
         <Compile Include="Setting\Setting\GeneralSettings.cs" />
         <Compile Include="Setting\Setting\VersionSetting.cs" />
+        <Content Include="Resources\Lan_zh-CN.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
         <Resource Include="Resources\Spells\IronJaws.png" />
         <Resource Include="Resources\Spells\Hypercharge.png" />
         <Resource Include="Resources\Spells\NaturesMinne.png" />

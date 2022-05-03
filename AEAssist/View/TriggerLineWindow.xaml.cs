@@ -28,7 +28,13 @@ namespace AEAssist.View.Overlay
                 return;
             var file = openFile.FileName;
             {
-                DataBinding.Instance.CurrTriggerLine = TriggerHelper.LoadTriggerLine(file);
+                string str = "";
+                (str,DataBinding.Instance.CurrTriggerLine) = TriggerHelper.LoadTriggerLine(file);
+                if (str != null)
+                {
+                    MessageBox.Show(str);
+                }
+
                 if (DataBinding.Instance.CurrTriggerLine != null)
                 {
                     MessageBox.Show("Load Success!");

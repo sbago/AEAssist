@@ -130,9 +130,17 @@ namespace AEAssist.AI
                 ClearBattleData = false;
             }
 
-            if (SettingMgr.GetSetting<GeneralSettings>().AbilityFirst)
+            if(battleData.NextAbilitySpellId != null && battleData.AbilityRetryEndTime < TimeHelper.Now())
             {
-                if (battleData.NextAbilitySpellId != null)
+                LogHelper.Debug($"RetryEndTime : NextAbility {battleData.NextAbilitySpellId}");
+                battleData.NextAbilitySpellId = null;
+            }
+
+            if (battleData.NextAbilitySpellId != null)
+            {
+                if (SettingMgr.GetSetting<GeneralSettings>().NextAbilityFirst
+                    || (SettingMgr.GetSetting<GeneralSettings>().KnockbackAgainstFirst
+                        && battleData.NextAbilitySpellId.IsKnockbackAgainst()))
                 {
                     var ret = battleData.NextAbilitySpellId;
                     if (ret.SpellData != null && ret.IsUnlock())
@@ -140,9 +148,12 @@ namespace AEAssist.AI
                         if (ret.CanCastAbility())
                         {
                             if (!await ret.DoAbility())
+                            {
                                 ret = null;
-                            else
-                                battleData.NextAbilitySpellId = null;
+                                return false;
+                            }
+
+                            battleData.NextAbilitySpellId = null;
                         }
                         else
                         {
@@ -154,21 +165,14 @@ namespace AEAssist.AI
                         ret = null;
                         battleData.NextAbilitySpellId = null;
                     }
-
-                    if (ret == null && battleData.AbilityRetryEndTime < TimeHelper.Now())
-                    {
-                        LogHelper.Debug($"RetryEndTime : NextAbility {battleData.NextAbilitySpellId}");
-                        battleData.NextAbilitySpellId = null;
-                    }
-                    
                     if (ret != null)
                     {
                         RecordGCD(ret);
                     }
-
-                    return false;
                 }
             }
+
+         
 
 
             if (await OpenerMgr.Instance.UseOpener(Core.Me.CurrentJob))
@@ -282,12 +286,6 @@ namespace AEAssist.AI
                     else
                     {
                         ret = null;
-                        battleData.NextAbilitySpellId = null;
-                    }
-
-                    if (ret == null && battleData.AbilityRetryEndTime < TimeHelper.Now())
-                    {
-                        LogHelper.Debug($"RetryEndTime : NextAbility {battleData.NextAbilitySpellId}");
                         battleData.NextAbilitySpellId = null;
                     }
                 }
