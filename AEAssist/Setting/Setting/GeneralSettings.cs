@@ -43,8 +43,6 @@ namespace AEAssist
         public int AutoFinalBurstCheckTime { get; set; } = 6000;
 
         public bool NextAbilityFirst { get; set; }
-        public bool KnockbackAgainstFirst { get; set; } = true;
-
         public bool AutoSwitchTriggerLine { get; set; }
 
         public void Reset()
@@ -68,7 +66,6 @@ namespace AEAssist
             DexPotionId = 36105; // 5级巧力
             StrPotionId = 36104; // 5级刚力
             NextAbilityFirst = false;
-            KnockbackAgainstFirst = true;
             AutoSwitchTriggerLine = false;
         }
     }

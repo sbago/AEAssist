@@ -92,5 +92,10 @@ namespace AEAssist.View.Overlay
         {
             AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.IronJaws.GetSpellEntity();
         }
+
+        private void UseHeadGraze_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.HeadGraze.GetSpellEntity();
+        }
     }
 }

@@ -128,6 +128,13 @@
                                 Click="UseHyperCharge_OnClick">
                             <Image Source="../../Resources/Spells/Hypercharge.png" Stretch="Uniform" />
                         </Button>
+                        
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="2" Name="UseHeadGraze"
+                                Click="UseHeadGraze_OnClick">
+                            <Image Source="../../Resources/Spells/HeadGraze.png" Stretch="Uniform" />
+
+                        </Button>
                     </WrapPanel>
                 </WrapPanel>
                 <local:CommonOverlay HorizontalAlignment="Center" />

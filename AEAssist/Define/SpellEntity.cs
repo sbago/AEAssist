@@ -149,13 +149,11 @@ namespace AEAssist.Define
             return ActionManager.CanCast(SpellData, GetTarget());
         }
 
-        public bool IsKnockbackAgainst()
+        public bool IsHighPriority()
         {
             if (SpellData == null)
                 return false;
-            if (SpellData.Id == SpellsDefine.ArmsLength)
-                return true;
-            if (SpellData.Id == SpellsDefine.Surecast)
+            if (SpellsDefine.HighPrioritySet.Contains(SpellData.Id))
                 return true;
             return false;
         }

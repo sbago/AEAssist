@@ -77,5 +77,10 @@ namespace AEAssist.View.Overlay
         {
             AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Hypercharge.GetSpellEntity();
         }
+
+        private void UseHeadGraze_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.HeadGraze.GetSpellEntity();
+        }
     }
 }

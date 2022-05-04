@@ -60,7 +60,7 @@ namespace AEAssist.AI
 
                     if (unit.IsCasting)
                         LogHelper.Info($"Find enemy casting spell : {unit.Name} NpcId: {unit.NpcId} " +
-                                       $"CastingSpell [{unit.SpellCastInfo.Name}]  SpellId : {unit.SpellCastInfo.SpellData.Id} ");
+                                       $"CastingSpell [{unit.SpellCastInfo.Name}] [{unit.SpellCastInfo.SpellData.LocalizedName}] SpellId : {unit.SpellCastInfo.SpellData.Id} ");
                 }
 
                 if (!unit.ValidAttackUnit())

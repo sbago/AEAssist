@@ -133,9 +133,9 @@ namespace AEAssist.AI
             }
 
             if (battleData.NextAbilitySpellId != null)
+            {
                 if (SettingMgr.GetSetting<GeneralSettings>().NextAbilityFirst
-                    || SettingMgr.GetSetting<GeneralSettings>().KnockbackAgainstFirst
-                    && battleData.NextAbilitySpellId.IsKnockbackAgainst())
+                    || battleData.NextAbilitySpellId.IsHighPriority())
                 {
                     var ret = battleData.NextAbilitySpellId;
                     if (ret.SpellData != null && ret.IsUnlock())
@@ -163,7 +163,7 @@ namespace AEAssist.AI
 
                     if (ret != null) RecordGCD(ret);
                 }
-
+            }
 
             if (await OpenerMgr.Instance.UseOpener(Core.Me.CurrentJob)) return false;
 

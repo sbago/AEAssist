@@ -36,6 +36,20 @@ namespace AEAssist.Define
         {
             PlentifulHarvest
         };
+
+
+        public static HashSet<uint> HighPrioritySet = new HashSet<uint>()
+        {
+            ArmsLength,
+            Surecast,
+            HeadGraze,
+            LegSweep,
+            Interject,
+            LowBlow,
+            Shirk,
+            Sprint
+        };
+
         // DPS Role
 
         #region DPS Role

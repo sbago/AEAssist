@@ -17,8 +17,7 @@ namespace AEAssist.AI.Bard
             new BardGCD_Barrage_RefulgentArrow(),
             new BardGCD_Dot(),
             new BardGCD_ApexArrow(),
-            new BardGCD_QuickNock(),
-            new BardGCD_HeavyShot()
+            new BardGCD_BaseGCD()
         };
 
         public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>
