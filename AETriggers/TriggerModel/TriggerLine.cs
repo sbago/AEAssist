@@ -4,7 +4,7 @@ namespace AETriggers.TriggerModel
 {
     public class TriggerLine
     {        
-        public ushort RawZoneId;
+        public ushort CurrZoneId;
         public uint SubZoneId;
         public string TargetJob;
         public List<Trigger> Triggers = new List<Trigger>();

@@ -11,6 +11,7 @@
   "Toggle_NextAbilityFirst" : "NextAbilityFirst",
   "Toggle_AutoSwitchTriggerLine" : "AutoSwitchTriggerLine",
   "Toggle_KnockAgainstFirst" : "KnockAgainstFirst",
+  "Button_ReloadTriggerLine" : "ReloadTriggerLine",
   "Toggle_EarlyDecisionMode" : "EarlyDecisionMode",
   "Toggle_StrongGCDCheckTime" : "StrongGCDCheckTime",
   "Toggle_DoubleShroundPrefer" : "DoubleShroundPrefer",

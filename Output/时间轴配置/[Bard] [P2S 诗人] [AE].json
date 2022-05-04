@@ -1,6 +1,7 @@
 {
   "_t" : "TriggerLine",
-  "TargetDuty" : "P2S",
+  "CurrZoneId" : { "$numberInt" : "0" },
+  "SubZoneId" : { "$numberInt" : "0" },
   "TargetJob" : "Bard",
   "Triggers" : [{
       "_id" : "1",
@@ -34,18 +35,8 @@
           "Time" : { "$numberInt" : "42" },
           "TriggerId" : "2"
         }]
-    }, {
-      "_id" : "4",
-      "TriggerActions" : [{
-          "_t" : "TriggerAction_CastGCD",
-          "SpellId" : { "$numberInt" : "3560" }
-        }],
-      "TriggerConds" : [{
-          "_t" : "TriggerCond_AfterBattleStart",
-          "Time" : { "$numberInt" : "226" }
-        }]
     }],
-  "Version" : "v0.1",
   "Author" : "AE",
-  "ConfigVersion" : { "$numberInt" : "1" }
+  "Name" : "P2S 诗人",
+  "ConfigVersion" : { "$numberInt" : "3" }
 }

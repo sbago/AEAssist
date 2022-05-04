@@ -33,7 +33,7 @@ namespace AEAssist.Helper
             if (hasChange)
             {
                 LogHelper.Info($"Enter new zone: {WorldManager.CurrentLocalizedZoneName} Id: {CurrZoneId} Sub: {WorldManager.SubZoneId} Raw: {WorldManager.RawZoneId}");
-                TriggerLineSwitchHelper.ApplyTriggerLine(RawZoneId,SubZoneId);
+                TriggerLineSwitchHelper.ApplyTriggerLine(CurrZoneId,SubZoneId);
             }
         }
     }

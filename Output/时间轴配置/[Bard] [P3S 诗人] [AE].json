@@ -1,6 +1,7 @@
 {
   "_t" : "TriggerLine",
-  "TargetDuty" : "P3S",
+  "CurrZoneId" : { "$numberInt" : "0" },
+  "SubZoneId" : { "$numberInt" : "0" },
   "TargetJob" : "Bard",
   "Triggers" : [{
       "_id" : "1",
@@ -72,7 +73,7 @@
           "TriggerId" : "2"
         }]
     }],
-  "Version" : "v0.1",
   "Author" : "AE",
-  "ConfigVersion" : { "$numberInt" : "2" }
+  "Name" : "P3S 诗人",
+  "ConfigVersion" : { "$numberInt" : "3" }
 }

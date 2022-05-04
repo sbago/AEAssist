@@ -81,7 +81,7 @@ namespace AEAssist.AI
                 if (SettingMgr.GetSetting<GeneralSettings>().ShowGameLog && unit.IsCasting)
                 {
                     LogHelper.Info($"Find enemy casting spell : {unit.Name} NpcId: {unit.NpcId} " +
-                                   $"CastingSpell {unit.SpellCastInfo.SpellData.LocalizedName} : {unit.SpellCastInfo.SpellData.Id} ");
+                                   $"CastingSpell {unit.SpellCastInfo.SpellData.Name} : {unit.SpellCastInfo.SpellData.Id} ");
                 }
             }
 

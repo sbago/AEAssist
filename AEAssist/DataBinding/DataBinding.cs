@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Media.Animation;
 using AEAssist.AI;
+using AEAssist.Helper;
 using AEAssist.View;
 using AETriggers.TriggerModel;
 using PropertyChanged;
@@ -62,12 +63,20 @@ namespace AEAssist
 
         public void ChangeTriggerLine(TriggerLine line)
         {
+            if (!TriggerLineSwitchHelper.CheckTriggerLine(line,out var str))
+            {
+                MessageBox.Show(str);
+                return;
+            }
             var oldName = TriggerLineName;
             this.CurrTriggerLine = line;
             this.TriggerLineName = "NULL";
             if (this.CurrTriggerLine != null)
                 this.TriggerLineName = line.Name;
-            LogHelper.Info($"Change TriggerLine: {oldName}==>{TriggerLineName}");
+
+            var notice = $"Change TriggerLine: {oldName}==>{TriggerLineName}";
+            LogHelper.Info(notice);
+            MessageBox.Show(notice);
         }
 
         public void Reset()

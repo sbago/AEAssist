@@ -99,7 +99,7 @@ namespace AETriggers
                     {
                         Author = authorName,
                         Name = name,
-                        RawZoneId = targetZoneId,
+                        CurrZoneId = targetZoneId,
                         SubZoneId = subZoneId,
                         TargetJob = job,
                         ConfigVersion = TriggerLine.CurrConfigVersion
@@ -173,7 +173,7 @@ namespace AETriggers
             openFile.Filter = "Json(*.json)|*.json";
             openFile.InitialDirectory = new DirectoryInfo("../").FullName;
             openFile.FileName =
-                $"[{TriggerLine.Author}][{TriggerLine.Name}]_{TriggerLine.TargetJob}.json";
+                $"[{TriggerLine.TargetJob}] [{TriggerLine.Name}] [{TriggerLine.Author}].json";
             var ret = openFile.ShowDialog();
             if (!ret.HasValue || !ret.Value)
                 return;
@@ -253,7 +253,7 @@ namespace AETriggers
 
             AuthorName.Content = TriggerLine.Author;
             Name.Content = TriggerLine.Name;
-            TargetZone.Content = $"{TriggerLine.RawZoneId} | {TriggerLine.SubZoneId}";
+            TargetZone.Content = $"{TriggerLine.CurrZoneId} | {TriggerLine.SubZoneId}";
             TargetJob.Content = TriggerLine.TargetJob;
         }
     }

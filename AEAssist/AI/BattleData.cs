@@ -85,31 +85,14 @@ namespace AEAssist.AI
         private readonly Dictionary<string, long> ExecutedTriggers = new Dictionary<string, long>();
 
         private readonly Dictionary<ITriggerCond, long> CondHitTime = new Dictionary<ITriggerCond, long>();
+        
 
         private void CalTriggerLine()
         {
             var CurrTriggerLine = DataBinding.Instance.CurrTriggerLine;
             if (CurrTriggerLine == null)
                 return;
-            if (CurrTriggerLine.TargetJob != "Any" && CurrTriggerLine.TargetJob != Enum.GetName(typeof(ClassJobType), Core.Me.CurrentJob))
-                return;
-            bool canUse = Core.Me.CurrentTarget != null && Core.Me.CurrentTarget.EnglishName.Contains("Dummy");
-
-            if (!canUse)
-            {
-                if (CurrTriggerLine.RawZoneId == 0)
-                    canUse = true;
-                else if(CurrTriggerLine.RawZoneId == WorldHelper.RawZoneId && CurrTriggerLine.SubZoneId == WorldHelper.SubZoneId)
-                {
-                    canUse = true;
-                }
-            }
-
-
-            if (!canUse)
-            {
-                return;
-            }
+     
 
             if (ExecutedTriggers.Count == CurrTriggerLine.Triggers.Count)
                 return;

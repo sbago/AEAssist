@@ -25,7 +25,7 @@ namespace AETriggers.TriggerModel
             catch (Exception e)
             {
                 LogHelper.Error(e.ToString());
-                return ("LoadFailed: Exception:\n " + e,null);
+                return ("Loading failed: Exception:\n " + e,null);
             }
         }
 

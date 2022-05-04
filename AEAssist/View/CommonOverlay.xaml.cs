@@ -34,7 +34,7 @@ namespace AEAssist.View
                 string str = "";
                 TriggerLine line = null;
                 (str,line) = TriggerHelper.LoadTriggerLine(file);
-                if (str != null)
+                if (str != null && line == null)
                 {
                     MessageBox.Show(str);
                 }
@@ -43,6 +43,7 @@ namespace AEAssist.View
                 {
                     DataBinding.Instance.ChangeTriggerLine(line);
                 }
+                
             }
         }
 
