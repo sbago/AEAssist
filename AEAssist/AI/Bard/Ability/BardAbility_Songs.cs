@@ -153,8 +153,7 @@ namespace AEAssist.AI.Bard.Ability
                         spell = SpellsDefine.ArmysPaeon.GetSpellEntity();
                         break;
                     case ActionResourceManager.Bard.BardSong.WanderersMinuet:
-                        if (!AIRoot.Instance.CloseBurst)
-                            spell = SpellsDefine.TheWanderersMinuet.GetSpellEntity();
+                        spell = SpellsDefine.TheWanderersMinuet.GetSpellEntity();
                         break;
                     case ActionResourceManager.Bard.BardSong.None:
                         forceNextSong = true;
