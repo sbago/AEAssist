@@ -55,8 +55,7 @@ namespace AEAssist.AI.Bard
                 randomTime += now - _lastTime;
                 _lastTime = TimeHelper.Now();
             }
-
-            // 防止每次都立即开疾行,搞的很假
+            
             if (RandomHelper.RandomInt(2000, 5000) > randomTime)
                 return false;
 

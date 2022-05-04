@@ -1,14 +1,17 @@
 {
   "_t" : "TriggerLine",
+  "Author" : "AE",
+  "ConfigVersion" : { "$numberInt" : "3" },
   "CurrZoneId" : { "$numberInt" : "0" },
+  "Name" : "P4S门神 被窝",
   "SubZoneId" : { "$numberInt" : "0" },
   "TargetJob" : "Bard",
   "Triggers" : [{
       "_id" : "1",
       "TriggerActions" : [{
           "_t" : "TriggerAction_SongList",
-          "SongIndex" : [{ "$numberInt" : "3" }, { "$numberInt" : "1" }, { "$numberInt" : "2" }],
-          "Durations" : [{ "$numberInt" : "43" }, { "$numberInt" : "43" }, { "$numberInt" : "45" }]
+          "Durations" : [{ "$numberInt" : "43" }, { "$numberInt" : "43" }, { "$numberInt" : "45" }],
+          "SongIndex" : [{ "$numberInt" : "3" }, { "$numberInt" : "1" }, { "$numberInt" : "2" }]
         }],
       "TriggerConds" : [{
           "_t" : "TriggerCond_AfterBattleStart",
@@ -52,12 +55,9 @@
         }],
       "TriggerConds" : [{
           "_t" : "TriggerCond_EnemyHPPct",
+          "delayTime" : { "$numberInt" : "0" },
           "HpPct" : { "$numberDouble" : "50.5" },
-          "Name" : "10742",
-          "delayTime" : { "$numberInt" : "0" }
+          "Name" : "10742"
         }]
-    }],
-  "Author" : "AE",
-  "Name" : "P4S门神 被窝",
-  "ConfigVersion" : { "$numberInt" : "3" }
+    }]
 }

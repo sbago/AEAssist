@@ -22,9 +22,7 @@ namespace AEAssist.AI.Machinist
 
             AEAssist.DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<MCHSettings>().EarlyDecisionMode;
         }
-
-
-        // 战斗之前处理buff的?
+        
         public async Task<bool> PreCombatBuff()
         {
             if (PartyManager.IsInParty)

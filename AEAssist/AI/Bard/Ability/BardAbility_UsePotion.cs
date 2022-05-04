@@ -22,7 +22,7 @@ namespace AEAssist.AI.Bard.Ability
                 return -4;
             if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId))
                 return -6;
-            // 准备爆发的时候才用
+        
             if (Core.Me.ContainMyAura(AurasDefine.RagingStrikes)
                 || SpellsDefine.RagingStrikes.GetSpellEntity().Cooldown.TotalMilliseconds < 5000)
                 return 0;

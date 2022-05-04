@@ -89,7 +89,6 @@ namespace AEAssist
 
         public void HookBehaviors()
         {
-            // 重新hook去掉Loader的反射调用用来提高性能
             TreeHooks.Instance.ReplaceHook("Rest", RestBehavior);
             TreeHooks.Instance.ReplaceHook("PreCombatBuff", PreCombatBuffBehavior);
             TreeHooks.Instance.ReplaceHook("Pull", PullBehavior);

@@ -5,9 +5,6 @@ using ff14bot;
 
 namespace AEAssist.AI.Bard.GCD
 {
-    /// <summary>
-    ///     如果有纷乱buff, 打辉煌
-    /// </summary>
     public class BardGCD_Barrage_RefulgentArrow : IAIHandler
     {
         public int Check(SpellEntity lastSpell)

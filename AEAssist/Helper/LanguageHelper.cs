@@ -87,8 +87,7 @@ namespace AEAssist.Helper
                     continue;
                 v.SetValue(Language.Instance, va);
             }
-
-            //其他地方要刷新
+            
             SettingMgr.GetSetting<HotkeySetting>().ResetHotkeyName();
             LogHelper.Debug($"Change Language==>{target.LanType} finished");
         }

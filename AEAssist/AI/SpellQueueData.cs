@@ -49,13 +49,12 @@ namespace AEAssist.AI
                 ObjectPool.Instance.Return(val);
             }
         }
-
-        // 返回true说明逻辑被ApplySlot接管,返回false说明需要走AI优先级队列那一套
+        
         public async Task<bool> ApplySlot()
         {
             if (Queue.Count == 0)
                 return false;
-            // islock = true说明当前需要使用这个slot的各种能力技了
+
             if (isLock)
             {
                 var slot = Queue.Peek();
@@ -78,7 +77,6 @@ namespace AEAssist.AI
                 var spellData = SpellEntity.Create(abilityId.spellId);
                 if (abilityId.spellId == 0 || spellData.SpellData == null || !spellData.IsReady())
                 {
-                    // 配置的技能不能使用,就等个技能动画时间
                     await Coroutine.Sleep(slot.AnimationLockMs);
                     slot.Abilitys.Dequeue();
                 }

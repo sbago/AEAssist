@@ -16,13 +16,7 @@ namespace AEAssist.Helper
             SpellHistoryMgr.Instance.SpellLastCastGCDIndex.TryGetValue(SpellId, out var time);
             return time;
         }
-
-        /// <summary>
-        ///     防止网络延迟
-        /// </summary>
-        /// <param name="spellData"></param>
-        /// <param name="span"></param>
-        /// <returns></returns>
+        
         public static bool RecentlyUsed(this SpellData spellData, int span = 1000)
         {
             var time = GetLastSpellTime(spellData.Id);

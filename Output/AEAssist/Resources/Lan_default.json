@@ -67,6 +67,7 @@
   "Btn_ClearTriggerLine" : "ClearTriggerLine",
   "QQGroup" : "QQGroup",
   "SaveSetting" : "SaveSetting",
+  "Content_ResetSetting" : "ResetSetting",
   "Content_CoolDown" : "CoolDown",
   "Content_CoolDown_1500" : "CoolDown",
   "Content_CoolDownFinish" : "CoolDownFinish",

@@ -86,8 +86,6 @@ namespace AEAssist.AI
 
         public async Task<bool> Update()
         {
-            // 逻辑清单: 
-            // 1. 检测当前是否可以使用GCD技能
             var timeNow = TimeHelper.Now();
             if (!ClearBattleData)
             {
@@ -169,10 +167,10 @@ namespace AEAssist.AI
 
             if (await OpenerMgr.Instance.UseOpener(Core.Me.CurrentJob)) return false;
 
-            // 技能队列
+       
             if (await GetBattleData<SpellQueueData>().ApplySlot()) return false;
 
-            // boss低血量自动开资源倾泻模式
+            // boss is time to kill (default is 6s),so toggle the FinalBurst
             if (TTKHelper.IsBossTTK(Core.Me.CurrentTarget as Character)) AEAssist.DataBinding.Instance.FinalBurst = true;
 
             var canUseAbility = true;
@@ -322,8 +320,7 @@ namespace AEAssist.AI
             SpellHistoryMgr.Instance.AddAbilityHistory(history);
             battleData.maxAbilityTimes--;
         }
-
-        // 当前是否是GCD后半段
+        
         public bool Is2ndAbilityTime()
         {
             if (SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD < 2)

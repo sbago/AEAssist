@@ -65,7 +65,7 @@ namespace AEAssist.Gamelog
                 {
                     var match = Regex.Match(e.ChatLogEntry.Contents,
                         Language.Instance.MessageLog_CountDown_BattleStartInTime);
-                    // 倒计时触发
+              
                     if (match.Success && int.TryParse(match.Value, out var restTime))
                     {
                         LogHelper.Info("StartCountDown: " + e.ChatLogEntry.Contents);
@@ -75,7 +75,7 @@ namespace AEAssist.Gamelog
                     GUIHelper.ShowInfo(e.ChatLogEntry.Contents, 1000, false);
                 }
 
-                // 有人取消
+                // someone cancel
                 if (e.ChatLogEntry.Contents.Contains(Language.Instance.MessageLog_CountDown_CancelBattleStart))
                 {
                     LogHelper.Info("CountDownEnd: " + e.ChatLogEntry.Contents);

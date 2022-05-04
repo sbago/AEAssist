@@ -71,7 +71,7 @@ namespace AEAssist.AI
 
                 var combatReach = Core.Me.CombatReach + unit.CombatReach;
 
-                if (Core.Me.Distance(unit) < 25 - 1 + combatReach) // -1是为了防止网络延迟导致服务器验证距离不对
+                if (Core.Me.Distance(unit) < 25 - 1 + combatReach) 
                     EnemysIn25.Add(unit.ObjectId, unit);
 
                 // if (Core.Me.Distance(unit) < 12 - 1 + combatReach)

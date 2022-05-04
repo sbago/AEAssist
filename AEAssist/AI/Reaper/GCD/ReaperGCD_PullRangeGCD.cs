@@ -5,7 +5,6 @@ using ff14bot;
 
 namespace AEAssist.AI.Reaper.GCD
 {
-    // 近战之外的范围的GCD
     public class ReaperGCD_PullRangeGCD : IAIHandler
     {
         public int Check(SpellEntity lastSpell)

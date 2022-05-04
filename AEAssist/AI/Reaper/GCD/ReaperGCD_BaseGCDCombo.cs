@@ -14,7 +14,7 @@ namespace AEAssist.AI.Reaper.GCD
 
         public async Task<SpellEntity> Run()
         {
-            // DoubleEnshroudPrefer 填充 这期间用不了普通GCD Combo所以只能填充这些
+            // DoubleEnshroudPrefer. cant use baseCombo, so use this
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.ContainMyAura(AurasDefine.Enshrouded))
             {
                 var spell = ReaperSpellHelper.GetShadowOfDeath();

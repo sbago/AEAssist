@@ -1,12 +1,4 @@
-﻿// -----------------------------------
-// 
-// 模块说明：机工 90级起手
-// 
-// 创建人员：AE
-// 创建日期：2022-04-14
-// -----------------------------------
-
-using AEAssist.Define;
+﻿using AEAssist.Define;
 using AEAssist.Helper;
 using AEAssist.Opener;
 using ff14bot.Enums;
@@ -65,7 +57,6 @@ namespace AEAssist.AI.Machinist
         private SpellQueueSlot Step2()
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-            //todo: 根据情况返回AOE版本?
             slot.GCDSpellId = SpellsDefine.HeatedSplitShot;
             return slot;
         }

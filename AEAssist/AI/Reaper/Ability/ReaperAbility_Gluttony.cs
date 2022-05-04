@@ -28,7 +28,7 @@ namespace AEAssist.AI.Reaper.Ability
 
             if (ActionResourceManager.Reaper.SoulGauge < 50)
                 return -8;
-            // 可以打附体,就不打暴食了
+        
             var ret = ReaperSpellHelper.ReadyToEnshroud();
             if (ret >= 0)
                 return -9;

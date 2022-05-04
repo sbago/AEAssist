@@ -2,7 +2,6 @@
 
 namespace AEAssist
 {
-    // 所有字段,属性的type最好都是string
     [AddINotifyPropertyChangedInterface]
     public class Language
     {

@@ -12,7 +12,6 @@ namespace AEAssist.AI.Bard.Ability
         {
             if (!AEAssist.DataBinding.Instance.UseSong)
                 return -10;
-            // 可能会发生短时间内rb的song的Timer还是上一首歌的 (rb的bug),导致连续的GCD内连续切换两次歌的情况
             if (TimeHelper.Now() - AIRoot.GetBattleData<BardBattleData>().lastCastSongTime < 3000)
                 return -2;
 
@@ -73,7 +72,6 @@ namespace AEAssist.AI.Bard.Ability
             forceNextSong = false;
             if (AIRoot.Instance.CloseBurst)
             {
-                // 关爆发的时候,让歌唱完
                 if (currSong != ActionResourceManager.Bard.BardSong.None)
                 {
                     if (bardBattleData.ControlByNextSongQueue((int) currSong))
@@ -110,7 +108,6 @@ namespace AEAssist.AI.Bard.Ability
                             spell = GetSongsByOrder(null, out forceNextSong);
                             break;
                         case ActionResourceManager.Bard.BardSong.WanderersMinuet:
-                            // 关闭爆发的时候,我们让歌唱完
                             if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_WM_TimeLeftForSwitch)
                                 spell = GetSongsByOrder(SpellsDefine.TheWanderersMinuet.GetSpellEntity(),
                                     out forceNextSong);

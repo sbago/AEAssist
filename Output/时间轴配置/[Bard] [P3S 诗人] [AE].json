@@ -1,6 +1,9 @@
 {
   "_t" : "TriggerLine",
+  "Author" : "AE",
+  "ConfigVersion" : { "$numberInt" : "3" },
   "CurrZoneId" : { "$numberInt" : "0" },
+  "Name" : "P3S 诗人",
   "SubZoneId" : { "$numberInt" : "0" },
   "TargetJob" : "Bard",
   "Triggers" : [{
@@ -20,8 +23,8 @@
           "value" : false
         }, {
           "_t" : "TriggerAction_SongList",
-          "SongIndex" : [{ "$numberInt" : "1" }, { "$numberInt" : "2" }],
-          "Durations" : [{ "$numberInt" : "43" }, { "$numberInt" : "45" }]
+          "Durations" : [{ "$numberInt" : "43" }, { "$numberInt" : "45" }],
+          "SongIndex" : [{ "$numberInt" : "1" }, { "$numberInt" : "2" }]
         }, {
           "_t" : "TriggerAction_SwitchApex",
           "value" : true
@@ -72,8 +75,5 @@
           "Time" : { "$numberInt" : "102" },
           "TriggerId" : "2"
         }]
-    }],
-  "Author" : "AE",
-  "Name" : "P3S 诗人",
-  "ConfigVersion" : { "$numberInt" : "3" }
+    }]
 }

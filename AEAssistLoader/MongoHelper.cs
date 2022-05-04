@@ -17,8 +17,6 @@ namespace AEAssist
 
         static MongoHelper()
         {
-            // 自动注册IgnoreExtraElements
-
             var conventionPack = new ConventionPack {new IgnoreExtraElementsConvention(true)};
 
             ConventionRegistry.Register("IgnoreExtraElements", conventionPack, type => true);

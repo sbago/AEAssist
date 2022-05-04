@@ -106,7 +106,7 @@ namespace AEAssist.AI.Bard
         {
             var id = GetWindBiteAura();
             if (id == 0)
-                return true; // 让上层觉得已经有Buff了
+                return true; 
 
             return target.ContainMyAura((uint) id);
         }
@@ -115,7 +115,7 @@ namespace AEAssist.AI.Bard
         {
             var id = GetVenomousBiteAura();
             if (id == 0)
-                return true; // 让上层觉得已经有Buff了
+                return true; 
 
             return target.ContainMyAura((uint) id);
         }
@@ -387,7 +387,7 @@ namespace AEAssist.AI.Bard
                 && SpellsDefine.MagesBallad.GetSpellEntity().Cooldown.TotalMilliseconds > 1000)
                 return -102;
 
-            // 关爆发的时候,让歌唱完
+          
             if (currSong != ActionResourceManager.Bard.BardSong.None)
             {
                 if (AIRoot.GetBattleData<BardBattleData>().NeedSwitchByNextSongQueue((int) currSong, remainTime))

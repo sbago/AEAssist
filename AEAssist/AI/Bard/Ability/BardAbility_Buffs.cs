@@ -17,12 +17,6 @@ namespace AEAssist.AI.Bard.Ability
                 return -2;
             if (!BardSpellHelper.CheckCanUseBuffs())
                 return -3;
-            // if (!tar.IsBoss())
-            // {
-            //     return false;
-            // }
-            // if (BardSpellEx.IsBuff(lastSpell))
-            //     return false;
             var buffs = BardSpellHelper.GetBuffs();
             if (buffs == null)
                 return -4;
@@ -39,18 +33,7 @@ namespace AEAssist.AI.Bard.Ability
             var ret = await buff.DoAbility();
             if (ret)
             {
-                var lastBuff = buff;
-                // buff = BardSpellEx.GetBuffs();
-                // // 连续使用两个Buff
-                // if(buff != null)
-                // {
-                //     if (await SpellHelper.CastAbility(buff, Core.Me, 0))
-                //     {
-                //         AIRoot.Instance.MuteAbilityTime();
-                //         return buff;
-                //     }
-                // }
-                return lastBuff;
+                return buff;
             }
 
             return null;

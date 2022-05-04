@@ -23,11 +23,10 @@ namespace AEAssist.AI.Bard.Ability
 
             if (BardSpellHelper.HasBuffsCount() >= BardSpellHelper.UnlockBuffsCount())
                 return 4;
-            // 起手爆发期间, 失血箭尽量打进团辅
+    
             if (BardSpellHelper.Prepare2BurstBuffs())
                 return -4;
-
-            // 军神期间,小于2.5 不用失血. 但是RB的失血箭次数在最大2层的时候,不准.所以做个保险
+            
             if (Core.Me.ClassLevel >= 84 &&
                 ActionResourceManager.Bard.ActiveSong == ActionResourceManager.Bard.BardSong.ArmysPaeon)
                 return -5;

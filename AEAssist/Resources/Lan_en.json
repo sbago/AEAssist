@@ -85,5 +85,8 @@
   "Combox_Hotkey_ArmLength_Surecast": "Hotkey_ArmLength_Surecast",
   "Toggle_NextAbilityFirst": "Ability First",
   "Toggle_KnockAgainstFirst": "ArmLength/Surecast First",
-  "Content_ResetSetting": "The old settings have been reset."
+  "Content_ResetSetting": "The old settings have been reset.",
+  "Button_ReloadTriggerLine": "Reload",
+  "TabItem_TriggerLine": "TriggerLine",
+  "Toggle_AutoSwitchTriggerLine": "Auto switch"
 }

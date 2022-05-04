@@ -13,7 +13,7 @@ namespace AEAssist
         }
 
         public double RestHealthPercent { get; set; }
-        public int ApexArrowValue { get; set; } // 绝峰 多少能量就用
+        public int ApexArrowValue { get; set; } 
 
         public SongStrategyEnum CurrentSongPlaylist { get; set; }
 
@@ -23,9 +23,9 @@ namespace AEAssist
 
         public bool UsePeloton { get; set; }
 
-        public bool BuffsDelay2GCD { get; set; } // 起手双团辅延后两个GCD 还是1个
+        public bool BuffsDelay2GCD { get; set; } 
 
-        public int TTK_IronJaws { get; set; } // 不刷伶牙
+        public int TTK_IronJaws { get; set; } 
 
         public int Dot_TimeLeft { get; set; } = ConstValue.AuraTick;
 

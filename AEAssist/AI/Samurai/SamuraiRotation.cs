@@ -26,8 +26,7 @@ namespace AEAssist.AI.Samurai
             AEAssist.DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<SamuraiSettings>().EarlyDecisionMode;
             LogHelper.Info("EarlyDecisionMode: " + AEAssist.DataBinding.Instance.EarlyDecisionMode);
         }
-
-        // 战斗之前处理buff的?
+        
         public Task<bool> PreCombatBuff()
         {
             return Task.FromResult(false);
