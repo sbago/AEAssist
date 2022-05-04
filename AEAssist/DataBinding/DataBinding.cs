@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
 using AEAssist.AI;
 using AEAssist.Helper;
 using PropertyChanged;
+using QuickGraph;
 
 namespace AEAssist
 {
@@ -64,7 +66,6 @@ namespace AEAssist
         #endregion
 
         public bool OverlayVisibility { get; set; } = true;
-
         public void ChangeTriggerLine(TriggerLine line)
         {
             if (!TriggerLineSwitchHelper.CheckTriggerLine(line, out var str))
@@ -110,6 +111,13 @@ namespace AEAssist
                     $"{Language.Instance.Content_BattleTime}:  {AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs / 1000}";
             else
                 TimeStr = $"{Language.Instance.Content_LocalTime}:  {DateTime.Now:hh:mm:ss}";
+            
+        }
+
+        public void ApplyScale()
+        {
+            // ScaleTransform.ScaleX = SettingMgr.GetSetting<GeneralSettings>().OverlayScale_X;
+            // ScaleTransform.ScaleY = SettingMgr.GetSetting<GeneralSettings>().OverlayScale_Y;
         }
 
 

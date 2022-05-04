@@ -230,5 +230,25 @@ namespace AEAssist.Helper
         {
             return spellId.GetSpellEntity().RecentlyUsed();
         }
+        
+        
+        public static uint GetInterruptSpell(ClassJobType job)
+        {
+            switch (job)
+            {
+                case ClassJobType.Machinist:
+                    case ClassJobType.Bard:
+                    case ClassJobType.Dancer:
+                    return SpellsDefine.HeadGraze;
+                case ClassJobType.Paladin:
+                    case ClassJobType.DarkKnight:
+                    case ClassJobType.Warrior:
+                    case ClassJobType.Gunbreaker:
+                    return SpellsDefine.Interject;
+                
+            }
+
+            return 0;
+        }
     }
 }

@@ -105,5 +105,10 @@ namespace AEAssist.View
         {
             public string Name { get; set; }
         }
+
+        private void ApplyScale_OnClick(object sender, RoutedEventArgs e)
+        {
+            DataBinding.Instance.ApplyScale();
+        }
     }
 }

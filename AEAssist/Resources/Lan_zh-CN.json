@@ -87,5 +87,6 @@
   "Button_ReloadTriggerLine": "重新加载",
   "TabItem_TriggerLine": "时间轴配置",
   "Toggle_AutoSwitchTriggerLine": "自动切换时间轴",
-  "Content_ResetSetting": "本地配置版本较低,已自动重置"
+  "Content_ResetSetting": "本地配置版本较低,已自动重置",
+  "Label_OverlayScale": "Overlay缩放"
 }

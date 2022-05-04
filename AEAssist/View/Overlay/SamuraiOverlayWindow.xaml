@@ -20,7 +20,10 @@
             <BooleanToVisibilityConverter x:Key="BoolToVis" />
         </ResourceDictionary>
     </UserControl.Resources>
-
+    <UserControl.RenderTransform>
+        <ScaleTransform ScaleX="{Binding GeneralSettings.OverlayScale_X}"
+                        ScaleY="{Binding GeneralSettings.OverlayScale_Y}"/>
+    </UserControl.RenderTransform>
     <UserControl.DataContext>
         <Binding Source="{x:Static dataBinding:DataBinding.Instance}" />
     </UserControl.DataContext>

@@ -87,5 +87,6 @@
   "MessageLog_CountDown_CancelBattleStart" : "CountDown",
   "Bard_SwitchSong" : "SwitchSong",
   "Btn_ApplyHotkey" : "ApplyHotkey",
-  "Toggle_FinalBurst" : "FinalBurst"
+  "Toggle_FinalBurst" : "FinalBurst",
+  "Label_OverlayScale" : "OverlayScale"
 }

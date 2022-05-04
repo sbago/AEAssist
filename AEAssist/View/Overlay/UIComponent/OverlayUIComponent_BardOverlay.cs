@@ -33,7 +33,7 @@ namespace AEAssist.View.Overlay.UIComponent
                     X = 60,
                     Y = 60,
                     AllowMoving = true,
-                    AllowResizing = false
+                    AllowResizing = false,
                 };
                 LogHelper.Info("CreateOverlay " + _control.Width + "  " + _control.Height);
 

@@ -132,6 +132,19 @@ namespace AEAssist.AI
                 battleData.NextAbilitySpellId = null;
             }
 
+            if (SettingMgr.GetSetting<GeneralSettings>().AutoInterrupt)
+            {
+                var battleCharacter = Core.Me.CurrentTarget as BattleCharacter;
+                if (battleCharacter.IsCasting && battleCharacter.SpellCastInfo.Interruptible)
+                {
+                    var spell = SpellHelper.GetInterruptSpell(Core.Me.CurrentJob);
+                    if (spell != 0)
+                    {
+                        battleData.NextAbilitySpellId = spell.GetSpellEntity();
+                    }
+                }
+            }
+
             if (battleData.NextAbilitySpellId != null)
             {
                 if (SettingMgr.GetSetting<GeneralSettings>().NextAbilityFirst

@@ -60,8 +60,13 @@
                           Content="{Binding Language.Toggle_NextAbilityFirst}" Width="200" Height="25" Margin="10"
                           HorizontalAlignment="Left"
                           IsChecked="{Binding GeneralSettings.NextAbilityFirst}" />
-                
-            </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="100" Margin="5,0,5,0" Content="{Binding Language.Label_OverlayScale}"/>
+                    <TextBox Width="50" Margin="5,0,5,0" Text="{Binding GeneralSettings.OverlayScale_X,Mode=TwoWay}" />
+                    <TextBox Width="50" Margin="5,0,5,0" Text="{Binding GeneralSettings.OverlayScale_Y,Mode=TwoWay}" />
+                    <!-- <Button Width="100"  Margin="5,0,5,0" Content="Apply" Name="ApplyScale" Click="ApplyScale_OnClick" /> -->
+                </StackPanel>
+                </StackPanel>
         </TabItem>
 
         <TabItem Header="{Binding Language.TabItem_Hotkey}">

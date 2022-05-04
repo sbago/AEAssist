@@ -45,6 +45,12 @@ namespace AEAssist
         public bool NextAbilityFirst { get; set; }
         public bool AutoSwitchTriggerLine { get; set; }
 
+        public bool AutoInterrupt { get; set; }
+
+        public double OverlayScale_X { get; set; } = 1.0f;
+        public double OverlayScale_Y { get; set; } = 1.0f;
+        
+
         public void Reset()
         {
             UserLatencyOffset = 50;
@@ -67,6 +73,9 @@ namespace AEAssist
             StrPotionId = 36104; // 5级刚力
             NextAbilityFirst = false;
             AutoSwitchTriggerLine = false;
+            AutoInterrupt = false;
+            OverlayScale_X = 1;
+            OverlayScale_Y = 1;
         }
     }
 }

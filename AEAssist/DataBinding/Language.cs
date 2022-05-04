@@ -144,5 +144,7 @@ namespace AEAssist
         public string Btn_ApplyHotkey { get; set; }
 
         public string Toggle_FinalBurst { get; set; }
+
+        public string Label_OverlayScale { get; set; }
     }
 }
