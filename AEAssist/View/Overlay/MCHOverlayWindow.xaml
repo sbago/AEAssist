@@ -82,24 +82,7 @@
                                   IsChecked="{Binding FinalBurst,Mode=TwoWay}" />
                     </WrapPanel>
                     <WrapPanel Margin="10">
-                        <Button Style="{StaticResource ImageButton}"
-                                Width="30" Height="30" Margin="5,2,5,2" Name="UseTactician"
-                                Click="UseTactician_OnClick">
-                            <Image Source="../../Resources/Spells/Tactician.png" Stretch="Uniform" />
-                        </Button>
-                        <Button Style="{StaticResource ImageButton}"
-                                Width="30" Height="30" Margin="5,2,5,2" Name="UseArmsLength"
-                                Click="UseArmsLength_OnClick">
-
-                            <Image Source="../../Resources/Spells/ArmsLength.png" Stretch="Uniform" />
-
-                        </Button>
-                        <Button Style="{StaticResource ImageButton}"
-                                Width="30" Height="30" Margin="5,2,5,2" Name="UseSprint" Click="UseSprint_OnClick">
-
-                            <Image Source="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
-
-                        </Button>
+                        
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UsePotion" Click="UsePotion_OnClick">
                             <Image Source="../../Resources/Spells/Potion.png" Stretch="Uniform" />
@@ -129,13 +112,34 @@
                             <Image Source="../../Resources/Spells/Hypercharge.png" Stretch="Uniform" />
                         </Button>
                         
+                    </WrapPanel>
+                    <StackPanel Margin="5" Orientation="Horizontal">
                         <Button Style="{StaticResource ImageButton}"
-                                Width="30" Height="30" Margin="2" Name="UseHeadGraze"
+                                Width="40" Height="40" Margin="6,2,6,2" Name="UseArmsLength"
+                                Click="UseArmsLength_OnClick">
+                            <Image Source="../../Resources/Spells/ArmsLength.png"
+                                   Stretch="Uniform" />
+                        </Button>
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="40" Height="40" Margin="6,2,6,2" Name="UseHeadGraze"
                                 Click="UseHeadGraze_OnClick">
                             <Image Source="../../Resources/Spells/HeadGraze.png" Stretch="Uniform" />
 
                         </Button>
-                    </WrapPanel>
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="40" Height="40" Margin="6,2,6,2" Name="UseTroubadour"
+                                Click="UseTactician_OnClick">
+                            <Image Source="../../Resources/Spells/Tactician.png"
+                                   Stretch="Uniform" />
+                        </Button>
+              
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="40" Height="40" Margin="6,2,6,2" Name="UseSprint"
+                                Click="UseSprint_OnClick">
+                            <Image Source="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
+                        </Button>
+                    </StackPanel>
+                    
                 </WrapPanel>
                 <local:CommonOverlay HorizontalAlignment="Center" />
             </StackPanel>

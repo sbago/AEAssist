@@ -53,5 +53,10 @@ namespace AEAssist.View.Overlay
         {
             AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.HarvestMoon.GetSpellEntity();
         }
+
+        private void UseLegSweep_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.LegSweep.GetSpellEntity();
+        }
     }
 }

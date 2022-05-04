@@ -353,6 +353,7 @@
         <Content Include="Resources\Lan_zh-CN.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+        <Resource Include="Resources\Spells\LegSweep.png" />
         <Resource Include="Resources\Spells\HeadGraze.png" />
         <Resource Include="Resources\Spells\IronJaws.png" />
         <Resource Include="Resources\Spells\Hypercharge.png" />

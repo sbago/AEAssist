@@ -85,25 +85,6 @@
 
                         </Button>
                         <Button Style="{StaticResource ImageButton}"
-                                Width="30" Height="30" Margin="5,2,5,2" Name="UseArmsLength"
-                                Click="UseArmsLength_OnClick">
-
-                            <Image Source="../../Resources/Spells/ArmsLength.png" Stretch="Uniform" />
-
-                        </Button>
-                        <Button Style="{StaticResource ImageButton}"
-                                Width="30" Height="30" Margin="5,2,5,2" Name="UseFeint" Click="UseFeint_OnClick">
-
-                            <Image Source="../../Resources/Spells/Feint.png" Stretch="Uniform" />
-
-                        </Button>
-                        <Button Style="{StaticResource ImageButton}"
-                                Width="30" Height="30" Margin="5,2,5,2" Name="UseSprint" Click="UseSprint_OnClick">
-
-                            <Image Source="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
-
-                        </Button>
-                        <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseTrueNorth"
                                 Click="UseTrueNorth_OnClick">
 
@@ -121,6 +102,36 @@
                             <Image Source="../../Resources/Spells/HarvestMoon.png" Stretch="Uniform" />
                         </Button>
                     </WrapPanel>
+                    
+                    <StackPanel Margin="5" Orientation="Horizontal">
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="40" Height="40" Margin="6,2,6,2" Name="UseArmsLength"
+                                Click="UseArmsLength_OnClick">
+                            <Image Source="../../Resources/Spells/ArmsLength.png"
+                                   Stretch="Uniform" />
+                        </Button>
+                 
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="40" Height="40" Margin="6,2,6,2" Name="UseLegSweep"
+                                Click="UseLegSweep_OnClick">
+                            <Image Source="../../Resources/Spells/LegSweep.png"
+                                   Stretch="Uniform" />
+                        </Button>
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="40" Height="40" Margin="6,2,6,2" Name="UseFeint"
+                                Click="UseFeint_OnClick">
+                            <Image Source="../../Resources/Spells/Feint.png" Stretch="Uniform" />
+
+                        </Button>
+              
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="40" Height="40" Margin="6,2,6,2" Name="UseSprint"
+                                Click="UseSprint_OnClick">
+                            <Image Source="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
+                        </Button>
+                    </StackPanel>
+
+                    
                 </WrapPanel>
                 <view:CommonOverlay HorizontalAlignment="Center" />
             </StackPanel>
