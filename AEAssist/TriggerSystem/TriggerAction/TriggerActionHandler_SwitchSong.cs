@@ -1,7 +1,7 @@
-﻿using System;
-using AEAssist.AI;
+﻿using AEAssist.AI;
 using AEAssist.Define;
-using AETriggers.TriggerModel;
+using AEAssist.Helper;
+using AEAssist.TriggerAction;
 using ff14bot.Managers;
 
 namespace AEAssist.TriggerSystem.TriggerAction
@@ -13,18 +13,14 @@ namespace AEAssist.TriggerSystem.TriggerAction
             if (t.index <= 0)
             {
                 if (t.index == 0)
-                {
-                    DataBinding.Instance.UseSong = true;
-                }
+                    AEAssist.DataBinding.Instance.UseSong = true;
                 else
-                {
-                    DataBinding.Instance.UseSong = false;
-                }
+                    AEAssist.DataBinding.Instance.UseSong = false;
 
                 return;
             }
 
-            switch ((ActionResourceManager.Bard.BardSong)t.index)
+            switch ((ActionResourceManager.Bard.BardSong) t.index)
             {
                 case ActionResourceManager.Bard.BardSong.MagesBallad:
                     AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.MagesBallad.GetSpellEntity();
@@ -33,7 +29,8 @@ namespace AEAssist.TriggerSystem.TriggerAction
                     AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmysPaeon.GetSpellEntity();
                     break;
                 case ActionResourceManager.Bard.BardSong.WanderersMinuet:
-                    AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.TheWanderersMinuet.GetSpellEntity();
+                    AIRoot.GetBattleData<BattleData>().NextAbilitySpellId =
+                        SpellsDefine.TheWanderersMinuet.GetSpellEntity();
                     break;
             }
         }

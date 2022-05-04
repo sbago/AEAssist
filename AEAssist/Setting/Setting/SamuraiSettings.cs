@@ -9,6 +9,7 @@ namespace AEAssist
         {
             Reset();
         }
+
         public bool EarlyDecisionMode { get; set; }
 
         public void Reset()

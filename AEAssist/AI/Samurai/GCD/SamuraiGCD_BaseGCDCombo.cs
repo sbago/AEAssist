@@ -1,22 +1,17 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
-using AEAssist.Helper;
 using ff14bot;
-using ff14bot.Managers;
-using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Samurai.GCD
 {
-    public  class SamuraiGCD_BaseGCDCombo : IAIHandler
+    public class SamuraiGCD_BaseGCDCombo : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {
             if (Core.Me.HasAura(AurasDefine.Kaiten))
                 return -1;
-            if (Core.Me.HasAura(AurasDefine.MeikyoShisui) && SamuraiSpellHelper.SenCounts() == 3)
-            {
-                return -2;
-            }
+            if (Core.Me.HasAura(AurasDefine.MeikyoShisui) && SamuraiSpellHelper.SenCounts() == 3) return -2;
+
             return 0;
         }
 

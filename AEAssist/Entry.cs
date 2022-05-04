@@ -5,8 +5,9 @@ using AEAssist.AI;
 using AEAssist.Define;
 using AEAssist.Gamelog;
 using AEAssist.Helper;
+using AEAssist.Rotations.Core;
 using AEAssist.View;
-using AEAssist.View.Overlay;
+using AEAssist.View.OverlayManager;
 using ff14bot.Behavior;
 using ff14bot.Enums;
 using ff14bot.Managers;
@@ -28,7 +29,7 @@ namespace AEAssist
                 return _form;
             }
         }
-        
+
         private ClassJobType CurrentJob { get; set; }
         private ushort CurrentZone { get; set; }
 
@@ -50,9 +51,8 @@ namespace AEAssist
                 // PotionHelper.DebugAllItems();
                 AIRoot.Instance.Init();
                 AIMgrs.Instance.Init();
-                
-                
-                
+
+
                 GUIHelper.ShowInfo("Initialized");
             }
             catch (Exception e)

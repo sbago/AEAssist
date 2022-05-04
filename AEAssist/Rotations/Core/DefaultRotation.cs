@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
-using ff14bot.Objects;
 
-namespace AEAssist
+namespace AEAssist.Rotations.Core
 {
     public class DefaultRotation : IRotation
     {
@@ -10,15 +9,20 @@ namespace AEAssist
         {
         }
 
-        public Task<bool> Rest()
-        {
-            // LogHelper.Debug("Rest");
-            return Task.FromResult(false);
-        }
-
         public Task<bool> PreCombatBuff()
         {
             //   LogHelper.Debug("PreCombatBuff");
+            return Task.FromResult(false);
+        }
+
+        public SpellEntity GetBaseGCDSpell()
+        {
+            return null;
+        }
+
+        public Task<bool> Rest()
+        {
+            // LogHelper.Debug("Rest");
             return Task.FromResult(false);
         }
 
@@ -50,11 +54,6 @@ namespace AEAssist
         {
             // LogHelper.Debug("PullBuff");
             return Task.FromResult(true);
-        }
-
-        public SpellEntity GetBaseGCDSpell()
-        {
-            return null;
         }
 
         public void HandleInCountDown1500()

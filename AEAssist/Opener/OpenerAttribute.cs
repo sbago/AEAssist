@@ -16,10 +16,10 @@ namespace AEAssist.Opener
         public ClassJobType ClassJobType;
         public int Level;
 
-        public OpenerAttribute(ClassJobType classJobType,int level)
+        public OpenerAttribute(ClassJobType classJobType, int level)
         {
-            this.ClassJobType = classJobType;
-            this.Level = level;
+            ClassJobType = classJobType;
+            Level = level;
         }
     }
 }

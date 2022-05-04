@@ -1,11 +1,12 @@
 ﻿using System;
 
-namespace AETriggers.TriggerModel
+namespace AEAssist.TriggerAction
 {
     [Trigger("SwitchPotion")]
     public class TriggerAction_SwitchPotion : ITriggerAction
     {
         public bool value;
+
         public void WriteFromJson(string[] values)
         {
             if (!int.TryParse(values[0], out var va)) throw new Exception($"{values[0]}Error!\n");

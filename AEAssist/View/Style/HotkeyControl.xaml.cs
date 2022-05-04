@@ -1,27 +1,21 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 using UserControl = System.Windows.Controls.UserControl;
 
-namespace AEAssist.View
+namespace AEAssist.View.Style
 {
     public partial class HotkeyControl : UserControl
     {
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(HotkeyControl), new UIPropertyMetadata("Hotkey"));
-        public static readonly DependencyProperty KeySettingProperty = DependencyProperty.Register("KeySetting", typeof(Keys), typeof(HotkeyControl), new PropertyMetadata(Keys.None, OnKeyChanged));
-        public static readonly DependencyProperty ModKeySettingProperty = DependencyProperty.Register("ModKeySetting", typeof(ModifierKeys), typeof(HotkeyControl), new PropertyMetadata(ModifierKeys.None, OnModKeyChanged));
+        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string),
+            typeof(HotkeyControl), new UIPropertyMetadata("Hotkey"));
 
-        private static void OnKeyChanged(DependencyObject keySetting, DependencyPropertyChangedEventArgs eventArgs)
-        {
+        public static readonly DependencyProperty KeySettingProperty = DependencyProperty.Register("KeySetting",
+            typeof(Keys), typeof(HotkeyControl), new PropertyMetadata(Keys.None, OnKeyChanged));
 
-        }
-
-        private static void OnModKeyChanged(DependencyObject keySetting, DependencyPropertyChangedEventArgs eventArgs)
-        {
-
-        }
+        public static readonly DependencyProperty ModKeySettingProperty = DependencyProperty.Register("ModKeySetting",
+            typeof(ModifierKeys), typeof(HotkeyControl), new PropertyMetadata(ModifierKeys.None, OnModKeyChanged));
 
         public HotkeyControl()
         {
@@ -30,15 +24,9 @@ namespace AEAssist.View
             LostFocus += OnLostFocus;
         }
 
-        private void OnLostFocus(object sender, RoutedEventArgs routedEventArgs)
-        {
-            // Re - Registering Code
-
-        }
-
         public string Text
         {
-            get => (string)GetValue(TextProperty);
+            get => (string) GetValue(TextProperty);
             set => SetValue(TextProperty, value);
         }
 
@@ -46,14 +34,27 @@ namespace AEAssist.View
 
         public Keys KeySetting
         {
-            get => (Keys)GetValue(KeySettingProperty);
+            get => (Keys) GetValue(KeySettingProperty);
             set => SetValue(KeySettingProperty, value);
         }
 
         public ModifierKeys ModKeySetting
         {
-            get => (ModifierKeys)GetValue(ModKeySettingProperty);
+            get => (ModifierKeys) GetValue(ModKeySettingProperty);
             set => SetValue(ModKeySettingProperty, value);
+        }
+
+        private static void OnKeyChanged(DependencyObject keySetting, DependencyPropertyChangedEventArgs eventArgs)
+        {
+        }
+
+        private static void OnModKeyChanged(DependencyObject keySetting, DependencyPropertyChangedEventArgs eventArgs)
+        {
+        }
+
+        private void OnLostFocus(object sender, RoutedEventArgs routedEventArgs)
+        {
+            // Re - Registering Code
         }
 
         private void OnPreviewKeyDown(object sender, KeyEventArgs e)
@@ -62,7 +63,7 @@ namespace AEAssist.View
             e.Handled = true;
 
             // Fetch the actual shortcut key.
-            var key = (e.Key == Key.System ? e.SystemKey : e.Key);
+            var key = e.Key == Key.System ? e.SystemKey : e.Key;
 
             switch (key)
             {
@@ -83,29 +84,19 @@ namespace AEAssist.View
             }
 
             // Ignore modifier keys.
-            
-            if ((Keyboard.Modifiers & ModifierKeys.Control) != 0)
-            {
-                ModKeySetting = ModifierKeys.Control;
-            }
-            if ((Keyboard.Modifiers & ModifierKeys.Shift) != 0)
-            {
-                ModKeySetting = ModifierKeys.Shift;
-            }
-            if ((Keyboard.Modifiers & ModifierKeys.Alt) != 0)
-            {
-                ModKeySetting = ModifierKeys.Alt;
-            }
 
-            if (Keyboard.Modifiers == 0)
-            {
-                ModKeySetting = ModifierKeys.None;
-            }
-            
-            var newKey = (Keys)KeyInterop.VirtualKeyFromKey(key);
+            if ((Keyboard.Modifiers & ModifierKeys.Control) != 0) ModKeySetting = ModifierKeys.Control;
+
+            if ((Keyboard.Modifiers & ModifierKeys.Shift) != 0) ModKeySetting = ModifierKeys.Shift;
+
+            if ((Keyboard.Modifiers & ModifierKeys.Alt) != 0) ModKeySetting = ModifierKeys.Alt;
+
+            if (Keyboard.Modifiers == 0) ModKeySetting = ModifierKeys.None;
+
+            var newKey = (Keys) KeyInterop.VirtualKeyFromKey(key);
             KeySetting = newKey;
             // Update the text box.
-            TxtHk.Text =   $"{ModKeySetting.ToString()} + {key.ToString()}";
+            TxtHk.Text = $"{ModKeySetting.ToString()} + {key.ToString()}";
         }
     }
 }

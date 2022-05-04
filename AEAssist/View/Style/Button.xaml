@@ -12,10 +12,10 @@
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
-        </Setter> 
+        </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Cursor" Value="Hand" />
             </Trigger>
         </Style.Triggers>
     </Style>

@@ -2,9 +2,8 @@
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
-using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Bard.Ability
 {
     public class BardAbility_Barrage : IAIHandler
     {
@@ -14,7 +13,7 @@ namespace AEAssist.AI
 
             if (BardSpellHelper.UnlockBuffsCount() > 1 && BardSpellHelper.HasBuffsCount() <= 1)
                 return -3;
-            
+
             if (Core.Me.HasAura(AurasDefine.ShadowBiteReady)
                 && TargetHelper.CheckNeedUseAOE(25, 5, ConstValue.BardAOECount))
                 return 1;
@@ -23,9 +22,8 @@ namespace AEAssist.AI
 
             if (AIRoot.GetBattleData<BattleData>().lastGCDSpell == burstShot
                 && !AIRoot.Instance.Is2ndAbilityTime())
-            {
                 return -4;
-            }
+
             if (Core.Me.HasAura(AurasDefine.StraighterShot))
                 return -2;
 

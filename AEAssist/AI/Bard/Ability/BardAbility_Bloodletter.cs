@@ -3,9 +3,8 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Managers;
-using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Bard.Ability
 {
     public class BardAbility_Bloodletter : IAIHandler
     {
@@ -16,14 +15,10 @@ namespace AEAssist.AI
             if (!SpellsDefine.Bloodletter.IsReady())
                 return -2;
 
-            if (DataBinding.Instance.FinalBurst)
-            {
-                return 2;
-            }
+            if (AEAssist.DataBinding.Instance.FinalBurst) return 2;
 
             if (AIRoot.Instance.CloseBurst)
                 return 3;
-
 
 
             if (BardSpellHelper.HasBuffsCount() >= BardSpellHelper.UnlockBuffsCount())
@@ -42,13 +37,10 @@ namespace AEAssist.AI
 
         public async Task<SpellEntity> Run()
         {
-            SpellEntity SpellEntity = SpellsDefine.Bloodletter.GetSpellEntity();
+            var SpellEntity = SpellsDefine.Bloodletter.GetSpellEntity();
             if (SpellsDefine.RainofDeath.IsReady() &&
                 TargetHelper.CheckNeedUseAOE(25, 8, ConstValue.BardAOECount))
-            {
                 SpellEntity = SpellsDefine.RainofDeath.GetSpellEntity();
-
-            }
 
             if (await SpellEntity.DoAbility()) return SpellEntity;
 

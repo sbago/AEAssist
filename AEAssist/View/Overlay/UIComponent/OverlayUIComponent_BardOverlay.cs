@@ -1,8 +1,10 @@
-﻿using Buddy.Overlay;
+﻿using AEAssist.Helper;
+using AEAssist.View.OverlayManager;
+using Buddy.Overlay;
 using Buddy.Overlay.Controls;
 using ff14bot.Enums;
 
-namespace AEAssist.View
+namespace AEAssist.View.Overlay.UIComponent
 {
     [Overlay(ClassJobType.Bard)]
     public class OverlayUIComponent_BardOverlay : OverlayUIComponent
@@ -31,17 +33,13 @@ namespace AEAssist.View
                     X = 60,
                     Y = 60,
                     AllowMoving = true,
-                    AllowResizing = false,
-                    
+                    AllowResizing = false
                 };
                 LogHelper.Info("CreateOverlay " + _control.Width + "  " + _control.Height);
 
                 _control.MouseLeftButtonUp += (sender, args) => { };
 
-                _control.MouseLeftButtonDown += (sender, args) => 
-                { 
-                    _control.DragMove();
-                };
+                _control.MouseLeftButtonDown += (sender, args) => { _control.DragMove(); };
 
                 overlayUc.DragMove = _control.DragMove;
 

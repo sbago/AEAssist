@@ -1,11 +1,11 @@
-﻿<UserControl x:Class="AEAssist.View.BardOverlayWindow"
+﻿<UserControl x:Class="AEAssist.View.Overlay.BardOverlayWindow"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:AEAssist.View"
              xmlns:viewModels="clr-namespace:AEAssist"
-             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:dataBinding="clr-namespace:AEAssist"
              mc:Ignorable="d"
              Width="250"
              FontSize="12"
@@ -16,152 +16,151 @@
                 <ResourceDictionary Source="/AEAssist;component/View/Style/Button.xaml" />
                 <ResourceDictionary Source="/AEAssist;component/View/Style/CheckBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            
+
             <BooleanToVisibilityConverter x:Key="BoolToVis" />
         </ResourceDictionary>
     </UserControl.Resources>
 
     <UserControl.DataContext>
-        <Binding Source="{x:Static viewModels:DataBinding.Instance}" />
+        <Binding Source="{x:Static dataBinding:DataBinding.Instance}" />
     </UserControl.DataContext>
 
     <StackPanel>
         <local:OverlayHeader />
         <Border Visibility="{Binding OverlayVisibility, Converter={StaticResource BoolToVis}}" VerticalAlignment="Top">
-                    <Border.Background>
-                        <SolidColorBrush Color="#101011" Opacity="0.6" />
-                    </Border.Background>
-                    <StackPanel Margin="5">
-                        <WrapPanel Width="250" Orientation="Horizontal" HorizontalAlignment="Center"
-                                   VerticalAlignment="Top">
+            <Border.Background>
+                <SolidColorBrush Color="#101011" Opacity="0.6" />
+            </Border.Background>
+            <StackPanel Margin="5">
+                <WrapPanel Width="250" Orientation="Horizontal" HorizontalAlignment="Center"
+                           VerticalAlignment="Top">
 
 
-                            <WrapPanel>
-                                <CheckBox
-                                    Content="{Binding HotkeySetting.StopBtnName}"
-                                    Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                    IsChecked="{Binding Stop,Mode=TwoWay}" />
+                    <WrapPanel>
+                        <CheckBox
+                            Content="{Binding HotkeySetting.StopBtnName}"
+                            Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                            IsChecked="{Binding Stop,Mode=TwoWay}" />
 
 
-                                <CheckBox HorizontalContentAlignment="Center"
-                                          Content="{Binding HotkeySetting.CloseBuffBtnName}"
-                                          Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                          IsChecked="{Binding Burst,Mode=TwoWay}" />
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="{Binding HotkeySetting.CloseBuffBtnName}"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding Burst,Mode=TwoWay}" />
 
-                                <CheckBox HorizontalContentAlignment="Center"
-                                          Content="AOE"
-                                          Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                          IsChecked="{Binding UseAOE,Mode=TwoWay}" />
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="AOE"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding UseAOE,Mode=TwoWay}" />
 
-                                <CheckBox HorizontalContentAlignment="Center"
-                                          Content="{Binding Language.Toggle_Potion}"
-                                          Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                          IsChecked="{Binding GeneralSettings.UsePotion,Mode=TwoWay}" />
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="{Binding Language.Toggle_Potion}"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding GeneralSettings.UsePotion,Mode=TwoWay}" />
 
-                                <CheckBox HorizontalContentAlignment="Center"
-                                          Content="{Binding Language.Toggle_Apex}"
-                                          Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                          IsChecked="{Binding UseApex,Mode=TwoWay}" />
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="{Binding Language.Toggle_Apex}"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding UseApex,Mode=TwoWay}" />
 
-                                <CheckBox HorizontalContentAlignment="Center"
-                                          Content="Dot"
-                                          Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                          IsChecked="{Binding UseDot,Mode=TwoWay}" />
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="Dot"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding UseDot,Mode=TwoWay}" />
 
-                                <CheckBox HorizontalContentAlignment="Center"
-                                          Content="{Binding Language.Toggle_ActiveAttack}"
-                                          Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                          IsChecked="{Binding AutoAttack,Mode=TwoWay}" />
-                                
-                                <CheckBox HorizontalContentAlignment="Center"
-                                          Content="{Binding Language.Bard_SwitchSong}"
-                                          Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                          IsChecked="{Binding UseSong,Mode=TwoWay}" />
-                                
-                                <CheckBox HorizontalContentAlignment="Center"
-                                          Content="{Binding Language.Toggle_FinalBurst}"
-                                          Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                          IsChecked="{Binding FinalBurst,Mode=TwoWay}" />
-                                
-                            </WrapPanel>
-                            <WrapPanel Margin="10">
-                                <Button Style="{StaticResource ImageButton}" 
-                                    Width="30" Height="30" Margin="2" Name="UseTroubadour"
-                                        Click="UseTroubadour_OnClick">
-                                    <Image Source="../../Resources/Spells/Troubadour.png"
-                                           Stretch="Uniform" />
-                                </Button>
-                                <Button Style="{StaticResource ImageButton}"  
-                                        Width="30" Height="30" Margin="2" Name="UseArmsLength"
-                                        Click="UseArmsLength_OnClick">
-                                    <Image Source="../../Resources/Spells/ArmsLength.png"
-                                                Stretch="Uniform" />
-                                </Button>
-                                <Button  Style="{StaticResource ImageButton}" 
-                                         Width="30" Height="30" Margin="2" Name="UseSprint"
-                                         Click="UseSprint_OnClick">
-                                    <Image Source="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
-                                </Button>
-                                <Button  Style="{StaticResource ImageButton}" 
-                                         Width="30" Height="30" Margin="2" Name="UsePotion"
-                                         Click="UsePotion_OnClick">
-                                    <Image Source="../../Resources/Spells/Potion.png" Stretch="Uniform" />
-                                
-                                </Button>
-                                
-                                <Button  Style="{StaticResource ImageButton}" 
-                                         Width="30" Height="30" Margin="2" Name="UseNaturesMinne"
-                                         Click="UseNaturesMinne_OnClick">
-                                    <Image Source="../../Resources/Spells/NaturesMinne.png" Stretch="Uniform" />
-                                
-                                </Button>
-                                
-                                <Button  Style="{StaticResource ImageButton}" 
-                                         Width="30" Height="30" Margin="2" Name="UseIronJaw"
-                                         Click="UseIronJaw_OnClick">
-                                    <Image Source="../../Resources/Spells/IronJaws.png" Stretch="Uniform" />
-                                
-                                </Button>
-                                
-                                <Button  Style="{StaticResource ImageButton}" 
-                                         Width="30" Height="30" Margin="2" Name="UseApex"
-                                         Click="UseApex_OnClick">
-                                    <Image Source="../../Resources/Spells/Apex.png" Stretch="Uniform" />
-                                
-                                </Button>
-                                
-                                <Button  Style="{StaticResource ImageButton}" 
-                                         Width="30" Height="30" Margin="2" Name="UseBlastArrow"
-                                         Click="UseBlastArrow_OnClick">
-                                    <Image Source="../../Resources/Spells/BlastArrow.png" Stretch="Uniform" />
-                                
-                                </Button>
-                                
-                                <Button  Style="{StaticResource ImageButton}" 
-                                         Width="30" Height="30" Margin="2" Name="UseWM"
-                                         Click="UseWM_OnClick">
-                                    <Image Source="../../Resources/Spells/WM.png" Stretch="Uniform" />
-                                
-                                </Button>
-                                <Button  Style="{StaticResource ImageButton}" 
-                                         Width="30" Height="30" Margin="2" Name="UseMB"
-                                         Click="UseMB_OnClick">
-                                    <Image Source="../../Resources/Spells/MB.png" Stretch="Uniform" />
-                                
-                                </Button>
-                                <Button  Style="{StaticResource ImageButton}" 
-                                         Width="30" Height="30" Margin="2" Name="UseAP"
-                                         Click="UseAP_OnClick">
-                                    <Image Source="../../Resources/Spells/AP.png" Stretch="Uniform" />
-                                
-                                </Button>
-  
-                       
-                                
-                            </WrapPanel>
-                        </WrapPanel>
-                        <local:CommonOverlay HorizontalAlignment="Center" />
-                    </StackPanel>
-                </Border>
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="{Binding Language.Toggle_ActiveAttack}"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding AutoAttack,Mode=TwoWay}" />
+
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="{Binding Language.Bard_SwitchSong}"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding UseSong,Mode=TwoWay}" />
+
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="{Binding Language.Toggle_FinalBurst}"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding FinalBurst,Mode=TwoWay}" />
+
+                    </WrapPanel>
+                    <WrapPanel Margin="10">
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="2" Name="UseTroubadour"
+                                Click="UseTroubadour_OnClick">
+                            <Image Source="../../Resources/Spells/Troubadour.png"
+                                   Stretch="Uniform" />
+                        </Button>
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="2" Name="UseArmsLength"
+                                Click="UseArmsLength_OnClick">
+                            <Image Source="../../Resources/Spells/ArmsLength.png"
+                                   Stretch="Uniform" />
+                        </Button>
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="2" Name="UseSprint"
+                                Click="UseSprint_OnClick">
+                            <Image Source="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
+                        </Button>
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="2" Name="UsePotion"
+                                Click="UsePotion_OnClick">
+                            <Image Source="../../Resources/Spells/Potion.png" Stretch="Uniform" />
+
+                        </Button>
+
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="2" Name="UseNaturesMinne"
+                                Click="UseNaturesMinne_OnClick">
+                            <Image Source="../../Resources/Spells/NaturesMinne.png" Stretch="Uniform" />
+
+                        </Button>
+
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="2" Name="UseIronJaw"
+                                Click="UseIronJaw_OnClick">
+                            <Image Source="../../Resources/Spells/IronJaws.png" Stretch="Uniform" />
+
+                        </Button>
+
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="2" Name="UseApex"
+                                Click="UseApex_OnClick">
+                            <Image Source="../../Resources/Spells/Apex.png" Stretch="Uniform" />
+
+                        </Button>
+
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="2" Name="UseBlastArrow"
+                                Click="UseBlastArrow_OnClick">
+                            <Image Source="../../Resources/Spells/BlastArrow.png" Stretch="Uniform" />
+
+                        </Button>
+
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="2" Name="UseWM"
+                                Click="UseWM_OnClick">
+                            <Image Source="../../Resources/Spells/WM.png" Stretch="Uniform" />
+
+                        </Button>
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="2" Name="UseMB"
+                                Click="UseMB_OnClick">
+                            <Image Source="../../Resources/Spells/MB.png" Stretch="Uniform" />
+
+                        </Button>
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="2" Name="UseAP"
+                                Click="UseAP_OnClick">
+                            <Image Source="../../Resources/Spells/AP.png" Stretch="Uniform" />
+
+                        </Button>
+
+
+                    </WrapPanel>
+                </WrapPanel>
+                <local:CommonOverlay HorizontalAlignment="Center" />
+            </StackPanel>
+        </Border>
     </StackPanel>
 </UserControl>

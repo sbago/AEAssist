@@ -2,9 +2,8 @@
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
-using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Bard.Ability
 {
     public class BardAbility_Sidewinder : IAIHandler
     {

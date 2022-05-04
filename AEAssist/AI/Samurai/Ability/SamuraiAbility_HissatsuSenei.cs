@@ -3,15 +3,14 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Managers;
-using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Samurai.Ability
 {
     public class SamuraiAbility_HissatsuSenei : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {
-            if (ActionResourceManager.Samurai.Kenki >=25 && 
+            if (ActionResourceManager.Samurai.Kenki >= 25 &&
                 SpellsDefine.HissatsuSenei.GetSpellEntity().Cooldown.TotalSeconds == 0 &&
                 Core.Me.HasAura(AurasDefine.Shifu))
                 return 1;

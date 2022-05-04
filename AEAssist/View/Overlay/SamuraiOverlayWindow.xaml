@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:AEAssist"
              xmlns:view="clr-namespace:AEAssist.View"
+             xmlns:dataBinding="clr-namespace:AEAssist"
              mc:Ignorable="d"
              Width="250"
              FontSize="12"
@@ -21,7 +22,7 @@
     </UserControl.Resources>
 
     <UserControl.DataContext>
-        <Binding Source="{x:Static viewModels:DataBinding.Instance}" />
+        <Binding Source="{x:Static dataBinding:DataBinding.Instance}" />
     </UserControl.DataContext>
     <StackPanel>
         <view:OverlayHeader />
@@ -59,7 +60,7 @@
                                   Content="{Binding Language.Toggle_ActiveAttack}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
                                   IsChecked="{Binding AutoAttack,Mode=TwoWay}" />
-                        
+
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="{Binding Language.Toggle_UseTrueNorthWhenMissActionDir}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
@@ -67,40 +68,40 @@
 
                     </WrapPanel>
                     <WrapPanel Margin="10">
-                        <Button Style="{StaticResource ImageButton}" 
+                        <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseThirdEye"
                                 Click="UseThirdEye_OnClick">
 
                             <Image Source="../../Resources/Spells/ThirdEye.png" Stretch="Uniform" />
 
                         </Button>
-                        <Button Style="{StaticResource ImageButton}" 
+                        <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseArmsLength"
                                 Click="UseArmsLength_OnClick">
 
                             <Image Source="../../Resources/Spells/ArmsLength.png" Stretch="Uniform" />
 
                         </Button>
-                        <Button Style="{StaticResource ImageButton}"  
+                        <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseFeint" Click="UseFeint_OnClick">
 
                             <Image Source="../../Resources/Spells/Feint.png" Stretch="Uniform" />
 
                         </Button>
-                        <Button Style="{StaticResource ImageButton}" 
+                        <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseSprint" Click="UseSprint_OnClick">
 
                             <Image Source="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
 
                         </Button>
-                        <Button Style="{StaticResource ImageButton}" 
+                        <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseTrueNorth"
                                 Click="UseTrueNorth_OnClick">
 
                             <Image Source="../../Resources/Spells/TrueNorth.png" Stretch="Uniform" />
 
                         </Button>
-                        <Button Style="{StaticResource ImageButton}" 
+                        <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UsePotion" Click="UsePotion_OnClick">
                             <Image Source="../../Resources/Spells/Potion.png" Stretch="Uniform" />
                         </Button>

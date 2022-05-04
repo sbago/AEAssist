@@ -3,9 +3,8 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Managers;
-using ff14bot.Objects;
 
-namespace AEAssist.AI.Reaper
+namespace AEAssist.AI.Reaper.Ability
 {
     public class ReaperAbility_Lemure : IAIHandler
     {
@@ -25,10 +24,7 @@ namespace AEAssist.AI.Reaper
             var spell = SpellsDefine.LemuresSlice;
             if (TargetHelper.CheckNeedUseAOE(8, 8)) spell = SpellsDefine.LemuresScythe;
 
-            if (await spell.DoAbility())
-            {
-                return spell.GetSpellEntity();
-            }
+            if (await spell.DoAbility()) return spell.GetSpellEntity();
 
             return null;
         }

@@ -1,4 +1,6 @@
-﻿namespace AEAssist.AI.Machinist
+﻿using AEAssist.Define;
+
+namespace AEAssist.AI.Machinist.SpellEvent
 {
     [SpellEvent(SpellsDefine.AutoCrossbow)]
     [SpellEvent(SpellsDefine.HeatBlast)]

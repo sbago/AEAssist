@@ -3,9 +3,8 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Managers;
-using ff14bot.Objects;
 
-namespace AEAssist.AI.Reaper
+namespace AEAssist.AI.Reaper.Ability
 {
     public class ReaperAbility_BloodStalk : IAIHandler
     {
@@ -13,12 +12,12 @@ namespace AEAssist.AI.Reaper
         {
             if (!SpellsDefine.BloodStalk.IsUnlock())
                 return -1;
-            if (!DataBinding.Instance.UseSoulGauge)
+            if (!AEAssist.DataBinding.Instance.UseSoulGauge)
                 return -2;
 
             if (AIRoot.Instance.CloseBurst && !SpellsDefine.Enshroud.IsUnlock())
                 return -10;
-            
+
             if (ActionResourceManager.Reaper.SoulGauge < 50)
                 return -3;
             if (ReaperSpellHelper.IfHasSoulReaver())
@@ -33,7 +32,7 @@ namespace AEAssist.AI.Reaper
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -7;
             if (SpellsDefine.Gluttony.IsUnlock()
-                && !AIRoot.Instance.CloseBurst 
+                && !AIRoot.Instance.CloseBurst
                 && SpellsDefine.Gluttony.GetSpellEntity().Cooldown.TotalMilliseconds < 10000) return -8;
 
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))

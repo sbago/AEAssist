@@ -1,11 +1,9 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
-using ff14bot;
 using ff14bot.Managers;
-using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Samurai.Ability
 {
     public class SamuraiAbility_Ikishoten : IAIHandler
     {
@@ -26,4 +24,3 @@ namespace AEAssist.AI
         }
     }
 }
-

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AETriggers.TriggerModel
+namespace AEAssist.TriggerAction
 {
     [Trigger("CastAbility")]
     public class TriggerAction_CastAbility : ITriggerAction

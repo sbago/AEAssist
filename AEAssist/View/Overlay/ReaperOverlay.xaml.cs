@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using AEAssist.AI;
 using AEAssist.Define;
+using AEAssist.Helper;
 
 namespace AEAssist.View.Overlay
 {
@@ -45,7 +46,7 @@ namespace AEAssist.View.Overlay
 
         private void Close_OnClick(object sender, RoutedEventArgs e)
         {
-            OverlayManager.Instance.Close();
+            OverlayManager.OverlayManager.Instance.Close();
         }
 
         private void UseHarvestMoon_OnClick(object sender, RoutedEventArgs e)

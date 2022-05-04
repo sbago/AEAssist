@@ -2,10 +2,9 @@
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
-using ff14bot.Managers;
 using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Samurai.GCD
 {
     public class SamuraiGCD_OgiNamikiri : IAIHandler
     {
@@ -16,8 +15,9 @@ namespace AEAssist.AI
                 var ta = Core.Me.CurrentTarget as Character;
                 if (Core.Me.HasAura(AurasDefine.OgiReady))
                     //if (SpellsDefine.KaeshiSetsugekka.Cooldown.TotalMilliseconds <= 65 && ta.HasMyAura(AurasDefine.Higanbana))
-                        return 1;
+                    return 1;
             }
+
             return -1;
         }
 
@@ -28,6 +28,7 @@ namespace AEAssist.AI
                 AIRoot.GetBattleData<SamuraiBattleData>().KaeshiSpell = KaeshiSpell.OgiNamikiri;
                 return SpellsDefine.OgiNamikiri.GetSpellEntity();
             }
+
             return null;
         }
     }

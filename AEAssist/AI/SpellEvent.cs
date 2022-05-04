@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using AEAssist.Helper;
 
 namespace AEAssist.AI
 {
-    [AttributeUsage( AttributeTargets.Class,AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class SpellEventAttribute : Attribute
     {
         public uint spellId;
+
         public SpellEventAttribute(uint id)
         {
-            this.spellId = id;
+            spellId = id;
         }
     }
 
@@ -24,6 +26,7 @@ namespace AEAssist.AI
 
 
         public Dictionary<uint, ISpellEvent> AllEvents = new Dictionary<uint, ISpellEvent>();
+
         public SpellEventMgr()
         {
             AllEvents.Clear();
@@ -40,22 +43,17 @@ namespace AEAssist.AI
                     LogHelper.Error($"ISpellEvent class [{type}] need SpellEventAttribute");
                     continue;
                 }
+
                 var spellEvent = Activator.CreateInstance(type) as ISpellEvent;
-                foreach (SpellEventAttribute attr in attrs)
-                {
-                    AllEvents[attr.spellId] = spellEvent;
-                }
+                foreach (SpellEventAttribute attr in attrs) AllEvents[attr.spellId] = spellEvent;
             }
         }
 
         public void Run(uint id)
         {
-            if (!AllEvents.TryGetValue(id, out var spellEvent))
-            {
-                return;
-            }
+            if (!AllEvents.TryGetValue(id, out var spellEvent)) return;
+
             spellEvent.Run(id);
         }
-
     }
 }

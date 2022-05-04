@@ -1,4 +1,6 @@
-﻿namespace AEAssist.AI.Reaper
+﻿using AEAssist.Define;
+
+namespace AEAssist.AI.Reaper.SpellEvent
 {
     [SpellEvent(SpellsDefine.VoidReaping)]
     [SpellEvent(SpellsDefine.Communio)]

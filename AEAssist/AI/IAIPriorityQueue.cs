@@ -11,10 +11,10 @@ namespace AEAssist.AI
 
         public AIPriorityQueueAttribute(ClassJobType classJobType)
         {
-            this.ClassJobType = classJobType;
+            ClassJobType = classJobType;
         }
     }
-    
+
     public interface IAIPriorityQueue
     {
         List<IAIHandler> GCDQueue { get; }

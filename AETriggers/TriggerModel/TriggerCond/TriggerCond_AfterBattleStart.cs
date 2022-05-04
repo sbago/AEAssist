@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AETriggers.TriggerModel
+namespace AEAssist.TriggerCond
 {
     [Trigger("AfterBattleStart")]
     public class TriggerCond_AfterBattleStart : ITriggerCond

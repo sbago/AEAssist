@@ -1,5 +1,4 @@
-﻿using AEAssist.AI;
-using AETriggers.TriggerModel;
+﻿using AEAssist.TriggerAction;
 
 namespace AEAssist.TriggerSystem.TriggerAction
 {
@@ -7,7 +6,7 @@ namespace AEAssist.TriggerSystem.TriggerAction
     {
         protected override void Handle(TriggerAction_SwitchBurst t)
         {
-            DataBinding.Instance.Burst = t.value;
+            AEAssist.DataBinding.Instance.Burst = t.value;
         }
     }
 }

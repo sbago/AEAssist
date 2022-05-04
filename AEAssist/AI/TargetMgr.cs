@@ -34,13 +34,13 @@ namespace AEAssist.AI
 
         public Dictionary<uint, BattleCharacter> EnemysIn25 = new Dictionary<uint, BattleCharacter>();
 
+
+        private readonly HashSet<uint> LastNpcIds = new HashSet<uint>();
+
         //  public List<BattleCharacter> EnemysIn12 = new List<BattleCharacter>();
 
         public Dictionary<uint, TargetStat> TargetStats = new Dictionary<uint, TargetStat>();
 
-
-        private HashSet<uint> LastNpcIds = new HashSet<uint>();
-        
         public void Update()
         {
             var tars = GameObjectManager.GetObjectsOfType<BattleCharacter>().Where(r => (r.TaggerType > 0
@@ -54,6 +54,15 @@ namespace AEAssist.AI
 
             foreach (var unit in tars)
             {
+                if (SettingMgr.GetSetting<GeneralSettings>().ShowGameLog)
+                {
+                    if (LastNpcIds.Add(unit.NpcId)) LogHelper.Info($"Find new enemy : {unit.Name} NpcId: {unit.NpcId}");
+
+                    if (unit.IsCasting)
+                        LogHelper.Info($"Find enemy casting spell : {unit.Name} NpcId: {unit.NpcId} " +
+                                       $"CastingSpell [{unit.SpellCastInfo.Name}]  SpellId : {unit.SpellCastInfo.SpellData.Id} ");
+                }
+
                 if (!unit.ValidAttackUnit())
                     continue;
 
@@ -72,17 +81,6 @@ namespace AEAssist.AI
 
 
                 Enemys.Add(unit.ObjectId, unit);
-
-                if (SettingMgr.GetSetting<GeneralSettings>().ShowGameLog && LastNpcIds.Add(unit.NpcId))
-                {
-                    LogHelper.Info($"Find new enemy : {unit.Name} NpcId: {unit.NpcId}");
-                }
-
-                if (SettingMgr.GetSetting<GeneralSettings>().ShowGameLog && unit.IsCasting)
-                {
-                    LogHelper.Info($"Find enemy casting spell : {unit.Name} NpcId: {unit.NpcId} " +
-                                   $"CastingSpell {unit.SpellCastInfo.SpellData.Name} : {unit.SpellCastInfo.SpellData.Id} ");
-                }
             }
 
 

@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:AEAssist"
+             xmlns:dataBinding="clr-namespace:AEAssist"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    
+
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -17,16 +18,17 @@
     </UserControl.Resources>
 
     <UserControl.DataContext>
-        <Binding Source="{x:Static viewModels:DataBinding.Instance}" />
+        <Binding Source="{x:Static dataBinding:DataBinding.Instance}" />
     </UserControl.DataContext>
 
     <TabControl
-                           Margin="20"
-                           TabStripPlacement="Top">
+        Margin="20"
+        TabStripPlacement="Top">
 
         <TabItem Header="{Binding Language.TabItem_BaseSetting}">
             <StackPanel HorizontalAlignment="Left" Margin="10">
-                <CheckBox Content="{Binding Language.Toggle_PreferGallow}" IsChecked="{Binding ReaperSettings.GallowsPrefer,Mode=TwoWay}" />
+                <CheckBox Content="{Binding Language.Toggle_PreferGallow}"
+                          IsChecked="{Binding ReaperSettings.GallowsPrefer,Mode=TwoWay}" />
                 <CheckBox Name="EarlyDecisionMode"
                           Content="{Binding Language.Toggle_EarlyDecisionMode}" Width="200" Height="25"
                           HorizontalAlignment="Left"

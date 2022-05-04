@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using AEAssist.AI;
+using AEAssist.AI.Machinist;
 using AEAssist.Define;
+using AEAssist.Helper;
 
-namespace AEAssist.View
+namespace AEAssist.View.Overlay
 {
     public partial class MCHOverlayWindow : UserControl
     {
@@ -45,9 +46,9 @@ namespace AEAssist.View
 
         private void Close_OnClick(object sender, RoutedEventArgs e)
         {
-            OverlayManager.Instance.Close();
+            OverlayManager.OverlayManager.Instance.Close();
         }
-        
+
 
         private void UseQueueOverdrive_OnClick(object sender, RoutedEventArgs e)
         {
@@ -64,7 +65,7 @@ namespace AEAssist.View
         {
             AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Detonator.GetSpellEntity();
         }
-        
+
 
         private void UseAutomatonQueen_OnClick(object sender, RoutedEventArgs e)
         {

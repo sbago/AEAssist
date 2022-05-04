@@ -1,6 +1,4 @@
-﻿using AEAssist.AI;
-using AETriggers.TriggerModel;
-using ff14bot.Managers;
+﻿using AEAssist.TriggerAction;
 
 namespace AEAssist.TriggerSystem.TriggerAction
 {

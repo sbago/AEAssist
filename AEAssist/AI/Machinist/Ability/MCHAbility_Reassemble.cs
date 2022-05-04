@@ -1,11 +1,9 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
-using ff14bot;
 using ff14bot.Managers;
-using ff14bot.Objects;
 
-namespace AEAssist.AI.MCH
+namespace AEAssist.AI.Machinist.Ability
 {
     public class MCHAbility_Reassemble : IAIHandler
     {
@@ -24,15 +22,11 @@ namespace AEAssist.AI.MCH
                 return -2;
 
             return 0;
-
         }
 
         public async Task<SpellEntity> Run()
         {
-            if (await SpellsDefine.Reassemble.DoAbility())
-            {
-                return SpellsDefine.Reassemble.GetSpellEntity();
-            }
+            if (await SpellsDefine.Reassemble.DoAbility()) return SpellsDefine.Reassemble.GetSpellEntity();
 
             return null;
         }

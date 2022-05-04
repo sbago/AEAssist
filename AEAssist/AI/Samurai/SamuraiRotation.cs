@@ -1,19 +1,17 @@
 ﻿using System.Threading.Tasks;
-using AEAssist.AI;
 using AEAssist.Define;
 using AEAssist.Helper;
+using AEAssist.Rotations.Core;
 using ff14bot;
 using ff14bot.Enums;
-using ff14bot.Managers;
-using ff14bot.Objects;
 
-namespace AEAssist
+namespace AEAssist.AI.Samurai
 {
     [Rotation(ClassJobType.Samurai)]
     public class SamuraiRotation : IRotation
     {
-        private long _lastTime;
         private readonly AIRoot AiRoot = AIRoot.Instance;
+        private long _lastTime;
 
         private long randomTime;
 
@@ -25,8 +23,8 @@ namespace AEAssist
                     return SpellsDefine.Harpe.DoGCD();
                 return Task.FromResult(false);
             });
-            DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<SamuraiSettings>().EarlyDecisionMode; 
-            LogHelper.Info("EarlyDecisionMode: " + DataBinding.Instance.EarlyDecisionMode);
+            AEAssist.DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<SamuraiSettings>().EarlyDecisionMode;
+            LogHelper.Info("EarlyDecisionMode: " + AEAssist.DataBinding.Instance.EarlyDecisionMode);
         }
 
         // 战斗之前处理buff的?
@@ -40,6 +38,4 @@ namespace AEAssist
             return SpellsDefine.Hakaze.GetSpellEntity();
         }
     }
-
-
 }

@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace AETriggers.TriggerModel
+namespace AEAssist.TriggerCond
 {
     [Trigger("EnemyCastSpell")]
     public class TriggerCond_EnemyCastSpell : ITriggerCond
     {
-        public string spellName;
         public int delayTime;
+        public string spellName;
 
         public void WriteFromJson(string[] values)
         {

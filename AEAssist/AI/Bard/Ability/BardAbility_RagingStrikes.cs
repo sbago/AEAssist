@@ -4,7 +4,7 @@ using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Bard.Ability
 {
     public class BardAbility_RagingStrikes : IAIHandler
     {
@@ -18,23 +18,21 @@ namespace AEAssist.AI
                 return -3;
             if (SpellsDefine.TheWanderersMinuet.IsUnlock())
             {
-                if (AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs<10000)
+                if (AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs < 10000)
                 {
                     if (SpellsDefine.TheWanderersMinuet.RecentlyUsed()
                         || Core.Me.ContainMyAura(AurasDefine.TheWanderersMinuet))
                         return 0;
                     return -4;
                 }
-                else
-                {
-                    if (!SpellsDefine.TheWanderersMinuet.RecentlyUsed()
-                        && !Core.Me.ContainMyAura(AurasDefine.TheWanderersMinuet))
-                        return -5;
-                    if (AIRoot.GetBattleData<BattleData>().lastGCDIndex
-                        - SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.TheWanderersMinuet) >=1)
-                        return 1;
-                    return -6;
-                }
+
+                if (!SpellsDefine.TheWanderersMinuet.RecentlyUsed()
+                    && !Core.Me.ContainMyAura(AurasDefine.TheWanderersMinuet))
+                    return -5;
+                if (AIRoot.GetBattleData<BattleData>().lastGCDIndex
+                    - SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.TheWanderersMinuet) >= 1)
+                    return 1;
+                return -6;
             }
 
             return 0;
@@ -45,10 +43,7 @@ namespace AEAssist.AI
             // if (!AIRoot.Instance.Is2ndAbilityTime())
             //     return null;
             var SpellEntity = SpellsDefine.RagingStrikes.GetSpellEntity();
-            if (await SpellEntity.DoAbility())
-            {
-                return SpellEntity;
-            }
+            if (await SpellEntity.DoAbility()) return SpellEntity;
 
             return null;
         }

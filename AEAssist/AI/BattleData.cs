@@ -1,21 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using AEAssist.Define;
 using AEAssist.Gamelog;
 using AEAssist.Helper;
 using AEAssist.TriggerSystem;
-using AETriggers.TriggerModel;
-using ff14bot;
-using ff14bot.Enums;
-using ff14bot.Managers;
-using ff14bot.Objects;
 
 namespace AEAssist.AI
 {
     public class BattleData : IBattleData
     {
+        public int OpenerIndex;
+
+        public BattleData()
+        {
+            ResetMaxAbilityTimes();
+        }
+
+        public long BattleStartTime { get; set; }
+        public long CurrBattleTimeInMs { get; private set; }
+
+        public void Update(long currTime)
+        {
+            CurrBattleTimeInMs = currTime - BattleStartTime;
+            // var enemys = TargetMgr.Instance.EnemysIn25;
+            // foreach (var v in enemys.Values)
+            // {
+            //     if (v.SpellCastInfo == null || !v.IsCasting)
+            //         continue;
+            //     LogHelper.Info($"Character {v.Name} Casting===>{v.SpellCastInfo.SpellEntity.LocalizedName}");
+            // }
+
+            // foreach (var v in Core.Me.CharacterAuras.AuraList)
+            // {
+            //     LogHelper.Info($"{v.LocalizedName} Id: {v.Id}  TimeLeft: {v.TimeLeft}");
+            // }
+
+            CalTriggerLine();
+            AEGamelogManager.Instance.CheckLog();
+        }
+
         #region BaseSpellControl
+
         public SpellEntity lastAbilitySpell;
 
         public long lastCastTime;
@@ -26,15 +50,15 @@ namespace AEAssist.AI
         public bool LimitAbility;
 
         public HashSet<uint> LockSpellId = new HashSet<uint>();
-        
-        
+
+
         public void ResetMaxAbilityTimes()
         {
             maxAbilityTimes = SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD;
 
             if (LimitAbility)
             {
-                LogHelper.Info( "limit maxAbilityTimes => 1");
+                LogHelper.Info("limit maxAbilityTimes => 1");
                 maxAbilityTimes = 1;
                 LimitAbility = false;
             }
@@ -45,33 +69,30 @@ namespace AEAssist.AI
         #region NextSpell
 
         private SpellEntity _NextAbilitySpellId;
+
         public SpellEntity NextAbilitySpellId
         {
             get => _NextAbilitySpellId;
             set
             {
                 _NextAbilitySpellId = value;
-                if (_NextAbilitySpellId != null)
-                {
-                    AbilityRetryEndTime = TimeHelper.Now() + 6000;
-                }
+                if (_NextAbilitySpellId != null) AbilityRetryEndTime = TimeHelper.Now() + 6000;
 
                 LogHelper.Debug("NextAbility: " + NextAbilitySpellId);
             }
         }
+
         public bool NextAbilityUsePotion;
 
         private SpellEntity _NextGcdSpellId;
+
         public SpellEntity NextGcdSpellId
         {
             get => _NextGcdSpellId;
             set
             {
                 _NextGcdSpellId = value;
-                if (_NextGcdSpellId != null)
-                {
-                    GCDRetryEndTime = TimeHelper.Now() + 6000;
-                }
+                if (_NextGcdSpellId != null) GCDRetryEndTime = TimeHelper.Now() + 6000;
             }
         }
 
@@ -85,14 +106,14 @@ namespace AEAssist.AI
         private readonly Dictionary<string, long> ExecutedTriggers = new Dictionary<string, long>();
 
         private readonly Dictionary<ITriggerCond, long> CondHitTime = new Dictionary<ITriggerCond, long>();
-        
+
 
         private void CalTriggerLine()
         {
-            var CurrTriggerLine = DataBinding.Instance.CurrTriggerLine;
+            var CurrTriggerLine = AEAssist.DataBinding.Instance.CurrTriggerLine;
             if (CurrTriggerLine == null)
                 return;
-     
+
 
             if (ExecutedTriggers.Count == CurrTriggerLine.Triggers.Count)
                 return;
@@ -115,41 +136,11 @@ namespace AEAssist.AI
             CondHitTime[cond] = TimeHelper.Now();
         }
 
-        public bool GetCondHitTime(ITriggerCond cond,out long time)
+        public bool GetCondHitTime(ITriggerCond cond, out long time)
         {
             return CondHitTime.TryGetValue(cond, out time);
         }
 
         #endregion
-
-        public BattleData()
-        {
-            ResetMaxAbilityTimes();
-        }
-
-        public long BattleStartTime { get; set; }
-        public long CurrBattleTimeInMs { get; private set; }
-        public int OpenerIndex;
-
-        public void Update(long currTime)
-        {
-            CurrBattleTimeInMs = currTime - BattleStartTime;
-            // var enemys = TargetMgr.Instance.EnemysIn25;
-            // foreach (var v in enemys.Values)
-            // {
-            //     if (v.SpellCastInfo == null || !v.IsCasting)
-            //         continue;
-            //     LogHelper.Info($"Character {v.Name} Casting===>{v.SpellCastInfo.SpellEntity.LocalizedName}");
-            // }
-
-            // foreach (var v in Core.Me.CharacterAuras.AuraList)
-            // {
-            //     LogHelper.Info($"{v.LocalizedName} Id: {v.Id}  TimeLeft: {v.TimeLeft}");
-            // }
-
-            CalTriggerLine();
-            AEGamelogManager.Instance.CheckLog();
-        }
-
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace AEAssist.AI.Machinist
+﻿using AEAssist.Define;
+
+namespace AEAssist.AI.Machinist.SpellEvent
 {
     [SpellEvent(SpellsDefine.RookAutoturret)]
     [SpellEvent(SpellsDefine.AutomationQueen)]
@@ -6,7 +8,6 @@
     {
         public void Run(uint spellId)
         {
-            
         }
     }
 }

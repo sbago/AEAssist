@@ -1,12 +1,13 @@
 ﻿using System;
 
-namespace AETriggers.TriggerModel
+namespace AEAssist.TriggerAction
 {
     [Trigger("LockSpell")]
     public class TriggerAction_LockSpell : ITriggerAction
     {
-        public uint SpellId;
         public bool Lock;
+        public uint SpellId;
+
         public void WriteFromJson(string[] values)
         {
             if (!uint.TryParse(values[0], out var spell)) throw new Exception($"{values[0]}Error!");

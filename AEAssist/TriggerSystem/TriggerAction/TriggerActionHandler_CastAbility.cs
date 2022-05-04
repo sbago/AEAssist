@@ -1,6 +1,6 @@
 ﻿using AEAssist.AI;
 using AEAssist.Define;
-using AETriggers.TriggerModel;
+using AEAssist.TriggerAction;
 
 namespace AEAssist.TriggerSystem.TriggerAction
 {

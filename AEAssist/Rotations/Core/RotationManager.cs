@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.AI;
 using AEAssist.Define;
-using ff14bot;
+using AEAssist.Helper;
 using ff14bot.Enums;
 using ff14bot.Managers;
-using ff14bot.Objects;
 
-namespace AEAssist
+namespace AEAssist.Rotations.Core
 {
     public class RotationManager
     {
         public static RotationManager Instance = new RotationManager();
 
+        private ClassJobType _classJobType;
+
         public Dictionary<ClassJobType, IRotation> AllRotations = new Dictionary<ClassJobType, IRotation>();
 
         public DefaultRotation DefaultRotation = new DefaultRotation();
-
-        private ClassJobType _classJobType;
 
         public void Init()
         {
@@ -47,16 +46,16 @@ namespace AEAssist
 
         public void CheckChangeJob()
         {
-            if (_classJobType != Core.Me.CurrentJob)
+            if (_classJobType != ff14bot.Core.Me.CurrentJob)
             {
-                _classJobType = Core.Me.CurrentJob;
+                _classJobType = ff14bot.Core.Me.CurrentJob;
                 GetRotation().Init();
             }
         }
 
         private IRotation GetRotation()
         {
-            if (AllRotations.TryGetValue(Core.Me.CurrentJob, out var job)) return job;
+            if (AllRotations.TryGetValue(ff14bot.Core.Me.CurrentJob, out var job)) return job;
 
             return DefaultRotation;
         }
@@ -71,10 +70,10 @@ namespace AEAssist
             await CountDownHandler.Instance.Update();
             if (CountDownHandler.Instance.Start)
                 return false;
-            if (Core.Me.InCombat) return false;
+            if (ff14bot.Core.Me.InCombat) return false;
             AIRoot.Instance.Clear();
 
-            if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
+            if (ff14bot.Core.Me.HasTarget && ff14bot.Core.Me.CurrentTarget.CanAttack)
                 return false;
 
             if (MovementManager.IsMoving)
@@ -97,7 +96,7 @@ namespace AEAssist
             }
             catch (Exception e)
             {
-               LogHelper.Error(e.ToString());
+                LogHelper.Error(e.ToString());
             }
 
             return false;

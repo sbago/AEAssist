@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
@@ -9,22 +8,22 @@ using ff14bot.Managers;
 
 namespace AEAssist.AI
 {
-    // 以一个GCD技能为起点
     public class SpellQueueSlot : Entity
     {
+        // spellId == 0, mean wait {AnimationLockMs}
+        public Queue<(uint spellId, SpellTargetType SpellTargetType)> Abilitys =
+            new Queue<(uint spellId, SpellTargetType SpellTargetType)>();
+
+        public int AnimationLockMs = 500;
         public uint GCDSpellId;
 
-        public SpellTargetType SpellTargetType; // 目标是否是自己
-        // 有0就说明对应的能力技槽位是空的
-        public Queue<(uint spellId, SpellTargetType SpellTargetType)> Abilitys = new Queue<(uint spellId, SpellTargetType SpellTargetType)>();
+        public SpellTargetType SpellTargetType;
 
         public bool UsePotion;
-        
-        public int AnimationLockMs = 500;
 
         protected override void OnDestroy()
         {
-            this.Abilitys.Clear();
+            Abilitys.Clear();
             GCDSpellId = 0;
             UsePotion = false;
             AnimationLockMs = 500;
@@ -34,18 +33,17 @@ namespace AEAssist.AI
 
     public class SpellQueueData : IBattleData
     {
+        private bool isLock;
         public Queue<SpellQueueSlot> Queue = new Queue<SpellQueueSlot>();
 
-        private bool isLock;
-        
         public void Add(SpellQueueSlot slot)
         {
-            this.Queue.Enqueue(slot);
+            Queue.Enqueue(slot);
         }
 
         public void Clear()
         {
-            while (this.Queue.Count>0)
+            while (Queue.Count > 0)
             {
                 var val = Queue.Dequeue();
                 ObjectPool.Instance.Return(val);
@@ -55,24 +53,24 @@ namespace AEAssist.AI
         // 返回true说明逻辑被ApplySlot接管,返回false说明需要走AI优先级队列那一套
         public async Task<bool> ApplySlot()
         {
-            if (this.Queue.Count == 0)
+            if (Queue.Count == 0)
                 return false;
             // islock = true说明当前需要使用这个slot的各种能力技了
             if (isLock)
             {
-                var slot = this.Queue.Peek();
+                var slot = Queue.Peek();
                 if (slot.UsePotion)
                 {
                     await AIMgrs.Instance.UsePotion(Core.Me.CurrentJob);
                     isLock = false;
-                    ObjectPool.Instance.Return(this.Queue.Dequeue());
+                    ObjectPool.Instance.Return(Queue.Dequeue());
                     return await ApplySlot();
                 }
 
                 if (slot.Abilitys.Count == 0)
                 {
                     isLock = false;
-                    ObjectPool.Instance.Return(this.Queue.Dequeue());
+                    ObjectPool.Instance.Return(Queue.Dequeue());
                     return await ApplySlot();
                 }
 
@@ -94,16 +92,17 @@ namespace AEAssist.AI
                         AIRoot.Instance.RecordAbility(spellData);
                     }
                 }
+
                 return true;
             }
             else
             {
-                var slot = this.Queue.Peek();
+                var slot = Queue.Peek();
                 var spellData = DataManager.GetSpellData(slot.GCDSpellId);
                 if (slot.GCDSpellId == 0 || spellData == null)
                 {
-                    LogHelper.Error("SlotGCDSpell Error!: "+slot.GCDSpellId);
-                    ObjectPool.Instance.Return(this.Queue.Dequeue());
+                    LogHelper.Error("SlotGCDSpell Error!: " + slot.GCDSpellId);
+                    ObjectPool.Instance.Return(Queue.Dequeue());
                     return await ApplySlot();
                 }
 
@@ -116,9 +115,8 @@ namespace AEAssist.AI
                         isLock = true;
                     }
                 }
-                
-                return true;
 
+                return true;
             }
         }
     }

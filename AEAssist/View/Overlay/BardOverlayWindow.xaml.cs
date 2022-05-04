@@ -1,20 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using AEAssist.AI;
 using AEAssist.Define;
-using ff14bot;
+using AEAssist.Helper;
 using PropertyChanged;
-using TreeSharp;
 
-namespace AEAssist.View
+namespace AEAssist.View.Overlay
 {
     [AddINotifyPropertyChangedInterface]
     public partial class BardOverlayWindow : UserControl
     {
-
-        public System.Action DragMove;
+        public Action DragMove;
 
         public BardOverlayWindow()
         {
@@ -52,15 +50,12 @@ namespace AEAssist.View
 
         private void Expander_OnMouseMove(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove?.Invoke();
-            }
+            if (e.LeftButton == MouseButtonState.Pressed) DragMove?.Invoke();
         }
 
         private void Close_OnClick(object sender, RoutedEventArgs e)
         {
-            OverlayManager.Instance.Close();
+            OverlayManager.OverlayManager.Instance.Close();
         }
 
         private void UseApex_OnClick(object sender, RoutedEventArgs e)

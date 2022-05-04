@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AETriggers.TriggerModel
+namespace AEAssist
 {
     public class Trigger
     {

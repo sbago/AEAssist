@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using AEAssist.AI;
 using AEAssist.Define;
+using AEAssist.Helper;
 
-namespace AEAssist.View
+namespace AEAssist.View.Overlay
 {
     public partial class DancerOverlayWindow : UserControl
     {
@@ -18,7 +18,6 @@ namespace AEAssist.View
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                
             }
         }
 
@@ -42,19 +41,18 @@ namespace AEAssist.View
         {
             AIRoot.GetBattleData<BattleData>().NextAbilityUsePotion = true;
         }
-        
+
 
         private void UIElement_OnMouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                
             }
         }
 
         private void Close_OnClick(object sender, RoutedEventArgs e)
         {
-            OverlayManager.Instance.Close();
+            OverlayManager.OverlayManager.Instance.Close();
         }
     }
 }

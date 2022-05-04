@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using AEAssist.AI;
 using AEAssist.Define;
+using AEAssist.Helper;
 
 namespace AEAssist.View.Overlay
 {
@@ -11,6 +12,7 @@ namespace AEAssist.View.Overlay
         {
             InitializeComponent();
         }
+
         private void UseArmsLength_OnClick(object sender, RoutedEventArgs e)
         {
             AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength.GetSpellEntity();
@@ -39,7 +41,7 @@ namespace AEAssist.View.Overlay
 
         private void Close_OnClick(object sender, RoutedEventArgs e)
         {
-            OverlayManager.Instance.Close();
+            OverlayManager.OverlayManager.Instance.Close();
         }
 
         private void UseThirdEye_OnClick(object sender, RoutedEventArgs e)

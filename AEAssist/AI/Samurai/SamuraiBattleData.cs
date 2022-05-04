@@ -1,11 +1,11 @@
-﻿namespace AEAssist.AI
+﻿namespace AEAssist.AI.Samurai
 {
     public enum KaeshiSpell
     {
         MidareSetsugekka,
         OgiNamikiri,
-        NoUse,
-    };
+        NoUse
+    }
 
     public class SamuraiBattleData : IBattleData
     {

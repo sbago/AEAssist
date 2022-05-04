@@ -1,11 +1,9 @@
-﻿
-
-using System;
+﻿using System;
 using System.Windows.Forms;
 using System.Windows.Input;
 using PropertyChanged;
 
-namespace AEAssist.View
+namespace AEAssist.View.Hotkey
 {
     [AddINotifyPropertyChangedInterface]
     public class HotkeyData

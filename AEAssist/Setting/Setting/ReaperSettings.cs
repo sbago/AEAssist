@@ -11,7 +11,7 @@ namespace AEAssist
         }
 
         public bool GallowsPrefer { get; set; }
-        
+
         public bool EarlyDecisionMode { get; set; }
 
         public bool DoubleEnshroudPrefer { get; set; }

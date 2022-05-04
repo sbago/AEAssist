@@ -1,8 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using AETriggers.TriggerModel;
 using Microsoft.Win32;
 
 namespace AEAssist.View
@@ -16,7 +14,7 @@ namespace AEAssist.View
 
         private void Reset_OnClick(object sender, RoutedEventArgs e)
         {
-            DataBinding.Instance.Reset();
+            AEAssist.DataBinding.Instance.Reset();
         }
 
         private void ChangeTriggerLine_OnClick(object sender, RoutedEventArgs e)
@@ -31,30 +29,23 @@ namespace AEAssist.View
                 return;
             var file = openFile.FileName;
             {
-                string str = "";
+                var str = "";
                 TriggerLine line = null;
-                (str,line) = TriggerHelper.LoadTriggerLine(file);
-                if (str != null && line == null)
-                {
-                    MessageBox.Show(str);
-                }
+                (str, line) = TriggerHelper.LoadTriggerLine(file);
+                if (str != null && line == null) MessageBox.Show(str);
 
-                if (line != null)
-                {
-                    DataBinding.Instance.ChangeTriggerLine(line);
-                }
-                
+                if (line != null) AEAssist.DataBinding.Instance.ChangeTriggerLine(line);
             }
         }
 
         private void Close_OnClick(object sender, RoutedEventArgs e)
         {
-            OverlayManager.Instance.Close();
+            OverlayManager.OverlayManager.Instance.Close();
         }
 
         private void ClearTriggerLine_OnClick(object sender, RoutedEventArgs e)
         {
-            DataBinding.Instance.ChangeTriggerLine(null);
+            AEAssist.DataBinding.Instance.ChangeTriggerLine(null);
         }
     }
 }

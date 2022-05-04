@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using AETriggers.TriggerModel;
 
-namespace AETriggers
+namespace AEAssist
 {
     public static class Entry
     {

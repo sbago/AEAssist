@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using AEAssist.Helper;
 using ff14bot;
@@ -27,27 +26,12 @@ namespace AEAssist.Define
     public class SpellEntity : Entity
     {
         public static SpellEntity Default = new SpellEntity();
-        
-        public static SpellEntity Create()
-        {
-            return ObjectPool.Instance.Fetch<SpellEntity>();
-        }
-        
-        public static SpellEntity Create(uint spellId)
-        {
-            var spell = Create();
-            spell.SpellData = DataManager.GetSpellData(spellId);
-            return spell;
-        }
-        
-        protected override void OnDestroy()
-        {
-            ObjectPool.Instance.Return(this);
-        }
+
+        public SpellData SpellData;
+        public SpellTargetType SpellTargetType;
 
         public SpellEntity()
         {
-            
         }
 
         public SpellEntity(uint id)
@@ -57,27 +41,38 @@ namespace AEAssist.Define
 
         public SpellEntity(uint id, SpellTargetType targetIndex) : this(id)
         {
-            this.SpellTargetType = targetIndex;
+            SpellTargetType = targetIndex;
         }
-
-        public SpellData SpellData;
-        public SpellTargetType SpellTargetType;
 
         public uint Id => SpellData?.Id ?? 0;
 
         public TimeSpan Cooldown => SpellData.Cooldown;
 
         public TimeSpan AdjustedCooldown => SpellData.AdjustedCooldown;
-        
+
+        public static SpellEntity Create()
+        {
+            return ObjectPool.Instance.Fetch<SpellEntity>();
+        }
+
+        public static SpellEntity Create(uint spellId)
+        {
+            var spell = Create();
+            spell.SpellData = DataManager.GetSpellData(spellId);
+            return spell;
+        }
+
+        protected override void OnDestroy()
+        {
+            ObjectPool.Instance.Return(this);
+        }
+
 
         public async Task<bool> DoAction()
         {
             if (SpellData == null)
                 return false;
-            if (SpellData.SpellType == SpellType.Weaponskill)
-            {
-                return await DoGCD();
-            }
+            if (SpellData.SpellType == SpellType.Weaponskill) return await DoGCD();
 
             return await DoAbility();
         }
@@ -105,10 +100,7 @@ namespace AEAssist.Define
                     var count = 0;
                     foreach (var v in PartyManager.AllMembers)
                     {
-                        if (count == index)
-                        {
-                            return v.BattleCharacter;
-                        }
+                        if (count == index) return v.BattleCharacter;
 
                         count++;
                     }
@@ -128,7 +120,7 @@ namespace AEAssist.Define
                 return false;
             return await SpellHelper.CastGCD(SpellData, target);
         }
-        
+
         public async Task<bool> DoAbility()
         {
             if (SpellData == null)
@@ -138,7 +130,7 @@ namespace AEAssist.Define
                 return false;
             return await SpellHelper.CastAbility(SpellData, target);
         }
-        
+
         public bool RecentlyUsed(int span = 1000)
         {
             var time = SpellHistoryHelper.GetLastSpellTime(SpellData.Id);
@@ -151,19 +143,19 @@ namespace AEAssist.Define
         {
             return SpellHelper.CanCastGCD(SpellData, GetTarget());
         }
-        
+
         public bool CanCastAbility()
         {
-            return ActionManager.CanCast(SpellData,GetTarget());
+            return ActionManager.CanCast(SpellData, GetTarget());
         }
 
         public bool IsKnockbackAgainst()
         {
-            if (this.SpellData == null)
+            if (SpellData == null)
                 return false;
-            if (this.SpellData.Id == SpellsDefine.ArmsLength)
+            if (SpellData.Id == SpellsDefine.ArmsLength)
                 return true;
-            if (this.SpellData.Id == SpellsDefine.Surecast)
+            if (SpellData.Id == SpellsDefine.Surecast)
                 return true;
             return false;
         }

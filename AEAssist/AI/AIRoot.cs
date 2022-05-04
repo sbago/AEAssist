@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AEAssist.AI.Reaper;
+using AEAssist;
 using AEAssist.Define;
 using AEAssist.Gamelog;
 using AEAssist.Helper;
 using AEAssist.Opener;
+using AEAssist.Rotations.Core;
 using ff14bot;
-using ff14bot.Enums;
-using ff14bot.Managers;
 using ff14bot.Objects;
 
 namespace AEAssist.AI
@@ -16,6 +15,28 @@ namespace AEAssist.AI
     public class AIRoot
     {
         public static readonly AIRoot Instance = new AIRoot();
+
+        private readonly Dictionary<Type, IBattleData> _allBattleDatas = new Dictionary<Type, IBattleData>();
+
+        private readonly HashSet<Type> _allBattleDataTypes = new HashSet<Type>();
+
+
+        private readonly Dictionary<string, long> lastNoticeTime = new Dictionary<string, long>();
+
+
+        private bool ClearBattleData;
+
+        public bool Stop
+        {
+            get => AEAssist.DataBinding.Instance.Stop;
+            set => AEAssist.DataBinding.Instance.Stop = value;
+        }
+
+        public bool CloseBurst
+        {
+            get => !AEAssist.DataBinding.Instance.Burst;
+            set => AEAssist.DataBinding.Instance.Burst = !value;
+        }
 
         public void Init()
         {
@@ -33,32 +54,10 @@ namespace AEAssist.AI
             }
         }
 
-        public static T GetBattleData<T>() where T: class,IBattleData
+        public static T GetBattleData<T>() where T : class, IBattleData
         {
             Instance._allBattleDatas.TryGetValue(typeof(T), out var data);
             return data as T;
-        }
-        
-
-        private bool ClearBattleData;
-
-
-        private readonly Dictionary<string, long> lastNoticeTime = new Dictionary<string, long>();
-
-        private readonly Dictionary<Type, IBattleData> _allBattleDatas = new Dictionary<Type, IBattleData>();
-
-        private readonly HashSet<Type> _allBattleDataTypes = new HashSet<Type>();
-
-        public bool Stop
-        {
-            get => DataBinding.Instance.Stop;
-            set => DataBinding.Instance.Stop = value;
-        }
-
-        public bool CloseBurst
-        {
-            get => !DataBinding.Instance.Burst;
-            set => DataBinding.Instance.Burst = !value;
         }
 
         public void Clear()
@@ -71,14 +70,12 @@ namespace AEAssist.AI
         public void ForceClear()
         {
             CountDownHandler.Instance.Close();
-            
+
             _allBattleDatas.Clear();
             foreach (var type in _allBattleDataTypes)
-            {
                 _allBattleDatas[type] = Activator.CreateInstance(type) as IBattleData;
-            }
-            
-            DataBinding.Instance.Reset();
+
+            AEAssist.DataBinding.Instance.Reset();
 
             SpellHistoryMgr.Instance.Clear();
             AEGamelogManager.Instance.ClearAll();
@@ -98,7 +95,7 @@ namespace AEAssist.AI
                 SpellHistoryMgr.Instance.CheckIfNeedClearHistory();
             }
 
-            DataBinding.Instance.Update();
+            AEAssist.DataBinding.Instance.Update();
 
             if (Stop)
             {
@@ -111,17 +108,18 @@ namespace AEAssist.AI
             if (!Core.Me.HasTarget || !Core.Me.CurrentTarget.CanAttack)
             {
                 if (CanNotice("key1", 1000))
-                    GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_NoTarget,500);
+                    GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_NoTarget, 500);
                 return false;
             }
 
             if (!((Character) Core.Me.CurrentTarget).HasTarget && !CountDownHandler.Instance.CanDoAction
-                                                               && !DataBinding.Instance.AutoAttack)
+                                                               && !AEAssist.DataBinding.Instance.AutoAttack)
             {
                 if (CanNotice("key2", 1000))
-                    GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_CanAttack,500);
+                    GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_CanAttack, 500);
                 return false;
             }
+
             var battleData = GetBattleData<BattleData>();
             if (Core.Me.InCombat)
             {
@@ -130,17 +128,16 @@ namespace AEAssist.AI
                 ClearBattleData = false;
             }
 
-            if(battleData.NextAbilitySpellId != null && battleData.AbilityRetryEndTime < TimeHelper.Now())
+            if (battleData.NextAbilitySpellId != null && battleData.AbilityRetryEndTime < TimeHelper.Now())
             {
                 LogHelper.Debug($"RetryEndTime : NextAbility {battleData.NextAbilitySpellId}");
                 battleData.NextAbilitySpellId = null;
             }
 
             if (battleData.NextAbilitySpellId != null)
-            {
                 if (SettingMgr.GetSetting<GeneralSettings>().NextAbilityFirst
-                    || (SettingMgr.GetSetting<GeneralSettings>().KnockbackAgainstFirst
-                        && battleData.NextAbilitySpellId.IsKnockbackAgainst()))
+                    || SettingMgr.GetSetting<GeneralSettings>().KnockbackAgainstFirst
+                    && battleData.NextAbilitySpellId.IsKnockbackAgainst())
                 {
                     var ret = battleData.NextAbilitySpellId;
                     if (ret.SpellData != null && ret.IsUnlock())
@@ -165,41 +162,27 @@ namespace AEAssist.AI
                         ret = null;
                         battleData.NextAbilitySpellId = null;
                     }
-                    if (ret != null)
-                    {
-                        RecordGCD(ret);
-                    }
+
+                    if (ret != null) RecordGCD(ret);
                 }
-            }
-
-         
 
 
-            if (await OpenerMgr.Instance.UseOpener(Core.Me.CurrentJob))
-            {
-                return false;
-            }
+            if (await OpenerMgr.Instance.UseOpener(Core.Me.CurrentJob)) return false;
 
             // 技能队列
-            if (await GetBattleData<SpellQueueData>().ApplySlot())
-            {
-                return false;
-            }
-            
+            if (await GetBattleData<SpellQueueData>().ApplySlot()) return false;
+
             // boss低血量自动开资源倾泻模式
-            if (TTKHelper.IsBossTTK(Core.Me.CurrentTarget as Character))
-            {
-                DataBinding.Instance.FinalBurst = true;
-            }
+            if (TTKHelper.IsBossTTK(Core.Me.CurrentTarget as Character)) AEAssist.DataBinding.Instance.FinalBurst = true;
 
             var canUseAbility = true;
-            var delta = timeNow -battleData.lastCastTime;
+            var delta = timeNow - battleData.lastCastTime;
             var coolDown = GetGCDDuration();
 
             var canUseGCD = CanUseGCD();
 
             LogHelper.Debug($"CanUseGCD: {canUseGCD} coolDown: {coolDown} delta {delta}");
-            
+
             if (!canUseGCD && battleData.maxAbilityTimes > 0 && coolDown - delta >= coolDown * 0.33f)
                 canUseAbility = true;
             else
@@ -232,7 +215,7 @@ namespace AEAssist.AI
                         ret = null;
                         battleData.NextGcdSpellId = null;
                     }
-                    
+
                     if (ret == null && battleData.GCDRetryEndTime < TimeHelper.Now())
                     {
                         LogHelper.Debug($"RetryEndTime : NextGCD {battleData.NextGcdSpellId}");
@@ -242,10 +225,7 @@ namespace AEAssist.AI
 
                 if (ret == null)
                     ret = await AIMgrs.Instance.HandleGCD(Core.Me.CurrentJob, battleData.lastGCDSpell);
-                if (ret != null)
-                {
-                    RecordGCD(ret);
-                }
+                if (ret != null) RecordGCD(ret);
             }
 
             if (canUseAbility)
@@ -268,7 +248,7 @@ namespace AEAssist.AI
                 }
                 else if (battleData.NextAbilitySpellId != null)
                 {
-                    ret =battleData.NextAbilitySpellId;
+                    ret = battleData.NextAbilitySpellId;
                     if (ret.SpellData != null && ret.IsUnlock())
                     {
                         if (ret.CanCastAbility())
@@ -293,10 +273,8 @@ namespace AEAssist.AI
                 if (ret == null)
                     ret = await AIMgrs.Instance.HandleAbility(Core.Me.CurrentJob, battleData.lastAbilitySpell);
                 if (ret != null)
-                {
                     RecordAbility(ret);
-                    //LogHelper.Info($"剩余使用能力技能次数: {_maxAbilityTimes}");
-                }
+                //LogHelper.Info($"剩余使用能力技能次数: {_maxAbilityTimes}");
             }
 
             return false;
@@ -306,9 +284,9 @@ namespace AEAssist.AI
         {
             var battleData = GetBattleData<BattleData>();
             var timeNow = TimeHelper.Now();
-            var msg = $"{battleData.CurrBattleTimeInMs/1000} Cast GCD: {ret.Id} " + ret.SpellData.LocalizedName;
+            var msg = $"{battleData.CurrBattleTimeInMs / 1000} Cast GCD: {ret.Id} " + ret.SpellData.LocalizedName;
             LogHelper.Info(msg);
-            GUIHelper.ShowInfo(msg, 100,false);
+            GUIHelper.ShowInfo(msg, 100, false);
             var history = new SpellHistory
             {
                 SpellId = ret.Id,
@@ -316,8 +294,8 @@ namespace AEAssist.AI
                 Name = ret.SpellData.LocalizedName
             };
             SpellHistoryMgr.Instance.AddGCDHistory(history);
-                    
-                    
+
+
             if (battleData.lastGCDSpell == null)
                 CountDownHandler.Instance.Close();
             battleData.lastGCDIndex++;
@@ -331,9 +309,9 @@ namespace AEAssist.AI
         {
             var battleData = GetBattleData<BattleData>();
             var timeNow = TimeHelper.Now();
-            var msg = $"{battleData.CurrBattleTimeInMs/1000} Cast Ability: {ret.Id} " + ret.SpellData.LocalizedName;
+            var msg = $"{battleData.CurrBattleTimeInMs / 1000} Cast Ability: {ret.Id} " + ret.SpellData.LocalizedName;
             LogHelper.Info(msg);
-            GUIHelper.ShowInfo(msg, 100,false);
+            GUIHelper.ShowInfo(msg, 100, false);
             var history = new SpellHistory
             {
                 SpellId = ret.Id,
@@ -350,11 +328,10 @@ namespace AEAssist.AI
         {
             if (SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD < 2)
                 return true;
-            if (GetBattleData<BattleData>().maxAbilityTimes < SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD)
-            {
+            if (GetBattleData<BattleData>().maxAbilityTimes <
+                SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD)
                 return true;
-            }
-            
+
             var delta = TimeHelper.Now() - GetBattleData<BattleData>().lastCastTime;
             var coolDown = GetGCDDuration();
 

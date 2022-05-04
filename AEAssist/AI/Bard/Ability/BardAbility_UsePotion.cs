@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
+using AEAssist;
 using ff14bot;
 using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Bard.Ability
 {
     public class BardAbility_UsePotion : IAIHandler
     {
@@ -24,9 +25,7 @@ namespace AEAssist.AI
             // 准备爆发的时候才用
             if (Core.Me.ContainMyAura(AurasDefine.RagingStrikes)
                 || SpellsDefine.RagingStrikes.GetSpellEntity().Cooldown.TotalMilliseconds < 5000)
-            {
                 return 0;
-            }
 
             return -7;
         }

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.Define;
+using AEAssist.Helper;
 using ff14bot.Enums;
-using ff14bot.Objects;
 
 namespace AEAssist.AI
 {
@@ -41,7 +41,7 @@ namespace AEAssist.AI
         {
             if (!JobPriorityQueue.TryGetValue(classJobType, out var queue)) return null;
 
-            if(lastGCD == null)
+            if (lastGCD == null)
                 lastGCD = SpellEntity.Default;
             foreach (var v in queue.GCDQueue)
             {
@@ -58,7 +58,7 @@ namespace AEAssist.AI
         public async Task<SpellEntity> HandleAbility(ClassJobType classJobType, SpellEntity lastAbility)
         {
             if (!JobPriorityQueue.TryGetValue(classJobType, out var queue)) return null;
-            if(lastAbility == null)
+            if (lastAbility == null)
                 lastAbility = SpellEntity.Default;
             foreach (var v in queue.AbilityQueue)
             {

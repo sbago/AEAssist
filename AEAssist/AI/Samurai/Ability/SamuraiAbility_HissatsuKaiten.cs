@@ -2,10 +2,9 @@
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
-using ff14bot.Managers;
 using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Samurai.Ability
 {
     public class SamuraiAbility_HissatsuKaiten : IAIHandler
     {
@@ -14,10 +13,12 @@ namespace AEAssist.AI
             var ta = Core.Me.CurrentTarget as Character;
             if (Core.Me.HasAura(AurasDefine.Kaiten))
                 return -1;
-            if (Core.Me.HasAura(AurasDefine.OgiReady) && SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalMilliseconds != 0 && ta.HasAura(AurasDefine.Higanbana))
+            if (Core.Me.HasAura(AurasDefine.OgiReady) &&
+                SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalMilliseconds != 0 &&
+                ta.HasAura(AurasDefine.Higanbana))
                 return 1;
 
-            if(SamuraiSpellHelper.SenCounts() == 0) return -1;
+            if (SamuraiSpellHelper.SenCounts() == 0) return -1;
 
             if (SamuraiSpellHelper.SenCounts() == 1)
             {
@@ -27,6 +28,7 @@ namespace AEAssist.AI
                 if (ta.HasMyAura(AurasDefine.Higanbana) && ta.GetAuraById(AurasDefine.Higanbana)?.TimeLeft > 3)
                     return -1;
             }
+
             if (SamuraiSpellHelper.SenCounts() == 2)
                 return -5;
 

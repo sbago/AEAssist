@@ -7,15 +7,12 @@ namespace AEAssist.Define
     {
         public static ObjectPool Instance = new ObjectPool();
 
-        private Dictionary<Type, Queue<object>> AllObjs = new Dictionary<Type, Queue<object>>();
+        private readonly Dictionary<Type, Queue<object>> AllObjs = new Dictionary<Type, Queue<object>>();
 
         public T Fetch<T>() where T : Entity, new()
         {
             var type = typeof(T);
-            if (!AllObjs.TryGetValue(type, out var pool))
-            {
-                return Activator.CreateInstance<T>();
-            }
+            if (!AllObjs.TryGetValue(type, out var pool)) return Activator.CreateInstance<T>();
 
             if (pool.Count == 0)
                 return Activator.CreateInstance<T>();
@@ -36,10 +33,9 @@ namespace AEAssist.Define
 
             if (pool.Count >= 100)
                 return;
-            
+
             t.Dispose();
             pool.Enqueue(t);
         }
-
     }
 }

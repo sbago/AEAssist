@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Windows;
 using AETriggers.TriggerModel;
 using Microsoft.Win32;
 using NPOI.HSSF.UserModel;
-using NPOI.SS.Formula.Functions;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
-using Trigger = AETriggers.TriggerModel.Trigger;
+using Trigger = AEAssist.Trigger;
 
-namespace AETriggers
+namespace AEAssist
 {
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
@@ -20,11 +20,11 @@ namespace AETriggers
         public MainWindow()
         {
             InitializeComponent();
-            var currCulture = System.Globalization.CultureInfo.CurrentCulture;
+            var currCulture = CultureInfo.CurrentCulture;
             if (currCulture.Name.Contains("zh-CN"))
             {
-                this.Load.Content = "加载Excel表";
-                this.Export.Content = "导出";
+                Load.Content = "加载Excel表";
+                Export.Content = "导出";
             }
 
 
@@ -87,7 +87,7 @@ namespace AETriggers
                         MessageBox.Show($"Load excel failed! {targetZoneIdStr} format error");
                         return;
                     }
-                    
+
                     if (!ushort.TryParse(subZoneIdStr, out var subZoneId))
                     {
                         MessageBox.Show($"Load excel failed! {subZoneIdStr} format error");
@@ -202,8 +202,7 @@ namespace AETriggers
                     var typeName = strs[1];
 
                     //MessageBox.Show(typeName);
-                    
-                
+
 
                     try
                     {
@@ -218,7 +217,8 @@ namespace AETriggers
                     }
                     catch (Exception e)
                     {
-                        var pre = $"Type: {data.valueType} TypeName {typeName} Params : [{ListToString(data.valueParams)}]\n ";
+                        var pre =
+                            $"Type: {data.valueType} TypeName {typeName} Params : [{ListToString(data.valueParams)}]\n ";
                         MessageBox.Show(pre + e);
                         return false;
                     }

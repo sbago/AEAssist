@@ -5,7 +5,7 @@ using ff14bot;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Samurai.Ability
 {
     public class SamuraiAbility_MeikyoShisui : IAIHandler
     {
@@ -13,11 +13,11 @@ namespace AEAssist.AI
         {
             var ta = Core.Me.CurrentTarget as Character;
             if (ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Setsu) &&
-                (SamuraiSpellHelper.SenCounts() != 0) &&
+                SamuraiSpellHelper.SenCounts() != 0 &&
                 !Core.Me.HasAura(AurasDefine.MeikyoShisui) &&
-                ((SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalMilliseconds % 60000) > 40000 ) && 
+                SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalMilliseconds % 60000 > 40000 &&
                 !(ta.GetAuraById(AurasDefine.Higanbana)?.TimeLeft < 5) &&
-                (ActionManager.LastSpell == null ))
+                ActionManager.LastSpell == null)
                 return 1;
 
             return -1;
@@ -26,7 +26,7 @@ namespace AEAssist.AI
         public async Task<SpellEntity> Run()
         {
             var spell = SpellsDefine.MeikyoShisui;
-            if(await spell.DoAbility())
+            if (await spell.DoAbility())
                 return spell.GetSpellEntity();
             return null;
         }

@@ -1,25 +1,25 @@
-﻿using System.Threading.Tasks;
-using ff14bot.Enums;
+﻿using System;
+using System.Threading.Tasks;
 using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Dancer
 {
-   // [Rotation(ClassJobType.Dancer)]
-    public class DancerRotation 
+    // [Rotation(ClassJobType.Dancer)]
+    public class DancerRotation
     {
         public void Init()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
-        
+
         public Task<bool> PreCombatBuff()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
-        
+
         public SpellData GetBaseGCDSpell()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

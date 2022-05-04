@@ -1,16 +1,15 @@
 ﻿using System;
 using System.IO;
-using System.Windows;
-using AEAssist;
+using AEAssist.Helper;
 
-namespace AETriggers.TriggerModel
+namespace AEAssist
 {
     public static class TriggerHelper
     {
-        public static (string,TriggerLine) LoadTriggerLine(string path)
+        public static (string, TriggerLine) LoadTriggerLine(string path)
         {
             if (!File.Exists(path))
-                return (null,null);
+                return (null, null);
             try
             {
                 var line = MongoHelper.FromJson<TriggerLine>(File.ReadAllText(path));
@@ -20,12 +19,13 @@ namespace AETriggers.TriggerModel
                     return ("Loading failed: old version!", line);
                 }
 
-                return  ("Loading success!", line);;
+                return ("Loading success!", line);
+                ;
             }
             catch (Exception e)
             {
                 LogHelper.Error(e.ToString());
-                return ("Loading failed: Exception:\n " + e,null);
+                return ("Loading failed: Exception:\n " + e, null);
             }
         }
 

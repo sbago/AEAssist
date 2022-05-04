@@ -2,9 +2,8 @@
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
-using ff14bot.Objects;
 
-namespace AEAssist.AI.Reaper
+namespace AEAssist.AI.Reaper.GCD
 {
     // 近战之外的范围的GCD
     public class ReaperGCD_PullRangeGCD : IAIHandler
@@ -21,7 +20,7 @@ namespace AEAssist.AI.Reaper
             var spell = SpellsDefine.Harpe;
             if (SpellsDefine.HarvestMoon.IsUnlock() && Core.Me.HasAura(AurasDefine.Soulsow))
                 spell = SpellsDefine.HarvestMoon;
-            else if (!DataBinding.Instance.UseHarpe) return null;
+            else if (!AEAssist.DataBinding.Instance.UseHarpe) return null;
 
             if (await spell.DoGCD()) return spell.GetSpellEntity();
 

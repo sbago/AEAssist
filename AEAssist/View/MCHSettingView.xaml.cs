@@ -1,6 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using AEAssist.Helper;
+﻿using System.Windows.Controls;
 
 namespace AEAssist.View
 {

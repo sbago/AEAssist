@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using AEAssist.Define;
+using AEAssist.Helper;
+using AEAssist;
 using Newtonsoft.Json;
 
 namespace AEAssist
 {
     public class SettingMgr
     {
-        public static SettingMgr Instance = new SettingMgr();
-
         public const string SettingPath = @"Settings\AEAssists";
+        public static SettingMgr Instance = new SettingMgr();
 
         private readonly Dictionary<Type, IBaseSetting> AllSetting = new Dictionary<Type, IBaseSetting>();
 
@@ -33,7 +35,7 @@ namespace AEAssist
             if (versionSetting == null || versionSetting.SettingVersion != ConstValue.SettingVersion)
             {
                 Reset();
-                GUIHelper.ShowMessageBox("本地配置版本较低,已重置为新版本默认值");
+                GUIHelper.ShowMessageBox(Language.Instance.Content_ResetSetting);
                 return;
             }
 

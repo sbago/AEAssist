@@ -1,4 +1,6 @@
-﻿namespace AEAssist.AI.Machinist
+﻿using AEAssist.Define;
+
+namespace AEAssist.AI.Machinist.SpellEvent
 {
     [SpellEvent(SpellsDefine.Hypercharge)]
     public class SpellEvent_Hypercharge : ISpellEvent

@@ -1,4 +1,6 @@
-﻿namespace AEAssist.AI.Bard
+﻿using AEAssist.Define;
+
+namespace AEAssist.AI.Bard.SpellEvent
 {
     [SpellEvent(SpellsDefine.IronJaws)]
     [SpellEvent(SpellsDefine.Windbite)]

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AEAssist
+namespace AEAssist.Define
 {
     public abstract class Entity : IDisposable
     {
@@ -17,7 +17,6 @@ namespace AEAssist
 
         protected virtual void OnDestroy()
         {
-            
         }
     }
 }

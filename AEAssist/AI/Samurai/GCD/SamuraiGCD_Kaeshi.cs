@@ -1,11 +1,7 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
-using AEAssist.Helper;
-using ff14bot;
-using ff14bot.Managers;
-using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Samurai.GCD
 {
     public class SamuraiGCD_Kaeshi : IAIHandler
     {
@@ -25,6 +21,7 @@ namespace AEAssist.AI
                 AIRoot.GetBattleData<SamuraiBattleData>().KaeshiSpell = KaeshiSpell.NoUse;
                 return spell;
             }
+
             return null;
         }
     }

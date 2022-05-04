@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using AEAssist.Annotations;
+using AEAssist.Properties;
 using PropertyChanged;
 
 namespace AEAssist
@@ -7,6 +7,8 @@ namespace AEAssist
     [AddINotifyPropertyChangedInterface]
     public class GeneralSettings : IBaseSetting
     {
+        public bool AutoFinalBurst = true;
+
         public GeneralSettings()
         {
             Reset();
@@ -34,18 +36,16 @@ namespace AEAssist
         public bool ShowBattleTime { get; set; }
 
         public int DexPotionId { get; set; }
-        
+
         public int StrPotionId { get; set; }
 
         public HashSet<string> DotBlacklist { get; set; } = new HashSet<string>();
-
-        public bool AutoFinalBurst = true;
         public int AutoFinalBurstCheckTime { get; set; } = 6000;
 
-        public bool NextAbilityFirst { get; set; } = false;
+        public bool NextAbilityFirst { get; set; }
         public bool KnockbackAgainstFirst { get; set; } = true;
 
-        public bool AutoSwitchTriggerLine { get; set; } = false;
+        public bool AutoSwitchTriggerLine { get; set; }
 
         public void Reset()
         {
@@ -71,6 +71,5 @@ namespace AEAssist
             KnockbackAgainstFirst = true;
             AutoSwitchTriggerLine = false;
         }
-        
     }
 }

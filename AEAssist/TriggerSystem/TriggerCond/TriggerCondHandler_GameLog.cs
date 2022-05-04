@@ -1,7 +1,7 @@
 ﻿using AEAssist.AI;
 using AEAssist.Gamelog;
 using AEAssist.Helper;
-using AETriggers.TriggerModel;
+using AEAssist.TriggerCond;
 
 namespace AEAssist.TriggerSystem.TriggerCond
 {
@@ -11,10 +11,7 @@ namespace AEAssist.TriggerSystem.TriggerCond
         {
             if (AIRoot.GetBattleData<BattleData>().GetCondHitTime(cond, out var time))
             {
-                if (TimeHelper.Now() >= time + cond.delayTime * 1000)
-                {
-                    return true;
-                }
+                if (TimeHelper.Now() >= time + cond.delayTime * 1000) return true;
             }
             else
             {
@@ -29,7 +26,6 @@ namespace AEAssist.TriggerSystem.TriggerCond
                     }
                 }
             }
-            
 
 
             return false;

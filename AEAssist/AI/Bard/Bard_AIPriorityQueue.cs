@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AEAssist.AI;
+using AEAssist.AI.Bard.Ability;
+using AEAssist.AI.Bard.GCD;
 using AEAssist.Helper;
+using AEAssist;
 using ff14bot.Enums;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Bard
 {
     [AIPriorityQueue(ClassJobType.Bard)]
     public class Bard_AIPriorityQueue : IAIPriorityQueue

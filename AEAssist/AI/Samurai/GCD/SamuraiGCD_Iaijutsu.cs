@@ -2,10 +2,9 @@
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
-using ff14bot.Managers;
 using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Samurai.GCD
 {
     public class SamuraiGCD_Iaijutsu : IAIHandler
     {
@@ -14,12 +13,15 @@ namespace AEAssist.AI
             if (Core.Me.HasAura(AurasDefine.Kaiten))
             {
                 var ta = Core.Me.CurrentTarget as Character;
-                if (Core.Me.HasAura(AurasDefine.OgiReady) && (SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalMilliseconds != 0) && ta.HasMyAura(AurasDefine.Higanbana))
+                if (Core.Me.HasAura(AurasDefine.OgiReady) &&
+                    SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalMilliseconds != 0 &&
+                    ta.HasMyAura(AurasDefine.Higanbana))
                     return -1;
                 return 10;
             }
+
             var target = Core.Me.CurrentTarget as Character;
-            if(target.HasAura(AurasDefine.Higanbana))
+            if (target.HasAura(AurasDefine.Higanbana))
                 return -2;
             return -1;
         }
@@ -30,12 +32,13 @@ namespace AEAssist.AI
             if (spell == null) return null;
             if (await spell.DoGCD())
             {
-                if (spell.Id == SpellsDefine.MidareSetsugekka && (SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalMilliseconds < 62100))
+                if (spell.Id == SpellsDefine.MidareSetsugekka &&
+                    SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalMilliseconds < 62100)
                     AIRoot.GetBattleData<SamuraiBattleData>().KaeshiSpell = KaeshiSpell.MidareSetsugekka;
                 return spell;
             }
+
             return null;
         }
     }
 }
-

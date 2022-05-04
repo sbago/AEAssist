@@ -1,5 +1,4 @@
 ﻿using System;
-using AETriggers.TriggerModel;
 
 namespace AEAssist.TriggerSystem
 {

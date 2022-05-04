@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:AEAssist"
+             xmlns:dataBinding="clr-namespace:AEAssist"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
 
@@ -17,7 +18,7 @@
     </UserControl.Resources>
 
     <UserControl.DataContext>
-        <Binding Source="{x:Static viewModels:DataBinding.Instance}" />
+        <Binding Source="{x:Static dataBinding:DataBinding.Instance}" />
     </UserControl.DataContext>
 
     <TabControl
@@ -38,7 +39,7 @@
                           Content="{Binding Language.Textbox_Bard_EmpyrealArrow}" Width="200" Height="25"
                           HorizontalAlignment="Left"
                           IsChecked="{Binding BardSettings.EarlyEmpyrealArrow,Mode=TwoWay}" />
-                
+
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="{Binding Language.Textbox_Bard_ApexArrow_SoulVoiceGauge}" Width="200" />
                     <TextBox Width="100" Text="{Binding BardSettings.ApexArrowValue,Mode=TwoWay}" />

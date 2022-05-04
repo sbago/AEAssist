@@ -1,7 +1,7 @@
 ﻿using System;
 using ff14bot.Enums;
 
-namespace AEAssist.View
+namespace AEAssist.View.OverlayManager
 {
     public class OverlayAttribute : Attribute
     {
@@ -9,7 +9,7 @@ namespace AEAssist.View
 
         public OverlayAttribute(ClassJobType classJobType)
         {
-            this.ClassJobType = classJobType;
+            ClassJobType = classJobType;
         }
     }
 }

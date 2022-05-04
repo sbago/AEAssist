@@ -6,7 +6,7 @@ using ff14bot;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
-namespace AEAssist.AI.MCH
+namespace AEAssist.AI.Machinist.Ability
 {
     public class MCHAbility_UseBattery : IAIHandler
     {
@@ -14,7 +14,7 @@ namespace AEAssist.AI.MCH
         {
             if (AIRoot.Instance.CloseBurst)
                 return -1;
-            if (!DataBinding.Instance.UseBattery)
+            if (!AEAssist.DataBinding.Instance.UseBattery)
                 return -2;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return -10;

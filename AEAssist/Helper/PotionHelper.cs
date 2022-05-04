@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AEAssist.AI;
+using AEAssist;
 using AEAssist.Define;
 using Buddy.Coroutines;
 using ff14bot;
 using ff14bot.Managers;
-using ff14bot.Objects;
 
 namespace AEAssist.Helper
 {
@@ -14,7 +14,7 @@ namespace AEAssist.Helper
     {
         public static List<PotionData> DexPotions { get; set; } = new List<PotionData>();
         public static List<PotionData> StrPotions { get; set; } = new List<PotionData>();
-        
+
         public static void Init()
         {
             if (DexPotions == null)
@@ -87,7 +87,7 @@ namespace AEAssist.Helper
             for (var i = 0; i < 15; i++)
             {
                 item.UseItem(Core.Me);
-                await Coroutine.Wait(100,()=>false);
+                await Coroutine.Wait(100, () => false);
                 if (item == null || !item.CanUse())
                     return true;
             }

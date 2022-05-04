@@ -4,7 +4,7 @@ using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Objects;
 
-namespace AEAssist.AI.MCH
+namespace AEAssist.AI.Machinist.Ability
 {
     public class MCHAbility_UsePotion : IAIHandler
     {
@@ -22,7 +22,8 @@ namespace AEAssist.AI.MCH
             if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId))
                 return -5;
 
-            if (SpellsDefine.Wildfire.RecentlyUsed() || SpellsDefine.Wildfire.GetSpellEntity().Cooldown.TotalMilliseconds < 10000)
+            if (SpellsDefine.Wildfire.RecentlyUsed() ||
+                SpellsDefine.Wildfire.GetSpellEntity().Cooldown.TotalMilliseconds < 10000)
                 return 0;
             return -10;
         }

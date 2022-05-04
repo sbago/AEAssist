@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using ff14bot;
-using ff14bot.Objects;
 
-namespace AEAssist.AI.MCH
+namespace AEAssist.AI.Machinist.GCD
 {
     public class MCHGCD_BaseCombo : IAIHandler
     {

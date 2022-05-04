@@ -1,5 +1,7 @@
 ﻿using AEAssist.AI;
-using AETriggers.TriggerModel;
+using AEAssist.AI.Bard;
+using AEAssist.Helper;
+using AEAssist.TriggerAction;
 
 namespace AEAssist.TriggerSystem.TriggerAction
 {
@@ -10,10 +12,8 @@ namespace AEAssist.TriggerSystem.TriggerAction
             AIRoot.GetBattleData<BardBattleData>().nextSongList.Clear();
             AIRoot.GetBattleData<BardBattleData>().nextSongDuration.Clear();
             AIRoot.GetBattleData<BardBattleData>().nextSongList.AddRange(t.SongIndex);
-            foreach (var v in t.Durations)
-            {
-                AIRoot.GetBattleData<BardBattleData>().nextSongDuration.Add(v*1000);   
-            }
+            foreach (var v in t.Durations) AIRoot.GetBattleData<BardBattleData>().nextSongDuration.Add(v * 1000);
+
             LogHelper.Debug($"Set song list : Count :{AIRoot.GetBattleData<BardBattleData>().nextSongList.Count}");
         }
     }

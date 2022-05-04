@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using AEAssist.Helper;
 using Buddy.Overlay;
 using ff14bot;
 using ff14bot.Enums;
-using QuickGraph.Algorithms.ConnectedComponents;
 
-namespace AEAssist.View
+namespace AEAssist.View.OverlayManager
 {
     public class OverlayManager
     {
         public static OverlayManager Instance = new OverlayManager();
 
-        private ClassJobType _classJobType;
-
         private readonly Dictionary<ClassJobType, OverlayUIComponent> AllOverlays =
             new Dictionary<ClassJobType, OverlayUIComponent>();
+
+        private ClassJobType _classJobType;
 
         public OverlayUIComponent lastOverlay;
 
@@ -25,10 +25,7 @@ namespace AEAssist.View
                 if (type.IsAbstract || type.IsInterface)
                     continue;
                 var attrs = type.GetCustomAttributes(typeof(OverlayAttribute), false);
-                if (attrs.Length == 0)
-                {
-                    continue;
-                }
+                if (attrs.Length == 0) continue;
 
                 var attr = attrs[0] as OverlayAttribute;
                 AllOverlays[attr.ClassJobType] = Activator.CreateInstance(type) as OverlayUIComponent;

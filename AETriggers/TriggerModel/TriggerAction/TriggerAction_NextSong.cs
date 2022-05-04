@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AETriggers.TriggerModel
+namespace AEAssist.TriggerAction
 {
     [Trigger("NextSong")]
     public class TriggerAction_NextSong : ITriggerAction

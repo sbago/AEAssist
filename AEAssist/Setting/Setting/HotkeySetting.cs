@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Windows.Input;
 using AEAssist.AI;
+using AEAssist;
 using AEAssist.Define;
+using AEAssist.Helper;
 using AEAssist.View;
+using AEAssist.View.Hotkey;
 using ff14bot.Managers;
 using Newtonsoft.Json;
 using PropertyChanged;
@@ -30,7 +32,7 @@ namespace AEAssist
         public HotkeyData Hotkey_Burst { get; set; } = new HotkeyData();
 
         public HotkeyData Hotkey_ArmLength_Surecast { get; set; } = new HotkeyData();
-        
+
 
         public bool UseHotkey
         {
@@ -108,9 +110,11 @@ namespace AEAssist
                         Hotkey_ArmLength_Surecast.ModifierKey, v =>
                         {
                             if (ActionManager.HasSpell(SpellsDefine.ArmsLength))
-                                AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength.GetSpellEntity();
+                                AIRoot.GetBattleData<BattleData>().NextAbilitySpellId =
+                                    SpellsDefine.ArmsLength.GetSpellEntity();
                             else
-                                AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Surecast.GetSpellEntity();
+                                AIRoot.GetBattleData<BattleData>().NextAbilitySpellId =
+                                    SpellsDefine.Surecast.GetSpellEntity();
                         }));
             }
             catch (Exception e)

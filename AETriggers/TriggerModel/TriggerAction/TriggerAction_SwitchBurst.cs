@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace AETriggers.TriggerModel
+namespace AEAssist.TriggerAction
 {
-    [Trigger("Burst")]
+    [Trigger("SwitchBurst")]
     public class TriggerAction_SwitchBurst : ITriggerAction
     {
         public bool value;

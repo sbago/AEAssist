@@ -1,10 +1,8 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
-using ff14bot;
-using ff14bot.Objects;
 
-namespace AEAssist.AI.MCH
+namespace AEAssist.AI.Machinist.Ability
 {
     public class MCHAbility_UseGaussRound : IAIHandler
     {
@@ -13,20 +11,14 @@ namespace AEAssist.AI.MCH
             if (!SpellsDefine.GaussRound.IsReady() && !SpellsDefine.Ricochet.IsReady())
                 return -1;
 
-            if (SpellsDefine.GaussRound.IsMaxChargeReady() || SpellsDefine.Ricochet.IsMaxChargeReady())
-            {
-                return 1;
-            }
+            if (SpellsDefine.GaussRound.IsMaxChargeReady() || SpellsDefine.Ricochet.IsMaxChargeReady()) return 1;
 
             if (SpellsDefine.BarrelStabilizer.IsUnlock())
             {
                 if (SpellsDefine.BarrelStabilizer.IsReady())
                     return -2;
                 var lastGCDIndex = SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.BarrelStabilizer);
-                if (AIRoot.GetBattleData<BattleData>().lastGCDIndex - lastGCDIndex < 2)
-                {
-                    return -3;
-                }
+                if (AIRoot.GetBattleData<BattleData>().lastGCDIndex - lastGCDIndex < 2) return -3;
             }
 
             return 0;
@@ -35,15 +27,13 @@ namespace AEAssist.AI.MCH
         public async Task<SpellEntity> Run()
         {
             SpellEntity spellData;
-            if (SpellsDefine.GaussRound.GetSpellEntity().SpellData.Charges >= SpellsDefine.Ricochet.GetSpellEntity().SpellData.Charges)
+            if (SpellsDefine.GaussRound.GetSpellEntity().SpellData.Charges >=
+                SpellsDefine.Ricochet.GetSpellEntity().SpellData.Charges)
                 spellData = SpellsDefine.GaussRound.GetSpellEntity();
             else
                 spellData = SpellsDefine.Ricochet.GetSpellEntity();
-            
-            if (await spellData.DoAbility())
-            {
-                return spellData;
-            }
+
+            if (await spellData.DoAbility()) return spellData;
 
             return null;
         }

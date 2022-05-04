@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using AETriggers.TriggerModel;
 using MongoDB.Bson;
 using MongoDB.Bson.IO;
 using MongoDB.Bson.Serialization;
@@ -14,8 +13,9 @@ namespace AEAssist
         public static JsonWriterSettings Settings = new JsonWriterSettings
         {
             Indent = true,
-            OutputMode = JsonOutputMode.CanonicalExtendedJson,
+            OutputMode = JsonOutputMode.CanonicalExtendedJson
         };
+
         static MongoHelper()
         {
             // 自动注册IgnoreExtraElements

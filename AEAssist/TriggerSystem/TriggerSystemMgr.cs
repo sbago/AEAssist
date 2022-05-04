@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using AETriggers.TriggerModel;
+using AEAssist.Helper;
 
 namespace AEAssist.TriggerSystem
 {
@@ -51,7 +51,7 @@ namespace AEAssist.TriggerSystem
                     return false;
 
             LogHelper.Info("Hit Trigger: " + trigger.Id);
-            
+
             foreach (var v in trigger.TriggerActions) HandleAction(v);
 
             return true;

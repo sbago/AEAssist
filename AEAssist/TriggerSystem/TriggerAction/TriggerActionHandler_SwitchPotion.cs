@@ -1,5 +1,4 @@
-﻿using AEAssist.AI;
-using AETriggers.TriggerModel;
+﻿using AEAssist.TriggerAction;
 
 namespace AEAssist.TriggerSystem.TriggerAction
 {

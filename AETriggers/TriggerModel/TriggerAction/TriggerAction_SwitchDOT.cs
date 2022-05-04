@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AETriggers.TriggerModel
+namespace AEAssist.TriggerAction
 {
     [Trigger("SwitchDOT")]
     public class TriggerAction_SwitchDOT : ITriggerAction

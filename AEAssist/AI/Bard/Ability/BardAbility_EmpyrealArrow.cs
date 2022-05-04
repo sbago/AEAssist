@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
-using ff14bot;
-using ff14bot.Objects;
+using AEAssist;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Bard.Ability
 {
     public class BardAbility_EmpyrealArrow : IAIHandler
     {
@@ -21,16 +20,12 @@ namespace AEAssist.AI
             else
             {
                 if (SpellsDefine.EmpyrealArrow.GetSpellEntity().Cooldown.TotalMilliseconds > 50)
-                    return -3; 
+                    return -3;
             }
 
-   
-            
+
             var ret = BardSpellHelper.PrepareSwitchSong();
-            if (ret > 0)
-            {
-                return -4;
-            }
+            if (ret > 0) return -4;
 
             return 0;
         }

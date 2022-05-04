@@ -1,10 +1,8 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
-using ff14bot;
-using ff14bot.Objects;
 
-namespace AEAssist.AI.MCH
+namespace AEAssist.AI.Machinist.GCD
 {
     public class MCHGCD_Drill : IAIHandler
     {
@@ -12,15 +10,13 @@ namespace AEAssist.AI.MCH
         {
             if (!SpellsDefine.Drill.IsReady())
                 return -1;
-            
+
             // 整备只有1层的时候,如果3秒内能冷却好,等一下
-            if (!SpellsDefine.Reassemble.RecentlyUsed() 
-                && SpellsDefine.Reassemble.GetSpellEntity().SpellData.MaxCharges < 1.5f 
+            if (!SpellsDefine.Reassemble.RecentlyUsed()
+                && SpellsDefine.Reassemble.GetSpellEntity().SpellData.MaxCharges < 1.5f
                 && SpellsDefine.Reassemble.GetSpellEntity().Cooldown.TotalMilliseconds < 3000)
-            {
                 return -3;
-            }
-            
+
             return 0;
         }
 
@@ -28,10 +24,7 @@ namespace AEAssist.AI.MCH
         {
             var spell = MCHSpellHelper.GetDrillIfWithAOE().GetSpellEntity();
 
-            if (await spell.DoGCD())
-            {
-                return spell;
-            }
+            if (await spell.DoGCD()) return spell;
 
             return null;
         }

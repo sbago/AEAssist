@@ -1,4 +1,6 @@
-﻿namespace AEAssist
+﻿using AEAssist.Define;
+
+namespace AEAssist
 {
     public class VersionSetting
     {

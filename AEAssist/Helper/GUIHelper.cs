@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
-using AEAssist.Helper;
+using AEAssist;
 using ff14bot;
 
-namespace AEAssist
+namespace AEAssist.Helper
 {
     public static class GUIHelper
     {

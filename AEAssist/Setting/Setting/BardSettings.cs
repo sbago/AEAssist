@@ -1,4 +1,4 @@
-﻿using AEAssist.AI;
+﻿using AEAssist.AI.Bard;
 using AEAssist.Define;
 using PropertyChanged;
 

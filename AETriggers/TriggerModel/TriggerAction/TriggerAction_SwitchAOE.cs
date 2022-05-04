@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AETriggers.TriggerModel
+namespace AEAssist.TriggerAction
 {
     [Trigger("SwitchAOE")]
     public class TriggerAction_SwitchAOE : ITriggerAction

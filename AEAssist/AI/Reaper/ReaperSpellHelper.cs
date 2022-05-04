@@ -83,10 +83,7 @@ namespace AEAssist.AI.Reaper
 
             if (Core.Me.HasAura(AurasDefine.EnhancedGibbet)) return SpellsDefine.Gibbet.GetSpellEntity();
 
-            if (Core.Me.HasAura(AurasDefine.EnhancedGallows))
-            {
-                return SpellsDefine.Gallows.GetSpellEntity();
-            }
+            if (Core.Me.HasAura(AurasDefine.EnhancedGallows)) return SpellsDefine.Gallows.GetSpellEntity();
 
             if (SettingMgr.GetSetting<ReaperSettings>().GallowsPrefer)
                 return SpellsDefine.Gallows.GetSpellEntity();
@@ -121,11 +118,11 @@ namespace AEAssist.AI.Reaper
                 return -300;
 
             var time = 0;
-            if (DataBinding.Instance.EarlyDecisionMode)
+            if (AEAssist.DataBinding.Instance.EarlyDecisionMode)
                 time = SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs;
-            
+
             // 死亡祭祀
-            if (Core.Me.ContainMyAura(AurasDefine.BloodsownCircle,time))
+            if (Core.Me.ContainMyAura(AurasDefine.BloodsownCircle, time))
                 return -201;
 
             // 妖异
@@ -160,7 +157,7 @@ namespace AEAssist.AI.Reaper
 
         public static async Task<SpellEntity> UseTruthNorth()
         {
-            if (!DataBinding.Instance.UseTrueNorth)
+            if (!AEAssist.DataBinding.Instance.UseTrueNorth)
                 return null;
             if (!CheckIfNeedTrueNorth())
                 return null;
@@ -175,7 +172,7 @@ namespace AEAssist.AI.Reaper
                 return -100;
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -101;
-            if (ReaperSpellHelper.IfHasSoulReaver())
+            if (IfHasSoulReaver())
                 return -102;
             if (!SpellsDefine.PlentifulHarvest.RecentlyUsed() && ActionResourceManager.Reaper.ShroudGauge < 50)
                 return -103;
@@ -187,7 +184,7 @@ namespace AEAssist.AI.Reaper
 
             var coolDown = SpellsDefine.ArcaneCircle.GetSpellEntity().Cooldown.TotalMilliseconds;
 
-            if (DataBinding.Instance.DoubleEnshroudPrefer
+            if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer
                 && SpellsDefine.PlentifulHarvest.IsUnlock()
                 && ActionResourceManager.Reaper.ShroudGauge < 90
                 && coolDown > 5000
@@ -195,31 +192,28 @@ namespace AEAssist.AI.Reaper
                 return -106;
 
             if (PrepareEnterDoubleEnshroud())
-            {
                 // 连击3不能断,太亏
                 if (AIRoot.GetBattleData<ReaperBattleData>().CurrCombo == ReaperComboStages.InfernalSlice)
                     return -107;
-            }
+
             return 0;
         }
 
         public static bool PrepareEnterDoubleEnshroud()
         {
             var coolDown = SpellsDefine.ArcaneCircle.GetSpellEntity().Cooldown.TotalMilliseconds;
-            if (DataBinding.Instance.DoubleEnshroudPrefer
+            if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer
                 && SpellsDefine.PlentifulHarvest.IsUnlock()
                 && ActionResourceManager.Reaper.ShroudGauge < 90)
-            {
                 if (coolDown <= 5000)
                     return true;
-            }
 
             return false;
         }
 
         public static bool IfHasSoulReaver()
         {
-            if (SpellsDefine.Gluttony.RecentlyUsed() 
+            if (SpellsDefine.Gluttony.RecentlyUsed()
                 || SpellsDefine.BloodStalk.RecentlyUsed()
                 || SpellsDefine.GrimSwathe.RecentlyUsed()
                 || Core.Me.HasAura(AurasDefine.SoulReaver))

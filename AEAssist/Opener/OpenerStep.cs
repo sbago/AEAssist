@@ -8,7 +8,7 @@ namespace AEAssist.Opener
 
         public OpenerStepAttribute(int stepIndex)
         {
-            this.StepIndex = stepIndex;
+            StepIndex = stepIndex;
         }
     }
 }

@@ -5,7 +5,7 @@ using ff14bot;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
-namespace AEAssist.AI.Reaper
+namespace AEAssist.AI.Reaper.Ability
 {
     public class ReaperAbility_UsePotion : IAIHandler
     {
@@ -26,12 +26,11 @@ namespace AEAssist.AI.Reaper
                 return -5;
 
             if (SpellsDefine.PlentifulHarvest.IsUnlock()
-                && (SpellsDefine.ArcaneCircle.GetSpellEntity().Cooldown.TotalMilliseconds<=2000
-                || Core.Me.ContainMyAura(AurasDefine.ArcaneCircle)))
+                && (SpellsDefine.ArcaneCircle.GetSpellEntity().Cooldown.TotalMilliseconds <= 2000
+                    || Core.Me.ContainMyAura(AurasDefine.ArcaneCircle)))
                 return 1;
 
 
-            //todo: 优化,如果没冷却好圣餐或者没解锁, 就绑定附体状态用
             if (!SpellsDefine.PlentifulHarvest.IsUnlock() && ActionResourceManager.Reaper.ShroudGauge >= 50)
                 return 2;
 

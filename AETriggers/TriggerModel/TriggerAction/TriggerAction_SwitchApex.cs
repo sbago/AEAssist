@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AETriggers.TriggerModel
+namespace AEAssist.TriggerAction
 {
     [Trigger("SwitchApex")]
     public class TriggerAction_SwitchApex : ITriggerAction

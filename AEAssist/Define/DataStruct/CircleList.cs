@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AEAssist
+namespace AEAssist.Define.DataStruct
 {
     public class CircleList<T> where T : class
     {

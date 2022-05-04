@@ -6,12 +6,12 @@ using ff14bot.Enums;
 
 namespace AEAssist.AI.Reaper
 {
-    [Opener(ClassJobType.Reaper,90)]
+    [Opener(ClassJobType.Reaper, 90)]
     public class Opener_Reaper_90 : IOpener
     {
         public int Check()
         {
-            if (!DataBinding.Instance.Burst)
+            if (!AEAssist.DataBinding.Instance.Burst)
                 return -100;
             if (!SpellsDefine.ArcaneCircle.IsReady())
                 return -1;
@@ -25,42 +25,42 @@ namespace AEAssist.AI.Reaper
         }
 
         public int StepCount => 4;
-        
+
         [OpenerStep(0)]
-        SpellQueueSlot Step0()
+        private SpellQueueSlot Step0()
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
             slot.GCDSpellId = ReaperSpellHelper.GetShadowOfDeath().Id;
-            slot.Abilitys.Enqueue((SpellsDefine.ArcaneCircle,SpellTargetType.Self));
+            slot.Abilitys.Enqueue((SpellsDefine.ArcaneCircle, SpellTargetType.Self));
             return slot;
         }
-        
+
         [OpenerStep(1)]
-        SpellQueueSlot Step1()
+        private SpellQueueSlot Step1()
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
             slot.GCDSpellId = ReaperSpellHelper.CanUseSoulSlice_Scythe(Core.Me.CurrentTarget).Id;
             return slot;
         }
-        
+
         [OpenerStep(2)]
-        SpellQueueSlot Step2()
+        private SpellQueueSlot Step2()
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
             slot.GCDSpellId = ReaperSpellHelper.CanUseSoulSlice_Scythe(Core.Me.CurrentTarget).Id;
             slot.UsePotion = true;
             return slot;
         }
-        
+
         [OpenerStep(3)]
-        SpellQueueSlot Step3()
+        private SpellQueueSlot Step3()
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
             slot.GCDSpellId = SpellsDefine.PlentifulHarvest;
-            slot.Abilitys.Enqueue((SpellsDefine.Enshroud,SpellTargetType.Self));
+            slot.Abilitys.Enqueue((SpellsDefine.Enshroud, SpellTargetType.Self));
             return slot;
         }
     }

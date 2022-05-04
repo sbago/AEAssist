@@ -2,15 +2,14 @@
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
-using ff14bot.Objects;
 
-namespace AEAssist.AI.Reaper
+namespace AEAssist.AI.Reaper.Ability
 {
     public class ReaperAbility_TrueNorth : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {
-            if (!DataBinding.Instance.UseTrueNorth)
+            if (!AEAssist.DataBinding.Instance.UseTrueNorth)
                 return -10;
 
             if (!SpellsDefine.TrueNorth.IsReady())

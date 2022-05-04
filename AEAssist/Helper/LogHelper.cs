@@ -2,7 +2,7 @@
 using System.Windows.Media;
 using ff14bot.Helpers;
 
-namespace AEAssist
+namespace AEAssist.Helper
 {
     public static class LogHelper
     {

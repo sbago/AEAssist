@@ -1,8 +1,10 @@
-﻿using Buddy.Overlay;
+﻿using AEAssist.Helper;
+using AEAssist.View.OverlayManager;
+using Buddy.Overlay;
 using Buddy.Overlay.Controls;
 using ff14bot.Enums;
 
-namespace AEAssist.View
+namespace AEAssist.View.Overlay.UIComponent
 {
     [Overlay(ClassJobType.Dancer)]
     public class OverlayUIComponent_DancerOverlay : OverlayUIComponent

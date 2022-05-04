@@ -3,9 +3,8 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Managers;
-using ff14bot.Objects;
 
-namespace AEAssist.AI.Reaper
+namespace AEAssist.AI.Reaper.GCD
 {
     public class ReaperGCD_EnshroudGCD : IAIHandler
     {
@@ -18,8 +17,9 @@ namespace AEAssist.AI.Reaper
                 return -2;
 
             // 双附体时,神秘环如果即将冷却好,或者已经可以用了,先不打这些GCD
-            if (DataBinding.Instance.DoubleEnshroudPrefer &&
-                SpellsDefine.ArcaneCircle.GetSpellEntity().Cooldown.TotalMilliseconds < ConstValue.ReaperDoubleEnshroudMinCheckTime)
+            if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer &&
+                SpellsDefine.ArcaneCircle.GetSpellEntity().Cooldown.TotalMilliseconds <
+                ConstValue.ReaperDoubleEnshroudMinCheckTime)
                 return -3;
 
             if (ActionResourceManager.Reaper.LemureShroud == 0)
@@ -40,10 +40,7 @@ namespace AEAssist.AI.Reaper
             if (spell == null)
                 return null;
 
-            if (await spell.DoGCD())
-            {
-                return spell;
-            }
+            if (await spell.DoGCD()) return spell;
 
             return null;
         }

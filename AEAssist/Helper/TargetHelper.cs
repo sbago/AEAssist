@@ -24,7 +24,7 @@ namespace AEAssist.Helper
 
             var combatReach = target.CombatReach + unit.CombatReach;
 
-            if (unit.Distance(target) < range + combatReach - 0.1f) // 0.1 是为了防止误差导致没打到
+            if (unit.Distance(target) < range + combatReach - 0.1f)
                 return true;
 
             return false;
@@ -37,7 +37,7 @@ namespace AEAssist.Helper
         /// <returns></returns>
         public static bool CheckNeedUseAOE(int targetRange, int damageRange, int needCount = 3)
         {
-            if (!DataBinding.Instance.UseAOE)
+            if (!AEAssist.DataBinding.Instance.UseAOE)
                 return false;
             var count = GetNearbyEnemyCount(Core.Me.CurrentTarget, targetRange, damageRange);
 
@@ -61,7 +61,7 @@ namespace AEAssist.Helper
 
         public static bool CheckNeedUseAOE(GameObject target, int targetRange, int damageRange, int needCount = 3)
         {
-            if (!DataBinding.Instance.UseAOE)
+            if (!AEAssist.DataBinding.Instance.UseAOE)
                 return false;
             var count = GetNearbyEnemyCount(target, targetRange, damageRange);
 

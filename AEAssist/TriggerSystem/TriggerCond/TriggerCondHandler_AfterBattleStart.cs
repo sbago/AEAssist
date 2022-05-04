@@ -1,5 +1,5 @@
 ﻿using AEAssist.AI;
-using AETriggers.TriggerModel;
+using AEAssist.TriggerCond;
 
 namespace AEAssist.TriggerSystem.TriggerCond
 {

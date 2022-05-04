@@ -1,4 +1,4 @@
-﻿using AETriggers.TriggerModel;
+﻿using AEAssist.TriggerAction;
 
 namespace AEAssist.TriggerSystem.TriggerAction
 {
@@ -6,7 +6,7 @@ namespace AEAssist.TriggerSystem.TriggerAction
     {
         protected override void Handle(TriggerAction_SwitchFinalBurst t)
         {
-            DataBinding.Instance.FinalBurst = t.value;
+            AEAssist.DataBinding.Instance.FinalBurst = t.value;
         }
     }
 }

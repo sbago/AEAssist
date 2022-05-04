@@ -5,7 +5,7 @@ using ff14bot;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
-namespace AEAssist.AI.MCH
+namespace AEAssist.AI.Machinist.Ability
 {
     public class MCHAbility_BarrelStabilizer : IAIHandler
     {
@@ -25,10 +25,7 @@ namespace AEAssist.AI.MCH
 
         public async Task<SpellEntity> Run()
         {
-            if (await SpellsDefine.BarrelStabilizer.DoAbility())
-            {
-                return SpellsDefine.BarrelStabilizer.GetSpellEntity();
-            }
+            if (await SpellsDefine.BarrelStabilizer.DoAbility()) return SpellsDefine.BarrelStabilizer.GetSpellEntity();
 
             return null;
         }

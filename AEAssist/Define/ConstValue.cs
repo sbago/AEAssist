@@ -1,4 +1,4 @@
-﻿namespace AEAssist
+﻿namespace AEAssist.Define
 {
     public static class ConstValue
     {

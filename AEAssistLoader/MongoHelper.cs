@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using MongoDB.Bson;
 using MongoDB.Bson.IO;
 using MongoDB.Bson.Serialization;
@@ -13,8 +12,9 @@ namespace AEAssist
         public static JsonWriterSettings Settings = new JsonWriterSettings
         {
             Indent = true,
-            OutputMode = JsonOutputMode.Strict,
+            OutputMode = JsonOutputMode.Strict
         };
+
         static MongoHelper()
         {
             // 自动注册IgnoreExtraElements

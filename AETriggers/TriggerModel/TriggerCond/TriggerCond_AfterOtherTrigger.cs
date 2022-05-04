@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AETriggers.TriggerModel
+namespace AEAssist.TriggerCond
 {
     [Trigger("AfterOtherTrigger")]
     public class TriggerCond_AfterOtherTrigger : ITriggerCond
@@ -12,10 +12,7 @@ namespace AETriggers.TriggerModel
         {
             TriggerId = values[0];
 #if Trigger
-            if (!Entry.AllExcelData.ContainsKey(this.TriggerId))
-            {
-                throw new Exception($"Id not found: {values[0]}!\n");
-            }
+            if (!Entry.AllExcelData.ContainsKey(TriggerId)) throw new Exception($"Id not found: {values[0]}!\n");
 #endif
 
             if (!int.TryParse(values[1], out var time)) throw new Exception($"{values[1]}Error!\n");

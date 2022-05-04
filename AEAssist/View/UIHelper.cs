@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Threading;
+using AEAssist.Helper;
 
 namespace AEAssist.View
 {
     public static class UiRefresh
     {
-
-        private static Action EmptyDelegate = delegate () { };
+        private static readonly Action EmptyDelegate = delegate { };
 
 
         public static void Refresh(this UIElement uiElement)
@@ -27,9 +27,9 @@ namespace AEAssist.View
     {
         public static void RfreshCurrOverlay()
         {
-            if (OverlayManager.Instance.lastOverlay == null)
+            if (OverlayManager.OverlayManager.Instance.lastOverlay == null)
                 return;
-            OverlayManager.Instance.lastOverlay.Control.Refresh();
+            OverlayManager.OverlayManager.Instance.lastOverlay.Control.Refresh();
         }
     }
 }

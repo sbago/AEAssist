@@ -1,10 +1,8 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
-using ff14bot;
-using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Bard.Ability
 {
     public class BardAbility_MaxChargeBloodletter : IAIHandler
     {
@@ -21,12 +19,10 @@ namespace AEAssist.AI
 
         public async Task<SpellEntity> Run()
         {
-            SpellEntity SpellEntity = SpellsDefine.Bloodletter.GetSpellEntity();
+            var SpellEntity = SpellsDefine.Bloodletter.GetSpellEntity();
             if (SpellsDefine.RainofDeath.IsReady() && TargetHelper.CheckNeedUseAOE(25, 8, ConstValue.BardAOECount))
-            {
                 SpellEntity = SpellsDefine.RainofDeath.GetSpellEntity();
-            }
-            
+
             if (await SpellEntity.DoAbility()) return SpellEntity;
 
             return null;

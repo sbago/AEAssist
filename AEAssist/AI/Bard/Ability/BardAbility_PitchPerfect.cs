@@ -1,11 +1,10 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
-using ff14bot;
+using AEAssist;
 using ff14bot.Managers;
-using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Bard.Ability
 {
     public class BardAbility_PitchPerfect : IAIHandler
     {
@@ -35,17 +34,11 @@ namespace AEAssist.AI
                 && SpellsDefine.EmpyrealArrow.IsReady())
 
                 return 3;
-            
-            if (DataBinding.Instance.FinalBurst)
-            {
-                return 4;
-            }
-            
+
+            if (AEAssist.DataBinding.Instance.FinalBurst) return 4;
+
             var buffCountInEnd = BardSpellHelper.HasBuffsCountInEnd(3000);
-            if (ActionResourceManager.Bard.Repertoire == 2 && buffCountInEnd > 1)
-            {
-                return 5;
-            }
+            if (ActionResourceManager.Bard.Repertoire == 2 && buffCountInEnd > 1) return 5;
 
             return -4;
         }

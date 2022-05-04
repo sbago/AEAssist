@@ -1,10 +1,8 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
-using ff14bot;
-using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Bard.GCD
 {
     public class BardGCD_QuickNock : IAIHandler
     {

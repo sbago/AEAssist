@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:AEAssist"
              xmlns:view="clr-namespace:AEAssist.View"
+             xmlns:dataBinding="clr-namespace:AEAssist"
+             xmlns:style="clr-namespace:AEAssist.View.Style"
              mc:Ignorable="d"
              Height="350" Width="600">
     <UserControl.Resources>
@@ -17,7 +19,7 @@
     </UserControl.Resources>
 
     <UserControl.DataContext>
-        <Binding Source="{x:Static viewModels:DataBinding.Instance}" />
+        <Binding Source="{x:Static dataBinding:DataBinding.Instance}" />
     </UserControl.DataContext>
 
     <TabControl
@@ -53,17 +55,17 @@
                           Content="{Binding Language.Toggle_ShowBattleTime}" Width="200" Height="25" Margin="10"
                           HorizontalAlignment="Left"
                           IsChecked="{Binding GeneralSettings.ShowBattleTime}" />
-                
+
                 <CheckBox Name="NextAbilityFirst"
                           Content="{Binding Language.Toggle_NextAbilityFirst}" Width="200" Height="25" Margin="10"
                           HorizontalAlignment="Left"
                           IsChecked="{Binding GeneralSettings.NextAbilityFirst}" />
-                
+
                 <CheckBox Name="KnockbackAgainstFirst"
                           Content="{Binding Language.Toggle_KnockAgainstFirst}" Width="200" Height="25" Margin="10"
                           HorizontalAlignment="Left"
                           IsChecked="{Binding GeneralSettings.KnockbackAgainstFirst}" />
-                
+
             </StackPanel>
         </TabItem>
 
@@ -74,23 +76,23 @@
                           HorizontalAlignment="Left"
                           IsChecked="{Binding HotkeySetting.UseHotkey}" />
 
-                <view:HotkeyControl
+                <style:HotkeyControl
                     KeySetting="{Binding  HotkeySetting.Hotkey_Stop.Key, Mode=TwoWay}"
                     ModKeySetting="{Binding HotkeySetting.Hotkey_Stop.ModifierKey, Mode=TwoWay}"
                     Text="{Binding Language.Combox_Hotkey_Stop}" />
-                <view:HotkeyControl
+                <style:HotkeyControl
                     KeySetting="{Binding  HotkeySetting.Hotkey_Burst.Key, Mode=TwoWay}"
                     ModKeySetting="{Binding HotkeySetting.Hotkey_Burst.ModifierKey, Mode=TwoWay}"
                     Text="{Binding Language.Combox_Hotkey_BurstOff}" />
 
-                <view:HotkeyControl
+                <style:HotkeyControl
                     KeySetting="{Binding  HotkeySetting.Hotkey_ArmLength_Surecast.Key, Mode=TwoWay}"
                     ModKeySetting="{Binding HotkeySetting.Hotkey_ArmLength_Surecast.ModifierKey, Mode=TwoWay}"
                     Text="{Binding Language.Combox_Hotkey_ArmLength_Surecast}" />
-                
-                <Button Content="{Binding Language.Btn_ApplyHotkey}" 
+
+                <Button Content="{Binding Language.Btn_ApplyHotkey}"
                         Width="150" Margin="5"
-                        Name="RefreshHotkey" Click="RefreshHotkey_OnClick"/>
+                        Name="RefreshHotkey" Click="RefreshHotkey_OnClick" />
             </StackPanel>
         </TabItem>
 
@@ -169,15 +171,17 @@
             </StackPanel>
 
         </TabItem>
-        
+
         <TabItem Header="{Binding Language.TabItem_TriggerLine}">
             <StackPanel Margin="10" HorizontalAlignment="Center">
                 <CheckBox Name="AutoSwitchTriggerLine"
                           Content="{Binding Language.Toggle_AutoSwitchTriggerLine}" Width="200" Height="25" Margin="10"
                           HorizontalAlignment="Left"
                           IsChecked="{Binding GeneralSettings.AutoSwitchTriggerLine}" />
-                <Button Width="100" Height="30" Name="LoadTriggerLine" Content="{Binding Language.Button_ReloadTriggerLine}" Click="LoadTriggerLine_OnClick" />
-               
+                <Label Name="Path" Height="30" />
+                <Button Width="100" Height="30" Name="LoadTriggerLine"
+                        Content="{Binding Language.Button_ReloadTriggerLine}" Click="LoadTriggerLine_OnClick" />
+
             </StackPanel>
         </TabItem>
     </TabControl>

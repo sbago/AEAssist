@@ -3,9 +3,8 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Managers;
-using ff14bot.Objects;
 
-namespace AEAssist.AI.Reaper
+namespace AEAssist.AI.Reaper.Ability
 {
     public class ReaperAbility_ArcaneCircle : IAIHandler
     {
@@ -17,7 +16,7 @@ namespace AEAssist.AI.Reaper
                 return -2;
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
                 return -3;
-            if (DataBinding.Instance.DoubleEnshroudPrefer)
+            if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer)
             {
                 if ((SpellsDefine.PlentifulHarvest.RecentlyUsed() || ActionResourceManager.Reaper.ShroudGauge >= 50) &&
                     !Core.Me.HasAura(AurasDefine.Enshrouded))

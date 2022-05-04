@@ -1,19 +1,18 @@
 ﻿using System.Threading.Tasks;
-using AEAssist.AI;
 using AEAssist.Define;
 using AEAssist.Helper;
+using AEAssist.Rotations.Core;
 using ff14bot;
 using ff14bot.Enums;
-using ff14bot.Managers;
-using ff14bot.Objects;
+using Language = AEAssist.Language;
 
-namespace AEAssist
+namespace AEAssist.AI.Reaper
 {
     [Rotation(ClassJobType.Reaper)]
     public class ReaperRotation : IRotation
     {
-        private long _lastTime;
         private readonly AIRoot AiRoot = AIRoot.Instance;
+        private long _lastTime;
 
         private long randomTime;
 
@@ -25,21 +24,21 @@ namespace AEAssist
                     return SpellsDefine.Harpe.DoGCD();
                 return Task.FromResult(false);
             });
-            DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<ReaperSettings>().EarlyDecisionMode;
-            LogHelper.Info("EarlyDecisionMode: "+ DataBinding.Instance.EarlyDecisionMode);
+            AEAssist.DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<ReaperSettings>().EarlyDecisionMode;
+            LogHelper.Info("EarlyDecisionMode: " + AEAssist.DataBinding.Instance.EarlyDecisionMode);
         }
-        
-        // 战斗之前处理buff的?
+
         public async Task<bool> PreCombatBuff()
         {
             if (Core.Me.HasAura(AurasDefine.Soulsow))
                 return true;
             if (await SpellsDefine.Soulsow.DoGCD())
             {
-                GUIHelper.ShowInfo(Language.Instance.Content_Reaper_PreCombat2,500,false);
+                GUIHelper.ShowInfo(Language.Instance.Content_Reaper_PreCombat2, 500, false);
                 randomTime = 0;
                 return true;
             }
+
             return false;
         }
 

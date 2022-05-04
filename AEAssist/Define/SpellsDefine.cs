@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace AEAssist
+namespace AEAssist.Define
 {
     public class SpellsDefine
     {
-        public static HashSet<uint> TargetIsSelfs = new HashSet<uint>()
+        public const uint Sprint = 3;
+
+        public static HashSet<uint> TargetIsSelfs = new HashSet<uint>
         {
             Sprint,
             SecondWind,
@@ -27,16 +29,13 @@ namespace AEAssist
             Soulsow,
             Enshroud,
             ArcaneCrest,
-            ArcaneCircle,
-
+            ArcaneCircle
         };
-        
-        public static HashSet<uint> IgnoreEarlyDecisionSet = new HashSet<uint>()
+
+        public static HashSet<uint> IgnoreEarlyDecisionSet = new HashSet<uint>
         {
             PlentifulHarvest
         };
-        
-        public const uint Sprint = 3;
         // DPS Role
 
         #region DPS Role

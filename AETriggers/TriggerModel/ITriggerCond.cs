@@ -1,4 +1,4 @@
-﻿namespace AETriggers.TriggerModel
+﻿namespace AEAssist
 {
     public interface ITriggerCond : ITriggerBase
     {

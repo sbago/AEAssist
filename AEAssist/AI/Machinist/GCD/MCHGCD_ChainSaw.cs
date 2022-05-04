@@ -1,10 +1,8 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
-using ff14bot;
-using ff14bot.Objects;
 
-namespace AEAssist.AI.MCH
+namespace AEAssist.AI.Machinist.GCD
 {
     public class MCHGCD_ChainSaw : IAIHandler
     {
@@ -17,10 +15,7 @@ namespace AEAssist.AI.MCH
 
         public async Task<SpellEntity> Run()
         {
-            if (await SpellsDefine.ChainSaw.DoGCD())
-            {
-                return SpellsDefine.ChainSaw.GetSpellEntity();
-            }
+            if (await SpellsDefine.ChainSaw.DoGCD()) return SpellsDefine.ChainSaw.GetSpellEntity();
 
             return null;
         }

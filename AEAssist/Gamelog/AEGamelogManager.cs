@@ -1,8 +1,10 @@
 ﻿using System.Text.RegularExpressions;
 using AEAssist.AI;
+using AEAssist.Helper;
 using ff14bot.Enums;
 using ff14bot.Managers;
 using QuickGraph.Collections;
+using Language = AEAssist.Language;
 
 namespace AEAssist.Gamelog
 {
@@ -31,7 +33,7 @@ namespace AEAssist.Gamelog
                 LogHelper.Info("RemoveGameLog=> " + deq.Content);
             }
         }
-        
+
         public void ClearAll()
         {
             GameLogBuffers.Clear();
@@ -72,11 +74,11 @@ namespace AEAssist.Gamelog
 
                     GUIHelper.ShowInfo(e.ChatLogEntry.Contents, 1000, false);
                 }
-                
+
                 // 有人取消
                 if (e.ChatLogEntry.Contents.Contains(Language.Instance.MessageLog_CountDown_CancelBattleStart))
                 {
-                    LogHelper.Info("CountDownEnd: " +e.ChatLogEntry.Contents);
+                    LogHelper.Info("CountDownEnd: " + e.ChatLogEntry.Contents);
                     CountDownHandler.Instance.Close();
                     GUIHelper.ShowInfo(e.ChatLogEntry.Contents, 1000, false);
                 }

@@ -1,9 +1,10 @@
-﻿<UserControl x:Class="AEAssist.View.HotkeyControl"
+﻿<UserControl x:Class="AEAssist.View.Style.HotkeyControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:AEAssist.View"
+             xmlns:style="clr-namespace:AEAssist.View.Style"
              mc:Ignorable="d"
              d:DesignHeight="50" d:DesignWidth="150">
 
@@ -16,7 +17,7 @@
         </Border.BorderBrush>
         <StackPanel Orientation="Horizontal">
             <TextBlock HorizontalAlignment="Center" Foreground="White"
-                       Text="{Binding Text, RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1,AncestorType={x:Type local:HotkeyControl}}, UpdateSourceTrigger=PropertyChanged}" />
+                       Text="{Binding Text, RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1,AncestorType={x:Type style:HotkeyControl}}, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBox Name="TxtHk"
                      Margin="15,0,0,0"
@@ -26,7 +27,7 @@
                      BorderThickness="0"
                      Foreground="Black"
                      Width="200"
-                     Text="{Binding HkText, RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1,AncestorType={x:Type local:HotkeyControl}},  UpdateSourceTrigger=PropertyChanged, Mode=OneTime}" />
+                     Text="{Binding HkText, RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1,AncestorType={x:Type style:HotkeyControl}},  UpdateSourceTrigger=PropertyChanged, Mode=OneTime}" />
         </StackPanel>
     </Border>
 </UserControl>

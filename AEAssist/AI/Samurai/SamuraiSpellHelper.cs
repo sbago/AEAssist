@@ -5,7 +5,7 @@ using ff14bot;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Samurai
 {
     public class SamuraiSpellHelper
     {
@@ -18,10 +18,11 @@ namespace AEAssist.AI
                 if (ActionManager.LastSpell == SpellsDefine.Hakaze.GetSpellEntity().SpellData)
                 {
                     if (!ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Setsu))
-                        if(await SpellsDefine.Yukikaze.DoGCD())
+                        if (await SpellsDefine.Yukikaze.DoGCD())
                             return SpellsDefine.Yukikaze.GetSpellEntity();
                     //if (!ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Ka))
-                    if ((Core.Me.GetAuraById(AurasDefine.Shifu)?.TimeLeft < (Core.Me.GetAuraById(AurasDefine.Jinpu)?.TimeLeft))||
+                    if (Core.Me.GetAuraById(AurasDefine.Shifu)?.TimeLeft <
+                        Core.Me.GetAuraById(AurasDefine.Jinpu)?.TimeLeft ||
                         !Core.Me.HasAura(AurasDefine.Shifu))
                         if (await SpellsDefine.Shifu.DoGCD())
                             return SpellsDefine.Shifu.GetSpellEntity();
@@ -29,6 +30,7 @@ namespace AEAssist.AI
                     if (await SpellsDefine.Jinpu.DoGCD())
                         return SpellsDefine.Jinpu.GetSpellEntity();
                 }
+
                 if (ActionManager.LastSpell == SpellsDefine.Shifu.GetSpellEntity().SpellData)
                     if (await SpellsDefine.Kasha.DoGCD())
                         return SpellsDefine.Kasha.GetSpellEntity();
@@ -38,8 +40,9 @@ namespace AEAssist.AI
                 if (await SpellsDefine.Hakaze.DoGCD())
                     return SpellsDefine.Hakaze.GetSpellEntity();
             }
-            if(Core.Me.HasAura(AurasDefine.MeikyoShisui))
-            {         
+
+            if (Core.Me.HasAura(AurasDefine.MeikyoShisui))
+            {
                 if (!ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Ka))
                     if (await SpellsDefine.Kasha.DoGCD())
                         return SpellsDefine.Kasha.GetSpellEntity();
@@ -50,8 +53,10 @@ namespace AEAssist.AI
                     if (await SpellsDefine.Yukikaze.DoGCD())
                         return SpellsDefine.Yukikaze.GetSpellEntity();
             }
+
             return null;
         }
+
         public static SpellEntity IaijutsuCanSpell()
         {
             if (!Core.Me.HasAura(AurasDefine.Kaiten))
@@ -60,12 +65,13 @@ namespace AEAssist.AI
                 return null;
             return null;
         }
+
         public static uint SenCounts()
         {
             uint counts = 0;
             if (ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Getsu))
                 counts++;
-                
+
             if (ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Setsu))
                 counts++;
 
@@ -81,22 +87,23 @@ namespace AEAssist.AI
                 return false;
             return true;
         }
+
         public static SpellEntity GetIaijutsuSpell()
         {
             var spell = SpellsDefine.MidareSetsugekka;
-            var Sen = SamuraiSpellHelper.SenCounts();
+            var Sen = SenCounts();
             var ta = Core.Me.CurrentTarget as Character;
-           // if (spell.Cooldown.TotalSeconds != 0 && Core.Me.HasAura(AurasDefine.OgiReady) && ta.HasMyAura(AurasDefine.Higanbana))
-           //     return SpellsDefine.OgiNamikiri;
+            // if (spell.Cooldown.TotalSeconds != 0 && Core.Me.HasAura(AurasDefine.OgiReady) && ta.HasMyAura(AurasDefine.Higanbana))
+            //     return SpellsDefine.OgiNamikiri;
             if (Sen == 0) return null;
             if (Sen == 1) spell = SpellsDefine.Higanbana;
             if (Sen == 2)
             {
                 if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 5, 5))
                     return SpellsDefine.TenkaGoken.GetSpellEntity();
-                else return null;
-                
+                return null;
             }
+
             return spell.GetSpellEntity();
         }
 
@@ -113,6 +120,5 @@ namespace AEAssist.AI
         {
             return false;
         }
-                
     }
 }

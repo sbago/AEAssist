@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AEAssist;
 using AEAssist.Helper;
 
 namespace AEAssist.AI
 {
     public class CountDownHandler
     {
-        private long CountDown = 5000;
         public static CountDownHandler Instance = new CountDownHandler();
         private long _lastTime;
+        private long CountDown = 5000;
+
+        private readonly Dictionary<long, Func<Task>> CountDownActions = new Dictionary<long, Func<Task>>();
+
+        private readonly HashSet<long> HasDone = new HashSet<long>();
 
         public bool Start { get; private set; }
 
         public bool CanDoAction { get; private set; }
-
-        private Dictionary<long, Func<Task>> CountDownActions = new Dictionary<long, Func<Task>>();
-
-        private HashSet<long> HasDone = new HashSet<long>();
 
         public async Task Update()
         {
@@ -29,14 +30,14 @@ namespace AEAssist.AI
 
             foreach (var v in CountDownActions)
             {
-                if(HasDone.Contains(v.Key))
+                if (HasDone.Contains(v.Key))
                     continue;
                 if (restTime <= v.Key)
                 {
-                    this.HasDone.Add(v.Key);
+                    HasDone.Add(v.Key);
                     try
                     {
-                        LogHelper.Info("DoCountDownAction: "+ v.Key);
+                        LogHelper.Info("DoCountDownAction: " + v.Key);
                         await v.Value.Invoke();
                     }
                     catch (Exception e)
@@ -45,7 +46,7 @@ namespace AEAssist.AI
                     }
                 }
             }
-            
+
             if (restTime < 100)
             {
                 msg = $"{Language.Instance.Content_CoolDownFinish}";
@@ -89,9 +90,9 @@ namespace AEAssist.AI
 
         public void AddListener(int timeLeft, Func<Task> action, bool clearPre = true)
         {
-            if(clearPre)
-                this.CountDownActions.Clear();
-            this.CountDownActions[timeLeft] = action;
+            if (clearPre)
+                CountDownActions.Clear();
+            CountDownActions[timeLeft] = action;
         }
     }
 }

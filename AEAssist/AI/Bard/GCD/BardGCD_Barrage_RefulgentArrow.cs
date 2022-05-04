@@ -2,9 +2,8 @@
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
-using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Bard.GCD
 {
     /// <summary>
     ///     如果有纷乱buff, 打辉煌

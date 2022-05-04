@@ -11,9 +11,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 using AEAssist.AI;
+using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Enums;
-using ff14bot.Objects;
 
 namespace AEAssist.Opener
 {
@@ -21,9 +21,9 @@ namespace AEAssist.Opener
     {
         public static OpenerMgr Instance = new OpenerMgr();
 
-        public Dictionary<(ClassJobType,int), IOpener> AllOpeners = new Dictionary<(ClassJobType,int), IOpener>();
+        public Dictionary<(ClassJobType, int), IOpener> AllOpeners = new Dictionary<(ClassJobType, int), IOpener>();
 
-        public Dictionary<(Type,int), MethodInfo> AllSteps = new Dictionary<(Type,int), MethodInfo>();
+        public Dictionary<(Type, int), MethodInfo> AllSteps = new Dictionary<(Type, int), MethodInfo>();
 
         public OpenerMgr()
         {
@@ -45,44 +45,40 @@ namespace AEAssist.Opener
                 var attr = attrs[0] as OpenerAttribute;
                 var opener = Activator.CreateInstance(type) as IOpener;
                 var openerKey = (attr.ClassJobType, attr.Level);
-                if(AllOpeners.ContainsKey(openerKey))
-                    LogHelper.Error("Multi opener "+ type.Name);
+                if (AllOpeners.ContainsKey(openerKey))
+                    LogHelper.Error("Multi opener " + type.Name);
                 AllOpeners[openerKey] = opener;
 
-                var openerMethods = type.GetMethods(BindingFlags.Instance| BindingFlags.Public| BindingFlags.NonPublic);
+                var openerMethods =
+                    type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 
-                HashSet<int> stepsSet = new HashSet<int>();
+                var stepsSet = new HashSet<int>();
                 foreach (var method in openerMethods)
                 {
                     var stepAttr = method.GetCustomAttribute<OpenerStepAttribute>();
-                    if(stepAttr == null)
+                    if (stepAttr == null)
                         continue;
                     var key = (type, stepAttr.StepIndex);
-                    if (!stepsSet.Add(stepAttr.StepIndex) || stepAttr.StepIndex<0 || stepAttr.StepIndex>=opener.StepCount)
+                    if (!stepsSet.Add(stepAttr.StepIndex) || stepAttr.StepIndex < 0 ||
+                        stepAttr.StepIndex >= opener.StepCount)
                     {
                         LogHelper.Error($"StepIndexError: {type.Name} Index: {stepAttr.StepIndex}");
                         continue;
                     }
 
                     if (method.ReturnType != typeof(SpellQueueSlot))
-                    {
                         LogHelper.Error($"StepReturnTypeError: {type.Name} Method:{method.Name} ");
-                    }
 
                     var param = method.GetParameters();
-                    
-                    if (param != null && param.Length>0)
-                    {
-                        LogHelper.Error($"StepMethodParamsError: {type.Name} Method:{method.Name} ");
-                    }
 
-                    AllSteps.Add(key,method);
+                    if (param != null && param.Length > 0)
+                        LogHelper.Error($"StepMethodParamsError: {type.Name} Method:{method.Name} ");
+
+                    AllSteps.Add(key, method);
                 }
 
                 if (stepsSet.Count != opener.StepCount)
-                {
                     LogHelper.Error($"StepCountError: {type.Name}  Cal:{stepsSet.Count} Define:{opener.StepCount} ");
-                }
 
 
                 LogHelper.Info($"Load Opener: {attr.ClassJobType} Level: {attr.Level}");
@@ -107,13 +103,10 @@ namespace AEAssist.Opener
             }
 
 
-            if (opener.StepCount <= battleData.OpenerIndex)
-            {
-                return false;
-            }
+            if (opener.StepCount <= battleData.OpenerIndex) return false;
 
             var spellQueue = AIRoot.GetBattleData<SpellQueueData>();
-            
+
             if (!await spellQueue.ApplySlot())
             {
                 if (AllSteps.TryGetValue((opener.GetType(), battleData.OpenerIndex), out var method))
@@ -122,16 +115,14 @@ namespace AEAssist.Opener
                     if (slot != null)
                         spellQueue.Add(slot);
                     else
-                    {
-                        LogHelper.Error(method.Name +" Cant Get SpellQueueSlot");
-                    }
+                        LogHelper.Error(method.Name + " Cant Get SpellQueueSlot");
                 }
+
                 battleData.OpenerIndex++;
             }
 
-        
+
             return true;
         }
-
     }
 }

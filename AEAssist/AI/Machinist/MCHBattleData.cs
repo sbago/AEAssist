@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Machinist
 {
     public enum MCHComboStages
     {
@@ -9,19 +9,19 @@ namespace AEAssist.AI
         CleanShot,
         SpreadShot
     }
-    
+
     public class MCHBattleData : IBattleData
     {
         public MCHComboStages ComboStages;
         public int HyperchargeGCDCount = 0;
+
+        public Queue<int> NextBatteryQueue = new Queue<int>();
         public int NextBattery2Use { get; set; } = 50;
 
         public void ResetBattery()
         {
             NextBattery2Use = 50;
         }
-
-        public Queue<int> NextBatteryQueue = new Queue<int>();
 
         public void ApplyNextBatteryQueue()
         {
@@ -30,6 +30,7 @@ namespace AEAssist.AI
                 ResetBattery();
                 return;
             }
+
             NextBattery2Use = NextBatteryQueue.Dequeue();
         }
     }

@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:AEAssist.View"
              xmlns:viewModels="clr-namespace:AEAssist"
+             xmlns:dataBinding="clr-namespace:AEAssist"
              mc:Ignorable="d"
              d:DesignHeight="30" d:DesignWidth="250">
-    
+
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -18,9 +18,9 @@
     </UserControl.Resources>
 
     <UserControl.DataContext>
-        <Binding Source="{x:Static viewModels:DataBinding.Instance}" />
+        <Binding Source="{x:Static dataBinding:DataBinding.Instance}" />
     </UserControl.DataContext>
-    
+
     <DockPanel>
         <Label Content="AEAssist" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
 
@@ -31,10 +31,10 @@
                       Name="Expander"
                       Width="40" Height="20"
                       IsChecked="{Binding OverlayVisibility,Mode=TwoWay}" VerticalAlignment="Center" />
-            
+
             <Button Style="{StaticResource ImageButton}"
-                    Name="Close" Width="20" Height="20"   Click="Close_OnClick">
-                <Image Source="../Resources/Close_1.png"/>
+                    Name="Close" Width="20" Height="20" Click="Close_OnClick">
+                <Image Source="../Resources/Close_1.png" />
             </Button>
         </StackPanel>
     </DockPanel>

@@ -1,8 +1,8 @@
 {
-  "_t" : "Language",
-  "LanType" : "cn-jp", 
-  "LanVersion" : "2",
-  "MessageLog_CountDown_BattleStart" : "戦闘開始",
-  "MessageLog_CountDown_BattleStartInTime" : "[0-9]+",
-  "MessageLog_CountDown_CancelBattleStart" : "により、戦闘開始カウントがキャンセルされました"
+  "_t": "Language",
+  "LanType": "cn-jp",
+  "LanVersion": "2",
+  "MessageLog_CountDown_BattleStart": "戦闘開始",
+  "MessageLog_CountDown_BattleStartInTime": "[0-9]+",
+  "MessageLog_CountDown_CancelBattleStart": "により、戦闘開始カウントがキャンセルされました"
 }

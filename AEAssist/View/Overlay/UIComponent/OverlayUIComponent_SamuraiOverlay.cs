@@ -1,9 +1,10 @@
-﻿using AEAssist.View.Overlay;
+﻿using AEAssist.Helper;
+using AEAssist.View.OverlayManager;
 using Buddy.Overlay;
 using Buddy.Overlay.Controls;
 using ff14bot.Enums;
 
-namespace AEAssist.View
+namespace AEAssist.View.Overlay.UIComponent
 {
     [Overlay(ClassJobType.Samurai)]
     public class OverlayUIComponent_SamuraiOverlay : OverlayUIComponent

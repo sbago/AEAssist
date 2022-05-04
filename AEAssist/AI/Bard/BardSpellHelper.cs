@@ -1,11 +1,11 @@
-﻿using AEAssist.AI;
-using AEAssist.Define;
+﻿using AEAssist.Define;
+using AEAssist.Define.DataStruct;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Bard
 {
     public enum SongStrategyEnum
     {
@@ -70,7 +70,7 @@ namespace AEAssist.AI
                 return null;
 
 
-            if (! SpellsDefine.CausticBite.IsUnlock())
+            if (!SpellsDefine.CausticBite.IsUnlock())
             {
                 if (!ActionManager.HasSpell(SpellsDefine.VenomousBite))
                     return null;
@@ -85,7 +85,7 @@ namespace AEAssist.AI
 
         public static int GetVenomousBiteAura()
         {
-            if (! SpellsDefine.VenomousBite.IsUnlock())
+            if (!SpellsDefine.VenomousBite.IsUnlock())
                 return 0;
 
 
@@ -120,9 +120,9 @@ namespace AEAssist.AI
             return target.ContainMyAura((uint) id);
         }
 
-        public static bool IsTargetNeedIronJaws(Character target,int timeLeft)
+        public static bool IsTargetNeedIronJaws(Character target, int timeLeft)
         {
-            if (! SpellsDefine.IronJaws.IsUnlock())
+            if (!SpellsDefine.IronJaws.IsUnlock())
                 return false;
 
             var ve_id = GetVenomousBiteAura();
@@ -136,9 +136,9 @@ namespace AEAssist.AI
 
             bool NormalCheck()
             {
-                if (DataBinding.Instance.EarlyDecisionMode)
+                if (AEAssist.DataBinding.Instance.EarlyDecisionMode)
                     timeLeft += SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
-                
+
                 return !target.ContainMyAura((uint) ve_id, timeLeft)
                        || !target.ContainAura((uint) wind_id, timeLeft);
             }
@@ -148,7 +148,7 @@ namespace AEAssist.AI
             if (buffCountInEnd >= 1 && !AIRoot.GetBattleData<BardBattleData>().IsTargetLastIronJawWithBuff())
             {
                 if (ttk_ironJaws > 0 && target.ContainMyAura((uint) ve_id, ttk_ironJaws * 1000) &&
-                    TTKHelper.IsTargetTTK(target, ttk_ironJaws,false))
+                    TTKHelper.IsTargetTTK(target, ttk_ironJaws, false))
                     return NormalCheck();
                 return true;
             }
@@ -193,7 +193,8 @@ namespace AEAssist.AI
             {
                 if (!SpellsDefine.RefulgentArrow.IsUnlock())
                     return SpellsDefine.StraightShot.GetSpellEntity();
-                if (!ActionManager.HasSpell(SpellsDefine.RefulgentArrow)) return SpellsDefine.StraightShot.GetSpellEntity();
+                if (!ActionManager.HasSpell(SpellsDefine.RefulgentArrow))
+                    return SpellsDefine.StraightShot.GetSpellEntity();
 
                 return SpellsDefine.RefulgentArrow.GetSpellEntity();
             }
@@ -345,7 +346,7 @@ namespace AEAssist.AI
 
         public static int PrepareSwitchSong()
         {
-            if (!DataBinding.Instance.UseSong)
+            if (!AEAssist.DataBinding.Instance.UseSong)
                 return -110;
             var currSong = ActionResourceManager.Bard.ActiveSong;
             var remainTime = ActionResourceManager.Bard.Timer.TotalMilliseconds - 500;
@@ -355,11 +356,11 @@ namespace AEAssist.AI
             {
                 if (SpellsDefine.ArmysPaeon.GetSpellEntity().Cooldown.TotalMilliseconds > 1000
                     && SpellsDefine.MagesBallad.GetSpellEntity().Cooldown.TotalMilliseconds > 1000
-                    && SpellsDefine.TheWanderersMinuet.GetSpellEntity().Cooldown.TotalMilliseconds>1000)
+                    && SpellsDefine.TheWanderersMinuet.GetSpellEntity().Cooldown.TotalMilliseconds > 1000)
                     return -103;
-                
-                if (AIRoot.GetBattleData<BardBattleData>().NeedSwitchByNextSongQueue((int)currSong,remainTime))
-                        return 100;
+
+                if (AIRoot.GetBattleData<BardBattleData>().NeedSwitchByNextSongQueue((int) currSong, remainTime))
+                    return 100;
 
                 switch (currSong)
                 {
@@ -385,17 +386,14 @@ namespace AEAssist.AI
             if (SpellsDefine.ArmysPaeon.GetSpellEntity().Cooldown.TotalMilliseconds > 1000
                 && SpellsDefine.MagesBallad.GetSpellEntity().Cooldown.TotalMilliseconds > 1000)
                 return -102;
-            
+
             // 关爆发的时候,让歌唱完
             if (currSong != ActionResourceManager.Bard.BardSong.None)
             {
-                if (AIRoot.GetBattleData<BardBattleData>().NeedSwitchByNextSongQueue((int)currSong,remainTime))
+                if (AIRoot.GetBattleData<BardBattleData>().NeedSwitchByNextSongQueue((int) currSong, remainTime))
                     return 201;
 
-                if (remainTime <= ConstValue.SongsTimeLeftCheckWhenCloseBuff)
-                {
-                    return 202;
-                }
+                if (remainTime <= ConstValue.SongsTimeLeftCheckWhenCloseBuff) return 202;
 
                 return -101;
             }

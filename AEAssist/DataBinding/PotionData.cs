@@ -1,4 +1,4 @@
-﻿namespace AEAssist.Define
+﻿namespace AEAssist
 {
     public class PotionData
     {

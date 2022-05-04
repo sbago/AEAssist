@@ -1,14 +1,15 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
 
-namespace AEAssist
+namespace AEAssist.Rotations.Core
 {
     public interface IRotation
     {
         /// <summary>
-        /// init after job switch
+        ///     init after job switch
         /// </summary>
-        void Init(); 
+        void Init();
+
         Task<bool> PreCombatBuff();
         SpellEntity GetBaseGCDSpell();
     }

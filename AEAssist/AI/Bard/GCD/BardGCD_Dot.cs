@@ -4,21 +4,21 @@ using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Objects;
 
-namespace AEAssist.AI
+namespace AEAssist.AI.Bard.GCD
 {
     public class BardGCD_Dot : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {
             var tar = Core.Me.CurrentTarget as Character;
-            if (!DataBinding.Instance.UseDot)
+            if (!AEAssist.DataBinding.Instance.UseDot)
                 return -1;
             if (TTKHelper.IsTargetTTK(tar))
                 return -2;
 
             if (DotBlacklistHelper.IsBlackList(Core.Me.CurrentTarget as Character))
                 return -10;
-            
+
             var dots = 0;
             if (BardSpellHelper.IsTargetHasAura_WindBite(tar)) dots++;
 
@@ -27,7 +27,7 @@ namespace AEAssist.AI
             if (dots >= 2)
             {
                 var timeLeft = SettingMgr.GetSetting<BardSettings>().Dot_TimeLeft;
-                if (BardSpellHelper.IsTargetNeedIronJaws(tar,timeLeft))
+                if (BardSpellHelper.IsTargetNeedIronJaws(tar, timeLeft))
                     return 1;
                 return -3;
             }
@@ -44,15 +44,13 @@ namespace AEAssist.AI
                 spell = BardSpellHelper.GetWindBite();
             else if (!BardSpellHelper.IsTargetHasAura_VenomousBite(target))
                 spell = BardSpellHelper.GetVenomousBite();
-            else if (BardSpellHelper.IsTargetNeedIronJaws(target,timeLeft)) spell = SpellsDefine.IronJaws.GetSpellEntity();
+            else if (BardSpellHelper.IsTargetNeedIronJaws(target, timeLeft))
+                spell = SpellsDefine.IronJaws.GetSpellEntity();
 
             if (spell == null)
                 return null;
             var ret = await spell.DoGCD();
-            if (ret)
-            {
-                return spell;
-            }
+            if (ret) return spell;
 
             return null;
         }

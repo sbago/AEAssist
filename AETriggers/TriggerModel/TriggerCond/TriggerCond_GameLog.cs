@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace AETriggers.TriggerModel
+namespace AEAssist.TriggerCond
 {
     [Trigger("GameLog")]
     public class TriggerCond_GameLog : ITriggerCond
     {
         public string ContainValue;
-        public int MsgType;
         public int delayTime;
+        public int MsgType;
 
 
         public void WriteFromJson(string[] values)
