@@ -34,6 +34,7 @@ namespace AEAssist
         public string Toggle_ShowBattleTime { get; set; }
 
         public string Toggle_NextAbilityFirst { get; set; }
+        public string Toggle_AutoInterrupt { get; set; }
         public string Toggle_AutoSwitchTriggerLine { get; set; }
         public string Toggle_KnockAgainstFirst { get; set; }
 

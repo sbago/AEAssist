@@ -30,13 +30,9 @@ namespace AEAssist.View
 
             var dir = Directory.CreateDirectory(TriggerLineSwitchHelper.Path);
 
-            Path.Content = dir.FullName;
+            //Path.Content = dir.FullName;
         }
-
-        private void ShowOverlay_OnClick(object sender, RoutedEventArgs e)
-        {
-            OverlayManager.OverlayManager.Instance.SwitchOverlay();
-        }
+        
 
         private void SwitchLan_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -89,12 +85,7 @@ namespace AEAssist.View
                     VerticalAlignment = VerticalAlignment.Center
                 });
         }
-
-        private void RefreshHotkey_OnClick(object sender, RoutedEventArgs e)
-        {
-            SettingMgr.GetSetting<HotkeySetting>().RegisHotkey();
-            SettingMgr.GetSetting<HotkeySetting>().ResetHotkeyName();
-        }
+        
 
         private void LoadTriggerLine_OnClick(object sender, RoutedEventArgs e)
         {

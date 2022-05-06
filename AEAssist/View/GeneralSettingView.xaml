@@ -7,6 +7,7 @@
              xmlns:view="clr-namespace:AEAssist.View"
              xmlns:dataBinding="clr-namespace:AEAssist"
              xmlns:style="clr-namespace:AEAssist.View.Style"
+             xmlns:generalSetting="clr-namespace:AEAssist.View.GeneralSetting"
              mc:Ignorable="d"
              Height="350" Width="600">
     <UserControl.Resources>
@@ -37,80 +38,15 @@
         </TabItem>
 
         <TabItem Header="{Binding Language.TabItem_General}">
-            <StackPanel HorizontalAlignment="Left" Margin="10">
-                <Button Name="ShowOverlay"
-                        Content="{Binding Language.Btn_SwitchOverlay}" Width="150" Height="25" Margin="10"
-                        HorizontalAlignment="Left"
-                        Click="ShowOverlay_OnClick" />
-                <CheckBox Name="ShowGameLog"
-                          Content="{Binding Language.Toggle_ShowGameLog}" Width="200" Height="25" Margin="10"
-                          HorizontalAlignment="Left"
-                          IsChecked="{Binding GeneralSettings.ShowGameLog}" />
-                <CheckBox Name="ShowAbilityDebug"
-                          Content="{Binding Language.Toggle_ShowDebugLog}" Width="200" Height="25" Margin="10"
-                          HorizontalAlignment="Left"
-                          IsChecked="{Binding GeneralSettings.ShowDebugLog}" />
-
-                <CheckBox Name="ShowBattleTime"
-                          Content="{Binding Language.Toggle_ShowBattleTime}" Width="200" Height="25" Margin="10"
-                          HorizontalAlignment="Left"
-                          IsChecked="{Binding GeneralSettings.ShowBattleTime}" />
-
-                <CheckBox Name="NextAbilityFirst"
-                          Content="{Binding Language.Toggle_NextAbilityFirst}" Width="200" Height="25" Margin="10"
-                          HorizontalAlignment="Left"
-                          IsChecked="{Binding GeneralSettings.NextAbilityFirst}" />
-                <StackPanel Orientation="Horizontal">
-                    <Label Width="100" Margin="5,0,5,0" Content="{Binding Language.Label_OverlayScale}"/>
-                    <TextBox Width="50" Margin="5,0,5,0" Text="{Binding GeneralSettings.OverlayScale_X,Mode=TwoWay}" />
-                    <TextBox Width="50" Margin="5,0,5,0" Text="{Binding GeneralSettings.OverlayScale_Y,Mode=TwoWay}" />
-                    <!-- <Button Width="100"  Margin="5,0,5,0" Content="Apply" Name="ApplyScale" Click="ApplyScale_OnClick" /> -->
-                </StackPanel>
-                </StackPanel>
+            <generalSetting:UserControl_General />
         </TabItem>
 
         <TabItem Header="{Binding Language.TabItem_Hotkey}">
-            <StackPanel>
-                <CheckBox Name="UseHotkey"
-                          Content="{Binding Language.Toggle_UseHotkey}" Width="200" Height="25" Margin="10"
-                          HorizontalAlignment="Left"
-                          IsChecked="{Binding HotkeySetting.UseHotkey}" />
-
-                <style:HotkeyControl
-                    KeySetting="{Binding  HotkeySetting.Hotkey_Stop.Key, Mode=TwoWay}"
-                    ModKeySetting="{Binding HotkeySetting.Hotkey_Stop.ModifierKey, Mode=TwoWay}"
-                    Text="{Binding Language.Combox_Hotkey_Stop}" />
-                <style:HotkeyControl
-                    KeySetting="{Binding  HotkeySetting.Hotkey_Burst.Key, Mode=TwoWay}"
-                    ModKeySetting="{Binding HotkeySetting.Hotkey_Burst.ModifierKey, Mode=TwoWay}"
-                    Text="{Binding Language.Combox_Hotkey_BurstOff}" />
-
-                <style:HotkeyControl
-                    KeySetting="{Binding  HotkeySetting.Hotkey_ArmLength_Surecast.Key, Mode=TwoWay}"
-                    ModKeySetting="{Binding HotkeySetting.Hotkey_ArmLength_Surecast.ModifierKey, Mode=TwoWay}"
-                    Text="{Binding Language.Combox_Hotkey_ArmLength_Surecast}" />
-
-                <Button Content="{Binding Language.Btn_ApplyHotkey}"
-                        Width="150" Margin="5"
-                        Name="RefreshHotkey" Click="RefreshHotkey_OnClick" />
-            </StackPanel>
+            <generalSetting:UserControl_Hotkey />
         </TabItem>
 
         <TabItem Header="{Binding Language.TabItem_BaseSetting}">
-            <StackPanel HorizontalAlignment="Left" Margin="10">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="{Binding Language.Textbox_AnimationLockMs}" Width="150" />
-                    <TextBox Width="150" Text="{Binding GeneralSettings.AnimationLockMs,Mode=TwoWay}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="{Binding Language.Textbox_GCDQueueMs}" Width="150" />
-                    <TextBox Width="150" Text="{Binding GeneralSettings.ActionQueueMs,Mode=TwoWay}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
-                    <Label Content="{Binding Language.Textbox_AbilityTimesInGCD}" Width="150" />
-                    <TextBox Width="150" Text="{Binding GeneralSettings.MaxAbilityTimsInGCD,Mode=TwoWay}" />
-                </StackPanel>
-            </StackPanel>
+            <generalSetting:UserControl_BaseSetting />
         </TabItem>
 
         <TabItem Header="{Binding Language.TabItem_TTKSetting}">
@@ -172,17 +108,17 @@
 
         </TabItem>
 
-        <TabItem Header="{Binding Language.TabItem_TriggerLine}">
-            <StackPanel Margin="10" HorizontalAlignment="Center">
-                <CheckBox Name="AutoSwitchTriggerLine"
-                          Content="{Binding Language.Toggle_AutoSwitchTriggerLine}" Width="200" Height="25" Margin="10"
-                          HorizontalAlignment="Left"
-                          IsChecked="{Binding GeneralSettings.AutoSwitchTriggerLine}" />
-                <Label Name="Path" Height="30" />
-                <Button Width="100" Height="30" Name="LoadTriggerLine"
-                        Content="{Binding Language.Button_ReloadTriggerLine}" Click="LoadTriggerLine_OnClick" />
-
-            </StackPanel>
-        </TabItem>
+        <!-- <TabItem Header="{Binding Language.TabItem_TriggerLine}"> -->
+        <!--     <StackPanel Margin="10" HorizontalAlignment="Center"> -->
+        <!--         <CheckBox Name="AutoSwitchTriggerLine" -->
+        <!--                   Content="{Binding Language.Toggle_AutoSwitchTriggerLine}" Width="200" Height="25" Margin="10" -->
+        <!--                   HorizontalAlignment="Left" -->
+        <!--                   IsChecked="{Binding GeneralSettings.AutoSwitchTriggerLine}" /> -->
+        <!--         <Label Name="Path" Height="30" /> -->
+        <!--         <Button Width="100" Height="30" Name="LoadTriggerLine" -->
+        <!--                 Content="{Binding Language.Button_ReloadTriggerLine}" Click="LoadTriggerLine_OnClick" /> -->
+        <!-- -->
+        <!--     </StackPanel> -->
+        <!-- </TabItem> -->
     </TabControl>
 </UserControl>

@@ -295,7 +295,16 @@
             <DependentUpon>CommonOverlay.xaml</DependentUpon>
         </Compile>
         <Compile Include="View\GeneralSettingView.xaml.cs">
-            <DependentUpon>GeneralSettingView.xaml</DependentUpon>
+          <DependentUpon>GeneralSettingView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\GeneralSetting\UserControl_BaseSetting.xaml.cs">
+          <DependentUpon>UserControl_BaseSetting.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\GeneralSetting\UserControl_General.xaml.cs">
+          <DependentUpon>UserControl_General.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\GeneralSetting\UserControl_Hotkey.xaml.cs">
+          <DependentUpon>UserControl_Hotkey.xaml</DependentUpon>
         </Compile>
         <Compile Include="View\Hotkey\HotkeySetting.cs" />
         <Compile Include="View\MCHSettingView.xaml.cs">
@@ -397,6 +406,10 @@
         <Resource Include="Resources\Spells\ArmsLength.png" />
         <Resource Include="Resources\Spells\Troubadour.png" />
         <Page Include="View\CommonOverlay.xaml" />
+        <Page Include="View\GeneralSettingView.xaml" />
+        <Page Include="View\GeneralSetting\UserControl_BaseSetting.xaml" />
+        <Page Include="View\GeneralSetting\UserControl_General.xaml" />
+        <Page Include="View\GeneralSetting\UserControl_Hotkey.xaml" />
         <Page Include="View\MCHSettingView.xaml" />
         <Page Include="View\OverlayHeader.xaml" />
         <Page Include="View\Overlay\DancerOverlayWindow.xaml" />
@@ -490,7 +503,6 @@
         <Resource Include="Resources\jobs\whm.png" />
         <Resource Include="Resources\jobs\wvr.png" />
         <Page Include="View\BardSettingView.xaml" />
-        <Page Include="View\GeneralSettingView.xaml" />
         <Page Include="View\Overlay\BardOverlayWindow.xaml" />
         <Resource Include="Resources\Icon.png" />
         <Page Include="MainWindow.xaml">

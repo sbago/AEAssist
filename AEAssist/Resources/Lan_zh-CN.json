@@ -6,7 +6,7 @@
   "Toggle_BurstOff": "爆发",
   "Toggle_AOE": "AOE",
   "Toggle_ShowGameLog": "显示GameLog(编辑时间轴必备)",
-  "Toggle_ShowDebugLog": "显示优先级判定Log(调试用)",
+  "Toggle_ShowDebugLog": "显示调试Log",
   "Toggle_ShowBattleTime": "Overlay显示战斗时间",
   "Toggle_NextAbilityFirst": "优先满足能力技插入",
   "Toggle_KnockAgainstFirst": "优先满足防击退插入",
@@ -88,5 +88,6 @@
   "TabItem_TriggerLine": "时间轴配置",
   "Toggle_AutoSwitchTriggerLine": "自动切换时间轴",
   "Content_ResetSetting": "本地配置版本较低,已自动重置",
-  "Label_OverlayScale": "Overlay缩放"
+  "Label_OverlayScale": "Overlay缩放",
+  "Toggle_AutoInterrupt": "自动打断"
 }

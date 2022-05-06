@@ -138,7 +138,7 @@ namespace AEAssist.AI
                 if (battleCharacter.IsCasting && battleCharacter.SpellCastInfo.Interruptible)
                 {
                     var spell = SpellHelper.GetInterruptSpell(Core.Me.CurrentJob);
-                    if (spell != 0)
+                    if (spell != 0 && spell.IsReady())
                     {
                         battleData.NextAbilitySpellId = spell.GetSpellEntity();
                     }

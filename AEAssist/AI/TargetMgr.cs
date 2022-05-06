@@ -54,6 +54,10 @@ namespace AEAssist.AI
 
             foreach (var unit in tars)
             {
+                
+                if (!unit.CanAttackUnit())
+                    continue;
+                
                 if (SettingMgr.GetSetting<GeneralSettings>().ShowGameLog)
                 {
                     if (LastNpcIds.Add(unit.NpcId)) LogHelper.Info($"Find new enemy : {unit.Name} NpcId: {unit.NpcId}");
@@ -62,10 +66,9 @@ namespace AEAssist.AI
                         LogHelper.Info($"Find enemy casting spell : {unit.Name} NpcId: {unit.NpcId} " +
                                        $"CastingSpell [{unit.SpellCastInfo.Name}] [{unit.SpellCastInfo.SpellData.LocalizedName}] SpellId : {unit.SpellCastInfo.SpellData.Id} ");
                 }
-
+                Enemys.Add(unit.ObjectId, unit);
                 if (!unit.ValidAttackUnit())
                     continue;
-
                 if (!unit.NotInvulnerable())
                     continue;
 
@@ -78,9 +81,7 @@ namespace AEAssist.AI
                 // {
                 //     EnemysIn12.Add(unit);
                 // }
-
-
-                Enemys.Add(unit.ObjectId, unit);
+                
             }
 
 

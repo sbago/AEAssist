@@ -11,6 +11,11 @@ namespace AEAssist.Helper
         {
             return unit != null && unit.IsValid && unit.IsTargetable && unit.CanAttack && unit.CurrentHealth > 0;
         }
+        
+        public static bool CanAttackUnit(this GameObject unit)
+        {
+            return unit != null && unit.CanAttack && unit.CurrentHealth > 0;
+        }
 
         public static bool NotInvulnerable(this GameObject unit)
         {
