@@ -44,40 +44,34 @@ namespace AEAssist.AI.Machinist
                 var aoeGCD = GetSpreadShot();
                 if (await aoeGCD.DoGCD())
                 {
-                    AIRoot.GetBattleData<MCHBattleData>().ComboStages = MCHComboStages.SpreadShot;
                     return aoeGCD;
                 }
             }
 
 
-            switch (AIRoot.GetBattleData<MCHBattleData>().ComboStages)
+            var lastSpellId = SpellHelper.GetLastComboSpell();
+
+            if (lastSpellId == SpellsDefine.SplitShot || lastSpellId == SpellsDefine.HeatedSplitShot)
             {
-                case MCHComboStages.SlugShot:
-                    var slugShot = GetSlugShot();
-                    if (ActionManager.ComboTimeLeft > 0)
-                        if (await slugShot.DoGCD())
-                        {
-                            AIRoot.GetBattleData<MCHBattleData>().ComboStages = MCHComboStages.CleanShot;
-                            return slugShot;
-                        }
-
-                    break;
-                case MCHComboStages.CleanShot:
-                    var cleanShot = GetCleanShot();
-                    if (ActionManager.ComboTimeLeft > 0)
-                        if (await cleanShot.DoGCD())
-                        {
-                            AIRoot.GetBattleData<MCHBattleData>().ComboStages = MCHComboStages.SplitShot;
-                            return cleanShot;
-                        }
-
-                    break;
+                var slugShot = GetSlugShot();
+                if (await slugShot.DoGCD())
+                {
+                    return slugShot;
+                }
             }
 
+            if (lastSpellId == SpellsDefine.SlugShot || lastSpellId == SpellsDefine.HeatedSlugShot)
+            {
+                var cleanShot = GetCleanShot();
+                if (await cleanShot.DoGCD())
+                {
+                    return cleanShot;
+                }
+            }
+            
             var splitShot = GetSplitShot();
             if (await splitShot.DoGCD())
             {
-                AIRoot.GetBattleData<MCHBattleData>().ComboStages = MCHComboStages.SlugShot;
                 return splitShot;
             }
 

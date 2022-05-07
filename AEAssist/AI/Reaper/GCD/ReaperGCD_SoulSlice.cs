@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
+using ff14bot.Helpers;
 using ff14bot.Managers;
 
 namespace AEAssist.AI.Reaper.GCD
@@ -18,6 +20,9 @@ namespace AEAssist.AI.Reaper.GCD
 
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.ContainMyAura(AurasDefine.Enshrouded))
                 return -3;
+            
+            if (ActionManager.ComboTimeLeft > 0 && ActionManager.ComboTimeLeft < 10)
+                return -4;
 
             return 0;
         }

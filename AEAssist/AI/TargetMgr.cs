@@ -36,6 +36,7 @@ namespace AEAssist.AI
 
 
         private readonly HashSet<uint> LastNpcIds = new HashSet<uint>();
+        private readonly HashSet<uint> CastingSpell = new HashSet<uint>();
 
         //  public List<BattleCharacter> EnemysIn12 = new List<BattleCharacter>();
 
@@ -62,7 +63,7 @@ namespace AEAssist.AI
                 {
                     if (LastNpcIds.Add(unit.NpcId)) LogHelper.Info($"Find new enemy : {unit.Name} NpcId: {unit.NpcId}");
 
-                    if (unit.IsCasting)
+                    if (unit.IsCasting && CastingSpell.Add(unit.CastingSpellId))
                         LogHelper.Info($"Find enemy casting spell : {unit.Name} NpcId: {unit.NpcId} " +
                                        $"CastingSpell [{unit.SpellCastInfo.Name}] [{unit.SpellCastInfo.SpellData.LocalizedName}] SpellId : {unit.SpellCastInfo.SpellData.Id} ");
                 }

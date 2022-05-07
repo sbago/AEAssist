@@ -17,6 +17,8 @@ namespace AEAssist
 {
     public class Entry
     {
+        public const string Path = @"Routines\AEAssist";
+        
         private static MainWindow _form;
 
         private static MainWindow Form
@@ -98,49 +100,25 @@ namespace AEAssist
             TreeHooks.Instance.ReplaceHook("PullBuff", PullBuffBehavior);
         }
 
-        public Composite RestBehavior
-        {
+        public Composite RestBehavior { get; } = new TreeSharp.Action();
+
+        public Composite PreCombatBuffBehavior{ get; } = new TreeSharp.Action();
+        
+
+        public Composite PullBehavior{ get; } = new TreeSharp.Action();
+
+        public Composite HealBehavior{
             get
             {
                 return
-                    new ActionRunCoroutine(ctx => RotationManager.Instance.Rest());
+                    new ActionRunCoroutine(ctx => RotationManager.Instance.Update());
             }
         }
 
-        public Composite PreCombatBuffBehavior
-        {
-            get
-            {
-                return
-                    new ActionRunCoroutine(ctx => RotationManager.Instance.PreCombatBuff());
-            }
-        }
+        public Composite CombatBuffBehavior{ get; } = new TreeSharp.Action();
 
-        public Composite PullBehavior
-        {
-            get { return new ActionRunCoroutine(ctx => RotationManager.Instance.Pull()); }
-        }
-
-        public Composite HealBehavior
-        {
-            get { return new ActionRunCoroutine(ctx => RotationManager.Instance.Heal()); }
-        }
-
-        public Composite CombatBuffBehavior
-        {
-            get { return new ActionRunCoroutine(ctx => RotationManager.Instance.CombatBuff()); }
-        }
-
-        public Composite CombatBehavior
-        {
-            get { return new ActionRunCoroutine(ctx => RotationManager.Instance.Combat()); }
-        }
-
-        public Composite PullBuffBehavior
-        {
-            get { return new ActionRunCoroutine(ctx => RotationManager.Instance.PullBuff()); }
-        }
-
+        public Composite CombatBehavior{ get; } = new TreeSharp.Action();
+        public Composite PullBuffBehavior{ get; } = new TreeSharp.Action();
         #endregion Behavior Composites
     }
 }

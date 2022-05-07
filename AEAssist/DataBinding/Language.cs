@@ -52,6 +52,8 @@ namespace AEAssist
         public string Toggle_Apex { get; set; }
         public string Toggle_ActiveAttack { get; set; }
         public string Toggle_PreferDoubleEnshroud { get; set; }
+        
+        public string Toggle_UseEnshroud { get; set; }
         public string Toggle_UseHarpe { get; set; }
         public string Toggle_UseTrueNorthWhenMissActionDir { get; set; }
         public string Toggle_UsePoleton { get; set; }

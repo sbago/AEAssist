@@ -2,17 +2,8 @@
 
 namespace AEAssist.AI.Machinist
 {
-    public enum MCHComboStages
-    {
-        SplitShot,
-        SlugShot,
-        CleanShot,
-        SpreadShot
-    }
-
     public class MCHBattleData : IBattleData
     {
-        public MCHComboStages ComboStages;
         public int HyperchargeGCDCount = 0;
 
         public Queue<int> NextBatteryQueue = new Queue<int>();

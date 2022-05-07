@@ -21,6 +21,14 @@ namespace AEAssist.AI.Machinist.Ability
             if (ActionResourceManager.Machinist.SummonRemaining.TotalMilliseconds == 0
                 && !Core.Me.HasAura(AurasDefine.WildfireBuff))
                 return -4;
+            
+            SpellEntity spell = null;
+            if (ActionResourceManager.Machinist.SummonRemaining.TotalMilliseconds > 0)
+                spell = MCHSpellHelper.GetQueenOverdrive();
+            else if (Core.Me.HasAura(AurasDefine.WildfireBuff)) spell = SpellsDefine.Detonator.GetSpellEntity();
+            if (!spell.IsReady())
+                return -5;
+            
             return 0;
         }
 

@@ -60,6 +60,11 @@
                                   IsChecked="{Binding GeneralSettings.UsePotion,Mode=TwoWay}" />
 
                         <CheckBox HorizontalContentAlignment="Center"
+                                  Content="{Binding Language.Toggle_UseEnshroud}"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding UseEnshroud,Mode=TwoWay}" />
+                        
+                        <CheckBox HorizontalContentAlignment="Center"
                                   Content="{Binding Language.Toggle_PreferDoubleEnshroud}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
                                   IsChecked="{Binding DoubleEnshroudPrefer,Mode=TwoWay}" />

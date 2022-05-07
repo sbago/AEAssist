@@ -250,5 +250,15 @@ namespace AEAssist.Helper
 
             return 0;
         }
+
+        public static uint GetLastComboSpell()
+        {
+            if (ActionManager.LastSpell == null)
+                return 0;
+            var mask = ActionManager.GetMaskedAction(ActionManager.LastSpell.Id);
+            if (mask != null)
+                return mask.Id;
+            return ActionManager.LastSpell.Id;
+        }
     }
 }

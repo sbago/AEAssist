@@ -23,12 +23,19 @@ namespace AEAssist.AI.Machinist.Ability
 
             var character = Core.Me.CurrentTarget as Character;
             if (SpellsDefine.Wildfire.RecentlyUsed() || Core.Me.HasAura(AurasDefine.WildfireBuff)) return 2;
-
-            if (MCHSpellHelper.CheckReassmableGCD(SettingMgr.GetSetting<MCHSettings>().StrongGCDCheckTime))
+            
+            if (MCHSpellHelper.CheckReassmableGCD(2000))
                 return -5;
-
-            if (ActionResourceManager.Machinist.Heat >= 95)
+            
+            if (ActionResourceManager.Machinist.Heat >= 100)
                 return 10;
+            
+            if (MCHSpellHelper.CheckReassmableGCD(SettingMgr.GetSetting<MCHSettings>().StrongGCDCheckTime))
+                return -6;
+            
+            
+            if (ActionResourceManager.Machinist.Heat >= 90)
+                return 11;
 
             if (SpellsDefine.BarrelStabilizer.GetSpellEntity().Cooldown.TotalMilliseconds < 5000) return 1;
 

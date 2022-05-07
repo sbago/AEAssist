@@ -60,17 +60,13 @@ namespace AEAssist.Rotations.Core
             return DefaultRotation;
         }
 
-        public Task<bool> Rest()
-        {
-            return Task.FromResult(false);
-        }
+
 
         public async Task<bool> PreCombatBuff()
         {
-            await CountDownHandler.Instance.Update();
+            if (ff14bot.Core.Me.InCombat) return false;
             if (CountDownHandler.Instance.Start)
                 return false;
-            if (ff14bot.Core.Me.InCombat) return false;
             AIRoot.Instance.Clear();
 
             if (ff14bot.Core.Me.HasTarget && ff14bot.Core.Me.CurrentTarget.CanAttack)
@@ -80,17 +76,14 @@ namespace AEAssist.Rotations.Core
                 return false;
             return await GetRotation().PreCombatBuff();
         }
+        
 
-        public Task<bool> Pull()
-        {
-            return Task.FromResult(false);
-        }
-
-        public async Task<bool> Heal()
+        public async Task<bool> Update()
         {
             try
             {
                 await CountDownHandler.Instance.Update();
+                await PreCombatBuff();
                 TargetMgr.Instance.Update();
                 return await AIRoot.Instance.Update();
             }
@@ -101,21 +94,7 @@ namespace AEAssist.Rotations.Core
 
             return false;
         }
-
-        public Task<bool> CombatBuff()
-        {
-            return Task.FromResult(false);
-        }
-
-        public Task<bool> Combat()
-        {
-            return Task.FromResult(false);
-        }
-
-        public Task<bool> PullBuff()
-        {
-            return Task.FromResult(false);
-        }
+        
 
         public SpellEntity GetBaseGCDSpell()
         {

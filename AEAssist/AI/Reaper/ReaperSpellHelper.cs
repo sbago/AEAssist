@@ -170,6 +170,8 @@ namespace AEAssist.AI.Reaper
         {
             if (AIRoot.Instance.CloseBurst)
                 return -100;
+            if (!DataBinding.Instance.UseEnshroud)
+                return -99;
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -101;
             if (IfHasSoulReaver())

@@ -89,5 +89,6 @@
   "Toggle_AutoSwitchTriggerLine": "自动切换时间轴",
   "Content_ResetSetting": "本地配置版本较低,已自动重置",
   "Label_OverlayScale": "Overlay缩放",
-  "Toggle_AutoInterrupt": "自动打断"
+  "Toggle_AutoInterrupt": "自动打断",
+  "Toggle_UseEnshroud": "使用附体"
 }

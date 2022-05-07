@@ -15,7 +15,7 @@ namespace AEAssist.Helper
         public static void Init()
         {
             var currVersion = Language.Instance.LanVersion;
-            var dir = @"Routines\AEAssist\Resources\";
+            var dir = $@"{Entry.Path}\Resources\";
 
             var path = $"{dir}Lan_{Language.Instance.LanType}.json";
             File.WriteAllText(path, MongoHelper.ToJson(Language.Instance));

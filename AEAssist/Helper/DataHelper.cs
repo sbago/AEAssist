@@ -13,7 +13,7 @@ namespace AEAssist.Helper
 
         static DataHelper()
         {
-            var bossFile = @"Routines\AEAssist\Resources\BossDictionary.json";
+            var bossFile = $@"{Entry.Path}\Resources\BossDictionary.json";
 
             var bosses = File.ReadAllText(bossFile);
             try

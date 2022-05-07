@@ -68,7 +68,7 @@ namespace AEAssist
         public bool OverlayVisibility { get; set; } = true;
         public void ChangeTriggerLine(TriggerLine line)
         {
-            if (!TriggerLineSwitchHelper.CheckTriggerLine(line, out var str))
+            if (line != null && !TriggerLineSwitchHelper.CheckTriggerLine(line, out var str))
             {
                 MessageBox.Show(str);
                 return;
@@ -99,6 +99,7 @@ namespace AEAssist
             TimeStr = "";
             UseBattery = true;
             UseSong = true;
+            UseEnshroud = true;
             FinalBurst = false;
             WildfireNoDelay = SettingMgr.GetSetting<MCHSettings>().WildfireFirst;
         }
@@ -135,6 +136,7 @@ namespace AEAssist
 
         public bool UseHarpe { get; set; }
         public bool UseSoulGauge { get; set; } = true;
+        public bool UseEnshroud { get; set; } = true;
 
         public bool DoubleEnshroudPrefer { get; set; } = true;
 
