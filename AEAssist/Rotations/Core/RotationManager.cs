@@ -49,6 +49,7 @@ namespace AEAssist.Rotations.Core
             if (_classJobType != ff14bot.Core.Me.CurrentJob)
             {
                 _classJobType = ff14bot.Core.Me.CurrentJob;
+                CountDownHandler.Instance.ClearListener();
                 GetRotation().Init();
             }
         }

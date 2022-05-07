@@ -30,7 +30,10 @@ namespace AEAssist.Define
             Soulsow,
             Enshroud,
             ArcaneCrest,
-            ArcaneCircle
+            ArcaneCircle,
+            
+            //SAM
+            MeikyoShisui
         };
 
         public static HashSet<uint> IgnoreEarlyDecisionSet = new HashSet<uint>

@@ -18,7 +18,7 @@ namespace AEAssist.AI.Machinist
                 () => PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId));
 
             CountDownHandler.Instance.AddListener(4800,
-                () => SpellsDefine.Reassemble.DoAbility(), false);
+                () => SpellsDefine.Reassemble.DoAbility());
 
             AEAssist.DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<MCHSettings>().EarlyDecisionMode;
         }

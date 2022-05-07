@@ -88,10 +88,13 @@ namespace AEAssist.AI
             HasDone.Clear();
         }
 
-        public void AddListener(int timeLeft, Func<Task> action, bool clearPre = true)
+        public void ClearListener()
         {
-            if (clearPre)
-                CountDownActions.Clear();
+            CountDownActions.Clear();
+        }
+
+        public void AddListener(int timeLeft, Func<Task> action)
+        {
             CountDownActions[timeLeft] = action;
         }
     }

@@ -12,8 +12,8 @@ namespace AEAssist.AI.Reaper.Ability
         {
             if (!SpellsDefine.Gluttony.IsReady())
                 return -1;
-            if (AIRoot.Instance.CloseBurst)
-                return -2;
+            if (AIRoot.Instance.CloseBurst && !SpellsDefine.Enshroud.IsUnlock())
+                return -101;
             if (ReaperSpellHelper.IfHasSoulReaver())
                 return -4;
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))

@@ -180,6 +180,7 @@
         <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UseBattery.cs" />
         <Compile Include="AI\Reaper\SpellEvent\SpellEvent_EnshourdGCD.cs" />
         <Compile Include="AI\Reaper\SpellEvent\SpellEvent_Lemure.cs" />
+        <Compile Include="AI\Samurai\Opener_Samurai_90.cs" />
         <Compile Include="AI\SpellEvent.cs" />
         <Compile Include="AI\Machinist\Ability\MCHAbility_BarrelStabilizer.cs" />
         <Compile Include="AI\Machinist\Ability\MCHAbility_FinalBurst.cs" />
