@@ -38,6 +38,8 @@ namespace AEAssist
         public int DexPotionId { get; set; }
 
         public int StrPotionId { get; set; }
+        
+        
 
         public HashSet<string> DotBlacklist { get; set; } = new HashSet<string>();
         public int AutoFinalBurstCheckTime { get; set; } = 6000;

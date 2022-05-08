@@ -170,6 +170,10 @@
         <Compile Include="AI\Bard\SpellEvent\SpellEvent_RagingStrikes.cs" />
         <Compile Include="AI\Bard\SpellEvent\SpellEvent_Songs.cs" />
         <Compile Include="AI\BattleData.cs" />
+        <Compile Include="AI\BLM\BLM_AIPriorityQueue.cs" />
+        <Compile Include="AI\BLM\BLM_BattleData.cs" />
+        <Compile Include="AI\BLM\BLM_Rotation.cs" />
+        <Compile Include="AI\BLM\GCD\BLM_BaseGCD.cs" />
         <Compile Include="AI\Dancer\DancerRotation.cs" />
         <Compile Include="AI\IAIHandler.cs" />
         <Compile Include="AI\IAIPriorityQueue.cs" />
@@ -262,6 +266,7 @@
         <Compile Include="Rotations\Core\IRotation.cs" />
         <Compile Include="Rotations\Core\RotationAttribute.cs" />
         <Compile Include="Rotations\Core\RotationManager.cs" />
+        <Compile Include="Setting\Setting\BLMSetting.cs" />
         <Compile Include="Setting\Setting\HotkeySetting.cs" />
         <Compile Include="Setting\Setting\MCHSettings.cs" />
         <Compile Include="Setting\Setting\ReaperSettings.cs" />

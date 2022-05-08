@@ -32,8 +32,7 @@ namespace AEAssist.AI.Machinist.Ability
             
             if (MCHSpellHelper.CheckReassmableGCD(SettingMgr.GetSetting<MCHSettings>().StrongGCDCheckTime))
                 return -6;
-            
-            
+
             if (ActionResourceManager.Machinist.Heat >= 90)
                 return 11;
 
