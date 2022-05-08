@@ -3,6 +3,7 @@ using AEAssist.Helper;
 using AEAssist.Opener;
 using ff14bot;
 using ff14bot.Enums;
+using ff14bot.Managers;
 
 namespace AEAssist.AI.Reaper
 {
@@ -11,6 +12,8 @@ namespace AEAssist.AI.Reaper
     {
         public int Check()
         {
+            if (!Core.Me.CurrentTarget.IsBoss() && PartyManager.NumMembers<=4)
+                return -5;
             if (!AEAssist.DataBinding.Instance.Burst)
                 return -100;
             if (!SpellsDefine.ArcaneCircle.IsReady())

@@ -49,7 +49,7 @@ namespace AEAssist.Helper
             }
 
             if (spell.AdjustedCastTime != TimeSpan.Zero)
-                if (!await Coroutine.Wait(spell.BaseCastTime + TimeSpan.FromMilliseconds(500), () => Core.Me.IsCasting))
+                if (!await Coroutine.Wait(spell.AdjustedCastTime - TimeSpan.FromMilliseconds(300), () => Core.Me.IsCasting))
                     return false;
 
             SpellEventMgr.Instance.Run(spell.Id);

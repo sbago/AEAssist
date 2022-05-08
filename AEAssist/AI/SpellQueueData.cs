@@ -58,16 +58,17 @@ namespace AEAssist.AI
             if (isLock)
             {
                 var slot = Queue.Peek();
-                if (slot.UsePotion)
-                {
-                    await AIMgrs.Instance.UsePotion(Core.Me.CurrentJob);
-                    isLock = false;
-                    ObjectPool.Instance.Return(Queue.Dequeue());
-                    return await ApplySlot();
-                }
+
 
                 if (slot.Abilitys.Count == 0)
                 {
+                    if (slot.UsePotion)
+                    {
+                        await AIMgrs.Instance.UsePotion(Core.Me.CurrentJob);
+                        isLock = false;
+                        ObjectPool.Instance.Return(Queue.Dequeue());
+                        return await ApplySlot();
+                    }
                     isLock = false;
                     ObjectPool.Instance.Return(Queue.Dequeue());
                     return await ApplySlot();

@@ -49,7 +49,13 @@ namespace AEAssist.AI
                 LogHelper.Debug(
                     $"{AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
                 if (ret >= 0)
-                    return await v.Run();
+                {
+                    var spell = await v.Run();
+                    if (spell!=null)
+                    {
+                        return spell;
+                    }
+                }
             }
 
             return null;
@@ -66,8 +72,13 @@ namespace AEAssist.AI
                 LogHelper.Debug(
                     $"{AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
                 if (ret >= 0)
-                    return await v.Run();
-                //   if(v.GetType() == typeof(BardAbility_Bloodletter))
+                {
+                    var spell = await v.Run();
+                    if (spell!=null)
+                    {
+                        return spell;
+                    }
+                }
             }
 
             return null;

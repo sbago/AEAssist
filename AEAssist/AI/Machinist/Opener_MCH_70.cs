@@ -1,6 +1,7 @@
 ﻿using AEAssist.Define;
 using AEAssist.Helper;
 using AEAssist.Opener;
+using ff14bot;
 using ff14bot.Enums;
 using ff14bot.Managers;
 
@@ -11,6 +12,8 @@ namespace AEAssist.AI.Machinist
     {
         public int Check()
         {
+            if (!Core.Me.CurrentTarget.IsBoss() && PartyManager.NumMembers<=4)
+                return -5;
             if (ActionResourceManager.Machinist.Heat >= 50)
                 return -1;
             if (ActionResourceManager.Machinist.Battery >= 50)

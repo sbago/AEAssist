@@ -3,6 +3,7 @@ using AEAssist.Helper;
 using AEAssist.Opener;
 using ff14bot;
 using ff14bot.Enums;
+using ff14bot.Managers;
 
 namespace AEAssist.AI.Samurai
 {
@@ -24,6 +25,9 @@ namespace AEAssist.AI.Samurai
             if (!SpellsDefine.HissatsuSenei.IsReady())
                 return -4;
 
+            if (!Core.Me.CurrentTarget.IsBoss() && PartyManager.NumMembers<=4)
+                return -5;
+            
             return 0;
         }
         
