@@ -14,32 +14,35 @@ namespace AEAssist.AI.Bard.GCD
 
         public async Task<SpellEntity> Run()
         {
-            var aoeCount = TargetHelper.GetNearbyEnemyCount(Core.Me.CurrentTarget, 12, 6);
-            if (aoeCount == ConstValue.BardAOECount)
+            if (DataBinding.Instance.UseAOE)
             {
-                var spellData = BardSpellHelper.GetBaseGCD();
-                if (spellData.Id == SpellsDefine.RefulgentArrow)
+                var aoeCount = TargetHelper.GetNearbyEnemyCount(Core.Me.CurrentTarget, 12, 6);
+                if (aoeCount == ConstValue.BardAOECount)
                 {
-                    if (await spellData.DoGCD()) return spellData;
+                    var spellData = BardSpellHelper.GetBaseGCD();
+                    if (spellData.Id == SpellsDefine.RefulgentArrow)
+                    {
+                        if (await spellData.DoGCD()) return spellData;
+                    }
+                    else
+                    {
+                        spellData = BardSpellHelper.GetQuickNock();
+                        if (spellData == null)
+                            return null;
+                        if (await spellData.DoGCD())
+                            return spellData;
+                    }
                 }
-                else
+                else if (aoeCount > ConstValue.BardAOECount)
                 {
-                    spellData = BardSpellHelper.GetQuickNock();
+                    var spellData = BardSpellHelper.GetQuickNock();
                     if (spellData == null)
                         return null;
                     if (await spellData.DoGCD())
                         return spellData;
                 }
             }
-            else if(aoeCount > ConstValue.BardAOECount)
-            {
-                var spellData = BardSpellHelper.GetQuickNock();
-                if (spellData == null)
-                    return null;
-                if (await spellData.DoGCD())
-                    return spellData;
-            }
-            else
+
             {
                 var spellData = BardSpellHelper.GetBaseGCD();
                 if (spellData == null)

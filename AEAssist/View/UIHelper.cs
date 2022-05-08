@@ -16,9 +16,9 @@ namespace AEAssist.View
             {
                 uiElement.Dispatcher.Invoke(DispatcherPriority.Render, EmptyDelegate);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                LogHelper.Error(e.ToString());
+                
             }
         }
     }

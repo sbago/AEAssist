@@ -68,6 +68,8 @@ namespace AEAssist.AI
                 lastAbility = SpellEntity.Default;
             foreach (var v in queue.AbilityQueue)
             {
+                if (AIRoot.GetBattleData<BattleData>().maxAbilityTimes == 0)
+                    return null;
                 var ret = v.Check(lastAbility);
                 LogHelper.Debug(
                     $"{AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");

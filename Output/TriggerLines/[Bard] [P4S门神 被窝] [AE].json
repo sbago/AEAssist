@@ -28,16 +28,6 @@
           "Time" : { "$numberInt" : "20" }
         }]
     }, {
-      "_id" : "3",
-      "TriggerActions" : [{
-          "_t" : "TriggerAction_CastAbility",
-          "SpellId" : { "$numberInt" : "3559" }
-        }],
-      "TriggerConds" : [{
-          "_t" : "TriggerCond_AfterBattleStart",
-          "Time" : { "$numberInt" : "130" }
-        }]
-    }, {
       "_id" : "4",
       "TriggerActions" : [{
           "_t" : "TriggerAction_SwitchBurst",
@@ -45,7 +35,7 @@
         }],
       "TriggerConds" : [{
           "_t" : "TriggerCond_AfterBattleStart",
-          "Time" : { "$numberInt" : "145" }
+          "Time" : { "$numberInt" : "140" }
         }]
     }, {
       "_id" : "5",
