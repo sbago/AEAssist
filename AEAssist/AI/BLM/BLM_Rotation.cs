@@ -17,6 +17,7 @@ namespace AEAssist.AI.BLM
 
         public Task<bool> PreCombatBuff()
         {
+            
             return Task.FromResult(false);
         }
 
