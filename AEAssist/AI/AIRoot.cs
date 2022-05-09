@@ -88,6 +88,7 @@ namespace AEAssist.AI
             LogHelper.Debug("Clear battle data");
         }
 
+        private bool _cleared;
         public async Task<bool> Update()
         {
             var timeNow = TimeHelper.Now();
@@ -101,11 +102,17 @@ namespace AEAssist.AI
 
             if (Stop)
             {
-                if (Core.Me.CurrentTarget != null)
+                if (!_cleared)
+                {
+                    _cleared = true;
                     Core.Me.ClearTarget();
+                }
+
                 GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_Stoping);
                 return false;
             }
+
+            _cleared = false;
 
             if (!Core.Me.HasTarget || !Core.Me.CurrentTarget.CanAttack)
             {
@@ -181,7 +188,7 @@ namespace AEAssist.AI
                         battleData.NextAbilitySpellId = null;
                     }
 
-                    if (ret != null) RecordGCD(ret);
+                    if (ret != null) RecordAbility(ret);
                 }
             }
 

@@ -7,6 +7,7 @@ using AEAssist.Rotations.Core;
 using Buddy.Coroutines;
 using ff14bot;
 using ff14bot.Enums;
+using ff14bot.Helpers;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
@@ -146,7 +147,6 @@ namespace AEAssist.Helper
             {
                 if (spellData.Charges >= 1)
                     return true;
-
                 LogHelper.Debug(
                     $" {spellData.LocalizedName} Charge {spellData.Charges} MaxCharge {spellData.MaxCharges}!");
 

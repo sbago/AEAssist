@@ -4,6 +4,7 @@ using AEAssist.Helper;
 using AEAssist.Rotations.Core;
 using ff14bot;
 using ff14bot.Enums;
+using ff14bot.Managers;
 using Language = AEAssist.Language;
 
 namespace AEAssist.AI.Reaper
@@ -42,9 +43,15 @@ namespace AEAssist.AI.Reaper
             return false;
         }
 
-        public Task<bool> NoTarget()
+        public async Task<bool> NoTarget()
         {
-            return Task.FromResult(false);
+            if (MovementManager.IsMoving)
+                return false;
+            
+            if (Core.Me.HasAura(AurasDefine.Soulsow))
+                return true;
+
+            return await SpellsDefine.Soulsow.DoGCD();
         }
         
         public SpellEntity GetBaseGCDSpell()

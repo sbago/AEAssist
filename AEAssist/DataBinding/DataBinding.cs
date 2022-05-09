@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Media;
 using AEAssist.AI;
 using AEAssist.Helper;
+using ff14bot;
 using PropertyChanged;
 using QuickGraph;
 
@@ -27,7 +28,7 @@ namespace AEAssist
         } = true;
         
         public bool FinalBurst { get; set; }
-
+        
         public bool Stop { get; set; }
 
         public bool AutoAttack { get; set; }

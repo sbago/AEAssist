@@ -10,6 +10,7 @@
   "Toggle_ShowBattleTime" : "ShowBattleTime",
   "Toggle_NextAbilityFirst" : "NextAbilityFirst",
   "Toggle_AutoInterrupt" : "AutoInterrupt",
+  "Toggle_AutoFinalBurst" : "AutoFinalBurst",
   "Toggle_AutoSwitchTriggerLine" : "AutoSwitchTriggerLine",
   "Toggle_KnockAgainstFirst" : "KnockAgainstFirst",
   "Button_ReloadTriggerLine" : "ReloadTriggerLine",

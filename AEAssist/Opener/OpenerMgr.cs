@@ -100,15 +100,21 @@ namespace AEAssist.Opener
                     LogHelper.Debug($"Opener Check: {opener.GetType().Name} ret: {ret}");
                     return false;
                 }
+                LogHelper.Debug($"Use Opener: {opener.GetType().Name}");
             }
 
 
-            if (opener.StepCount <= battleData.OpenerIndex) return false;
+            if (opener.StepCount < battleData.OpenerIndex) return false;
 
             var spellQueue = AIRoot.GetBattleData<SpellQueueData>();
 
             if (!await spellQueue.ApplySlot())
             {
+                if (opener.StepCount <= battleData.OpenerIndex)
+                {
+                    battleData.OpenerIndex++;
+                    return false;
+                }
                 if (AllSteps.TryGetValue((opener.GetType(), battleData.OpenerIndex), out var method))
                 {
                     var slot = (SpellQueueSlot) method.Invoke(opener, null);

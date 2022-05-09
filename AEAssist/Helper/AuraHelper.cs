@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Controls;
+using AEAssist.Define;
 using ff14bot;
+using ff14bot.Helpers;
 using ff14bot.Objects;
 
 namespace AEAssist.Helper
@@ -17,6 +20,14 @@ namespace AEAssist.Helper
             }
 
             return false;
+        }
+
+        public static int GetAuraStack(this Character character, uint id)
+        {
+            var aura = character.GetAuraById(id);
+            if (aura == null)
+                return 0;
+            return (int) aura.Value;
         }
 
         public static bool ContainMyAura(this Character character, uint id, int timeLeft = 0)

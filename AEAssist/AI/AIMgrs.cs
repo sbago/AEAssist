@@ -60,18 +60,12 @@ namespace AEAssist.AI
                 lastGCD = SpellEntity.Default;
             foreach (var v in queue.GCDQueue)
             {
-                if (AIRoot.GetBattleData<BattleData>().CurrApply != null)
-                    return null;
                 var ret = v.Check(lastGCD);
                 LogHelper.Debug(
                     $"{AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
                 if (ret >= 0)
                 {
-                    var spell = await v.Run();
-                    if (spell!=null)
-                    {
-                        return spell;
-                    }
+                    return await v.Run();
                 }
             }
 
@@ -94,11 +88,7 @@ namespace AEAssist.AI
                     $"{AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
                 if (ret >= 0)
                 {
-                    var spell = await v.Run();
-                    if (spell!=null)
-                    {
-                        return spell;
-                    }
+                    return await v.Run();
                 }
             }
 

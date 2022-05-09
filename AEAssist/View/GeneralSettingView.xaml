@@ -61,6 +61,13 @@
                     <Label Content="{Binding Language.Textbox_TTK_IgnoreDamage}" Width="130" />
                     <TextBox Width="150" Text="{Binding GeneralSettings.TTK_IgnoreDamage,Mode=TwoWay}" />
                 </StackPanel>
+                
+                <CheckBox Name="ShowAbilityDebug"
+                          Content="{Binding Language.Toggle_AutoFinalBurst}" Width="150" Height="25" Margin="10"
+                          HorizontalAlignment="Left"
+                          IsChecked="{Binding GeneralSettings.AutoFinalBurst}" />
+
+                
             </StackPanel>
         </TabItem>
 

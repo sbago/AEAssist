@@ -7,7 +7,7 @@ namespace AEAssist
     [AddINotifyPropertyChangedInterface]
     public class GeneralSettings : IBaseSetting
     {
-        public bool AutoFinalBurst = true;
+        public bool AutoFinalBurst { get; set; } = true;
 
         public GeneralSettings()
         {
