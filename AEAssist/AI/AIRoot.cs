@@ -12,6 +12,10 @@ using ff14bot.Objects;
 
 namespace AEAssist.AI
 {
+    public interface IBattleData
+    {
+    }
+    
     public class AIRoot
     {
         public static readonly AIRoot Instance = new AIRoot();
@@ -181,10 +185,11 @@ namespace AEAssist.AI
             if (await OpenerMgr.Instance.UseOpener(Core.Me.CurrentJob)) return false;
 
        
-            if (await GetBattleData<SpellQueueData>().ApplySlot()) return false;
+            if (await AISpellQueueMgr.Instance.UseSpellQueue()) return false;
 
             // boss is time to kill (default is 6s),so toggle the FinalBurst
-            if (TTKHelper.IsBossTTK(Core.Me.CurrentTarget as Character)) AEAssist.DataBinding.Instance.FinalBurst = true;
+            if (TTKHelper.CheckFinalBurst(Core.Me.CurrentTarget as Character)) 
+                AEAssist.DataBinding.Instance.FinalBurst = true;
 
             var canUseAbility = true;
             var delta = timeNow - battleData.lastCastTime;

@@ -6,7 +6,7 @@ using ff14bot.Enums;
 
 namespace AEAssist.View.Overlay.UIComponent
 {
-    [Overlay(ClassJobType.Samurai)]
+    [Job(ClassJobType.Samurai)]
     public class OverlayUIComponent_SamuraiOverlay : OverlayUIComponent
     {
         private OverlayControl _control;

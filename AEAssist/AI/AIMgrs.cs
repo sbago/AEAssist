@@ -7,6 +7,21 @@ using ff14bot.Enums;
 
 namespace AEAssist.AI
 {
+    public interface IAIHandler
+    {
+        int Check(SpellEntity lastSpell);
+
+        Task<SpellEntity> Run();
+    }
+    public interface IAIPriorityQueue
+    {
+        List<IAIHandler> GCDQueue { get; }
+
+        List<IAIHandler> AbilityQueue { get; }
+
+        Task<bool> UsePotion();
+    }
+    
     public class AIMgrs
     {
         public static readonly AIMgrs Instance = new AIMgrs();
@@ -24,14 +39,14 @@ namespace AEAssist.AI
                     continue;
                 if (!baseType.IsAssignableFrom(type))
                     continue;
-                var attrs = type.GetCustomAttributes(typeof(AIPriorityQueueAttribute), false);
+                var attrs = type.GetCustomAttributes(typeof(JobAttribute), false);
                 if (attrs.Length == 0)
                 {
-                    LogHelper.Error($"AIPriorityQueue class [{type}] need AIPriorityQueueAttribute");
+                    LogHelper.Error($"AIPriorityQueue class [{type}] need JobAttribute");
                     continue;
                 }
 
-                var attr = attrs[0] as AIPriorityQueueAttribute;
+                var attr = attrs[0] as JobAttribute;
                 JobPriorityQueue[attr.ClassJobType] = Activator.CreateInstance(type) as IAIPriorityQueue;
                 LogHelper.Debug("Load AIPriorityQueue: " + attr.ClassJobType);
             }
@@ -45,6 +60,8 @@ namespace AEAssist.AI
                 lastGCD = SpellEntity.Default;
             foreach (var v in queue.GCDQueue)
             {
+                if (AIRoot.GetBattleData<BattleData>().CurrApply != null)
+                    return null;
                 var ret = v.Check(lastGCD);
                 LogHelper.Debug(
                     $"{AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
@@ -68,6 +85,8 @@ namespace AEAssist.AI
                 lastAbility = SpellEntity.Default;
             foreach (var v in queue.AbilityQueue)
             {
+                if (AIRoot.GetBattleData<BattleData>().CurrApply != null)
+                    return null;
                 if (AIRoot.GetBattleData<BattleData>().maxAbilityTimes == 0)
                     return null;
                 var ret = v.Check(lastAbility);

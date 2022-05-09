@@ -8,7 +8,7 @@ using Language = AEAssist.Language;
 
 namespace AEAssist.AI.Reaper
 {
-    [Rotation(ClassJobType.Reaper)]
+    [Job(ClassJobType.Reaper)]
     public class ReaperRotation : IRotation
     {
         private readonly AIRoot AiRoot = AIRoot.Instance;

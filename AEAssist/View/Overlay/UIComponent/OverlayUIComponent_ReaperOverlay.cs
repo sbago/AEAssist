@@ -6,7 +6,7 @@ using ff14bot.Enums;
 
 namespace AEAssist.View.Overlay.UIComponent
 {
-    [Overlay(ClassJobType.Reaper)]
+    [Job(ClassJobType.Reaper)]
     public class OverlayUIComponent_ReaperOverlay : OverlayUIComponent
     {
         private OverlayControl _control;

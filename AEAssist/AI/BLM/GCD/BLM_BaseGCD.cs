@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AEAssist.AI.BLM.SpellQueue;
 using AEAssist.Define;
 using AEAssist.Helper;
 
@@ -13,9 +14,8 @@ namespace AEAssist.AI.BLM.GCD
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.Fire.GetSpellEntity();
-            if (await spell.DoGCD())
-                return spell;
+            AISpellQueueMgr.Instance.Apply<SpellQueue_Test>();
+            await Task.CompletedTask;
             return null;
         }
     }

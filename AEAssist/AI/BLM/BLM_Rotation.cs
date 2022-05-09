@@ -9,7 +9,7 @@ using ff14bot.Objects;
 
 namespace AEAssist.AI.BLM
 {
-    [Rotation(ClassJobType.BlackMage)]
+    [Job(ClassJobType.BlackMage)]
     public class BLM_Rotation : IRotation
     {
         public void Init()

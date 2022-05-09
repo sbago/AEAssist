@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.AI.Bard.Ability;
+using AEAssist.AI.BLM.Ability;
 using AEAssist.AI.BLM.GCD;
 using AEAssist.Helper;
 using ff14bot.Enums;
 
 namespace AEAssist.AI.BLM
 {
-    [AIPriorityQueue(ClassJobType.BlackMage)]
+    [Job(ClassJobType.BlackMage)]
     public class BLM_AIPriorityQueue : IAIPriorityQueue
     {
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>()

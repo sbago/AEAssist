@@ -7,7 +7,7 @@ using ff14bot.Enums;
 
 namespace AEAssist.AI.Samurai
 {
-    [Rotation(ClassJobType.Samurai)]
+    [Job(ClassJobType.Samurai)]
     public class SamuraiRotation : IRotation
     {
         private readonly AIRoot AiRoot = AIRoot.Instance;

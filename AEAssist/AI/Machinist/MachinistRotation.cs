@@ -9,7 +9,7 @@ using Language = AEAssist.Language;
 
 namespace AEAssist.AI.Machinist
 {
-    [Rotation(ClassJobType.Machinist)]
+    [Job(ClassJobType.Machinist)]
     public class MachinistRotation : IRotation
     {
         public void Init()

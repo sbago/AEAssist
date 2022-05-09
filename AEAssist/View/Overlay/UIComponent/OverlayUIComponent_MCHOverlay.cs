@@ -6,7 +6,7 @@ using ff14bot.Enums;
 
 namespace AEAssist.View.Overlay.UIComponent
 {
-    [Overlay(ClassJobType.Machinist)]
+    [Job(ClassJobType.Machinist)]
     public class OverlayUIComponent_MCHOverlay : OverlayUIComponent
     {
         private OverlayControl _control;

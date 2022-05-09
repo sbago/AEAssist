@@ -3,7 +3,7 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 
-namespace AEAssist.AI.Bard.Ability
+namespace AEAssist.AI.BLM.Ability
 {
     public class BlackMageAblity_Leylines : IAIHandler
     {

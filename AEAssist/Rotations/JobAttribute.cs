@@ -1,13 +1,13 @@
 ﻿using System;
 using ff14bot.Enums;
 
-namespace AEAssist.Rotations.Core
+namespace AEAssist
 {
-    public class RotationAttribute : Attribute
+    public class JobAttribute : Attribute
     {
         public ClassJobType ClassJobType;
 
-        public RotationAttribute(ClassJobType classJobType)
+        public JobAttribute(ClassJobType classJobType)
         {
             ClassJobType = classJobType;
         }

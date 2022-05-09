@@ -20,14 +20,17 @@ namespace AEAssist.View.OverlayManager
 
         public void Init()
         {
+            var baseType = typeof(OverlayUIComponent);
             foreach (var type in GetType().Assembly.GetTypes())
             {
                 if (type.IsAbstract || type.IsInterface)
                     continue;
-                var attrs = type.GetCustomAttributes(typeof(OverlayAttribute), false);
+                if (!baseType.IsAssignableFrom(type))
+                    continue;
+                var attrs = type.GetCustomAttributes(typeof(JobAttribute), false);
                 if (attrs.Length == 0) continue;
 
-                var attr = attrs[0] as OverlayAttribute;
+                var attr = attrs[0] as JobAttribute;
                 AllOverlays[attr.ClassJobType] = Activator.CreateInstance(type) as OverlayUIComponent;
                 LogHelper.Info("Load Overlay: " + attr.ClassJobType);
             }

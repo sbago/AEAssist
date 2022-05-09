@@ -191,11 +191,13 @@
         <Compile Include="AI\BLM\GCD\BlackMageGCD_UmbralSoul.cs" />
         <Compile Include="AI\BLM\GCD\BlackMageGCD_Xenoglossy.cs" />
         <Compile Include="AI\BLM\GCD\BLM_BaseGCD.cs" />
+        <Compile Include="AI\BLM\SpellQueue\SpellQueueSlot_Despair.cs" />
+        <Compile Include="AI\BLM\SpellQueue\SpellQueueSlot_Fire1.cs" />
+        <Compile Include="AI\BLM\SpellQueue\SpellQueueSlot_Fire3.cs" />
+        <Compile Include="AI\BLM\SpellQueue\SpellQueueSlot_Fire4.cs" />
+        <Compile Include="AI\BLM\SpellQueue\SpellQueue_Test.cs" />
         <Compile Include="AI\Dancer\DancerRotation.cs" />
-        <Compile Include="AI\IAIHandler.cs" />
-        <Compile Include="AI\IAIPriorityQueue.cs" />
-        <Compile Include="AI\IAISpellQueue.cs" />
-        <Compile Include="AI\IBattleData.cs" />
+        <Compile Include="AI\AISpellQueueMgr.cs" />
         <Compile Include="AI\Machinist\SpellEvent\SpellEvent_Hypercharge.cs" />
         <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UnderHyperChargetGCD.cs" />
         <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UseBattery.cs" />
@@ -281,8 +283,8 @@
         <Compile Include="Opener\OpenerStep.cs" />
         <Compile Include="Rotations\Core\DefaultRotation.cs" />
         <Compile Include="Rotations\Core\IRotation.cs" />
-        <Compile Include="Rotations\Core\RotationAttribute.cs" />
         <Compile Include="Rotations\Core\RotationManager.cs" />
+        <Compile Include="Rotations\JobAttribute.cs" />
         <Compile Include="Setting\Setting\BLMSetting.cs" />
         <Compile Include="Setting\Setting\HotkeySetting.cs" />
         <Compile Include="Setting\Setting\MCHSettings.cs" />
@@ -336,7 +338,6 @@
         <Compile Include="View\OverlayHeader.xaml.cs">
             <DependentUpon>OverlayHeader.xaml</DependentUpon>
         </Compile>
-        <Compile Include="View\OverlayManager\OverlayAttribute.cs" />
         <Compile Include="View\OverlayManager\OverlayManager.cs" />
         <Compile Include="View\Overlay\BardOverlayWindow.xaml.cs">
             <DependentUpon>BardOverlayWindow.xaml</DependentUpon>

@@ -33,7 +33,7 @@ namespace AEAssist.Helper
             return true;
         }
 
-        public static bool IsBossTTK(Character target)
+        public static bool CheckFinalBurst(Character target)
         {
             if (!SettingMgr.GetSetting<GeneralSettings>().OpenTTK)
                 return false;

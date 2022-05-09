@@ -40,6 +40,10 @@ namespace AEAssist.Helper
 
             var currCulture = CultureInfo.CurrentCulture;
             if (AllLans.TryGetValue(currCulture.Name, out var targetLan)) SwitchLan(targetLan);
+            else
+            {
+                SwitchLan(AllLans["en"]);
+            }
 
             LanOptions.Clear();
             foreach (var v in AllLans)

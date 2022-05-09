@@ -7,7 +7,7 @@ using ff14bot.Enums;
 
 namespace AEAssist.AI.Samurai
 {
-    [AIPriorityQueue(ClassJobType.Samurai)]
+    [Job(ClassJobType.Samurai)]
     public class Samurai_AIPriorityQueue : IAIPriorityQueue
     {
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>

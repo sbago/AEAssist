@@ -31,14 +31,14 @@ namespace AEAssist.Rotations.Core
                     continue;
                 if (type == typeof(DefaultRotation))
                     continue;
-                var attrs = type.GetCustomAttributes(typeof(RotationAttribute), false);
+                var attrs = type.GetCustomAttributes(typeof(JobAttribute), false);
                 if (attrs.Length == 0)
                 {
                     LogHelper.Error($"Rotation class [{type}] need RotationAttribute");
                     continue;
                 }
 
-                var attr = attrs[0] as RotationAttribute;
+                var attr = attrs[0] as JobAttribute;
                 AllRotations[attr.ClassJobType] = Activator.CreateInstance(type) as IRotation;
                 LogHelper.Debug("Load Rotation: " + attr.ClassJobType);
             }

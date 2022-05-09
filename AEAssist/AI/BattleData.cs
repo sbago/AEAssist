@@ -96,6 +96,10 @@ namespace AEAssist.AI
             }
         }
 
+        public IAISpellQueue CurrApply { get; set; }
+        public SpellQueueSlot ApplySlot;
+        public int ApplyIndex = 0;
+
         public long GCDRetryEndTime;
         public long AbilityRetryEndTime;
 

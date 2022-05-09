@@ -49,6 +49,7 @@ namespace AEAssist
                 SettingMgr.GetSetting<HotkeySetting>().ResetHotkeyName();
                 AEGamelogManager.Instance.Init();
                 OverlayManager.Instance.Init();
+                AISpellQueueMgr.Instance.Init();
                 PotionHelper.Init();
                 // PotionHelper.DebugAllItems();
                 AIRoot.Instance.Init();

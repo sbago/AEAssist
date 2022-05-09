@@ -7,7 +7,7 @@ using ff14bot;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
-namespace AEAssist.AI.Bard.Ability
+namespace AEAssist.AI.BLM.Ability
 {
     public class BlackMageAblity_Transpose : IAIHandler
     {

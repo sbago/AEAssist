@@ -9,7 +9,7 @@ using Language = AEAssist.Language;
 
 namespace AEAssist.AI.Bard
 {
-    [Rotation(ClassJobType.Bard)]
+    [Job(ClassJobType.Bard)]
     public class BardRotation : IRotation
     {
         private readonly AIRoot AiRoot = AIRoot.Instance;

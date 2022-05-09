@@ -19,7 +19,7 @@ namespace AEAssist
         public void Reset()
         {
             GallowsPrefer = false;
-            EarlyDecisionMode = false;
+            EarlyDecisionMode = true;
             DoubleEnshroudPrefer = false;
         }
     }

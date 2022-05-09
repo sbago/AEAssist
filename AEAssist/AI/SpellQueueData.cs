@@ -21,11 +21,14 @@ namespace AEAssist.AI
 
         public bool UsePotion;
 
+        public int Index;
+
         protected override void OnDestroy()
         {
             Abilitys.Clear();
             GCDSpellId = 0;
             UsePotion = false;
+            Index = 0;
             AnimationLockMs = 500;
             SpellTargetType = SpellTargetType.CurrTarget;
         }

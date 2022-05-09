@@ -7,7 +7,7 @@ using ff14bot.Enums;
 
 namespace AEAssist.AI.Machinist
 {
-    [AIPriorityQueue(ClassJobType.Machinist)]
+    [Job(ClassJobType.Machinist)]
     public class MCH_AIPriorityQueue : IAIPriorityQueue
     {
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>

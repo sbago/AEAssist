@@ -4,7 +4,7 @@ using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Managers;
 
-namespace AEAssist.AI.Bard.Ability
+namespace AEAssist.AI.BLM.Ability
 {
     public class BlackMageAblity_Manafont : IAIHandler
     {

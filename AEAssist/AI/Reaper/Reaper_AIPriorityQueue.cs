@@ -7,7 +7,7 @@ using ff14bot.Enums;
 
 namespace AEAssist.AI.Reaper
 {
-    [AIPriorityQueue(ClassJobType.Reaper)]
+    [Job(ClassJobType.Reaper)]
     public class Reaper_AIPriorityQueue : IAIPriorityQueue
     {
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>

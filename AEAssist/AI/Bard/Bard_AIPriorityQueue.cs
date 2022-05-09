@@ -8,7 +8,7 @@ using ff14bot.Enums;
 
 namespace AEAssist.AI.Bard
 {
-    [AIPriorityQueue(ClassJobType.Bard)]
+    [Job(ClassJobType.Bard)]
     public class Bard_AIPriorityQueue : IAIPriorityQueue
     {
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>
