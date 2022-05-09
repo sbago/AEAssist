@@ -40,7 +40,21 @@ namespace AEAssist.AI.Bard.Ability
             {
                 return 2;
             }
-            
+            // if we don't have target
+            if (!Core.Me.HasTarget || !Core.Me.CurrentTarget.CanAttack)
+            {
+                // and we are in fire
+                if (ActionResourceManager.BlackMage.AstralStacks > 0)
+                {
+                    return 3;
+                }
+                // if we are in ice, with 3 UmbralHearts, we go to fire and come back to get paradox
+                if (ActionResourceManager.BlackMage.UmbralHearts == 3 &&
+                    ActionResourceManager.BlackMage.UmbralStacks > 0)
+                {
+                    return 4;
+                }
+            }
 
             return -4;
         }
