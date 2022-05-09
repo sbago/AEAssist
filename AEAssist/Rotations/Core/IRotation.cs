@@ -11,6 +11,11 @@ namespace AEAssist.Rotations.Core
         void Init();
 
         Task<bool> PreCombatBuff();
+        /// <summary>
+        /// If there is no target to attack, but it is not Stopped.
+        /// </summary>
+        /// <returns></returns>
+        Task<bool> NoTarget();
         SpellEntity GetBaseGCDSpell();
     }
 }

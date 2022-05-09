@@ -28,6 +28,11 @@ namespace AEAssist.AI.Samurai
             return Task.FromResult(false);
         }
 
+        public Task<bool> NoTarget()
+        {
+            return Task.FromResult(false);
+        }
+
         public SpellEntity GetBaseGCDSpell()
         {
             return SpellsDefine.Hakaze.GetSpellEntity();

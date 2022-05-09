@@ -49,7 +49,10 @@ namespace AEAssist.AI.Machinist
 
             return false;
         }
-
+        public Task<bool> NoTarget()
+        {
+            return Task.FromResult(false);
+        }
         public SpellEntity GetBaseGCDSpell()
         {
             return MCHSpellHelper.GetSplitShot();

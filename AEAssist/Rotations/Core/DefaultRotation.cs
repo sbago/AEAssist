@@ -19,45 +19,11 @@ namespace AEAssist.Rotations.Core
         {
             return null;
         }
-
-        public Task<bool> Rest()
+        
+        public Task<bool> NoTarget()
         {
-            // LogHelper.Debug("Rest");
             return Task.FromResult(false);
         }
 
-        public Task<bool> Pull()
-        {
-            //  LogHelper.Debug("Pull");
-            return Task.FromResult(true);
-        }
-
-        public Task<bool> Heal()
-        {
-            //  LogHelper.Debug("Heal");
-            return Task.FromResult(true);
-        }
-
-        public Task<bool> CombatBuff()
-        {
-            //   LogHelper.Debug("CombatBuff");
-            return Task.FromResult(true);
-        }
-
-        public Task<bool> Combat()
-        {
-            //  LogHelper.Debug("Combat");
-            return Task.FromResult(true);
-        }
-
-        public Task<bool> PullBuff()
-        {
-            // LogHelper.Debug("PullBuff");
-            return Task.FromResult(true);
-        }
-
-        public void HandleInCountDown1500()
-        {
-        }
     }
 }

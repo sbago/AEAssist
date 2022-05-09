@@ -68,7 +68,10 @@ namespace AEAssist.AI.Bard
 
             return false;
         }
-
+        public Task<bool> NoTarget()
+        {
+            return Task.FromResult(false);
+        }
         public SpellEntity GetBaseGCDSpell()
         {
             return BardSpellHelper.GetBaseGCD();

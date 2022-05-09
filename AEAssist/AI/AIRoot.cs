@@ -111,6 +111,9 @@ namespace AEAssist.AI
             {
                 if (CanNotice("key1", 1000))
                     GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_NoTarget, 500);
+
+                await RotationManager.Instance.NoTarget();
+                
                 return false;
             }
 

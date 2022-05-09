@@ -42,6 +42,11 @@ namespace AEAssist.AI.Reaper
             return false;
         }
 
+        public Task<bool> NoTarget()
+        {
+            return Task.FromResult(false);
+        }
+        
         public SpellEntity GetBaseGCDSpell()
         {
             return SpellsDefine.Slice.GetSpellEntity();

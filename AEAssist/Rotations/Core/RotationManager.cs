@@ -77,7 +77,12 @@ namespace AEAssist.Rotations.Core
                 return false;
             return await GetRotation().PreCombatBuff();
         }
-        
+
+        public Task NoTarget()
+        {
+            return GetRotation().NoTarget();
+        }
+
 
         public async Task<bool> Update()
         {

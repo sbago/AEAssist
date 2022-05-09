@@ -24,7 +24,10 @@ namespace AEAssist.AI.BLM
         {
             return Task.FromResult(false);
         }
-        
+        public Task<bool> NoTarget()
+        {
+            return Task.FromResult(false);
+        }
         public SpellEntity GetBaseGCDSpell()
         {
             return SpellsDefine.Fire.GetSpellEntity();
