@@ -48,13 +48,16 @@ namespace AEAssist.Helper
                 if (!ActionManager.DoAction(spell, target))
                     return false;
             }
-
+            
             if (spell.AdjustedCastTime != TimeSpan.Zero)
-                if (!await Coroutine.Wait(spell.AdjustedCastTime - TimeSpan.FromMilliseconds(300), () => Core.Me.IsCasting))
+            {
+                if (!await Coroutine.Wait(spell.AdjustedCastTime - TimeSpan.FromMilliseconds(300),
+                    () => Core.Me.IsCasting))
                     return false;
-
+            }
+            else
+                await Coroutine.Sleep(300);
             SpellEventMgr.Instance.Run(spell.Id);
-
             return true;
         }
 

@@ -119,11 +119,14 @@ namespace AEAssist.Opener
                 {
                     var slot = (SpellQueueSlot) method.Invoke(opener, null);
                     if (slot != null)
+                    {
+                        LogHelper.Debug($"opener running: Index {battleData.OpenerIndex} GCDSpellId: {slot.GCDSpellId}");
                         spellQueue.Add(slot);
+                    }
                     else
                         LogHelper.Error(method.Name + " Cant Get SpellQueueSlot");
                 }
-
+                
                 battleData.OpenerIndex++;
             }
 

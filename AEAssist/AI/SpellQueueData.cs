@@ -107,8 +107,7 @@ namespace AEAssist.AI
                     ObjectPool.Instance.Return(Queue.Dequeue());
                     return await ApplySlot();
                 }
-
-                if (spellData.IsReady())
+                if (spellData.IsReady() && AIRoot.Instance.CanUseGCD())
                 {
                     var spellEntity = new SpellEntity(spellData.Id, slot.SpellTargetType);
                     if (await spellEntity.DoGCD())
