@@ -3,9 +3,9 @@
 namespace AEAssist
 {
     [AddINotifyPropertyChangedInterface]
-    public class BLMSetting : IBaseSetting
+    public class BlackMageSetting : IBaseSetting
     {
-        public BLMSetting()
+        public BlackMageSetting()
         {
             Reset();
         }

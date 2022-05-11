@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using AEAssist.AI.BLM;
+using AEAssist.AI.BlackMage;
 using AEAssist.AI.Machinist.Ability;
 using AEAssist.Define;
 using AEAssist.Helper;
@@ -7,7 +7,7 @@ using ff14bot;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
-namespace AEAssist.AI.BLM.Ability
+namespace AEAssist.AI.BlackMage.Ability
 {
     public class BlackMageAblity_Transpose : IAIHandler
     {
@@ -34,7 +34,7 @@ namespace AEAssist.AI.BLM.Ability
             }
             
             // if we are in fire, we have polyglot to go
-            if (ActionResourceManager.BlackMage.AstralStacks == 3 &&
+            if (BlackMageHelper.IsMaxAstralStacks(lastSpell) &&
                 Core.Me.CurrentMana == 0 &&
                 BlackMageHelper.IsTargetNeedThunder(Core.Me.CurrentTarget as Character, 10000))
             {
@@ -49,7 +49,7 @@ namespace AEAssist.AI.BLM.Ability
                     return 3;
                 }
                 // if we are in ice, with 3 UmbralHearts, we go to fire and come back to get paradox
-                if (ActionResourceManager.BlackMage.UmbralHearts == 3 &&
+                if (BlackMageHelper.UmbralHeatsReady() &&
                     ActionResourceManager.BlackMage.UmbralStacks > 0)
                 {
                     return 4;

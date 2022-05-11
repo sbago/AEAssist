@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using AEAssist.AI.BLM;
+using AEAssist.AI.BlackMage;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Managers;
 
-namespace AEAssist.AI.BLM.Ability
+namespace AEAssist.AI.BlackMage.Ability
 {
     public class BlackMageAblity_Swiftcast : IAIHandler
     {
@@ -15,7 +15,7 @@ namespace AEAssist.AI.BLM.Ability
             {
                 return -1;
             }
-            if (ActionResourceManager.BlackMage.AstralStacks == 3 &&
+            if (BlackMageHelper.IsMaxAstralStacks(lastSpell) &&
                 Core.Me.CurrentMana < 2400)
             {
                 return 1;

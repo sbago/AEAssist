@@ -1,26 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.AI.Bard.Ability;
-using AEAssist.AI.BLM.Ability;
-using AEAssist.AI.BLM.GCD;
+using AEAssist.AI.BlackMage.Ability;
+using AEAssist.AI.BlackMage.GCD;
 using AEAssist.Helper;
 using ff14bot.Enums;
 
-namespace AEAssist.AI.BLM
+namespace AEAssist.AI.BlackMage
 {
     [Job(ClassJobType.BlackMage)]
-    public class BLM_AIPriorityQueue : IAIPriorityQueue
+    public class BlackMage_AIPriorityQueue : IAIPriorityQueue
     {
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>()
         {
-            new BlackMageGCD_Thunder(),
-            new BlackMageGCD_Xenoglossy(),
-            new BlackMageGCD_Fire3(),
-            new BlackMageGCD_Fire4(),
-            new BlackMageGCD_Blizzard4(),
-            new BlackMageGCD_Paradox(),
-            new BlackMageGCD_Despair(),
-            new BlackMageGCD_Blizzard3(),
+            new BlackMageGCD_Dot(), //done, priority #1
+            new BlackMageGCD_Xenoglossy(), //done
+            new BlackMageGCD_Fire3(), //done
+            new BlackMageGCD_Fire4(), //done, must before paradox
+            new BlackMageGCD_Blizzard4(), //done, before ice paradox
+            new BlackMageGCD_Paradox(), //done, must after fire4
+            new BlackMageGCD_Despair(), //done, must after all fire spells
+            new BlackMageGCD_Blizzard3(), //done, must after all fire
             new BlackMageGCD_UmbralSoul(),
 
         };

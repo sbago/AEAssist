@@ -7,16 +7,16 @@ using ff14bot;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
-namespace AEAssist.AI.BLM
+namespace AEAssist.AI.BlackMage
 {
     [Job(ClassJobType.BlackMage)]
-    public class BLM_Rotation : IRotation
+    public class BlackMage_Rotation : IRotation
     {
         public void Init()
         {
             CountDownHandler.Instance.AddListener(21000, () => SpellsDefine.Sharpcast.DoAbility());
             CountDownHandler.Instance.AddListener(3500, () => SpellsDefine.Fire3.DoAbility());
-            AEAssist.DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<BLMSetting>().EarlyDecisionMode;
+            AEAssist.DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<BlackMageSetting>().EarlyDecisionMode;
             LogHelper.Info("EarlyDecisionMode: " + AEAssist.DataBinding.Instance.EarlyDecisionMode);
         }
 

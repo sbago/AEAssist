@@ -4,28 +4,32 @@ using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Managers;
 
-namespace AEAssist.AI.BLM.Ability
+namespace AEAssist.AI.BlackMage.Ability
 {
-    public class BlackMageAblity_Manafont : IAIHandler
+    public class BlackMageAblity_Amplifier : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {
-            if (!SpellsDefine.ManaFont.IsReady())
+            // if setting is no burst
+            if (AIRoot.Instance.CloseBurst)
+                return -5;
+            
+            if (!SpellsDefine.Amplifier.IsReady())
             {
                 return -1;
             }
-            if (ActionResourceManager.BlackMage.AstralStacks == 3 &&
-                Core.Me.MaxMana < 800)
+
+            if (ActionResourceManager.BlackMage.PolyglotCount < 2)
             {
                 return 1;
             }
-
-            return -2;
+            
+            return -4;
         }
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.ManaFont.GetSpellEntity();
+            var spell = SpellsDefine.Amplifier.GetSpellEntity();
             if (spell == null)
                 return null;
             var ret = await spell.DoAbility();

@@ -2,7 +2,7 @@
 using ff14bot;
 using ff14bot.Managers;
 
-namespace AEAssist.AI.BLM.SpellQueue
+namespace AEAssist.AI.BlackMage.SpellQueue
 {
     public class SpellQueueSlot_Despair : IAISpellQueueSlot
     {

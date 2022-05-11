@@ -6,14 +6,17 @@ using ff14bot;
 using ff14bot.Helpers;
 using ff14bot.Managers;
 
-namespace AEAssist.AI.BLM.GCD
+namespace AEAssist.AI.BlackMage.GCD
 {
     public class BlackMageGCD_Blizzard3 : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {
+            // todo: how to make blizzard2 casting itself?
             // prevent redundant casting
-            if (lastSpell == SpellsDefine.Blizzard3.GetSpellEntity())
+            if (lastSpell == SpellsDefine.Blizzard3.GetSpellEntity() ||
+                lastSpell == SpellsDefine.HighBlizzardII.GetSpellEntity()
+                )
             {
                 return -1;
             }
@@ -23,7 +26,7 @@ namespace AEAssist.AI.BLM.GCD
                 return -1;
             }
             // fire to ice
-            if (ActionResourceManager.BlackMage.AstralStacks ==3)
+            if (BlackMageHelper.IsMaxAstralStacks(lastSpell))
             {
                 return 1;
             }
@@ -45,7 +48,7 @@ namespace AEAssist.AI.BLM.GCD
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.Blizzard3.GetSpellEntity();
+            var spell = BlackMageHelper.GetBlizzard3();
             if (spell == null)
                 return null;
             var ret = await spell.DoGCD();

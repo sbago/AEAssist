@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AEAssist.AI.BLM.SpellQueue
+namespace AEAssist.AI.BlackMage.SpellQueue
 {
     public class SpellQueue_Test : IAISpellQueue
     {

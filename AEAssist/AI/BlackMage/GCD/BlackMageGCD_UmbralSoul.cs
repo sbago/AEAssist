@@ -6,23 +6,27 @@ using ff14bot;
 using ff14bot.Helpers;
 using ff14bot.Managers;
 
-namespace AEAssist.AI.BLM.GCD
+namespace AEAssist.AI.BlackMage.GCD
 {
-    public class BlackMageGCD_Fire4 : IAIHandler
+    public class BlackMageGCD_UmbralSoul : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {
-            if (BlackMageHelper.CanCastFire4())
+            // if there is no target and we are in ice, try to get more Umbral Hearts
+            if (!Core.Me.HasTarget || !Core.Me.CurrentTarget.CanAttack)
             {
-                return 1;
+                if (ActionResourceManager.BlackMage.UmbralStacks > 0)
+                {
+                    return 1;
+                }
             }
 
-            return -2;
+            return -4;
         }
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.Fire4.GetSpellEntity();
+            var spell = SpellsDefine.UmbralSoul.GetSpellEntity();
             if (spell == null)
                 return null;
             var ret = await spell.DoGCD();

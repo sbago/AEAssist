@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using AEAssist.AI.BLM.SpellQueue;
+using AEAssist.AI.BlackMage.SpellQueue;
 using AEAssist.Define;
 using AEAssist.Helper;
 
-namespace AEAssist.AI.BLM.GCD
+namespace AEAssist.AI.BlackMage.GCD
 {
-    public class BLM_BaseGCD : IAIHandler
+    public class BlackMage_BaseGCD : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {

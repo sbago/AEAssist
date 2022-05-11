@@ -6,20 +6,28 @@ using ff14bot;
 using ff14bot.Helpers;
 using ff14bot.Managers;
 
-namespace AEAssist.AI.BLM.GCD
+namespace AEAssist.AI.BlackMage.GCD
 {
     public class BlackMageGCD_Blizzard4 : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {
             // prevent redundant casting
-            if (lastSpell == SpellsDefine.Blizzard4.GetSpellEntity())
+            if (lastSpell == SpellsDefine.Blizzard4.GetSpellEntity() ||
+                lastSpell == SpellsDefine.Freeze.GetSpellEntity()
+                )
             {
                 return -1;
             }
-            // if we are in ice, should before paradox to prevent lag, lag -> paradox can't go at the very begining
-            if (ActionResourceManager.BlackMage.UmbralStacks == 3 &&
-                ActionResourceManager.BlackMage.UmbralHearts != 3)
+            // prevent not learned skill or redundant casting
+            if (BlackMageHelper.UmbralHeatsReady())
+            {
+                return -2;
+            }
+            
+            // if we are in ice, should before paradox to prevent lag
+            // lag -> paradox can't go at the very begining
+            if (ActionResourceManager.BlackMage.UmbralStacks > 0)
             {
                 return 1;
             }
@@ -29,7 +37,7 @@ namespace AEAssist.AI.BLM.GCD
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.Blizzard4.GetSpellEntity();
+            var spell = BlackMageHelper.GetBlizzard4();
             if (spell == null)
                 return null;
             var ret = await spell.DoGCD();

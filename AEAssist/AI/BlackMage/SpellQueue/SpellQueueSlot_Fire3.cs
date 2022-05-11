@@ -1,6 +1,6 @@
 ﻿using AEAssist.Define;
 
-namespace AEAssist.AI.BLM.SpellQueue
+namespace AEAssist.AI.BlackMage.SpellQueue
 {
     public class SpellQueueSlot_Fire3 : IAISpellQueueSlot
     {

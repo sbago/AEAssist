@@ -6,7 +6,7 @@ using ff14bot;
 using ff14bot.Helpers;
 using ff14bot.Managers;
 
-namespace AEAssist.AI.BLM.GCD
+namespace AEAssist.AI.BlackMage.GCD
 {
     public class BlackMageGCD_Xenoglossy : IAIHandler
     {
@@ -50,7 +50,7 @@ namespace AEAssist.AI.BLM.GCD
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.Xenoglossy.GetSpellEntity();
+            var spell = BlackMageHelper.GetXenoglossy();
             if (spell == null)
                 return null;
             var ret = await spell.DoGCD();

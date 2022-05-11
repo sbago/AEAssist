@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using AEAssist.AI.BLM;
+using AEAssist.AI.BlackMage;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Managers;
 
-namespace AEAssist.AI.BLM.Ability
+namespace AEAssist.AI.BlackMage.Ability
 {
     public class BlackMageAblity_Triplecast : IAIHandler
     {
@@ -20,14 +20,14 @@ namespace AEAssist.AI.BLM.Ability
             {
                 return -3;
             }
-            if (ActionResourceManager.BlackMage.UmbralHearts == 3 &&
+            if (BlackMageHelper.UmbralHeatsReady() &&
                 lastSpell == SpellsDefine.Fire3.GetSpellEntity())
             {
                 return 1;
             }
 
-            if (ActionResourceManager.BlackMage.AstralStacks == 3 &&
-                BlackMageHelper.CanCastFire4() &&
+            if (BlackMageHelper.IsMaxAstralStacks(lastSpell) &&
+                BlackMageHelper.CanCastFire4(lastSpell) &&
                 Core.Me.CurrentMana >= 8000)
             {
                 return 2;
