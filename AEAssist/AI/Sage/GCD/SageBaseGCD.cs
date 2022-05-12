@@ -10,6 +10,8 @@ namespace AEAssist.AI.Sage.GCD
     {
         public int Check(SpellEntity lastSpell)
         {
+            // don't cast dosis when moving, instead going to cast other spells.
+            if (MovementManager.IsMoving) return -1;
             return 0;
         }
 
