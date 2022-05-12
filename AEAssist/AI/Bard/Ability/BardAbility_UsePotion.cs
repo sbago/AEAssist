@@ -15,9 +15,6 @@ namespace AEAssist.AI.Bard.Ability
                 return -1;
             if (AIRoot.Instance.CloseBurst)
                 return -2;
-            if (AIRoot.GetBattleData<BattleData>().maxAbilityTimes <
-                SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD)
-                return -3;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
                 return -4;
             if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId))
