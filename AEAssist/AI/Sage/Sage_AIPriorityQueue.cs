@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AEAssist.AI.Sage.Ability;
 using AEAssist.AI.Sage.GCD;
 using AEAssist.Helper;
 using ff14bot.Enums;
@@ -13,13 +14,13 @@ namespace AEAssist.AI.Sage
         {
             new SageGCDDot(),
             new SageBaseGCD(),
-            // new SageGCDPhlegma(),
-            // new SageGCDToxikon(),
+            new SageGCDPhlegma(),
+            new SageGCDToxikon(),
         };
 
         public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()
         {
-
+         new SageAbilityLucidDreaming(),
         };
         public async Task<bool> UsePotion()
         {
