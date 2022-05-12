@@ -15,6 +15,7 @@ namespace AEAssist.AI.BlackMage
         {
             new BlackMageGCD_Dot(), //done, priority #1
             new BlackMageGCD_Xenoglossy(), //done
+            new BlackMageGCD_Fire2(),
             new BlackMageGCD_Fire4(), //done, must before paradox
             new BlackMageGCD_Blizzard4(), //done, before ice paradox
             new BlackMageGCD_Fire3(), //done

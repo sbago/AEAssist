@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System;
+using System.Windows.Media;
 using AEAssist.Define;
 using AEAssist.Define.DataStruct;
 using AEAssist.Helper;
@@ -305,6 +306,66 @@ namespace AEAssist.AI.BlackMage
             }
 
             return false;
+        }
+
+        public static TimeSpan GetSpellCastTimeSpan(SpellEntity spell)
+        {
+            return spell.SpellData.AdjustedCastTime.Add(
+                TimeSpan.FromMilliseconds(ConstValue.BlackMageLatencyCompensation));
+        }
+
+        public static int ThunderCheck()
+        {
+            // if setting use DOT
+            if (!AEAssist.DataBinding.Instance.UseDot)
+                return -1;
+            
+            // check black list
+            if (DotBlacklistHelper.IsBlackList(Core.Me.CurrentTarget as Character))
+                return -10;
+
+            if (!SpellsDefine.Thunder.IsUnlock())
+            {
+                return -2;
+            }
+            
+            if (Core.Me.CurrentMana < SpellsDefine.Thunder.GetSpellEntity().SpellData.Cost)
+            {
+                return -2;
+            }
+            
+            // prevent casting same spell
+            var BattleData = AIRoot.GetBattleData<BattleData>();
+            if (BattleData.lastGCDSpell == SpellsDefine.Thunder.GetSpellEntity() ||
+                BattleData.lastGCDSpell == SpellsDefine.Thunder2.GetSpellEntity() ||
+                BattleData.lastGCDSpell == SpellsDefine.Thunder3.GetSpellEntity() ||
+                BattleData.lastGCDSpell == SpellsDefine.Thunder4.GetSpellEntity()
+               )
+            {
+                return -2;
+            }
+
+            // if we need to dot
+            if (BlackMageHelper.IsTargetNeedThunder(Core.Me.CurrentTarget as Character, 5000))
+            {
+                // if we are in fire
+                if (ActionResourceManager.BlackMage.AstralStacks > 0)
+                {
+                    // if we have more than 10 seconds left in fire
+                    if (ActionResourceManager.BlackMage.StackTimer > SpellsDefine.Scathe.GetSpellEntity().SpellData.AdjustedCooldown + SpellsDefine.Flare.GetSpellEntity().SpellData.AdjustedCooldown &&
+                        Core.Me.CurrentMana > 800+SpellsDefine.Thunder.GetSpellEntity().SpellData.Cost)
+                    {
+                        return 3;
+                    }
+                }
+                // if we are in ice, cast straight away
+                if (ActionResourceManager.BlackMage.UmbralStacks > 0)
+                {
+                    return 2;
+                }
+            }
+            
+            return -4;
         }
         
         public static bool UmbralHeatsReady()

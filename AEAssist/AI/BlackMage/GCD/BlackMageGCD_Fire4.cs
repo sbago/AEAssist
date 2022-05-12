@@ -20,7 +20,8 @@ namespace AEAssist.AI.BlackMage.GCD
             
             if (!SpellsDefine.Fire4.IsUnlock())
             {
-                if (ActionResourceManager.BlackMage.AstralStacks > 0 && ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 5000)
+                // if (ActionResourceManager.BlackMage.AstralStacks > 0 && ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 5000)
+                if (ActionResourceManager.BlackMage.AstralStacks > 0 && ActionResourceManager.BlackMage.StackTimer > BlackMageHelper.GetSpellCastTimeSpan(SpellsDefine.Fire.GetSpellEntity()))
                 {
                     return 3;
                 }
@@ -29,12 +30,16 @@ namespace AEAssist.AI.BlackMage.GCD
             if (Core.Me.CurrentMana >= minmana &&
                 BlackMageHelper.IsMaxAstralStacks())
             {
-                // not sure what numbders excatly to put here
-                if (Core.Me.HasAura(AurasDefine.LeyLines) && ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 5000)
-                {
-                    return 1;
-                }
-                if (ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 5500)
+                // if (ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 5500)
+                var baseGCDTime = SpellsDefine.Scathe.GetSpellEntity().SpellData.AdjustedCooldown.Add(TimeSpan.FromMilliseconds(ConstValue.BlackMageLatencyCompensation));
+                var Fire4CastTime = BlackMageHelper.GetSpellCastTimeSpan(SpellsDefine.Fire4.GetSpellEntity());
+                if (Fire4CastTime < TimeSpan.FromMilliseconds(2000))
+                { Fire4CastTime = baseGCDTime; }
+                var ParadoxCastTime = BlackMageHelper.GetSpellCastTimeSpan(SpellsDefine.Fire.GetSpellEntity());
+                if (ParadoxCastTime < TimeSpan.FromMilliseconds(2000))
+                { ParadoxCastTime = baseGCDTime; }
+                
+                if (ActionResourceManager.BlackMage.StackTimer > Fire4CastTime + ParadoxCastTime)
                 {
                     return 2;
                 }
@@ -48,6 +53,10 @@ namespace AEAssist.AI.BlackMage.GCD
             var spell = BlackMageHelper.GetFire4();
             if (spell == null)
                 return null;
+            if (MovementManager.IsMoving && spell.SpellData.AdjustedCastTime > TimeSpan.Zero)
+            {
+                return null;
+            }
             var ret = await spell.DoGCD();
             if (ret)
                 return spell;
