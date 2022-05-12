@@ -23,12 +23,12 @@ namespace AEAssist.AI.Reaper.GCD
             if (ReaperSpellHelper.PrepareEnterDoubleEnshroud())
                 return -3;
 
-            if (!target.ContainMyAura(AurasDefine.DeathsDesign, 10000)
+            if (!target.HasMyAuraWithTimeleft(AurasDefine.DeathsDesign, 10000)
                 && (ActionResourceManager.Reaper.SoulGauge > 50
                     || ActionResourceManager.Reaper.ShroudGauge > 50 || SpellsDefine.PlentifulHarvest.RecentlyUsed()))
                 return 1;
 
-            if (target.ContainMyAura(AurasDefine.DeathsDesign, 3000))
+            if (target.HasMyAuraWithTimeleft(AurasDefine.DeathsDesign, 3000))
                 return -4;
 
             return 0;

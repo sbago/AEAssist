@@ -13,7 +13,7 @@ namespace AEAssist.AI.Machinist.GCD
             if (spell == null)
                 return -1;
 
-            if (Core.Me.ContainMyAura(AurasDefine.Reassembled) || SpellsDefine.Reassemble.RecentlyUsed()) return 1;
+            if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.Reassembled) || SpellsDefine.Reassemble.RecentlyUsed()) return 1;
 
             return -2;
         }

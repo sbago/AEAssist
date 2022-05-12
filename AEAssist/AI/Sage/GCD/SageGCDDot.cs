@@ -30,17 +30,13 @@ namespace AEAssist.AI.Sage.GCD
 
         public async Task<SpellEntity> Run()
         {
-            SpellEntity spell = null;
-            var timeLeft = SettingMgr.GetSetting<SageSettings>().Dot_TimeLeft;
-            var target = Core.Me.CurrentTarget as Character;
-            if (!Core.Me.ContainMyAura(AurasDefine.Eukrasia))
-            { 
-                return AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.Eukrasia.GetSpellEntity();
+            if (!Core.Me.HasMyAura(AurasDefine.Eukrasia))
+            {
+                AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.Eukrasia.GetSpellEntity();
+                return null;
             }
-            if (!SageSpellHelper.IsTargetHasAuraEukrasianDosis(target))
-                spell = SageSpellHelper.GetEukrasianDosis();
-            else if (SageSpellHelper.IsTargetNeedEukrasianDosis(target, timeLeft))
-                spell = SageSpellHelper.GetEukrasianDosis();
+
+            var spell = SageSpellHelper.GetEukrasianDosis();
             if (spell == null)
                 return null;
             var ret = await spell.DoGCD();

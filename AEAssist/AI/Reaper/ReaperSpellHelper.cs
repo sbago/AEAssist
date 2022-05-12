@@ -122,7 +122,7 @@ namespace AEAssist.AI.Reaper
                 time = SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs;
 
             // 死亡祭祀
-            if (Core.Me.ContainMyAura(AurasDefine.BloodsownCircle, time))
+            if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.BloodsownCircle, time))
                 return -201;
 
             // 妖异

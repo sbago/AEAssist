@@ -33,7 +33,10 @@ namespace AEAssist.Define
             ArcaneCircle,
             
             //SAM
-            MeikyoShisui
+            MeikyoShisui,
+            
+            //Sage
+            Eukrasia,
         };
 
         public static HashSet<uint> IgnoreEarlyDecisionSet = new HashSet<uint>

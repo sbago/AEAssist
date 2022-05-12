@@ -20,7 +20,7 @@ namespace AEAssist.AI.Bard.Ability
             if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId))
                 return -6;
         
-            if (Core.Me.ContainMyAura(AurasDefine.RagingStrikes)
+            if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.RagingStrikes)
                 || SpellsDefine.RagingStrikes.GetSpellEntity().Cooldown.TotalMilliseconds < 5000)
                 return 0;
 

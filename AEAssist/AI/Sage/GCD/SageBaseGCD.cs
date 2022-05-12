@@ -2,6 +2,7 @@
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
+using ff14bot.Managers;
 
 namespace AEAssist.AI.Sage.GCD
 {
@@ -21,15 +22,13 @@ namespace AEAssist.AI.Sage.GCD
                 {
                     var spellData = SageSpellHelper.GetPhlegma();
                     if (await spellData.DoGCD()) return spellData;
-                    aoeCount = TargetHelper.GetNearbyEnemyCount(Core.Me.CurrentTarget, 0, 5);
-                    if (aoeCount >= ConstValue.SageAOECount)
-                    {
-                        spellData = SageSpellHelper.GetDyskrasia();
-                        if (await spellData.DoGCD()) return  spellData;
-                    }
-                    
                 }
-                
+                aoeCount = TargetHelper.GetNearbyEnemyCount(Core.Me.CurrentTarget, 0, 5);
+                if (aoeCount >= ConstValue.SageAOECount)
+                {
+                    var spellData = SageSpellHelper.GetDyskrasia();
+                    if (await spellData.DoGCD()) return  spellData;
+                }
             }
             {
                 var spellData = SageSpellHelper.GetBaseGCD();

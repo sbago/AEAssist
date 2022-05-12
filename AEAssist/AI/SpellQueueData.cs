@@ -14,7 +14,7 @@ namespace AEAssist.AI
         public Queue<(uint spellId, SpellTargetType SpellTargetType)> Abilitys =
             new Queue<(uint spellId, SpellTargetType SpellTargetType)>();
 
-        public int AnimationLockMs = 500;
+        public int AnimationLockMs = 0;
         public uint GCDSpellId;
 
         public SpellTargetType SpellTargetType;
@@ -29,7 +29,7 @@ namespace AEAssist.AI
             GCDSpellId = 0;
             UsePotion = false;
             Index = 0;
-            AnimationLockMs = 500;
+            AnimationLockMs = 0;
             SpellTargetType = SpellTargetType.CurrTarget;
         }
     }
@@ -103,10 +103,10 @@ namespace AEAssist.AI
                 var spellData = DataManager.GetSpellData(slot.GCDSpellId);
                 if (slot.GCDSpellId == 0 || spellData == null)
                 {
-                    LogHelper.Error("SlotGCDSpell Error!: " + slot.GCDSpellId);
                     ObjectPool.Instance.Return(Queue.Dequeue());
                     return await ApplySlot();
                 }
+                LogHelper.Debug($"Slot GCD: {spellData.LocalizedName} Ready: {spellData.IsReady()} {AIRoot.Instance.CanUseGCD()}");
                 if (spellData.IsReady() && AIRoot.Instance.CanUseGCD())
                 {
                     var spellEntity = new SpellEntity(spellData.Id, slot.SpellTargetType);

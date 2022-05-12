@@ -120,7 +120,7 @@ namespace AEAssist.AI.Sage
         public static bool IsTargetHasAuraEukrasianDosis(Character target)
         {
             var id = GetEukrasianDosisAura();
-            return id == 0 || target.ContainMyAura((uint)id);
+            return id == 0 || target.HasMyAuraWithTimeleft((uint)id);
         }
         
         public static void RecordEukrasianDosis()
@@ -146,11 +146,11 @@ namespace AEAssist.AI.Sage
             {
                 if (DataBinding.Instance.EarlyDecisionMode)
                     timeLeft += SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
-                return !target.ContainMyAura((uint) dosisId, timeLeft);
+                return !target.HasMyAuraWithTimeleft((uint) dosisId, timeLeft);
             }
 
             if (AIRoot.GetBattleData<SageBattleData>().IsTargetLastEukrasianDosis()) return NormalCheck();
-            if (TtkEukrasianDosis > 0 && target.ContainMyAura((uint) dosisId, TtkEukrasianDosis * 1000) &&
+            if (TtkEukrasianDosis > 0 && target.HasMyAuraWithTimeleft((uint) dosisId, TtkEukrasianDosis * 1000) &&
                 TTKHelper.IsTargetTTK(target, TtkEukrasianDosis, false))
                 return NormalCheck();
 

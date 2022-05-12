@@ -64,6 +64,8 @@ namespace AEAssist.AI.BlackMage.GCD
             if (SpellsDefine.ManaFont.IsUnlock() &&
                 SpellsDefine.ManaFont.IsReady())
             {
+                if (SpellsDefine.Triplecast.IsReady())
+                    AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Triplecast.GetSpellEntity();
                 AISpellQueueMgr.Instance.Apply<SpellQueue_DespairManafont>();
                 await Task.CompletedTask;
                 return null;

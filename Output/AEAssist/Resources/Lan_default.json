@@ -91,5 +91,6 @@
   "Bard_SwitchSong" : "SwitchSong",
   "Btn_ApplyHotkey" : "ApplyHotkey",
   "Toggle_FinalBurst" : "FinalBurst",
-  "Label_OverlayScale" : "OverlayScale"
+  "Label_OverlayScale" : "OverlayScale",
+  "Textbox_Sage_DotTimeLeft" : "Sage"
 }

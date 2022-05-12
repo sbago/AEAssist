@@ -30,7 +30,7 @@ namespace AEAssist.Helper
             return (int) aura.Value;
         }
 
-        public static bool ContainMyAura(this Character character, uint id, int timeLeft = 0)
+        public static bool HasMyAuraWithTimeleft(this Character character, uint id, int timeLeft = 0)
         {
             if (character.HasMyAura(id))
             {
