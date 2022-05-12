@@ -83,6 +83,11 @@
                     <ComboBox IsEditable="False" Name="Str_ChoosePotion" Width="150" DisplayMemberPath="Name"
                               SelectedValuePath="ID" SelectionChanged="Str_ChoosePotion_OnSelectionChanged" />
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="{Binding Language.Label_MindChoosePotion}" Width="100" />
+                    <ComboBox IsEditable="False" Name="Mind_ChoosePotion" Width="150" DisplayMemberPath="Name"
+                              SelectedValuePath="ID" SelectionChanged="Mind_ChoosePotion_OnSelectionChanged" />
+                </StackPanel>
             </StackPanel>
         </TabItem>
 

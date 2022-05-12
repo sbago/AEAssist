@@ -25,6 +25,9 @@ namespace AEAssist.View
 
             Str_ChoosePotion.ItemsSource = PotionHelper.StrPotions;
             Str_ChoosePotion.SelectedValue = SettingMgr.GetSetting<GeneralSettings>().StrPotionId;
+            
+            Mind_ChoosePotion.ItemsSource = PotionHelper.MindPotions;
+            Mind_ChoosePotion.SelectedValue = SettingMgr.GetSetting<GeneralSettings>().MindPotionId;
 
             RefreshDotBlackList();
 
@@ -47,6 +50,11 @@ namespace AEAssist.View
         private void Str_ChoosePotion_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SettingMgr.GetSetting<GeneralSettings>().StrPotionId = (int) Str_ChoosePotion.SelectedValue;
+        }
+        
+        private void Mind_ChoosePotion_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SettingMgr.GetSetting<GeneralSettings>().MindPotionId = (int) Mind_ChoosePotion.SelectedValue;
         }
 
         private void DotBlackList_Add_OnClick(object sender, RoutedEventArgs e)

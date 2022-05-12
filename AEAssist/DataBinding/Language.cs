@@ -117,6 +117,8 @@ namespace AEAssist
         public string Label_CurrTriggerLine { get; set; }
         public string Label_DexChoosePotion { get; set; }
         public string Label_StrChoosePotion { get; set; }
+        
+        public string Label_MindChoosePotion { get; set; }
 
         public string Label_PotionNum { get; set; }
 
