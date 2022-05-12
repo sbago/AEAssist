@@ -347,6 +347,7 @@ namespace AEAssist.AI
             };
             SpellHistoryMgr.Instance.AddAbilityHistory(history);
             battleData.maxAbilityTimes--;
+            battleData.lastAbilitySpell = ret;
         }
         
         public bool Is2ndAbilityTime()
