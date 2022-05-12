@@ -20,19 +20,20 @@ namespace AEAssist.AI.BlackMage.GCD
 
             if (DotBlacklistHelper.IsBlackList(Core.Me.CurrentTarget as Character))
                 return -10;
+
+            if (Core.Me.CurrentMana < 400)
+            {
+                return -1;
+            }
             
             
             // prevent casting same spell
-            var thunder1 = SpellsDefine.Thunder.GetSpellEntity();
-            var thunder2 = SpellsDefine.Thunder3.GetSpellEntity();
-            var thunder3 = SpellsDefine.Thunder2.GetSpellEntity();
-            var thunder4 = SpellsDefine.Thunder3.GetSpellEntity();
-            
-            if (lastSpell == thunder1 || 
-                lastSpell == thunder2 || 
-                lastSpell == thunder3 ||
-                lastSpell == thunder4
-                )
+            var BattleData = AIRoot.GetBattleData<BattleData>();
+            if (BattleData.lastGCDSpell == SpellsDefine.Thunder.GetSpellEntity() ||
+                BattleData.lastGCDSpell == SpellsDefine.Thunder2.GetSpellEntity() ||
+                BattleData.lastGCDSpell == SpellsDefine.Thunder3.GetSpellEntity() ||
+                BattleData.lastGCDSpell == SpellsDefine.Thunder4.GetSpellEntity()
+               )
             {
                 return -1;
             }

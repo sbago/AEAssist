@@ -13,9 +13,11 @@ namespace AEAssist.AI.BlackMage.GCD
         public int Check(SpellEntity lastSpell)
         {
             // prevent redundant casting
-            if (lastSpell == SpellsDefine.Blizzard4.GetSpellEntity() ||
-                lastSpell == SpellsDefine.Freeze.GetSpellEntity()
-                )
+            var BattleData = AIRoot.GetBattleData<BattleData>();
+            if (
+                BattleData.lastGCDSpell == SpellsDefine.Blizzard4.GetSpellEntity() ||
+                BattleData.lastGCDSpell == SpellsDefine.Freeze.GetSpellEntity()
+            )
             {
                 return -1;
             }

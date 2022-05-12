@@ -14,10 +14,12 @@ namespace AEAssist.AI.BlackMage.GCD
         public int Check(SpellEntity lastSpell)
         {
             //prevent reduent spell
-            if (lastSpell == SpellsDefine.Fire3.GetSpellEntity() ||
-                lastSpell == SpellsDefine.Blizzard3.GetSpellEntity() ||
-                lastSpell == SpellsDefine.HighBlizzardII.GetSpellEntity()
-                )
+            var BattleData = AIRoot.GetBattleData<BattleData>();
+
+            if (BattleData.lastGCDSpell == SpellsDefine.Fire3.GetSpellEntity() ||
+                BattleData.lastGCDSpell == SpellsDefine.Blizzard3.GetSpellEntity() ||
+                BattleData.lastGCDSpell == SpellsDefine.HighBlizzardII.GetSpellEntity()
+            )
             {
                 return -1;
             }
@@ -32,7 +34,7 @@ namespace AEAssist.AI.BlackMage.GCD
                     return 1;
                 }
                 // if paradox unused, prevent wasting firestarter which can be triggered by paradox
-                if (BlackMageHelper.IsMaxAstralStacks(lastSpell) &&
+                if (BlackMageHelper.IsMaxAstralStacks() &&
                     BlackMageHelper.IsParadoxReady() &&
                     Core.Me.HasAura(AurasDefine.FireStarter))
                 {

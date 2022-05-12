@@ -13,17 +13,27 @@ namespace AEAssist.AI.BlackMage.GCD
         public int Check(SpellEntity lastSpell)
         {
             // prevent redundant casting
-            if (lastSpell == SpellsDefine.Paradox.GetSpellEntity() ||
-                lastSpell == SpellsDefine.Fire.GetSpellEntity())
+            if (SpellsDefine.Paradox.RecentlyUsed() ||
+                SpellsDefine.Fire.RecentlyUsed())
             {
                 return -1;
+            }
+
+            var BattleData = AIRoot.GetBattleData<BattleData>();
+
+            if (BattleData.lastGCDSpell == SpellsDefine.Fire.GetSpellEntity() ||
+                BattleData.lastGCDSpell == SpellsDefine.Paradox.GetSpellEntity()
+               )
+            {
+                return -10;
+                
             }
             
             // if we are in fire
             // and we use paradox to refresh astral time
             // if we have less than 2400 mana, skill refresh buff, go despair
             if (ActionResourceManager.BlackMage.AstralStacks > 0 &&
-                Core.Me.CurrentMana > 2400)
+                Core.Me.CurrentMana > 2400+1600)
             {
                 return 1;
             }

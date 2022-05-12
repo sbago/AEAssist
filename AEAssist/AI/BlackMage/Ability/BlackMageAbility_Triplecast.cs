@@ -21,13 +21,13 @@ namespace AEAssist.AI.BlackMage.Ability
                 return -3;
             }
             if (BlackMageHelper.UmbralHeatsReady() &&
-                lastSpell == SpellsDefine.Fire3.GetSpellEntity())
+                SpellsDefine.Fire3.RecentlyUsed())
             {
                 return 1;
             }
 
-            if (BlackMageHelper.IsMaxAstralStacks(lastSpell) &&
-                BlackMageHelper.CanCastFire4(lastSpell) &&
+            if (BlackMageHelper.IsMaxAstralStacks() &&
+                BlackMageHelper.CanCastFire4() &&
                 Core.Me.CurrentMana >= 8000)
             {
                 return 2;

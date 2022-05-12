@@ -18,7 +18,7 @@ namespace AEAssist.AI.BlackMage.Ability
             {
                 return -1;
             }
-            if (BlackMageHelper.IsMaxAstralStacks(lastSpell) &&
+            if (BlackMageHelper.IsMaxAstralStacks() &&
                 Core.Me.MaxMana < 800)
             {
                 return 1;

@@ -14,7 +14,11 @@ namespace AEAssist.AI.BlackMage.GCD
         public int Check(SpellEntity lastSpell)
         {
             // prevent redundant casting
-            if (lastSpell == SpellsDefine.Despair.GetSpellEntity())
+            var BattleData = AIRoot.GetBattleData<BattleData>();
+            if (BattleData.lastGCDSpell == SpellsDefine.Fire.GetSpellEntity() ||
+                BattleData.lastGCDSpell == SpellsDefine.Paradox.GetSpellEntity() ||
+                BattleData.lastGCDSpell == SpellsDefine.Despair.GetSpellEntity()
+                )
             {
                 return -1;
             }
@@ -56,7 +60,7 @@ namespace AEAssist.AI.BlackMage.GCD
 
         public async Task<SpellEntity> Run()
         {
-            // 走魔泉
+            // go combo 
             if (SpellsDefine.ManaFont.IsUnlock() &&
                 SpellsDefine.ManaFont.IsReady())
             {
@@ -64,7 +68,7 @@ namespace AEAssist.AI.BlackMage.GCD
                 await Task.CompletedTask;
                 return null;
             }
-            // 正常
+            // normal
             var spell = BlackMageHelper.GetDespair();
             if (spell == null)
                 return null;

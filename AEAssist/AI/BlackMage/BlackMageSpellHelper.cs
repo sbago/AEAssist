@@ -1,7 +1,9 @@
-﻿using AEAssist.Define;
+﻿using System.Windows.Media;
+using AEAssist.Define;
 using AEAssist.Define.DataStruct;
 using AEAssist.Helper;
 using ff14bot;
+using ff14bot.Helpers;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
@@ -9,18 +11,18 @@ namespace AEAssist.AI.BlackMage
 {
     public static class BlackMageHelper
     {
-        public static bool CanCastFire4(SpellEntity lastSpell)
+        public static bool CanCastFire4()
         {
             if (Core.Me.CurrentMana >= 2400 &&
-                BlackMageHelper.IsMaxAstralStacks(lastSpell))
+                BlackMageHelper.IsMaxAstralStacks())
             {
                 // not sure what numbders excatly to put here
                 if (Core.Me.HasAura(AurasDefine.LeyLines) &&
-                    ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 4500)
+                    ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 5000)
                 {
                     return true;
                 }
-                else if (ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 5000)
+                else if (ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 5500)
                 {
                     return true;
                 }
@@ -39,6 +41,35 @@ namespace AEAssist.AI.BlackMage
             var thunder2 = AurasDefine.Thunder2;
             var thunder1 = AurasDefine.Thunder;
 
+            // if not enough time left
+            if (target.ContainMyAura((uint) thunder4) && 
+                !target.ContainMyAura((uint) thunder4, timeLeft))
+            {
+                Logging.Write("Thunder4 fucked up");
+                return true;
+            }
+
+            if (target.ContainMyAura((uint) thunder3) && 
+                !target.ContainMyAura((uint) thunder3, timeLeft))
+            {
+                Logging.Write("Thunder3 fucked up");
+                return true;
+            }
+
+            if (target.ContainMyAura((uint) thunder2) && 
+                !target.ContainMyAura((uint) thunder2, timeLeft))
+            {
+                Logging.Write("Thunder2 fucked up");
+                return true;
+            }
+
+            if (target.ContainMyAura((uint) thunder1) && 
+                !target.ContainMyAura((uint) thunder1, timeLeft))
+            {
+                Logging.Write("Thunder1 fucked up");
+                return true;
+            }
+            
             // if target has no dot from me, target needs dot
             if (!target.ContainMyAura((uint) thunder4) &&
                 !target.ContainMyAura((uint) thunder3) &&
@@ -46,31 +77,7 @@ namespace AEAssist.AI.BlackMage
                 !target.ContainMyAura((uint) thunder1)
                )
             {
-                return true;
-            }
-
-            // if not enough time left
-            if (target.ContainMyAura((uint) thunder4) && 
-                !target.ContainMyAura((uint) thunder4, timeLeft))
-            {
-                return true;
-            }
-
-            if (target.ContainMyAura((uint) thunder3) && 
-                !target.ContainMyAura((uint) thunder3, timeLeft))
-            {
-                return true;
-            }
-
-            if (target.ContainMyAura((uint) thunder2) && 
-                !target.ContainMyAura((uint) thunder2, timeLeft))
-            {
-                return true;
-            }
-
-            if (target.ContainMyAura((uint) thunder1) && 
-                !target.ContainMyAura((uint) thunder1, timeLeft))
-            {
+                Logging.Write("Thunder Auracheck fuckedup");
                 return true;
             }
 
@@ -292,6 +299,11 @@ namespace AEAssist.AI.BlackMage
                 return true;
             }
 
+            if (SpellsDefine.Triplecast.RecentlyUsed() || SpellsDefine.Swiftcast.RecentlyUsed())
+            {
+                return true;
+            }
+
             return false;
         }
         
@@ -306,7 +318,9 @@ namespace AEAssist.AI.BlackMage
                 return true;
             }
 
-            if (ActionResourceManager.BlackMage.UmbralHearts == 3)
+            if (ActionResourceManager.BlackMage.UmbralHearts == 3 || 
+                SpellsDefine.Blizzard4.RecentlyUsed() ||
+                SpellsDefine.Freeze.RecentlyUsed())
             {
                 return true;
             }
@@ -315,16 +329,16 @@ namespace AEAssist.AI.BlackMage
 
         }
 
-        public static bool IsMaxAstralStacks(SpellEntity lastSpell)
+        public static bool IsMaxAstralStacks()
         {
             if (ActionResourceManager.BlackMage.AstralStacks == 3)
             {
                 return true;
             }
 
-            if (lastSpell == SpellsDefine.Fire2.GetSpellEntity() ||
-                lastSpell == SpellsDefine.Fire3.GetSpellEntity() ||
-                lastSpell == SpellsDefine.HighFireII.GetSpellEntity()
+            if (SpellsDefine.Fire2.RecentlyUsed() ||
+                SpellsDefine.Fire3.RecentlyUsed() ||
+                SpellsDefine.HighFireII.RecentlyUsed()
                )
             {
                 return true;
@@ -349,15 +363,15 @@ namespace AEAssist.AI.BlackMage
             return false;
         }
         
-        public static bool IsGCDOpen(SpellEntity lastSpell)
+        public static bool IsGCDOpen()
         {
             if (Core.Me.HasAura(AurasDefine.Triplecast))
             {
                 return true;
             }
 
-            if (lastSpell == SpellsDefine.Fire3.GetSpellEntity() ||
-                lastSpell == SpellsDefine.Blizzard3.GetSpellEntity())
+            if (SpellsDefine.Fire3.RecentlyUsed() ||
+                SpellsDefine.Blizzard3.RecentlyUsed())
             {
                 return true;
             }

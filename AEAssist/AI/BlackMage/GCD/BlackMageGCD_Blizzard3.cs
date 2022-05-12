@@ -14,21 +14,22 @@ namespace AEAssist.AI.BlackMage.GCD
         {
             // todo: how to make blizzard2 casting itself?
             // prevent redundant casting
-            if (lastSpell == SpellsDefine.Blizzard3.GetSpellEntity() ||
-                lastSpell == SpellsDefine.HighBlizzardII.GetSpellEntity() ||
-                lastSpell == SpellsDefine.Paradox.GetSpellEntity() ||
-                lastSpell == SpellsDefine.Fire.GetSpellEntity() 
+            var BattleData = AIRoot.GetBattleData<BattleData>();
+            if (BattleData.lastGCDSpell == SpellsDefine.Blizzard3.GetSpellEntity() ||
+                BattleData.lastGCDSpell == SpellsDefine.HighBlizzardII.GetSpellEntity() ||
+                BattleData.lastGCDSpell == SpellsDefine.Paradox.GetSpellEntity() ||
+                BattleData.lastGCDSpell == SpellsDefine.Fire.GetSpellEntity()
                )
             {
                 return -1;
             }
             // prevent to waste mana font
-            if (lastSpell == SpellsDefine.ManaFont.GetSpellEntity())
+            if (SpellsDefine.ManaFont.RecentlyUsed())
             {
                 return -1;
             }
             // fire to ice
-            if (BlackMageHelper.IsMaxAstralStacks(lastSpell))
+            if (BlackMageHelper.IsMaxAstralStacks())
             {
                 return 1;
             }

@@ -27,7 +27,7 @@ namespace AEAssist.AI.BlackMage.GCD
             }
             
             if (Core.Me.CurrentMana >= minmana &&
-                BlackMageHelper.IsMaxAstralStacks(lastSpell))
+                BlackMageHelper.IsMaxAstralStacks())
             {
                 // not sure what numbders excatly to put here
                 if (Core.Me.HasAura(AurasDefine.LeyLines) && ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 5000)

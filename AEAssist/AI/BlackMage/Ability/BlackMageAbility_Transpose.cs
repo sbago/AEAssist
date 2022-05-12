@@ -13,16 +13,20 @@ namespace AEAssist.AI.BlackMage.Ability
     {
         public int Check(SpellEntity lastSpell)
         {
+            // lastspell => last ability spell
+            
+            var BattleData = AIRoot.GetBattleData<BattleData>();
+            
             if (!SpellsDefine.Transpose.IsReady())
             {
                 return -2;
             }
             
             // prevent redundant casting
-            if (lastSpell == SpellsDefine.Blizzard3.GetSpellEntity() ||
-                lastSpell == SpellsDefine.HighBlizzardII.GetSpellEntity() ||
-                lastSpell == SpellsDefine.Paradox.GetSpellEntity() ||
-                lastSpell == SpellsDefine.Fire.GetSpellEntity() 
+            if (SpellsDefine.Blizzard3.RecentlyUsed() ||
+                SpellsDefine.HighBlizzardII.RecentlyUsed() ||
+                SpellsDefine.Paradox.RecentlyUsed() ||
+                SpellsDefine.Fire.RecentlyUsed() 
                )
             {
                 return -1;
@@ -33,7 +37,7 @@ namespace AEAssist.AI.BlackMage.Ability
                 Core.Me.CurrentMana == 10000 &&
                 ActionResourceManager.BlackMage.UmbralStacks > 0 &&
                 !BlackMageHelper.IsParadoxReady() &&
-                lastSpell != SpellsDefine.Fire3.GetSpellEntity())
+                BattleData.lastGCDSpell != SpellsDefine.Fire3.GetSpellEntity())
             {
                 return 1;
             }
