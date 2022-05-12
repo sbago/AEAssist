@@ -36,6 +36,8 @@ namespace AEAssist
         public bool ShowBattleTime { get; set; }
 
         public int DexPotionId { get; set; }
+        
+        public int MindPotionId { get; set; }
 
         public int StrPotionId { get; set; }
         

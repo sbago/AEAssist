@@ -224,6 +224,7 @@
         <Compile Include="AI\Sage\GCD\SageGCDToxikon.cs" />
         <Compile Include="AI\Sage\SageBattleData.cs" />
         <Compile Include="AI\Sage\SageSpellHelper.cs" />
+        <Compile Include="AI\Sage\Sage_AIPriorityQueue.cs" />
         <Compile Include="AI\Sage\SpellEvent\SpellEventDot.cs" />
         <Compile Include="AI\Samurai\Opener_Samurai_90.cs" />
         <Compile Include="AI\SpellEvent.cs" />
@@ -374,14 +375,21 @@
         <Compile Include="View\Overlay\ReaperOverlay.xaml.cs">
             <DependentUpon>ReaperOverlay.xaml</DependentUpon>
         </Compile>
+        <Compile Include="View\Overlay\SageOverlayWindow.xaml.cs">
+          <DependentUpon>SageOverlayWindow.xaml</DependentUpon>
+        </Compile>
         <Compile Include="View\Overlay\SamuraiOverlayWindow.xaml.cs" />
         <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BardOverlay.cs" />
         <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_DancerOverlay.cs" />
         <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_MCHOverlay.cs" />
         <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_ReaperOverlay.cs" />
+        <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_SageOverlay.cs" />
         <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_SamuraiOverlay.cs" />
         <Compile Include="View\ReaperSettingView.xaml.cs">
             <DependentUpon>ReaperSettingView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\SageSettingView.xaml.cs">
+          <DependentUpon>SageSettingView.xaml</DependentUpon>
         </Compile>
         <Compile Include="View\SamuraiSettingView.xaml.cs" />
         <Compile Include="View\Style\HotkeyControl.xaml.cs">
@@ -409,6 +417,7 @@
         <Content Include="Resources\Lan_zh-CN.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+        <Content Include="Resources\Spells\SureCast.png" />
         <Resource Include="Resources\Spells\LegSweep.png" />
         <Resource Include="Resources\Spells\HeadGraze.png" />
         <Resource Include="Resources\Spells\IronJaws.png" />
@@ -462,8 +471,10 @@
         <Page Include="View\Overlay\DancerOverlayWindow.xaml" />
         <Page Include="View\Overlay\MCHOverlayWindow.xaml" />
         <Page Include="View\Overlay\ReaperOverlay.xaml" />
+        <Page Include="View\Overlay\SageOverlayWindow.xaml" />
         <Page Include="View\Overlay\SamuraiOverlayWindow.xaml" />
         <Page Include="View\ReaperSettingView.xaml" />
+        <Page Include="View\SageSettingView.xaml" />
         <Page Include="View\SamuraiSettingView.xaml" />
         <Page Include="View\Style\Button.xaml" />
         <Page Include="View\Style\CheckBox.xaml" />

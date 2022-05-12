@@ -52,6 +52,8 @@ namespace AEAssist
 
         public SamuraiSettings SamuraiSettings => SettingMgr.GetSetting<SamuraiSettings>();
 
+        public SageSettings SageSettings => SettingMgr.GetSetting<SageSettings>();
+
         public DebugCenter DebugCenter => DebugCenter.Intance;
 
         public HotkeySetting HotkeySetting => SettingMgr.GetSetting<HotkeySetting>();
