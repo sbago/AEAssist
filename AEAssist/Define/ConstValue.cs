@@ -17,6 +17,9 @@
         
         public static int SageAOECount = 2;
 
+        public static int BlackMageAOECount = 2;
+        public static int ParadoxLevelAcquired = 90;
+
         public static int SettingVersion = 13;
     }
 }
