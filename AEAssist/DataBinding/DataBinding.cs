@@ -104,6 +104,7 @@ namespace AEAssist
             UseSong = true;
             UseEnshroud = true;
             FinalBurst = false;
+            SageSettings.LucidDreamingToggle = true;
             WildfireNoDelay = SettingMgr.GetSetting<MCHSettings>().WildfireFirst;
         }
 

@@ -12,7 +12,10 @@ namespace AEAssist
         }
         
         public int Dot_TimeLeft { get; set; } = ConstValue.AuraTick;
-        public int TTK_EukrasianDosis { get; set; } 
+        public int TTK_EukrasianDosis { get; set; }
+
+        public int LucidDreamingTrigger { get; set; } = ConstValue.LucidDreamingDefaultRefresh;
+        public bool LucidDreamingToggle { get; set; } = true;
         
         public bool EarlyDecisionMode { get; set; }
 
