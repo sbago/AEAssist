@@ -9,7 +9,9 @@ namespace AEAssist.AI.Sage.Ability
     {
         public int Check(SpellEntity lastSpell)
         {
-            if (!SpellsDefine.LucidDreaming.IsReady() || !Core.Me.HasAura(AurasDefine.LucidDreaming)) return -1;
+            if (!SpellsDefine.LucidDreaming.IsReady() || Core.Me.HasAura(AurasDefine.LucidDreaming)) return -1;
+            if (Core.Me.CurrentManaPercent >= SettingMgr.GetSetting<SageSettings>().LucidDreamingTrigger) return -1;
+            if (!SettingMgr.GetSetting<SageSettings>().LucidDreamingToggle) return -1;
             return 0;
         }
 
