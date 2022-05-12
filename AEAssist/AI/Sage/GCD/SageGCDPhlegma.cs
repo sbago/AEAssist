@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
+using ff14bot;
 
 namespace AEAssist.AI.Sage.GCD
 {
@@ -9,6 +10,7 @@ namespace AEAssist.AI.Sage.GCD
         {
             var phlegmaCheck = SageSpellHelper.GetPhlegma();
             if (phlegmaCheck == null) return -1;
+            if (Core.Me.CurrentTarget.Distance() > 5) return -1;
             return 0;
         }
 
