@@ -150,5 +150,7 @@ namespace AEAssist
         public string Toggle_FinalBurst { get; set; }
 
         public string Label_OverlayScale { get; set; }
+        
+        public string Textbox_Sage_DotTimeLeft { get; set; }
     }
 }

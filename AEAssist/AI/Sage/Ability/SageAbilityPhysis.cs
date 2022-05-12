@@ -1,0 +1,23 @@
+﻿using System.Threading.Tasks;
+using AEAssist.Define;
+
+namespace AEAssist.AI.Sage.Ability
+{
+    public class SageAbilityPhysisII : IAIHandler
+    {
+        public int Check(SpellEntity lastSpell)
+        {
+            var physisCheck = SageSpellHelper.GetPhysis();
+            if (physisCheck == null) return -1;
+            return 0;
+        }
+
+        public async Task<SpellEntity> Run()
+        {
+            var spell = SageSpellHelper.GetPhysis();
+            if (spell == null) return null;
+            var ret = await spell.DoAbility();
+            return ret ? spell : null;
+        }
+    }
+}
