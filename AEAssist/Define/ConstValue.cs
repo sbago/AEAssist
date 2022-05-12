@@ -14,6 +14,8 @@
 
         public static int ReaperDoubleEnshroudMinCheckTime = 4500;
         public static int ReaperDoubleEnshroudMaxCheckTime = 25000;
+        
+        public static int SageAOECount = 2;
 
         public static int BlackMageAOECount = 2;
         public static int ParadoxLevelAcquired = 90;

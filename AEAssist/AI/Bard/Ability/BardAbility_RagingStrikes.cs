@@ -21,13 +21,13 @@ namespace AEAssist.AI.Bard.Ability
                 if (AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs < 10000)
                 {
                     if (SpellsDefine.TheWanderersMinuet.RecentlyUsed()
-                        || Core.Me.ContainMyAura(AurasDefine.TheWanderersMinuet))
+                        || Core.Me.HasMyAuraWithTimeleft(AurasDefine.TheWanderersMinuet))
                         return 0;
                     return -4;
                 }
 
                 if (!SpellsDefine.TheWanderersMinuet.RecentlyUsed()
-                    && !Core.Me.ContainMyAura(AurasDefine.TheWanderersMinuet))
+                    && !Core.Me.HasMyAuraWithTimeleft(AurasDefine.TheWanderersMinuet))
                     return -5;
                 if (AIRoot.GetBattleData<BattleData>().lastGCDIndex
                     - SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.TheWanderersMinuet) >= 1)

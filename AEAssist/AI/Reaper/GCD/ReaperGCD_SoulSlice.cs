@@ -18,7 +18,7 @@ namespace AEAssist.AI.Reaper.GCD
             if (ActionResourceManager.Reaper.SoulGauge > 50)
                 return -2;
 
-            if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.ContainMyAura(AurasDefine.Enshrouded))
+            if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasMyAuraWithTimeleft(AurasDefine.Enshrouded))
                 return -3;
             
             if (ActionManager.ComboTimeLeft > 0 && ActionManager.ComboTimeLeft < 10)

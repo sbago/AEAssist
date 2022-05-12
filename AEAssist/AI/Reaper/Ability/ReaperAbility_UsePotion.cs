@@ -27,7 +27,7 @@ namespace AEAssist.AI.Reaper.Ability
 
             if (SpellsDefine.PlentifulHarvest.IsUnlock()
                 && (SpellsDefine.ArcaneCircle.GetSpellEntity().Cooldown.TotalMilliseconds <= 2000
-                    || Core.Me.ContainMyAura(AurasDefine.ArcaneCircle)))
+                    || Core.Me.HasMyAuraWithTimeleft(AurasDefine.ArcaneCircle)))
                 return 1;
 
 

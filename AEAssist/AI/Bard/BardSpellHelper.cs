@@ -108,7 +108,7 @@ namespace AEAssist.AI.Bard
             if (id == 0)
                 return true; 
 
-            return target.ContainMyAura((uint) id);
+            return target.HasMyAuraWithTimeleft((uint) id);
         }
 
         public static bool IsTargetHasAura_VenomousBite(Character target)
@@ -117,7 +117,7 @@ namespace AEAssist.AI.Bard
             if (id == 0)
                 return true; 
 
-            return target.ContainMyAura((uint) id);
+            return target.HasMyAuraWithTimeleft((uint) id);
         }
 
         public static bool IsTargetNeedIronJaws(Character target, int timeLeft)
@@ -139,7 +139,7 @@ namespace AEAssist.AI.Bard
                 if (AEAssist.DataBinding.Instance.EarlyDecisionMode)
                     timeLeft += SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
 
-                return !target.ContainMyAura((uint) ve_id, timeLeft)
+                return !target.HasMyAuraWithTimeleft((uint) ve_id, timeLeft)
                        || !target.ContainAura((uint) wind_id, timeLeft);
             }
 
@@ -147,7 +147,7 @@ namespace AEAssist.AI.Bard
             //LogHelper.Info("当前快要结束的Buff数量 : " + buffCountInEnd);
             if (buffCountInEnd >= 1 && !AIRoot.GetBattleData<BardBattleData>().IsTargetLastIronJawWithBuff())
             {
-                if (ttk_ironJaws > 0 && target.ContainMyAura((uint) ve_id, ttk_ironJaws * 1000) &&
+                if (ttk_ironJaws > 0 && target.HasMyAuraWithTimeleft((uint) ve_id, ttk_ironJaws * 1000) &&
                     TTKHelper.IsTargetTTK(target, ttk_ironJaws, false))
                     return NormalCheck();
                 return true;
@@ -339,7 +339,7 @@ namespace AEAssist.AI.Bard
         {
             if (!SpellsDefine.Shadowbite.IsReady()) return false;
 
-            if (Core.Me.ContainMyAura(AurasDefine.ShadowBiteReady)) return true;
+            if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.ShadowBiteReady)) return true;
 
             return false;
         }

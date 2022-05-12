@@ -43,39 +43,39 @@ namespace AEAssist.AI.BlackMage
             var thunder1 = AurasDefine.Thunder;
 
             // if not enough time left
-            if (target.ContainMyAura((uint) thunder4) && 
-                !target.ContainMyAura((uint) thunder4, timeLeft))
+            if (target.HasMyAuraWithTimeleft((uint) thunder4) && 
+                !target.HasMyAuraWithTimeleft((uint) thunder4, timeLeft))
             {
                 Logging.Write("Thunder4 fucked up");
                 return true;
             }
 
-            if (target.ContainMyAura((uint) thunder3) && 
-                !target.ContainMyAura((uint) thunder3, timeLeft))
+            if (target.HasMyAuraWithTimeleft((uint) thunder3) && 
+                !target.HasMyAuraWithTimeleft((uint) thunder3, timeLeft))
             {
                 Logging.Write("Thunder3 fucked up");
                 return true;
             }
 
-            if (target.ContainMyAura((uint) thunder2) && 
-                !target.ContainMyAura((uint) thunder2, timeLeft))
+            if (target.HasMyAuraWithTimeleft((uint) thunder2) && 
+                !target.HasMyAuraWithTimeleft((uint) thunder2, timeLeft))
             {
                 Logging.Write("Thunder2 fucked up");
                 return true;
             }
 
-            if (target.ContainMyAura((uint) thunder1) && 
-                !target.ContainMyAura((uint) thunder1, timeLeft))
+            if (target.HasMyAuraWithTimeleft((uint) thunder1) && 
+                !target.HasMyAuraWithTimeleft((uint) thunder1, timeLeft))
             {
                 Logging.Write("Thunder1 fucked up");
                 return true;
             }
             
             // if target has no dot from me, target needs dot
-            if (!target.ContainMyAura((uint) thunder4) &&
-                !target.ContainMyAura((uint) thunder3) &&
-                !target.ContainMyAura((uint) thunder2) &&
-                !target.ContainMyAura((uint) thunder1)
+            if (!target.HasMyAuraWithTimeleft((uint) thunder4) &&
+                !target.HasMyAuraWithTimeleft((uint) thunder3) &&
+                !target.HasMyAuraWithTimeleft((uint) thunder2) &&
+                !target.HasMyAuraWithTimeleft((uint) thunder1)
                )
             {
                 Logging.Write("Thunder Auracheck fuckedup");

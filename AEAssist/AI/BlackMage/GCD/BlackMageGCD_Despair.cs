@@ -45,6 +45,8 @@ namespace AEAssist.AI.BlackMage.GCD
                         {
                             return 0;
                         }
+
+
                     }
                 }
 
@@ -70,12 +72,7 @@ namespace AEAssist.AI.BlackMage.GCD
                 SpellsDefine.ManaFont.IsReady())
             {
                 if (SpellsDefine.Triplecast.IsReady())
-                {
-                    // 新增
                     AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Triplecast.GetSpellEntity();
-                }
-
-                // 旧
                 AISpellQueueMgr.Instance.Apply<SpellQueue_DespairCombo>();
                 await Task.CompletedTask;
                 return null;

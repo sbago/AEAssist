@@ -13,7 +13,7 @@ namespace AEAssist.AI.Samurai
         public int StepCount { get; } = 14;
         public int Check()
         {
-            if (!Core.Me.ContainMyAura(AurasDefine.MeikyoShisui))
+            if (!Core.Me.HasMyAuraWithTimeleft(AurasDefine.MeikyoShisui))
             {
                 return -1;
             }
