@@ -12,11 +12,15 @@ namespace AEAssist.AI.Sage
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>()
         {
             new SageGCDDot(),
-            new SageBaseGCD(),
-            new SageGCDPhlegma(),
-            new SageGCDToxikon(),
+            // new SageBaseGCD(),
+            // new SageGCDPhlegma(),
+            // new SageGCDToxikon(),
         };
-        public List<IAIHandler> AbilityQueue { get; }
+
+        public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()
+        {
+
+        };
         public async Task<bool> UsePotion()
         {
             return await PotionHelper.ForceUsePotion(SettingMgr.GetSetting<GeneralSettings>().MindPotionId);

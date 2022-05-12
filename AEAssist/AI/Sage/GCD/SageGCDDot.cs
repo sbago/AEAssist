@@ -33,6 +33,10 @@ namespace AEAssist.AI.Sage.GCD
             SpellEntity spell = null;
             var timeLeft = SettingMgr.GetSetting<SageSettings>().Dot_TimeLeft;
             var target = Core.Me.CurrentTarget as Character;
+            if (!Core.Me.ContainMyAura(AurasDefine.Eukrasia))
+            { 
+                return AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.Eukrasia.GetSpellEntity();
+            }
             if (!SageSpellHelper.IsTargetHasAuraEukrasianDosis(target))
                 spell = SageSpellHelper.GetEukrasianDosis();
             else if (SageSpellHelper.IsTargetNeedEukrasianDosis(target, timeLeft))

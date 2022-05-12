@@ -60,7 +60,7 @@ namespace AEAssist.AI.Sage
             return SpellsDefine.PhysisII.IsReady() ? SpellsDefine.PhysisII.GetSpellEntity() : null;
         }
 
-        private static SpellEntity GetDosis()
+        public static SpellEntity GetDosis()
         {
             if (!SpellsDefine.Dosis.IsUnlock()) return null;
 
