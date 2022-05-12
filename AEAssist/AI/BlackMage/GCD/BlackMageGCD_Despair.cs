@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AEAssist.AI.BlackMage.SpellQueue;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -39,7 +40,7 @@ namespace AEAssist.AI.BlackMage.GCD
                     }
                 }
 
-                if (ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 3000)
+                if (ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 2500)
                 {
                     return 1;
                 }
@@ -55,6 +56,15 @@ namespace AEAssist.AI.BlackMage.GCD
 
         public async Task<SpellEntity> Run()
         {
+            // 走魔泉
+            if (SpellsDefine.ManaFont.IsUnlock() &&
+                SpellsDefine.ManaFont.IsReady())
+            {
+                AISpellQueueMgr.Instance.Apply<SpellQueue_DespairManafont>();
+                await Task.CompletedTask;
+                return null;
+            }
+            // 正常
             var spell = BlackMageHelper.GetDespair();
             if (spell == null)
                 return null;

@@ -1,4 +1,5 @@
 ﻿using AEAssist.Define;
+using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Managers;
 
@@ -8,14 +9,16 @@ namespace AEAssist.AI.BlackMage.SpellQueue
     {
         public int Check(int index)
         {
-            if (Core.Me.CurrentMana < 800 || ActionResourceManager.BlackMage.AstralStacks <= 0)
-                return -1;
-            return 0;
+            return 1;
         }
 
         public void Fill(SpellQueueSlot slot)
         {
-            slot.GCDSpellId = SpellsDefine.Despair;
+            slot.GCDSpellId = BlackMageHelper.GetDespair().Id;
+            if (SpellsDefine.ManaFont.IsReady())
+            {
+                slot.Abilitys.Enqueue((SpellsDefine.ManaFont,  SpellTargetType.Self));
+            }
         }
     }
 }

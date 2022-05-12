@@ -18,19 +18,8 @@ namespace AEAssist.AI.BlackMage.GCD
                 return -1;
 
 
-            // get thunders 
-            // todo: thunder problem, repeated casting, probably can't cast thunder 1,2 anymore if learned thunder 3,4
-            // if (SpellsDefine.Thunder4.IsUnlock())
-            // {
-            //     var thunder4 = SpellsDefine.Thunder4.GetSpellEntity();
-            // }
-            // else
-            // {
-            //     if (SpellsDefine.Thunder2.IsUnlock())
-            //     {
-            //         var thunder4 = SpellsDefine.Thunder2.GetSpellEntity();
-            //     }
-            // }
+            if (DotBlacklistHelper.IsBlackList(Core.Me.CurrentTarget as Character))
+                return -10;
             
             
             // prevent casting same spell
@@ -55,7 +44,7 @@ namespace AEAssist.AI.BlackMage.GCD
                 if (ActionResourceManager.BlackMage.AstralStacks > 0)
                 {
                     // if we have more than 10 seconds left in fire
-                    if (ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 100000)
+                    if (ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 10000)
                     {
                         return 1;
                     }

@@ -30,11 +30,11 @@ namespace AEAssist.AI.BlackMage.GCD
                 BlackMageHelper.IsMaxAstralStacks(lastSpell))
             {
                 // not sure what numbders excatly to put here
-                if (Core.Me.HasAura(AurasDefine.LeyLines) && ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 4500)
+                if (Core.Me.HasAura(AurasDefine.LeyLines) && ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 5000)
                 {
                     return 1;
                 }
-                if (ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 5000)
+                if (ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 5500)
                 {
                     return 2;
                 }

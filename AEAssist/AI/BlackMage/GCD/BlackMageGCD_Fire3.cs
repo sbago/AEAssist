@@ -13,7 +13,15 @@ namespace AEAssist.AI.BlackMage.GCD
     {
         public int Check(SpellEntity lastSpell)
         {
-            //todo: add repeated check
+            //prevent reduent spell
+            if (lastSpell == SpellsDefine.Fire3.GetSpellEntity() ||
+                lastSpell == SpellsDefine.Blizzard3.GetSpellEntity() ||
+                lastSpell == SpellsDefine.HighBlizzardII.GetSpellEntity()
+                )
+            {
+                return -1;
+            }
+            
             
             // if we are in fire 
             if (ActionResourceManager.BlackMage.AstralStacks > 0)

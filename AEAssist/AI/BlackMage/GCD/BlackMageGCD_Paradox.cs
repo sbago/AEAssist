@@ -12,12 +12,17 @@ namespace AEAssist.AI.BlackMage.GCD
     {
         public int Check(SpellEntity lastSpell)
         {
-            // todo: fire1 needs repeated check, and level is not working
+            // prevent redundant casting
+            if (lastSpell == SpellsDefine.Paradox.GetSpellEntity() ||
+                lastSpell == SpellsDefine.Fire.GetSpellEntity())
+            {
+                return -1;
+            }
             
             // if we are in fire
             // and we use paradox to refresh astral time
             // if we have less than 2400 mana, skill refresh buff, go despair
-            if (BlackMageHelper.IsMaxAstralStacks(lastSpell) &&
+            if (ActionResourceManager.BlackMage.AstralStacks > 0 &&
                 Core.Me.CurrentMana > 2400)
             {
                 return 1;
@@ -25,7 +30,8 @@ namespace AEAssist.AI.BlackMage.GCD
 
             // if we are in ice
             if (ActionResourceManager.BlackMage.UmbralStacks > 0 &&
-                BlackMageHelper.LearnedParadox())
+                SpellsDefine.Paradox.IsUnlock() &&
+                BlackMageHelper.IsParadoxReady())
             {
                 return 2;
             }

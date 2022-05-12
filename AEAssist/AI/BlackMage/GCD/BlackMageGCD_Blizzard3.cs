@@ -15,8 +15,10 @@ namespace AEAssist.AI.BlackMage.GCD
             // todo: how to make blizzard2 casting itself?
             // prevent redundant casting
             if (lastSpell == SpellsDefine.Blizzard3.GetSpellEntity() ||
-                lastSpell == SpellsDefine.HighBlizzardII.GetSpellEntity()
-                )
+                lastSpell == SpellsDefine.HighBlizzardII.GetSpellEntity() ||
+                lastSpell == SpellsDefine.Paradox.GetSpellEntity() ||
+                lastSpell == SpellsDefine.Fire.GetSpellEntity() 
+               )
             {
                 return -1;
             }

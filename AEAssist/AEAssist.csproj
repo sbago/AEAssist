@@ -196,7 +196,8 @@
         <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Fire1.cs" />
         <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Fire3.cs" />
         <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Fire4.cs" />
-        <Compile Include="AI\BlackMage\SpellQueue\SpellQueue_Test.cs" />
+        <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Manafont.cs" />
+        <Compile Include="AI\BlackMage\SpellQueue\SpellQueue_DespairManafont.cs" />
         <Compile Include="AI\Dancer\DancerRotation.cs" />
         <Compile Include="AI\AISpellQueueMgr.cs" />
         <Compile Include="AI\Machinist\SpellEvent\SpellEvent_Hypercharge.cs" />

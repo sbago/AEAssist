@@ -15,9 +15,9 @@ namespace AEAssist.AI.BlackMage
         {
             new BlackMageGCD_Dot(), //done, priority #1
             new BlackMageGCD_Xenoglossy(), //done
-            new BlackMageGCD_Fire3(), //done
             new BlackMageGCD_Fire4(), //done, must before paradox
             new BlackMageGCD_Blizzard4(), //done, before ice paradox
+            new BlackMageGCD_Fire3(), //done
             new BlackMageGCD_Paradox(), //done, must after fire4
             new BlackMageGCD_Despair(), //done, must after all fire spells
             new BlackMageGCD_Blizzard3(), //done, must after all fire
@@ -27,7 +27,7 @@ namespace AEAssist.AI.BlackMage
 
         public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()
         {
-            new BlackMageAblity_Manafont(),
+            // new BlackMageAblity_Manafont(),
             new BlackMageAblity_Amplifier(),
             new BlackMageAblity_Triplecast(),
             new BlackMageAblity_Sharpcast(),

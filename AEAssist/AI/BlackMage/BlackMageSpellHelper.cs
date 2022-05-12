@@ -84,6 +84,10 @@ namespace AEAssist.AI.BlackMage
         
         public static bool IsParadoxReady()
         {
+            if (!SpellsDefine.Paradox.IsUnlock())
+            {
+                return false;
+            }
             var spell = SpellsDefine.Paradox.GetSpellEntity().SpellData;
             if (ActionManager.CanCastOrQueue(spell, Core.Me.CurrentTarget))
             {
@@ -163,29 +167,28 @@ namespace AEAssist.AI.BlackMage
             }
             return null;
         }
-        
-        
+
+        public static bool test()
+        {
+            return true;
+        }
         
         public static SpellEntity GetParadox()
         {
             // if we learned paradox, go only paradox
-            if (BlackMageHelper.LearnedParadox())
+            if (SpellsDefine.Paradox.IsUnlock())
             {
                 if (BlackMageHelper.IsParadoxReady())
                 {
                     return SpellsDefine.Paradox.GetSpellEntity();
                 }
-                LogHelper.Debug("Paradox is learned");
                 return null;
             }
             // if we have not learned paradox, replace fire paradox with fire, nothing to go in ice
-            // if (ActionResourceManager.BlackMage.AstralStacks > 0)
-            // {
-                if (SpellsDefine.Fire.IsUnlock())
-                {
-                    return SpellsDefine.Fire.GetSpellEntity();
-                }
-            // }
+            if (SpellsDefine.Fire.IsUnlock())
+            {
+                return SpellsDefine.Fire.GetSpellEntity();
+            }
 
             return null;
         }
@@ -336,7 +339,7 @@ namespace AEAssist.AI.BlackMage
             if (ActionResourceManager.BlackMage.UmbralStacks > 0)
             {
                 if (BlackMageHelper.UmbralHeatsReady() &&
-                    BlackMageHelper.IsParadoxReady() &&
+                    !BlackMageHelper.IsParadoxReady() &&
                     Core.Me.CurrentMana == 10000)
                 {
                     return true;
