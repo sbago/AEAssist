@@ -58,7 +58,7 @@
                         </TabItem.Header>
                         <TabItem.LayoutTransform>
                             <TransformGroup>
-                                <RotateTransform Angle="0" />
+                                <RotateTransform Angle="90" />
                             </TransformGroup>
                         </TabItem.LayoutTransform>
                         <view:BardSettingView HorizontalAlignment="Center" />
@@ -70,7 +70,7 @@
                         </TabItem.Header>
                         <TabItem.LayoutTransform>
                             <TransformGroup>
-                                <RotateTransform Angle="0" />
+                                <RotateTransform Angle="90" />
                             </TransformGroup>
                         </TabItem.LayoutTransform>
                         <view:MCHSettingView HorizontalAlignment="Center" />
@@ -83,7 +83,7 @@
                         </TabItem.Header>
                         <TabItem.LayoutTransform>
                             <TransformGroup>
-                                <RotateTransform Angle="0" />
+                                <RotateTransform Angle="90" />
                             </TransformGroup>
                         </TabItem.LayoutTransform>
                         <view:ReaperSettingView HorizontalAlignment="Center" />
@@ -95,7 +95,7 @@
                         </TabItem.Header>
                         <TabItem.LayoutTransform>
                             <TransformGroup>
-                                <RotateTransform Angle="0" />
+                                <RotateTransform Angle="90" />
                             </TransformGroup>
                         </TabItem.LayoutTransform>
                         <view:SamuraiSettingView HorizontalAlignment="Center" />
@@ -118,7 +118,7 @@
                         </TabItem.Header>
                         <TabItem.LayoutTransform>
                             <TransformGroup>
-                                <RotateTransform Angle="0" />
+                                <RotateTransform Angle="90" />
                             </TransformGroup>
                         </TabItem.LayoutTransform>
                         <view:SageSettingView HorizontalAlignment="Center" />
