@@ -74,22 +74,22 @@ namespace AEAssist.Helper
             MindPotions.Add(new PotionData
             {
                 ID = 36113,
-                Name = "Grade 6 Mind/Todo:cnd name?"
+                Name = "Grade 6 Mind/6级智力"
             });
             MindPotions.Add(new PotionData
             {
                 ID = 36108,
-                Name = "Grade 5 Mind/Todo:cnd name?"
+                Name = "Grade 5 Mind/5级智力"
             });
             MindPotions.Add(new PotionData
             {
                 ID = 31897,
-                Name = "Grade 4 Mind/Todo:cnd name?"
+                Name = "Grade 4 Mind/4级智力"
             });
             MindPotions.Add(new PotionData
             {
                 ID = 29496,
-                Name = "Grade 3 Mind/Todo:cnd name?"
+                Name = "Grade 3 Mind/3级智力"
             });
             
         }

@@ -24,6 +24,14 @@ namespace AEAssist.AI.BlackMage.GCD
                 return -1;
             }
             
+            // if we didn't learn fire4
+            if (!SpellsDefine.Fire4.IsUnlock())
+            {
+                if (Core.Me.HasAura(AurasDefine.FireStarter))
+                {
+                    return 5;
+                }
+            }
             
             // if we are in fire 
             if (ActionResourceManager.BlackMage.AstralStacks > 0)
@@ -35,10 +43,18 @@ namespace AEAssist.AI.BlackMage.GCD
                 }
                 // if paradox unused, prevent wasting firestarter which can be triggered by paradox
                 if (BlackMageHelper.IsMaxAstralStacks() &&
-                    BlackMageHelper.IsParadoxReady() &&
                     Core.Me.HasAura(AurasDefine.FireStarter))
                 {
-                    return 3;
+                    if (SpellsDefine.Paradox.IsUnlock() && 
+                        BlackMageHelper.IsParadoxReady())
+                    {
+                        return 2;
+                    }
+
+                    if (!SpellsDefine.Paradox.IsUnlock())
+                    {
+                        return 3;
+                    }
                 }
                 
             }
@@ -72,6 +88,10 @@ namespace AEAssist.AI.BlackMage.GCD
             var spell = SpellsDefine.Fire3.GetSpellEntity();
             if (spell == null)
                 return null;
+            if (MovementManager.IsMoving && spell.SpellData.AdjustedCastTime > TimeSpan.Zero)
+            {
+                return null;
+            }
             var ret = await spell.DoGCD();
             if (ret)
                 return spell;

@@ -42,6 +42,10 @@ namespace AEAssist.AI.BlackMage.GCD
             var spell = BlackMageHelper.GetBlizzard4();
             if (spell == null)
                 return null;
+            if (MovementManager.IsMoving && spell.SpellData.AdjustedCastTime > TimeSpan.Zero)
+            {
+                return null;
+            }
             var ret = await spell.DoGCD();
             if (ret)
                 return spell;
