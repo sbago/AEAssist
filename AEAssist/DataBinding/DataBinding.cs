@@ -31,6 +31,8 @@ namespace AEAssist
         
         public bool Stop { get; set; }
 
+        public bool Move { get; set; }
+        
         public bool AutoAttack { get; set; }
 
         public bool UseTrueNorth { get; set; }
@@ -92,6 +94,7 @@ namespace AEAssist
         {
             Burst = true;
             Stop = false;
+            Move = false;
             UseApex = true;
             UseDot = true;
             AutoAttack = false;

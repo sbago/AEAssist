@@ -21,11 +21,12 @@ namespace AEAssist.AI.BlackMage.GCD
             // prevent redundant casting
             var BattleData = AIRoot.GetBattleData<BattleData>();
             if (BattleData.lastGCDSpell == SpellsDefine.Fire.GetSpellEntity() ||
-                BattleData.lastGCDSpell == SpellsDefine.Paradox.GetSpellEntity() ||
+                BlackMageHelper.GetLastSpell() == SpellsDefine.Paradox ||
                 BattleData.lastGCDSpell == SpellsDefine.Despair.GetSpellEntity()
                )
             {
-                return -1;
+                LogHelper.Info(BattleData.lastGCDSpell.SpellData.LocalizedName);
+                return -10;
             }
 
 
@@ -40,26 +41,18 @@ namespace AEAssist.AI.BlackMage.GCD
                     var aoeCount = TargetHelper.GetNearbyEnemyCount(Core.Me.CurrentTarget, 25, 5);
                     if (aoeCount >= ConstValue.BlackMageAOECount)
                     {
-                        // if (ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 4500)
                         if (ActionResourceManager.BlackMage.StackTimer > BlackMageHelper.GetSpellCastTimeSpan(SpellsDefine.Flare.GetSpellEntity()))
                         {
                             return 0;
                         }
-
-
                     }
                 }
 
-                // if (ActionResourceManager.BlackMage.StackTimer.TotalMilliseconds > 2500)
                 if (ActionResourceManager.BlackMage.StackTimer > BlackMageHelper.GetSpellCastTimeSpan(SpellsDefine.Despair.GetSpellEntity()))
                 {
                     return 1;
                 }
-
-                if (BlackMageHelper.InstantCasting())
-                {
-                    return 0;
-                }
+                
             }
 
             return -4;
@@ -71,8 +64,19 @@ namespace AEAssist.AI.BlackMage.GCD
             if (SpellsDefine.ManaFont.IsUnlock() &&
                 SpellsDefine.ManaFont.IsReady())
             {
-                if (SpellsDefine.Triplecast.IsReady())
-                    AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Triplecast.GetSpellEntity();
+                // use triple cast or swift cast
+                if (!BlackMageHelper.InstantCasting())
+                {
+                    if (SpellsDefine.Triplecast.IsReady())
+                    {
+                        await SpellsDefine.Triplecast.DoAbility();
+                    }
+                    else if (SpellsDefine.Swiftcast.IsReady())
+                    {
+                        await SpellsDefine.Swiftcast.DoAbility();
+                    }
+                }
+
                 AISpellQueueMgr.Instance.Apply<SpellQueue_DespairCombo>();
                 await Task.CompletedTask;
                 return null;
