@@ -209,7 +209,7 @@ namespace AEAssist.AI
 
             LogHelper.Debug($"CanUseGCD: {canUseGCD} coolDown: {coolDown} delta {delta}");
 
-            if (!canUseGCD && battleData.maxAbilityTimes > 0 && coolDown - delta >= coolDown * 0.33f)
+            if (!canUseGCD && !Core.Me.IsCasting && battleData.maxAbilityTimes > 0 && coolDown - delta >= coolDown * 0.33f)
                 canUseAbility = true;
             else
                 // LogHelper.Debug(

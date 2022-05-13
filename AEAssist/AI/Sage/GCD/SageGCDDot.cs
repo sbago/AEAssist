@@ -30,7 +30,12 @@ namespace AEAssist.AI.Sage.GCD
 
         public async Task<SpellEntity> Run()
         {
-            SageSpellHelper.CheckEukrasia();
+            var checkRet = await SageSpellHelper.CastEukrasia();
+            if (checkRet.ret)
+            {
+                return checkRet.Eukrasia;
+            }
+
             var spell = SageSpellHelper.GetEukrasianDosis();
             if (spell == null)
                 return null;

@@ -1,4 +1,5 @@
-﻿using AEAssist.Define;
+﻿using System.Threading.Tasks;
+using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Managers;
@@ -156,28 +157,34 @@ namespace AEAssist.AI.Sage
 
             return NormalCheck();
         }
-
-        public static void CheckEukrasia()
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>ret == true : Successful use</returns>
+        public static async Task<(bool ret,SpellEntity Eukrasia)> CastEukrasia()
         {
-            if (Core.Me.HasMyAura(AurasDefine.Eukrasia)) return;
-            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.Eukrasia.GetSpellEntity();
+            if (Core.Me.HasMyAura(AurasDefine.Eukrasia)|| SpellsDefine.Eukrasia.RecentlyUsed() ) return (false,null);
+            var spell = SpellsDefine.Eukrasia.GetSpellEntity();
+            var ret = await spell.DoGCD();
+            return (ret, spell);
         }
         
-        public static SpellEntity GetEukrasianDiagnosis()
+        public static async Task<bool> CastEukrasianDiagnosis(Character target)
         {
-            if (!SpellsDefine.EukrasianDiagnosis.IsUnlock()) return null;
-            
-            CheckEukrasia();
-            return !ActionManager.HasSpell(SpellsDefine.EukrasianDiagnosis) ? null : SpellsDefine.EukrasianDiagnosis.GetSpellEntity();
+            if (!SpellsDefine.EukrasianDiagnosis.IsUnlock()) return false;
+            await SageSpellHelper.CastEukrasia();
+            var spell = new SpellEntity(SpellsDefine.EukrasianDiagnosis, target as BattleCharacter);
+            return await spell.DoGCD();
         }
         
         
-        public static SpellEntity GetEukrasianPrognosis()
+        public static async Task<bool> CastEukrasianPrognosis(Character target)
         {   
-            if (!SpellsDefine.EukrasianPrognosis.IsUnlock()) return null;
-            
-            CheckEukrasia();
-            return !ActionManager.HasSpell(SpellsDefine.EukrasianPrognosis) ? null : SpellsDefine.EukrasianPrognosis.GetSpellEntity();
+            if (!SpellsDefine.EukrasianPrognosis.IsUnlock()) return false;
+            await SageSpellHelper.CastEukrasia();
+            var spell = new SpellEntity(SpellsDefine.EukrasianPrognosis, target as BattleCharacter);
+            return await spell.DoGCD();
         }
 
         public static bool CanEukrasianDiagnosis(Character unit)
@@ -188,7 +195,7 @@ namespace AEAssist.AI.Sage
             return true;
         }
 
-        public async void  PrePullEukrasianDiagnosisThreePeople()
+        public async Task PrePullEukrasianDiagnosisThreePeople()
         {
             // update allies? before casting? maybe?
             GroupHelper.UpdateAllies();
@@ -211,7 +218,7 @@ namespace AEAssist.AI.Sage
                             if (character.ObjectId == Core.Me.ObjectId)
                             {
                                 // cast it.
-                                AIRoot.GetBattleData<BattleData>().NextGcdSpellId = GetEukrasianDiagnosis();
+                                await CastEukrasianDiagnosis(character);
                             }
                             else
                             {
