@@ -4,6 +4,7 @@
     {
         public const int QuickAnimLockMs = 100;
         public const int AuraTick = 3000;
+        public const int LucidDreamingDefaultRefresh = 80;
 
         public const string ProjectVersion = "1.0.2.0";
 

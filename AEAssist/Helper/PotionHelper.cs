@@ -14,6 +14,7 @@ namespace AEAssist.Helper
     {
         public static List<PotionData> DexPotions { get; set; } = new List<PotionData>();
         public static List<PotionData> StrPotions { get; set; } = new List<PotionData>();
+        public static List<PotionData> MindPotions { get; set; } = new List<PotionData>();
 
         public static void Init()
         {
@@ -66,6 +67,31 @@ namespace AEAssist.Helper
                 ID = 29492,
                 Name = "Grade 3 Str/3级刚力之幻药"
             });
+            
+            // TODO: This need to be fixed and find out correct ID and translate to CN.
+            if (MindPotions == null)
+                MindPotions = new List<PotionData>();
+            MindPotions.Add(new PotionData
+            {
+                ID = 0000,
+                Name = "Grade 6 Mind/Todo:cnd name?"
+            });
+            MindPotions.Add(new PotionData
+            {
+                ID = 0000,
+                Name = "Grade 5 Mind/Todo:cnd name?"
+            });
+            MindPotions.Add(new PotionData
+            {
+                ID = 0000,
+                Name = "Grade 4 Mind/Todo:cnd name?"
+            });
+            MindPotions.Add(new PotionData
+            {
+                ID = 0000,
+                Name = "Grade 3 Mind/Todo:cnd name?"
+            });
+            
         }
 
         public static async Task<bool> UsePotion(int potionRawId)

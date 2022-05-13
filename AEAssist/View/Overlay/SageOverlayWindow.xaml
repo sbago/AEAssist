@@ -66,6 +66,11 @@
                                   Content="{Binding Language.Toggle_ActiveAttack}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
                                   IsChecked="{Binding AutoAttack,Mode=TwoWay}" />
+                        
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="{Binding Language.Toggle_LucidDreaming}"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding SageSettings.LucidDreamingToggle,Mode=TwoWay}" />
                     </WrapPanel>
                     <WrapPanel Margin="10">
                         <Button Style="{StaticResource ImageButton}"

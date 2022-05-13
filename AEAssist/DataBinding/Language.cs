@@ -53,6 +53,17 @@ namespace AEAssist
         public string Toggle_Apex { get; set; }
         public string Toggle_ActiveAttack { get; set; }
         public string Toggle_PreferDoubleEnshroud { get; set; }
+
+        #region Casters
+        
+        // Casters Roles Defaults
+        public string Toggle_LucidDreaming { get; set; }
+        public string Toggle_Esuna { get; set; }
+        public string Toggle_SureCast { get; set; }
+        public string Toggle_SwiftCast { get; set; }
+        
+        #endregion
+        
         
         public string Toggle_UseEnshroud { get; set; }
         public string Toggle_UseHarpe { get; set; }
@@ -106,6 +117,8 @@ namespace AEAssist
         public string Label_CurrTriggerLine { get; set; }
         public string Label_DexChoosePotion { get; set; }
         public string Label_StrChoosePotion { get; set; }
+        
+        public string Label_MindChoosePotion { get; set; }
 
         public string Label_PotionNum { get; set; }
 
@@ -152,5 +165,7 @@ namespace AEAssist
         public string Label_OverlayScale { get; set; }
         
         public string Textbox_Sage_DotTimeLeft { get; set; }
+        
+        public string TextBox_Lucid_Dreaming { get; set; }
     }
 }

@@ -36,6 +36,10 @@
                     <Label Content="{Binding Language.Textbox_Sage_DotTimeLeft}" Width="200" />
                     <TextBox Width="100" Text="{Binding SageSettings.Dot_TimeLeft,Mode=TwoWay}" />
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="{Binding Language.TextBox_Lucid_Dreaming}" Width="200" />
+                    <TextBox Width="100" Text="{Binding SageSettings.LucidDreamingTrigger,Mode=TwoWay}" />
+                </StackPanel>
             </StackPanel>
         </TabItem>
     </TabControl>
