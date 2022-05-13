@@ -202,6 +202,8 @@ namespace AEAssist.AI.Sage
 
         public static async Task PrePullEukrasianDiagnosisThreePeople()
         {
+            if (GroupHelper.CastableParty.Count <= 3) return;
+            
             var count = 0;
             const int need = 3;
             const int retryTime = 25;
@@ -232,7 +234,6 @@ namespace AEAssist.AI.Sage
                            $" {PartyManager.RawMembers.Count} {PartyManager.VisibleMembers.Count()}");
             foreach (var character in GroupHelper.CastableParty)
             {
-              
                 // check if we can EukrasianDiagnosis.
                 if(character.IsTank())
                     continue;
