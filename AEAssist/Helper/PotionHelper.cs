@@ -73,22 +73,22 @@ namespace AEAssist.Helper
                 MindPotions = new List<PotionData>();
             MindPotions.Add(new PotionData
             {
-                ID = 0000,
+                ID = 36113,
                 Name = "Grade 6 Mind/Todo:cnd name?"
             });
             MindPotions.Add(new PotionData
             {
-                ID = 0000,
+                ID = 36108,
                 Name = "Grade 5 Mind/Todo:cnd name?"
             });
             MindPotions.Add(new PotionData
             {
-                ID = 0000,
+                ID = 31897,
                 Name = "Grade 4 Mind/Todo:cnd name?"
             });
             MindPotions.Add(new PotionData
             {
-                ID = 0000,
+                ID = 29496,
                 Name = "Grade 3 Mind/Todo:cnd name?"
             });
             
