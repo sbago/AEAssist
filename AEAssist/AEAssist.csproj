@@ -422,6 +422,7 @@
         <Content Include="Resources\Lan_zh-CN.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+        <Content Include="Resources\Spells\MindPotion.png" />
         <Content Include="Resources\Spells\SureCast.png" />
         <Resource Include="Resources\Spells\LegSweep.png" />
         <Resource Include="Resources\Spells\HeadGraze.png" />
