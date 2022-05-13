@@ -24,6 +24,10 @@
   "Toggle_Apex" : "Apex",
   "Toggle_ActiveAttack" : "ActiveAttack",
   "Toggle_PreferDoubleEnshroud" : "PreferDoubleEnshroud",
+  "Toggle_LucidDreaming" : "LucidDreaming",
+  "Toggle_Esuna" : "Esuna",
+  "Toggle_SureCast" : "SureCast",
+  "Toggle_SwiftCast" : "SwiftCast",
   "Toggle_UseEnshroud" : "UseEnshroud",
   "Toggle_UseHarpe" : "UseHarpe",
   "Toggle_UseTrueNorthWhenMissActionDir" : "UseTrueNorthWhenMissActionDir",
@@ -63,6 +67,7 @@
   "Label_CurrTriggerLine" : "CurrTriggerLine",
   "Label_DexChoosePotion" : "DexChoosePotion",
   "Label_StrChoosePotion" : "StrChoosePotion",
+  "Label_MindChoosePotion" : "MindChoosePotion",
   "Label_PotionNum" : "PotionNum",
   "Label_DotblackList" : "DotblackList",
   "Toggle_PreferGallow" : "PreferGallow",
@@ -92,5 +97,6 @@
   "Btn_ApplyHotkey" : "ApplyHotkey",
   "Toggle_FinalBurst" : "FinalBurst",
   "Label_OverlayScale" : "OverlayScale",
-  "Textbox_Sage_DotTimeLeft" : "Sage"
+  "Textbox_Sage_DotTimeLeft" : "Sage",
+  "TextBox_Lucid_Dreaming" : "Lucid"
 }

@@ -19,7 +19,8 @@ namespace AEAssist.Define
         PM5,
         PM6,
         PM7,
-        PM8
+        PM8,
+        SpecifyTarget = 9,
     }
 
 
@@ -43,12 +44,20 @@ namespace AEAssist.Define
         {
             SpellTargetType = targetIndex;
         }
+        
+        public SpellEntity(uint id, BattleCharacter target) : this(id)
+        {
+            SpellTargetType =  SpellTargetType.SpecifyTarget;
+            specifyTarget = target;
+        }
 
         public uint Id => SpellData?.Id ?? 0;
 
         public TimeSpan Cooldown => SpellData.Cooldown;
 
         public TimeSpan AdjustedCooldown => SpellData.AdjustedCooldown;
+
+        private BattleCharacter specifyTarget;
 
         public static SpellEntity Create()
         {
@@ -106,6 +115,8 @@ namespace AEAssist.Define
                     }
 
                     break;
+                case SpellTargetType.SpecifyTarget:
+                    return this.specifyTarget;
             }
 
             return null;
