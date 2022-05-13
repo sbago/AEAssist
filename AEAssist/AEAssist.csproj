@@ -370,6 +370,9 @@
         <Compile Include="View\Overlay\BardOverlayWindow.xaml.cs">
             <DependentUpon>BardOverlayWindow.xaml</DependentUpon>
         </Compile>
+        <Compile Include="View\Overlay\BlackMageOverlayWindow.xaml.cs">
+          <DependentUpon>BlackMageOverlayWindow.xaml</DependentUpon>
+        </Compile>
         <Compile Include="View\Overlay\DancerOverlayWindow.xaml.cs">
             <DependentUpon>DancerOverlayWindow.xaml</DependentUpon>
         </Compile>
@@ -384,6 +387,7 @@
         </Compile>
         <Compile Include="View\Overlay\SamuraiOverlayWindow.xaml.cs" />
         <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BardOverlay.cs" />
+        <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BlackMageOverlay.cs" />
         <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_DancerOverlay.cs" />
         <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_MCHOverlay.cs" />
         <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_ReaperOverlay.cs" />
@@ -472,6 +476,7 @@
         <Page Include="View\GeneralSetting\UserControl_Hotkey.xaml" />
         <Page Include="View\MCHSettingView.xaml" />
         <Page Include="View\OverlayHeader.xaml" />
+        <Page Include="View\Overlay\BlackMageOverlayWindow.xaml" />
         <Page Include="View\Overlay\DancerOverlayWindow.xaml" />
         <Page Include="View\Overlay\MCHOverlayWindow.xaml" />
         <Page Include="View\Overlay\ReaperOverlay.xaml" />

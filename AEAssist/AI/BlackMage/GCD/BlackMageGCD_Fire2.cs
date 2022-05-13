@@ -13,7 +13,7 @@ namespace AEAssist.AI.BlackMage.GCD
         public int Check(SpellEntity lastSpell)
         {
             // only cast if setting allow aoe
-            if (DataBinding.Instance.UseAOE)
+            if (!DataBinding.Instance.UseAOE)
             {
                 return -1;
             }
@@ -26,7 +26,7 @@ namespace AEAssist.AI.BlackMage.GCD
             
             // check if there is enough targets for us to do aoe
             var aoeCount = TargetHelper.GetNearbyEnemyCount(Core.Me.CurrentTarget, 25, 5);
-            if (aoeCount >= ConstValue.BlackMageAOECount)
+            if (aoeCount >= 3)
             {
                 // if we can cast Flare, we save mana for doing so
                 if (SpellsDefine.Flare.IsUnlock())
@@ -46,9 +46,25 @@ namespace AEAssist.AI.BlackMage.GCD
                         }
                     }
                     // if we are in ice, we use this to replace what ever fire3 is
+                    // if we are in ice
                     if (ActionResourceManager.BlackMage.UmbralStacks > 0)
                     {
-                        
+                        // if we used blizzard4, paradox, and max mana
+                        if (BlackMageHelper.IsUmbralFinished())
+                        {
+                            return 2;
+                        }
+                    }
+            
+                    // if we are in nothing, we go to fire
+                    if (ActionResourceManager.BlackMage.UmbralStacks == 0 &&
+                        ActionResourceManager.BlackMage.AstralStacks == 0)
+                    {
+                        // if we are at the beginning of fight 
+                        if (Core.Me.CurrentMana == 10000)
+                        {
+                            return 4;
+                        }
                     }
                 }
                 // if we can't do Flare, just do it
