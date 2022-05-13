@@ -17,13 +17,12 @@ namespace AEAssist.AI.BlackMage.GCD
             {
                 return -1;
             }
-            
-            // make sure if we have enough mana to cast
-            var spell = SpellsDefine.Fire2.GetSpellEntity().SpellData;
-            if (!ActionManager.CanCastOrQueue(spell, Core.Me.CurrentTarget))
+
+            if (!SpellsDefine.Fire2.IsUnlock())
             {
-                return -1;
+                return -2;
             }
+            
             
             // check if there is enough targets for us to do aoe
             var aoeCount = TargetHelper.GetNearbyEnemyCount(Core.Me.CurrentTarget, 25, 5);
@@ -68,6 +67,10 @@ namespace AEAssist.AI.BlackMage.GCD
             var spell = BlackMageHelper.GetFire2();
             if (spell == null)
                 return null;
+            if (MovementManager.IsMoving && spell.SpellData.AdjustedCastTime > TimeSpan.Zero)
+            {
+                return null;
+            }
             var ret = await spell.DoGCD();
             if (ret)
                 return spell;

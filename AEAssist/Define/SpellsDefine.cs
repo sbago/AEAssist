@@ -54,7 +54,8 @@ namespace AEAssist.Define
             Interject,
             LowBlow,
             Shirk,
-            Sprint
+            Sprint,
+            Triplecast //new
         };
 
         // DPS Role

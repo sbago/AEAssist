@@ -14,7 +14,7 @@ namespace AEAssist.AI.BlackMage.GCD
 
         public async Task<SpellEntity> Run()
         {
-            AISpellQueueMgr.Instance.Apply<SpellQueue_DespairManafont>();
+            AISpellQueueMgr.Instance.Apply<SpellQueue_DespairCombo>();
             await Task.CompletedTask;
             return null;
         }

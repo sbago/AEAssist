@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AEAssist.AI.BlackMage;
 using AEAssist.Define;
 using AEAssist.Helper;
@@ -16,7 +17,22 @@ namespace AEAssist.AI.BlackMage.Ability
                 return -1;
             }
 
-            if (!Core.Me.HasAura(AurasDefine.Sharpcast))
+            if (SpellsDefine.Sharpcast.RecentlyUsed() ||
+                Core.Me.HasAura(AurasDefine.Sharpcast))
+            {
+                return -2;
+            }
+            // if we have less then 10 seconds before sharpcast overflow
+            if (SpellsDefine.Sharpcast.GetSpellEntity().Cooldown < TimeSpan.FromMilliseconds(10000))
+            {
+                
+            }
+            
+            // we want it to be used on next thunder
+            // todo: how?
+            if (!Core.Me.HasAura(AurasDefine.Sharpcast) &&
+                SpellsDefine.Sharpcast.GetSpellEntity().SpellData.Charges > 1
+                )
             {
                 return 1;
             }

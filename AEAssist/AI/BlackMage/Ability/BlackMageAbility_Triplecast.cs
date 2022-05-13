@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AEAssist.AI.BlackMage;
 using AEAssist.Define;
 using AEAssist.Helper;
@@ -11,6 +12,10 @@ namespace AEAssist.AI.BlackMage.Ability
     {
         public int Check(SpellEntity lastSpell)
         {
+            if (!SpellsDefine.Triplecast.IsUnlock())
+            {
+                return -1;
+            }
             if (!SpellsDefine.Triplecast.IsReady())
             {
                 return -1;
@@ -20,17 +25,12 @@ namespace AEAssist.AI.BlackMage.Ability
             {
                 return -3;
             }
+            var BattleData = AIRoot.GetBattleData<BattleData>();
             if (BlackMageHelper.UmbralHeatsReady() &&
-                SpellsDefine.Fire3.RecentlyUsed())
+                BattleData.lastGCDSpell == SpellsDefine.Fire3.GetSpellEntity() &&
+                SpellsDefine.Triplecast.GetSpellEntity().SpellData.Cooldown < TimeSpan.FromSeconds(15))
             {
                 return 1;
-            }
-
-            if (BlackMageHelper.IsMaxAstralStacks() &&
-                BlackMageHelper.CanCastFire4() &&
-                Core.Me.CurrentMana >= 8000)
-            {
-                return 2;
             }
             return -4;
         }
