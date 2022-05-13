@@ -17,7 +17,8 @@ namespace AEAssist.AI.Sage.GCD
 
         public async  Task<SpellEntity> Run()
         {
-            if (DataBinding.Instance.UseAOE)
+            //TODO: Fix AOE Object refrence null;
+            /*if (DataBinding.Instance.UseAOE)
             {
                 var aoeCount = TargetHelper.GetNearbyEnemyCount(Core.Me.CurrentTarget, 12, 5);
                 if (aoeCount >= ConstValue.SageAOECount)
@@ -31,7 +32,7 @@ namespace AEAssist.AI.Sage.GCD
                     var spellData = SageSpellHelper.GetDyskrasia();
                     if (await spellData.DoGCD()) return  spellData;
                 }
-            }
+            }*/
             {
                 var spellData = SageSpellHelper.GetBaseGcd();
                 if (spellData == null)
