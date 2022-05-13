@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -173,7 +174,7 @@ namespace AEAssist.AI.Sage
         public static async Task<bool> CastEukrasianDiagnosis(Character target)
         {
             if (!SpellsDefine.EukrasianDiagnosis.IsUnlock()) return false;
-            await SageSpellHelper.CastEukrasia();
+            await CastEukrasia();
             var spell = new SpellEntity(SpellsDefine.EukrasianDiagnosis, target as BattleCharacter);
             return await spell.DoGCD();
         }
@@ -195,49 +196,38 @@ namespace AEAssist.AI.Sage
             return true;
         }
 
-        public async Task PrePullEukrasianDiagnosisThreePeople()
+        public static async Task PrePullEukrasianDiagnosisThreePeople()
         {
             // update allies? before casting? maybe?
             GroupHelper.UpdateAllies();
 
             var count = 0;
-            foreach (var character in GroupHelper.CastableParty)
+            foreach (var character in GroupHelper.CastableParty.TakeWhile(character => count < 3))
             {
-                // break if count is 3 or greater.
-                if (count >= 3) break;
-                
-                for (int i = 0; i < 3; i++)
+                for (var i = 0; i < 3; i++)
                 {
-                    // check if character is Tank.
-                    if (character.IsTank())
+                    // check if we can EukrasianDiagnosis.
+                    if (CanEukrasianDiagnosis(character))
                     {
-                        // check if we can EukrasianDiagnosis.
-                        if (CanEukrasianDiagnosis(character))
+                        // check if character is Tank.
+                        if (character.IsTank())
                         {
-                            // if it's us then cast it as well.
-                            if (character.ObjectId == Core.Me.ObjectId)
-                            {
-                                // cast it.
-                                await CastEukrasianDiagnosis(character);
-                            }
-                            else
-                            {
-                                // cast it to character.
-                               // TODO: need work here.  
-                            }
-                            
+                            await CastEukrasianDiagnosis(character);
                             i++;
                         }
-
+                        else
+                        {
+                            // if not tank just cast it to random players.
+                            await CastEukrasianDiagnosis(character);
+                            i++;
+                        }
                     }
                     if (i == 3) break;
+                    count++;
                 }
-                count++;
+                
             }
         }
         
-        
-        
-
     }
 }
