@@ -3,7 +3,7 @@ using AEAssist.Define;
 
 namespace AEAssist.AI.Sage.GCD
 {
-    public class SageGCDToxikon : IAIHandler
+    public class SageGcdToxikon : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {

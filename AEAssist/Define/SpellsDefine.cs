@@ -751,6 +751,7 @@ namespace AEAssist.Define
         public const uint Expedient = 25868;
         public const uint Bio = 17864;
         public const uint Enkindle = 184;
+        public const uint Galvanize = 297;
 
         #endregion
 
@@ -995,6 +996,9 @@ namespace AEAssist.Define
         public const uint PhantomFlurryEnd = 23289;
         public const uint NightBloom = 23290;
         public const uint Stotram = 23416;
+        public const uint AetherialMimicryHealer = 2126;
+        public const uint AetherialMimicryDps = 2125;
+        public const uint AetherialMimicryTank = 2124;
 
         #endregion
 
@@ -1079,6 +1083,7 @@ namespace AEAssist.Define
         public const uint TroubadourPvp = 10023;
 
         public const uint PVPMCH123 = 17749;
+        public const uint MountedPvp = 1420;
 
         //WHM
         public const uint Purify = 1584;

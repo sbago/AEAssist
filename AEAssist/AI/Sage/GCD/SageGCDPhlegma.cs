@@ -4,7 +4,7 @@ using ff14bot;
 
 namespace AEAssist.AI.Sage.GCD
 {
-    public class SageGCDPhlegma : IAIHandler
+    public class SageGcdPhlegma : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {

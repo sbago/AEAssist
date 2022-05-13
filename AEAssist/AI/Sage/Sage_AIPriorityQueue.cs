@@ -12,15 +12,16 @@ namespace AEAssist.AI.Sage
     {
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>()
         {
-            new SageGCDDot(),
+            new SageGcdDot(),
             new SageBaseGCD(),
-            new SageGCDPhlegma(),
-            new SageGCDToxikon(),
+            new SageGcdPhlegma(),
+            new SageGcdToxikon(),
         };
 
         public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()
         {
          new SageAbilityLucidDreaming(),
+         new SageAbilityUsePotion(),
         };
         public async Task<bool> UsePotion()
         {

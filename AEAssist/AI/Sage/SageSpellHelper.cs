@@ -22,7 +22,7 @@ namespace AEAssist.AI.Sage
             {
                 return !ActionManager.HasSpell(SpellsDefine.EukrasianDosisII) ? null : SpellsDefine.EukrasianDosisII.GetSpellEntity();
             }
-
+            
             return !ActionManager.HasSpell(SpellsDefine.EukrasianDosisIII) ? null : SpellsDefine.EukrasianDosisIII.GetSpellEntity();
         }
 
@@ -100,7 +100,7 @@ namespace AEAssist.AI.Sage
             return !ActionManager.HasSpell(SpellsDefine.ToxikonII) ? null : SpellsDefine.ToxikonII.GetSpellEntity();
         }
 
-        public static SpellEntity GetBaseGCD()
+        public static SpellEntity GetBaseGcd()
         {
             return GetDosis();
         }
@@ -140,7 +140,7 @@ namespace AEAssist.AI.Sage
             var dosisId = GetEukrasianDosisAura();
             if (dosisId == 0) return false;
 
-            var TtkEukrasianDosis = SettingMgr.GetSetting<SageSettings>().TTK_EukrasianDosis;
+            var ttkEukrasianDosis = SettingMgr.GetSetting<SageSettings>().TTK_EukrasianDosis;
             
             bool NormalCheck()
             {
@@ -150,13 +150,87 @@ namespace AEAssist.AI.Sage
             }
 
             if (AIRoot.GetBattleData<SageBattleData>().IsTargetLastEukrasianDosis()) return NormalCheck();
-            if (TtkEukrasianDosis > 0 && target.HasMyAuraWithTimeleft((uint) dosisId, TtkEukrasianDosis * 1000) &&
-                TTKHelper.IsTargetTTK(target, TtkEukrasianDosis, false))
+            if (ttkEukrasianDosis > 0 && target.HasMyAuraWithTimeleft((uint) dosisId, ttkEukrasianDosis * 1000) &&
+                TTKHelper.IsTargetTTK(target, ttkEukrasianDosis, false))
                 return NormalCheck();
 
             return NormalCheck();
         }
 
+        public static void CheckEukrasia()
+        {
+            if (Core.Me.HasMyAura(AurasDefine.Eukrasia)) return;
+            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.Eukrasia.GetSpellEntity();
+        }
+        
+        public static SpellEntity GetEukrasianDiagnosis()
+        {
+            if (!SpellsDefine.EukrasianDiagnosis.IsUnlock()) return null;
+            
+            CheckEukrasia();
+            return !ActionManager.HasSpell(SpellsDefine.EukrasianDiagnosis) ? null : SpellsDefine.EukrasianDiagnosis.GetSpellEntity();
+        }
+        
+        
+        public static SpellEntity GetEukrasianPrognosis()
+        {   
+            if (!SpellsDefine.EukrasianPrognosis.IsUnlock()) return null;
+            
+            CheckEukrasia();
+            return !ActionManager.HasSpell(SpellsDefine.EukrasianPrognosis) ? null : SpellsDefine.EukrasianPrognosis.GetSpellEntity();
+        }
+
+        public static bool CanEukrasianDiagnosis(Character unit)
+        {
+            if (unit == null) return false;
+            if (unit.HasMyAura(SpellsDefine.Eukrasia)) return false;
+            if (unit.HasAura(SpellsDefine.Galvanize)) return false;
+            return true;
+        }
+
+        public async void  PrePullEukrasianDiagnosisThreePeople()
+        {
+            // update allies? before casting? maybe?
+            GroupHelper.UpdateAllies();
+
+            var count = 0;
+            foreach (var character in GroupHelper.CastableParty)
+            {
+                // break if count is 3 or greater.
+                if (count >= 3) break;
+                
+                for (int i = 0; i < 3; i++)
+                {
+                    // check if character is Tank.
+                    if (character.IsTank())
+                    {
+                        // check if we can EukrasianDiagnosis.
+                        if (CanEukrasianDiagnosis(character))
+                        {
+                            // if it's us then cast it as well.
+                            if (character.ObjectId == Core.Me.ObjectId)
+                            {
+                                // cast it.
+                                AIRoot.GetBattleData<BattleData>().NextGcdSpellId = GetEukrasianDiagnosis();
+                            }
+                            else
+                            {
+                                // cast it to character.
+                               // TODO: need work here.  
+                            }
+                            
+                            i++;
+                        }
+
+                    }
+                    if (i == 3) break;
+                }
+                count++;
+            }
+        }
+        
+        
+        
 
     }
 }
