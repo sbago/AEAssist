@@ -19,7 +19,8 @@ namespace AEAssist.AI.BlackMage.GCD
                 BattleData.lastGCDSpell == SpellsDefine.Freeze.GetSpellEntity()
             )
             {
-                return -1;
+                LogHelper.Info(BattleData.lastGCDSpell.SpellData.LocalizedName);
+                return -10;
             }
             // prevent not learned skill or redundant casting
             if (BlackMageHelper.UmbralHeatsReady())

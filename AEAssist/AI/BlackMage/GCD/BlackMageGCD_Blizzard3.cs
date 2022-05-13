@@ -21,7 +21,8 @@ namespace AEAssist.AI.BlackMage.GCD
                 BattleData.lastGCDSpell == SpellsDefine.Fire.GetSpellEntity()
                )
             {
-                return -1;
+                LogHelper.Info(BattleData.lastGCDSpell.SpellData.LocalizedName);
+                return -10;
             }
             // prevent to waste mana font
             if (SpellsDefine.ManaFont.RecentlyUsed())
