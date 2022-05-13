@@ -220,6 +220,7 @@
         <Compile Include="AI\Sage\Ability\SageAbilitySurecast.cs" />
         <Compile Include="AI\Sage\Ability\SageAbilitySwiftCast.cs" />
         <Compile Include="AI\Sage\Ability\SageAbilityTaurochole.cs" />
+        <Compile Include="AI\Sage\Ability\SageAbilityUsePotion.cs" />
         <Compile Include="AI\Sage\Ability\SageAbilityZoe.cs" />
         <Compile Include="AI\Sage\GCD\SageBaseGCD.cs" />
         <Compile Include="AI\Sage\GCD\SageGCDDot.cs" />
@@ -421,6 +422,7 @@
         <Content Include="Resources\Lan_zh-CN.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+        <Content Include="Resources\Spells\MindPotion.png" />
         <Content Include="Resources\Spells\SureCast.png" />
         <Resource Include="Resources\Spells\LegSweep.png" />
         <Resource Include="Resources\Spells\HeadGraze.png" />
