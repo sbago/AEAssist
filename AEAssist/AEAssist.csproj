@@ -34,10 +34,13 @@
         <WarningLevel>4</WarningLevel>
         <DebugSymbols>true</DebugSymbols>
     </PropertyGroup>
-    <!-- Post build event Close RebornBuddy and copy output files to rebornbuddy folder Make sure you are running the IDE as adminstrator if rebornbuddy is admin. Also edit the bat file and change it to your own custom directory.-->
-    <PropertyGroup>
-      <PostBuildEvent>call "$(SolutionDir)Scripts\PostBuild.bat"</PostBuildEvent>
-    </PropertyGroup>
+    <!-- Post build event Close RebornBuddy and copy output files to rebornbuddy folder Make sure you are running the IDE as adminstrator if rebornbuddy is admin. Also edit the bat file and change it to your own custom directory.
+    Doesn't work. Stick to harmony solution.-->
+    <!--<PropertyGroup>
+      <PostBuildEvent>call "$(SolutionDir)Scripts\PostBuild.bat" 
+xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines" /Y /I</PostBuildEvent>
+    </PropertyGroup>-->
+    
     <ItemGroup>
         <Reference Include="GreyMagic, Version=1.0.60.0, Culture=neutral, PublicKeyToken=260525fa2b0e778a">
             <HintPath>..\References\GreyMagic.dll</HintPath>
