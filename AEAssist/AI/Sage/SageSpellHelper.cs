@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
+using ff14bot.Helpers;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
@@ -166,6 +168,7 @@ namespace AEAssist.AI.Sage
         public static async Task<(bool ret,SpellEntity Eukrasia)> CastEukrasia()
         {
             if (Core.Me.HasMyAura(AurasDefine.Eukrasia)|| SpellsDefine.Eukrasia.RecentlyUsed() ) return (false,null);
+            Logging.Write("Inside Eukrasia");
             var spell = SpellsDefine.Eukrasia.GetSpellEntity();
             var ret = await spell.DoGCD();
             return (ret, spell);
@@ -198,9 +201,6 @@ namespace AEAssist.AI.Sage
 
         public static async Task PrePullEukrasianDiagnosisThreePeople()
         {
-            // update allies? before casting? maybe?
-            GroupHelper.UpdateAllies();
-
             var count = 0;
             foreach (var character in GroupHelper.CastableParty.TakeWhile(character => count < 3))
             {
@@ -212,18 +212,22 @@ namespace AEAssist.AI.Sage
                         // check if character is Tank.
                         if (character.IsTank())
                         {
+                            Logging.Write("Inside Tank.");
                             await CastEukrasianDiagnosis(character);
                             i++;
                         }
                         else
                         {
+                            Logging.Write("Every other character.");
                             // if not tank just cast it to random players.
                             await CastEukrasianDiagnosis(character);
                             i++;
                         }
                     }
-                    if (i == 3) break;
+                    Logging.Write("current count of i: ", i.ToString());
                     count++;
+                    Logging.Write("Current Count of Count variable: ",  count.ToString());
+                    if (i == 3) break;
                 }
                 
             }

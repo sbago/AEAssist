@@ -4,12 +4,13 @@ using System.Linq;
 using AEAssist.Define;
 using ff14bot;
 using ff14bot.Enums;
+using ff14bot.Helpers;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
 namespace AEAssist.Helper
 {
-    public  static class GroupHelper
+    public static class GroupHelper
     {
         public static readonly List<Character> CastableParty = new List<Character>();
         public static readonly List<Character> DeadAllies = new List<Character>();
@@ -96,8 +97,6 @@ namespace AEAssist.Helper
             {
                 if (ally == null)
                     continue;
-                
-                // Log debug?
 
                 if (!ally.IsTargetable || !ally.InLineOfSight() || ally.Icon == PlayerIcon.Viewing_Cutscene)
                     continue;
@@ -112,7 +111,6 @@ namespace AEAssist.Helper
                 CastableParty.Add(ally);
                 AddAllyToCastable(ally);
             }
-            
             extensions?.Invoke();
         }
     }

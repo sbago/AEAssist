@@ -1,4 +1,4 @@
-﻿using AEAssist.Define;
+﻿/*using AEAssist.Define;
 using AEAssist.Helper;
 using AEAssist.Opener;
 using ff14bot;
@@ -29,4 +29,4 @@ namespace AEAssist.AI.Sage
             return slot;
         }
     }
-}
+}*/

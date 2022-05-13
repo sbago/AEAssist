@@ -91,6 +91,7 @@ namespace AEAssist.Rotations.Core
                 await CountDownHandler.Instance.Update();
                 await PreCombatBuff();
                 TargetMgr.Instance.Update();
+                GroupHelper.UpdateAllies();
                 return await AIRoot.Instance.Update();
             }
             catch (Exception e)
