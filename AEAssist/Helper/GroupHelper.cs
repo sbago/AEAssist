@@ -79,17 +79,14 @@ namespace AEAssist.Helper
 
             if (!InParty)
             {
-                if (InGcInstance)
+                if (!InGcInstance) return;
+                CastableParty.Add(Core.Me);
+                foreach (var ally in GameObjectManager.GetObjectsOfType<BattleCharacter>().Where(r => !r.CanAttack))
                 {
-                    CastableParty.Add(Core.Me);
-
-                    foreach (var ally in GameObjectManager.GetObjectsOfType<BattleCharacter>().Where(r => !r.CanAttack))
-                    {
-                        //TODO: Make sure this is working properly and no bugs for viewing Cutscene.
-                        if (!ally.IsTargetable || !ally.InLineOfSight() || ally.Icon == PlayerIcon.Viewing_Cutscene)
-                            continue;
-                        CastableParty.Add(ally);
-                    }
+                    //TODO: Make sure this is working properly and no bugs for viewing Cutscene.
+                    if (!ally.IsTargetable || !ally.InLineOfSight() || ally.Icon == PlayerIcon.Viewing_Cutscene)
+                        continue;
+                    CastableParty.Add(ally);
                 }
             }
             
