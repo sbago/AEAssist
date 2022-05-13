@@ -34,6 +34,11 @@ namespace AEAssist.Helper
 
             return false;
         }
+        
+        public static bool ValidPartyTarget(this GameObject unit)
+        {
+            return unit != null && unit.ValidPartyTarget() && unit.IsTargetable && unit.CurrentHealth > 0;
+        }
 
         /// <summary>
         /// </summary>

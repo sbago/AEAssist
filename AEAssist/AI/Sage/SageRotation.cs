@@ -12,11 +12,13 @@ namespace AEAssist.AI.Sage
         // private readonly AIRoot AiRoot = AIRoot.Instance;
         // private long _lastTime;
         // private long randomTime;
-        //
-        
-        public void Init()
+
+        public void Init() 
         {
-            CountDownHandler.Instance.AddListener(2000, () => SageSpellHelper.GetEukrasianDosis().DoGCD());
+            CountDownHandler.Instance.AddListener(15000, SageSpellHelper.PrePullEukrasianDiagnosisThreePeople);
+            CountDownHandler.Instance.AddListener(2500, () => 
+                PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().MindPotionId));
+            CountDownHandler.Instance.AddListener(1500, () => SageSpellHelper.GetDosis().DoGCD());
             AEAssist.DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<SageSettings>().EarlyDecisionMode;
             LogHelper.Info("EarlyDecisionMode: " + AEAssist.DataBinding.Instance.EarlyDecisionMode);
         }
@@ -33,7 +35,7 @@ namespace AEAssist.AI.Sage
 
         public SpellEntity GetBaseGCDSpell()
         {
-            return SageSpellHelper.GetBaseGCD();
+            return SageSpellHelper.GetBaseGcd();
         }
     }
 }

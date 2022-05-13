@@ -6,7 +6,7 @@ using ff14bot.Objects;
 
 namespace AEAssist.AI.Sage.GCD
 {
-    public class SageGCDDot : IAIHandler
+    public class SageGcdDot : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {
@@ -30,10 +30,10 @@ namespace AEAssist.AI.Sage.GCD
 
         public async Task<SpellEntity> Run()
         {
-            if (!Core.Me.HasMyAura(AurasDefine.Eukrasia))
+            var checkRet = await SageSpellHelper.CastEukrasia();
+            if (checkRet.ret)
             {
-                AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.Eukrasia.GetSpellEntity();
-                return null;
+                return checkRet.Eukrasia;
             }
 
             var spell = SageSpellHelper.GetEukrasianDosis();

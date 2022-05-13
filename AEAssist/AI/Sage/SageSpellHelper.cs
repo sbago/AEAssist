@@ -1,6 +1,11 @@
-﻿using AEAssist.Define;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using AEAssist.Define;
 using AEAssist.Helper;
+using Buddy.Coroutines;
 using ff14bot;
+using ff14bot.Helpers;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
@@ -22,7 +27,7 @@ namespace AEAssist.AI.Sage
             {
                 return !ActionManager.HasSpell(SpellsDefine.EukrasianDosisII) ? null : SpellsDefine.EukrasianDosisII.GetSpellEntity();
             }
-
+            
             return !ActionManager.HasSpell(SpellsDefine.EukrasianDosisIII) ? null : SpellsDefine.EukrasianDosisIII.GetSpellEntity();
         }
 
@@ -100,7 +105,7 @@ namespace AEAssist.AI.Sage
             return !ActionManager.HasSpell(SpellsDefine.ToxikonII) ? null : SpellsDefine.ToxikonII.GetSpellEntity();
         }
 
-        public static SpellEntity GetBaseGCD()
+        public static SpellEntity GetBaseGcd()
         {
             return GetDosis();
         }
@@ -140,7 +145,7 @@ namespace AEAssist.AI.Sage
             var dosisId = GetEukrasianDosisAura();
             if (dosisId == 0) return false;
 
-            var TtkEukrasianDosis = SettingMgr.GetSetting<SageSettings>().TTK_EukrasianDosis;
+            var ttkEukrasianDosis = SettingMgr.GetSetting<SageSettings>().TTK_EukrasianDosis;
             
             bool NormalCheck()
             {
@@ -150,13 +155,106 @@ namespace AEAssist.AI.Sage
             }
 
             if (AIRoot.GetBattleData<SageBattleData>().IsTargetLastEukrasianDosis()) return NormalCheck();
-            if (TtkEukrasianDosis > 0 && target.HasMyAuraWithTimeleft((uint) dosisId, TtkEukrasianDosis * 1000) &&
-                TTKHelper.IsTargetTTK(target, TtkEukrasianDosis, false))
+            if (ttkEukrasianDosis > 0 && target.HasMyAuraWithTimeleft((uint) dosisId, ttkEukrasianDosis * 1000) &&
+                TTKHelper.IsTargetTTK(target, ttkEukrasianDosis, false))
                 return NormalCheck();
 
             return NormalCheck();
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>ret == true : Successful use</returns>
+        public static async Task<(bool ret,SpellEntity Eukrasia)> CastEukrasia()
+        {
+            if (Core.Me.HasMyAura(AurasDefine.Eukrasia)|| SpellsDefine.Eukrasia.RecentlyUsed() ) return (false,null);
+            Logging.Write("Inside Eukrasia");
+            var spell = SpellsDefine.Eukrasia.GetSpellEntity();
+            var ret = await spell.DoGCD();
+            return (ret, spell);
+        }
+        
+        public static async Task<bool> CastEukrasianDiagnosis(Character target)
+        {
+            if (!SpellsDefine.EukrasianDiagnosis.IsUnlock()) return false;
+            await CastEukrasia();
+            var spell = new SpellEntity(SpellsDefine.EukrasianDiagnosis, target as BattleCharacter);
+            return await spell.DoGCD();
+        }
+        
+        
+        public static async Task<bool> CastEukrasianPrognosis(Character target)
+        {   
+            if (!SpellsDefine.EukrasianPrognosis.IsUnlock()) return false;
+            await SageSpellHelper.CastEukrasia();
+            var spell = new SpellEntity(SpellsDefine.EukrasianPrognosis, target as BattleCharacter);
+            return await spell.DoGCD();
+        }
 
+        public static bool CanEukrasianDiagnosis(Character unit)
+        {
+            if (unit == null) return false;
+            if (unit.HasMyAura(AurasDefine.EukrasianDiagnosis)) return false;
+            if (unit.HasAura(AurasDefine.Galvanize)) return false;
+            return true;
+        }
+
+        public static async Task PrePullEukrasianDiagnosisThreePeople()
+        {
+            var count = 0;
+            const int need = 3;
+            const int retryTime = 25;
+            const int retryInterval = 100; // 25* 100 = GCD CoolDown
+
+            if (GroupHelper.CastableTanks.Count > 0)
+            {
+                foreach (var character in GroupHelper.CastableTanks)
+                {
+                    // check if we can EukrasianDiagnosis.
+                    if (CanEukrasianDiagnosis(character))
+                    {
+                        int time = 0;
+                        while (time < retryTime && !await CastEukrasianDiagnosis(character))
+                        {
+                            await Coroutine.Sleep(retryInterval);
+                            time++;
+                        }
+                        LogHelper.Info($"{character.Name} {time} {count}");
+                        if (time < retryTime)
+                            count++;
+                    }
+
+                }
+            }
+
+            LogHelper.Info($"CastableParty: {GroupHelper.CastableParty.Count}  {PartyManager.AllMembers.Count()}" +
+                           $" {PartyManager.RawMembers.Count} {PartyManager.VisibleMembers.Count()}");
+            foreach (var character in GroupHelper.CastableParty)
+            {
+              
+                // check if we can EukrasianDiagnosis.
+                if(character.IsTank())
+                    continue;
+                if (count >= need)
+                    return;
+                if (CanEukrasianDiagnosis(character))
+                {
+                    int time = 0;
+                    // wait for success, but retry time need < 25
+                    while (time < retryTime && !await CastEukrasianDiagnosis(character))
+                    {
+                        await Coroutine.Sleep(retryInterval);
+                        time++;
+                    }
+                    LogHelper.Info($"{character.Name} {time} {count}");
+                    if (time < retryTime)
+                        count++;
+                }
+                
+            }
+
+        }
 
     }
 }

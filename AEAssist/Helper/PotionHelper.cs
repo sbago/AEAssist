@@ -68,7 +68,6 @@ namespace AEAssist.Helper
                 Name = "Grade 3 Str/3级刚力之幻药"
             });
             
-            // TODO: This need to be fixed and find out correct ID and translate to CN.
             if (MindPotions == null)
                 MindPotions = new List<PotionData>();
             MindPotions.Add(new PotionData

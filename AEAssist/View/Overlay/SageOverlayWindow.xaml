@@ -76,7 +76,7 @@
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="2" Name="UsePotion"
                                 Click="UsePotion_OnClick">
-                            <Image Source="../../Resources/Spells/Potion.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/MindPotion.png" Stretch="Uniform" />
 
                         </Button>
                     </WrapPanel>

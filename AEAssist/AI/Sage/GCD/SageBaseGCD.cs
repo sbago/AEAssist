@@ -33,7 +33,7 @@ namespace AEAssist.AI.Sage.GCD
                 }
             }
             {
-                var spellData = SageSpellHelper.GetBaseGCD();
+                var spellData = SageSpellHelper.GetBaseGcd();
                 if (spellData == null)
                     return null;
                 if (await spellData.DoGCD())

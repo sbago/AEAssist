@@ -220,11 +220,13 @@
         <Compile Include="AI\Sage\Ability\SageAbilitySurecast.cs" />
         <Compile Include="AI\Sage\Ability\SageAbilitySwiftCast.cs" />
         <Compile Include="AI\Sage\Ability\SageAbilityTaurochole.cs" />
+        <Compile Include="AI\Sage\Ability\SageAbilityUsePotion.cs" />
         <Compile Include="AI\Sage\Ability\SageAbilityZoe.cs" />
         <Compile Include="AI\Sage\GCD\SageBaseGCD.cs" />
         <Compile Include="AI\Sage\GCD\SageGCDDot.cs" />
         <Compile Include="AI\Sage\GCD\SageGCDPhlegma.cs" />
         <Compile Include="AI\Sage\GCD\SageGCDToxikon.cs" />
+        <Compile Include="AI\Sage\OpenerSageStandard90.cs" />
         <Compile Include="AI\Sage\SageBattleData.cs" />
         <Compile Include="AI\Sage\SageRotation.cs" />
         <Compile Include="AI\Sage\SageSpellHelper.cs" />
@@ -295,11 +297,14 @@
         <Compile Include="Define\ConstValue.cs" />
         <Compile Include="Define\DataStruct\CircleList.cs" />
         <Compile Include="Define\Entity.cs" />
+        <Compile Include="Define\GroupDefine.cs" />
         <Compile Include="Define\ObjectPool.cs" />
         <Compile Include="Define\SpellEntity.cs" />
         <Compile Include="Define\SpellsDefine.cs" />
         <Compile Include="Gamelog\AEGamelogManager.cs" />
         <Compile Include="Helper\DotBlacklistHelper.cs" />
+        <Compile Include="Helper\DutyHelper.cs" />
+        <Compile Include="Helper\GroupHelper.cs" />
         <Compile Include="Helper\LanguageHelper.cs" />
         <Compile Include="Helper\SpellHistoryHelper.cs" />
         <Compile Include="Helper\TriggerLineSwitchHelper.cs" />
@@ -425,7 +430,8 @@
         <Content Include="Resources\Lan_zh-CN.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
-        <Content Include="Resources\Spells\SureCast.png" />
+        <Resource Include="Resources\Spells\MindPotion.png" />
+        <Resource Include="Resources\Spells\SureCast.png" />
         <Resource Include="Resources\Spells\LegSweep.png" />
         <Resource Include="Resources\Spells\HeadGraze.png" />
         <Resource Include="Resources\Spells\IronJaws.png" />
