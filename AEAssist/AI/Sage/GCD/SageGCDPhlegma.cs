@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
+using AEAssist.Helper;
 using ff14bot;
 
 namespace AEAssist.AI.Sage.GCD
@@ -16,6 +17,24 @@ namespace AEAssist.AI.Sage.GCD
 
         public async Task<SpellEntity> Run()
         {
+            //TODO:FIX ERROR Null refrence point
+            if (DataBinding.Instance.UseAOE)
+            {
+                var aoeChecker = TargetHelper.CheckNeedUseAOE(12, 5, ConstValue.SageAOECount);
+                if (aoeChecker)
+                {
+                    LogHelper.Info("Inside The AOE For sage Getting Phlegma");
+                    var spellData = SageSpellHelper.GetPhlegma();
+                    if (spellData == null)
+                    {
+                        LogHelper.Error("Failed to get spell returning null;"); 
+                        return null;
+                    }
+                    LogHelper.Info("Doing Phlegma");
+                    if (await spellData.DoGCD()) return spellData;
+                }
+            }
+            
             var spell = SageSpellHelper.GetPhlegma();
             if (spell == null) return null;
             var ret = await spell.DoGCD();

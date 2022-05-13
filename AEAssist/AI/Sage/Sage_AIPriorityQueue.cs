@@ -16,6 +16,7 @@ namespace AEAssist.AI.Sage
             new SageBaseGCD(),
             new SageGcdPhlegma(),
             new SageGcdToxikon(),
+            new SageGCDDyskrasia()
         };
 
         public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()

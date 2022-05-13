@@ -38,7 +38,7 @@ namespace AEAssist.AI.Sage
             if (!SpellsDefine.PhlegmaII.IsUnlock())
             {
                 if (!ActionManager.HasSpell(SpellsDefine.Phlegma)) return null;
-                return (SpellsDefine.Phlegma.IsReady()) ? SpellsDefine.Physis.GetSpellEntity() : null;
+                return SpellsDefine.Phlegma.IsReady() ? SpellsDefine.Phlegma.GetSpellEntity() : null;
             }
             
             if (!SpellsDefine.PhlegmaIII.IsUnlock())
@@ -169,7 +169,6 @@ namespace AEAssist.AI.Sage
         public static async Task<(bool ret,SpellEntity Eukrasia)> CastEukrasia()
         {
             if (Core.Me.HasMyAura(AurasDefine.Eukrasia)|| SpellsDefine.Eukrasia.RecentlyUsed() ) return (false,null);
-            Logging.Write("Inside Eukrasia");
             var spell = SpellsDefine.Eukrasia.GetSpellEntity();
             var ret = await spell.DoGCD();
             return (ret, spell);

@@ -1,7 +1,5 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
-using AEAssist.Helper;
-using ff14bot;
 using ff14bot.Managers;
 
 namespace AEAssist.AI.Sage.GCD
@@ -15,32 +13,12 @@ namespace AEAssist.AI.Sage.GCD
             return 0;
         }
 
-        public async  Task<SpellEntity> Run()
+        public async Task<SpellEntity> Run()
         {
-            //TODO: Fix AOE Object refrence null;
-            /*if (DataBinding.Instance.UseAOE)
-            {
-                var aoeCount = TargetHelper.GetNearbyEnemyCount(Core.Me.CurrentTarget, 12, 5);
-                if (aoeCount >= ConstValue.SageAOECount)
-                {
-                    var spellData = SageSpellHelper.GetPhlegma();
-                    if (await spellData.DoGCD()) return spellData;
-                }
-                aoeCount = TargetHelper.GetNearbyEnemyCount(Core.Me.CurrentTarget, 0, 5);
-                if (aoeCount >= ConstValue.SageAOECount)
-                {
-                    var spellData = SageSpellHelper.GetDyskrasia();
-                    if (await spellData.DoGCD()) return  spellData;
-                }
-            }*/
-            {
-                var spellData = SageSpellHelper.GetBaseGcd();
-                if (spellData == null)
-                    return null;
-                if (await spellData.DoGCD())
-                    return spellData;
-            }
-            return null;
+            var spell = SageSpellHelper.GetBaseGcd();
+            if (spell == null) return null;
+            var ret = await spell.DoGCD(); 
+            return ret ? spell : null;
         }
     }
 }
