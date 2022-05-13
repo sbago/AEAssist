@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
+using Buddy.Coroutines;
 using ff14bot;
 using ff14bot.Helpers;
 using ff14bot.Managers;
@@ -194,44 +195,66 @@ namespace AEAssist.AI.Sage
         public static bool CanEukrasianDiagnosis(Character unit)
         {
             if (unit == null) return false;
-            if (unit.HasMyAura(SpellsDefine.Eukrasia)) return false;
-            if (unit.HasAura(SpellsDefine.Galvanize)) return false;
+            if (unit.HasMyAura(AurasDefine.EukrasianDiagnosis)) return false;
+            if (unit.HasAura(AurasDefine.Galvanize)) return false;
             return true;
         }
 
         public static async Task PrePullEukrasianDiagnosisThreePeople()
         {
             var count = 0;
-            foreach (var character in GroupHelper.CastableParty.TakeWhile(character => count < 3))
+            const int need = 3;
+            const int retryTime = 25;
+            const int retryInterval = 100; // 25* 100 = GCD CoolDown
+
+            if (GroupHelper.CastableTanks.Count > 0)
             {
-                for (var i = 0; i < 3; i++)
+                foreach (var character in GroupHelper.CastableTanks)
                 {
                     // check if we can EukrasianDiagnosis.
                     if (CanEukrasianDiagnosis(character))
                     {
-                        // check if character is Tank.
-                        if (character.IsTank())
+                        int time = 0;
+                        while (time < retryTime && !await CastEukrasianDiagnosis(character))
                         {
-                            Logging.Write("Inside Tank.");
-                            await CastEukrasianDiagnosis(character);
-                            i++;
+                            await Coroutine.Sleep(retryInterval);
+                            time++;
                         }
-                        else
-                        {
-                            Logging.Write("Every other character.");
-                            // if not tank just cast it to random players.
-                            await CastEukrasianDiagnosis(character);
-                            i++;
-                        }
+                        LogHelper.Info($"{character.Name} {time} {count}");
+                        if (time < retryTime)
+                            count++;
                     }
-                    Logging.Write("current count of i: ", i.ToString());
-                    count++;
-                    Logging.Write("Current Count of Count variable: ",  count.ToString());
-                    if (i == 3) break;
+
+                }
+            }
+
+            LogHelper.Info($"CastableParty: {GroupHelper.CastableParty.Count}  {PartyManager.AllMembers.Count()}" +
+                           $" {PartyManager.RawMembers.Count} {PartyManager.VisibleMembers.Count()}");
+            foreach (var character in GroupHelper.CastableParty)
+            {
+              
+                // check if we can EukrasianDiagnosis.
+                if(character.IsTank())
+                    continue;
+                if (count >= need)
+                    return;
+                if (CanEukrasianDiagnosis(character))
+                {
+                    int time = 0;
+                    // wait for success, but retry time need < 25
+                    while (time < retryTime && !await CastEukrasianDiagnosis(character))
+                    {
+                        await Coroutine.Sleep(retryInterval);
+                        time++;
+                    }
+                    LogHelper.Info($"{character.Name} {time} {count}");
+                    if (time < retryTime)
+                        count++;
                 }
                 
             }
+
         }
-        
+
     }
 }
