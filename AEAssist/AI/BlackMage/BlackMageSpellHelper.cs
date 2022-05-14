@@ -36,7 +36,7 @@ namespace AEAssist.AI.BlackMage
 
         public static ushort PolyglotTimer => ActionResourceManager.CostTypesStruct.timer;
 
-        
+
         public static bool IsTargetNeedThunder(Character target, int timeLeft)
         {
             // check thunder 4,3,2,1
@@ -185,7 +185,7 @@ namespace AEAssist.AI.BlackMage
         }
 
         public static bool CanMove()
-        { 
+        {
             // var BattleData = AIRoot.GetBattleData<BattleData>();
             if (Core.Me.HasAura(AurasDefine.Swiftcast) ||
                 Core.Me.HasAura(AurasDefine.Triplecast) ||
@@ -202,11 +202,16 @@ namespace AEAssist.AI.BlackMage
                     //we can move
                     return true;
                 }
+                else
+                {
+                    // if ActionManager.LastSpell.Id; != 上一个ActionManager.LastSpell.Id; 
+                    // we can move
+                }
             }
 
             return false;
         }
-        
+
         public static bool test()
         {
             MovementManager.MoveForwardStart();
@@ -221,7 +226,29 @@ namespace AEAssist.AI.BlackMage
             {
                 var name = member.Name.ToString();
                 var job = member.Class.ToString();
+                var health = member.CurrentHealth / member.MaxHealth;
             }
+        }
+
+        public static bool WillPolyglotOverflow(TimeSpan time)
+        {
+            var currentPolyglot = ActionResourceManager.BlackMage.PolyglotCount;
+            // will have another one with Amplifier
+            if (SpellsDefine.Amplifier.GetSpellEntity().Cooldown < time)
+            {
+                currentPolyglot += 1;
+            }
+            if (ActionResourceManager.BlackMage.PolyglotTimer < time)
+            {
+                currentPolyglot += 1;
+            }
+
+            if (currentPolyglot > 2)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public static SpellEntity GetParadox()
