@@ -22,5 +22,10 @@ namespace AEAssist
             EarlyDecisionMode = true;
             DoubleEnshroudPrefer = false;
         }
+
+        public void OnLoad()
+        {
+            
+        }
     }
 }

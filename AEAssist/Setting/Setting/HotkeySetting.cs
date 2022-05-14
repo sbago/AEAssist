@@ -60,6 +60,11 @@ namespace AEAssist
             ResetHotkeyName();
         }
 
+        public void OnLoad()
+        {
+            
+        }
+
         public void ResetHotkeyName()
         {
             if (UseHotkey)

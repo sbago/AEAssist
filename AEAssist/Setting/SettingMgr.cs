@@ -58,6 +58,10 @@ namespace AEAssist
                     var generalSetting =
                         JsonConvert.DeserializeObject(File.ReadAllText(generalSettingFile), type);
                     LogHelper.Info("Loaded Setting: " + type.Name);
+                    if (generalSetting is IBaseSetting baseSetting)
+                    {
+                        baseSetting.OnLoad();
+                    }
                     return generalSetting;
                 }
                 catch (Exception e)
@@ -97,7 +101,7 @@ namespace AEAssist
             foreach (var v in AllSetting)
             {
                 v.Value.Reset();
-
+                v.Value.OnLoad();
                 SaveSetting(v.Value);
             }
         }
