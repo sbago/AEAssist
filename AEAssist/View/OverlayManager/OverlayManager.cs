@@ -11,12 +11,12 @@ namespace AEAssist.View.OverlayManager
     {
         public static OverlayManager Instance = new OverlayManager();
 
-        private readonly Dictionary<ClassJobType, OverlayUIComponent> AllOverlays =
-            new Dictionary<ClassJobType, OverlayUIComponent>();
+        private readonly Dictionary<ClassJobType, List<OverlayUIComponent>> AllOverlays =
+            new Dictionary<ClassJobType, List<OverlayUIComponent>>();
 
         private ClassJobType _classJobType;
 
-        public OverlayUIComponent lastOverlay;
+        public List<OverlayUIComponent> lastOverlay;
 
         public void Init()
         {
@@ -31,8 +31,9 @@ namespace AEAssist.View.OverlayManager
                 if (attrs.Length == 0) continue;
 
                 var attr = attrs[0] as JobAttribute;
-                AllOverlays[attr.ClassJobType] = Activator.CreateInstance(type) as OverlayUIComponent;
-                LogHelper.Info("Load Overlay: " + attr.ClassJobType);
+                if(!AllOverlays.ContainsKey(attr.ClassJobType))
+                    AllOverlays.Add(attr.ClassJobType, new List<OverlayUIComponent>());
+                AllOverlays[attr.ClassJobType].Add(Activator.CreateInstance(type) as OverlayUIComponent);
             }
         }
 
@@ -44,22 +45,8 @@ namespace AEAssist.View.OverlayManager
             if (currJob == _classJobType)
                 return;
 
-            if (lastOverlay != null)
-            {
-                Core.OverlayManager.RemoveUIComponent(lastOverlay);
-                // v.Value.Dispatcher.Invoke(v.Value.Hide);
-                lastOverlay = null;
-            }
-
-
-            _classJobType = currJob;
-            if (AllOverlays.TryGetValue(currJob, out var window))
-            {
-                LogHelper.Info($"OpenOverlay {window.GetType().Name}");
-                Core.OverlayManager.AddUIComponent(window);
-                lastOverlay = window;
-                //window.Dispatcher.Invoke(window.Show);
-            }
+            Close();
+            Open();
         }
 
         public void SwitchOverlay()
@@ -72,21 +59,35 @@ namespace AEAssist.View.OverlayManager
             }
             else
             {
-                var currJob = Core.Me.CurrentJob;
-                _classJobType = currJob;
-                if (AllOverlays.TryGetValue(currJob, out var window))
+                Open();
+            }
+        }
+
+        void Open()
+        {
+            var currJob = Core.Me.CurrentJob;
+            _classJobType = currJob;
+            if (AllOverlays.TryGetValue(currJob, out var window))
+            {
+                foreach (var v in window)
                 {
-                    Core.OverlayManager.AddUIComponent(window);
-                    lastOverlay = window;
+                    Core.OverlayManager.AddUIComponent(v);
                 }
+                lastOverlay = window;
             }
         }
 
         public void Close()
         {
             if (lastOverlay != null)
-                Core.OverlayManager.RemoveUIComponent(lastOverlay);
-            lastOverlay = null;
+            {
+                foreach (var v in lastOverlay)
+                {
+                    Core.OverlayManager.RemoveUIComponent(v);
+                }
+                // v.Value.Dispatcher.Invoke(v.Value.Hide);
+                lastOverlay = null;
+            }
         }
     }
 }

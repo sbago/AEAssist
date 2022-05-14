@@ -1,638 +1,647 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-    <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{E844692B-C033-40C5-B06E-C8F75A7D11AD}</ProjectGuid>
-        <OutputType>Library</OutputType>
-        <RootNamespace>AEAssist</RootNamespace>
-        <AssemblyName>AEAssist</AssemblyName>
-        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-        <FileAlignment>512</FileAlignment>
-        <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-        <WarningLevel>4</WarningLevel>
-        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>..\Output\AEAssist\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugType>pdbonly</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <DebugSymbols>true</DebugSymbols>
-    </PropertyGroup>
-    <!-- Post build event Close RebornBuddy and copy output files to rebornbuddy folder Make sure you are running the IDE as adminstrator if rebornbuddy is admin. Also edit the bat file and change it to your own custom directory.
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E844692B-C033-40C5-B06E-C8F75A7D11AD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>AEAssist</RootNamespace>
+    <AssemblyName>AEAssist</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Output\AEAssist\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <!-- Post build event Close RebornBuddy and copy output files to rebornbuddy folder Make sure you are running the IDE as adminstrator if rebornbuddy is admin. Also edit the bat file and change it to your own custom directory.
     Doesn't work. Stick to harmony solution.-->
-    <!--<PropertyGroup>
+  <!--<PropertyGroup>
       <PostBuildEvent>call "$(SolutionDir)Scripts\PostBuild.bat" 
 xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines" /Y /I</PostBuildEvent>
     </PropertyGroup>-->
-    
-    <ItemGroup>
-        <Reference Include="GreyMagic, Version=1.0.60.0, Culture=neutral, PublicKeyToken=260525fa2b0e778a">
-            <HintPath>..\References\GreyMagic.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="MongoDB.Bson, Version=2.15.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>..\packages\MongoDB.Bson.2.15.0\lib\net472\MongoDB.Bson.dll</HintPath>
-        </Reference>
-        <Reference Include="RebornBuddy, Version=1.0.473.0, Culture=neutral, PublicKeyToken=48d7174f8a943034">
-            <HintPath>..\References\RebornBuddy.exe</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="System" />
-        <Reference Include="System.Core" />
-        <Reference Include="System.Data" />
-        <Reference Include="System.Windows.Forms" />
-        <Reference Include="System.Xml" />
-        <Reference Include="System.Xaml">
-            <RequiredTargetFramework>4.0</RequiredTargetFramework>
-        </Reference>
-        <Reference Include="WindowsBase" />
-        <Reference Include="PresentationCore" />
-        <Reference Include="PresentationFramework" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="..\AETriggers\TriggerModel\ITriggerAction.cs">
-            <Link>TriggerModel\ITriggerAction.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\ITriggerBase.cs">
-            <Link>TriggerModel\ITriggerBase.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\ITriggerCond.cs">
-            <Link>TriggerModel\ITriggerCond.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\MongoHelper.cs">
-            <Link>TriggerModel\MongoHelper.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\Trigger.cs">
-            <Link>TriggerModel\Trigger.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_BatteryList.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_BatteryList.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_CastAbility.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_CastAbility.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_CastGCD.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_CastGCD.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_LockSpell.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_LockSpell.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_NextSong.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_NextSong.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SongList.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_SongList.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchAOE.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_SwitchAOE.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchApex.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_SwitchApex.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchDOT.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_SwitchDOT.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchFinalBurst.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_SwitchFinalBurst.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchPotion.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_SwitchPotion.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchSong.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_SwitchSong.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_UsePotion.cs">
-            <Link>TriggerModel\TriggerAction\TriggerAction_UsePotion.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerAttribute.cs">
-            <Link>TriggerModel\TriggerAttribute.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_AfterBattleStart.cs">
-            <Link>TriggerModel\TriggerCond\TriggerCond_AfterBattleStart.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_AfterOtherTrigger.cs">
-            <Link>TriggerModel\TriggerCond\TriggerCond_AfterOtherTrigger.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyCastSpell.cs">
-            <Link>TriggerModel\TriggerCond\TriggerCond_EnemyCastSpell.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyHPPct.cs">
-            <Link>TriggerModel\TriggerCond\TriggerCond_EnemyHPPct.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyInLOS.cs">
-            <Link>TriggerModel\TriggerCond\TriggerCond_EnemyInLOS.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_GameLog.cs">
-            <Link>TriggerModel\TriggerCond\TriggerCond_GameLog.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerHelper.cs">
-            <Link>TriggerModel\TriggerHelper.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerLine.cs">
-            <Link>TriggerModel\TriggerLine.cs</Link>
-        </Compile>
-        <Compile Include="..\AETriggers\TriggerModel\TriggerMgr.cs">
-            <Link>TriggerModel\TriggerMgr.cs</Link>
-        </Compile>
-        <Compile Include="AI\AIMgrs.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_Barrage.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_Bloodletter.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_Buffs.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_EmpyrealArrow.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_MaxChargeBloodletter.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_PitchPerfect.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_RagingStrikes.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_Sidewinder.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_Songs.cs" />
-        <Compile Include="AI\Bard\Ability\BardAbility_UsePotion.cs" />
-        <Compile Include="AI\Bard\BardRotation.cs" />
-        <Compile Include="AI\Bard\Bard_AIPriorityQueue.cs" />
-        <Compile Include="AI\Bard\BardBattleData.cs" />
-        <Compile Include="AI\Bard\BardSpellHelper.cs" />
-        <Compile Include="AI\Bard\GCD\BardGCD_ApexArrow.cs" />
-        <Compile Include="AI\Bard\GCD\BardGCD_Barrage_RefulgentArrow.cs" />
-        <Compile Include="AI\Bard\GCD\BardGCD_BlastArrow.cs" />
-        <Compile Include="AI\Bard\GCD\BardGCD_Dot.cs" />
-        <Compile Include="AI\Bard\GCD\BardGCD_BaseGCD.cs" />
-        <Compile Include="AI\Bard\SpellEvent\SpellEvent_Dot.cs" />
-        <Compile Include="AI\Bard\SpellEvent\SpellEvent_RagingStrikes.cs" />
-        <Compile Include="AI\Bard\SpellEvent\SpellEvent_Songs.cs" />
-        <Compile Include="AI\BattleData.cs" />
-        <Compile Include="AI\BlackMage\Ability\BlackMageAbility_Amplifier.cs" />
-        <Compile Include="AI\BlackMage\Ability\BlackMageAbility_Leylines.cs" />
-        <Compile Include="AI\BlackMage\Ability\BlackMageAbility_Manafont.cs" />
-        <Compile Include="AI\BlackMage\Ability\BlackMageAbility_Sharpcast.cs" />
-        <Compile Include="AI\BlackMage\Ability\BlackMageAbility_Swiftcast.cs" />
-        <Compile Include="AI\BlackMage\Ability\BlackMageAbility_Transpose.cs" />
-        <Compile Include="AI\BlackMage\Ability\BlackMageAbility_Triplecast.cs" />
-        <Compile Include="AI\BlackMage\BlackMageSpellHelper.cs" />
-        <Compile Include="AI\BlackMage\BlackMage_AIPriorityQueue.cs" />
-        <Compile Include="AI\BlackMage\BlackMage_BattleData.cs" />
-        <Compile Include="AI\BlackMage\BlackMage_Rotation.cs" />
-        <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Blizzard3.cs" />
-        <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Blizzard4.cs" />
-        <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Despair.cs" />
-        <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Fire2.cs" />
-        <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Fire3.cs" />
-        <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Fire4.cs" />
-        <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Paradox.cs" />
-        <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Dot.cs" />
-        <Compile Include="AI\BlackMage\GCD\BlackMageGCD_UmbralSoul.cs" />
-        <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Xenoglossy.cs" />
-        <Compile Include="AI\BlackMage\GCD\BlackMage_BaseGCD.cs" />
-        <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Despair.cs" />
-        <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Fire1.cs" />
-        <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Fire3.cs" />
-        <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Fire4.cs" />
-        <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Manafont.cs" />
-        <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Thunder.cs" />
-        <Compile Include="AI\BlackMage\SpellQueue\SpellQueue_DespairCombo.cs" />
-        <Compile Include="AI\Dancer\DancerRotation.cs" />
-        <Compile Include="AI\AISpellQueueMgr.cs" />
-        <Compile Include="AI\Machinist\SpellEvent\SpellEvent_Hypercharge.cs" />
-        <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UnderHyperChargetGCD.cs" />
-        <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UseBattery.cs" />
-        <Compile Include="AI\Reaper\SpellEvent\SpellEvent_EnshourdGCD.cs" />
-        <Compile Include="AI\Reaper\SpellEvent\SpellEvent_Lemure.cs" />
-        <Compile Include="AI\Sage\Ability\SageAbilityHaima.cs" />
-        <Compile Include="AI\Sage\Ability\SageAbilityHolos.cs" />
-        <Compile Include="AI\Sage\Ability\SageAbilityIxochole.cs" />
-        <Compile Include="AI\Sage\Ability\SageAbilityKardia.cs" />
-        <Compile Include="AI\Sage\Ability\SageAbilityKerachole.cs" />
-        <Compile Include="AI\Sage\Ability\SageAbilityKrasis.cs" />
-        <Compile Include="AI\Sage\Ability\SageAbilityLucidDreaming.cs" />
-        <Compile Include="AI\Sage\Ability\SageAbilityPanhaima.cs" />
-        <Compile Include="AI\Sage\Ability\SageAbilityPepsi.cs" />
-        <Compile Include="AI\Sage\Ability\SageAbilityPhysis.cs" />
-        <Compile Include="AI\Sage\Ability\SageAbilityRhizomata.cs" />
-        <Compile Include="AI\Sage\Ability\SageAbilitySurecast.cs" />
-        <Compile Include="AI\Sage\Ability\SageAbilitySwiftCast.cs" />
-        <Compile Include="AI\Sage\Ability\SageAbilityTaurochole.cs" />
-        <Compile Include="AI\Sage\Ability\SageAbilityUsePotion.cs" />
-        <Compile Include="AI\Sage\Ability\SageAbilityZoe.cs" />
-        <Compile Include="AI\Sage\GCD\SageBaseGCD.cs" />
-        <Compile Include="AI\Sage\GCD\SageGCDDot.cs" />
-        <Compile Include="AI\Sage\GCD\SageGCDDyskrasia.cs" />
-        <Compile Include="AI\Sage\GCD\SageGCDPhlegma.cs" />
-        <Compile Include="AI\Sage\GCD\SageGCDToxikon.cs" />
-        <Compile Include="AI\Sage\OpenerSageStandard90.cs" />
-        <Compile Include="AI\Sage\SageBattleData.cs" />
-        <Compile Include="AI\Sage\SageRotation.cs" />
-        <Compile Include="AI\Sage\SageSpellHelper.cs" />
-        <Compile Include="AI\Sage\Sage_AIPriorityQueue.cs" />
-        <Compile Include="AI\Sage\SpellEvent\SpellEventDot.cs" />
-        <Compile Include="AI\Samurai\Opener_Samurai_90.cs" />
-        <Compile Include="AI\SpellEvent.cs" />
-        <Compile Include="AI\Machinist\Ability\MCHAbility_BarrelStabilizer.cs" />
-        <Compile Include="AI\Machinist\Ability\MCHAbility_FinalBurst.cs" />
-        <Compile Include="AI\Machinist\Ability\MCHAbility_HyperCharge.cs" />
-        <Compile Include="AI\Machinist\Ability\MCHAbility_Reassemble.cs" />
-        <Compile Include="AI\Machinist\Ability\MCHAbility_UseBattery.cs" />
-        <Compile Include="AI\Machinist\Ability\MCHAbility_UseGaussRound.cs" />
-        <Compile Include="AI\Machinist\Ability\MCHAbility_UsePotion.cs" />
-        <Compile Include="AI\Machinist\Ability\MCHAbility_WildFire.cs" />
-        <Compile Include="AI\Machinist\GCD\MCHGCD_AirAnchor.cs" />
-        <Compile Include="AI\Machinist\GCD\MCHGCD_BaseCombo.cs" />
-        <Compile Include="AI\Machinist\GCD\MCHGCD_ChainSaw.cs" />
-        <Compile Include="AI\Machinist\GCD\MCHGCD_Drill.cs" />
-        <Compile Include="AI\Machinist\GCD\MCHGCD_ReassembleGCD.cs" />
-        <Compile Include="AI\Machinist\GCD\MCHGCD_UnderHyperCharge.cs" />
-        <Compile Include="AI\Machinist\MachinistRotation.cs" />
-        <Compile Include="AI\Machinist\MCHBattleData.cs" />
-        <Compile Include="AI\Machinist\MCHSpellHelper.cs" />
-        <Compile Include="AI\Machinist\MCH_AIPriorityQueue.cs" />
-        <Compile Include="AI\Machinist\Opener_MCH_70.cs" />
-        <Compile Include="AI\Machinist\Opener_MCH_80.cs" />
-        <Compile Include="AI\Machinist\Opener_MCH_90.cs" />
-        <Compile Include="AI\Reaper\Ability\ReaperAbility_ArcaneCircle.cs" />
-        <Compile Include="AI\Reaper\Ability\ReaperAbility_BloodStalk.cs" />
-        <Compile Include="AI\Reaper\Ability\ReaperAbility_Enshroud.cs" />
-        <Compile Include="AI\Reaper\Ability\ReaperAbility_Gluttony.cs" />
-        <Compile Include="AI\Reaper\Ability\ReaperAbility_Lemure.cs" />
-        <Compile Include="AI\Reaper\Ability\ReaperAbility_TrueNorth.cs" />
-        <Compile Include="AI\Reaper\Ability\ReaperAbility_UsePotion.cs" />
-        <Compile Include="AI\Reaper\GCD\ReaperGCD_BaseGCDCombo.cs" />
-        <Compile Include="AI\Reaper\GCD\ReaperGCD_EnshroudGCD.cs" />
-        <Compile Include="AI\Reaper\GCD\ReaperGCD_Gibbit_Gallows.cs" />
-        <Compile Include="AI\Reaper\GCD\ReaperGCD_PlentifulHarvest.cs" />
-        <Compile Include="AI\Reaper\GCD\ReaperGCD_PullRangeGCD.cs" />
-        <Compile Include="AI\Reaper\GCD\ReaperGCD_ShadowOfDeath.cs" />
-        <Compile Include="AI\Reaper\GCD\ReaperGCD_SoulSlice.cs" />
-        <Compile Include="AI\Reaper\Opener_Reaper_90.cs" />
-        <Compile Include="AI\Reaper\ReaperRotation.cs" />
-        <Compile Include="AI\Reaper\Reaper_AIPriorityQueue.cs" />
-        <Compile Include="AI\Reaper\ReaperBattleData.cs" />
-        <Compile Include="AI\Reaper\ReaperSpellHelper.cs" />
-        <Compile Include="AI\Samurai\Ability\SamuraiAbility_HissatsuKaiten.cs" />
-        <Compile Include="AI\Samurai\Ability\SamuraiAbility_HissatsuSenei.cs" />
-        <Compile Include="AI\Samurai\Ability\SamuraiAbility_HissatsuShinten.cs" />
-        <Compile Include="AI\Samurai\Ability\SamuraiAbility_Ikishoten.cs" />
-        <Compile Include="AI\Samurai\Ability\SamuraiAbility_MeikyoShisui.cs" />
-        <Compile Include="AI\Samurai\Ability\SamuraiAbility_Shoha.cs" />
-        <Compile Include="AI\Samurai\GCD\SamuraiGCD_BaseGCDCombo.cs" />
-        <Compile Include="AI\Samurai\GCD\SamuraiGCD_Iaijutsu.cs" />
-        <Compile Include="AI\Samurai\GCD\SamuraiGCD_Kaeshi.cs" />
-        <Compile Include="AI\Samurai\GCD\SamuraiGCD_OgiNamikiri.cs" />
-        <Compile Include="AI\Samurai\SamuraiBattleData.cs" />
-        <Compile Include="AI\Samurai\SamuraiRotation.cs" />
-        <Compile Include="AI\Samurai\SamuraiSpellHelper.cs" />
-        <Compile Include="AI\Samurai\Samurai_AIPriorityQueue.cs" />
-        <Compile Include="AI\SpellHistoryMgr.cs" />
-        <Compile Include="AI\SpellQueueData.cs" />
-        <Compile Include="DataBinding\DebugCenter.cs" />
-        <Compile Include="DataBinding\Language.cs" />
-        <Compile Include="DataBinding\LanguageOptionData.cs" />
-        <Compile Include="DataBinding\PotionData.cs" />
-        <Compile Include="Define\ConstValue.cs" />
-        <Compile Include="Define\DataStruct\CircleList.cs" />
-        <Compile Include="Define\Entity.cs" />
-        <Compile Include="Define\GroupDefine.cs" />
-        <Compile Include="Define\ObjectPool.cs" />
-        <Compile Include="Define\SpellEntity.cs" />
-        <Compile Include="Define\SpellsDefine.cs" />
-        <Compile Include="Gamelog\AEGamelogManager.cs" />
-        <Compile Include="Helper\DotBlacklistHelper.cs" />
-        <Compile Include="Helper\DutyHelper.cs" />
-        <Compile Include="Helper\GroupHelper.cs" />
-        <Compile Include="Helper\LanguageHelper.cs" />
-        <Compile Include="Helper\SpellHistoryHelper.cs" />
-        <Compile Include="Helper\TriggerLineSwitchHelper.cs" />
-        <Compile Include="Helper\WorldHelper.cs" />
-        <Compile Include="Opener\IOpener.cs" />
-        <Compile Include="Opener\OpenerAttribute.cs" />
-        <Compile Include="Opener\OpenerMgr.cs" />
-        <Compile Include="Opener\OpenerStep.cs" />
-        <Compile Include="Rotations\Core\DefaultRotation.cs" />
-        <Compile Include="Rotations\Core\IRotation.cs" />
-        <Compile Include="Rotations\Core\RotationManager.cs" />
-        <Compile Include="Rotations\JobAttribute.cs" />
-        <Compile Include="Setting\Setting\BlackMageSetting.cs" />
-        <Compile Include="Setting\Setting\HotkeySetting.cs" />
-        <Compile Include="Setting\Setting\MCHSettings.cs" />
-        <Compile Include="Setting\Setting\ReaperSettings.cs" />
-        <Compile Include="Setting\Setting\SageSettings.cs" />
-        <Compile Include="Setting\Setting\SamuraiSettings.cs" />
-        <Compile Include="TriggerSystem\ITriggerActionHandler.cs" />
-        <Compile Include="TriggerSystem\ITriggerCondHandler.cs" />
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_BatteryList.cs" />
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_CastAbility.cs" />
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_CastGCD.cs" />
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_LockSpell.cs" />
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_NextSong.cs" />
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SongList.cs" />
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchAOE.cs" />
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchApex.cs" />
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchBurst.cs" />
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchDOT.cs" />
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchFinalBurstHandler.cs" />
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchPotion.cs" />
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchSong.cs" />
-        <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_UsePotion.cs" />
-        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterBattleStart.cs" />
-        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterOtherTrigger.cs" />
-        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyCastSpell.cs" />
-        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyHpPct.cs" />
-        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyInLOS.cs" />
-        <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_GameLog.cs" />
-        <Compile Include="TriggerSystem\TriggerSystemMgr.cs" />
-        <Compile Include="View\BardSettingView.xaml.cs">
-            <DependentUpon>BardSettingView.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\CommonOverlay.xaml.cs">
-            <DependentUpon>CommonOverlay.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\GeneralSettingView.xaml.cs">
-          <DependentUpon>GeneralSettingView.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\GeneralSetting\UserControl_BaseSetting.xaml.cs">
-          <DependentUpon>UserControl_BaseSetting.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\GeneralSetting\UserControl_General.xaml.cs">
-          <DependentUpon>UserControl_General.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\GeneralSetting\UserControl_Hotkey.xaml.cs">
-          <DependentUpon>UserControl_Hotkey.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\Hotkey\HotkeySetting.cs" />
-        <Compile Include="View\MCHSettingView.xaml.cs">
-            <DependentUpon>MCHSettingView.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\OverlayHeader.xaml.cs">
-            <DependentUpon>OverlayHeader.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\OverlayManager\OverlayManager.cs" />
-        <Compile Include="View\Overlay\BardOverlayWindow.xaml.cs">
-            <DependentUpon>BardOverlayWindow.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\Overlay\BlackMageOverlayWindow.xaml.cs">
-          <DependentUpon>BlackMageOverlayWindow.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\Overlay\DancerOverlayWindow.xaml.cs">
-            <DependentUpon>DancerOverlayWindow.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\Overlay\MCHOverlayWindow.xaml.cs">
-            <DependentUpon>MCHOverlayWindow.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\Overlay\ReaperOverlay.xaml.cs">
-            <DependentUpon>ReaperOverlay.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\Overlay\SageOverlayWindow.xaml.cs">
-          <DependentUpon>SageOverlayWindow.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\Overlay\SamuraiOverlayWindow.xaml.cs" />
-        <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BardOverlay.cs" />
-        <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BlackMageOverlay.cs" />
-        <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_DancerOverlay.cs" />
-        <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_MCHOverlay.cs" />
-        <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_ReaperOverlay.cs" />
-        <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_SageOverlay.cs" />
-        <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_SamuraiOverlay.cs" />
-        <Compile Include="View\ReaperSettingView.xaml.cs">
-            <DependentUpon>ReaperSettingView.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\SageSettingView.xaml.cs">
-          <DependentUpon>SageSettingView.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\SamuraiSettingView.xaml.cs" />
-        <Compile Include="View\Style\HotkeyControl.xaml.cs">
-            <DependentUpon>HotkeyControl.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\UIHelper.cs" />
-        <Content Include="..\AEAssistLoader\AEAssistLoader.cs">
-            <Link>AEAssistLoader.cs</Link>
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Compile Include="DataBinding\DataBinding.cs" />
-        <Compile Include="Entry.cs" />
-        <Compile Include="Properties\Annotations.cs" />
-        <Compile Include="Resources\Icons.Designer.cs">
-            <DesignTime>True</DesignTime>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Icons.resx</DependentUpon>
-        </Compile>
-        <Compile Include="Setting\BaseSetting.cs" />
-        <Compile Include="Setting\SettingAttribute.cs" />
-        <Compile Include="Setting\SettingMgr.cs" />
-        <Compile Include="Setting\Setting\BardSettings.cs" />
-        <Compile Include="Setting\Setting\GeneralSettings.cs" />
-        <Compile Include="Setting\Setting\VersionSetting.cs" />
-        <Content Include="Resources\Lan_zh-CN.json">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Resource Include="Resources\Spells\MindPotion.png" />
-        <Resource Include="Resources\Spells\SureCast.png" />
-        <Resource Include="Resources\Spells\LegSweep.png" />
-        <Resource Include="Resources\Spells\HeadGraze.png" />
-        <Resource Include="Resources\Spells\IronJaws.png" />
-        <Resource Include="Resources\Spells\Hypercharge.png" />
-        <Resource Include="Resources\Spells\NaturesMinne.png" />
-        <Resource Include="Resources\Spells\BlastArrow.png" />
-        <Resource Include="Resources\Spells\Detonator.png" />
-        <Resource Include="Resources\Spells\Wildfire.png" />
-        <Resource Include="Resources\Spells\QueenOverdrive.png" />
-        <Resource Include="Resources\Spells\AutomatonQueen.png" />
-        <Resource Include="Resources\Spells\HarvestMoon.png" />
-        <Resource Include="Resources\Spells\AP.png" />
-        <Resource Include="Resources\Spells\MB.png" />
-        <Resource Include="Resources\Spells\WM.png" />
-        <Resource Include="Resources\Spells\ThirdEye.png" />
-        <Resource Include="Resources\Spells\Apex.png" />
-        <Resource Include="Resources\Background\Sky.jpeg" />
-        <Resource Include="Resources\Background\Black_1.jpeg" />
-        <Content Include="Resources\BossDictionary.json">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Resource Include="Resources\Expand_3.png" />
-        <Resource Include="Resources\Close_1.png" />
-        <Content Include="Resources\Lan_cn-en.json">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="Resources\Lan_cn-jp.json">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Include="Resources\Lan_en.json">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Resource Include="Resources\Spells\ShieldSamba.png" />
-        <Resource Include="Resources\Spells\Tactician.png" />
-        <Resource Include="Resources\Spells\Potion.png" />
-        <Resource Include="Resources\Spells\SecondWind.png" />
-        <Resource Include="Resources\Spells\Sprint.png" />
-        <Resource Include="Resources\Spells\TrueNorth.png" />
-        <Resource Include="Resources\Spells\ArcaneCrest.png" />
-        <Resource Include="Resources\Spells\Feint.png" />
-        <Resource Include="Resources\Spells\Reset.jpeg" />
-        <Resource Include="Resources\Spells\ArmsLength.png" />
-        <Resource Include="Resources\Spells\Troubadour.png" />
-        <Page Include="View\CommonOverlay.xaml" />
-        <Page Include="View\GeneralSettingView.xaml" />
-        <Page Include="View\GeneralSetting\UserControl_BaseSetting.xaml" />
-        <Page Include="View\GeneralSetting\UserControl_General.xaml" />
-        <Page Include="View\GeneralSetting\UserControl_Hotkey.xaml" />
-        <Page Include="View\MCHSettingView.xaml" />
-        <Page Include="View\OverlayHeader.xaml" />
-        <Page Include="View\Overlay\BlackMageOverlayWindow.xaml" />
-        <Page Include="View\Overlay\DancerOverlayWindow.xaml" />
-        <Page Include="View\Overlay\MCHOverlayWindow.xaml" />
-        <Page Include="View\Overlay\ReaperOverlay.xaml" />
-        <Page Include="View\Overlay\SageOverlayWindow.xaml" />
-        <Page Include="View\Overlay\SamuraiOverlayWindow.xaml" />
-        <Page Include="View\ReaperSettingView.xaml" />
-        <Page Include="View\SageSettingView.xaml" />
-        <Page Include="View\SamuraiSettingView.xaml" />
-        <Page Include="View\Style\Button.xaml" />
-        <Page Include="View\Style\CheckBox.xaml" />
-        <Page Include="View\Style\HotkeyControl.xaml" />
-        <Resource Include="Resources\jobs\acn.png" />
-        <Resource Include="Resources\jobs\alc.png" />
-        <Resource Include="Resources\jobs\arc.png" />
-        <Resource Include="Resources\jobs\arm.png" />
-        <Resource Include="Resources\jobs\ast-framed.png" />
-        <Resource Include="Resources\jobs\ast-large.png" />
-        <Resource Include="Resources\jobs\ast.png" />
-        <Resource Include="Resources\jobs\blm-framed.png" />
-        <Resource Include="Resources\jobs\blm-large.png" />
-        <Resource Include="Resources\jobs\blm.png" />
-        <Resource Include="Resources\jobs\blu-framed.png" />
-        <Resource Include="Resources\jobs\blu-large.png" />
-        <Resource Include="Resources\jobs\blu.png" />
-        <Resource Include="Resources\jobs\bot.png" />
-        <Resource Include="Resources\jobs\brd-framed.png" />
-        <Resource Include="Resources\jobs\brd-large.png" />
-        <Resource Include="Resources\jobs\brd.png" />
-        <Resource Include="Resources\jobs\bsm.png" />
-        <Resource Include="Resources\jobs\cho.png" />
-        <Resource Include="Resources\jobs\cnj.png" />
-        <Resource Include="Resources\jobs\crp.png" />
-        <Resource Include="Resources\jobs\cul.png" />
-        <Resource Include="Resources\jobs\dnc-framed.png" />
-        <Resource Include="Resources\jobs\dnc-large.png" />
-        <Resource Include="Resources\jobs\dnc.png" />
-        <Resource Include="Resources\jobs\drg-framed.png" />
-        <Resource Include="Resources\jobs\drg-large.png" />
-        <Resource Include="Resources\jobs\drg.png" />
-        <Resource Include="Resources\jobs\drk-framed.png" />
-        <Resource Include="Resources\jobs\drk-large.png" />
-        <Resource Include="Resources\jobs\drk.png" />
-        <Resource Include="Resources\jobs\fsh.png" />
-        <Resource Include="Resources\jobs\gla.png" />
-        <Resource Include="Resources\jobs\gnb-framed.png" />
-        <Resource Include="Resources\jobs\gnb-large.png" />
-        <Resource Include="Resources\jobs\gnb.png" />
-        <Resource Include="Resources\jobs\gsm.png" />
-        <Resource Include="Resources\jobs\limit break.png" />
-        <Resource Include="Resources\jobs\lnc.png" />
-        <Resource Include="Resources\jobs\ltw.png" />
-        <Resource Include="Resources\jobs\mch-framed.png" />
-        <Resource Include="Resources\jobs\mch-large.png" />
-        <Resource Include="Resources\jobs\mch.png" />
-        <Resource Include="Resources\jobs\min.png" />
-        <Resource Include="Resources\jobs\mnk-framed.png" />
-        <Resource Include="Resources\jobs\mnk-large.png" />
-        <Resource Include="Resources\jobs\mnk.png" />
-        <Resource Include="Resources\jobs\mrd.png" />
-        <Resource Include="Resources\jobs\nin-framed.png" />
-        <Resource Include="Resources\jobs\nin-large.png" />
-        <Resource Include="Resources\jobs\nin.png" />
-        <Resource Include="Resources\jobs\pet.png" />
-        <Resource Include="Resources\jobs\pgl.png" />
-        <Resource Include="Resources\jobs\pld-framed.png" />
-        <Resource Include="Resources\jobs\pld-large.png" />
-        <Resource Include="Resources\jobs\pld.png" />
-        <Resource Include="Resources\jobs\rdm-framed.png" />
-        <Resource Include="Resources\jobs\rdm-large.png" />
-        <Resource Include="Resources\jobs\rdm.png" />
-        <Resource Include="Resources\jobs\rog.png" />
-        <Resource Include="Resources\jobs\rpr-framed.png" />
-        <Resource Include="Resources\jobs\rpr.png" />
-        <Resource Include="Resources\jobs\sam-framed.png" />
-        <Resource Include="Resources\jobs\sam-large.png" />
-        <Resource Include="Resources\jobs\sam.png" />
-        <Resource Include="Resources\jobs\sch-framed.png" />
-        <Resource Include="Resources\jobs\sch-large.png" />
-        <Resource Include="Resources\jobs\sch.png" />
-        <Resource Include="Resources\jobs\sge-framed.png" />
-        <Resource Include="Resources\jobs\sge.png" />
-        <Resource Include="Resources\jobs\smn-framed.png" />
-        <Resource Include="Resources\jobs\smn-large.png" />
-        <Resource Include="Resources\jobs\smn.png" />
-        <Resource Include="Resources\jobs\thm.png" />
-        <Resource Include="Resources\jobs\war-framed.png" />
-        <Resource Include="Resources\jobs\war-large.png" />
-        <Resource Include="Resources\jobs\war.png" />
-        <Resource Include="Resources\jobs\whm-framed.png" />
-        <Resource Include="Resources\jobs\whm-large.png" />
-        <Resource Include="Resources\jobs\whm.png" />
-        <Resource Include="Resources\jobs\wvr.png" />
-        <Page Include="View\BardSettingView.xaml" />
-        <Page Include="View\Overlay\BardOverlayWindow.xaml" />
-        <Resource Include="Resources\Icon.png" />
-        <Page Include="MainWindow.xaml">
-            <Generator>MSBuild:Compile</Generator>
-            <SubType>Designer</SubType>
-        </Page>
-        <Compile Include="AI\AIRoot.cs" />
-        <Compile Include="AI\CountDownHandler.cs" />
-        <Compile Include="AI\TargetMgr.cs" />
-        <Compile Include="Define\AurasDefine.cs" />
-        <Compile Include="Helper\AuraHelper.cs" />
-        <Compile Include="Helper\DataHelper.cs" />
-        <Compile Include="Helper\GUIHelper.cs" />
-        <Compile Include="Helper\LogHelper.cs" />
-        <Compile Include="Helper\PotionHelper.cs" />
-        <Compile Include="Helper\RandomHelper.cs" />
-        <Compile Include="Helper\SpellHelper.cs" />
-        <Compile Include="Helper\TargetHelper.cs" />
-        <Compile Include="Helper\TimeHelper.cs" />
-        <Compile Include="Helper\TTKHelper.cs" />
-        <Compile Include="MainWindow.xaml.cs">
-            <DependentUpon>MainWindow.xaml</DependentUpon>
-            <SubType>Code</SubType>
-        </Compile>
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Properties\AssemblyInfo.cs">
-            <SubType>Code</SubType>
-        </Compile>
-        <Compile Include="Properties\Resources.Designer.cs">
-            <AutoGen>True</AutoGen>
-            <DesignTime>True</DesignTime>
-            <DependentUpon>Resources.resx</DependentUpon>
-        </Compile>
-        <EmbeddedResource Include="Properties\Resources.resx">
-            <Generator>ResXFileCodeGenerator</Generator>
-            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-        </EmbeddedResource>
-        <EmbeddedResource Include="Resources\Icons.resx">
-            <Generator>ResXFileCodeGenerator</Generator>
-            <LastGenOutput>Icons.Designer.cs</LastGenOutput>
-        </EmbeddedResource>
-    </ItemGroup>
-    <ItemGroup>
-        <None Include="App.config" />
-    </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
-        <PackageReference Include="System.ObjectModel" Version="4.3.0" />
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="GreyMagic, Version=1.0.60.0, Culture=neutral, PublicKeyToken=260525fa2b0e778a">
+      <HintPath>..\References\GreyMagic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.15.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MongoDB.Bson.2.15.0\lib\net472\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="RebornBuddy, Version=1.0.473.0, Culture=neutral, PublicKeyToken=48d7174f8a943034">
+      <HintPath>..\References\RebornBuddy.exe</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AETriggers\TriggerModel\ITriggerAction.cs">
+      <Link>TriggerModel\ITriggerAction.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\ITriggerBase.cs">
+      <Link>TriggerModel\ITriggerBase.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\ITriggerCond.cs">
+      <Link>TriggerModel\ITriggerCond.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\MongoHelper.cs">
+      <Link>TriggerModel\MongoHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\Trigger.cs">
+      <Link>TriggerModel\Trigger.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_BatteryList.cs">
+      <Link>TriggerModel\TriggerAction\TriggerAction_BatteryList.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_CastAbility.cs">
+      <Link>TriggerModel\TriggerAction\TriggerAction_CastAbility.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_CastGCD.cs">
+      <Link>TriggerModel\TriggerAction\TriggerAction_CastGCD.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_LockSpell.cs">
+      <Link>TriggerModel\TriggerAction\TriggerAction_LockSpell.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_NextSong.cs">
+      <Link>TriggerModel\TriggerAction\TriggerAction_NextSong.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SongList.cs">
+      <Link>TriggerModel\TriggerAction\TriggerAction_SongList.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchAOE.cs">
+      <Link>TriggerModel\TriggerAction\TriggerAction_SwitchAOE.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchApex.cs">
+      <Link>TriggerModel\TriggerAction\TriggerAction_SwitchApex.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs">
+      <Link>TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchDOT.cs">
+      <Link>TriggerModel\TriggerAction\TriggerAction_SwitchDOT.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchFinalBurst.cs">
+      <Link>TriggerModel\TriggerAction\TriggerAction_SwitchFinalBurst.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchPotion.cs">
+      <Link>TriggerModel\TriggerAction\TriggerAction_SwitchPotion.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SwitchSong.cs">
+      <Link>TriggerModel\TriggerAction\TriggerAction_SwitchSong.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_UsePotion.cs">
+      <Link>TriggerModel\TriggerAction\TriggerAction_UsePotion.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerAttribute.cs">
+      <Link>TriggerModel\TriggerAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_AfterBattleStart.cs">
+      <Link>TriggerModel\TriggerCond\TriggerCond_AfterBattleStart.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_AfterOtherTrigger.cs">
+      <Link>TriggerModel\TriggerCond\TriggerCond_AfterOtherTrigger.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyCastSpell.cs">
+      <Link>TriggerModel\TriggerCond\TriggerCond_EnemyCastSpell.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyHPPct.cs">
+      <Link>TriggerModel\TriggerCond\TriggerCond_EnemyHPPct.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyInLOS.cs">
+      <Link>TriggerModel\TriggerCond\TriggerCond_EnemyInLOS.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_GameLog.cs">
+      <Link>TriggerModel\TriggerCond\TriggerCond_GameLog.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerHelper.cs">
+      <Link>TriggerModel\TriggerHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerLine.cs">
+      <Link>TriggerModel\TriggerLine.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerMgr.cs">
+      <Link>TriggerModel\TriggerMgr.cs</Link>
+    </Compile>
+    <Compile Include="AI\AIMgrs.cs" />
+    <Compile Include="AI\Bard\Ability\BardAbility_Barrage.cs" />
+    <Compile Include="AI\Bard\Ability\BardAbility_Bloodletter.cs" />
+    <Compile Include="AI\Bard\Ability\BardAbility_Buffs.cs" />
+    <Compile Include="AI\Bard\Ability\BardAbility_EmpyrealArrow.cs" />
+    <Compile Include="AI\Bard\Ability\BardAbility_MaxChargeBloodletter.cs" />
+    <Compile Include="AI\Bard\Ability\BardAbility_PitchPerfect.cs" />
+    <Compile Include="AI\Bard\Ability\BardAbility_RagingStrikes.cs" />
+    <Compile Include="AI\Bard\Ability\BardAbility_Sidewinder.cs" />
+    <Compile Include="AI\Bard\Ability\BardAbility_Songs.cs" />
+    <Compile Include="AI\Bard\Ability\BardAbility_UsePotion.cs" />
+    <Compile Include="AI\Bard\BardRotation.cs" />
+    <Compile Include="AI\Bard\Bard_AIPriorityQueue.cs" />
+    <Compile Include="AI\Bard\BardBattleData.cs" />
+    <Compile Include="AI\Bard\BardSpellHelper.cs" />
+    <Compile Include="AI\Bard\GCD\BardGCD_ApexArrow.cs" />
+    <Compile Include="AI\Bard\GCD\BardGCD_Barrage_RefulgentArrow.cs" />
+    <Compile Include="AI\Bard\GCD\BardGCD_BlastArrow.cs" />
+    <Compile Include="AI\Bard\GCD\BardGCD_Dot.cs" />
+    <Compile Include="AI\Bard\GCD\BardGCD_BaseGCD.cs" />
+    <Compile Include="AI\Bard\SpellEvent\SpellEvent_Dot.cs" />
+    <Compile Include="AI\Bard\SpellEvent\SpellEvent_RagingStrikes.cs" />
+    <Compile Include="AI\Bard\SpellEvent\SpellEvent_Songs.cs" />
+    <Compile Include="AI\BattleData.cs" />
+    <Compile Include="AI\BlackMage\Ability\BlackMageAbility_Amplifier.cs" />
+    <Compile Include="AI\BlackMage\Ability\BlackMageAbility_Leylines.cs" />
+    <Compile Include="AI\BlackMage\Ability\BlackMageAbility_Manafont.cs" />
+    <Compile Include="AI\BlackMage\Ability\BlackMageAbility_Sharpcast.cs" />
+    <Compile Include="AI\BlackMage\Ability\BlackMageAbility_Swiftcast.cs" />
+    <Compile Include="AI\BlackMage\Ability\BlackMageAbility_Transpose.cs" />
+    <Compile Include="AI\BlackMage\Ability\BlackMageAbility_Triplecast.cs" />
+    <Compile Include="AI\BlackMage\BlackMageSpellHelper.cs" />
+    <Compile Include="AI\BlackMage\BlackMage_AIPriorityQueue.cs" />
+    <Compile Include="AI\BlackMage\BlackMage_BattleData.cs" />
+    <Compile Include="AI\BlackMage\BlackMage_Rotation.cs" />
+    <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Blizzard3.cs" />
+    <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Blizzard4.cs" />
+    <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Despair.cs" />
+    <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Fire2.cs" />
+    <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Fire3.cs" />
+    <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Fire4.cs" />
+    <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Paradox.cs" />
+    <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Dot.cs" />
+    <Compile Include="AI\BlackMage\GCD\BlackMageGCD_UmbralSoul.cs" />
+    <Compile Include="AI\BlackMage\GCD\BlackMageGCD_Xenoglossy.cs" />
+    <Compile Include="AI\BlackMage\GCD\BlackMage_BaseGCD.cs" />
+    <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Despair.cs" />
+    <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Fire1.cs" />
+    <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Fire3.cs" />
+    <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Fire4.cs" />
+    <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Manafont.cs" />
+    <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Thunder.cs" />
+    <Compile Include="AI\BlackMage\SpellQueue\SpellQueue_DespairCombo.cs" />
+    <Compile Include="AI\Dancer\DancerRotation.cs" />
+    <Compile Include="AI\AISpellQueueMgr.cs" />
+    <Compile Include="AI\Machinist\SpellEvent\SpellEvent_Hypercharge.cs" />
+    <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UnderHyperChargetGCD.cs" />
+    <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UseBattery.cs" />
+    <Compile Include="AI\Reaper\SpellEvent\SpellEvent_EnshourdGCD.cs" />
+    <Compile Include="AI\Reaper\SpellEvent\SpellEvent_Lemure.cs" />
+    <Compile Include="AI\Sage\Ability\SageAbilityHaima.cs" />
+    <Compile Include="AI\Sage\Ability\SageAbilityHolos.cs" />
+    <Compile Include="AI\Sage\Ability\SageAbilityIxochole.cs" />
+    <Compile Include="AI\Sage\Ability\SageAbilityKardia.cs" />
+    <Compile Include="AI\Sage\Ability\SageAbilityKerachole.cs" />
+    <Compile Include="AI\Sage\Ability\SageAbilityKrasis.cs" />
+    <Compile Include="AI\Sage\Ability\SageAbilityLucidDreaming.cs" />
+    <Compile Include="AI\Sage\Ability\SageAbilityPanhaima.cs" />
+    <Compile Include="AI\Sage\Ability\SageAbilityPepsi.cs" />
+    <Compile Include="AI\Sage\Ability\SageAbilityPhysis.cs" />
+    <Compile Include="AI\Sage\Ability\SageAbilityRhizomata.cs" />
+    <Compile Include="AI\Sage\Ability\SageAbilitySurecast.cs" />
+    <Compile Include="AI\Sage\Ability\SageAbilitySwiftCast.cs" />
+    <Compile Include="AI\Sage\Ability\SageAbilityTaurochole.cs" />
+    <Compile Include="AI\Sage\Ability\SageAbilityUsePotion.cs" />
+    <Compile Include="AI\Sage\Ability\SageAbilityZoe.cs" />
+    <Compile Include="AI\Sage\GCD\SageBaseGCD.cs" />
+    <Compile Include="AI\Sage\GCD\SageGCDDot.cs" />
+    <Compile Include="AI\Sage\GCD\SageGCDDyskrasia.cs" />
+    <Compile Include="AI\Sage\GCD\SageGCDPhlegma.cs" />
+    <Compile Include="AI\Sage\GCD\SageGCDToxikon.cs" />
+    <Compile Include="AI\Sage\OpenerSageStandard90.cs" />
+    <Compile Include="AI\Sage\OpenerSage_Test.cs" />
+    <Compile Include="AI\Sage\SageBattleData.cs" />
+    <Compile Include="AI\Sage\SageRotation.cs" />
+    <Compile Include="AI\Sage\SageSpellHelper.cs" />
+    <Compile Include="AI\Sage\Sage_AIPriorityQueue.cs" />
+    <Compile Include="AI\Sage\SpellEvent\SpellEventDot.cs" />
+    <Compile Include="AI\Samurai\Opener_Samurai_90.cs" />
+    <Compile Include="AI\SpellEvent.cs" />
+    <Compile Include="AI\Machinist\Ability\MCHAbility_BarrelStabilizer.cs" />
+    <Compile Include="AI\Machinist\Ability\MCHAbility_FinalBurst.cs" />
+    <Compile Include="AI\Machinist\Ability\MCHAbility_HyperCharge.cs" />
+    <Compile Include="AI\Machinist\Ability\MCHAbility_Reassemble.cs" />
+    <Compile Include="AI\Machinist\Ability\MCHAbility_UseBattery.cs" />
+    <Compile Include="AI\Machinist\Ability\MCHAbility_UseGaussRound.cs" />
+    <Compile Include="AI\Machinist\Ability\MCHAbility_UsePotion.cs" />
+    <Compile Include="AI\Machinist\Ability\MCHAbility_WildFire.cs" />
+    <Compile Include="AI\Machinist\GCD\MCHGCD_AirAnchor.cs" />
+    <Compile Include="AI\Machinist\GCD\MCHGCD_BaseCombo.cs" />
+    <Compile Include="AI\Machinist\GCD\MCHGCD_ChainSaw.cs" />
+    <Compile Include="AI\Machinist\GCD\MCHGCD_Drill.cs" />
+    <Compile Include="AI\Machinist\GCD\MCHGCD_ReassembleGCD.cs" />
+    <Compile Include="AI\Machinist\GCD\MCHGCD_UnderHyperCharge.cs" />
+    <Compile Include="AI\Machinist\MachinistRotation.cs" />
+    <Compile Include="AI\Machinist\MCHBattleData.cs" />
+    <Compile Include="AI\Machinist\MCHSpellHelper.cs" />
+    <Compile Include="AI\Machinist\MCH_AIPriorityQueue.cs" />
+    <Compile Include="AI\Machinist\Opener_MCH_70.cs" />
+    <Compile Include="AI\Machinist\Opener_MCH_80.cs" />
+    <Compile Include="AI\Machinist\Opener_MCH_90.cs" />
+    <Compile Include="AI\Reaper\Ability\ReaperAbility_ArcaneCircle.cs" />
+    <Compile Include="AI\Reaper\Ability\ReaperAbility_BloodStalk.cs" />
+    <Compile Include="AI\Reaper\Ability\ReaperAbility_Enshroud.cs" />
+    <Compile Include="AI\Reaper\Ability\ReaperAbility_Gluttony.cs" />
+    <Compile Include="AI\Reaper\Ability\ReaperAbility_Lemure.cs" />
+    <Compile Include="AI\Reaper\Ability\ReaperAbility_TrueNorth.cs" />
+    <Compile Include="AI\Reaper\Ability\ReaperAbility_UsePotion.cs" />
+    <Compile Include="AI\Reaper\GCD\ReaperGCD_BaseGCDCombo.cs" />
+    <Compile Include="AI\Reaper\GCD\ReaperGCD_EnshroudGCD.cs" />
+    <Compile Include="AI\Reaper\GCD\ReaperGCD_Gibbit_Gallows.cs" />
+    <Compile Include="AI\Reaper\GCD\ReaperGCD_PlentifulHarvest.cs" />
+    <Compile Include="AI\Reaper\GCD\ReaperGCD_PullRangeGCD.cs" />
+    <Compile Include="AI\Reaper\GCD\ReaperGCD_ShadowOfDeath.cs" />
+    <Compile Include="AI\Reaper\GCD\ReaperGCD_SoulSlice.cs" />
+    <Compile Include="AI\Reaper\Opener_Reaper_90.cs" />
+    <Compile Include="AI\Reaper\ReaperRotation.cs" />
+    <Compile Include="AI\Reaper\Reaper_AIPriorityQueue.cs" />
+    <Compile Include="AI\Reaper\ReaperBattleData.cs" />
+    <Compile Include="AI\Reaper\ReaperSpellHelper.cs" />
+    <Compile Include="AI\Samurai\Ability\SamuraiAbility_HissatsuKaiten.cs" />
+    <Compile Include="AI\Samurai\Ability\SamuraiAbility_HissatsuSenei.cs" />
+    <Compile Include="AI\Samurai\Ability\SamuraiAbility_HissatsuShinten.cs" />
+    <Compile Include="AI\Samurai\Ability\SamuraiAbility_Ikishoten.cs" />
+    <Compile Include="AI\Samurai\Ability\SamuraiAbility_MeikyoShisui.cs" />
+    <Compile Include="AI\Samurai\Ability\SamuraiAbility_Shoha.cs" />
+    <Compile Include="AI\Samurai\GCD\SamuraiGCD_BaseGCDCombo.cs" />
+    <Compile Include="AI\Samurai\GCD\SamuraiGCD_Iaijutsu.cs" />
+    <Compile Include="AI\Samurai\GCD\SamuraiGCD_Kaeshi.cs" />
+    <Compile Include="AI\Samurai\GCD\SamuraiGCD_OgiNamikiri.cs" />
+    <Compile Include="AI\Samurai\SamuraiBattleData.cs" />
+    <Compile Include="AI\Samurai\SamuraiRotation.cs" />
+    <Compile Include="AI\Samurai\SamuraiSpellHelper.cs" />
+    <Compile Include="AI\Samurai\Samurai_AIPriorityQueue.cs" />
+    <Compile Include="AI\SpellHistoryMgr.cs" />
+    <Compile Include="AI\SpellQueueData.cs" />
+    <Compile Include="DataBinding\DebugCenter.cs" />
+    <Compile Include="DataBinding\Language.cs" />
+    <Compile Include="DataBinding\LanguageOptionData.cs" />
+    <Compile Include="DataBinding\PotionData.cs" />
+    <Compile Include="Define\ConstValue.cs" />
+    <Compile Include="Define\DataStruct\CircleList.cs" />
+    <Compile Include="Define\Entity.cs" />
+    <Compile Include="Define\GroupDefine.cs" />
+    <Compile Include="Define\ObjectPool.cs" />
+    <Compile Include="Define\SpellEntity.cs" />
+    <Compile Include="Define\SpellsDefine.cs" />
+    <Compile Include="Gamelog\AEGamelogManager.cs" />
+    <Compile Include="Helper\DotBlacklistHelper.cs" />
+    <Compile Include="Helper\DutyHelper.cs" />
+    <Compile Include="Helper\GroupHelper.cs" />
+    <Compile Include="Helper\LanguageHelper.cs" />
+    <Compile Include="Helper\SpellHistoryHelper.cs" />
+    <Compile Include="Helper\TriggerLineSwitchHelper.cs" />
+    <Compile Include="Helper\WorldHelper.cs" />
+    <Compile Include="Opener\IOpener.cs" />
+    <Compile Include="Opener\OpenerAttribute.cs" />
+    <Compile Include="Opener\OpenerMgr.cs" />
+    <Compile Include="Opener\OpenerStep.cs" />
+    <Compile Include="Rotations\Core\DefaultRotation.cs" />
+    <Compile Include="Rotations\Core\IRotation.cs" />
+    <Compile Include="Rotations\Core\RotationManager.cs" />
+    <Compile Include="Rotations\JobAttribute.cs" />
+    <Compile Include="Setting\Setting\BlackMageSetting.cs" />
+    <Compile Include="Setting\Setting\HotkeySetting.cs" />
+    <Compile Include="Setting\Setting\MCHSettings.cs" />
+    <Compile Include="Setting\Setting\ReaperSettings.cs" />
+    <Compile Include="Setting\Setting\SageSettings.cs" />
+    <Compile Include="Setting\Setting\SamuraiSettings.cs" />
+    <Compile Include="TriggerSystem\ITriggerActionHandler.cs" />
+    <Compile Include="TriggerSystem\ITriggerCondHandler.cs" />
+    <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_BatteryList.cs" />
+    <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_CastAbility.cs" />
+    <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_CastGCD.cs" />
+    <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_LockSpell.cs" />
+    <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_NextSong.cs" />
+    <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SongList.cs" />
+    <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchAOE.cs" />
+    <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchApex.cs" />
+    <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchBurst.cs" />
+    <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchDOT.cs" />
+    <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchFinalBurstHandler.cs" />
+    <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchPotion.cs" />
+    <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchSong.cs" />
+    <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_UsePotion.cs" />
+    <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterBattleStart.cs" />
+    <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_AfterOtherTrigger.cs" />
+    <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyCastSpell.cs" />
+    <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyHpPct.cs" />
+    <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyInLOS.cs" />
+    <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_GameLog.cs" />
+    <Compile Include="TriggerSystem\TriggerSystemMgr.cs" />
+    <Compile Include="View\BardSettingView.xaml.cs">
+      <DependentUpon>BardSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CommonOverlay.xaml.cs">
+      <DependentUpon>CommonOverlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GeneralSettingView.xaml.cs">
+      <DependentUpon>GeneralSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GeneralSetting\UserControl_BaseSetting.xaml.cs">
+      <DependentUpon>UserControl_BaseSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GeneralSetting\UserControl_General.xaml.cs">
+      <DependentUpon>UserControl_General.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GeneralSetting\UserControl_Hotkey.xaml.cs">
+      <DependentUpon>UserControl_Hotkey.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Hotkey\HotkeySetting.cs" />
+    <Compile Include="View\MCHSettingView.xaml.cs">
+      <DependentUpon>MCHSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OverlayHeader.xaml.cs">
+      <DependentUpon>OverlayHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OverlayManager\OverlayManager.cs" />
+    <Compile Include="View\Overlay\BardOverlayWindow.xaml.cs">
+      <DependentUpon>BardOverlayWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Overlay\BlackMageOverlayWindow.xaml.cs">
+      <DependentUpon>BlackMageOverlayWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Overlay\BlackMage_Overlay2.xaml.cs">
+      <DependentUpon>BlackMage_Overlay2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Overlay\DancerOverlayWindow.xaml.cs">
+      <DependentUpon>DancerOverlayWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Overlay\MCHOverlayWindow.xaml.cs">
+      <DependentUpon>MCHOverlayWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Overlay\ReaperOverlay.xaml.cs">
+      <DependentUpon>ReaperOverlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Overlay\SageOverlayWindow.xaml.cs">
+      <DependentUpon>SageOverlayWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Overlay\SamuraiOverlayWindow.xaml.cs" />
+    <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BardOverlay.cs" />
+    <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BlackMageOverlay.cs" />
+    <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BlackMageOverlay2.cs" />
+    <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_DancerOverlay.cs" />
+    <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_MCHOverlay.cs" />
+    <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_ReaperOverlay.cs" />
+    <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_SageOverlay.cs" />
+    <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_SamuraiOverlay.cs" />
+    <Compile Include="View\ReaperSettingView.xaml.cs">
+      <DependentUpon>ReaperSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SageSettingView.xaml.cs">
+      <DependentUpon>SageSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SamuraiSettingView.xaml.cs" />
+    <Compile Include="View\Style\HotkeyControl.xaml.cs">
+      <DependentUpon>HotkeyControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UIHelper.cs" />
+    <Content Include="..\AEAssistLoader\AEAssistLoader.cs">
+      <Link>AEAssistLoader.cs</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="DataBinding\DataBinding.cs" />
+    <Compile Include="Entry.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Resources\Icons.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Icons.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\BaseSetting.cs" />
+    <Compile Include="Setting\SettingAttribute.cs" />
+    <Compile Include="Setting\SettingMgr.cs" />
+    <Compile Include="Setting\Setting\BardSettings.cs" />
+    <Compile Include="Setting\Setting\GeneralSettings.cs" />
+    <Compile Include="Setting\Setting\VersionSetting.cs" />
+    <Content Include="Resources\Lan_zh-CN.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Spells\Aetherial.png" />
+    <Resource Include="Resources\Spells\MindPotion.png" />
+    <Resource Include="Resources\Spells\SureCast.png" />
+    <Resource Include="Resources\Spells\LegSweep.png" />
+    <Resource Include="Resources\Spells\HeadGraze.png" />
+    <Resource Include="Resources\Spells\IronJaws.png" />
+    <Resource Include="Resources\Spells\Hypercharge.png" />
+    <Resource Include="Resources\Spells\NaturesMinne.png" />
+    <Resource Include="Resources\Spells\BlastArrow.png" />
+    <Resource Include="Resources\Spells\Detonator.png" />
+    <Resource Include="Resources\Spells\Wildfire.png" />
+    <Resource Include="Resources\Spells\QueenOverdrive.png" />
+    <Resource Include="Resources\Spells\AutomatonQueen.png" />
+    <Resource Include="Resources\Spells\HarvestMoon.png" />
+    <Resource Include="Resources\Spells\AP.png" />
+    <Resource Include="Resources\Spells\MB.png" />
+    <Resource Include="Resources\Spells\WM.png" />
+    <Resource Include="Resources\Spells\ThirdEye.png" />
+    <Resource Include="Resources\Spells\Apex.png" />
+    <Resource Include="Resources\Background\Sky.jpeg" />
+    <Resource Include="Resources\Background\Black_1.jpeg" />
+    <Content Include="Resources\BossDictionary.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Expand_3.png" />
+    <Resource Include="Resources\Close_1.png" />
+    <Content Include="Resources\Lan_cn-en.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Lan_cn-jp.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Lan_en.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Spells\ShieldSamba.png" />
+    <Resource Include="Resources\Spells\Tactician.png" />
+    <Resource Include="Resources\Spells\Potion.png" />
+    <Resource Include="Resources\Spells\SecondWind.png" />
+    <Resource Include="Resources\Spells\Sprint.png" />
+    <Resource Include="Resources\Spells\TrueNorth.png" />
+    <Resource Include="Resources\Spells\ArcaneCrest.png" />
+    <Resource Include="Resources\Spells\Feint.png" />
+    <Resource Include="Resources\Spells\Reset.jpeg" />
+    <Resource Include="Resources\Spells\ArmsLength.png" />
+    <Resource Include="Resources\Spells\Troubadour.png" />
+    <Page Include="View\CommonOverlay.xaml" />
+    <Page Include="View\GeneralSettingView.xaml" />
+    <Page Include="View\GeneralSetting\UserControl_BaseSetting.xaml" />
+    <Page Include="View\GeneralSetting\UserControl_General.xaml" />
+    <Page Include="View\GeneralSetting\UserControl_Hotkey.xaml" />
+    <Page Include="View\MCHSettingView.xaml" />
+    <Page Include="View\OverlayHeader.xaml" />
+    <Page Include="View\Overlay\BlackMageOverlayWindow.xaml" />
+    <Page Include="View\Overlay\BlackMage_Overlay2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Overlay\DancerOverlayWindow.xaml" />
+    <Page Include="View\Overlay\MCHOverlayWindow.xaml" />
+    <Page Include="View\Overlay\ReaperOverlay.xaml" />
+    <Page Include="View\Overlay\SageOverlayWindow.xaml" />
+    <Page Include="View\Overlay\SamuraiOverlayWindow.xaml" />
+    <Page Include="View\ReaperSettingView.xaml" />
+    <Page Include="View\SageSettingView.xaml" />
+    <Page Include="View\SamuraiSettingView.xaml" />
+    <Page Include="View\Style\Button.xaml" />
+    <Page Include="View\Style\CheckBox.xaml" />
+    <Page Include="View\Style\HotkeyControl.xaml" />
+    <Resource Include="Resources\jobs\acn.png" />
+    <Resource Include="Resources\jobs\alc.png" />
+    <Resource Include="Resources\jobs\arc.png" />
+    <Resource Include="Resources\jobs\arm.png" />
+    <Resource Include="Resources\jobs\ast-framed.png" />
+    <Resource Include="Resources\jobs\ast-large.png" />
+    <Resource Include="Resources\jobs\ast.png" />
+    <Resource Include="Resources\jobs\blm-framed.png" />
+    <Resource Include="Resources\jobs\blm-large.png" />
+    <Resource Include="Resources\jobs\blm.png" />
+    <Resource Include="Resources\jobs\blu-framed.png" />
+    <Resource Include="Resources\jobs\blu-large.png" />
+    <Resource Include="Resources\jobs\blu.png" />
+    <Resource Include="Resources\jobs\bot.png" />
+    <Resource Include="Resources\jobs\brd-framed.png" />
+    <Resource Include="Resources\jobs\brd-large.png" />
+    <Resource Include="Resources\jobs\brd.png" />
+    <Resource Include="Resources\jobs\bsm.png" />
+    <Resource Include="Resources\jobs\cho.png" />
+    <Resource Include="Resources\jobs\cnj.png" />
+    <Resource Include="Resources\jobs\crp.png" />
+    <Resource Include="Resources\jobs\cul.png" />
+    <Resource Include="Resources\jobs\dnc-framed.png" />
+    <Resource Include="Resources\jobs\dnc-large.png" />
+    <Resource Include="Resources\jobs\dnc.png" />
+    <Resource Include="Resources\jobs\drg-framed.png" />
+    <Resource Include="Resources\jobs\drg-large.png" />
+    <Resource Include="Resources\jobs\drg.png" />
+    <Resource Include="Resources\jobs\drk-framed.png" />
+    <Resource Include="Resources\jobs\drk-large.png" />
+    <Resource Include="Resources\jobs\drk.png" />
+    <Resource Include="Resources\jobs\fsh.png" />
+    <Resource Include="Resources\jobs\gla.png" />
+    <Resource Include="Resources\jobs\gnb-framed.png" />
+    <Resource Include="Resources\jobs\gnb-large.png" />
+    <Resource Include="Resources\jobs\gnb.png" />
+    <Resource Include="Resources\jobs\gsm.png" />
+    <Resource Include="Resources\jobs\limit break.png" />
+    <Resource Include="Resources\jobs\lnc.png" />
+    <Resource Include="Resources\jobs\ltw.png" />
+    <Resource Include="Resources\jobs\mch-framed.png" />
+    <Resource Include="Resources\jobs\mch-large.png" />
+    <Resource Include="Resources\jobs\mch.png" />
+    <Resource Include="Resources\jobs\min.png" />
+    <Resource Include="Resources\jobs\mnk-framed.png" />
+    <Resource Include="Resources\jobs\mnk-large.png" />
+    <Resource Include="Resources\jobs\mnk.png" />
+    <Resource Include="Resources\jobs\mrd.png" />
+    <Resource Include="Resources\jobs\nin-framed.png" />
+    <Resource Include="Resources\jobs\nin-large.png" />
+    <Resource Include="Resources\jobs\nin.png" />
+    <Resource Include="Resources\jobs\pet.png" />
+    <Resource Include="Resources\jobs\pgl.png" />
+    <Resource Include="Resources\jobs\pld-framed.png" />
+    <Resource Include="Resources\jobs\pld-large.png" />
+    <Resource Include="Resources\jobs\pld.png" />
+    <Resource Include="Resources\jobs\rdm-framed.png" />
+    <Resource Include="Resources\jobs\rdm-large.png" />
+    <Resource Include="Resources\jobs\rdm.png" />
+    <Resource Include="Resources\jobs\rog.png" />
+    <Resource Include="Resources\jobs\rpr-framed.png" />
+    <Resource Include="Resources\jobs\rpr.png" />
+    <Resource Include="Resources\jobs\sam-framed.png" />
+    <Resource Include="Resources\jobs\sam-large.png" />
+    <Resource Include="Resources\jobs\sam.png" />
+    <Resource Include="Resources\jobs\sch-framed.png" />
+    <Resource Include="Resources\jobs\sch-large.png" />
+    <Resource Include="Resources\jobs\sch.png" />
+    <Resource Include="Resources\jobs\sge-framed.png" />
+    <Resource Include="Resources\jobs\sge.png" />
+    <Resource Include="Resources\jobs\smn-framed.png" />
+    <Resource Include="Resources\jobs\smn-large.png" />
+    <Resource Include="Resources\jobs\smn.png" />
+    <Resource Include="Resources\jobs\thm.png" />
+    <Resource Include="Resources\jobs\war-framed.png" />
+    <Resource Include="Resources\jobs\war-large.png" />
+    <Resource Include="Resources\jobs\war.png" />
+    <Resource Include="Resources\jobs\whm-framed.png" />
+    <Resource Include="Resources\jobs\whm-large.png" />
+    <Resource Include="Resources\jobs\whm.png" />
+    <Resource Include="Resources\jobs\wvr.png" />
+    <Page Include="View\BardSettingView.xaml" />
+    <Page Include="View\Overlay\BardOverlayWindow.xaml" />
+    <Resource Include="Resources\Icon.png" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="AI\AIRoot.cs" />
+    <Compile Include="AI\CountDownHandler.cs" />
+    <Compile Include="AI\TargetMgr.cs" />
+    <Compile Include="Define\AurasDefine.cs" />
+    <Compile Include="Helper\AuraHelper.cs" />
+    <Compile Include="Helper\DataHelper.cs" />
+    <Compile Include="Helper\GUIHelper.cs" />
+    <Compile Include="Helper\LogHelper.cs" />
+    <Compile Include="Helper\PotionHelper.cs" />
+    <Compile Include="Helper\RandomHelper.cs" />
+    <Compile Include="Helper\SpellHelper.cs" />
+    <Compile Include="Helper\TargetHelper.cs" />
+    <Compile Include="Helper\TimeHelper.cs" />
+    <Compile Include="Helper\TTKHelper.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Icons.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Icons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
+    <PackageReference Include="System.ObjectModel" Version="4.3.0" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

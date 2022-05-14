@@ -17,13 +17,29 @@ using ff14bot.Enums;
 
 namespace AEAssist.Opener
 {
+
+    public class OpenerData
+    {
+        public string Name { get; set; }
+    }
+
+
     public class OpenerMgr
     {
         public static OpenerMgr Instance = new OpenerMgr();
 
-        public Dictionary<(ClassJobType, int), IOpener> AllOpeners = new Dictionary<(ClassJobType, int), IOpener>();
+        public Dictionary<(ClassJobType, int, string), IOpener> AllOpeners = new Dictionary<(ClassJobType, int, string), IOpener>();
+
+        public Dictionary<ClassJobType, List<OpenerData>> JobOpeners = new Dictionary<ClassJobType, List<OpenerData>>();
 
         public Dictionary<(Type, int), MethodInfo> AllSteps = new Dictionary<(Type, int), MethodInfo>();
+
+
+        public const string DefaultName = "Default";
+
+
+        public Dictionary<ClassJobType,string> SpecifyOpenerByName=  new Dictionary<ClassJobType, string>();
+
 
         public OpenerMgr()
         {
@@ -44,10 +60,15 @@ namespace AEAssist.Opener
 
                 var attr = attrs[0] as OpenerAttribute;
                 var opener = Activator.CreateInstance(type) as IOpener;
-                var openerKey = (attr.ClassJobType, attr.Level);
-                if (AllOpeners.ContainsKey(openerKey))
-                    LogHelper.Error("Multi opener " + type.Name);
+                var openerKey = (attr.ClassJobType, attr.Level,attr.Name);
                 AllOpeners[openerKey] = opener;
+
+                if (!JobOpeners.ContainsKey(attr.ClassJobType))
+                    JobOpeners[attr.ClassJobType] = new List<OpenerData>();
+                JobOpeners[attr.ClassJobType].Add(new OpenerData
+                {
+                    Name = attr.Name
+                });
 
                 var openerMethods =
                     type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
@@ -89,7 +110,12 @@ namespace AEAssist.Opener
         {
             var battleData = AIRoot.GetBattleData<BattleData>();
 
-            if (!AllOpeners.TryGetValue((classJobType, Core.Me.ClassLevel), out var opener))
+            if (!SpecifyOpenerByName.TryGetValue(classJobType, out var name))
+            {
+                name = DefaultName;
+            }
+
+            if (!AllOpeners.TryGetValue((classJobType, Core.Me.ClassLevel, name), out var opener))
                 return false;
 
             if (battleData.OpenerIndex == 0)

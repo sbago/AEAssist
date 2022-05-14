@@ -55,7 +55,8 @@ namespace AEAssist.Define
             LowBlow,
             Shirk,
             Sprint,
-            Triplecast //new
+            Triplecast, //new
+            AetherialManipulation
         };
 
         // DPS Role
@@ -197,6 +198,7 @@ namespace AEAssist.Define
         public const uint Fire3 = 152;
         public const uint Thunder3 = 153;
         public const uint Blizzard3 = 154;
+        public const uint AetherialManipulation = 155;
         public const uint Scathe = 156;
         public const uint ManaFont = 158;
         public const uint Flare = 162;

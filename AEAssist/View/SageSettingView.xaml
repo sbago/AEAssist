@@ -40,6 +40,13 @@
                     <Label Content="{Binding Language.TextBox_Lucid_Dreaming}" Width="200" />
                     <TextBox Width="100" Text="{Binding SageSettings.LucidDreamingTrigger,Mode=TwoWay}" />
                 </StackPanel>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="{Binding Language.Label_ChooseOpener}" Width="100" />
+                    <ComboBox IsEditable="False" Name="ChooseOpener" Width="150" DisplayMemberPath="Name"
+                              SelectedValuePath="Name" SelectionChanged="ChooseOpener_OnSelectionChanged" />
+                </StackPanel>
+                
             </StackPanel>
         </TabItem>
     </TabControl>
