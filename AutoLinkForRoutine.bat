@@ -1,0 +1,1 @@
+mklink /D AEAssist D:\Github\AEAssist\Output\AEAssist
