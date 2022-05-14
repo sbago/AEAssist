@@ -1,4 +1,4 @@
-﻿using AEAssist.Define;
+﻿/*using AEAssist.Define;
 using AEAssist.Helper;
 using AEAssist.Opener;
 using ff14bot;
@@ -24,8 +24,8 @@ namespace AEAssist.AI.Sage
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.Eukrasia;
+            slot.GCDSpellId = SpellsDefine.DosisIII;
             return slot;
         }
     }
-}
+}*/
