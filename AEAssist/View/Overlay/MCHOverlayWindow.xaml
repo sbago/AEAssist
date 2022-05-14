@@ -93,26 +93,26 @@
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseAutomatonQueen"
                                 Click="UseAutomatonQueen_OnClick">
-                            <Image Source="../../Resources/Spells/AutomatonQueen.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/Machinist/AutomatonQueen.png" Stretch="Uniform" />
                         </Button>
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseQueenOverdrive"
                                 Click="UseQueueOverdrive_OnClick">
-                            <Image Source="../../Resources/Spells/QueenOverdrive.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/Machinist/QueenOverdrive.png" Stretch="Uniform" />
                         </Button>
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseWildfire" Click="UseWildfire_OnClick">
-                            <Image Source="../../Resources/Spells/Wildfire.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/Machinist/Wildfire.png" Stretch="Uniform" />
                         </Button>
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseDetonator"
                                 Click="UseDetonator_OnClick">
-                            <Image Source="../../Resources/Spells/Detonator.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/Machinist/Detonator.png" Stretch="Uniform" />
                         </Button>
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseHyperCharge"
                                 Click="UseHyperCharge_OnClick">
-                            <Image Source="../../Resources/Spells/Hypercharge.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/Machinist/Hypercharge.png" Stretch="Uniform" />
                         </Button>
                         
                     </WrapPanel>
@@ -120,19 +120,19 @@
                         <Button Style="{StaticResource ImageButton}"
                                 Width="40" Height="40" Margin="6,2,6,2" Name="UseArmsLength"
                                 Click="UseArmsLength_OnClick">
-                            <Image Source="../../Resources/Spells/ArmsLength.png"
+                            <Image Source="../../Resources/Spells/PhysicalRangedDPSRoleActions/ArmsLength.png"
                                    Stretch="Uniform" />
                         </Button>
                         <Button Style="{StaticResource ImageButton}"
                                 Width="40" Height="40" Margin="6,2,6,2" Name="UseHeadGraze"
                                 Click="UseHeadGraze_OnClick">
-                            <Image Source="../../Resources/Spells/HeadGraze.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/PhysicalRangedDPSRoleActions/HeadGraze.png" Stretch="Uniform" />
 
                         </Button>
                         <Button Style="{StaticResource ImageButton}"
                                 Width="40" Height="40" Margin="6,2,6,2" Name="UseTroubadour"
                                 Click="UseTactician_OnClick">
-                            <Image Source="../../Resources/Spells/Tactician.png"
+                            <Image Source="../../Resources/Spells/Machinist/Tactician.png"
                                    Stretch="Uniform" />
                         </Button>
               

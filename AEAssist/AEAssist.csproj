@@ -442,25 +442,59 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Content Include="Resources\Lan_zh-CN.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\Spells\Aetherial.png" />
+    <Resource Include="Resources\Spells\HealerRoleActions\Esuna.png" />
+    <Resource Include="Resources\Spells\HealerRoleActions\LucidDreaming.png" />
+    <Resource Include="Resources\Spells\HealerRoleActions\Repose.png" />
+    <Resource Include="Resources\Spells\HealerRoleActions\Rescue.png" />
+    <Resource Include="Resources\Spells\HealerRoleActions\Surecast.png" />
+    <Resource Include="Resources\Spells\HealerRoleActions\Swiftcast.png" />
+    <Resource Include="Resources\Spells\Sage\DosisIII.png" />
+    <Resource Include="Resources\Spells\Sage\Druochole.png" />
+    <Resource Include="Resources\Spells\Sage\DyskrasiaII.png" />
+    <Resource Include="Resources\Spells\Sage\Egeiro.png" />
+    <Resource Include="Resources\Spells\Sage\EukrasianDiagnosis.png" />
+    <Resource Include="Resources\Spells\Sage\EukrasianDosisIII.png" />
+    <Resource Include="Resources\Spells\Sage\EukrasianPrognosis.png" />
+    <Resource Include="Resources\Spells\Sage\Haima.png" />
+    <Resource Include="Resources\Spells\Sage\Holos.png" />
+    <Resource Include="Resources\Spells\Sage\Icarus.png" />
+    <Resource Include="Resources\Spells\Sage\Ixochole.png" />
+    <Resource Include="Resources\Spells\Sage\Krasis.png" />
+    <Resource Include="Resources\Spells\Sage\Panhaima.png" />
+    <Resource Include="Resources\Spells\Sage\Pepsis.png" />
+    <Resource Include="Resources\Spells\Sage\PhlegmaIII.png" />
+    <Resource Include="Resources\Spells\Sage\PhysisII.png" />
+    <Resource Include="Resources\Spells\Sage\Pneuma.png" />
+    <Resource Include="Resources\Spells\Sage\Rhizomata.png" />
+    <Resource Include="Resources\Spells\Sage\Taurochole.png" />
+    <Resource Include="Resources\Spells\Sage\ToxikonII.png" />
+    <Resource Include="Resources\Spells\Sage\Zoe.png" />
+    <Resource Include="Resources\Spells\Bard\AP.png" />
+    <Resource Include="Resources\Spells\Bard\Apex.png" />
+    <Resource Include="Resources\Spells\Bard\BlastArrow.png" />
+    <Resource Include="Resources\Spells\Bard\IronJaws.png" />
+    <Resource Include="Resources\Spells\Bard\MB.png" />
+    <Resource Include="Resources\Spells\Bard\NaturesMinne.png" />
+    <Resource Include="Resources\Spells\Bard\Troubadour.png" />
+    <Resource Include="Resources\Spells\Bard\WM.png" />
+    <Resource Include="Resources\Spells\BlackMage\Aetherial.png" />
+    <Resource Include="Resources\Spells\Dancer\ShieldSamba.png" />
+    <Resource Include="Resources\Spells\Machinist\AutomatonQueen.png" />
+    <Resource Include="Resources\Spells\Machinist\Detonator.png" />
+    <Resource Include="Resources\Spells\Machinist\Hypercharge.png" />
+    <Resource Include="Resources\Spells\Machinist\QueenOverdrive.png" />
+    <Resource Include="Resources\Spells\Machinist\Tactician.png" />
+    <Resource Include="Resources\Spells\Machinist\Wildfire.png" />
+    <Resource Include="Resources\Spells\MeleeDPSRoleActions\ArmsLength.png" />
+    <Resource Include="Resources\Spells\MeleeDPSRoleActions\Feint.png" />
+    <Resource Include="Resources\Spells\MeleeDPSRoleActions\LegSweep.png" />
+    <Resource Include="Resources\Spells\MeleeDPSRoleActions\TrueNorth.png" />
     <Resource Include="Resources\Spells\MindPotion.png" />
-    <Resource Include="Resources\Spells\SureCast.png" />
-    <Resource Include="Resources\Spells\LegSweep.png" />
-    <Resource Include="Resources\Spells\HeadGraze.png" />
-    <Resource Include="Resources\Spells\IronJaws.png" />
-    <Resource Include="Resources\Spells\Hypercharge.png" />
-    <Resource Include="Resources\Spells\NaturesMinne.png" />
-    <Resource Include="Resources\Spells\BlastArrow.png" />
-    <Resource Include="Resources\Spells\Detonator.png" />
-    <Resource Include="Resources\Spells\Wildfire.png" />
-    <Resource Include="Resources\Spells\QueenOverdrive.png" />
-    <Resource Include="Resources\Spells\AutomatonQueen.png" />
-    <Resource Include="Resources\Spells\HarvestMoon.png" />
-    <Resource Include="Resources\Spells\AP.png" />
-    <Resource Include="Resources\Spells\MB.png" />
-    <Resource Include="Resources\Spells\WM.png" />
+    <Resource Include="Resources\Spells\PhysicalRangedDPSRoleActions\ArmsLength.png" />
+    <Resource Include="Resources\Spells\PhysicalRangedDPSRoleActions\HeadGraze.png" />
+    <Resource Include="Resources\Spells\Reaper\ArcaneCrest.png" />
+    <Resource Include="Resources\Spells\Reaper\HarvestMoon.png" />
     <Resource Include="Resources\Spells\ThirdEye.png" />
-    <Resource Include="Resources\Spells\Apex.png" />
     <Resource Include="Resources\Background\Sky.jpeg" />
     <Resource Include="Resources\Background\Black_1.jpeg" />
     <Content Include="Resources\BossDictionary.json">
@@ -477,17 +511,10 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Content Include="Resources\Lan_en.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\Spells\ShieldSamba.png" />
-    <Resource Include="Resources\Spells\Tactician.png" />
     <Resource Include="Resources\Spells\Potion.png" />
     <Resource Include="Resources\Spells\SecondWind.png" />
     <Resource Include="Resources\Spells\Sprint.png" />
-    <Resource Include="Resources\Spells\TrueNorth.png" />
-    <Resource Include="Resources\Spells\ArcaneCrest.png" />
-    <Resource Include="Resources\Spells\Feint.png" />
     <Resource Include="Resources\Spells\Reset.jpeg" />
-    <Resource Include="Resources\Spells\ArmsLength.png" />
-    <Resource Include="Resources\Spells\Troubadour.png" />
     <Page Include="View\CommonOverlay.xaml" />
     <Page Include="View\GeneralSettingView.xaml" />
     <Page Include="View\GeneralSetting\UserControl_BaseSetting.xaml" />
@@ -642,6 +669,10 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
   <ItemGroup>
     <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
     <PackageReference Include="System.ObjectModel" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Spells\MagicalRangedDPSRoleActions" />
+    <Folder Include="Resources\Spells\TankRoleActions" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

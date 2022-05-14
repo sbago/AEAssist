@@ -34,38 +34,38 @@
                 <Label>BLM</Label>
                 <Button Style="{StaticResource ImageButton}"
                         Width="40" Height="40" Margin="2" Click="UseAetherialPM1_OnClick">
-                    <Image Source="../../Resources/Spells/Aetherial.png" Stretch="Uniform" />
+                    <Image Source="../../Resources/Spells/BlackMage/Aetherial.png" Stretch="Uniform" />
                 </Button>
                 
 
                 <Button Style="{StaticResource ImageButton}"
                         Width="40" Height="40" Margin="2" Click="UseAetherialPM2_OnClick">
-                    <Image Source="../../Resources/Spells/Aetherial.png" Stretch="Uniform" />
+                    <Image Source="../../Resources/Spells/BlackMage/Aetherial.png" Stretch="Uniform" />
                 </Button>
                 
                 <Button Style="{StaticResource ImageButton}"
                         Width="40" Height="40" Margin="2" Click="UseAetherialPM3_OnClick">
-                    <Image Source="../../Resources/Spells/Aetherial.png" Stretch="Uniform" />
+                    <Image Source="../../Resources/Spells/BlackMage/Aetherial.png" Stretch="Uniform" />
                 </Button>
                 
                 <Button Style="{StaticResource ImageButton}"
                         Width="40" Height="40" Margin="2" Click="UseAetherialPM4_OnClick">
-                    <Image Source="../../Resources/Spells/Aetherial.png" Stretch="Uniform" />
+                    <Image Source="../../Resources/Spells/BlackMage/Aetherial.png" Stretch="Uniform" />
                 </Button>
                 
                 <Button Style="{StaticResource ImageButton}"
                         Width="40" Height="40" Margin="2" Click="UseAetherialPM5_OnClick">
-                    <Image Source="../../Resources/Spells/Aetherial.png" Stretch="Uniform" />
+                    <Image Source="../../Resources/Spells/BlackMage/Aetherial.png" Stretch="Uniform" />
                 </Button>
                 
                 <Button Style="{StaticResource ImageButton}"
                         Width="40" Height="40" Margin="2" Click="UseAetherialPM6_OnClick">
-                    <Image Source="../../Resources/Spells/Aetherial.png" Stretch="Uniform" />
+                    <Image Source="../../Resources/Spells/BlackMage/Aetherial.png" Stretch="Uniform" />
                 </Button>
                 
                 <Button Style="{StaticResource ImageButton}"
                         Width="40" Height="40" Margin="2" Click="UseAetherialPM7_OnClick">
-                    <Image Source="../../Resources/Spells/Aetherial.png" Stretch="Uniform" />
+                    <Image Source="../../Resources/Spells/BlackMage/Aetherial.png" Stretch="Uniform" />
                 </Button>
                 
                 
