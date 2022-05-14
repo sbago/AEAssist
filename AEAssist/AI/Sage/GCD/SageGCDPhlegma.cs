@@ -12,10 +12,11 @@ namespace AEAssist.AI.Sage.GCD
             var phlegmaCheck = SageSpellHelper.GetPhlegma();
             if (phlegmaCheck == null) return -1;
             var currentDistance = Core.Me.CurrentTarget.Distance();
-            if (currentDistance > 8.3)
+            var maxDistanceToUseAbility = 8.3;
+            if (currentDistance > maxDistanceToUseAbility)
             {
                 LogHelper.Debug("Current Distance" + currentDistance + 
-                                "is greater than 7 max range to use the ability..");
+                                "is greater than" + maxDistanceToUseAbility + "max range to use the ability..");
                 return -6;
             }
             return 0;
