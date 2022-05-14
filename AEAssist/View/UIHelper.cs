@@ -29,7 +29,10 @@ namespace AEAssist.View
         {
             if (OverlayManager.OverlayManager.Instance.lastOverlay == null)
                 return;
-            OverlayManager.OverlayManager.Instance.lastOverlay.Control.Refresh();
+            foreach (var v in OverlayManager.OverlayManager.Instance.lastOverlay)
+            {
+                v.Control.Refresh();
+            }
         }
     }
 }

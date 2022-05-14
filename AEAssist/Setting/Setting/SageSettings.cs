@@ -19,11 +19,14 @@ namespace AEAssist
         
         public bool EarlyDecisionMode { get; set; }
 
+        public string SageOpener { get; set; } = "Default";
+
         public void Reset()
         {
             EarlyDecisionMode = true;
             Dot_TimeLeft = ConstValue.AuraTick;
             TTK_EukrasianDosis = 30;
+            SageOpener = "Default";
         }
     }
 }
