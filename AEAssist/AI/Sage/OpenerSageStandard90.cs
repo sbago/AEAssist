@@ -13,8 +13,8 @@ namespace AEAssist.AI.Sage
         public int StepCount { get; } = 12;
         public int Check()
         {
-            if (!Core.Me.CurrentTarget.IsBoss() && PartyManager.NumMembers<=4)
-                return -5;
+            /*if (!Core.Me.CurrentTarget.IsBoss() && PartyManager.NumMembers<=4)
+                return -5;*/
 
             return 0;
         }
