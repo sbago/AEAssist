@@ -16,93 +16,224 @@ namespace AEAssist.AI.Sage
         public static SpellEntity GetEukrasianDosis()
         {   
             // If Eukrasian Dosis is not unlocked return early because nothing else will be unlocked.
-            if (!SpellsDefine.EukrasianDosis.IsUnlock()) return null;
+            if (!SpellsDefine.EukrasianDosis.IsUnlock())
+            {
+                LogHelper.Debug("EukrasianDosis not unlocked. skipping.");
+                return null;
+            }
 
             if (!SpellsDefine.EukrasianDosisII.IsUnlock())
             {
-                return !ActionManager.HasSpell(SpellsDefine.EukrasianDosis) ? null : SpellsDefine.EukrasianDosis.GetSpellEntity();
+                LogHelper.Debug("EukrasianDosisII not unlocked trying to use EukrasianDosis instead.");
+                if (!ActionManager.HasSpell(SpellsDefine.EukrasianDosis))
+                {
+                    LogHelper.Debug("EukrasianDosis not found. skipping.");
+                    return null;
+                }
+                LogHelper.Debug("EukrasianDosis found trying to use..");
+                return SpellsDefine.EukrasianDosis.GetSpellEntity();
             }
 
             if (!SpellsDefine.EukrasianDosisIII.IsUnlock())
             {
-                return !ActionManager.HasSpell(SpellsDefine.EukrasianDosisII) ? null : SpellsDefine.EukrasianDosisII.GetSpellEntity();
+                LogHelper.Debug("EukrasianDosisIII not unlocked trying to use EukrasianDosisII instead.");
+                if (!ActionManager.HasSpell(SpellsDefine.EukrasianDosisII))
+                {
+                    LogHelper.Debug("EukrasianDosisII not found. skipping.");
+                    return null;
+                }
+                LogHelper.Debug("EukrasianDosisII found trying to use..");
+                return SpellsDefine.EukrasianDosisII.GetSpellEntity();
             }
-            
-            return !ActionManager.HasSpell(SpellsDefine.EukrasianDosisIII) ? null : SpellsDefine.EukrasianDosisIII.GetSpellEntity();
+
+            if (!ActionManager.HasSpell(SpellsDefine.EukrasianDosisIII))
+            {
+                LogHelper.Debug("EukrasianDosisIII not found. skipping.");
+                return null;
+            }
+            LogHelper.Debug("EukrasianDosisIII found trying to use..");
+            return SpellsDefine.EukrasianDosisIII.GetSpellEntity();
         }
 
         public static SpellEntity GetPhlegma()
         {
-            if (!SpellsDefine.Phlegma.IsUnlock()) return null;
+            if (!SpellsDefine.Phlegma.IsUnlock())
+            {
+                LogHelper.Debug("Phlegma not unlocked. skipping.");
+                return null;
+            }
 
             if (!SpellsDefine.PhlegmaII.IsUnlock())
             {
-                if (!ActionManager.HasSpell(SpellsDefine.Phlegma)) return null;
-                return SpellsDefine.Phlegma.IsReady() ? SpellsDefine.Phlegma.GetSpellEntity() : null;
+                if (!ActionManager.HasSpell(SpellsDefine.Phlegma))
+                {
+                    LogHelper.Debug("Phlegma not found. skipping.");
+                    return null;
+                }
+
+                if (SpellsDefine.Phlegma.IsReady())
+                {
+                    LogHelper.Debug("Phlegma is ready. using.");
+                    return SpellsDefine.Phlegma.GetSpellEntity();
+                }
+                LogHelper.Debug("Phlegma not ready. skipping.");
+                return null;
             }
             
             if (!SpellsDefine.PhlegmaIII.IsUnlock())
             {
-                if (!ActionManager.HasSpell(SpellsDefine.PhlegmaII)) return null;
-                return SpellsDefine.PhlegmaII.IsReady() ? SpellsDefine.PhlegmaII.GetSpellEntity() : null;
+                if (!ActionManager.HasSpell(SpellsDefine.PhlegmaII))
+                {
+                    LogHelper.Debug("PhlegmaII not found. skipping.");
+                    return null;
+                }
+
+                if (SpellsDefine.PhlegmaII.IsReady())
+                {
+                    LogHelper.Debug("PhlegmaII is ready. using.");
+                    return SpellsDefine.PhlegmaII.GetSpellEntity();
+                }
+                LogHelper.Debug("PhlegmaII not ready. skipping.");
+                return null;
             }
 
-            if (!ActionManager.HasSpell(SpellsDefine.PhlegmaIII)) return null;
-            return SpellsDefine.PhlegmaIII.IsReady() ? SpellsDefine.PhlegmaIII.GetSpellEntity() : null;
+            if (!ActionManager.HasSpell(SpellsDefine.PhlegmaIII))
+            {
+                LogHelper.Debug("PhlegmaIII not found. skipping.");
+                return null;
+            }
+
+            if (SpellsDefine.PhlegmaIII.IsReady())
+            {
+                LogHelper.Debug("PhlegmaIII ready. using.");
+                return SpellsDefine.PhlegmaIII.GetSpellEntity();
+            }
+            
+            LogHelper.Debug("PhlegmaIII not ready. skipping.");
+            return null;
         }
 
         public static SpellEntity GetPhysis()
         {
-            if (!SpellsDefine.Physis.IsUnlock()) return null;
+            if (!SpellsDefine.Physis.IsUnlock())
+            {
+                LogHelper.Debug("Physis not unlocked. skipping.");
+                return null;
+            }
 
             if (!SpellsDefine.PhysisII.IsUnlock())
             {
-                if (!ActionManager.HasSpell(SpellsDefine.Physis)) return null;
-                return (SpellsDefine.Physis.IsReady()) ? SpellsDefine.Physis.GetSpellEntity() : null;
+                if (!ActionManager.HasSpell(SpellsDefine.Physis))
+                {
+                    LogHelper.Debug("Physis not found. skipping.");
+                    return null;
+                }
+                LogHelper.Debug("Using Physis.");
+                return SpellsDefine.Physis.IsReady() ? SpellsDefine.Physis.GetSpellEntity() : null;
             }
 
-            if (!ActionManager.HasSpell(SpellsDefine.PhysisII)) return null;
-            return SpellsDefine.PhysisII.IsReady() ? SpellsDefine.PhysisII.GetSpellEntity() : null;
+            if (!ActionManager.HasSpell(SpellsDefine.PhysisII))
+            {
+                LogHelper.Debug("PhysisII not found. skipping.");
+                return null;
+            }
+            
+            if (SpellsDefine.PhysisII.IsReady())
+            {
+                LogHelper.Debug("PhysisII ready using.");
+                return SpellsDefine.PhysisII.GetSpellEntity();
+            }
+            LogHelper.Debug("PhysisII not ready. skipping.");
+            return null;
         }
 
         public static SpellEntity GetDosis()
         {
-            if (!SpellsDefine.Dosis.IsUnlock()) return null;
+            if (!SpellsDefine.Dosis.IsUnlock())
+            {
+                LogHelper.Debug("Dosis not unlocked. skipping.");
+                return null;   
+            }
 
             if (!SpellsDefine.DosisII.IsUnlock())
             {
-                return !ActionManager.HasSpell(SpellsDefine.Dosis) ? null : SpellsDefine.Dosis.GetSpellEntity();
+                if (!ActionManager.HasSpell(SpellsDefine.Dosis))
+                {
+                    LogHelper.Debug("Dosis not found. skipping.");
+                    return null;
+                }
+                LogHelper.Debug("Using Dosis. ");
+                return SpellsDefine.Dosis.GetSpellEntity();
             }
             
             if (!SpellsDefine.DosisIII.IsUnlock())
             {
-                return !ActionManager.HasSpell(SpellsDefine.DosisII) ? null : SpellsDefine.DosisII.GetSpellEntity();
+                if (!ActionManager.HasSpell(SpellsDefine.DosisII))
+                {
+                    LogHelper.Debug("DosisII not found. skipping.");
+                    return null;
+                }
+                LogHelper.Debug("Using DosisII. ");
+                return SpellsDefine.DosisII.GetSpellEntity();
             }
             
-            return !ActionManager.HasSpell(SpellsDefine.DosisIII) ? null : SpellsDefine.DosisIII.GetSpellEntity();
+            if (ActionManager.HasSpell(SpellsDefine.DosisIII)) return SpellsDefine.DosisIII.GetSpellEntity();
+            LogHelper.Debug("DosisIII not found: unlocked?");
+            return null;
         }
 
         public static SpellEntity GetDyskrasia()
         {
-            if (!SpellsDefine.Dyskrasia.IsUnlock()) return null;
+            if (!SpellsDefine.Dyskrasia.IsUnlock())
+            {
+                LogHelper.Debug("Dyskrasia not unlocked. skipping.");
+                return null;
+            }
 
             if (!SpellsDefine.DyskrasiaII.IsUnlock())
             {
-                return !ActionManager.HasSpell(SpellsDefine.Dyskrasia) ? null : SpellsDefine.Dyskrasia.GetSpellEntity();
+                if (!ActionManager.HasSpell(SpellsDefine.Dyskrasia))
+                {
+                    LogHelper.Debug("Dyskrasia not found: unlocked?");
+                    return null;
+                } 
+                LogHelper.Debug("Using Dykrasia");
+                return SpellsDefine.Dyskrasia.GetSpellEntity();
             }
-            return !ActionManager.HasSpell(SpellsDefine.DyskrasiaII) ? null : SpellsDefine.DyskrasiaII.GetSpellEntity();
+
+            if (ActionManager.HasSpell(SpellsDefine.DyskrasiaII)) return SpellsDefine.DyskrasiaII.GetSpellEntity();
+            LogHelper.Debug("DyskrasiaII not found: unlocked?");
+            return null;
         }
 
         public static SpellEntity GetToxikon()
         {
-            if (!SpellsDefine.Toxikon.IsUnlock()) return null;
-
-            if (ActionResourceManager.Sage.Addersting <= 0) return null;
-            if (!SpellsDefine.ToxikonII.IsUnlock())
-            { 
-                return !ActionManager.HasSpell(SpellsDefine.Toxikon) ? null : SpellsDefine.Toxikon.GetSpellEntity();   
+            if (!SpellsDefine.Toxikon.IsUnlock())
+            {
+                LogHelper.Debug("Toxikon not unlocked. skipping.");
+                return null;
             }
-            return !ActionManager.HasSpell(SpellsDefine.ToxikonII) ? null : SpellsDefine.ToxikonII.GetSpellEntity();
+
+            if (ActionResourceManager.Sage.Addersting <= 0)
+            {
+                LogHelper.Debug("Toxikon didn't pass: 0 Addersting");
+                return null;
+            }
+
+            if (!SpellsDefine.ToxikonII.IsUnlock())
+            {
+                if (!ActionManager.HasSpell(SpellsDefine.Toxikon))
+                {
+                    LogHelper.Debug("Toxikon couldn't be found: unlocked?");
+                    return null;
+                }
+                LogHelper.Debug("Using Toxikon");
+                return SpellsDefine.Toxikon.GetSpellEntity();
+            }
+
+            if (ActionManager.HasSpell(SpellsDefine.ToxikonII)) return SpellsDefine.ToxikonII.GetSpellEntity();
+            LogHelper.Debug("ToxikonII couldn't be found: unlocked? ");
+            return null;
         }
 
         public static SpellEntity GetBaseGcd()
@@ -112,19 +243,47 @@ namespace AEAssist.AI.Sage
         
         private static int GetEukrasianDosisAura()
         {
-            if (!SpellsDefine.EukrasianDosis.IsUnlock()) return 0;
+            LogHelper.Debug("Checking if EukrasianDosis is unlocked...");
+            if (!SpellsDefine.EukrasianDosis.IsUnlock())
+            {
+                LogHelper.Debug("EukrasianDosis not unlocked...");
+                return 0;
+            }
+            
+            LogHelper.Debug("Checking if EukrasianDosisII is unlocked...");
             if (!SpellsDefine.EukrasianDosisII.IsUnlock())
             {
-                return !ActionManager.HasSpell(SpellsDefine.EukrasianDosis) ? 0 : AurasDefine.EukrasianDosis;
+                LogHelper.Debug("EukrasianDosisII not unlocked.. trying to use EukrasianDosis instead.. ");
+                if (!ActionManager.HasSpell(SpellsDefine.EukrasianDosis))
+                {
+                    LogHelper.Debug("Failed to use EukrasianDosis...");
+                    return 0;
+                }
+                LogHelper.Debug("EukrasianDosis found using...");
+                return AurasDefine.EukrasianDosis;
             }
-
-            if (SpellsDefine.EukrasianDosisIII.IsUnlock()) return AurasDefine.EukrasianDosisIII;
-            return !ActionManager.HasSpell(SpellsDefine.EukrasianDosisII) ? 0 : AurasDefine.EukrasianDosisII;
+            
+            LogHelper.Debug("Checking if EukrasianDosisIII is unlocked...");
+            if (SpellsDefine.EukrasianDosisIII.IsUnlock())
+            {
+                LogHelper.Debug("Using EukrasianDosisIII...");
+                return AurasDefine.EukrasianDosisIII;
+            }
+            
+            LogHelper.Debug("Checking if EukrasianDosisII is unlocked...");
+            if (!ActionManager.HasSpell(SpellsDefine.EukrasianDosisII))
+            {
+                LogHelper.Debug("EukrasianDosisII not found...skipping?");
+                return 0;
+            }
+            LogHelper.Debug("EukrasianDosisII found...using?");
+            return AurasDefine.EukrasianDosisII;
         }
 
         public static bool IsTargetHasAuraEukrasianDosis(Character target)
         {
             var id = GetEukrasianDosisAura();
+            LogHelper.Debug("Checking if target has EukrasianDosis: " + target.EnglishName);
             return id == 0 || target.HasMyAuraWithTimeleft((uint)id);
         }
         
@@ -143,6 +302,7 @@ namespace AEAssist.AI.Sage
         public static bool IsTargetNeedEukrasianDosis(Character target, int timeLeft)
         {
             var dosisId = GetEukrasianDosisAura();
+            LogHelper.Debug("Checking if target need EukrasianDosis id: " + dosisId);
             if (dosisId == 0) return false;
 
             var ttkEukrasianDosis = SettingMgr.GetSetting<SageSettings>().TTK_EukrasianDosis;
@@ -229,7 +389,7 @@ namespace AEAssist.AI.Sage
                 }
             }
 
-            LogHelper.Info($"CastableParty: {GroupHelper.CastableParty.Count}  {PartyManager.AllMembers.Count()}" +
+            LogHelper.Debug($"CastableParty: {GroupHelper.CastableParty.Count}  {PartyManager.AllMembers.Count()}" +
                            $" {PartyManager.RawMembers.Count} {PartyManager.VisibleMembers.Count()}");
             foreach (var character in GroupHelper.CastableParty)
             {
@@ -247,7 +407,7 @@ namespace AEAssist.AI.Sage
                         await Coroutine.Sleep(retryInterval);
                         time++;
                     }
-                    LogHelper.Info($"{character.Name} {time} {count}");
+                    LogHelper.Debug($"{character.Name} {time} {count}");
                     if (time < retryTime)
                         count++;
                 }
