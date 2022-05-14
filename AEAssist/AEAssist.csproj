@@ -234,6 +234,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Sage\GCD\SageGCDPhlegma.cs" />
     <Compile Include="AI\Sage\GCD\SageGCDToxikon.cs" />
     <Compile Include="AI\Sage\OpenerSageStandard90.cs" />
+    <Compile Include="AI\Sage\OpenerSage_Test.cs" />
     <Compile Include="AI\Sage\SageBattleData.cs" />
     <Compile Include="AI\Sage\SageRotation.cs" />
     <Compile Include="AI\Sage\SageSpellHelper.cs" />

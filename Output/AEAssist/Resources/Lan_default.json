@@ -68,6 +68,7 @@
   "Label_DexChoosePotion" : "DexChoosePotion",
   "Label_StrChoosePotion" : "StrChoosePotion",
   "Label_MindChoosePotion" : "MindChoosePotion",
+  "Label_ChooseOpener" : "ChooseOpener",
   "Label_PotionNum" : "PotionNum",
   "Label_DotblackList" : "DotblackList",
   "Toggle_PreferGallow" : "PreferGallow",

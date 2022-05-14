@@ -95,6 +95,8 @@ namespace AEAssist.Helper
 
         public static async Task<bool> UsePotion(int potionRawId)
         {
+            if (potionRawId == 0)
+                return false;
             if (!SettingMgr.GetSetting<GeneralSettings>().UsePotion)
                 return false;
             if (AIRoot.Instance.CloseBurst)
@@ -104,6 +106,8 @@ namespace AEAssist.Helper
 
         public static async Task<bool> ForceUsePotion(int potionRawId)
         {
+            if (potionRawId == 0)
+                return false;
             var item = InventoryManager.FilledSlots.FirstOrDefault(s => s.RawItemId == potionRawId);
             if (item == null)
                 return false;

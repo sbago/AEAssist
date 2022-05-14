@@ -7,8 +7,8 @@ using ff14bot.Managers;
 
 namespace AEAssist.AI.Sage
 {
-    [Opener(ClassJobType.Sage, 90)]
-    public class OpenerSageStandard90 : IOpener
+    [Opener(ClassJobType.Sage, 90,"Test")]
+    public class OpenerSageTest  : IOpener
     {
         public int StepCount { get; } = 1;
         public int Check()

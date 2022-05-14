@@ -30,7 +30,7 @@ namespace AEAssist.Opener
 
         public Dictionary<(ClassJobType, int, string), IOpener> AllOpeners = new Dictionary<(ClassJobType, int, string), IOpener>();
 
-        public Dictionary<ClassJobType, List<OpenerData>> Name2Openers = new Dictionary<ClassJobType, List<OpenerData>>();
+        public Dictionary<ClassJobType, List<OpenerData>> JobOpeners = new Dictionary<ClassJobType, List<OpenerData>>();
 
         public Dictionary<(Type, int), MethodInfo> AllSteps = new Dictionary<(Type, int), MethodInfo>();
 
@@ -61,9 +61,14 @@ namespace AEAssist.Opener
                 var attr = attrs[0] as OpenerAttribute;
                 var opener = Activator.CreateInstance(type) as IOpener;
                 var openerKey = (attr.ClassJobType, attr.Level,attr.Name);
-                if (AllOpeners.ContainsKey(openerKey))
-                    LogHelper.Error("Multi opener " + type.Name);
                 AllOpeners[openerKey] = opener;
+
+                if (!JobOpeners.ContainsKey(attr.ClassJobType))
+                    JobOpeners[attr.ClassJobType] = new List<OpenerData>();
+                JobOpeners[attr.ClassJobType].Add(new OpenerData
+                {
+                    Name = attr.Name
+                });
 
                 var openerMethods =
                     type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
