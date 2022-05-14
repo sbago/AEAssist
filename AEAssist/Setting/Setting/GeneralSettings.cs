@@ -84,5 +84,10 @@ namespace AEAssist
             OverlayScale_Y = 1;
             UseOpener = true;
         }
+
+        public void OnLoad()
+        {
+            
+        }
     }
 }

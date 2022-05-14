@@ -48,5 +48,10 @@ namespace AEAssist
             Dot_TimeLeft = ConstValue.AuraTick;
             EarlyEmpyrealArrow = true;
         }
+
+        public void OnLoad()
+        {
+            
+        }
     }
 }

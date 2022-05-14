@@ -21,5 +21,10 @@ namespace AEAssist
             StrongGCDCheckTime = 6000;
             WildfireFirst = false;
         }
+
+        public void OnLoad()
+        {
+            
+        }
     }
 }
