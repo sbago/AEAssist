@@ -11,7 +11,7 @@ namespace AEAssist.AI.BlackMage.SpellQueue
 
         public void Fill(SpellQueueSlot slot)
         {
-            slot.GCDSpellId = SpellsDefine.Fire3;
+            slot.SetGCD(SpellsDefine.Fire3,SpellTargetType.CurrTarget);
         }
     }
 }

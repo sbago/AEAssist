@@ -14,7 +14,7 @@ namespace AEAssist.AI.BlackMage.SpellQueue
 
         public void Fill(SpellQueueSlot slot)
         {
-            slot.GCDSpellId = BlackMageHelper.GetDespair().Id;
+            slot.SetGCD(BlackMageHelper.GetDespair().Id,SpellTargetType.CurrTarget);
             if (SpellsDefine.ManaFont.IsReady())
             {
                 slot.Abilitys.Enqueue((SpellsDefine.ManaFont,  SpellTargetType.Self));

@@ -36,7 +36,7 @@ namespace AEAssist.AI.Samurai
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.Kasha;
+            slot.SetGCD(SpellsDefine.Kasha,SpellTargetType.CurrTarget); 
             slot.UsePotion = true;
             return slot;
         }
@@ -46,7 +46,7 @@ namespace AEAssist.AI.Samurai
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.Gekko;
+            slot.SetGCD(SpellsDefine.Gekko,SpellTargetType.CurrTarget); 
             slot.Abilitys.Enqueue((SpellsDefine.Ikishoten, SpellTargetType.Self));
             return slot;
         }
@@ -56,7 +56,7 @@ namespace AEAssist.AI.Samurai
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.Yukikaze;
+            slot.SetGCD(SpellsDefine.Yukikaze,SpellTargetType.CurrTarget); 
             slot.Abilitys.Enqueue((SpellsDefine.HissatsuKaiten,SpellTargetType.Self));
             return slot;
         }
@@ -65,7 +65,8 @@ namespace AEAssist.AI.Samurai
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.MidareSetsugekka;
+
+            slot.SetGCD(SpellsDefine.MidareSetsugekka,SpellTargetType.CurrTarget); 
             slot.Abilitys.Enqueue((SpellsDefine.MeikyoShisui,SpellTargetType.Self));
             slot.Abilitys.Enqueue((SpellsDefine.HissatsuSenei,SpellTargetType.CurrTarget));
             return slot;
@@ -75,7 +76,7 @@ namespace AEAssist.AI.Samurai
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.Gekko;
+            slot.SetGCD(SpellsDefine.Gekko,SpellTargetType.CurrTarget); 
             slot.Abilitys.Enqueue((SpellsDefine.HissatsuKaiten,SpellTargetType.Self));
             return slot;
         }
@@ -84,7 +85,7 @@ namespace AEAssist.AI.Samurai
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.Higanbana;
+            slot.SetGCD(SpellsDefine.Higanbana,SpellTargetType.CurrTarget); 
             slot.Abilitys.Enqueue((SpellsDefine.HissatsuKaiten,SpellTargetType.Self));
             return slot;
         }
@@ -93,7 +94,7 @@ namespace AEAssist.AI.Samurai
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.OgiNamikiri;
+            slot.SetGCD(SpellsDefine.OgiNamikiri,SpellTargetType.CurrTarget); 
             slot.Abilitys.Enqueue((SpellsDefine.Shoha,SpellTargetType.CurrTarget));
             return slot;
         }
@@ -102,7 +103,7 @@ namespace AEAssist.AI.Samurai
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.KaeshiNamikiri;
+            slot.SetGCD(SpellsDefine.KaeshiNamikiri,SpellTargetType.CurrTarget); 
             return slot;
         }
         
@@ -111,7 +112,7 @@ namespace AEAssist.AI.Samurai
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.Gekko;
+            slot.SetGCD(SpellsDefine.Gekko,SpellTargetType.CurrTarget); 
             return slot;
         }
         
@@ -120,7 +121,7 @@ namespace AEAssist.AI.Samurai
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.Kasha;
+            slot.SetGCD(SpellsDefine.Kasha,SpellTargetType.CurrTarget); 
             return slot;
         }
         
@@ -129,7 +130,7 @@ namespace AEAssist.AI.Samurai
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.Hakaze;
+            slot.SetGCD(SpellsDefine.Hakaze,SpellTargetType.CurrTarget); 
             return slot;
         }
         
@@ -138,7 +139,7 @@ namespace AEAssist.AI.Samurai
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.Yukikaze;
+            slot.SetGCD(SpellsDefine.Yukikaze,SpellTargetType.CurrTarget); 
             slot.Abilitys.Enqueue((SpellsDefine.HissatsuKaiten,SpellTargetType.Self));
             return slot;
         }
@@ -147,7 +148,7 @@ namespace AEAssist.AI.Samurai
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.MidareSetsugekka;
+            slot.SetGCD(SpellsDefine.MidareSetsugekka,SpellTargetType.CurrTarget); 
             return slot;
         }
         [OpenerStep(13)]
@@ -155,7 +156,7 @@ namespace AEAssist.AI.Samurai
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.KaeshiSetsugekka;
+            slot.SetGCD(SpellsDefine.KaeshiSetsugekka,SpellTargetType.CurrTarget); 
             return slot;
         }
     }

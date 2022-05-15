@@ -33,8 +33,8 @@ namespace AEAssist.AI.Reaper
         private SpellQueueSlot Step0()
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-
-            slot.GCDSpellId = ReaperSpellHelper.GetShadowOfDeath().Id;
+            
+            slot.SetGCD(ReaperSpellHelper.GetShadowOfDeath().Id,SpellTargetType.CurrTarget); 
             slot.Abilitys.Enqueue((SpellsDefine.ArcaneCircle, SpellTargetType.Self));
             return slot;
         }
@@ -44,7 +44,8 @@ namespace AEAssist.AI.Reaper
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = ReaperSpellHelper.CanUseSoulSlice_Scythe(Core.Me.CurrentTarget).Id;
+            var id = ReaperSpellHelper.CanUseSoulSlice_Scythe(Core.Me.CurrentTarget).Id;
+            slot.SetGCD(id,SpellTargetType.CurrTarget); 
             return slot;
         }
 
@@ -52,7 +53,8 @@ namespace AEAssist.AI.Reaper
         private SpellQueueSlot Step2()
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-            slot.GCDSpellId = ReaperSpellHelper.CanUseSoulSlice_Scythe(Core.Me.CurrentTarget).Id;
+            var id = ReaperSpellHelper.CanUseSoulSlice_Scythe(Core.Me.CurrentTarget).Id;
+            slot.SetGCD(id,SpellTargetType.CurrTarget);
             slot.UsePotion = true;
             return slot;
         }
@@ -61,8 +63,8 @@ namespace AEAssist.AI.Reaper
         private SpellQueueSlot Step3()
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-
-            slot.GCDSpellId = SpellsDefine.PlentifulHarvest;
+            
+            slot.SetGCD( SpellsDefine.PlentifulHarvest,SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.Enshroud, SpellTargetType.Self));
             return slot;
         }

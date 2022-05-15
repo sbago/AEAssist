@@ -24,7 +24,7 @@ namespace AEAssist.AI.Sage
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.Eukrasia;
+            slot.SetGCD(SpellsDefine.Eukrasia,SpellTargetType.Self); 
             return slot;
         }
         
@@ -33,7 +33,7 @@ namespace AEAssist.AI.Sage
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.EukrasianDosisIII;
+            slot.SetGCD(SpellsDefine.EukrasianDosisIII,SpellTargetType.CurrTarget); 
             return slot;
         }
         
@@ -42,7 +42,7 @@ namespace AEAssist.AI.Sage
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.DosisIII;
+            slot.SetGCD(SpellsDefine.DosisIII,SpellTargetType.CurrTarget); 
             return slot;
         }
         
@@ -51,25 +51,28 @@ namespace AEAssist.AI.Sage
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.DosisIII;
+            slot.SetGCD(SpellsDefine.DosisIII,SpellTargetType.CurrTarget); 
             return slot;
         }
-        
+
         [OpenerStep(4)]
         private SpellQueueSlot Step4()
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.PhlegmaIII;
+            if (Core.Me.Distance(Core.Me.CurrentTarget) < 6)
+                slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
+            else
+                slot.SetGCD(SpellsDefine.PhlegmaIII, SpellTargetType.CurrTarget);
             return slot;
         }
-        
+
         [OpenerStep(5)]
         private SpellQueueSlot Step5()
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.DosisIII;
+            slot.SetGCD(SpellsDefine.DosisIII,SpellTargetType.CurrTarget); 
             return slot;
         }
         
@@ -77,8 +80,10 @@ namespace AEAssist.AI.Sage
         private SpellQueueSlot Step6()
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-
-            slot.GCDSpellId = SpellsDefine.PhlegmaIII;
+            if (Core.Me.Distance(Core.Me.CurrentTarget) < 6)
+                slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
+            else
+                slot.SetGCD(SpellsDefine.PhlegmaIII, SpellTargetType.CurrTarget);
             return slot;
         }
         
@@ -87,7 +92,7 @@ namespace AEAssist.AI.Sage
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.DosisIII;
+            slot.SetGCD(SpellsDefine.DosisIII,SpellTargetType.CurrTarget); 
             return slot;
         }
         
@@ -96,7 +101,7 @@ namespace AEAssist.AI.Sage
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.DosisIII;
+            slot.SetGCD(SpellsDefine.DosisIII,SpellTargetType.CurrTarget); 
             return slot;
         }
         
@@ -105,7 +110,7 @@ namespace AEAssist.AI.Sage
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.DosisIII;
+            slot.SetGCD(SpellsDefine.DosisIII,SpellTargetType.CurrTarget); 
             return slot;
         }
         
@@ -114,7 +119,7 @@ namespace AEAssist.AI.Sage
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.DosisIII;
+            slot.SetGCD(SpellsDefine.DosisIII,SpellTargetType.CurrTarget); 
             return slot;
         }
         
@@ -123,7 +128,7 @@ namespace AEAssist.AI.Sage
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.ToxikonII;
+            slot.SetGCD(SpellsDefine.ToxikonII,SpellTargetType.CurrTarget); 
             return slot;
         }
     }

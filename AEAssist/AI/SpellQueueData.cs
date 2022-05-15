@@ -5,6 +5,7 @@ using AEAssist.Helper;
 using Buddy.Coroutines;
 using ff14bot;
 using ff14bot.Managers;
+using ff14bot.Objects;
 
 namespace AEAssist.AI
 {
@@ -15,13 +16,41 @@ namespace AEAssist.AI
             new Queue<(uint spellId, SpellTargetType SpellTargetType)>();
 
         public int AnimationLockMs = 0;
-        public uint GCDSpellId;
+        private uint GCDSpellId;
 
         public SpellTargetType SpellTargetType;
+        public BattleCharacter BattleCharacter;
 
         public bool UsePotion;
 
         public int Index;
+
+        public void SetGCD(uint spellId, SpellTargetType targetType)
+        {
+            this.GCDSpellId = spellId;
+            this.SpellTargetType = targetType;
+        }
+        public void SetGCD(uint spellId, BattleCharacter target)
+        {
+            this.GCDSpellId = spellId;
+            this.SpellTargetType = SpellTargetType.SpecifyTarget;
+            this.BattleCharacter = target;
+        }
+
+        public void ClearGCD()
+        {
+            this.GCDSpellId = 0;
+        }
+
+        public void EnqueueAbility(uint spellId, SpellTargetType spellTargetType)
+        {
+            this.Abilitys.Enqueue((spellId, spellTargetType));
+        }
+
+        public uint GetGCDSpell()
+        {
+            return this.GCDSpellId;
+        }
 
         protected override void OnDestroy()
         {
@@ -31,6 +60,7 @@ namespace AEAssist.AI
             Index = 0;
             AnimationLockMs = 0;
             SpellTargetType = SpellTargetType.CurrTarget;
+            BattleCharacter = null;
         }
     }
 
@@ -57,7 +87,6 @@ namespace AEAssist.AI
         {
             if (Queue.Count == 0)
                 return false;
-
             if (isLock)
             {
                 var slot = Queue.Peek();
@@ -100,8 +129,8 @@ namespace AEAssist.AI
             else
             {
                 var slot = Queue.Peek();
-                var spellData = DataManager.GetSpellData(slot.GCDSpellId);
-                if (slot.GCDSpellId == 0 || spellData == null)
+                var spellData = DataManager.GetSpellData(slot.GetGCDSpell());
+                if (slot.GetGCDSpell() == 0 || spellData == null)
                 {
                     ObjectPool.Instance.Return(Queue.Dequeue());
                     return await ApplySlot();
@@ -109,7 +138,15 @@ namespace AEAssist.AI
                 LogHelper.Debug($"Slot GCD: {spellData.LocalizedName} Ready: {spellData.IsReady()} {AIRoot.Instance.CanUseGCD()}");
                 if (spellData.IsReady() && AIRoot.Instance.CanUseGCD())
                 {
-                    var spellEntity = new SpellEntity(spellData.Id, slot.SpellTargetType);
+                    SpellEntity spellEntity = null;
+                    if (slot.SpellTargetType == SpellTargetType.SpecifyTarget)
+                    {
+                        spellEntity = new SpellEntity(spellData.Id, slot.BattleCharacter);
+                    }
+                    else
+                    {
+                        spellEntity = new SpellEntity(spellData.Id, slot.SpellTargetType);
+                    }
                     if (await spellEntity.DoGCD())
                     {
                         AIRoot.Instance.RecordGCD(spellEntity);

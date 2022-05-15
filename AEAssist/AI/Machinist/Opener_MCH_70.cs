@@ -38,8 +38,8 @@ namespace AEAssist.AI.Machinist
         private SpellQueueSlot Step0()
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-
-            slot.GCDSpellId = MCHSpellHelper.GetDrillIfWithAOE();
+            
+            slot.SetGCD(MCHSpellHelper.GetDrillIfWithAOE(),SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.GaussRound, SpellTargetType.CurrTarget));
             slot.Abilitys.Enqueue((SpellsDefine.Ricochet, SpellTargetType.CurrTarget));
             return slot;
@@ -51,7 +51,7 @@ namespace AEAssist.AI.Machinist
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
             var air = MCHSpellHelper.GetAirAnchor();
-            slot.GCDSpellId = air;
+            slot.SetGCD(air,SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.BarrelStabilizer, SpellTargetType.CurrTarget));
             return slot;
         }
@@ -61,7 +61,7 @@ namespace AEAssist.AI.Machinist
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
             //todo: 根据情况返回AOE版本?
-            slot.GCDSpellId = SpellsDefine.HeatedSplitShot;
+            slot.SetGCD(SpellsDefine.HeatedSplitShot,SpellTargetType.CurrTarget);
             return slot;
         }
 
@@ -70,7 +70,7 @@ namespace AEAssist.AI.Machinist
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.HeatedSlugShot;
+            slot.SetGCD(SpellsDefine.HeatedSlugShot,SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.GaussRound, SpellTargetType.CurrTarget));
             slot.Abilitys.Enqueue((SpellsDefine.Ricochet, SpellTargetType.CurrTarget));
 
@@ -82,7 +82,7 @@ namespace AEAssist.AI.Machinist
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.HeatedCleanShot;
+            slot.SetGCD(SpellsDefine.HeatedCleanShot,SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.Hypercharge, SpellTargetType.CurrTarget));
             slot.Abilitys.Enqueue((SpellsDefine.Wildfire, SpellTargetType.CurrTarget));
 

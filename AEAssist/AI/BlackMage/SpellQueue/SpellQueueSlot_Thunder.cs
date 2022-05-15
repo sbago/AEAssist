@@ -17,11 +17,11 @@ namespace AEAssist.AI.BlackMage.SpellQueue
         {
             if (BlackMageHelper.ThunderCheck() >= 0)
             {
-                slot.GCDSpellId = BlackMageHelper.GetThunder().Id;
+                slot.SetGCD(BlackMageHelper.GetThunder().Id,SpellTargetType.CurrTarget);
             }
             else
             {
-                slot.GCDSpellId = 0;
+                slot.ClearGCD();
             }
         }
     }

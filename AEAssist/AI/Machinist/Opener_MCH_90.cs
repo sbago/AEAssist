@@ -39,8 +39,8 @@ namespace AEAssist.AI.Machinist
         private SpellQueueSlot Step0()
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-
-            slot.GCDSpellId = SpellsDefine.AirAnchor;
+            
+            slot.SetGCD(SpellsDefine.AirAnchor,SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.GaussRound, SpellTargetType.CurrTarget));
             slot.Abilitys.Enqueue((SpellsDefine.Ricochet, SpellTargetType.CurrTarget));
             return slot;
@@ -50,8 +50,8 @@ namespace AEAssist.AI.Machinist
         private SpellQueueSlot Step1()
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-
-            slot.GCDSpellId = MCHSpellHelper.GetDrillIfWithAOE();
+            
+            slot.SetGCD(MCHSpellHelper.GetDrillIfWithAOE(),SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.BarrelStabilizer, SpellTargetType.CurrTarget));
             return slot;
         }
@@ -60,7 +60,7 @@ namespace AEAssist.AI.Machinist
         private SpellQueueSlot Step2()
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-            slot.GCDSpellId = SpellsDefine.HeatedSplitShot;
+            slot.SetGCD(SpellsDefine.HeatedSplitShot,SpellTargetType.CurrTarget);
             return slot;
         }
 
@@ -68,8 +68,8 @@ namespace AEAssist.AI.Machinist
         private SpellQueueSlot Step3()
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-
-            slot.GCDSpellId = SpellsDefine.HeatedSlugShot;
+            
+            slot.SetGCD(SpellsDefine.HeatedSlugShot,SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.GaussRound, SpellTargetType.CurrTarget));
             slot.Abilitys.Enqueue((SpellsDefine.Ricochet, SpellTargetType.CurrTarget));
 
@@ -81,7 +81,7 @@ namespace AEAssist.AI.Machinist
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.HeatedCleanShot;
+            slot.SetGCD(SpellsDefine.HeatedCleanShot,SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.Reassemble, SpellTargetType.Self));
             slot.Abilitys.Enqueue((SpellsDefine.Wildfire, SpellTargetType.CurrTarget));
 
@@ -93,7 +93,7 @@ namespace AEAssist.AI.Machinist
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.ChainSaw;
+            slot.SetGCD(SpellsDefine.ChainSaw,SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.AutomationQueen, SpellTargetType.CurrTarget));
             slot.Abilitys.Enqueue((SpellsDefine.Hypercharge, SpellTargetType.CurrTarget));
 

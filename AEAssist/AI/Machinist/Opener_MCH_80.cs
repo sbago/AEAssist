@@ -39,7 +39,7 @@ namespace AEAssist.AI.Machinist
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.AirAnchor;
+            slot.SetGCD(SpellsDefine.AirAnchor,SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.GaussRound, SpellTargetType.CurrTarget));
             slot.Abilitys.Enqueue((SpellsDefine.Ricochet, SpellTargetType.CurrTarget));
             return slot;
@@ -50,7 +50,7 @@ namespace AEAssist.AI.Machinist
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.Drill;
+            slot.SetGCD(SpellsDefine.Drill,SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.BarrelStabilizer, SpellTargetType.CurrTarget));
             return slot;
         }
@@ -59,7 +59,7 @@ namespace AEAssist.AI.Machinist
         private SpellQueueSlot Step2()
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-            slot.GCDSpellId = SpellsDefine.HeatedSplitShot;
+            slot.SetGCD(SpellsDefine.SplitShot,SpellTargetType.CurrTarget);
             return slot;
         }
 
@@ -68,7 +68,7 @@ namespace AEAssist.AI.Machinist
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.HeatedSlugShot;
+            slot.SetGCD(SpellsDefine.SlugShot,SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.GaussRound, SpellTargetType.CurrTarget));
             slot.Abilitys.Enqueue((SpellsDefine.Ricochet, SpellTargetType.CurrTarget));
 
@@ -80,7 +80,7 @@ namespace AEAssist.AI.Machinist
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.HeatedCleanShot;
+            slot.SetGCD(SpellsDefine.HeatedCleanShot,SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.Hypercharge, SpellTargetType.CurrTarget));
             slot.Abilitys.Enqueue((SpellsDefine.Wildfire, SpellTargetType.CurrTarget));
 

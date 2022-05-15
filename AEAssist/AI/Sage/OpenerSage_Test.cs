@@ -24,7 +24,7 @@ namespace AEAssist.AI.Sage
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.Eukrasia;
+            slot.SetGCD(SpellsDefine.Eukrasia,SpellTargetType.Self); 
             return slot;
         }
     }

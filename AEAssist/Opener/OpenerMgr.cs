@@ -146,7 +146,7 @@ namespace AEAssist.Opener
                     var slot = (SpellQueueSlot) method.Invoke(opener, null);
                     if (slot != null)
                     {
-                        LogHelper.Debug($"opener running: Index {battleData.OpenerIndex} GCDSpellId: {slot.GCDSpellId}");
+                        LogHelper.Debug($"opener running: Index {battleData.OpenerIndex} GCDSpellId: {slot.GetGCDSpell()}");
                         spellQueue.Add(slot);
                     }
                     else
