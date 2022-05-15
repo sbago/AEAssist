@@ -36,8 +36,13 @@ namespace AEAssist.Helper
 
         public static async Task<bool> CastGCD(SpellData spell, GameObject target)
         {
-            if (!CanCastGCD(spell, target))
+            var ret = CanCastGCD(spell, target);
+            LogHelper.Debug($"22222222  {spell.LocalizedName} {target.Name} ret: {ret}");
+            if (ret < 0)
+            {
                 return false;
+            }
+
             if (spell.GroundTarget)
             {
                 if (!ActionManager.DoActionLocation(spell.Id, target.Location))
@@ -48,6 +53,7 @@ namespace AEAssist.Helper
                 if (!ActionManager.DoAction(spell, target))
                     return false;
             }
+            LogHelper.Debug($"333333333  {spell.LocalizedName} {target.Name}");
             if (spell.AdjustedCastTime != TimeSpan.Zero)
             {
                 if (!await Coroutine.Wait(spell.AdjustedCastTime - TimeSpan.FromMilliseconds(300),
@@ -57,14 +63,15 @@ namespace AEAssist.Helper
             else
                 await Coroutine.Sleep(300);
             SpellEventMgr.Instance.Run(spell.Id);
+            LogHelper.Debug($"4444444444  {spell.LocalizedName} {target.Name}");
             return true;
         }
 
 
-        public static bool CanCastGCD(SpellData spell, GameObject target)
+        public static int CanCastGCD(SpellData spell, GameObject target)
         {
             if (!ActionManager.HasSpell(spell.Id))
-                return false;
+                return -1;
 
             if (!GameSettingsManager.FaceTargetOnAction)
                 GameSettingsManager.FaceTargetOnAction = true;
@@ -72,23 +79,23 @@ namespace AEAssist.Helper
             if (spell.GroundTarget)
             {
                 if (!ActionManager.CanCastLocation(spell.Id, target.Location))
-                    return false;
+                    return -2;
             }
             else
             {
                 if (AEAssist.DataBinding.Instance.EarlyDecisionMode && !SpellsDefine.IgnoreEarlyDecisionSet.Contains(spell.Id))
                 {
                     if (!ActionManager.CanCastOrQueue(spell, target))
-                        return false;
+                        return -3;
                 }
                 else
                 {
                     if (!ActionManager.CanCast(spell, target))
-                        return false;
+                        return -4;
                 }
             }
 
-            return true;
+            return 0;
         }
 
         public static async Task<bool> CastAbility(SpellData spell, GameObject target, int waitTime = 0)

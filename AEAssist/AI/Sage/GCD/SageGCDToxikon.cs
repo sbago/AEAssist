@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
+using AEAssist.Helper;
 
 namespace AEAssist.AI.Sage.GCD
 {
@@ -8,7 +9,14 @@ namespace AEAssist.AI.Sage.GCD
         public int Check(SpellEntity lastSpell)
         {
             var toxikonCheck = SageSpellHelper.GetToxikon();
-            if (toxikonCheck == null) return -1;
+            if (toxikonCheck == null) return -5;
+            
+            var battleData = AIRoot.GetBattleData<BattleData>();
+            if (battleData.lastGCDSpell == SageSpellHelper.GetToxikon())
+            {
+                LogHelper.Debug("Toxikon last used skipping.");
+                return -10;
+            }
             return 0;
         }
 

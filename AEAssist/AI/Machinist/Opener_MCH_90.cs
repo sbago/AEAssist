@@ -1,4 +1,6 @@
-﻿using AEAssist.Define;
+﻿using System;
+using System.Collections.Generic;
+using AEAssist.Define;
 using AEAssist.Helper;
 using AEAssist.Opener;
 using ff14bot;
@@ -12,7 +14,7 @@ namespace AEAssist.AI.Machinist
     {
         public int Check()
         {
-            if (!Core.Me.CurrentTarget.IsBoss() && PartyManager.NumMembers<=4)
+            if (!Core.Me.CurrentTarget.IsBoss() && PartyManager.NumMembers <= 4)
                 return -5;
             if (ActionResourceManager.Machinist.Heat >= 50)
                 return -1;
@@ -33,71 +35,61 @@ namespace AEAssist.AI.Machinist
             return 0;
         }
 
+        public List<Action<SpellQueueSlot>> Openers { get; } = new List<Action<SpellQueueSlot>>()
+        {
+            Step0,
+            Step1,
+            Step2,
+            Step3,
+            Step4,
+            Step5
+        };
+
         public int StepCount => 6;
 
-        [OpenerStep(0)]
-        private SpellQueueSlot Step0()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.AirAnchor;
+        private static void Step0(SpellQueueSlot slot)
+        {
+            slot.SetGCD(SpellsDefine.AirAnchor, SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.GaussRound, SpellTargetType.CurrTarget));
             slot.Abilitys.Enqueue((SpellsDefine.Ricochet, SpellTargetType.CurrTarget));
-            return slot;
         }
 
-        [OpenerStep(1)]
-        private SpellQueueSlot Step1()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = MCHSpellHelper.GetDrillIfWithAOE();
+        private static void Step1(SpellQueueSlot slot)
+        {
+            slot.SetGCD(MCHSpellHelper.GetDrillIfWithAOE(), SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.BarrelStabilizer, SpellTargetType.CurrTarget));
-            return slot;
         }
 
-        [OpenerStep(2)]
-        private SpellQueueSlot Step2()
+
+        private static void Step2(SpellQueueSlot slot)
         {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-            slot.GCDSpellId = SpellsDefine.HeatedSplitShot;
-            return slot;
+            slot.SetGCD(SpellsDefine.HeatedSplitShot, SpellTargetType.CurrTarget);
         }
 
-        [OpenerStep(3)]
-        private SpellQueueSlot Step3()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.HeatedSlugShot;
+        private static void Step3(SpellQueueSlot slot)
+        {
+            slot.SetGCD(SpellsDefine.HeatedSlugShot, SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.GaussRound, SpellTargetType.CurrTarget));
             slot.Abilitys.Enqueue((SpellsDefine.Ricochet, SpellTargetType.CurrTarget));
-
-            return slot;
         }
 
-        [OpenerStep(4)]
-        private SpellQueueSlot Step4()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.HeatedCleanShot;
+        private static void Step4(SpellQueueSlot slot)
+        {
+            slot.SetGCD(SpellsDefine.HeatedCleanShot, SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.Reassemble, SpellTargetType.Self));
             slot.Abilitys.Enqueue((SpellsDefine.Wildfire, SpellTargetType.CurrTarget));
-
-            return slot;
         }
 
-        [OpenerStep(5)]
-        private SpellQueueSlot Step5()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.GCDSpellId = SpellsDefine.ChainSaw;
+        private static void Step5(SpellQueueSlot slot)
+        {
+            slot.SetGCD(SpellsDefine.ChainSaw, SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.AutomationQueen, SpellTargetType.CurrTarget));
             slot.Abilitys.Enqueue((SpellsDefine.Hypercharge, SpellTargetType.CurrTarget));
-
-            return slot;
         }
     }
 }

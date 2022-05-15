@@ -72,14 +72,14 @@
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseTactician"
                                 Click="UseTactician_OnClick">
-                            <Image Source="../../Resources/Spells/ShieldSamba.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/Dancer/ShieldSamba.png" Stretch="Uniform" />
 
                         </Button>
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseArmsLength"
                                 Click="UseArmsLength_OnClick">
 
-                            <Image Source="../../Resources/Spells/ArmsLength.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/PhysicalRangedDPSRoleActions/ArmsLength.png" Stretch="Uniform" />
 
                         </Button>
                         <Button Style="{StaticResource ImageButton}"

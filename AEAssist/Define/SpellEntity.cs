@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AEAssist.Helper;
+using Buddy.Coroutines;
 using ff14bot;
 using ff14bot.Enums;
 using ff14bot.Managers;
@@ -129,6 +130,7 @@ namespace AEAssist.Define
             var target = GetTarget();
             if (target == null)
                 return false;
+            LogHelper.Debug($"11111111111  {target.Name}");
             return await SpellHelper.CastGCD(SpellData, target);
         }
 
@@ -142,6 +144,28 @@ namespace AEAssist.Define
             return await SpellHelper.CastAbility(SpellData, target);
         }
 
+        public async Task<bool> DoAbilityAndWait(int retrytime = 1000)
+        {
+            if (SpellData == null)
+                return false;
+            var target = GetTarget();
+            if (target == null)
+                return false;
+            while (retrytime > 0)
+            {
+                if (!await SpellHelper.CastAbility(SpellData, target))
+                {
+                    retrytime -= 100;
+                    await Coroutine.Sleep(100);
+                    continue;
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool RecentlyUsed(int span = 1000)
         {
             var time = SpellHistoryHelper.GetLastSpellTime(SpellData.Id);
@@ -152,7 +176,7 @@ namespace AEAssist.Define
 
         public bool CanCastGCD()
         {
-            return SpellHelper.CanCastGCD(SpellData, GetTarget());
+            return SpellHelper.CanCastGCD(SpellData, GetTarget()) > 0;
         }
 
         public bool CanCastAbility()

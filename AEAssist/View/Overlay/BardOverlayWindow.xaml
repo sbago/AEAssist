@@ -100,47 +100,47 @@
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="2" Name="UseNaturesMinne"
                                 Click="UseNaturesMinne_OnClick">
-                            <Image Source="../../Resources/Spells/NaturesMinne.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/Bard/NaturesMinne.png" Stretch="Uniform" />
 
                         </Button>
 
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="2" Name="UseIronJaw"
                                 Click="UseIronJaw_OnClick">
-                            <Image Source="../../Resources/Spells/IronJaws.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/Bard/IronJaws.png" Stretch="Uniform" />
 
                         </Button>
 
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="2" Name="UseApex"
                                 Click="UseApex_OnClick">
-                            <Image Source="../../Resources/Spells/Apex.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/Bard/Apex.png" Stretch="Uniform" />
 
                         </Button>
 
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="2" Name="UseBlastArrow"
                                 Click="UseBlastArrow_OnClick">
-                            <Image Source="../../Resources/Spells/BlastArrow.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/Bard/BlastArrow.png" Stretch="Uniform" />
 
                         </Button>
 
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="2" Name="UseWM"
                                 Click="UseWM_OnClick">
-                            <Image Source="../../Resources/Spells/WM.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/Bard/WM.png" Stretch="Uniform" />
 
                         </Button>
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="2" Name="UseMB"
                                 Click="UseMB_OnClick">
-                            <Image Source="../../Resources/Spells/MB.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/Bard/MB.png" Stretch="Uniform" />
 
                         </Button>
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="2" Name="UseAP"
                                 Click="UseAP_OnClick">
-                            <Image Source="../../Resources/Spells/AP.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/Bard/AP.png" Stretch="Uniform" />
 
                         </Button>
                         
@@ -150,19 +150,19 @@
                         <Button Style="{StaticResource ImageButton}"
                                 Width="40" Height="40" Margin="6,2,6,2" Name="UseArmsLength"
                                 Click="UseArmsLength_OnClick">
-                            <Image Source="../../Resources/Spells/ArmsLength.png"
+                            <Image Source="../../Resources/Spells/PhysicalRangedDPSRoleActions/ArmsLength.png"
                                    Stretch="Uniform" />
                         </Button>
                         <Button Style="{StaticResource ImageButton}"
                                 Width="40" Height="40" Margin="6,2,6,2" Name="UseHeadGraze"
                                 Click="UseHeadGraze_OnClick">
-                            <Image Source="../../Resources/Spells/HeadGraze.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/PhysicalRangedDPSRoleActions/HeadGraze.png" Stretch="Uniform" />
 
                         </Button>
                         <Button Style="{StaticResource ImageButton}"
                                 Width="40" Height="40" Margin="6,2,6,2" Name="UseTroubadour"
                                 Click="UseTroubadour_OnClick">
-                            <Image Source="../../Resources/Spells/Troubadour.png"
+                            <Image Source="../../Resources/Spells/Bard/Troubadour.png"
                                    Stretch="Uniform" />
                         </Button>
               

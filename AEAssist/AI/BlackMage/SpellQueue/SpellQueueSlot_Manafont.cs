@@ -12,7 +12,7 @@ namespace AEAssist.AI.BlackMage.SpellQueue
 
         public void Fill(SpellQueueSlot slot)
         {
-            slot.GCDSpellId = SpellsDefine.ManaFont;
+            slot.SetGCD(SpellsDefine.ManaFont,SpellTargetType.CurrTarget);
         }
     }
 }
