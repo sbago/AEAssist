@@ -32,7 +32,7 @@ namespace AEAssist.AI.BlackMage
             new BlackMageAblity_Amplifier(),
             new BlackMageAblity_Triplecast(),
             new BlackMageAblity_Sharpcast(),
-            new BlackMageAblity_Swiftcast(),
+            // new BlackMageAblity_Swiftcast(),
             new BlackMageAblity_Leylines(),
             new BlackMageAblity_Transpose(),
         };

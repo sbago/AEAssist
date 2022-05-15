@@ -14,14 +14,15 @@ namespace AEAssist.AI.BlackMage.GCD
         public int Check(SpellEntity lastSpell)
         {
             //prevent reduent spell
-            var BattleData = AIRoot.GetBattleData<BattleData>();
+            var lastGCDSpell = BlackMageHelper.GetLastSpell();
+            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
 
-            if (BattleData.lastGCDSpell == SpellsDefine.Fire3.GetSpellEntity() ||
-                BattleData.lastGCDSpell == SpellsDefine.Blizzard3.GetSpellEntity() ||
-                BattleData.lastGCDSpell == SpellsDefine.HighBlizzardII.GetSpellEntity()
+
+            if (bdls == SpellsDefine.Fire3.GetSpellEntity() ||
+                bdls == SpellsDefine.Blizzard3.GetSpellEntity() ||
+                bdls == SpellsDefine.HighBlizzardII.GetSpellEntity()
             )
             {
-                LogHelper.Info(BattleData.lastGCDSpell.SpellData.LocalizedName);
                 return -10;
             }
             
@@ -93,6 +94,7 @@ namespace AEAssist.AI.BlackMage.GCD
             {
                 return null;
             }
+            LogHelper.Info(BlackMageHelper.GetLastSpell().ToString());
             var ret = await spell.DoGCD();
             if (ret)
                 return spell;

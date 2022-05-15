@@ -15,13 +15,19 @@ namespace AEAssist.AI.BlackMage.SpellQueue
 
         public void Fill(SpellQueueSlot slot)
         {
-            if (BlackMageHelper.ThunderCheck() >= 0)
+            if (BlackMageHelper.ThunderCheck() >= 0 &&
+                Core.Me.CurrentMana >=1200)
             {
                 slot.GCDSpellId = BlackMageHelper.GetThunder().Id;
             }
             else
             {
                 slot.GCDSpellId = 0;
+            }
+            if (slot.GCDSpellId != 0 &&
+                SpellsDefine.ManaFont.IsReady())
+            {
+                slot.Abilitys.Enqueue((SpellsDefine.ManaFont,  SpellTargetType.Self));
             }
         }
     }

@@ -19,13 +19,13 @@ namespace AEAssist.AI.BlackMage.GCD
             }
 
             // prevent redundant casting
-            var BattleData = AIRoot.GetBattleData<BattleData>();
-            if (BattleData.lastGCDSpell == SpellsDefine.Fire.GetSpellEntity() ||
-                BlackMageHelper.GetLastSpell() == SpellsDefine.Paradox ||
-                BattleData.lastGCDSpell == SpellsDefine.Despair.GetSpellEntity()
+            var lastGCDSpell = BlackMageHelper.GetLastSpell();
+
+            if (lastGCDSpell == SpellsDefine.Fire ||
+                lastGCDSpell == SpellsDefine.Paradox ||
+                lastGCDSpell == SpellsDefine.Despair
                )
             {
-                LogHelper.Info(BattleData.lastGCDSpell.SpellData.LocalizedName);
                 return -10;
             }
 

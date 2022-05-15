@@ -45,6 +45,15 @@ namespace AEAssist.AI.BlackMage
             var thunder2 = AurasDefine.Thunder2;
             var thunder1 = AurasDefine.Thunder;
 
+            var lastGCDSpell = BlackMageHelper.GetLastSpell();
+            if (lastGCDSpell == SpellsDefine.Thunder4 ||
+                lastGCDSpell == SpellsDefine.Thunder3 ||
+                lastGCDSpell == SpellsDefine.Thunder2 ||
+                lastGCDSpell == SpellsDefine.Thunder)
+            {
+                return false;
+            }
+            
             // if not enough time left
             if (target.HasMyAura((uint) thunder4) &&
                 !target.HasMyAuraWithTimeleft((uint) thunder4, timeLeft))
@@ -94,9 +103,11 @@ namespace AEAssist.AI.BlackMage
             {
                 return false;
             }
-
-            var spell = SpellsDefine.Paradox.GetSpellEntity().SpellData;
-            if (ActionManager.CanCastOrQueue(spell, Core.Me.CurrentTarget))
+            // 1 for have echochian
+            // 0 for no have echochian
+            // 3 for have paradox and echochian
+            // 2 for only have echochian
+            if (ActionResourceManager.CostTypesStruct.offset_F >= 2)
             {
                 return true;
             }
@@ -214,6 +225,8 @@ namespace AEAssist.AI.BlackMage
 
         public static bool test()
         {
+            // ActionManager.LastSpell.LocalizedName;
+            // ActionManager.
             MovementManager.MoveForwardStart();
             MovementManager.MoveStop();
             return true;
@@ -405,11 +418,12 @@ namespace AEAssist.AI.BlackMage
             }
 
             // prevent casting same spell
-            var BattleData = AIRoot.GetBattleData<BattleData>();
-            if (BattleData.lastGCDSpell == SpellsDefine.Thunder.GetSpellEntity() ||
-                BattleData.lastGCDSpell == SpellsDefine.Thunder2.GetSpellEntity() ||
-                BattleData.lastGCDSpell == SpellsDefine.Thunder3.GetSpellEntity() ||
-                BattleData.lastGCDSpell == SpellsDefine.Thunder4.GetSpellEntity()
+            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
+
+            if (bdls == SpellsDefine.Thunder.GetSpellEntity() ||
+                bdls == SpellsDefine.Thunder2.GetSpellEntity() ||
+                bdls == SpellsDefine.Thunder3.GetSpellEntity() ||
+                bdls == SpellsDefine.Thunder4.GetSpellEntity()
                )
             {
                 return -10;
@@ -452,9 +466,11 @@ namespace AEAssist.AI.BlackMage
                 return true;
             }
 
+            var lastGCDSpell = BlackMageHelper.GetLastSpell();
             if (ActionResourceManager.BlackMage.UmbralHearts == 3 ||
-                SpellsDefine.Blizzard4.RecentlyUsed() ||
-                SpellsDefine.Freeze.RecentlyUsed())
+                lastGCDSpell == SpellsDefine.Freeze ||
+                lastGCDSpell == SpellsDefine.Blizzard4
+                )
             {
                 return true;
             }

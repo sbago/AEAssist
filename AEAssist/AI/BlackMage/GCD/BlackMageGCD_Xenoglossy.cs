@@ -23,7 +23,10 @@ namespace AEAssist.AI.BlackMage.GCD
                     {
                         if (!BlackMageHelper.IsParadoxReady())
                         {
-                            return 2;
+                            if (Core.Me.CurrentMana < 1600 * 3 + 800 + 400)
+                            {
+                                return 2;
+                            }
                         }
                     }
 
