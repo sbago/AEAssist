@@ -11,15 +11,23 @@ namespace AEAssist.AI.Samurai.Ability
     {
         public int Check(SpellEntity lastSpell)
         {
-            var ta = Core.Me.CurrentTarget as Character;
-            if (ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Setsu) &&
-                SamuraiSpellHelper.SenCounts() != 0 &&
-                !Core.Me.HasAura(AurasDefine.MeikyoShisui) &&
-                SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalMilliseconds % 60000 > 40000 &&
-                !(ta.GetAuraById(AurasDefine.Higanbana)?.TimeLeft < 5) &&
-                ActionManager.LastSpell == null)
-                return 1;
-
+            if (Core.Me.HasAura(AurasDefine.MeikyoShisui))
+                return -13;
+            if (SpellsDefine.MeikyoShisui.GetSpellEntity().Cooldown.TotalMilliseconds > 55000)
+                return -14;
+            if (SamuraiSpellHelper.SenCounts() == 3)
+                return -15;
+            if (ActionManager.LastSpellId == SpellsDefine.Hakaze || ActionManager.LastSpellId == SpellsDefine.Shifu || ActionManager.LastSpellId == SpellsDefine.Jinpu)
+                return -16;
+            var Ta = Core.Me.CurrentTarget as Character;
+            if (!Ta.HasMyAura(AurasDefine.Higanbana) && Ta.GetAuraById(AurasDefine.Higanbana).TimespanLeft.TotalMilliseconds < 6000)
+                return -17;
+            if (ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Setsu))
+            {
+                if (ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Ka) || ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Getsu))
+                    return -18;
+                return 2;
+            }
             return -1;
         }
 
