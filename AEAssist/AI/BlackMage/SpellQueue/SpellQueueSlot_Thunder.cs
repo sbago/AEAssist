@@ -24,7 +24,7 @@ namespace AEAssist.AI.BlackMage.SpellQueue
             {
                 slot.ClearGCD();
             }
-            if (slot.GCDSpellId != 0 &&
+            if (slot.GetGCDSpell() != 0 &&
                 SpellsDefine.ManaFont.IsReady())
             {
                 slot.Abilitys.Enqueue((SpellsDefine.ManaFont,  SpellTargetType.Self));

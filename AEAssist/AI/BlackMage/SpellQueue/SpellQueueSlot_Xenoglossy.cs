@@ -14,23 +14,23 @@ namespace AEAssist.AI.BlackMage.SpellQueue
 
         public void Fill(SpellQueueSlot slot)
         {
-            slot.GCDSpellId = 0;
+            slot.SetGCD(0, SpellTargetType.CurrTarget);
 
             if (ActionResourceManager.BlackMage.PolyglotCount > 0 &&
                 SpellsDefine.ManaFont.IsReady())
             {
                 if (BlackMageHelper.ThunderCheck() < 0)
                 {
-                    slot.GCDSpellId = BlackMageHelper.GetXenoglossy().Id;
+                    slot.SetGCD(BlackMageHelper.GetXenoglossy().Id, SpellTargetType.CurrTarget);
                 }
                 else if (!Core.Me.HasAura(AurasDefine.ThunderCloud))
                 {
-                    slot.GCDSpellId = BlackMageHelper.GetXenoglossy().Id;
+                    slot.SetGCD(BlackMageHelper.GetXenoglossy().Id, SpellTargetType.CurrTarget);
 
                 }
             }
 
-            if (slot.GCDSpellId != 0 &&
+            if (slot.GetGCDSpell() != 0 &&
                 SpellsDefine.ManaFont.IsReady())
             {
                 slot.Abilitys.Enqueue((SpellsDefine.ManaFont,  SpellTargetType.Self));
