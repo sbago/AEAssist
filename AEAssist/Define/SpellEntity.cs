@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AEAssist.Helper;
+using Buddy.Coroutines;
 using ff14bot;
 using ff14bot.Enums;
 using ff14bot.Managers;
@@ -141,6 +142,28 @@ namespace AEAssist.Define
             if (target == null)
                 return false;
             return await SpellHelper.CastAbility(SpellData, target);
+        }
+
+        public async Task<bool> DoAbilityAndWait(int retrytime = 1000)
+        {
+            if (SpellData == null)
+                return false;
+            var target = GetTarget();
+            if (target == null)
+                return false;
+            while (retrytime > 0)
+            {
+                if (!await SpellHelper.CastAbility(SpellData, target))
+                {
+                    retrytime -= 100;
+                    await Coroutine.Sleep(100);
+                    continue;
+                }
+
+                return true;
+            }
+
+            return false;
         }
 
         public bool RecentlyUsed(int span = 1000)
