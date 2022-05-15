@@ -12,16 +12,16 @@ namespace AEAssist.AI.BlackMage.GCD
     {
         public int Check(SpellEntity lastSpell)
         {
-            // todo: how to make blizzard2 casting itself?
             // prevent redundant casting
-            var BattleData = AIRoot.GetBattleData<BattleData>();
-            if (BattleData.lastGCDSpell == SpellsDefine.Blizzard3.GetSpellEntity() ||
-                BattleData.lastGCDSpell == SpellsDefine.HighBlizzardII.GetSpellEntity() ||
-                BattleData.lastGCDSpell == SpellsDefine.Paradox.GetSpellEntity() ||
-                BattleData.lastGCDSpell == SpellsDefine.Fire.GetSpellEntity()
+            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
+            var lastGCDSpell = BlackMageHelper.GetLastSpell();
+            if (bdls == SpellsDefine.Blizzard3.GetSpellEntity() ||
+                bdls == SpellsDefine.HighBlizzardII.GetSpellEntity() ||
+                lastGCDSpell == SpellsDefine.Paradox ||
+                bdls == SpellsDefine.Fire.GetSpellEntity()
                )
             {
-                return -1;
+                return -10;
             }
             // prevent to waste mana font
             if (SpellsDefine.ManaFont.RecentlyUsed())

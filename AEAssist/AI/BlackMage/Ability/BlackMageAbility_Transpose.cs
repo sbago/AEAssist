@@ -15,18 +15,19 @@ namespace AEAssist.AI.BlackMage.Ability
         {
             // lastspell => last ability spell
             
-            var BattleData = AIRoot.GetBattleData<BattleData>();
-            
+            var lastGCDSpell = ActionManager.LastSpellId;
+            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
+
             if (!SpellsDefine.Transpose.IsReady())
             {
                 return -2;
             }
             
             // prevent redundant casting
-            if (SpellsDefine.Blizzard3.RecentlyUsed() ||
-                SpellsDefine.HighBlizzardII.RecentlyUsed() ||
-                SpellsDefine.Paradox.RecentlyUsed() ||
-                SpellsDefine.Fire.RecentlyUsed() 
+            if (bdls == SpellsDefine.Blizzard3.GetSpellEntity() ||
+                bdls == SpellsDefine.HighBlizzardII.GetSpellEntity() ||
+                // lastGCDSpell == SpellsDefine.Paradox ||
+                bdls == SpellsDefine.Fire.GetSpellEntity() 
                )
             {
                 return -1;
@@ -34,21 +35,21 @@ namespace AEAssist.AI.BlackMage.Ability
             
             // if we are in ice, we have 3 UmbralHearts, we have used paradox, and full mana, and we have firestarter buff
             if (Core.Me.HasAura(AurasDefine.FireStarter) &&
-                Core.Me.CurrentMana == 10000 &&
+                Core.Me.CurrentMana >= 400 + 1600*3 + 800 &&
                 ActionResourceManager.BlackMage.UmbralStacks > 0 &&
                 !BlackMageHelper.IsParadoxReady() &&
-                BattleData.lastGCDSpell != SpellsDefine.Fire3.GetSpellEntity())
+                bdls != SpellsDefine.Fire3.GetSpellEntity())
             {
                 return 1;
             }
             
             // if we are in fire, we have polyglot to go
-            // if (BlackMageHelper.IsMaxAstralStacks(lastSpell) &&
-            //     Core.Me.CurrentMana == 0 &&
-            //     BlackMageHelper.IsTargetNeedThunder(Core.Me.CurrentTarget as Character, 10000))
-            // {
-            //     return 2;
-            // }
+            if (ActionResourceManager.BlackMage.AstralStacks > 0 &&
+                Core.Me.CurrentMana == 0 &&
+                BlackMageHelper.IsTargetNeedThunder(Core.Me.CurrentTarget as Character, 10000))
+            {
+                return 2;
+            }
             // if we don't have target
             if (!Core.Me.HasTarget || !Core.Me.CurrentTarget.CanAttack)
             {

@@ -32,6 +32,10 @@
                 ModKeySetting="{Binding HotkeySetting.Hotkey_Stop.ModifierKey, Mode=TwoWay}"
                 Text="{Binding Language.Combox_Hotkey_Stop}" />
             <style:HotkeyControl
+                KeySetting="{Binding  HotkeySetting.Hotkey_Move.Key, Mode=TwoWay}"
+                ModKeySetting="{Binding HotkeySetting.Hotkey_Move.ModifierKey, Mode=TwoWay}"
+                Text="{Binding Language.Combox_Hotkey_Move}" />
+            <style:HotkeyControl
                 KeySetting="{Binding  HotkeySetting.Hotkey_Burst.Key, Mode=TwoWay}"
                 ModKeySetting="{Binding HotkeySetting.Hotkey_Burst.ModifierKey, Mode=TwoWay}"
                 Text="{Binding Language.Combox_Hotkey_BurstOff}" />

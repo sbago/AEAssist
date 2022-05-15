@@ -26,9 +26,15 @@ namespace AEAssist
         }
 
         public string StopBtnName { get; set; }
+        
+        public string MoveBtnName { get; set; }
+        
         public string CloseBuffBtnName { get; set; }
 
         public HotkeyData Hotkey_Stop { get; set; } = new HotkeyData();
+        
+        public HotkeyData Hotkey_Move { get; set; } = new HotkeyData();
+        
         public HotkeyData Hotkey_Burst { get; set; } = new HotkeyData();
 
         public HotkeyData Hotkey_ArmLength_Surecast { get; set; } = new HotkeyData();
@@ -64,11 +70,13 @@ namespace AEAssist
             if (UseHotkey)
             {
                 StopBtnName = $"{Language.Instance.Toggle_Stop} [{Hotkey_Stop.GetDisplayString()}]";
+                MoveBtnName = $"{Language.Instance.Toggle_Move} [{Hotkey_Move.GetDisplayString()}]";
                 CloseBuffBtnName = $"{Language.Instance.Toggle_BurstOff} [{Hotkey_Burst.GetDisplayString()}]";
             }
             else
             {
                 StopBtnName = Language.Instance.Toggle_Stop;
+                MoveBtnName = Language.Instance.Toggle_Move;
                 CloseBuffBtnName = Language.Instance.Toggle_BurstOff;
             }
         }
@@ -100,6 +108,14 @@ namespace AEAssist
                         {
                             AIRoot.Instance.Stop =
                                 !AIRoot.Instance.Stop;
+                            UIHelper.RfreshCurrOverlay();
+                        }));
+                if (Hotkey_Move.Key != Keys.None)
+                    Hotkeys.Add(HotkeyManager.Register("AEAssist_Move", Hotkey_Move.Key, Hotkey_Move.ModifierKey,
+                        v =>
+                        {
+                            AIRoot.Instance.Move =
+                                !AIRoot.Instance.Move;
                             UIHelper.RfreshCurrOverlay();
                         }));
                 if (Hotkey_Burst.Key != Keys.None)

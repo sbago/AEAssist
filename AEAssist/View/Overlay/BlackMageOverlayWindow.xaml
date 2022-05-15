@@ -47,7 +47,12 @@
                             Style="{StaticResource CheckBoxOverlayCustomToggle}"
                             IsChecked="{Binding Stop,Mode=TwoWay}" />
 
-
+                        <CheckBox
+                            Content="{Binding HotkeySetting.MoveBtnName}"
+                            Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                            IsChecked="{Binding Move,Mode=TwoWay}" />
+                        
+                        
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="{Binding HotkeySetting.CloseBuffBtnName}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"

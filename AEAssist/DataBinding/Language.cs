@@ -27,6 +27,7 @@ namespace AEAssist
         }
 
         public string Toggle_Stop { get; set; }
+        public string Toggle_Move { get; set; }
         public string Toggle_BurstOff { get; set; }
         public string Toggle_AOE { get; set; }
         public string Toggle_ShowGameLog { get; set; }
@@ -100,6 +101,7 @@ namespace AEAssist
         public string ClearTriggerLine { get; set; }
 
         public string Combox_Hotkey_Stop { get; set; }
+        public string Combox_Hotkey_Move { get; set; }
         public string Combox_Hotkey_BurstOff { get; set; }
 
         public string Combox_Hotkey_ArmLength_Surecast { get; set; }

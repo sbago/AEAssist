@@ -35,6 +35,12 @@ namespace AEAssist.AI
             get => AEAssist.DataBinding.Instance.Stop;
             set => AEAssist.DataBinding.Instance.Stop = value;
         }
+        
+        public bool Move
+        {
+            get => AEAssist.DataBinding.Instance.Move;
+            set => AEAssist.DataBinding.Instance.Move = value;
+        }
 
         public bool CloseBurst
         {

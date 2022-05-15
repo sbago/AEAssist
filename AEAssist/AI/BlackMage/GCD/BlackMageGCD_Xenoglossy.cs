@@ -23,39 +23,55 @@ namespace AEAssist.AI.BlackMage.GCD
                     {
                         if (!BlackMageHelper.IsParadoxReady())
                         {
-                            return 2;
+                            if (Core.Me.CurrentMana < 1600 * 3 + 800 + 400)
+                            {
+                                return 2;
+                            }
                         }
                     }
+
                     // if we enter ice with blizzard3
                     if (ActionResourceManager.BlackMage.UmbralStacks == 3)
                     {
-                        return 3;
-                    }   
+                        if (BlackMageHelper.WillPolyglotOverflow(TimeSpan.FromSeconds(8)))
+                        {
+                            return 3;
+                        }
+                    }
+
+                    if (MovementManager.IsMoving)
+                    {
+                        return 10;
+                    }
                 }
+
                 // if we are in fire
                 if (ActionResourceManager.BlackMage.AstralStacks > 0)
                 {
                     if (SpellsDefine.Amplifier.IsUnlock())
                     {
-                        // if we have more than 1 polyglot
-                        // if we have less than 10 seconds to obtain another
-                        // if we have Amplifier unlock, and it's gonna be ready in 10 seconds
-                        if (ActionResourceManager.BlackMage.PolyglotCount > 1 &&
-                            ActionResourceManager.BlackMage.PolyglotTimer < TimeSpan.FromMilliseconds(100000) &&
-                            SpellsDefine.Amplifier.GetSpellEntity().SpellData.Cooldown <
-                            TimeSpan.FromMilliseconds(100000))
+                        // if we have enough time for paradox
+                        var baseGCDTime = SpellsDefine.Scathe.GetSpellEntity().SpellData.AdjustedCooldown
+                            .Add(TimeSpan.FromMilliseconds(ConstValue.BlackMageLatencyCompensation));
+                        if (ActionResourceManager.BlackMage.StackTimer > baseGCDTime +
+                            BlackMageHelper.GetSpellCastTimeSpan(SpellsDefine.Despair.GetSpellEntity()))
                         {
-                            // if we have enough time for paradox
-                            var baseGCDTime = SpellsDefine.Scathe.GetSpellEntity().SpellData.AdjustedCooldown.Add(TimeSpan.FromMilliseconds(ConstValue.BlackMageLatencyCompensation));
-                            if (ActionResourceManager.BlackMage.StackTimer > baseGCDTime + BlackMageHelper.GetSpellCastTimeSpan(SpellsDefine.Despair.GetSpellEntity()))
+                            // if we have more than 1 polyglot
+                            // if we have less than 10 seconds to obtain another
+                            // if we have Amplifier unlock, and it's gonna be ready in 10 seconds
+                            if (BlackMageHelper.WillPolyglotOverflow(TimeSpan.FromSeconds(10)))
                             {
                                 return 1;
+                            }
+                            if (MovementManager.IsMoving)
+                            {
+                                return 10;
                             }
                         }
                     }
                 }
             }
-            
+
             return -4;
         }
 
@@ -68,6 +84,7 @@ namespace AEAssist.AI.BlackMage.GCD
             {
                 return null;
             }
+
             var ret = await spell.DoGCD();
             if (ret)
                 return spell;

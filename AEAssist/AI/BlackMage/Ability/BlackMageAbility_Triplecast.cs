@@ -21,13 +21,15 @@ namespace AEAssist.AI.BlackMage.Ability
                 return -1;
             }
 
-            if (Core.Me.HasAura(AurasDefine.Triplecast))
+            if (Core.Me.HasAura(AurasDefine.Triplecast) ||
+                SpellsDefine.Triplecast.RecentlyUsed())
             {
                 return -3;
             }
-            var BattleData = AIRoot.GetBattleData<BattleData>();
+
+            var lastGCDspell = BlackMageHelper.GetLastSpell();
             if (BlackMageHelper.UmbralHeatsReady() &&
-                BattleData.lastGCDSpell == SpellsDefine.Fire3.GetSpellEntity() &&
+                lastGCDspell == SpellsDefine.Fire3 &&
                 SpellsDefine.Triplecast.GetSpellEntity().SpellData.Cooldown < TimeSpan.FromSeconds(15))
             {
                 return 1;

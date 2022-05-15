@@ -13,23 +13,30 @@ namespace AEAssist.AI.BlackMage.GCD
         public int Check(SpellEntity lastSpell)
         {
             // prevent redundant casting
-            var BattleData = AIRoot.GetBattleData<BattleData>();
+            var bdls = AIRoot.GetBattleData<BattleData>();
+            var lastGCDSpell = BlackMageHelper.GetLastSpell();
             if (
-                BattleData.lastGCDSpell == SpellsDefine.Blizzard4.GetSpellEntity() ||
-                BattleData.lastGCDSpell == SpellsDefine.Freeze.GetSpellEntity()
+                bdls.lastGCDSpell == SpellsDefine.Blizzard4.GetSpellEntity() ||
+                bdls.lastGCDSpell == SpellsDefine.Freeze.GetSpellEntity()
             )
             {
-                return -1;
+                return -10;
             }
             // prevent not learned skill or redundant casting
             if (BlackMageHelper.UmbralHeatsReady())
             {
                 return -2;
             }
+
+            if (ActionResourceManager.BlackMage.UmbralStacks == 3)
+            {
+                return 0;
+            }
             
             // if we are in ice, should before paradox to prevent lag
             // lag -> paradox can't go at the very begining
-            if (ActionResourceManager.BlackMage.UmbralStacks > 0)
+            if (ActionResourceManager.BlackMage.UmbralStacks > 0 &&
+                ActionResourceManager.BlackMage.UmbralStacks < 3)
             {
                 return 1;
             }

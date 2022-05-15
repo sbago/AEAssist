@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Media;
 using AEAssist.Define;
 using AEAssist.Define.DataStruct;
 using AEAssist.Helper;
+using Buddy.Coroutines;
 using ff14bot;
 using ff14bot.Helpers;
 using ff14bot.Managers;
@@ -34,6 +36,7 @@ namespace AEAssist.AI.BlackMage
 
         public static ushort PolyglotTimer => ActionResourceManager.CostTypesStruct.timer;
 
+
         public static bool IsTargetNeedThunder(Character target, int timeLeft)
         {
             // check thunder 4,3,2,1
@@ -42,43 +45,47 @@ namespace AEAssist.AI.BlackMage
             var thunder2 = AurasDefine.Thunder2;
             var thunder1 = AurasDefine.Thunder;
 
-            // if not enough time left
-            if (target.HasMyAuraWithTimeleft((uint) thunder4) && 
-                !target.HasMyAuraWithTimeleft((uint) thunder4, timeLeft))
+            var lastGCDSpell = BlackMageHelper.GetLastSpell();
+            if (lastGCDSpell == SpellsDefine.Thunder4 ||
+                lastGCDSpell == SpellsDefine.Thunder3 ||
+                lastGCDSpell == SpellsDefine.Thunder2 ||
+                lastGCDSpell == SpellsDefine.Thunder)
             {
-                Logging.Write("Thunder4 fucked up");
-                return true;
-            }
-
-            if (target.HasMyAuraWithTimeleft((uint) thunder3) && 
-                !target.HasMyAuraWithTimeleft((uint) thunder3, timeLeft))
-            {
-                Logging.Write("Thunder3 fucked up");
-                return true;
-            }
-
-            if (target.HasMyAuraWithTimeleft((uint) thunder2) && 
-                !target.HasMyAuraWithTimeleft((uint) thunder2, timeLeft))
-            {
-                Logging.Write("Thunder2 fucked up");
-                return true;
-            }
-
-            if (target.HasMyAuraWithTimeleft((uint) thunder1) && 
-                !target.HasMyAuraWithTimeleft((uint) thunder1, timeLeft))
-            {
-                Logging.Write("Thunder1 fucked up");
-                return true;
+                return false;
             }
             
+            // if not enough time left
+            if (target.HasMyAura((uint) thunder4) &&
+                !target.HasMyAuraWithTimeleft((uint) thunder4, timeLeft))
+            {
+                return true;
+            }
+
+            if (target.HasMyAura((uint) thunder3) &&
+                !target.HasMyAuraWithTimeleft((uint) thunder3, timeLeft))
+            {
+                return true;
+            }
+
+            if (target.HasMyAura((uint) thunder2) &&
+                !target.HasMyAuraWithTimeleft((uint) thunder2, timeLeft))
+            {
+                return true;
+            }
+
+            if (target.HasMyAura((uint) thunder1) &&
+                !target.HasMyAuraWithTimeleft((uint) thunder1, timeLeft))
+            {
+                return true;
+            }
+
             // if target has no dot from me, target needs dot
-            if (!target.HasMyAuraWithTimeleft((uint) thunder4) &&
-                !target.HasMyAuraWithTimeleft((uint) thunder3) &&
-                !target.HasMyAuraWithTimeleft((uint) thunder2) &&
-                !target.HasMyAuraWithTimeleft((uint) thunder1)
+            if (!target.HasMyAura((uint) thunder4) &&
+                !target.HasMyAura((uint) thunder3) &&
+                !target.HasMyAura((uint) thunder2) &&
+                !target.HasMyAura((uint) thunder1)
                )
             {
-                Logging.Write("Thunder Auracheck fuckedup");
                 return true;
             }
 
@@ -89,15 +96,18 @@ namespace AEAssist.AI.BlackMage
         {
             return Core.Me.ClassLevel >= ConstValue.ParadoxLevelAcquired;
         }
-        
+
         public static bool IsParadoxReady()
         {
             if (!SpellsDefine.Paradox.IsUnlock())
             {
                 return false;
             }
-            var spell = SpellsDefine.Paradox.GetSpellEntity().SpellData;
-            if (ActionManager.CanCastOrQueue(spell, Core.Me.CurrentTarget))
+            // 1 for have echochian
+            // 0 for no have echochian
+            // 3 for have paradox and echochian
+            // 2 for only have echochian
+            if (ActionResourceManager.CostTypesStruct.offset_F >= 2)
             {
                 return true;
             }
@@ -149,10 +159,12 @@ namespace AEAssist.AI.BlackMage
                     }
                 }
             }
+
             if (SpellsDefine.Despair.IsUnlock())
             {
                 return SpellsDefine.Despair.GetSpellEntity();
             }
+
             return null;
         }
 
@@ -169,29 +181,97 @@ namespace AEAssist.AI.BlackMage
                     }
                 }
             }
+
             if (SpellsDefine.Xenoglossy.IsUnlock())
             {
                 return SpellsDefine.Xenoglossy.GetSpellEntity();
             }
+
             return null;
+        }
+
+        public static uint GetLastSpell()
+        {
+            return ActionManager.LastSpell.Id;
+        }
+
+        public static bool CanMove()
+        {
+            // var BattleData = AIRoot.GetBattleData<BattleData>();
+            if (Core.Me.HasAura(AurasDefine.Swiftcast) ||
+                Core.Me.HasAura(AurasDefine.Triplecast) ||
+                SpellsDefine.Triplecast.RecentlyUsed() ||
+                SpellsDefine.Swiftcast.RecentlyUsed()
+               )
+                return true;
+            if (Core.Me.IsCasting)
+            {
+                if (Core.Me.CastingSpellId == SpellsDefine.Fire4)
+                {
+                    var CurrentMana = Core.Me.CurrentMana;
+                    //if currentMana != BattleData.Mana
+                    //we can move
+                    return true;
+                }
+                else
+                {
+                    // if ActionManager.LastSpell.Id; != 上一个ActionManager.LastSpell.Id; 
+                    // we can move
+                }
+            }
+
+            return false;
         }
 
         public static bool test()
         {
+            // ActionManager.LastSpell.LocalizedName;
+            // ActionManager.
+            MovementManager.MoveForwardStart();
+            MovementManager.MoveStop();
             return true;
         }
-        
+
+        public static void GetPartyMembers()
+        {
+            var members = PartyManager.AllMembers.ToList();
+            foreach (var member in members)
+            {
+                var name = member.Name.ToString();
+                var job = member.Class.ToString();
+                var health = member.CurrentHealth / member.MaxHealth;
+            }
+        }
+
+        public static bool WillPolyglotOverflow(TimeSpan time)
+        {
+            var currentPolyglot = ActionResourceManager.BlackMage.PolyglotCount;
+            // will have another one with Amplifier
+            if (SpellsDefine.Amplifier.GetSpellEntity().Cooldown < time)
+            {
+                currentPolyglot += 1;
+            }
+            if (ActionResourceManager.BlackMage.PolyglotTimer < time)
+            {
+                currentPolyglot += 1;
+            }
+
+            if (currentPolyglot > 2)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public static SpellEntity GetParadox()
         {
             // if we learned paradox, go only paradox
             if (SpellsDefine.Paradox.IsUnlock())
             {
-                if (BlackMageHelper.IsParadoxReady())
-                {
-                    return SpellsDefine.Paradox.GetSpellEntity();
-                }
-                return null;
+                return SpellsDefine.Paradox.GetSpellEntity();
             }
+
             // if we have not learned paradox, replace fire paradox with fire, nothing to go in ice
             if (SpellsDefine.Fire.IsUnlock())
             {
@@ -215,10 +295,12 @@ namespace AEAssist.AI.BlackMage
                     }
                 }
             }
+
             if (SpellsDefine.Blizzard4.IsUnlock())
             {
                 return SpellsDefine.Blizzard4.GetSpellEntity();
             }
+
             return null;
         }
 
@@ -234,7 +316,7 @@ namespace AEAssist.AI.BlackMage
                     {
                         return SpellsDefine.Thunder4.GetSpellEntity();
                     }
-                    
+
                     if (SpellsDefine.Thunder2.IsUnlock())
                     {
                         return SpellsDefine.Thunder2.GetSpellEntity();
@@ -250,11 +332,12 @@ namespace AEAssist.AI.BlackMage
                     }
                 }
             }
+
             if (SpellsDefine.Thunder3.IsUnlock())
             {
                 return SpellsDefine.Thunder3.GetSpellEntity();
             }
-            
+
             if (SpellsDefine.Thunder.IsUnlock())
             {
                 return SpellsDefine.Thunder.GetSpellEntity();
@@ -277,7 +360,7 @@ namespace AEAssist.AI.BlackMage
 
             return null;
         }
-        
+
         public static SpellEntity GetFire4()
         {
             if (SpellsDefine.Fire4.IsUnlock())
@@ -319,30 +402,31 @@ namespace AEAssist.AI.BlackMage
             // if setting use DOT
             if (!AEAssist.DataBinding.Instance.UseDot)
                 return -1;
-            
+
             // check black list
             if (DotBlacklistHelper.IsBlackList(Core.Me.CurrentTarget as Character))
-                return -10;
+                return -20;
 
             if (!SpellsDefine.Thunder.IsUnlock())
             {
                 return -2;
             }
-            
+
             if (Core.Me.CurrentMana < SpellsDefine.Thunder.GetSpellEntity().SpellData.Cost)
             {
                 return -2;
             }
-            
+
             // prevent casting same spell
-            var BattleData = AIRoot.GetBattleData<BattleData>();
-            if (BattleData.lastGCDSpell == SpellsDefine.Thunder.GetSpellEntity() ||
-                BattleData.lastGCDSpell == SpellsDefine.Thunder2.GetSpellEntity() ||
-                BattleData.lastGCDSpell == SpellsDefine.Thunder3.GetSpellEntity() ||
-                BattleData.lastGCDSpell == SpellsDefine.Thunder4.GetSpellEntity()
+            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
+
+            if (bdls == SpellsDefine.Thunder.GetSpellEntity() ||
+                bdls == SpellsDefine.Thunder2.GetSpellEntity() ||
+                bdls == SpellsDefine.Thunder3.GetSpellEntity() ||
+                bdls == SpellsDefine.Thunder4.GetSpellEntity()
                )
             {
-                return -2;
+                return -10;
             }
 
             // if we need to dot
@@ -352,42 +436,46 @@ namespace AEAssist.AI.BlackMage
                 if (ActionResourceManager.BlackMage.AstralStacks > 0)
                 {
                     // if we have more than 10 seconds left in fire
-                    if (ActionResourceManager.BlackMage.StackTimer > SpellsDefine.Scathe.GetSpellEntity().SpellData.AdjustedCooldown + SpellsDefine.Flare.GetSpellEntity().SpellData.AdjustedCooldown &&
-                        Core.Me.CurrentMana > 800+SpellsDefine.Thunder.GetSpellEntity().SpellData.Cost)
+                    if (ActionResourceManager.BlackMage.StackTimer >
+                        SpellsDefine.Scathe.GetSpellEntity().SpellData.AdjustedCooldown +
+                        SpellsDefine.Flare.GetSpellEntity().SpellData.AdjustedCooldown &&
+                        Core.Me.CurrentMana > 800 + SpellsDefine.Thunder.GetSpellEntity().SpellData.Cost)
                     {
                         return 3;
                     }
                 }
+
                 // if we are in ice, cast straight away
                 if (ActionResourceManager.BlackMage.UmbralStacks > 0)
                 {
                     return 2;
                 }
             }
-            
+
             return -4;
         }
-        
+
         public static bool UmbralHeatsReady()
         {
             // so this shit is, we need lv58 to have umbral hearts, and no requirements
             // and lv58, we need to finish request for have the blizzard4 to single target
-            
+
             // if we can't even have  umbralhearts, always pass the check
             if (Core.Me.ClassLevel < 58)
             {
                 return true;
             }
 
-            if (ActionResourceManager.BlackMage.UmbralHearts == 3 || 
-                SpellsDefine.Blizzard4.RecentlyUsed() ||
-                SpellsDefine.Freeze.RecentlyUsed())
+            var lastGCDSpell = BlackMageHelper.GetLastSpell();
+            if (ActionResourceManager.BlackMage.UmbralHearts == 3 ||
+                lastGCDSpell == SpellsDefine.Freeze ||
+                lastGCDSpell == SpellsDefine.Blizzard4
+                )
             {
                 return true;
             }
 
             return false;
-
         }
 
         public static bool IsMaxAstralStacks()
@@ -423,7 +511,7 @@ namespace AEAssist.AI.BlackMage
 
             return false;
         }
-        
+
         public static bool IsGCDOpen()
         {
             if (Core.Me.HasAura(AurasDefine.Triplecast))

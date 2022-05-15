@@ -20,7 +20,7 @@
 
         public static int BlackMageAOECount = 2;
         public static int ParadoxLevelAcquired = 90;
-        public static int BlackMageLatencyCompensation = 100;
+        public static int BlackMageLatencyCompensation = 250;
             
             
         public static int SettingVersion = 13;
