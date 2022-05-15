@@ -14,10 +14,10 @@ namespace AEAssist.AI.BlackMage.GCD
         {
             // prevent redundant casting
             var lastGCDSpell = BlackMageHelper.GetLastSpell();
-            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell.Id;
+            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
 
 
-            if (bdls == SpellsDefine.Fire ||
+            if (bdls == SpellsDefine.Fire.GetSpellEntity() ||
                 lastGCDSpell == SpellsDefine.Paradox
                )
             {
