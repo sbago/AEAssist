@@ -2,6 +2,7 @@
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
+using ff14bot.Managers;
 
 namespace AEAssist.AI.Sage.GCD
 {
@@ -11,7 +12,7 @@ namespace AEAssist.AI.Sage.GCD
         {
             var phlegmaCheck = SageSpellHelper.GetPhlegma();
             if (phlegmaCheck == null) return -1;
-            var currentDistance = Core.Me.CurrentTarget.Distance();
+            var currentDistance = Core.Me.Distance(Core.Me.CurrentTarget);
             var maxDistanceToUseAbility = 8.3;
             if (currentDistance > maxDistanceToUseAbility)
             {
@@ -19,6 +20,28 @@ namespace AEAssist.AI.Sage.GCD
                                 "is greater than" + maxDistanceToUseAbility + "max range to use the ability..");
                 return -6;
             }
+            var phlegmaCharges = DataManager.GetSpellData(SpellsDefine.Phlegma).Charges;
+            var phlegmaChargesII = DataManager.GetSpellData(SpellsDefine.PhlegmaII).Charges;
+            var phlegmaChargesIII = DataManager.GetSpellData(SpellsDefine.PhlegmaIII).Charges;
+            
+            LogHelper.Debug("Current Phlegma Charge is: " + phlegmaChargesIII);
+
+            if (phlegmaCharges == 0 || phlegmaChargesII == 0 || phlegmaChargesIII == 0)
+            {
+                LogHelper.Debug("Phlegma has 0 charges meaning is not ready so skip it.");
+                return -1;
+            }
+
+            // If we are not moving check how many charges left for phlegma; don't waste it keep it for movement.
+            if (!MovementManager.IsMoving)
+            {
+                if (phlegmaCharges <= 1 || phlegmaChargesII <= 1 || phlegmaChargesIII <= 1)
+                {
+                    LogHelper.Debug("Not wasting Phlegma while standing still saving it for movement cast.");
+                    return -1;
+                }   
+            }
+            
             return 0;
         }
 

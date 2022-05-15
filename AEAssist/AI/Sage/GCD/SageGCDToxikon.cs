@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
+using ff14bot.Managers;
 
 namespace AEAssist.AI.Sage.GCD
 {
@@ -17,7 +18,21 @@ namespace AEAssist.AI.Sage.GCD
                 LogHelper.Debug("Toxikon last used skipping.");
                 return -10;
             }
-            return 0;
+
+            if (MovementManager.IsMoving)
+            {
+                LogHelper.Debug("Player is moving so going to try and use Toxikon.");
+                return 0;
+            }
+
+            var toxikonCharges = DataManager.GetSpellData(SpellsDefine.Toxikon).Charges;
+            var toxikonIICharges = DataManager.GetSpellData(SpellsDefine.ToxikonII).Charges;
+
+            if (!(toxikonCharges <= 1) && !(toxikonIICharges <= 1)) return 0;
+            LogHelper.Debug("Toxikon's Didn't pass the check, currently only got Toxikon: " + 
+                            toxikonCharges + "and ToxikonII :" + toxikonIICharges + "charges.");
+            return -4;
+
         }
 
         public async Task<SpellEntity> Run()

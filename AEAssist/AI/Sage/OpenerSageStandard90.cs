@@ -14,9 +14,24 @@ namespace AEAssist.AI.Sage
     {
         public int Check()
         {
-            /*if (!Core.Me.CurrentTarget.IsBoss() && PartyManager.NumMembers<=4)
-                return -5;*/
+            if (!Core.Me.CurrentTarget.IsBoss())
+            {
+                LogHelper.Debug("Not running Opener current target is not a boss.");
+                return -5;
+            }
 
+            if (PartyManager.NumMembers <= 4)
+            {
+                LogHelper.Debug("Not running Opener party is less than or equal to 4..");
+                return -5;
+            }
+
+            if (SageSpellHelper.GetPhlegma() == null)
+            {
+                LogHelper.Debug("Not running Opener Phlegma is not ready.");
+                return -5;
+            }
+            
             return 0;
         }
 
@@ -32,8 +47,7 @@ namespace AEAssist.AI.Sage
             Step7,
             Step8,
             Step9,
-            Step10,
-            Step11
+            Step10
         };
 
 
@@ -64,10 +78,11 @@ namespace AEAssist.AI.Sage
 
         private static void Step4(SpellQueueSlot slot)
         {
-            if (Core.Me.Distance(Core.Me.CurrentTarget) < 6)
-                slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
-            else
+            if (Core.Me.Distance(Core.Me.CurrentTarget) <= 8.3)
                 slot.SetGCD(SpellsDefine.PhlegmaIII, SpellTargetType.CurrTarget);
+            else
+                slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
+                
         }
 
 
@@ -79,10 +94,10 @@ namespace AEAssist.AI.Sage
 
         private static void Step6(SpellQueueSlot slot)
         {
-            if (Core.Me.Distance(Core.Me.CurrentTarget) < 6)
-                slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
-            else
+            if (Core.Me.Distance(Core.Me.CurrentTarget) < 8.3)
                 slot.SetGCD(SpellsDefine.PhlegmaIII, SpellTargetType.CurrTarget);
+            else
+                slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
         }
 
 
@@ -102,15 +117,8 @@ namespace AEAssist.AI.Sage
         {
             slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
         }
-
-
+        
         private static void Step10(SpellQueueSlot slot)
-        {
-            slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
-        }
-
-
-        private static void Step11(SpellQueueSlot slot)
         {
             slot.SetGCD(SpellsDefine.ToxikonII, SpellTargetType.CurrTarget);
         }
