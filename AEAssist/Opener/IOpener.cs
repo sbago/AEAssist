@@ -6,12 +6,15 @@
 // 创建日期：2022-04-14
 // -----------------------------------
 
+using System;
+using System.Collections.Generic;
+using AEAssist.AI;
+
 namespace AEAssist.Opener
 {
     public interface IOpener
     {
-        int StepCount { get; }
         int Check();
-        
+        List<Action<SpellQueueSlot>> Openers { get; }
     }
 }

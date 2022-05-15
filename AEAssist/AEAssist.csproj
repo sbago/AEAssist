@@ -320,7 +320,6 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="Opener\IOpener.cs" />
     <Compile Include="Opener\OpenerAttribute.cs" />
     <Compile Include="Opener\OpenerMgr.cs" />
-    <Compile Include="Opener\OpenerStep.cs" />
     <Compile Include="Rotations\Core\DefaultRotation.cs" />
     <Compile Include="Rotations\Core\IRotation.cs" />
     <Compile Include="Rotations\Core\RotationManager.cs" />

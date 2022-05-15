@@ -1,4 +1,6 @@
-﻿using AEAssist.Define;
+﻿using System;
+using System.Collections.Generic;
+using AEAssist.Define;
 using AEAssist.Helper;
 using AEAssist.Opener;
 using ff14bot;
@@ -10,7 +12,6 @@ namespace AEAssist.AI.Sage
     [Opener(ClassJobType.Sage, 90)]
     public class OpenerSageStandard90 : IOpener
     {
-        public int StepCount { get; } = 12;
         public int Check()
         {
             /*if (!Core.Me.CurrentTarget.IsBoss() && PartyManager.NumMembers<=4)
@@ -18,118 +19,100 @@ namespace AEAssist.AI.Sage
 
             return 0;
         }
-        
-        [OpenerStep(0)]
-        private SpellQueueSlot Step0()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.SetGCD(SpellsDefine.Eukrasia,SpellTargetType.Self); 
-            return slot;
-        }
-        
-        [OpenerStep(1)]
-        private SpellQueueSlot Step1()
+        public List<Action<SpellQueueSlot>> Openers { get; } = new List<Action<SpellQueueSlot>>()
         {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
+            Step0,
+            Step1,
+            Step2,
+            Step3,
+            Step4,
+            Step5,
+            Step6,
+            Step7,
+            Step8,
+            Step9,
+            Step10,
+            Step11
+        };
 
-            slot.SetGCD(SpellsDefine.EukrasianDosisIII,SpellTargetType.CurrTarget); 
-            return slot;
-        }
-        
-        [OpenerStep(2)]
-        private SpellQueueSlot Step2()
+
+        private static void Step0(SpellQueueSlot slot)
         {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-
-            slot.SetGCD(SpellsDefine.DosisIII,SpellTargetType.CurrTarget); 
-            return slot;
-        }
-        
-        [OpenerStep(3)]
-        private SpellQueueSlot Step3()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-
-            slot.SetGCD(SpellsDefine.DosisIII,SpellTargetType.CurrTarget); 
-            return slot;
+            slot.SetGCDQueue((SpellsDefine.Eukrasia, SpellTargetType.Self),
+                (SpellsDefine.EukrasianDosisIII, SpellTargetType.CurrTarget));
         }
 
-        [OpenerStep(4)]
-        private SpellQueueSlot Step4()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
+        private static void Step1(SpellQueueSlot slot)
+        {
+            slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
+        }
+
+
+        private static void Step2(SpellQueueSlot slot)
+        {
+            slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
+        }
+
+
+        private static void Step3(SpellQueueSlot slot)
+        {
+            slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
+        }
+
+
+        private static void Step4(SpellQueueSlot slot)
+        {
             if (Core.Me.Distance(Core.Me.CurrentTarget) < 6)
                 slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
             else
                 slot.SetGCD(SpellsDefine.PhlegmaIII, SpellTargetType.CurrTarget);
-            return slot;
         }
 
-        [OpenerStep(5)]
-        private SpellQueueSlot Step5()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.SetGCD(SpellsDefine.DosisIII,SpellTargetType.CurrTarget); 
-            return slot;
-        }
-        
-        [OpenerStep(6)]
-        private SpellQueueSlot Step6()
+        private static void Step5(SpellQueueSlot slot)
         {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
+            slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
+        }
+
+
+        private static void Step6(SpellQueueSlot slot)
+        {
             if (Core.Me.Distance(Core.Me.CurrentTarget) < 6)
                 slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
             else
                 slot.SetGCD(SpellsDefine.PhlegmaIII, SpellTargetType.CurrTarget);
-            return slot;
         }
-        
-        [OpenerStep(7)]
-        private SpellQueueSlot Step7()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.SetGCD(SpellsDefine.DosisIII,SpellTargetType.CurrTarget); 
-            return slot;
+
+        private static void Step7(SpellQueueSlot slot)
+        {
+            slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
         }
-        
-        [OpenerStep(8)]
-        private SpellQueueSlot Step8()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.SetGCD(SpellsDefine.DosisIII,SpellTargetType.CurrTarget); 
-            return slot;
+
+        private static void Step8(SpellQueueSlot slot)
+        {
+            slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
         }
-        
-        [OpenerStep(9)]
-        private SpellQueueSlot Step9()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.SetGCD(SpellsDefine.DosisIII,SpellTargetType.CurrTarget); 
-            return slot;
+
+        private static void Step9(SpellQueueSlot slot)
+        {
+            slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
         }
-        
-        [OpenerStep(10)]
-        private SpellQueueSlot Step10()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.SetGCD(SpellsDefine.DosisIII,SpellTargetType.CurrTarget); 
-            return slot;
+
+        private static void Step10(SpellQueueSlot slot)
+        {
+            slot.SetGCD(SpellsDefine.DosisIII, SpellTargetType.CurrTarget);
         }
-        
-        [OpenerStep(11)]
-        private SpellQueueSlot Step11()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
-            slot.SetGCD(SpellsDefine.ToxikonII,SpellTargetType.CurrTarget); 
-            return slot;
+
+        private static void Step11(SpellQueueSlot slot)
+        {
+            slot.SetGCD(SpellsDefine.ToxikonII, SpellTargetType.CurrTarget);
         }
     }
 }

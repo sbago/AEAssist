@@ -1,4 +1,6 @@
-﻿using AEAssist.Define;
+﻿using System;
+using System.Collections.Generic;
+using AEAssist.Define;
 using AEAssist.Helper;
 using AEAssist.Opener;
 using ff14bot;
@@ -12,7 +14,7 @@ namespace AEAssist.AI.Reaper
     {
         public int Check()
         {
-            if (!Core.Me.CurrentTarget.IsBoss() && PartyManager.NumMembers<=4)
+            if (!Core.Me.CurrentTarget.IsBoss() && PartyManager.NumMembers <= 4)
                 return -5;
             if (!AEAssist.DataBinding.Instance.Burst)
                 return -100;
@@ -27,46 +29,41 @@ namespace AEAssist.AI.Reaper
             return 0;
         }
 
-        public int StepCount => 4;
-
-        [OpenerStep(0)]
-        private SpellQueueSlot Step0()
+        public List<Action<SpellQueueSlot>> Openers { get; } = new List<Action<SpellQueueSlot>>()
         {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-            
-            slot.SetGCD(ReaperSpellHelper.GetShadowOfDeath().Id,SpellTargetType.CurrTarget); 
+            Step0,
+            Step1,
+            Step2,
+            Step3
+        };
+
+
+        private static void Step0(SpellQueueSlot slot)
+        {
+            slot.SetGCD(ReaperSpellHelper.GetShadowOfDeath().Id, SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.ArcaneCircle, SpellTargetType.Self));
-            return slot;
         }
 
-        [OpenerStep(1)]
-        private SpellQueueSlot Step1()
-        {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
 
+        private static void Step1(SpellQueueSlot slot)
+        {
             var id = ReaperSpellHelper.CanUseSoulSlice_Scythe(Core.Me.CurrentTarget).Id;
-            slot.SetGCD(id,SpellTargetType.CurrTarget); 
-            return slot;
+            slot.SetGCD(id, SpellTargetType.CurrTarget);
         }
 
-        [OpenerStep(2)]
-        private SpellQueueSlot Step2()
+
+        private static void Step2(SpellQueueSlot slot)
         {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
             var id = ReaperSpellHelper.CanUseSoulSlice_Scythe(Core.Me.CurrentTarget).Id;
-            slot.SetGCD(id,SpellTargetType.CurrTarget);
+            slot.SetGCD(id, SpellTargetType.CurrTarget);
             slot.UsePotion = true;
-            return slot;
         }
 
-        [OpenerStep(3)]
-        private SpellQueueSlot Step3()
+
+        private static void Step3(SpellQueueSlot slot)
         {
-            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-            
-            slot.SetGCD( SpellsDefine.PlentifulHarvest,SpellTargetType.CurrTarget);
+            slot.SetGCD(SpellsDefine.PlentifulHarvest, SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.Enshroud, SpellTargetType.Self));
-            return slot;
         }
     }
 }
