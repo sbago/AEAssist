@@ -42,7 +42,7 @@ namespace AEAssist.AI.Sage.GCD
                     return -10;
                 }
                 
-                if (phlegmaCharges <= 1 || phlegmaChargesII <= 1 || phlegmaChargesIII <= 1)
+                if (phlegmaCharges < 2 || phlegmaChargesII < 2 || phlegmaChargesIII < 2)
                 {
                     LogHelper.Debug("Not wasting Phlegma while standing still saving it for movement cast.");
                     return -1;
