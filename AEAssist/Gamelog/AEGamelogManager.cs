@@ -1,9 +1,12 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using AEAssist.AI;
 using AEAssist.Helper;
 using ff14bot.Enums;
 using ff14bot.Managers;
-using QuickGraph.Collections;
+using ff14bot.Objects;
 using Language = AEAssist.Language;
 
 namespace AEAssist.Gamelog
@@ -12,8 +15,10 @@ namespace AEAssist.Gamelog
     {
         public static AEGamelogManager Instance = new AEGamelogManager();
 
-        public readonly Queue<GameLog> GameLogBuffers =
-            new Queue<GameLog>();
+        public readonly QuickGraph.Collections.Queue<GameLog> GameLogBuffers =
+            new QuickGraph.Collections.Queue<GameLog>();
+
+        public Dictionary<int, string> Index2Characters = new Dictionary<int, string>();
 
         // private HashSet<int> MuteType = new HashSet<int>()
         // {
@@ -54,34 +59,54 @@ namespace AEAssist.Gamelog
             if (SettingMgr.GetSetting<GeneralSettings>().ShowGameLog)
                 LogHelper.Info($"GameLog==> MessageType:{msgType.ToString()} Content:{content}");
         }
+        
+        
 
         private void MessageRecevied(object sender, ChatEventArgs e)
         {
-            AddBuffers((int) e.ChatLogEntry.MessageType, e.ChatLogEntry.Contents);
-            var type = (ushort) e.ChatLogEntry.MessageType;
-            if (type == 185 || type == 313)
+            try
             {
-                if (e.ChatLogEntry.Contents.Contains(Language.Instance.MessageLog_CountDown_BattleStart))
+                if (e.ChatLogEntry.MessageType == MessageType.Echo && e.ChatLogEntry.Contents.Contains("EAssistGetParty"))
                 {
-                    var match = Regex.Match(e.ChatLogEntry.Contents,
-                        Language.Instance.MessageLog_CountDown_BattleStartInTime);
-              
-                    if (match.Success && int.TryParse(match.Value, out var restTime))
+                    LogHelper.Info($"{e.ChatLogEntry.MessageType} " + e.ChatLogEntry.Contents);
+                    var names = e.ChatLogEntry.Contents.Split(':')[1].Split('|');
+                    for (int i = 0; i < names.Length; i++)
                     {
-                        LogHelper.Info("StartCountDown: " + e.ChatLogEntry.Contents);
-                        CountDownHandler.Instance.SyncRestTime(restTime);
+                        LogHelper.Info($"Index: {i} Name: {names[i]}");
+                        Index2Characters[i] =  names[i];
+                    }
+                    _action?.Invoke();
+                }
+                AddBuffers((int) e.ChatLogEntry.MessageType, e.ChatLogEntry.Contents);
+                var type = (ushort) e.ChatLogEntry.MessageType;
+                if (type == 185 || type == 313)
+                {
+                    if (e.ChatLogEntry.Contents.Contains(Language.Instance.MessageLog_CountDown_BattleStart))
+                    {
+                        var match = Regex.Match(e.ChatLogEntry.Contents,
+                            Language.Instance.MessageLog_CountDown_BattleStartInTime);
+              
+                        if (match.Success && int.TryParse(match.Value, out var restTime))
+                        {
+                            LogHelper.Info("StartCountDown: " + e.ChatLogEntry.Contents);
+                            CountDownHandler.Instance.SyncRestTime(restTime);
+                        }
+
+                        GUIHelper.ShowInfo(e.ChatLogEntry.Contents, 1000, false);
                     }
 
-                    GUIHelper.ShowInfo(e.ChatLogEntry.Contents, 1000, false);
+                    // someone cancel
+                    if (e.ChatLogEntry.Contents.Contains(Language.Instance.MessageLog_CountDown_CancelBattleStart))
+                    {
+                        LogHelper.Info("CountDownEnd: " + e.ChatLogEntry.Contents);
+                        CountDownHandler.Instance.Close();
+                        GUIHelper.ShowInfo(e.ChatLogEntry.Contents, 1000, false);
+                    }
                 }
-
-                // someone cancel
-                if (e.ChatLogEntry.Contents.Contains(Language.Instance.MessageLog_CountDown_CancelBattleStart))
-                {
-                    LogHelper.Info("CountDownEnd: " + e.ChatLogEntry.Contents);
-                    CountDownHandler.Instance.Close();
-                    GUIHelper.ShowInfo(e.ChatLogEntry.Contents, 1000, false);
-                }
+            }
+            catch (Exception exception)
+            {
+                LogHelper.Error(exception.ToString());
             }
         }
 
@@ -94,6 +119,30 @@ namespace AEAssist.Gamelog
         {
             public int MsgType;
             public string Content;
+        }
+
+        private Action _action;
+        public void SayPartyLog(Action action)
+        {
+            var str = "/e AEAssistGetParty:<1>|<2>|<3>|<4>|<5>|<6>|<7>|<8>";
+            ChatManager.SendChat(str);
+            _action = action;
+        }
+
+        public GameObject GetPartyMemberByIndex(int index)
+        {
+            this.Index2Characters.TryGetValue(index, out var character);
+            LogHelper.Info($"GetIndex: {index} {character} {GameObjectManager.GameObjects?.Count()}");
+            if (!string.IsNullOrEmpty(character))
+            {
+                var gameObj = GameObjectManager.GameObjects.FirstOrDefault(v =>
+                {
+                    return v.Name == character;
+                });
+                return gameObj;
+            }
+
+            return null;
         }
     }
 }

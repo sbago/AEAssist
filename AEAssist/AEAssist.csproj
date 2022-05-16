@@ -394,6 +394,9 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="View\Overlay\BardOverlayWindow.xaml.cs">
       <DependentUpon>BardOverlayWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Overlay\Bard_Overlay2.xaml.cs">
+      <DependentUpon>Bard_Overlay2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Overlay\BlackMageOverlayWindow.xaml.cs">
       <DependentUpon>BlackMageOverlayWindow.xaml</DependentUpon>
     </Compile>
@@ -414,6 +417,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     </Compile>
     <Compile Include="View\Overlay\SamuraiOverlayWindow.xaml.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BardOverlay.cs" />
+    <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BardOverlay2.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BlackMageOverlay.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BlackMageOverlay2.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_DancerOverlay.cs" />
@@ -534,6 +538,10 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Page Include="View\GeneralSetting\UserControl_Hotkey.xaml" />
     <Page Include="View\MCHSettingView.xaml" />
     <Page Include="View\OverlayHeader.xaml" />
+    <Page Include="View\Overlay\Bard_Overlay2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Overlay\BlackMageOverlayWindow.xaml" />
     <Page Include="View\Overlay\BlackMage_Overlay2.xaml">
       <SubType>Designer</SubType>

@@ -56,7 +56,8 @@ namespace AEAssist.Define
             Shirk,
             Sprint,
             Triplecast, //new
-            AetherialManipulation
+            AetherialManipulation,
+            Troubadour,
         };
 
         // DPS Role

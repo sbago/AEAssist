@@ -1,0 +1,78 @@
+{
+  "_t" : "TriggerLine",
+  "Author" : "AE",
+  "ConfigVersion" : { "$numberInt" : "3" },
+  "CurrZoneId" : { "$numberInt" : "0" },
+  "Name" : "P3S Bard",
+  "SubZoneId" : { "$numberInt" : "0" },
+  "TargetJob" : "Bard",
+  "Triggers" : [{
+      "_id" : "1",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchAOE",
+          "value" : false
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "0" }
+        }]
+    }, {
+      "_id" : "2",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchBurst",
+          "value" : false
+        }, {
+          "_t" : "TriggerAction_SongList",
+          "Durations" : [{ "$numberInt" : "43" }, { "$numberInt" : "45" }],
+          "SongIndex" : [{ "$numberInt" : "1" }, { "$numberInt" : "2" }]
+        }, {
+          "_t" : "TriggerAction_SwitchApex",
+          "value" : true
+        }, {
+          "_t" : "TriggerAction_SwitchAOE",
+          "value" : true
+        }, {
+          "_t" : "TriggerAction_SwitchDOT",
+          "value" : false
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "155" }
+        }]
+    }, {
+      "_id" : "3",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchDOT",
+          "value" : true
+        }, {
+          "_t" : "TriggerAction_SwitchApex",
+          "value" : false
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterOtherTrigger",
+          "Time" : { "$numberInt" : "40" },
+          "TriggerId" : "2"
+        }]
+    }, {
+      "_id" : "4",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchBurst",
+          "value" : true
+        }, {
+          "_t" : "TriggerAction_SwitchApex",
+          "value" : true
+        }, {
+          "_t" : "TriggerAction_SwitchSong",
+          "index" : { "$numberInt" : "3" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterOtherTrigger",
+          "Time" : { "$numberInt" : "20" },
+          "TriggerId" : "3"
+        }, {
+          "_t" : "TriggerCond_EnemyInLOS",
+          "delayTime" : { "$numberInt" : "0" },
+          "name" : "10720"
+        }]
+    }]
+}

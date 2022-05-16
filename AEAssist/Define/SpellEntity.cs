@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AEAssist.Gamelog;
 using AEAssist.Helper;
 using Buddy.Coroutines;
 using ff14bot;
@@ -106,16 +107,8 @@ namespace AEAssist.Define
                 case SpellTargetType.PM8:
                     if (!PartyManager.IsInParty)
                         return null;
-                    var index = (int) SpellTargetType - 1;
-                    var count = 0;
-                    foreach (var v in PartyManager.AllMembers)
-                    {
-                        if (count == index) return v.BattleCharacter;
-
-                        count++;
-                    }
-
-                    break;
+                    var chara = AEGamelogManager.Instance.GetPartyMemberByIndex((int)(SpellTargetType) - 1);
+                    return chara as BattleCharacter;
                 case SpellTargetType.SpecifyTarget:
                     return this.specifyTarget;
             }

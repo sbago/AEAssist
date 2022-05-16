@@ -7,11 +7,11 @@ using ff14bot.Enums;
 namespace AEAssist.View.Overlay.UIComponent
 {
     [Job(ClassJobType.Bard)]
-    public class OverlayUIComponent_BardOverlay : OverlayUIComponent
+    public class OverlayUIComponent_BardOverlay2 : OverlayUIComponent
     {
         private OverlayControl _control;
 
-        public OverlayUIComponent_BardOverlay() : base(true)
+        public OverlayUIComponent_BardOverlay2() : base(true)
         {
         }
 
@@ -22,7 +22,7 @@ namespace AEAssist.View.Overlay.UIComponent
                 if (_control != null)
                     return _control;
 
-                var overlayUc = new BardOverlayWindow();
+                var overlayUc = new Bard_Overlay2();
 
                 _control = new OverlayControl
                 {
@@ -40,8 +40,6 @@ namespace AEAssist.View.Overlay.UIComponent
                 _control.MouseLeftButtonUp += (sender, args) => { };
 
                 _control.MouseLeftButtonDown += (sender, args) => { _control.DragMove(); };
-                
-
                 return _control;
             }
         }
