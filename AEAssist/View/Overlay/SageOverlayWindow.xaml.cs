@@ -158,9 +158,5 @@ namespace AEAssist.View.Overlay
         {
             OverlayManager.OverlayManager.Instance.Close();
         }
-        
-        
-        
-        
     }
 }

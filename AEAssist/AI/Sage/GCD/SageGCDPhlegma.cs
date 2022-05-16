@@ -35,13 +35,19 @@ namespace AEAssist.AI.Sage.GCD
             // If we are not moving check how many charges left for phlegma; don't waste it keep it for movement.
             if (!MovementManager.IsMoving)
             {
-                if (phlegmaCharges <= 1 || phlegmaChargesII <= 1 || phlegmaChargesIII <= 1)
+                var battleData = AIRoot.GetBattleData<BattleData>();
+                if (battleData.lastGCDSpell == SageSpellHelper.GetPhlegma())
+                {
+                    LogHelper.Debug("Phlegma last used skipping.");
+                    return -10;
+                }
+                
+                if (phlegmaCharges < 2 || phlegmaChargesII < 2 || phlegmaChargesIII < 2)
                 {
                     LogHelper.Debug("Not wasting Phlegma while standing still saving it for movement cast.");
                     return -1;
                 }   
             }
-            
             return 0;
         }
 
