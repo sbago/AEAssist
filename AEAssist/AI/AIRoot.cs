@@ -203,6 +203,29 @@ namespace AEAssist.AI
        
             if (await AISpellQueueMgr.Instance.UseSpellQueue()) return false;
 
+            var spellQueue = AIRoot.GetBattleData<SpellQueueData>();
+            if (battleData.NextSpellSlot != null)
+            {
+                if (battleData.SlotRetryEndTime < TimeHelper.Now())
+                {
+                    battleData.NextSpellSlot = null;
+                }
+
+                
+                if (battleData.NextSpellSlot != null)
+                {
+                    spellQueue.Add(battleData.NextSpellSlot);
+                    battleData.NextSpellSlot = null;
+                }
+
+            }
+
+            if (await spellQueue.ApplySlot())
+            {
+                return false;
+            }
+
+
             // boss is time to kill (default is 6s),so toggle the FinalBurst
             if (TTKHelper.CheckFinalBurst(Core.Me.CurrentTarget as Character)) 
                 AEAssist.DataBinding.Instance.FinalBurst = true;
@@ -228,9 +251,11 @@ namespace AEAssist.AI
                 if (battleData.NextGcdSpellId != null)
                 {
                     ret = battleData.NextGcdSpellId;
+                    LogHelper.Debug($"NextGcd: {ret.Id} {ret.SpellData.LocalizedName}  {ret.IsUnlock()}");
                     if (ret.SpellData != null && ret.IsUnlock())
                     {
-                        if (ret.CanCastGCD())
+                        LogHelper.Debug($"NextGcd: {ret.Id} {ret.SpellData.LocalizedName} CanCast:  {ret.CanCastGCD()}");
+                        if (ret.CanCastGCD()>=0)
                         {
                             if (!await ret.DoGCD())
                                 ret = null;
@@ -250,7 +275,7 @@ namespace AEAssist.AI
 
                     if (ret == null && battleData.GCDRetryEndTime < TimeHelper.Now())
                     {
-                        LogHelper.Debug($"RetryEndTime : NextGCD {battleData.NextGcdSpellId}");
+                        LogHelper.Debug($"RetryEndTime : NextGCD {battleData.NextGcdSpellId?.Id}");
                         battleData.NextGcdSpellId = null;
                     }
                 }

@@ -130,7 +130,7 @@ namespace AEAssist.Define
             var target = GetTarget();
             if (target == null)
                 return false;
-            LogHelper.Debug($"11111111111  {target.Name}");
+            LogHelper.Debug($"11111111111  {Id}  {target.Name}");
             return await SpellHelper.CastGCD(SpellData, target);
         }
 
@@ -174,9 +174,9 @@ namespace AEAssist.Define
             return false;
         }
 
-        public bool CanCastGCD()
+        public int CanCastGCD()
         {
-            return SpellHelper.CanCastGCD(SpellData, GetTarget()) > 0;
+            return SpellHelper.CanCastGCD(SpellData, GetTarget());
         }
 
         public bool CanCastAbility()
