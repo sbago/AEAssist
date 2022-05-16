@@ -40,6 +40,8 @@ namespace AEAssist
         public string Toggle_AutoSwitchTriggerLine { get; set; }
         public string Toggle_KnockAgainstFirst { get; set; }
 
+        public string Toggle_UseMeikyoShisui { get; set; }
+
         public string Button_ReloadTriggerLine { get; set; }
 
         public string Toggle_EarlyDecisionMode { get; set; }

@@ -3,6 +3,7 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Objects;
+using ff14bot.Managers;
 
 namespace AEAssist.AI.Samurai.GCD
 {
@@ -13,9 +14,16 @@ namespace AEAssist.AI.Samurai.GCD
             if (Core.Me.HasAura(AurasDefine.Kaiten))
             {
                 var ta = Core.Me.CurrentTarget as Character;
-                if (Core.Me.HasAura(AurasDefine.OgiReady))
-                    //if (SpellsDefine.KaeshiSetsugekka.Cooldown.TotalMilliseconds <= 65 && ta.HasMyAura(AurasDefine.Higanbana))
+                if (Core.Me.HasAura(AurasDefine.OgiReady) && ta.HasAura(AurasDefine.Higanbana))
+                {
+                    if (SamuraiSpellHelper.SenCounts() == 0 && ta.GetAuraById(AurasDefine.Higanbana).TimespanLeft.TotalMilliseconds < 11000)
+                        return -3;
+                    if (ta.GetAuraById(AurasDefine.Higanbana).TimespanLeft.TotalMilliseconds < 4000)
+                        return -4;
+                    if (DataManager.GetSpellData(SpellsDefine.KaeshiSetsugekka).Cooldown.TotalMilliseconds < 70000)
+                        return -2;
                     return 1;
+                }
             }
 
             return -1;

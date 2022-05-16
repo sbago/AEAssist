@@ -11,19 +11,9 @@ namespace AEAssist.AI.Samurai.GCD
         public int Check(SpellEntity lastSpell)
         {
             if (Core.Me.HasAura(AurasDefine.Kaiten))
-            {
-                var ta = Core.Me.CurrentTarget as Character;
-                if (Core.Me.HasAura(AurasDefine.OgiReady) &&
-                    SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalMilliseconds != 0 &&
-                    ta.HasMyAura(AurasDefine.Higanbana))
-                    return -1;
-                return 10;
-            }
-
-            var target = Core.Me.CurrentTarget as Character;
-            if (target.HasAura(AurasDefine.Higanbana))
-                return -2;
-            return -1;
+                if(SamuraiSpellHelper.SenCounts() == 3 || SamuraiSpellHelper.SenCounts() == 1)
+                    return 10;
+            return -2;
         }
 
         public async Task<SpellEntity> Run()
@@ -33,7 +23,7 @@ namespace AEAssist.AI.Samurai.GCD
             if (await spell.DoGCD())
             {
                 if (spell.Id == SpellsDefine.MidareSetsugekka &&
-                    SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalMilliseconds < 62100)
+                    SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalMilliseconds < 64000)
                     AIRoot.GetBattleData<SamuraiBattleData>().KaeshiSpell = KaeshiSpell.MidareSetsugekka;
                 return spell;
             }

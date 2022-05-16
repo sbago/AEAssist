@@ -107,6 +107,7 @@ namespace AEAssist
             UseSong = true;
             UseEnshroud = true;
             FinalBurst = false;
+            UseMeikyoShisui = true;
             SageSettings.LucidDreamingToggle = true;
             WildfireNoDelay = SettingMgr.GetSetting<MCHSettings>().WildfireFirst;
         }
@@ -146,6 +147,12 @@ namespace AEAssist
         public bool UseEnshroud { get; set; } = true;
 
         public bool DoubleEnshroudPrefer { get; set; } = true;
+
+        #endregion
+
+        #region Samurai
+
+        public bool UseMeikyoShisui { get; set; } = true;
 
         #endregion
     }

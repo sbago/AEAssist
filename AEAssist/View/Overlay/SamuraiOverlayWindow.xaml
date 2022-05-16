@@ -69,26 +69,31 @@
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
                                   IsChecked="{Binding UseTrueNorth,Mode=TwoWay}" />
 
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="{Binding Language.Toggle_UseMeikyoShisui}"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding UseMeikyoShisui,Mode=TwoWay}" />
+
                     </WrapPanel>
                     <WrapPanel Margin="10">
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseThirdEye"
                                 Click="UseThirdEye_OnClick">
 
-                            <Image Source="../../Resources/Spells/ThirdEye.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/Samurai/ThirdEye.png" Stretch="Uniform" />
 
                         </Button>
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseArmsLength"
                                 Click="UseArmsLength_OnClick">
 
-                            <Image Source="../../Resources/Spells/ArmsLength.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/MeleeDPSRoleActions/ArmsLength.png" Stretch="Uniform" />
 
                         </Button>
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseFeint" Click="UseFeint_OnClick">
 
-                            <Image Source="../../Resources/Spells/Feint.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/MeleeDPSRoleActions/Feint.png" Stretch="Uniform" />
 
                         </Button>
                         <Button Style="{StaticResource ImageButton}"
@@ -101,7 +106,7 @@
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseTrueNorth"
                                 Click="UseTrueNorth_OnClick">
 
-                            <Image Source="../../Resources/Spells/TrueNorth.png" Stretch="Uniform" />
+                            <Image Source="../../Resources/Spells/MeleeDPSRoleActions/TrueNorth.png" Stretch="Uniform" />
 
                         </Button>
                         <Button Style="{StaticResource ImageButton}"

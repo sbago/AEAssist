@@ -23,8 +23,8 @@ namespace AEAssist.AI.Samurai
         {
             new SamuraiAbility_HissatsuKaiten(),
             new SamuraiAbility_Ikishoten(),
-            new SamuraiAbility_HissatsuShinten(),
             new SamuraiAbility_MeikyoShisui(),
+            new SamuraiAbility_HissatsuShinten(),
             new SamuraiAbility_Shoha(),
             new SamuraiAbility_HissatsuSenei()
         };

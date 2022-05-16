@@ -3,6 +3,7 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Objects;
+using ff14bot.Managers;
 
 namespace AEAssist.AI.Samurai.Ability
 {
@@ -10,29 +11,30 @@ namespace AEAssist.AI.Samurai.Ability
     {
         public int Check(SpellEntity lastSpell)
         {
-            var ta = Core.Me.CurrentTarget as Character;
-            if (Core.Me.HasAura(AurasDefine.Kaiten))
-                return -1;
-            if (Core.Me.HasAura(AurasDefine.OgiReady) &&
-                SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalMilliseconds != 0 &&
-                ta.HasAura(AurasDefine.Higanbana))
+            if (Core.Me.HasMyAura(AurasDefine.Kaiten))
+                return -99;
+            var Ta=Core.Me.CurrentTarget as Character;
+            var sen = SamuraiSpellHelper.SenCounts();
+            if (sen == 1 && Ta.HasMyAura(AurasDefine.Higanbana) && Ta.GetAuraById(AurasDefine.Higanbana).TimespanLeft.TotalMilliseconds < 4000)
                 return 1;
 
-            if (SamuraiSpellHelper.SenCounts() == 0) return -1;
-
-            if (SamuraiSpellHelper.SenCounts() == 1)
+            if (sen == 3)
             {
-                if (SpellsDefine.KaeshiSetsugekka.GetSpellEntity().Cooldown.TotalSeconds == 0)
-                    return -2;
-
-                if (ta.HasMyAura(AurasDefine.Higanbana) && ta.GetAuraById(AurasDefine.Higanbana)?.TimeLeft > 3)
+                if (DataManager.GetSpellData(SpellsDefine.KaeshiSetsugekka).Cooldown.TotalMilliseconds > 64000 &&
+                    DataManager.GetSpellData(SpellsDefine.KaeshiSetsugekka).Cooldown.TotalMilliseconds < 66000)
                     return -1;
+                return 2;
             }
 
-            if (SamuraiSpellHelper.SenCounts() == 2)
-                return -5;
-
-            return 10;
+            if (Core.Me.HasMyAura(AurasDefine.OgiReady))
+            {
+                if (DataManager.GetSpellData(SpellsDefine.KaeshiSetsugekka).Cooldown.TotalMilliseconds < 70000)
+                    return -2;
+                if (SamuraiSpellHelper.SenCounts() == 0 && Ta.GetAuraById(AurasDefine.Higanbana).TimespanLeft.TotalMilliseconds < 11000)
+                    return -3;
+                return 3;
+            }
+            return -10;
         }
 
         public async Task<SpellEntity> Run()

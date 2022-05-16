@@ -29,7 +29,7 @@
   "Toggle_Potion": "Potion",
   "Toggle_Apex": "Apex",
   "Toggle_ActiveAttack": "Pull",
-  "Toggle_LucidDreaming" : "Lucid Dreaming",
+  "Toggle_LucidDreaming": "Lucid Dreaming",
   "Toggle_PreferDoubleEnshroud": "2*Enshroud",
   "Toggle_UseHarpe": "Harpe",
   "Toggle_UseTrueNorthWhenMissActionDir": "TrueNorth",
@@ -70,7 +70,7 @@
   "Btn_Close": "Hide",
   "Textbox_Bard_DotTimeLeft": "DOT time to refresh",
   "Textbox_Sage_DotTimeLeft": "DOT time to refresh",
-  "TextBox_Lucid_Dreaming" : "Lucid Dreaming to refresh %",
+  "TextBox_Lucid_Dreaming": "Lucid Dreaming to refresh %",
   "Label_DexChoosePotion": "Dex Potion",
   "Label_StrChoosePotion": "Str Potion",
   "Label_MindChoosePotion": "Mind Potion",
@@ -92,5 +92,6 @@
   "Content_ResetSetting": "The old settings have been reset.",
   "Button_ReloadTriggerLine": "Reload",
   "TabItem_TriggerLine": "TriggerLine",
-  "Toggle_AutoSwitchTriggerLine": "Auto switch"
+  "Toggle_AutoSwitchTriggerLine": "Auto switch",
+  "Toggle_UseMeikyoShisui": "MeikyoShisui"
 }

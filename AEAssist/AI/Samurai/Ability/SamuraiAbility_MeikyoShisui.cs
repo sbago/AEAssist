@@ -13,6 +13,8 @@ namespace AEAssist.AI.Samurai.Ability
         {
             if (Core.Me.HasAura(AurasDefine.MeikyoShisui))
                 return -13;
+            if (Core.Me.HasAura(AurasDefine.Kaiten))
+                return -19;
             if (SpellsDefine.MeikyoShisui.GetSpellEntity().Cooldown.TotalMilliseconds > 55000)
                 return -14;
             if (SamuraiSpellHelper.SenCounts() == 3)
@@ -26,6 +28,13 @@ namespace AEAssist.AI.Samurai.Ability
             {
                 if (ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Ka) || ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Getsu))
                     return -18;
+                if (DataManager.GetSpellData(SpellsDefine.KaeshiSetsugekka).Cooldown.TotalMilliseconds < 78000)
+                {
+                    return -12;
+                }
+                var spell = DataManager.GetSpellData(SpellsDefine.KaeshiSetsugekka);
+                string msg = spell.LocalizedName + " Cooldown " + spell.Cooldown.TotalMilliseconds.ToString();
+                LogHelper.Debug(msg);
                 return 2;
             }
             return -1;
