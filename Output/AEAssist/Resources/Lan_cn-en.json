@@ -1,8 +1,0 @@
-{
-  "_t": "Language",
-  "LanType": "cn-en",
-  "LanVersion": "2",
-  "MessageLog_CountDown_BattleStart": "Battle commencing in",
-  "MessageLog_CountDown_BattleStartInTime": "[0-9]+",
-  "MessageLog_CountDown_CancelBattleStart": "Countdown canceled"
-}

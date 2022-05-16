@@ -446,6 +446,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Content Include="Resources\Lan_zh-CN.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Spells\Sage\Kerachole.png" />
     <Resource Include="Resources\Spells\HealerRoleActions\Esuna.png" />
     <Resource Include="Resources\Spells\HealerRoleActions\LucidDreaming.png" />
     <Resource Include="Resources\Spells\HealerRoleActions\Repose.png" />
