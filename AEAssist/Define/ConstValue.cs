@@ -21,7 +21,8 @@
         public static int BlackMageAOECount = 2;
         public static int ParadoxLevelAcquired = 90;
         public static int BlackMageLatencyCompensation = 250;
-            
+
+        public static int DancerAOECount = 2;
             
         public static int SettingVersion = 13;
     }
