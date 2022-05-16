@@ -55,7 +55,8 @@ namespace AEAssist
 
         public double OverlayScale_X { get; set; } = 1.0f;
         public double OverlayScale_Y { get; set; } = 1.0f;
-        
+
+        public string LanguagePrefer { get; set; }
 
         public void Reset()
         {
@@ -83,6 +84,7 @@ namespace AEAssist
             OverlayScale_X = 1;
             OverlayScale_Y = 1;
             UseOpener = true;
+            LanguagePrefer = string.Empty;
         }
 
         public void OnLoad()

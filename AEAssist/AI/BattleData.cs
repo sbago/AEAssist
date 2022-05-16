@@ -92,16 +92,30 @@ namespace AEAssist.AI
             set
             {
                 _NextGcdSpellId = value;
+                LogHelper.Debug("SetNextGcd:" + value?.Id);
                 if (_NextGcdSpellId != null) GCDRetryEndTime = TimeHelper.Now() + 6000;
+            }
+        }
+        
+        public SpellQueueSlot _NextSpellSlot;
+
+        public SpellQueueSlot NextSpellSlot
+        {
+            get => _NextSpellSlot;
+            set
+            {
+                _NextSpellSlot = value;
+                if (_NextSpellSlot != null) SlotRetryEndTime = TimeHelper.Now() + 6000;
             }
         }
 
         public IAISpellQueue CurrApply { get; set; }
-        public SpellQueueSlot ApplySlot;
+        
         public int ApplyIndex = 0;
 
         public long GCDRetryEndTime;
         public long AbilityRetryEndTime;
+        public long SlotRetryEndTime;
 
         #endregion
 

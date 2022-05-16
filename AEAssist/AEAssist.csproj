@@ -208,6 +208,12 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\BlackMage\SpellQueue\SpellQueue_DespairCombo.cs" />
     <Compile Include="AI\Dancer\DancerRotation.cs" />
     <Compile Include="AI\AISpellQueueMgr.cs" />
+    <Compile Include="AI\Dancer\Dancer_AIPriority.cs" />
+    <Compile Include="AI\Dancer\GCD\DancerGCD_BaseGCD.cs" />
+    <Compile Include="AI\Dancer\DancerSpellHelper.cs" />
+    <Compile Include="AI\Dancer\DancerBattleData.cs" />
+    <Compile Include="AI\Dancer\GCD\DancerGCD_StandardStep.cs" />
+    <Compile Include="AI\Dancer\GCD\DancerGCD_TechnicalStep.cs" />
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_Hypercharge.cs" />
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UnderHyperChargetGCD.cs" />
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UseBattery.cs" />
@@ -329,6 +335,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="Rotations\Core\RotationManager.cs" />
     <Compile Include="Rotations\JobAttribute.cs" />
     <Compile Include="Setting\Setting\BlackMageSetting.cs" />
+    <Compile Include="Setting\Setting\DancerSetting.cs" />
     <Compile Include="Setting\Setting\HotkeySetting.cs" />
     <Compile Include="Setting\Setting\MCHSettings.cs" />
     <Compile Include="Setting\Setting\NinjaSetting.cs" />
@@ -676,6 +683,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <PackageReference Include="System.ObjectModel" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AI\Dancer\Ability" />
     <Folder Include="Resources\Spells\MagicalRangedDPSRoleActions" />
     <Folder Include="Resources\Spells\TankRoleActions" />
   </ItemGroup>
