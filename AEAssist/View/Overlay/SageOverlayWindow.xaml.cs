@@ -27,12 +27,13 @@ namespace AEAssist.View.Overlay
             }
         }
         
-        // surecast
+        // Surecast
         private void UseSureCast_OnClick(object sender, RoutedEventArgs e)
         {
             AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Surecast.GetSpellEntity();
         }
         
+        // Sprint
         private void UseSprint_OnClick(object sender, RoutedEventArgs e)
         {
             AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Sprint.GetSpellEntity();
@@ -44,6 +45,104 @@ namespace AEAssist.View.Overlay
             AIRoot.GetBattleData<BattleData>().NextAbilityUsePotion = true;
         }
         
+        // E.Diagnosis
+        private void UseEukrasianDiagnosis_OnClick(object sender, RoutedEventArgs e)
+        {
+            // TODO: wait for AE to implement a method to use E.Diagnosis on target.
+            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.Eukrasia.GetSpellEntity();
+            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.EukrasianDiagnosis.GetSpellEntity();
+        }
+        
+        // E.Prognosis
+        private void UseEukrasianPrognosis_OnClick(object sender, RoutedEventArgs e)
+        {
+            // TODO: wait for AE to implement a method to use E.Prognosis
+            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.Eukrasia.GetSpellEntity();
+            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.EukrasianPrognosis.GetSpellEntity();
+        }
+        
+        // Haima
+        private void UseHaima_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Haima.GetSpellEntity();
+        }
+        
+        // Holos
+        private void UseHolos_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Holos.GetSpellEntity();
+        }
+        
+        // Icarus
+        private void UseIcarus_OnClick(object sender, RoutedEventArgs e)
+        {
+            //TODO: find Icarus spell id.
+            // AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine..GetSpellEntity();
+        }
+        
+        // Ixochole
+        private void UseIxochole_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Ixochole.GetSpellEntity();
+        }
+        
+        // Krasis
+        private void UseKrasis_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Krasis.GetSpellEntity();
+        }
+        
+        // Panhaima
+        private void UsePanhaima_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Panhaima.GetSpellEntity();
+        }
+        
+        // Pepsi
+        private void UsePepsi_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Pepsis.GetSpellEntity();
+        }
+        
+        // PhysisII
+        private void UsePhysisII_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.PhysisII.GetSpellEntity();
+        }
+        
+        // Pneuma
+        private void UsePneuma_OnClick(object sender, RoutedEventArgs e)
+        {
+            // TODO: Pneuma Doesn't work for some reason...
+            // Use Pneuma on current target.
+            LogHelper.Debug("trying to use Pneuma next");
+            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.Pneuma.GetSpellEntity();
+        }
+        
+        // Rhizomata
+        private void UseRhizomata_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Rhizomata.GetSpellEntity();
+        }
+        
+        // Taurochole
+        private void UseTaurochole_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Taurochole.GetSpellEntity();
+        }
+        
+        // Zoe
+        private void UseZoe_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Zoe.GetSpellEntity();
+        }
+        
+        // Kerachole
+        private void UseKerachole_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Kerachole.GetSpellEntity();
+        }
+        
         private void Expander_OnMouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed) DragMove?.Invoke();
@@ -53,6 +152,8 @@ namespace AEAssist.View.Overlay
         {
             OverlayManager.OverlayManager.Instance.Close();
         }
+        
+        
         
         
     }
