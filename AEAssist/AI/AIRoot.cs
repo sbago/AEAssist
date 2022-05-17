@@ -119,52 +119,7 @@ namespace AEAssist.AI
             }
 
             _cleared = false;
-
-            if (!Core.Me.HasTarget || !Core.Me.CurrentTarget.CanAttack)
-            {
-                if (CanNotice("key1", 1000))
-                    GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_NoTarget, 500);
-
-                await RotationManager.Instance.NoTarget();
-                
-                return false;
-            }
-
-            if (!((Character) Core.Me.CurrentTarget).HasTarget && !CountDownHandler.Instance.CanDoAction
-                                                               && !AEAssist.DataBinding.Instance.AutoAttack)
-            {
-                if (CanNotice("key2", 1000))
-                    GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_CanAttack, 500);
-                return false;
-            }
-
             var battleData = GetBattleData<BattleData>();
-            if (Core.Me.InCombat)
-            {
-                if (ClearBattleData) battleData.BattleStartTime = timeNow;
-
-                ClearBattleData = false;
-            }
-
-            if (battleData.NextAbilitySpellId != null && battleData.AbilityRetryEndTime < TimeHelper.Now())
-            {
-                LogHelper.Debug($"RetryEndTime : NextAbility {battleData.NextAbilitySpellId}");
-                battleData.NextAbilitySpellId = null;
-            }
-
-            if (SettingMgr.GetSetting<GeneralSettings>().AutoInterrupt)
-            {
-                var battleCharacter = Core.Me.CurrentTarget as BattleCharacter;
-                if (battleCharacter.IsCasting && battleCharacter.SpellCastInfo.Interruptible)
-                {
-                    var spell = SpellHelper.GetInterruptSpell(Core.Me.CurrentJob);
-                    if (spell != 0 && spell.IsReady())
-                    {
-                        battleData.NextAbilitySpellId = spell.GetSpellEntity();
-                    }
-                }
-            }
-
             if (battleData.NextAbilitySpellId != null)
             {
                 if (SettingMgr.GetSetting<GeneralSettings>().NextAbilityFirst
@@ -198,10 +153,78 @@ namespace AEAssist.AI
                 }
             }
 
+            if (!Core.Me.HasTarget || !Core.Me.CurrentTarget.CanAttack)
+            {
+                if (CanNotice("key1", 1000))
+                    GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_NoTarget, 500);
+
+                await RotationManager.Instance.NoTarget();
+                
+                return false;
+            }
+
+            if (!((Character) Core.Me.CurrentTarget).HasTarget && !CountDownHandler.Instance.CanDoAction
+                                                               && !AEAssist.DataBinding.Instance.AutoAttack)
+            {
+                if (CanNotice("key2", 1000))
+                    GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_CanAttack, 500);
+                return false;
+            }
+
+           
+            if (Core.Me.InCombat)
+            {
+                if (ClearBattleData) battleData.BattleStartTime = timeNow;
+
+                ClearBattleData = false;
+            }
+
+            if (battleData.NextAbilitySpellId != null && battleData.AbilityRetryEndTime < TimeHelper.Now())
+            {
+                LogHelper.Debug($"RetryEndTime : NextAbility {battleData.NextAbilitySpellId}");
+                battleData.NextAbilitySpellId = null;
+            }
+
+            if (SettingMgr.GetSetting<GeneralSettings>().AutoInterrupt)
+            {
+                var battleCharacter = Core.Me.CurrentTarget as BattleCharacter;
+                if (battleCharacter.IsCasting && battleCharacter.SpellCastInfo.Interruptible)
+                {
+                    var spell = SpellHelper.GetInterruptSpell(Core.Me.CurrentJob);
+                    if (spell != 0 && spell.IsReady())
+                    {
+                        battleData.NextAbilitySpellId = spell.GetSpellEntity();
+                    }
+                }
+            }
+
             if (await OpenerMgr.Instance.UseOpener(Core.Me.CurrentJob)) return false;
 
        
             if (await AISpellQueueMgr.Instance.UseSpellQueue()) return false;
+
+            var spellQueue = AIRoot.GetBattleData<SpellQueueData>();
+            if (battleData.NextSpellSlot != null)
+            {
+                if (battleData.SlotRetryEndTime < TimeHelper.Now())
+                {
+                    battleData.NextSpellSlot = null;
+                }
+
+                
+                if (battleData.NextSpellSlot != null)
+                {
+                    spellQueue.Add(battleData.NextSpellSlot);
+                    battleData.NextSpellSlot = null;
+                }
+
+            }
+
+            if (await spellQueue.ApplySlot())
+            {
+                return false;
+            }
+
 
             // boss is time to kill (default is 6s),so toggle the FinalBurst
             if (TTKHelper.CheckFinalBurst(Core.Me.CurrentTarget as Character)) 
@@ -228,9 +251,11 @@ namespace AEAssist.AI
                 if (battleData.NextGcdSpellId != null)
                 {
                     ret = battleData.NextGcdSpellId;
+                    LogHelper.Debug($"NextGcd: {ret.Id} {ret.SpellData.LocalizedName}  {ret.IsUnlock()}");
                     if (ret.SpellData != null && ret.IsUnlock())
                     {
-                        if (ret.CanCastGCD())
+                        LogHelper.Debug($"NextGcd: {ret.Id} {ret.SpellData.LocalizedName} CanCast:  {ret.CanCastGCD()}");
+                        if (ret.CanCastGCD()>=0)
                         {
                             if (!await ret.DoGCD())
                                 ret = null;
@@ -250,7 +275,7 @@ namespace AEAssist.AI
 
                     if (ret == null && battleData.GCDRetryEndTime < TimeHelper.Now())
                     {
-                        LogHelper.Debug($"RetryEndTime : NextGCD {battleData.NextGcdSpellId}");
+                        LogHelper.Debug($"RetryEndTime : NextGCD {battleData.NextGcdSpellId?.Id}");
                         battleData.NextGcdSpellId = null;
                     }
                 }

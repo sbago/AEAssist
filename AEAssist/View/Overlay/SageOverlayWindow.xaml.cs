@@ -49,16 +49,22 @@ namespace AEAssist.View.Overlay
         private void UseEukrasianDiagnosis_OnClick(object sender, RoutedEventArgs e)
         {
             // TODO: wait for AE to implement a method to use E.Diagnosis on target.
-            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.Eukrasia.GetSpellEntity();
-            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.EukrasianDiagnosis.GetSpellEntity();
+            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
+            slot.SetGCDQueue((SpellsDefine.Eukrasia,SpellTargetType.Self),
+                (SpellsDefine.EukrasianDiagnosis,SpellTargetType.CurrTarget));
+            AIRoot.GetBattleData<BattleData>().NextSpellSlot = slot;
+
         }
         
         // E.Prognosis
         private void UseEukrasianPrognosis_OnClick(object sender, RoutedEventArgs e)
         {
             // TODO: wait for AE to implement a method to use E.Prognosis
-            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.Eukrasia.GetSpellEntity();
-            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.EukrasianPrognosis.GetSpellEntity();
+            var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
+            slot.SetGCDQueue((SpellsDefine.Eukrasia,SpellTargetType.Self),
+                (SpellsDefine.EukrasianPrognosis,SpellTargetType.Self));
+            AIRoot.GetBattleData<BattleData>().NextSpellSlot = slot;
+
         }
         
         // Haima
@@ -152,9 +158,5 @@ namespace AEAssist.View.Overlay
         {
             OverlayManager.OverlayManager.Instance.Close();
         }
-        
-        
-        
-        
     }
 }

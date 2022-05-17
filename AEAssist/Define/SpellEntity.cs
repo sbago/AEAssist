@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AEAssist.Gamelog;
 using AEAssist.Helper;
 using Buddy.Coroutines;
 using ff14bot;
@@ -106,16 +107,8 @@ namespace AEAssist.Define
                 case SpellTargetType.PM8:
                     if (!PartyManager.IsInParty)
                         return null;
-                    var index = (int) SpellTargetType - 1;
-                    var count = 0;
-                    foreach (var v in PartyManager.AllMembers)
-                    {
-                        if (count == index) return v.BattleCharacter;
-
-                        count++;
-                    }
-
-                    break;
+                    var chara = AEGamelogManager.Instance.GetPartyMemberByIndex((int)(SpellTargetType) - 1);
+                    return chara as BattleCharacter;
                 case SpellTargetType.SpecifyTarget:
                     return this.specifyTarget;
             }
@@ -130,7 +123,7 @@ namespace AEAssist.Define
             var target = GetTarget();
             if (target == null)
                 return false;
-            LogHelper.Debug($"11111111111  {target.Name}");
+            LogHelper.Debug($"11111111111  {Id}  {target.Name}");
             return await SpellHelper.CastGCD(SpellData, target);
         }
 
@@ -174,9 +167,9 @@ namespace AEAssist.Define
             return false;
         }
 
-        public bool CanCastGCD()
+        public int CanCastGCD()
         {
-            return SpellHelper.CanCastGCD(SpellData, GetTarget()) > 0;
+            return SpellHelper.CanCastGCD(SpellData, GetTarget());
         }
 
         public bool CanCastAbility()

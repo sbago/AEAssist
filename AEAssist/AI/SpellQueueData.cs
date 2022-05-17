@@ -157,8 +157,8 @@ namespace AEAssist.AI
                     var spellData = DataManager.GetSpellData(slot.GetGCDSpell());
                     if (slot.GetGCDSpell() == 0 || spellData == null)
                     {
-                        ObjectPool.Instance.Return(Queue.Dequeue());
-                        return await ApplySlot();
+                        isLock = true;
+                        return true;
                     }
 
                     LogHelper.Debug(
@@ -188,8 +188,8 @@ namespace AEAssist.AI
                 {
                     if (slot.GCDQueues == null || slot.GCDQueues.Count == 0)
                     {
-                        ObjectPool.Instance.Return(Queue.Dequeue());
-                        return await ApplySlot();
+                        isLock = true;
+                        return true;
                     }
 
                     var gcdSpellId = slot.GCDQueues.Peek();

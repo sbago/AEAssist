@@ -39,10 +39,20 @@ namespace AEAssist.Helper
 
 
             var currCulture = CultureInfo.CurrentCulture;
-            if (AllLans.TryGetValue(currCulture.Name, out var targetLan)) SwitchLan(targetLan);
+            var prefer = SettingMgr.GetSetting<GeneralSettings>().LanguagePrefer;
+            LogHelper.Info($"CurrCulture : {currCulture.Name} Prefer : {prefer}");
+
+            if (string.IsNullOrEmpty(prefer) || !AllLans.ContainsKey(prefer))
+            {
+                if (AllLans.TryGetValue(currCulture.Name, out var targetLan)) SwitchLan(targetLan);
+                else
+                {
+                    SwitchLan(AllLans["en"]);
+                }
+            }
             else
             {
-                SwitchLan(AllLans["en"]);
+                SwitchLan(AllLans[prefer]);
             }
 
             LanOptions.Clear();
@@ -62,6 +72,7 @@ namespace AEAssist.Helper
             //  LogHelper.Debug("Change lanType===>" + lanType);
             if (!AllLans.TryGetValue(lanType, out var language))
                 return;
+            SettingMgr.GetSetting<GeneralSettings>().LanguagePrefer = lanType;
             SwitchLan(language);
         }
 
