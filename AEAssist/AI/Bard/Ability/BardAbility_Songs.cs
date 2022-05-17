@@ -15,8 +15,8 @@ namespace AEAssist.AI.Bard.Ability
             if (TimeHelper.Now() - AIRoot.GetBattleData<BardBattleData>().lastCastSongTime < 3000)
                 return -2;
 
-            if (AIRoot.GetBattleData<BardBattleData>().lastSong == ActionResourceManager.Bard.BardSong.ArmysPaeon
-                || AIRoot.GetBattleData<BardBattleData>().lastSong == ActionResourceManager.Bard.BardSong.None
+            if ((AIRoot.GetBattleData<BardBattleData>().lastSong == ActionResourceManager.Bard.BardSong.ArmysPaeon
+                || AIRoot.GetBattleData<BardBattleData>().lastSong == ActionResourceManager.Bard.BardSong.None)
                 && AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs > 10000)
                 if (!AIRoot.Instance.Is2ndAbilityTime())
                     return -3;
