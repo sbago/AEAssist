@@ -3,6 +3,7 @@ using AEAssist.AI.Sage;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
+using ff14bot.Managers;
 
 namespace AEAssist.AI.Dancer.GCD
 {
@@ -18,6 +19,11 @@ namespace AEAssist.AI.Dancer.GCD
                 !Core.Me.HasAura(AurasDefine.FlourshingFlow))
             {
                 return -1;
+            }
+
+            if (ActionResourceManager.Dancer.FourFoldFeathers == 4)
+            {
+                return -2;
             }
             return 0;
         }

@@ -54,7 +54,17 @@ namespace AEAssist.AI
                 GCDQueues.Enqueue(v);
             }
         }
-
+        public void SetGCDQueueFromList(List<(uint spellId, SpellTargetType targetType)> queues)
+        {
+            this.ClearGCD();
+            GCDQueueMode = true;
+            GCDQueues = new Queue<(uint spellId, SpellTargetType targetType)>();
+            foreach (var v in queues)
+            {
+                GCDQueues.Enqueue(v);
+            }
+        }
+        
         public void GCDEnqueue((uint spellId, SpellTargetType targetType) value)
         {
             if (!GCDQueueMode)

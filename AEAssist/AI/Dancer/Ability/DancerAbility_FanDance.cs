@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AEAssist.AI.Sage;
 using AEAssist.Define;
 using AEAssist.Helper;
@@ -25,16 +26,22 @@ namespace AEAssist.AI.Dancer.Ability
             {
                 return -2;
             }
-
+            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
+            if (bdls == SpellsDefine.DoubleStandardFinish.GetSpellEntity() || bdls == SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity())
+            {
+                return -5;
+            }
             if (Core.Me.HasAura(AurasDefine.Devilment))
             {
                 return 1;
             }
 
-            if ((Core.Me.HasAura(AurasDefine.FlourishingSymmetry) || Core.Me.HasAura(AurasDefine.FlourshingFlow)) &&
-                ActionResourceManager.Dancer.FourFoldFeathers == 4)
+            if (Core.Me.HasAura(AurasDefine.FlourishingSymmetry) || Core.Me.HasAura(AurasDefine.FlourshingFlow))
             {
-                return 0;
+                if (ActionResourceManager.Dancer.FourFoldFeathers == 4)
+                {
+                    return 0;
+                }
             }
 
             return -4;
