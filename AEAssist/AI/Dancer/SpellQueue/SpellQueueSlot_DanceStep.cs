@@ -1,4 +1,5 @@
-﻿using AEAssist.AI.Sage;
+﻿using System.Collections.Generic;
+using AEAssist.AI.Sage;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
@@ -19,10 +20,13 @@ namespace AEAssist.AI.Dancer.SpellQueue
             var steps = ActionResourceManager.Dancer.Steps;
             foreach (var step in steps)
             {
+                if (step == ActionResourceManager.Dancer.DanceStep.Finish)
+                {
+                    continue;
+                }
                 var spell = DancerSpellHelper.GetDanceStep(step);
                 slot.GCDEnqueue((spell.Id, SpellTargetType.Self));
             }
-
         }
     }
 }

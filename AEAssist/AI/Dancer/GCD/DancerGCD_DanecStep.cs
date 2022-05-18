@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using AEAssist.AI.Dancer.SpellQueue;
 using AEAssist.AI.Sage;
 using AEAssist.Define;
@@ -19,7 +20,11 @@ namespace AEAssist.AI.Dancer.GCD
             {
                 return -10;
             }
-            
+
+            if (ActionResourceManager.Dancer.CurrentStep == ActionResourceManager.Dancer.DanceStep.Finish)
+            {
+                return -5;
+            }
             if (bdls == SpellsDefine.StandardStep.GetSpellEntity() ||
                 bdls == SpellsDefine.TechnicalStep.GetSpellEntity() ||
                 Core.Me.HasAura(AurasDefine.StandardStep) ||
@@ -39,8 +44,12 @@ namespace AEAssist.AI.Dancer.GCD
             // Bladeshower 落刃雨 AOE2 :Bloodshower 落血雨 
             try
             {
-                if (ActionResourceManager.Dancer.Steps.Length > 0)
+                if (ActionResourceManager.Dancer.Steps.Length > 2)
                 {
+                    foreach (var step in ActionResourceManager.Dancer.Steps)
+                    {
+                        LogHelper.Error(step.ToString());
+                    }
                     AISpellQueueMgr.Instance.Apply<SpellQueue_Dance>();
                     await Task.CompletedTask;
                     return null;

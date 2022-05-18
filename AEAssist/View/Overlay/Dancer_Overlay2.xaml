@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="AEAssist.View.Overlay.Dancer_Overlay2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:AEAssist.View.Overlay"
+             xmlns:dataBinding="clr-namespace:AEAssist"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="120">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/AEAssist;component/View/Style/Button.xaml" />
+                <ResourceDictionary Source="/AEAssist;component/View/Style/CheckBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <UserControl.RenderTransform>
+        <ScaleTransform ScaleX="{Binding GeneralSettings.OverlayScale_X}"
+                        ScaleY="{Binding GeneralSettings.OverlayScale_Y}" />
+    </UserControl.RenderTransform>
+    <UserControl.DataContext>
+        <Binding Source="{x:Static dataBinding:DataBinding.Instance}" />
+    </UserControl.DataContext>
+    <StackPanel>
+        <Border Visibility="{Binding OverlayVisibility, Converter={StaticResource BoolToVis}}" VerticalAlignment="Top"
+                CornerRadius="5" Padding="10">
+            <Border.Background>
+                <SolidColorBrush Color="#101011" Opacity="0.6" />
+            </Border.Background>
+            <StackPanel>
+                <Label>Dancer</Label>
+
+                <Button Content="Refresh" Height="50" Name="RefreshParty" Click="RefreshParty_OnClick" Margin="0,0,2,5" />
+
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource ImageButton}"
+                            Width="40" Height="40" Margin="2" Click="UseClosedPositionPM1_OnClick">
+                        <Image Source="../../Resources/Spells/Dancer/ClosedPosition.png" Stretch="Uniform" />
+                    </Button>
+                    <TextBlock Name="PM1" Text="NULL" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Aqua" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource ImageButton}"
+                            Width="40" Height="40" Margin="2" Click="UseClosedPositionPM2_OnClick">
+                        <Image Source="../../Resources/Spells/Dancer/ClosedPosition.png" Stretch="Uniform" />
+                    </Button>
+                    <TextBlock Name="PM2" Text="NULL" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Aqua" />
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource ImageButton}"
+                            Width="40" Height="40" Margin="2" Click="UseClosedPositionPM3_OnClick">
+                        <Image Source="../../Resources/Spells/Dancer/ClosedPosition.png" Stretch="Uniform" />
+                    </Button>
+                    <TextBlock Name="PM3" Text="NULL" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Aqua" />
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource ImageButton}"
+                            Width="40" Height="40" Margin="2" Click="UseClosedPositionPM4_OnClick">
+                        <Image Source="../../Resources/Spells/Dancer/ClosedPosition.png" Stretch="Uniform" />
+                    </Button>
+                    <TextBlock Name="PM4" Text="NULL" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Aqua" />
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource ImageButton}"
+                            Width="40" Height="40" Margin="2" Click="UseClosedPositionPM5_OnClick">
+                        <Image Source="../../Resources/Spells/Dancer/ClosedPosition.png" Stretch="Uniform" />
+                    </Button>
+                    <TextBlock Name="PM5" Text="NULL" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Aqua" />
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource ImageButton}"
+                            Width="40" Height="40" Margin="2" Click="UseClosedPositionPM6_OnClick">
+                        <Image Source="../../Resources/Spells/Dancer/ClosedPosition.png" Stretch="Uniform" />
+                    </Button>
+                    <TextBlock Name="PM6" Text="NULL" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Aqua" />
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource ImageButton}"
+                            Width="40" Height="40" Margin="2" Click="UseClosedPositionPM7_OnClick">
+                        <Image Source="../../Resources/Spells/Dancer/ClosedPosition.png" Stretch="Uniform" />
+                    </Button>
+                    <TextBlock Name="PM7" Text="NULL" VerticalAlignment="Center" HorizontalAlignment="Left"  Foreground="Aqua"/>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource ImageButton}"
+                            Width="40" Height="40" Margin="2" Click="UseClosedPositionPM8_OnClick">
+                        <Image Source="../../Resources/Spells/Dancer/ClosedPosition.png" Stretch="Uniform" />
+                    </Button>
+                    <TextBlock Name="PM8" Text="NULL" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Aqua" />
+                </StackPanel>
+                
+
+              
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</UserControl>

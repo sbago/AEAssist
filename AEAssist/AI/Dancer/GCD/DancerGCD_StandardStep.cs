@@ -1,9 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AEAssist.AI.Dancer.SpellQueue;
 using AEAssist.AI.Sage;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
+using ff14bot.Managers;
 
 namespace AEAssist.AI.Dancer.GCD
 {
@@ -11,6 +13,10 @@ namespace AEAssist.AI.Dancer.GCD
     {
         public int Check(SpellEntity lastGCD)
         {
+            if (!SpellsDefine.StandardStep.IsUnlock())
+            {
+                return -10;
+            }
             if (!SpellsDefine.StandardStep.IsReady())
             {
                 return -1;
@@ -20,6 +26,29 @@ namespace AEAssist.AI.Dancer.GCD
                 Core.Me.HasAura(AurasDefine.TechnicalStep))
             {
                 return -2;
+            }
+
+            if (SpellsDefine.Flourish.GetSpellEntity().SpellData.Cooldown < TimeSpan.FromSeconds(4))
+            {
+                return -3;
+            }
+
+            var bd = AIRoot.GetBattleData<BattleData>();
+            if (Core.Me.HasAura(AurasDefine.TechnicalFinish) &&
+                bd.lastAbilitySpell != SpellsDefine.Flourish.GetSpellEntity() &&
+                bd.lastGCDSpell != SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity())
+            {
+                if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.TechnicalFinish, 4000))
+                {
+                    if (!Core.Me.HasAura(AurasDefine.FlourshingFlow) &&
+                        !Core.Me.HasAura(AurasDefine.FlourishingSymmetry) &&
+                        ActionResourceManager.Dancer.Esprit < 50)
+                    {
+                        return 1;
+                    }
+                }
+
+                return -5;
             }
 
             return 0;

@@ -206,7 +206,11 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Thunder.cs" />
     <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Xenoglossy.cs" />
     <Compile Include="AI\BlackMage\SpellQueue\SpellQueue_DespairCombo.cs" />
-    <Compile Include="AI\Dancer\Ability\DancerAbility_DanceStep.cs" />
+    <Compile Include="AI\Dancer\Ability\DancerAbility_Devilment.cs" />
+    <Compile Include="AI\Dancer\Ability\DancerAbility_FanDance.cs" />
+    <Compile Include="AI\Dancer\Ability\DancerAbility_FanDance3.cs" />
+    <Compile Include="AI\Dancer\Ability\DancerAbility_FanDance4.cs" />
+    <Compile Include="AI\Dancer\Ability\DancerAbility_Flourish.cs" />
     <Compile Include="AI\Dancer\DancerRotation.cs" />
     <Compile Include="AI\AISpellQueueMgr.cs" />
     <Compile Include="AI\Dancer\Dancer_AIPriority.cs" />
@@ -214,8 +218,12 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Dancer\DancerSpellHelper.cs" />
     <Compile Include="AI\Dancer\DancerBattleData.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_DanecStep.cs" />
+    <Compile Include="AI\Dancer\GCD\DancerGCD_Procs.cs" />
+    <Compile Include="AI\Dancer\GCD\DancerGCD_SaberDance.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_StandardStep.cs" />
+    <Compile Include="AI\Dancer\GCD\DancerGCD_StarfallDance.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_TechnicalStep.cs" />
+    <Compile Include="AI\Dancer\GCD\DancerGCD_Tillana.cs" />
     <Compile Include="AI\Dancer\SpellQueue\SpellQueueSlot_DanceFinish.cs" />
     <Compile Include="AI\Dancer\SpellQueue\SpellQueueSlot_DanceStep.cs" />
     <Compile Include="AI\Dancer\SpellQueue\SpellQueue_Dance.cs" />
@@ -417,6 +425,9 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="View\Overlay\DancerOverlayWindow.xaml.cs">
       <DependentUpon>DancerOverlayWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Overlay\Dancer_Overlay2.xaml.cs">
+      <DependentUpon>Dancer_Overlay2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Overlay\MCHOverlayWindow.xaml.cs">
       <DependentUpon>MCHOverlayWindow.xaml</DependentUpon>
     </Compile>
@@ -468,6 +479,10 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Content Include="Resources\Lan_zh-CN.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Spells\Peloton.png" />
+    <Resource Include="Resources\Spells\Dancer\ClosedPosition.png" />
+    <Resource Include="Resources\Spells\Dancer\EnAvant.png" />
+    <Resource Include="Resources\Spells\Dancer\CuringWaltz.png" />
     <Resource Include="Resources\Spells\Sage\Kerachole.png" />
     <Resource Include="Resources\Spells\HealerRoleActions\Esuna.png" />
     <Resource Include="Resources\Spells\HealerRoleActions\LucidDreaming.png" />
@@ -559,6 +574,10 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Overlay\DancerOverlayWindow.xaml" />
+    <Page Include="View\Overlay\Dancer_Overlay2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Overlay\MCHOverlayWindow.xaml" />
     <Page Include="View\Overlay\ReaperOverlay.xaml" />
     <Page Include="View\Overlay\SageOverlayWindow.xaml" />

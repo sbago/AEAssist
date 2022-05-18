@@ -69,17 +69,45 @@
                                   IsChecked="{Binding AutoAttack,Mode=TwoWay}" />
                     </WrapPanel>
                     <WrapPanel Margin="10">
+                        
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="5,2,5,2" Name="UseEnAvant"
+                                Click="UseEnAvant_OnClick">
+                            <Image Source="../../Resources/Spells/Dancer/EnAvant.png" Stretch="Uniform" />
+
+                        </Button>
+                        
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseTactician"
                                 Click="UseTactician_OnClick">
                             <Image Source="../../Resources/Spells/Dancer/ShieldSamba.png" Stretch="Uniform" />
 
                         </Button>
+                        
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="5,2,5,2" Name="UseCuringWaltz"
+                                Click="UseCuringWaltz_OnClick">
+                            <Image Source="../../Resources/Spells/Dancer/CuringWaltz.png" Stretch="Uniform" />
+
+                        </Button>
+
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseArmsLength"
                                 Click="UseArmsLength_OnClick">
 
                             <Image Source="../../Resources/Spells/PhysicalRangedDPSRoleActions/ArmsLength.png" Stretch="Uniform" />
+
+                        </Button>
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="5,2,5,2" Name="UseSecondWind"
+                                Click="UseSecondWind_OnClick">
+                            <Image Source="../../Resources/Spells/SecondWind.png" Stretch="Uniform" />
+
+                        </Button>
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="5,2,5,2" Name="UsePeloton"
+                                Click="UsePeloton_OnClick">
+                            <Image Source="../../Resources/Spells/Peloton.png" Stretch="Uniform" />
 
                         </Button>
                         <Button Style="{StaticResource ImageButton}"

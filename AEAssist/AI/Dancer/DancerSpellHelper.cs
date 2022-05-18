@@ -61,6 +61,69 @@ namespace AEAssist.AI.Sage
             return null;
         }
 
+        public static async Task<SpellEntity> BaseGCDCombo(GameObject target)
+        {
+            if (TargetHelper.CheckNeedUseAOE(target, 5, 5,3)) return await UseAOECombo(target);
+
+            return await UseSingleCombo(target);
+        }
+
+        private static async Task<SpellEntity> UseProcSingleCombo(GameObject target)
+        {
+            if (Core.Me.HasAura(AurasDefine.FlourshingFlow))
+            {
+                if (SpellsDefine.Fountainfall.IsUnlock())
+                {
+                    if (await SpellsDefine.Fountainfall.DoGCD())
+                    {
+                        return SpellsDefine.Fountainfall.GetSpellEntity();
+                    }
+                }
+            }
+            else 
+            {
+                if (await SpellsDefine.ReverseCascade.DoGCD())
+                {
+                    return SpellsDefine.ReverseCascade.GetSpellEntity();
+                }
+            }
+
+            return null;
+        }
+
+        private static async Task<SpellEntity> UseProcAOECombo(GameObject target)
+        {
+            if (Core.Me.HasAura(AurasDefine.FlourshingFlow))
+            {
+                if (SpellsDefine.Bloodshower.IsUnlock())
+                {
+                    if (await SpellsDefine.Bloodshower.DoGCD())
+                    {
+                        return SpellsDefine.Bloodshower.GetSpellEntity();
+                    }
+                }
+            }
+            else 
+            {
+                if (await SpellsDefine.RisingWindmill.DoGCD())
+                {
+                    return SpellsDefine.RisingWindmill.GetSpellEntity();
+                }
+            }
+
+            return null;
+        }
+
+        public static async Task<SpellEntity> ProcGCDCombo(GameObject target)
+        {
+            if (SpellsDefine.RisingWindmill.IsUnlock())
+            {
+                if (TargetHelper.CheckNeedUseAOE(target, 5, 5,2)) return await UseProcAOECombo(target);
+            }
+
+            return await UseProcSingleCombo(target);
+        }
+
         public static SpellEntity GetDanceStep(ActionResourceManager.Dancer.DanceStep step)
         {
             switch (step)
@@ -80,49 +143,42 @@ namespace AEAssist.AI.Sage
 
             return null;
         }
-        public static SpellEntity UseDanceStep()
-        {
-            try
-            {
-                switch (ActionResourceManager.Dancer.CurrentStep)
-                {
-                    case ActionResourceManager.Dancer.DanceStep.Finish:
-                        if (Core.Me.HasAura(AurasDefine.StandardStep))
-                        {
-                            return SpellsDefine.DoubleStandardFinish.GetSpellEntity();
-
-                        }
-                        else
-                        {
-                            return SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity();
-                        }
-
-                    case ActionResourceManager.Dancer.DanceStep.Emboite:
-                        return SpellsDefine.Emboite.GetSpellEntity();
-
-                    case ActionResourceManager.Dancer.DanceStep.Entrechat:
-                        return SpellsDefine.Entrechat.GetSpellEntity();
-
-                    case ActionResourceManager.Dancer.DanceStep.Jete:
-                        return SpellsDefine.Jete.GetSpellEntity();
-
-                    case ActionResourceManager.Dancer.DanceStep.Pirouette:
-                        return SpellsDefine.Pirouette.GetSpellEntity();
-                }
-            }
-            catch
-            {
-                return null;
-            }
-
-            return null;
-        }
-
-        public static async Task<SpellEntity> BaseGCDCombo(GameObject target)
-        {
-            if (TargetHelper.CheckNeedUseAOE(target, 5, 5)) return await UseAOECombo(target);
-
-            return await UseSingleCombo(target);
-        }
+        // public static SpellEntity UseDanceStep()
+        // {
+        //     try
+        //     {
+        //         switch (ActionResourceManager.Dancer.CurrentStep)
+        //         {
+        //             case ActionResourceManager.Dancer.DanceStep.Finish:
+        //                 if (Core.Me.HasAura(AurasDefine.StandardStep))
+        //                 {
+        //                     return SpellsDefine.DoubleStandardFinish.GetSpellEntity();
+        //
+        //                 }
+        //                 else
+        //                 {
+        //                     return SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity();
+        //                 }
+        //
+        //             case ActionResourceManager.Dancer.DanceStep.Emboite:
+        //                 return SpellsDefine.Emboite.GetSpellEntity();
+        //
+        //             case ActionResourceManager.Dancer.DanceStep.Entrechat:
+        //                 return SpellsDefine.Entrechat.GetSpellEntity();
+        //
+        //             case ActionResourceManager.Dancer.DanceStep.Jete:
+        //                 return SpellsDefine.Jete.GetSpellEntity();
+        //
+        //             case ActionResourceManager.Dancer.DanceStep.Pirouette:
+        //                 return SpellsDefine.Pirouette.GetSpellEntity();
+        //         }
+        //     }
+        //     catch
+        //     {
+        //         return null;
+        //     }
+        //
+        //     return null;
+        // }
     }
 }

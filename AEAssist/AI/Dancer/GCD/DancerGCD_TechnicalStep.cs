@@ -10,6 +10,13 @@ namespace AEAssist.AI.Dancer.GCD
     {
         public int Check(SpellEntity lastGCD)
         {
+            if (!SpellsDefine.TechnicalStep.IsUnlock())
+            {
+                return -10;
+            }
+            if (AIRoot.Instance.CloseBurst)
+                return -5;
+            
             if (!SpellsDefine.TechnicalStep.IsReady())
             {
                 return -1;
