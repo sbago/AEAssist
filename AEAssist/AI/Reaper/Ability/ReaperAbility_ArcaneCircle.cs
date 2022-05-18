@@ -27,6 +27,8 @@ namespace AEAssist.AI.Reaper.Ability
                                 SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.Enshroud);
                     if (delta < 2)
                         return -5;
+                    if (!AIRoot.Instance.Is2ndAbilityTime())
+                        return -6;
                 }
             }
 

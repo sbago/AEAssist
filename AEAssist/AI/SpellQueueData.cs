@@ -112,7 +112,8 @@ namespace AEAssist.AI
             {
                 var slot = Queue.Peek();
 
-
+                LogHelper.Debug(
+                    $"Slot Abilitys: {slot.Abilitys.Count} UsePostion: {slot.UsePotion}");
                 if (slot.Abilitys.Count == 0)
                 {
                     if (slot.UsePotion)
@@ -132,7 +133,8 @@ namespace AEAssist.AI
                 var spellData = SpellEntity.Create(abilityId.spellId);
                 if (abilityId.spellId == 0 || spellData.SpellData == null || !spellData.IsReady())
                 {
-                    await Coroutine.Sleep(slot.AnimationLockMs);
+                    if (slot.AnimationLockMs > 0)
+                        await Coroutine.Sleep(slot.AnimationLockMs);
                     slot.Abilitys.Dequeue();
                 }
                 else

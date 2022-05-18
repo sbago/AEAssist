@@ -15,7 +15,7 @@ namespace AEAssist.AI.Reaper.GCD
             if (!SpellsDefine.SoulSlice.IsReady())
                 return -1;
 
-            if (ActionResourceManager.Reaper.SoulGauge > 50)
+            if (ActionResourceManager.Reaper.SoulGauge >= 50)
                 return -2;
 
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasMyAuraWithTimeleft(AurasDefine.Enshrouded))

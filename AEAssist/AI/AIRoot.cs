@@ -392,7 +392,7 @@ namespace AEAssist.AI
             var delta = TimeHelper.Now() - GetBattleData<BattleData>().lastCastTime;
             var coolDown = GetGCDDuration();
 
-            if (coolDown - delta < coolDown * 0.6f)
+            if (coolDown - delta < coolDown * 0.5f)
                 return true;
             return false;
         }
