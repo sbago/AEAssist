@@ -37,6 +37,20 @@ namespace AEAssist.Define
             
             //Sage
             Eukrasia,
+            
+            
+            //DNC
+            StandardStep,
+            TechnicalStep,
+            DoubleStandardFinish,
+            QuadrupleTechnicalFinish,
+            Emboite,
+            Entrechat,
+            Jete,
+            Pirouette,
+            StandardFinish,
+            
+            
         };
 
         public static HashSet<uint> IgnoreEarlyDecisionSet = new HashSet<uint>
