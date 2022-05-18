@@ -10,6 +10,7 @@ namespace AEAssist.AI.Dancer.GCD
     {
         public int Check(SpellEntity lastGCD)
         {
+
             return 0;
         }
 

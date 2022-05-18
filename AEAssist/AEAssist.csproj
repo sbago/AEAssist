@@ -206,6 +206,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Thunder.cs" />
     <Compile Include="AI\BlackMage\SpellQueue\SpellQueueSlot_Xenoglossy.cs" />
     <Compile Include="AI\BlackMage\SpellQueue\SpellQueue_DespairCombo.cs" />
+    <Compile Include="AI\Dancer\Ability\DancerAbility_DanceStep.cs" />
     <Compile Include="AI\Dancer\DancerRotation.cs" />
     <Compile Include="AI\AISpellQueueMgr.cs" />
     <Compile Include="AI\Dancer\Dancer_AIPriority.cs" />
@@ -214,6 +215,10 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Dancer\DancerBattleData.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_StandardStep.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_TechnicalStep.cs" />
+    <Compile Include="AI\Dancer\SpellQueue\SpellQueueSlot_DanceFinish.cs" />
+    <Compile Include="AI\Dancer\SpellQueue\SpellQueueSlot_DanceStep.cs" />
+    <Compile Include="AI\Dancer\SpellQueue\SpellQueueSlot_StandardDance.cs" />
+    <Compile Include="AI\Dancer\SpellQueue\SpellQueue_StandardStep.cs" />
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_Hypercharge.cs" />
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UnderHyperChargetGCD.cs" />
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UseBattery.cs" />
@@ -691,7 +696,6 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <PackageReference Include="System.ObjectModel" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AI\Dancer\Ability" />
     <Folder Include="Resources\Spells\MagicalRangedDPSRoleActions" />
     <Folder Include="Resources\Spells\TankRoleActions" />
   </ItemGroup>

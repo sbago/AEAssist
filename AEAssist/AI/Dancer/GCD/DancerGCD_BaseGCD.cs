@@ -10,6 +10,11 @@ namespace AEAssist.AI.Dancer.GCD
     {
         public int Check(SpellEntity lastGCD)
         {
+            if (Core.Me.HasAura(AurasDefine.StandardStep) || 
+                Core.Me.HasAura(AurasDefine.TechnicalStep))
+            {
+                return -10;
+            }
             return 0;
         }
 
