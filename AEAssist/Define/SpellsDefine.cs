@@ -49,6 +49,11 @@ namespace AEAssist.Define
             Jete,
             Pirouette,
             StandardFinish,
+            Tillana,
+            ShieldSamba,
+            EnAvant,
+            CuringWaltz,
+            
             
             
         };

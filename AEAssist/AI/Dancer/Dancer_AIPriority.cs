@@ -12,14 +12,22 @@ namespace AEAssist.AI.Dancer
     {
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>()
         {
+            new DancerGCD_StarfallDance(),
+            new DancerGCD_Tillana(),
             new DancerGCD_StandardStep(),
             new DancerGCD_TechnicalStep(),
+            new DancerGCD_SaberDance(),
+            new DancerGCD_Procs(),
             new DancerGCD_BaseGCD()
         };
 
         public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()
         {
-            new DancerAbility_DanceStep(),
+            new DancerAbility_Devilment(),
+            new DancerAbility_Flourish(),
+            new DancerAbility_FanDance3(),
+            new DancerAbility_FanDance(),
+            
         };
         public async Task<bool> UsePotion()
         {
