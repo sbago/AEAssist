@@ -32,7 +32,7 @@ namespace AEAssist.View.Hotkey
                 var ins = Activator.CreateInstance(type) as IBuiltinHotkey;
                 _builtinHotkeys.Add(ins);
                 LogHelper.Info("BuiltinHotkey: "+type.Name);
-                HotkeyName2Actions[type.Name] = ins.Run;
+                HotkeyName2Actions[type.Name] = ins.OnHotkeyDown;
             }
         }
 

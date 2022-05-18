@@ -4,7 +4,7 @@ namespace AEAssist.View.Hotkey.BuiltinHotkeys
 {
     public class Stop : IBuiltinHotkey
     {
-        public void Run()
+        public void OnHotkeyDown()
         {
             AIRoot.Instance.Stop =
                 !AIRoot.Instance.Stop;

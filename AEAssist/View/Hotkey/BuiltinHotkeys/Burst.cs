@@ -4,7 +4,7 @@ namespace AEAssist.View.Hotkey.BuiltinHotkeys
 {
     public class Burst : IBuiltinHotkey
     {
-        public void Run()
+        public void OnHotkeyDown()
         {
             AIRoot.Instance.CloseBurst =
                 !AIRoot.Instance.CloseBurst;

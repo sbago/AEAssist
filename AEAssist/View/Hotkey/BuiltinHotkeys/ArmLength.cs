@@ -7,10 +7,14 @@ namespace AEAssist.View.Hotkey.BuiltinHotkeys
 {
     public class ArmLength : IBuiltinHotkey
     {
-        public void Run()
+        public void OnHotkeyDown()
         {
-            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId =
-                SpellsDefine.ArmsLength.GetSpellEntity();
+            if (ActionManager.HasSpell(SpellsDefine.ArmsLength))
+                AIRoot.GetBattleData<BattleData>().NextAbilitySpellId =
+                    SpellsDefine.ArmsLength.GetSpellEntity();
+            else
+                AIRoot.GetBattleData<BattleData>().NextAbilitySpellId =
+                    SpellsDefine.Surecast.GetSpellEntity();
         }
     }
 }

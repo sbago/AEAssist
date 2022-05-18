@@ -86,7 +86,7 @@ namespace AEAssist
                 CloseBuffBtnName = Language.Instance.Toggle_BurstOff;
             }
         }
-
+        
         public void RegisHotkey()
         {
             try

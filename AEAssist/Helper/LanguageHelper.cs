@@ -114,7 +114,6 @@ namespace AEAssist.Helper
             var hotkeySetting = SettingMgr.GetSetting<HotkeySetting>();
             hotkeySetting.ResetHotkeyName();
             hotkeySetting.GetHotkeyDataByTypeName(nameof(ArmLength)).Name = Language.Instance.Combox_Hotkey_ArmLength;
-            hotkeySetting.GetHotkeyDataByTypeName(nameof(Surecast)).Name = Language.Instance.Combox_Hotkey_Surecast;
             hotkeySetting.GetHotkeyDataByTypeName(nameof(Stop)).Name = Language.Instance.Combox_Hotkey_Stop;
             hotkeySetting.GetHotkeyDataByTypeName(nameof(Burst)).Name = Language.Instance.Combox_Hotkey_BurstOff;
             
