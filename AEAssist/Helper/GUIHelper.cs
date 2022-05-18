@@ -28,7 +28,7 @@ namespace AEAssist.Helper
                 return;
             if (time > 0)
                 targetShowTime = TimeHelper.Now() + time;
-            DebugCenter.Intance.ShowMsg(msg);
+            DebugCenter.Intance.ShowMsg(msg,check);
         }
 
         public static void ShowMessageBox(string msg)

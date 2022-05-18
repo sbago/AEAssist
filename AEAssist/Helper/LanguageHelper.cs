@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using AEAssist;
+using AEAssist.View.Hotkey.BuiltinHotkeys;
 
 namespace AEAssist.Helper
 {
@@ -73,7 +74,14 @@ namespace AEAssist.Helper
             if (!AllLans.TryGetValue(lanType, out var language))
                 return;
             SettingMgr.GetSetting<GeneralSettings>().LanguagePrefer = lanType;
-            SwitchLan(language);
+            try
+            {
+                SwitchLan(language);
+            }
+            catch (Exception e)
+            {
+              LogHelper.Error(e.ToString());
+            }
         }
 
         public static void SwitchLan(Language target)
@@ -103,7 +111,13 @@ namespace AEAssist.Helper
                 v.SetValue(Language.Instance, va);
             }
             
-            SettingMgr.GetSetting<HotkeySetting>().ResetHotkeyName();
+            var hotkeySetting = SettingMgr.GetSetting<HotkeySetting>();
+            hotkeySetting.ResetHotkeyName();
+            hotkeySetting.GetHotkeyDataByTypeName(nameof(ArmLength)).Name = Language.Instance.Combox_Hotkey_ArmLength;
+            hotkeySetting.GetHotkeyDataByTypeName(nameof(Surecast)).Name = Language.Instance.Combox_Hotkey_Surecast;
+            hotkeySetting.GetHotkeyDataByTypeName(nameof(Stop)).Name = Language.Instance.Combox_Hotkey_Stop;
+            hotkeySetting.GetHotkeyDataByTypeName(nameof(Burst)).Name = Language.Instance.Combox_Hotkey_BurstOff;
+            
             LogHelper.Debug($"Change Language==>{target.LanType} finished");
         }
     }

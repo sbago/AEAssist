@@ -10,10 +10,11 @@ namespace AEAssist
 
         public string Msg { get; set; } = "Debug";
 
-        public void ShowMsg(string msg)
+        public void ShowMsg(string msg, bool check)
         {
             Msg = msg;
-            UIHelper.RfreshCurrOverlay();
+            if (!check)
+                UIHelper.RfreshCurrOverlay();
         }
     }
 }

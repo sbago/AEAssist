@@ -8,9 +8,19 @@ namespace AEAssist.View.Hotkey
     [AddINotifyPropertyChangedInterface]
     public class HotkeyData
     {
+        public HotkeyData(string name)
+        {
+            this.Name = name;
+            this.TypeName = name;
+        }
+
         public Keys Key { get; set; }
         public ModifierKeys ModifierKey { get; set; }
 
+        public string Name { get; set; }
+
+        public string TypeName;
+        
         public string GetDisplayString()
         {
             var b = $"{Key.ToString()}";

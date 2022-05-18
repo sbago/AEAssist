@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Threading;
-using AEAssist.Helper;
+
 
 namespace AEAssist.View
 {
@@ -27,12 +27,7 @@ namespace AEAssist.View
     {
         public static void RfreshCurrOverlay()
         {
-            if (OverlayManager.OverlayManager.Instance.lastOverlay == null)
-                return;
-            foreach (var v in OverlayManager.OverlayManager.Instance.lastOverlay)
-            {
-                v.Control.Refresh();
-            }
+            AEAssist.View.OverlayManager.OverlayManager.Instance.RefreshOverlay();
         }
     }
 }

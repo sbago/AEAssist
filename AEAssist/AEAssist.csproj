@@ -383,7 +383,14 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="View\GeneralSetting\UserControl_Hotkey.xaml.cs">
       <DependentUpon>UserControl_Hotkey.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Hotkey\HotkeySetting.cs" />
+    <Compile Include="View\Hotkey\BuiltinHotkeys\ArmLength.cs" />
+    <Compile Include="View\Hotkey\BuiltinHotkeys\Burst.cs" />
+    <Compile Include="View\Hotkey\BuiltinHotkeys\Move.cs" />
+    <Compile Include="View\Hotkey\BuiltinHotkeys\Stop.cs" />
+    <Compile Include="View\Hotkey\BuiltinHotkeys\Surecast.cs" />
+    <Compile Include="View\Hotkey\HotkeyManager.cs" />
+    <Compile Include="View\Hotkey\HotkeyData.cs" />
+    <Compile Include="View\Hotkey\IBuiltinHotkey.cs" />
     <Compile Include="View\MCHSettingView.xaml.cs">
       <DependentUpon>MCHSettingView.xaml</DependentUpon>
     </Compile>

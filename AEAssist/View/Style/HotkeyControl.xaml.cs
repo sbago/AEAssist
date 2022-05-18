@@ -96,7 +96,7 @@ namespace AEAssist.View.Style
             var newKey = (Keys) KeyInterop.VirtualKeyFromKey(key);
             KeySetting = newKey;
             // Update the text box.
-            TxtHk.Text = $"{ModKeySetting.ToString()} + {key.ToString()}";
+            TxtHk.Text = $"{ModKeySetting.ToString()} + {newKey.ToString()}";
         }
     }
 }

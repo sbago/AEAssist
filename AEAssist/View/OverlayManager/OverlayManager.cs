@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using AEAssist.Helper;
 using Buddy.Overlay;
 using ff14bot;
@@ -15,8 +17,10 @@ namespace AEAssist.View.OverlayManager
             new Dictionary<ClassJobType, List<OverlayUIComponent>>();
 
         private ClassJobType _classJobType;
+        
+        private HashSet<OverlayUIComponent> _existOverlays = new HashSet<OverlayUIComponent>();
 
-        public List<OverlayUIComponent> lastOverlay;
+        private HashSet<OverlayUIComponent> _delSet = new HashSet<OverlayUIComponent>();
 
         public void Init()
         {
@@ -53,7 +57,7 @@ namespace AEAssist.View.OverlayManager
         {
             if (!Core.OverlayManager.IsActive)
                 return;
-            if (lastOverlay != null)
+            if (_existOverlays.Count>0)
             {
                 Close();
             }
@@ -71,22 +75,36 @@ namespace AEAssist.View.OverlayManager
             {
                 foreach (var v in window)
                 {
-                    Core.OverlayManager.AddUIComponent(v);
+                    LogHelper.Info("AddOverlay   "+ v.GetType().Name);
+                    if (_existOverlays.Add(v))
+                        Core.OverlayManager.AddUIComponent(v);
                 }
-                lastOverlay = window;
             }
         }
 
         public void Close()
         {
-            if (lastOverlay != null)
+            _delSet.Clear();
+
+            foreach (var v in _existOverlays)
             {
-                foreach (var v in lastOverlay)
-                {
-                    Core.OverlayManager.RemoveUIComponent(v);
-                }
-                // v.Value.Dispatcher.Invoke(v.Value.Hide);
-                lastOverlay = null;
+                LogHelper.Info("RemoveOverlay   "+ v.GetType().Name);
+                Core.OverlayManager.RemoveUIComponent(v);
+                _delSet.Add(v);
+            }
+            
+            foreach (var v in _delSet)
+            {
+                _existOverlays.Remove(v);
+            }
+        }
+        
+
+        public void RefreshOverlay()
+        {
+            foreach (var v in _existOverlays)
+            {
+                v.Control.Refresh();
             }
         }
     }

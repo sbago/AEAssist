@@ -4,6 +4,7 @@ using System.Windows.Media;
 using AEAssist.AI;
 using AEAssist.Helper;
 using ff14bot;
+using ff14bot.Managers;
 using PropertyChanged;
 using QuickGraph;
 
@@ -59,7 +60,7 @@ namespace AEAssist
         public DebugCenter DebugCenter => DebugCenter.Intance;
 
         public HotkeySetting HotkeySetting => SettingMgr.GetSetting<HotkeySetting>();
-
+        public AEAssist.View.Hotkey.HotkeyManager  HotkeyManager => AEAssist.View.Hotkey.HotkeyManager.Instance;
         public Language Language => Language.Instance;
 
         public string TriggerLineName { get; set; } = "NULL";

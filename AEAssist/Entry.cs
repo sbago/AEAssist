@@ -12,6 +12,7 @@ using ff14bot.Behavior;
 using ff14bot.Enums;
 using ff14bot.Managers;
 using TreeSharp;
+using HotkeyManager = AEAssist.View.Hotkey.HotkeyManager;
 
 namespace AEAssist
 {
@@ -40,6 +41,7 @@ namespace AEAssist
             LogHelper.Info("Init....Version " + ConstValue.ProjectVersion);
             try
             {
+                HotkeyManager.Instance.Init();
                 SettingMgr.Instance.InitSetting();
                 LanguageHelper.Init();
                 DataHelper.Init();

@@ -16,38 +16,7 @@ namespace AEAssist
         private readonly Dictionary<Type, IBaseSetting> AllSetting = new Dictionary<Type, IBaseSetting>();
 
         private readonly HashSet<Type> AllSettingsType = new HashSet<Type>();
-
-        public SettingMgr()
-        {
-            var baseType = typeof(IBaseSetting);
-            foreach (var type in GetType().Assembly.GetTypes())
-            {
-                if (type.IsAbstract || type.IsInterface)
-                    continue;
-                if (!baseType.IsAssignableFrom(type))
-                    continue;
-                AllSettingsType.Add(type);
-            }
-
-
-            Directory.CreateDirectory(SettingPath);
-            var versionSetting = LoadSetting(typeof(VersionSetting)) as VersionSetting;
-            if (versionSetting == null || versionSetting.SettingVersion != ConstValue.SettingVersion)
-            {
-                Reset();
-                GUIHelper.ShowMessageBox(Language.Instance.Content_ResetSetting);
-                return;
-            }
-
-            foreach (var v in AllSettingsType)
-            {
-                var setting = LoadSetting(v);
-                if (setting == null) setting = Activator.CreateInstance(v);
-
-                AllSetting[v] = setting as IBaseSetting;
-            }
-        }
-
+        
         private object LoadSetting(Type type)
         {
             var generalSettingFile = $"{SettingPath}/{type.Name}.json";
@@ -82,6 +51,37 @@ namespace AEAssist
 
         public void InitSetting()
         {
+            var baseType = typeof(IBaseSetting);
+            foreach (var type in GetType().Assembly.GetTypes())
+            {
+                if (type.IsAbstract || type.IsInterface)
+                    continue;
+                if (!baseType.IsAssignableFrom(type))
+                    continue;
+                AllSettingsType.Add(type);
+            }
+
+
+            Directory.CreateDirectory(SettingPath);
+            var versionSetting = LoadSetting(typeof(VersionSetting)) as VersionSetting;
+            if (versionSetting == null || versionSetting.SettingVersion != ConstValue.SettingVersion)
+            {
+                Reset();
+                GUIHelper.ShowMessageBox(Language.Instance.Content_ResetSetting);
+                return;
+            }
+
+            foreach (var v in AllSettingsType)
+            {
+                var setting = LoadSetting(v);
+                if (setting == null)
+                {
+                    setting = Activator.CreateInstance(v);
+                    (setting as IBaseSetting).OnLoad();
+                }
+
+                AllSetting[v] = setting as IBaseSetting;
+            }
         }
 
         public void Reset()
