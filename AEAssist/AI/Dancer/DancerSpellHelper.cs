@@ -40,6 +40,7 @@ namespace AEAssist.AI.Sage
 
             return null;
         }
+
         private static async Task<SpellEntity> UseAOECombo(GameObject target)
         {
             if (AIRoot.GetBattleData<DancerBattleData>().CurrCombo != DancerComboStages.Bladeshower
@@ -60,7 +61,62 @@ namespace AEAssist.AI.Sage
             return null;
         }
 
+        public static SpellEntity GetDanceStep(ActionResourceManager.Dancer.DanceStep step)
+        {
+            switch (step)
+            {
+                case ActionResourceManager.Dancer.DanceStep.Emboite:
+                    return SpellsDefine.Emboite.GetSpellEntity();
 
+                case ActionResourceManager.Dancer.DanceStep.Entrechat:
+                    return SpellsDefine.Entrechat.GetSpellEntity();
+
+                case ActionResourceManager.Dancer.DanceStep.Jete:
+                    return SpellsDefine.Jete.GetSpellEntity();
+
+                case ActionResourceManager.Dancer.DanceStep.Pirouette:
+                    return SpellsDefine.Pirouette.GetSpellEntity();
+            }
+
+            return null;
+        }
+        public static SpellEntity UseDanceStep()
+        {
+            try
+            {
+                switch (ActionResourceManager.Dancer.CurrentStep)
+                {
+                    case ActionResourceManager.Dancer.DanceStep.Finish:
+                        if (Core.Me.HasAura(AurasDefine.StandardStep))
+                        {
+                            return SpellsDefine.DoubleStandardFinish.GetSpellEntity();
+
+                        }
+                        else
+                        {
+                            return SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity();
+                        }
+
+                    case ActionResourceManager.Dancer.DanceStep.Emboite:
+                        return SpellsDefine.Emboite.GetSpellEntity();
+
+                    case ActionResourceManager.Dancer.DanceStep.Entrechat:
+                        return SpellsDefine.Entrechat.GetSpellEntity();
+
+                    case ActionResourceManager.Dancer.DanceStep.Jete:
+                        return SpellsDefine.Jete.GetSpellEntity();
+
+                    case ActionResourceManager.Dancer.DanceStep.Pirouette:
+                        return SpellsDefine.Pirouette.GetSpellEntity();
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
+            return null;
+        }
 
         public static async Task<SpellEntity> BaseGCDCombo(GameObject target)
         {
