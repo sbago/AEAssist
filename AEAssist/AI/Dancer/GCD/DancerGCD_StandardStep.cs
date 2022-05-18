@@ -16,10 +16,12 @@ namespace AEAssist.AI.Dancer.GCD
                 return -1;
             }
 
-            if (Core.Me.HasAura(AurasDefine.StandardStep))
+            if (Core.Me.HasAura(AurasDefine.StandardStep) ||
+                Core.Me.HasAura(AurasDefine.TechnicalStep))
             {
                 return -2;
             }
+
             return 0;
         }
 
@@ -29,9 +31,6 @@ namespace AEAssist.AI.Dancer.GCD
             // Fountain 喷泉 ST2 :Fountainfall 坠喷泉 
             // Windmill 风车 AOE1 Rising Windmill 升风车 
             // Bladeshower 落刃雨 AOE2 :Bloodshower 落血雨 
-            AISpellQueueMgr.Instance.Apply<SpellQueue_StandardStep>();
-            await Task.CompletedTask;
-            return null;
             var spell = SpellsDefine.StandardStep.GetSpellEntity();
             if (spell == null)
                 return null;

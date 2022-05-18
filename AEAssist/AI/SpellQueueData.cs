@@ -55,6 +55,17 @@ namespace AEAssist.AI
             }
         }
 
+        public void GCDEnqueue((uint spellId, SpellTargetType targetType) value)
+        {
+            if (!GCDQueueMode)
+            {
+                this.ClearGCD();
+                GCDQueueMode = true;
+                GCDQueues = new Queue<(uint spellId, SpellTargetType targetType)>();
+            }
+            GCDQueues.Enqueue(value);
+        }
+        
         public void ClearGCD()
         {
             this.GCDSpellId = 0;

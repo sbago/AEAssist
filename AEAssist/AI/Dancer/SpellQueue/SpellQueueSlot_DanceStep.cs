@@ -2,6 +2,7 @@
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
+using ff14bot.Managers;
 using ff14bot.Objects;
 
 namespace AEAssist.AI.Dancer.SpellQueue
@@ -15,7 +16,13 @@ namespace AEAssist.AI.Dancer.SpellQueue
 
         public void Fill(SpellQueueSlot slot)
         {
-            slot.SetGCD(DancerSpellHelper.UseDanceStep().Id, SpellTargetType.Self);
+            var steps = ActionResourceManager.Dancer.Steps;
+            foreach (var step in steps)
+            {
+                var spell = DancerSpellHelper.GetDanceStep(step);
+                slot.GCDEnqueue((spell.Id, SpellTargetType.Self));
+            }
+
         }
     }
 }

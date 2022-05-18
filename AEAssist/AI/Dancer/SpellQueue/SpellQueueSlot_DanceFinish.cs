@@ -17,7 +17,6 @@ namespace AEAssist.AI.Dancer.SpellQueue
         {
             try
             {
-                if (ActionResourceManager.Dancer.CurrentStep != ActionResourceManager.Dancer.DanceStep.Finish) return;
                 if (Core.Me.HasAura(AurasDefine.StandardStep))
                 {
                     slot.SetGCD(SpellsDefine.DoubleStandardFinish.GetSpellEntity().Id, SpellTargetType.Self);

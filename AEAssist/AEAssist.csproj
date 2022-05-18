@@ -213,12 +213,12 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Dancer\GCD\DancerGCD_BaseGCD.cs" />
     <Compile Include="AI\Dancer\DancerSpellHelper.cs" />
     <Compile Include="AI\Dancer\DancerBattleData.cs" />
+    <Compile Include="AI\Dancer\GCD\DancerGCD_DanecStep.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_StandardStep.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_TechnicalStep.cs" />
     <Compile Include="AI\Dancer\SpellQueue\SpellQueueSlot_DanceFinish.cs" />
     <Compile Include="AI\Dancer\SpellQueue\SpellQueueSlot_DanceStep.cs" />
-    <Compile Include="AI\Dancer\SpellQueue\SpellQueueSlot_StandardDance.cs" />
-    <Compile Include="AI\Dancer\SpellQueue\SpellQueue_StandardStep.cs" />
+    <Compile Include="AI\Dancer\SpellQueue\SpellQueue_Dance.cs" />
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_Hypercharge.cs" />
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UnderHyperChargetGCD.cs" />
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UseBattery.cs" />
