@@ -263,7 +263,14 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Sage\SageSpellHelper.cs" />
     <Compile Include="AI\Sage\Sage_AIPriorityQueue.cs" />
     <Compile Include="AI\Sage\SpellEvent\SpellEventDot.cs" />
+    <Compile Include="AI\Samurai\GCD\SamuraiGCD_Higanbana.cs" />
+    <Compile Include="AI\Samurai\GCD\SamuraiGCD_MidareSetsugekka.cs" />
     <Compile Include="AI\Samurai\Opener_Samurai_90.cs" />
+    <Compile Include="AI\Samurai\SpellEvent\SpellEvent_GCD.cs" />
+    <Compile Include="AI\Samurai\SpellQueue\SpellQueueSlot_KaeshiNamikiri.cs" />
+    <Compile Include="AI\Samurai\SpellQueue\SpellQueueSlot_KaeshiSetsugekka.cs" />
+    <Compile Include="AI\Samurai\SpellQueue\SpellQueue_OgiNamikiriCombo.cs" />
+    <Compile Include="AI\Samurai\SpellQueue\SpellQueue_SetsugekkaCombo.cs" />
     <Compile Include="AI\SpellEvent.cs" />
     <Compile Include="AI\Machinist\Ability\MCHAbility_BarrelStabilizer.cs" />
     <Compile Include="AI\Machinist\Ability\MCHAbility_FinalBurst.cs" />
@@ -312,8 +319,6 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Samurai\Ability\SamuraiAbility_MeikyoShisui.cs" />
     <Compile Include="AI\Samurai\Ability\SamuraiAbility_Shoha.cs" />
     <Compile Include="AI\Samurai\GCD\SamuraiGCD_BaseGCDCombo.cs" />
-    <Compile Include="AI\Samurai\GCD\SamuraiGCD_Iaijutsu.cs" />
-    <Compile Include="AI\Samurai\GCD\SamuraiGCD_Kaeshi.cs" />
     <Compile Include="AI\Samurai\GCD\SamuraiGCD_OgiNamikiri.cs" />
     <Compile Include="AI\Samurai\SamuraiBattleData.cs" />
     <Compile Include="AI\Samurai\SamuraiRotation.cs" />
