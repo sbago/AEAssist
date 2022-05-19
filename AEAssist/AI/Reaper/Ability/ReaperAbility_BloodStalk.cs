@@ -35,8 +35,13 @@ namespace AEAssist.AI.Reaper.Ability
                 && !AIRoot.Instance.CloseBurst
                 && SpellsDefine.Gluttony.GetSpellEntity().Cooldown.TotalMilliseconds < 10000) return -8;
 
-            if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
+            if (ReaperSpellHelper.CheckCanUsePlentifulHarvest() >= 0)
+            {
                 return -9;
+            }
+
+            if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
+                return -10;
             return 0;
         }
 
