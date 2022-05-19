@@ -106,6 +106,8 @@ namespace AEAssist
         public string Combox_Hotkey_Move { get; set; }
         public string Combox_Hotkey_BurstOff { get; set; }
 
+        public string Combox_Hotkey_EnAvant { get; set; }
+
         public string Combox_Hotkey_ArmLength { get; set; }
         public string Combox_Hotkey_Surecast { get; set; }
 

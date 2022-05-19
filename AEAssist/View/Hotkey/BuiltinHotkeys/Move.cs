@@ -10,5 +10,10 @@ namespace AEAssist.View.Hotkey.BuiltinHotkeys
                 !AIRoot.Instance.Move;
             UIHelper.RfreshCurrOverlay();
         }
+
+        public string GetDisplayString()
+        {
+            return "Move";
+        }
     }
 }

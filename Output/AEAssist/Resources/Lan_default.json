@@ -57,6 +57,7 @@
   "Combox_Hotkey_Stop" : "Hotkey",
   "Combox_Hotkey_Move" : "Hotkey",
   "Combox_Hotkey_BurstOff" : "Hotkey",
+  "Combox_Hotkey_EnAvant" : "Hotkey",
   "Combox_Hotkey_ArmLength" : "Hotkey",
   "Combox_Hotkey_Surecast" : "Hotkey",
   "Textbox_AnimationLockMs" : "AnimationLockMs",

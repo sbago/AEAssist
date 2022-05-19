@@ -93,5 +93,6 @@
   "Button_ReloadTriggerLine": "Reload",
   "TabItem_TriggerLine": "TriggerLine",
   "Toggle_AutoSwitchTriggerLine": "Auto switch",
-  "Toggle_UseMeikyoShisui": "MeikyoShisui"
+  "Toggle_UseMeikyoShisui": "MeikyoShisui",
+  "Combox_Hotkey_EnAvant": "(DNC)EnAvant"
 }

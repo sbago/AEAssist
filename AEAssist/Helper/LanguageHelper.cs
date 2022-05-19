@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using AEAssist;
+using AEAssist.View.Hotkey;
 using AEAssist.View.Hotkey.BuiltinHotkeys;
 
 namespace AEAssist.Helper
@@ -113,9 +114,8 @@ namespace AEAssist.Helper
             
             var hotkeySetting = SettingMgr.GetSetting<HotkeySetting>();
             hotkeySetting.ResetHotkeyName();
-            hotkeySetting.GetHotkeyDataByTypeName(nameof(ArmLength)).Name = Language.Instance.Combox_Hotkey_ArmLength;
-            hotkeySetting.GetHotkeyDataByTypeName(nameof(Stop)).Name = Language.Instance.Combox_Hotkey_Stop;
-            hotkeySetting.GetHotkeyDataByTypeName(nameof(Burst)).Name = Language.Instance.Combox_Hotkey_BurstOff;
+
+            HotkeyManager.Instance.RefreshName();
             
             LogHelper.Debug($"Change Language==>{target.LanType} finished");
         }

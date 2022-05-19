@@ -77,6 +77,9 @@ namespace AEAssist.Define
             Triplecast, //new
             AetherialManipulation,
             Troubadour,
+            ShieldSamba,
+            EnAvant,
+            Tactician
         };
 
         // DPS Role

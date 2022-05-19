@@ -10,5 +10,10 @@ namespace AEAssist.View.Hotkey.BuiltinHotkeys
                 !AIRoot.Instance.Stop;
             UIHelper.RfreshCurrOverlay();
         }
+
+        public string GetDisplayString()
+        {
+            return Language.Instance.Combox_Hotkey_Stop;
+        }
     }
 }

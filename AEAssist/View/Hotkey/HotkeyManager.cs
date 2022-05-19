@@ -61,7 +61,8 @@ namespace AEAssist.View.Hotkey
                     continue;
                 }
 
-                var action = HotkeyName2Actions[hotkeyData.TypeName];
+                if(!HotkeyName2Actions.TryGetValue(hotkeyData.TypeName,out var action))
+                    continue;
                 var hotkey = hotkeyData;
                 Hotkeys.Add(ff14bot.Managers.HotkeyManager.Register($"AEAssist_{hotkeyData.TypeName}", hotkey.Key, hotkey.ModifierKey,
                     v =>
@@ -81,6 +82,22 @@ namespace AEAssist.View.Hotkey
             }
             Hotkeys.Clear();
         }
-        
+
+
+        public void RefreshName()
+        {
+            var AllHotkeyDatas = SettingMgr.GetSetting<HotkeySetting>().AllHotkeyDatas;
+            foreach (var v in AllHotkeyDatas)
+            {
+                foreach (var builtin in _builtinHotkeys)
+                {
+                    if(builtin.GetType().Name != v.TypeName)
+                        continue;
+                    v.Name = builtin.GetDisplayString();
+                    break;
+                }
+            }
+        }
+
     }
 }

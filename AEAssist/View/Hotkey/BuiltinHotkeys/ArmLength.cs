@@ -16,5 +16,10 @@ namespace AEAssist.View.Hotkey.BuiltinHotkeys
                 AIRoot.GetBattleData<BattleData>().NextAbilitySpellId =
                     SpellsDefine.Surecast.GetSpellEntity();
         }
+
+        public string GetDisplayString()
+        {
+            return Language.Instance.Combox_Hotkey_ArmLength;
+        }
     }
 }

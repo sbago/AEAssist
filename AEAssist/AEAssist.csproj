@@ -404,6 +404,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     </Compile>
     <Compile Include="View\Hotkey\BuiltinHotkeys\ArmLength.cs" />
     <Compile Include="View\Hotkey\BuiltinHotkeys\Burst.cs" />
+    <Compile Include="View\Hotkey\BuiltinHotkeys\EnAvant.cs" />
     <Compile Include="View\Hotkey\BuiltinHotkeys\Move.cs" />
     <Compile Include="View\Hotkey\BuiltinHotkeys\Stop.cs" />
     <Compile Include="View\Hotkey\HotkeyManager.cs" />

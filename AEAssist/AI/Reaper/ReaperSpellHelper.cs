@@ -195,7 +195,7 @@ namespace AEAssist.AI.Reaper
 
             if (PrepareEnterDoubleEnshroud())
                 // 连击不能断,太亏
-                if (ActionManager.ComboTimeLeft<27) // 2*2.5 + 4*1.5+ 2*2.5+4*1.5+2.5 =24.5, and give 1 gcd to move
+                if (ActionManager.ComboTimeLeft>0.1f && ActionManager.ComboTimeLeft <27) // 2*2.5 + 4*1.5+ 2*2.5+4*1.5+2.5 =24.5, and give 1 gcd to move
                     return -200;
 
             return 0;
