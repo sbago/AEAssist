@@ -18,7 +18,7 @@ namespace AEAssist.AI.Samurai
         public void Init()
         {
             CountDownHandler.Instance.AddListener(10000, () => SpellsDefine.MeikyoShisui.DoAbility());
-            CountDownHandler.Instance.AddListener(1000, () => SpellsDefine.TrueNorth.DoAbility());
+            CountDownHandler.Instance.AddListener(1500, () => SpellsDefine.TrueNorth.DoAbility());
             AEAssist.DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<SamuraiSettings>().EarlyDecisionMode;
             LogHelper.Info("EarlyDecisionMode: " + AEAssist.DataBinding.Instance.EarlyDecisionMode);
         }
