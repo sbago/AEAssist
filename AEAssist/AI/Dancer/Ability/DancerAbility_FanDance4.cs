@@ -23,7 +23,7 @@ namespace AEAssist.AI.Dancer.Ability
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.FanDance3.GetSpellEntity();
+            var spell = SpellsDefine.FanDanceIV.GetSpellEntity();
             if (spell == null)
                 return null;
             var ret = await spell.DoAbility();
