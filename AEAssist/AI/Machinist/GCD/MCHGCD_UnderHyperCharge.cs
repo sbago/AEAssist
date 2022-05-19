@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
+using AEAssist.Helper;
 using ff14bot.Managers;
 
 namespace AEAssist.AI.Machinist.GCD
@@ -8,12 +9,13 @@ namespace AEAssist.AI.Machinist.GCD
     {
         public int Check(SpellEntity lastSpell)
         {
-            if (ActionResourceManager.Machinist.OverheatRemaining.TotalMilliseconds <= 0)
-                return -1;
+            if(SpellsDefine.Hypercharge.RecentlyUsed() || 
+               (ActionResourceManager.Machinist.OverheatRemaining.TotalMilliseconds>0 && AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount<5 ))
+            {
+                return 0;
+            }
 
-            if (AIRoot.GetBattleData<MCHBattleData>().HyperchargeGCDCount >= 5) return -2;
-
-            return 0;
+            return -1;
         }
 
         public async Task<SpellEntity> Run()

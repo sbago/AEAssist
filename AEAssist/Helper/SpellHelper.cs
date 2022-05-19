@@ -160,6 +160,10 @@ namespace AEAssist.Helper
             var time = 0;
             if (AEAssist.DataBinding.Instance.EarlyDecisionMode)
                 time = SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
+
+            if (spellData.SpellType == SpellType.Ability)
+                time = 100;
+            
             if (spellData.Cooldown.TotalMilliseconds > time)
                 return false;
             return true;
