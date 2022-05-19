@@ -36,11 +36,10 @@ namespace AEAssist.AI.Dancer.SpellQueue
         public void Fill(SpellQueueSlot slot)
         {
             var step = ActionResourceManager.Dancer.CurrentStep;
-            var spell = DancerSpellHelper.GetDanceStep(step);
-            slot.EnqueueAbility(spell.Id, SpellTargetType.Self);
-            if (ActionResourceManager.Dancer.CurrentStep == ActionResourceManager.Dancer.DanceStep.Finish)
+            if (step != ActionResourceManager.Dancer.DanceStep.Finish)
             {
-                slot.ClearGCD();
+                var spell = DancerSpellHelper.GetDanceStep(step);
+                slot.GCDEnqueue((spell.Id, SpellTargetType.Self));
             }
         }
     }
