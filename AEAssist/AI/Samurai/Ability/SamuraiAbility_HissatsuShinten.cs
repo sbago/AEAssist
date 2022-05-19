@@ -16,7 +16,7 @@ namespace AEAssist.AI.Samurai.Ability
                 return -2;
             if (SpellsDefine.Ikishoten.GetSpellEntity().Cooldown.TotalSeconds < 3 &&
                 ActionResourceManager.Samurai.Kenki > 50)
-                return 2;
+                return 3;
             return -1;
         }
 

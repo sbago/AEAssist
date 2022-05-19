@@ -4,6 +4,7 @@ using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Objects;
 using ff14bot.Managers;
+using AEAssist.AI.Samurai.SpellQueue;
 
 namespace AEAssist.AI.Samurai.GCD
 {
@@ -11,19 +12,17 @@ namespace AEAssist.AI.Samurai.GCD
     {
         public int Check(SpellEntity lastSpell)
         {
-            if (Core.Me.HasAura(AurasDefine.Kaiten))
+            //if (!DataBinding.Instance.Burst)
+            //{
+            //    var Me = Core.Me as Character;
+            //    if(Me.GetAuraById(AurasDefine.OgiReady).TimespanLeft.TotalMilliseconds<6000)
+            //        return 0;
+            //    return -10;
+            //}
+            //var ta = Core.Me.CurrentTarget as Character;
+            if (Core.Me.HasAura(AurasDefine.OgiReady))
             {
-                var ta = Core.Me.CurrentTarget as Character;
-                if (Core.Me.HasAura(AurasDefine.OgiReady) && ta.HasAura(AurasDefine.Higanbana))
-                {
-                    if (SamuraiSpellHelper.SenCounts() == 0 && ta.GetAuraById(AurasDefine.Higanbana).TimespanLeft.TotalMilliseconds < 11000)
-                        return -3;
-                    if (ta.GetAuraById(AurasDefine.Higanbana).TimespanLeft.TotalMilliseconds < 4000)
-                        return -4;
-                    if (DataManager.GetSpellData(SpellsDefine.KaeshiSetsugekka).Cooldown.TotalMilliseconds < 70000)
-                        return -2;
-                    return 1;
-                }
+                return 1;
             }
 
             return -1;
@@ -31,12 +30,10 @@ namespace AEAssist.AI.Samurai.GCD
 
         public async Task<SpellEntity> Run()
         {
-            if (await SpellsDefine.OgiNamikiri.DoGCD())
-            {
-                AIRoot.GetBattleData<SamuraiBattleData>().KaeshiSpell = KaeshiSpell.OgiNamikiri;
-                return SpellsDefine.OgiNamikiri.GetSpellEntity();
-            }
-
+            if (!Core.Me.HasAura(AurasDefine.Kaiten))
+                await SpellsDefine.HissatsuKaiten.DoAbility();
+            AISpellQueueMgr.Instance.Apply<SpellQueue_OgiNamikiriCombo>();
+            await Task.CompletedTask;
             return null;
         }
     }

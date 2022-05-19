@@ -381,7 +381,7 @@ namespace AEAssist.AI
             battleData.lastAbilitySpell = ret;
         }
         
-        public bool Is2ndAbilityTime()
+        public bool Is2ndAbilityTime(float time = 0.5f)
         {
             if (SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD < 2)
                 return true;
@@ -392,7 +392,7 @@ namespace AEAssist.AI
             var delta = TimeHelper.Now() - GetBattleData<BattleData>().lastCastTime;
             var coolDown = GetGCDDuration();
 
-            if (coolDown - delta < coolDown * 0.5f)
+            if (coolDown - delta < coolDown * time)
                 return true;
             return false;
         }
