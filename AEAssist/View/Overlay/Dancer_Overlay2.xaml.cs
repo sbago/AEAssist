@@ -33,8 +33,8 @@ namespace AEAssist.View.Overlay
         private void UseClosedPositionPM1_OnClick(object sender, RoutedEventArgs e)
         {
             var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
-            slot.EnqueueAbility(SpellsDefine.Ending, SpellTargetType.Self);
-            slot.EnqueueAbility(SpellsDefine.ClosedPosition, SpellTargetType.PM1);
+            slot.EnqueueAbility((SpellsDefine.Ending, SpellTargetType.Self));
+            slot.EnqueueAbility((SpellsDefine.ClosedPosition, SpellTargetType.PM1));
             AIRoot.GetBattleData<BattleData>().NextSpellSlot = slot;
             AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = new SpellEntity(SpellsDefine.Ending,SpellTargetType.Self);
             AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = new SpellEntity(SpellsDefine.ClosedPosition,SpellTargetType.PM1);

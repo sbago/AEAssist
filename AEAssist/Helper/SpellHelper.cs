@@ -152,28 +152,18 @@ namespace AEAssist.Helper
             if (spellData.RecentlyUsed())
                 return false;
 
-            if (spellData.MaxCharges >= 1)
-            {
-                if (spellData.Charges >= 1)
-                    return true;
-                LogHelper.Debug(
-                    $" {spellData.LocalizedName} Charge {spellData.Charges} MaxCharge {spellData.MaxCharges}!");
-
-                if (spellData.SpellType == SpellType.Ability)
-                    return false;
-                var time = 0;
-                if (AEAssist.DataBinding.Instance.EarlyDecisionMode)
-                    time = SettingMgr.GetSetting<GeneralSettings>().AnimationLockMs;
-                if (spellData.Cooldown.TotalMilliseconds > time)
-                    return false;
+            if (spellData.Charges >= 1)
                 return true;
-            }
+            LogHelper.Debug(
+                $" {spellData.LocalizedName} Charge {spellData.Charges} MaxCharge {spellData.MaxCharges}!");
 
-            if (spellData.SpellType == SpellType.Ability)
-                if (spellData.Cooldown.TotalMilliseconds > 0)
-                    return false;
-
+            var time = 0;
+            if (AEAssist.DataBinding.Instance.EarlyDecisionMode)
+                time = SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
+            if (spellData.Cooldown.TotalMilliseconds > time)
+                return false;
             return true;
+            
         }
 
         public static bool IsReady(this uint spellId)

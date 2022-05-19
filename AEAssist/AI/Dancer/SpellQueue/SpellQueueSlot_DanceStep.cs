@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using AEAssist.AI.Sage;
 using AEAssist.Define;
 using AEAssist.Helper;
@@ -35,11 +36,14 @@ namespace AEAssist.AI.Dancer.SpellQueue
 
         public void Fill(SpellQueueSlot slot)
         {
-            var step = ActionResourceManager.Dancer.CurrentStep;
-            if (step != ActionResourceManager.Dancer.DanceStep.Finish)
+            slot.SetBreakCondition(()=>this.Check(0));
+            foreach (var v in ActionResourceManager.Dancer.Steps)
             {
-                var spell = DancerSpellHelper.GetDanceStep(step);
-                slot.GCDEnqueue((spell.Id, SpellTargetType.Self));
+                if(v == ActionResourceManager.Dancer.DanceStep.Finish)
+                    continue;
+                var spell = DancerSpellHelper.GetDanceStep(v);
+                LogHelper.Info($"Queue Step: {v} {spell.SpellData.LocalizedName}");
+                slot.EnqueueGCD((spell.Id, SpellTargetType.Self));
             }
         }
     }

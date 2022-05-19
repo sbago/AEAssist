@@ -25,6 +25,7 @@ namespace AEAssist.View.OverlayManager
         public void Init()
         {
             var baseType = typeof(OverlayUIComponent);
+            AllOverlays.Clear();
             foreach (var type in GetType().Assembly.GetTypes())
             {
                 if (type.IsAbstract || type.IsInterface)

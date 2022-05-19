@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
@@ -28,6 +29,8 @@ namespace AEAssist.AI
         public bool GCDQueueMode;
         public Queue<(uint spellId, SpellTargetType targetType)> GCDQueues;
         public int GCDQueueIndex;
+
+        public Func<int> BreakCond;
 
         public void SetGCD(uint spellId, SpellTargetType targetType)
         {
@@ -65,7 +68,7 @@ namespace AEAssist.AI
             }
         }
         
-        public void GCDEnqueue((uint spellId, SpellTargetType targetType) value)
+        public void EnqueueGCD((uint spellId, SpellTargetType targetType) value)
         {
             if (!GCDQueueMode)
             {
@@ -75,7 +78,12 @@ namespace AEAssist.AI
             }
             GCDQueues.Enqueue(value);
         }
-        
+
+        public void SetBreakCondition(Func<int> Check)
+        {
+            BreakCond = Check;
+        }
+
         public void ClearGCD()
         {
             this.GCDSpellId = 0;
@@ -85,9 +93,9 @@ namespace AEAssist.AI
             this.GCDQueueIndex = 0;
         }
 
-        public void EnqueueAbility(uint spellId, SpellTargetType spellTargetType)
+        public void EnqueueAbility((uint spellId, SpellTargetType spellTargetType) va)
         {
-            this.Abilitys.Enqueue((spellId, spellTargetType));
+            this.Abilitys.Enqueue(va);
         }
 
         public uint GetGCDSpell()
@@ -103,6 +111,7 @@ namespace AEAssist.AI
             Index = 0;
             AnimationLockMs = 0;
             SpellTargetType = SpellTargetType.CurrTarget;
+            BreakCond = null;
         }
     }
 
@@ -132,7 +141,11 @@ namespace AEAssist.AI
             if (isLock)
             {
                 var slot = Queue.Peek();
-
+                if (slot.BreakCond != null && slot.BreakCond.Invoke() < 0)
+                {
+                    ObjectPool.Instance.Return(Queue.Dequeue());
+                    return await ApplySlot();
+                }
                 LogHelper.Debug(
                     $"Slot Abilitys: {slot.Abilitys.Count} UsePostion: {slot.UsePotion}");
                 if (slot.Abilitys.Count == 0)
@@ -175,6 +188,12 @@ namespace AEAssist.AI
             {
                 var slot = Queue.Peek();
 
+                if (slot.BreakCond != null && slot.BreakCond.Invoke() < 0)
+                {
+                    ObjectPool.Instance.Return(Queue.Dequeue());
+                    return await ApplySlot();
+                }
+
                 if (!slot.GCDQueueMode)
                 {
                     var spellData = DataManager.GetSpellData(slot.GetGCDSpell());
@@ -186,6 +205,7 @@ namespace AEAssist.AI
 
                     LogHelper.Debug(
                         $"Slot GCD: {spellData.LocalizedName} Ready: {spellData.IsReady()} {AIRoot.Instance.CanUseGCD()}");
+
                     if (spellData.IsReady() && AIRoot.Instance.CanUseGCD())
                     {
                         SpellEntity spellEntity = null;

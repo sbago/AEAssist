@@ -56,16 +56,14 @@ namespace AEAssist
                 // PotionHelper.DebugAllItems();
                 AIRoot.Instance.Init();
                 AIMgrs.Instance.Init();
-
-
-                GUIHelper.ShowInfo("Initialized");
+                
+                LogHelper.Info("Initialized!");
             }
             catch (Exception e)
             {
                 LogHelper.Error(e.ToString());
             }
-
-            LogHelper.Info("Initialized!");
+            
         }
 
         public void Pulse()

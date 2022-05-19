@@ -76,9 +76,7 @@ namespace AEAssist.AI
                 ClearApply();
                 return false;
             }
-
             var spellQueue = AIRoot.GetBattleData<SpellQueueData>();
-
             if (!await spellQueue.ApplySlot())
             {
                 var slotProvider = battleData.CurrApply.SlotQueue[battleData.ApplyIndex];
@@ -87,7 +85,6 @@ namespace AEAssist.AI
                     ClearApply();
                     return false;
                 }
-
                 var slot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
                 slotProvider.Fill(slot);
                 spellQueue.Add(slot);

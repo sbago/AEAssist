@@ -53,6 +53,7 @@ namespace AEAssist.AI
         public void Init()
         {
             _allBattleDatas.Clear();
+            _allBattleDataTypes.Clear();
             var baseType = typeof(IBattleData);
             foreach (var type in GetType().Assembly.GetTypes())
             {

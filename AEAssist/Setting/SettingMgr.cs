@@ -70,6 +70,9 @@ namespace AEAssist
 
         public void InitSetting()
         {
+            AllSettingsType.Clear();
+            AllSetting.Clear();
+            
             var baseType = typeof(IBaseSetting);
             foreach (var type in GetType().Assembly.GetTypes())
             {
