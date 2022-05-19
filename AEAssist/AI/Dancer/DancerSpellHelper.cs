@@ -143,42 +143,47 @@ namespace AEAssist.AI.Sage
 
             return null;
         }
-        // public static SpellEntity UseDanceStep()
-        // {
-        //     try
-        //     {
-        //         switch (ActionResourceManager.Dancer.CurrentStep)
-        //         {
-        //             case ActionResourceManager.Dancer.DanceStep.Finish:
-        //                 if (Core.Me.HasAura(AurasDefine.StandardStep))
-        //                 {
-        //                     return SpellsDefine.DoubleStandardFinish.GetSpellEntity();
-        //
-        //                 }
-        //                 else
-        //                 {
-        //                     return SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity();
-        //                 }
-        //
-        //             case ActionResourceManager.Dancer.DanceStep.Emboite:
-        //                 return SpellsDefine.Emboite.GetSpellEntity();
-        //
-        //             case ActionResourceManager.Dancer.DanceStep.Entrechat:
-        //                 return SpellsDefine.Entrechat.GetSpellEntity();
-        //
-        //             case ActionResourceManager.Dancer.DanceStep.Jete:
-        //                 return SpellsDefine.Jete.GetSpellEntity();
-        //
-        //             case ActionResourceManager.Dancer.DanceStep.Pirouette:
-        //                 return SpellsDefine.Pirouette.GetSpellEntity();
-        //         }
-        //     }
-        //     catch
-        //     {
-        //         return null;
-        //     }
-        //
-        //     return null;
-        // }
+
+        public static async Task PreCombatDanceSteps()
+        {
+            var count = 0;
+            const int need = 2;
+            const int retryTime = 25;
+            const int retryInterval = 100; // 25* 100 = GCD CoolDown
+            while (count < need)
+            {
+                try
+                {
+                    if (ActionResourceManager.Dancer.Steps.Length > 2)
+                    {
+                        var steps = ActionResourceManager.Dancer.Steps;
+                        foreach (var step in steps)
+                        {
+                            if (step == ActionResourceManager.Dancer.DanceStep.Finish)
+                            {
+                                break;
+                            }
+
+                            var spell = DancerSpellHelper.GetDanceStep(step);
+                            int time = 0;
+                            while (time < retryTime && !await spell.DoAbility())
+                            {
+                                await Coroutine.Sleep(retryInterval);
+                            }
+
+                            count++;
+                        }
+                    }
+                    await Coroutine.Sleep(retryInterval);
+                }
+                catch
+                {
+                    await Coroutine.Sleep(retryInterval);
+                    // ignored
+                }
+            }
+
+        }
+
     }
 }

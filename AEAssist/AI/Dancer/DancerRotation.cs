@@ -17,12 +17,11 @@ namespace AEAssist.AI.Dancer
         {
             Random rnd = new Random();
             int step1 = rnd.Next(9000, 13000);
-            int step2 = rnd.Next(4000, 8000);
+            // int step2 = rnd.Next(4000, 8000);
             int PotionTimer = rnd.Next(1650, 1800);
             int step3 = rnd.Next(50, 200);
             CountDownHandler.Instance.AddListener(15000, () => SpellsDefine.StandardStep.DoGCD());
-            CountDownHandler.Instance.AddListener(step1, () => DancerSpellHelper.GetDanceStep(ActionResourceManager.Dancer.CurrentStep).DoAbility());
-            CountDownHandler.Instance.AddListener(step2, () => DancerSpellHelper.GetDanceStep(ActionResourceManager.Dancer.CurrentStep).DoAbility());
+            CountDownHandler.Instance.AddListener(step1, () => DancerSpellHelper.PreCombatDanceSteps());
             CountDownHandler.Instance.AddListener(PotionTimer, () =>
                 PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId));
             CountDownHandler.Instance.AddListener(step3, () => SpellsDefine.DoubleStandardFinish.DoGCD());
