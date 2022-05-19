@@ -17,7 +17,11 @@ namespace AEAssist.AI.Dancer.GCD
                 return -10;
             }
 
-            return -4;
+            if (!Core.Me.HasAura(AurasDefine.FlourishingStarfall))
+            {
+                return -1;
+            }
+            return 0;
         }
 
         public async Task<SpellEntity> Run()

@@ -18,7 +18,11 @@ namespace AEAssist.AI.Dancer.GCD
             }
             if (AIRoot.Instance.CloseBurst)
                 return -5;
-            
+            if (Core.Me.HasAura(AurasDefine.StandardStep) ||
+                Core.Me.HasAura(AurasDefine.TechnicalStep))
+            {
+                return -2;
+            }
             if (ActionResourceManager.Dancer.Esprit < 50)
             {
                 return -1;
