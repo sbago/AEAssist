@@ -10,6 +10,14 @@ namespace AEAssist.AI.Dancer.SpellQueue
     {
         public int Check(int index)
         {
+            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
+            if (bdls == SpellsDefine.DoubleStandardFinish.GetSpellEntity() ||
+                bdls == SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity() ||
+                (!Core.Me.HasAura(AurasDefine.StandardStep) && !Core.Me.HasAura(AurasDefine.TechnicalStep))
+               )
+            {
+                return -10;
+            }
             return 0;
         }
 

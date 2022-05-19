@@ -388,9 +388,7 @@ namespace AEAssist.AI.Sage
 
                 }
             }
-
-            LogHelper.Debug($"CastableParty: {GroupHelper.CastableParty.Count}  {PartyManager.AllMembers.Count()}" +
-                           $" {PartyManager.RawMembers.Count} {PartyManager.VisibleMembers.Count()}");
+            
             foreach (var character in GroupHelper.CastableParty)
             {
                 // check if we can EukrasianDiagnosis.
