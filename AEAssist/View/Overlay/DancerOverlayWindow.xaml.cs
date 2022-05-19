@@ -70,5 +70,10 @@ namespace AEAssist.View.Overlay
         {
             OverlayManager.OverlayManager.Instance.Close();
         }
+
+        private void UseHeadGraze_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.HeadGraze.GetSpellEntity();
+        }
     }
 }
