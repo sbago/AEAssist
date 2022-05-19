@@ -203,6 +203,8 @@ namespace AEAssist.AI.Reaper
 
         public static bool PrepareEnterDoubleEnshroud()
         {
+            if (AIRoot.Instance.CloseBurst)
+                return false;
             var coolDown = SpellsDefine.ArcaneCircle.GetSpellEntity().Cooldown.TotalMilliseconds;
             if (AEAssist.SettingMgr.GetSetting<ReaperSettings>().DoubleEnshroudPrefer
                 && SpellsDefine.PlentifulHarvest.IsUnlock()

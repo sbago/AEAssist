@@ -32,7 +32,6 @@ namespace AEAssist.AI.Reaper.Ability
             if (SpellsDefine.Enshroud.RecentlyUsed() || Core.Me.HasAura(AurasDefine.Enshrouded))
                 return -7;
             if (SpellsDefine.Gluttony.IsUnlock()
-                && !AIRoot.Instance.CloseBurst
                 && SpellsDefine.Gluttony.GetSpellEntity().Cooldown.TotalMilliseconds < 10000) return -8;
 
             if (ReaperSpellHelper.CheckCanUsePlentifulHarvest() >= 0)
