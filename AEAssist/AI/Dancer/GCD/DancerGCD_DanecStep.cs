@@ -15,7 +15,8 @@ namespace AEAssist.AI.Dancer.GCD
         {
             var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
             if (bdls == SpellsDefine.DoubleStandardFinish.GetSpellEntity() ||
-                bdls == SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity()
+                bdls == SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity() ||
+                (!Core.Me.HasAura(AurasDefine.StandardStep) && !Core.Me.HasAura(AurasDefine.TechnicalStep))
                )
             {
                 return -10;

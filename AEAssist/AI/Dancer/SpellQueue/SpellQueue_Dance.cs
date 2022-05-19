@@ -7,6 +7,9 @@ namespace AEAssist.AI.Dancer.SpellQueue
         public List<IAISpellQueueSlot> SlotQueue { get; } = new List<IAISpellQueueSlot>()
         {
             new SpellQueueSlot_DanceStep(),
+            new SpellQueueSlot_DanceStep(),
+            new SpellQueueSlot_DanceStep(),
+            new SpellQueueSlot_DanceStep(),
             new SpellQueueSlot_DanceFinish()
         };
     }

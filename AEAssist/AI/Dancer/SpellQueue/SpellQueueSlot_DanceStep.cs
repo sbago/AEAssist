@@ -12,20 +12,35 @@ namespace AEAssist.AI.Dancer.SpellQueue
     {
         public int Check(int index)
         {
-            return 0;
+            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
+            if (bdls == SpellsDefine.DoubleStandardFinish.GetSpellEntity() ||
+                bdls == SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity() ||
+                (!Core.Me.HasAura(AurasDefine.StandardStep) && !Core.Me.HasAura(AurasDefine.TechnicalStep))
+               )
+            {
+                return -10;
+            }
+
+
+            if (bdls == SpellsDefine.StandardStep.GetSpellEntity() ||
+                bdls == SpellsDefine.TechnicalStep.GetSpellEntity() ||
+                Core.Me.HasAura(AurasDefine.StandardStep) ||
+                Core.Me.HasAura(AurasDefine.TechnicalStep))
+            {
+                return 0;
+            }
+
+            return -4;
         }
 
         public void Fill(SpellQueueSlot slot)
         {
-            var steps = ActionResourceManager.Dancer.Steps;
-            foreach (var step in steps)
+            var step = ActionResourceManager.Dancer.CurrentStep;
+            var spell = DancerSpellHelper.GetDanceStep(step);
+            slot.EnqueueAbility(spell.Id, SpellTargetType.Self);
+            if (ActionResourceManager.Dancer.CurrentStep == ActionResourceManager.Dancer.DanceStep.Finish)
             {
-                if (step == ActionResourceManager.Dancer.DanceStep.Finish)
-                {
-                    continue;
-                }
-                var spell = DancerSpellHelper.GetDanceStep(step);
-                slot.GCDEnqueue((spell.Id, SpellTargetType.Self));
+                slot.ClearGCD();
             }
         }
     }
