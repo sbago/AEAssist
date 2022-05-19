@@ -24,6 +24,10 @@ namespace AEAssist.AI.Reaper.GCD
             if (ActionManager.ComboTimeLeft > 0 && ActionManager.ComboTimeLeft < 10)
                 return -4;
 
+            var ret = ReaperSpellHelper.ReadyToEnshroud();
+            if (ret >= 0 || ret== -200)
+                return -5;
+
             return 0;
         }
 

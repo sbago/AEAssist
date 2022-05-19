@@ -40,8 +40,13 @@ namespace AEAssist.AI.Reaper.Ability
                 return -9;
             }
 
-            if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
+            if (ReaperSpellHelper.ReadyToEnshroud() >= 0)
+            {
                 return -10;
+            }
+
+            if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
+                return -11;
             return 0;
         }
 

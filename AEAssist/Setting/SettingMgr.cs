@@ -4,6 +4,7 @@ using System.IO;
 using AEAssist.Define;
 using AEAssist.Helper;
 using AEAssist;
+using AEAssist.AI;
 using Newtonsoft.Json;
 
 namespace AEAssist
@@ -48,6 +49,24 @@ namespace AEAssist
             File.WriteAllText(generalSettingFile, JsonConvert.SerializeObject(obj));
         }
 
+        private long lastSaveTime;
+        public void AutoSave()
+        {
+            if (AIRoot.Instance.IsRunning)
+            {
+                return;
+            }
+            if (lastSaveTime == 0)
+                lastSaveTime = TimeHelper.Now();
+            if (TimeHelper.Now() - lastSaveTime < 30000)
+            {
+                return;
+            }
+
+            lastSaveTime = TimeHelper.Now();
+            LogHelper.Info("AutoSave");
+            Save();
+        }
 
         public void InitSetting()
         {
@@ -115,6 +134,7 @@ namespace AEAssist
 
         public void Save()
         {
+            lastSaveTime = TimeHelper.Now();
             foreach (var v in AllSetting) SaveSetting(v.Value);
         }
     }

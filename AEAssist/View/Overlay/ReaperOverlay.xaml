@@ -67,12 +67,12 @@
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="{Binding Language.Toggle_PreferDoubleEnshroud}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                  IsChecked="{Binding DoubleEnshroudPrefer,Mode=TwoWay}" />
+                                  IsChecked="{Binding ReaperSettings.DoubleEnshroudPrefer,Mode=TwoWay}" />
 
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="{Binding Language.Toggle_UseHarpe}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                  IsChecked="{Binding UseHarpe,Mode=TwoWay}" />
+                                  IsChecked="{Binding ReaperSettings.UseHarpe,Mode=TwoWay}" />
 
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="{Binding Language.Toggle_ActiveAttack}"

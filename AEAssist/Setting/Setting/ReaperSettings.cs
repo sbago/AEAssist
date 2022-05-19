@@ -14,13 +14,16 @@ namespace AEAssist
 
         public bool EarlyDecisionMode { get; set; }
 
-        public bool DoubleEnshroudPrefer { get; set; }
+        public bool DoubleEnshroudPrefer { get; set; } = true;
+
+        public bool UseHarpe { get; set; }
 
         public void Reset()
         {
             GallowsPrefer = false;
             EarlyDecisionMode = true;
-            DoubleEnshroudPrefer = false;
+            DoubleEnshroudPrefer = true;
+            UseHarpe = false;
         }
 
         public void OnLoad()

@@ -48,6 +48,8 @@ namespace AEAssist.AI
             set => AEAssist.DataBinding.Instance.Burst = !value;
         }
 
+        public bool IsRunning => Core.Me.InCombat;
+
         public void Init()
         {
             _allBattleDatas.Clear();

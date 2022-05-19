@@ -99,9 +99,7 @@ namespace AEAssist
             UseApex = true;
             UseDot = true;
             AutoAttack = false;
-            UseHarpe = false;
             UseSoulGauge = true;
-            DoubleEnshroudPrefer = ReaperSettings.DoubleEnshroudPrefer;
             UseAOE = true;
             TimeStr = "";
             UseBattery = true;
@@ -142,12 +140,9 @@ namespace AEAssist
         #endregion
 
         #region Reaper
-
-        public bool UseHarpe { get; set; }
+        
         public bool UseSoulGauge { get; set; } = true;
         public bool UseEnshroud { get; set; } = true;
-
-        public bool DoubleEnshroudPrefer { get; set; } = true;
 
         #endregion
 

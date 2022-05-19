@@ -17,7 +17,7 @@ namespace AEAssist.AI.Reaper.GCD
                 return -2;
 
             // 双附体时,神秘环如果即将冷却好,或者已经可以用了,先不打这些GCD
-            if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer &&
+            if (AEAssist.SettingMgr.GetSetting<ReaperSettings>().DoubleEnshroudPrefer &&
                 SpellsDefine.ArcaneCircle.GetSpellEntity().Cooldown.TotalMilliseconds <
                 ConstValue.ReaperDoubleEnshroudMinCheckTime)
                 return -3;

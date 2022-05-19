@@ -19,7 +19,7 @@ namespace AEAssist.AI.Reaper.GCD
             var spell = SpellsDefine.Harpe;
             if (SpellsDefine.HarvestMoon.IsUnlock() && Core.Me.HasAura(AurasDefine.Soulsow))
                 spell = SpellsDefine.HarvestMoon;
-            else if (!AEAssist.DataBinding.Instance.UseHarpe) return null;
+            else if (!AEAssist.SettingMgr.GetSetting<ReaperSettings>().UseHarpe) return null;
 
             if (await spell.DoGCD()) return spell.GetSpellEntity();
 

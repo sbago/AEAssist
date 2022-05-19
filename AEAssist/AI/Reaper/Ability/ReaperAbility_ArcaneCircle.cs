@@ -16,7 +16,7 @@ namespace AEAssist.AI.Reaper.Ability
                 return -2;
             if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
                 return -3;
-            if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer)
+            if (AEAssist.SettingMgr.GetSetting<ReaperSettings>().DoubleEnshroudPrefer)
             {
                 if ((SpellsDefine.PlentifulHarvest.RecentlyUsed() || ActionResourceManager.Reaper.ShroudGauge >= 50) &&
                     !Core.Me.HasAura(AurasDefine.Enshrouded))
@@ -27,7 +27,7 @@ namespace AEAssist.AI.Reaper.Ability
                                 SpellHistoryHelper.GetLastGCDIndex(SpellsDefine.Enshroud);
                     if (delta < 2)
                         return -5;
-                    if (!AIRoot.Instance.Is2ndAbilityTime())
+                    if (!AIRoot.Instance.Is2ndAbilityTime(0.6f))
                         return -6;
                 }
             }

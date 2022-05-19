@@ -186,7 +186,7 @@ namespace AEAssist.AI.Reaper
 
             var coolDown = SpellsDefine.ArcaneCircle.GetSpellEntity().Cooldown.TotalMilliseconds;
 
-            if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer
+            if (AEAssist.SettingMgr.GetSetting<ReaperSettings>().DoubleEnshroudPrefer
                 && SpellsDefine.PlentifulHarvest.IsUnlock()
                 && ActionResourceManager.Reaper.ShroudGauge < 90
                 && coolDown > 5000
@@ -194,9 +194,9 @@ namespace AEAssist.AI.Reaper
                 return -106;
 
             if (PrepareEnterDoubleEnshroud())
-                // 连击3不能断,太亏
-                if (AIRoot.GetBattleData<ReaperBattleData>().CurrCombo == ReaperComboStages.InfernalSlice)
-                    return -107;
+                // 连击不能断,太亏
+                if (ActionManager.ComboTimeLeft<27) // 2*2.5 + 4*1.5+ 2*2.5+4*1.5+2.5 =24.5, and give 1 gcd to move
+                    return -200;
 
             return 0;
         }
@@ -204,7 +204,7 @@ namespace AEAssist.AI.Reaper
         public static bool PrepareEnterDoubleEnshroud()
         {
             var coolDown = SpellsDefine.ArcaneCircle.GetSpellEntity().Cooldown.TotalMilliseconds;
-            if (AEAssist.DataBinding.Instance.DoubleEnshroudPrefer
+            if (AEAssist.SettingMgr.GetSetting<ReaperSettings>().DoubleEnshroudPrefer
                 && SpellsDefine.PlentifulHarvest.IsUnlock()
                 && ActionResourceManager.Reaper.ShroudGauge < 90)
                 if (coolDown <= 5000)

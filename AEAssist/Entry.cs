@@ -74,6 +74,7 @@ namespace AEAssist
             OverlayManager.Instance.SwitchJob();
             WorldHelper.CheckZone();
             GamelogManager.Pulse();
+            SettingMgr.Instance.AutoSave();
         }
 
         public void Shutdown()
