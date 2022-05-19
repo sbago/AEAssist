@@ -15,9 +15,9 @@ namespace AEAssist.AI.Dancer
             new DancerGCD_DanceStep(),
             new DancerGCD_StarfallDance(),
             new DancerGCD_Tillana(),
-            new DancerGCD_StandardStep(),
             new DancerGCD_TechnicalStep(),
             new DancerGCD_SaberDance(),
+            new DancerGCD_StandardStep(),
             new DancerGCD_Procs(),
             new DancerGCD_BaseGCD()
         };
@@ -26,6 +26,7 @@ namespace AEAssist.AI.Dancer
         {
             new DancerAbility_Devilment(),
             new DancerAbility_Flourish(),
+            new DancerAbility_FanDance4(),
             new DancerAbility_FanDance3(),
             new DancerAbility_FanDance(),
             

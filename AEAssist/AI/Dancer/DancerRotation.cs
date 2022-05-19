@@ -20,11 +20,11 @@ namespace AEAssist.AI.Dancer
             // int step2 = rnd.Next(4000, 8000);
             int PotionTimer = rnd.Next(1650, 1800);
             int step3 = rnd.Next(50, 200);
-            CountDownHandler.Instance.AddListener(15000, () => SpellsDefine.StandardStep.DoGCD());
+            CountDownHandler.Instance.AddListener(14000, () => SpellsDefine.StandardStep.DoGCD());
             CountDownHandler.Instance.AddListener(step1, () => DancerSpellHelper.PreCombatDanceSteps());
             CountDownHandler.Instance.AddListener(PotionTimer, () =>
                 PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId));
-            CountDownHandler.Instance.AddListener(step3, () => SpellsDefine.DoubleStandardFinish.DoGCD());
+            CountDownHandler.Instance.AddListener(100, () => SpellsDefine.DoubleStandardFinish.DoGCD());
             AEAssist.DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<DancerSetting>().EarlyDecisionMode;
             // LogHelper.Info("EarlyDecisionMode: " + AEAssist.DataBinding.Instance.EarlyDecisionMode);
         }
