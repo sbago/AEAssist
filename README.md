@@ -1,7 +1,7 @@
 # AEAssist
  CombatRoutine for rb (ff14)
 
-The release files are in the __Output__ directory.  
+The release files are in the Discord.  
 
 Discord: https://discord.gg/Yyrf42h9gj  
 
