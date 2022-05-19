@@ -27,7 +27,7 @@ namespace AEAssist.AI.Sage
                     if (await SpellsDefine.Fountain.DoGCD())
                     {
                         AIRoot.GetBattleData<DancerBattleData>().CurrCombo = DancerComboStages.Cascade;
-                        return SpellsDefine.InfernalSlice.GetSpellEntity();
+                        return SpellsDefine.Fountain.GetSpellEntity();
                     }
                 }
             }
@@ -146,11 +146,9 @@ namespace AEAssist.AI.Sage
 
         public static async Task PreCombatDanceSteps()
         {
-            var count = 0;
-            const int need = 2;
-            const int retryTime = 25;
+            bool finish = false;
             const int retryInterval = 100; // 25* 100 = GCD CoolDown
-            while (count < need)
+            while (!finish)
             {
                 try
                 {
@@ -161,24 +159,21 @@ namespace AEAssist.AI.Sage
                         {
                             if (step == ActionResourceManager.Dancer.DanceStep.Finish)
                             {
+                                finish = true;
                                 break;
                             }
-
                             var spell = DancerSpellHelper.GetDanceStep(step);
                             int time = 0;
-                            while (time < retryTime && !await spell.DoAbility())
+                            while (!await spell.DoGCD())
                             {
                                 await Coroutine.Sleep(retryInterval);
                             }
 
-                            count++;
                         }
                     }
-                    await Coroutine.Sleep(retryInterval);
                 }
                 catch
                 {
-                    await Coroutine.Sleep(retryInterval);
                     // ignored
                 }
             }
