@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 using AETriggers.TriggerModel;
 using Microsoft.Win32;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using HorizontalAlignment = System.Windows.HorizontalAlignment;
 using Trigger = AEAssist.Trigger;
 
 namespace AEAssist
@@ -20,18 +24,17 @@ namespace AEAssist
         public MainWindow()
         {
             InitializeComponent();
-            var currCulture = CultureInfo.CurrentCulture;
+            /*var currCulture = CultureInfo.CurrentCulture;
             if (currCulture.Name.Contains("zh-CN"))
             {
                 Load.Content = "加载Excel表";
                 Export.Content = "导出";
-            }
+            }*/
 
 
             Entry.Init();
         }
-
-
+        
         private void Load_OnClick(object sender, RoutedEventArgs e)
         {
             var openFile = new OpenFileDialog();
@@ -155,7 +158,7 @@ namespace AEAssist
                         MessageBox.Show("Load Failed!");
                     }
 
-                    RefreshUI();
+                    /*RefreshUI();*/
                 }
             }
             catch (Exception exception)
@@ -175,7 +178,7 @@ namespace AEAssist
             openFile.FileName =
                 $"[{TriggerLine.TargetJob}] [{TriggerLine.Name}] [{TriggerLine.Author}].json";
             var ret = openFile.ShowDialog();
-            if (!ret.HasValue || !ret.Value)
+            if (!ret.HasValue || !ret.Value)                                                
                 return;
             TriggerHelper.SaveTriggerLine(TriggerLine, openFile.FileName);
             MessageBox.Show("Export Success!");
@@ -238,7 +241,7 @@ namespace AEAssist
             return $"[{str}]";
         }
 
-        private void RefreshUI()
+        /*private void RefreshUI()
         {
             var TriggerLine = Entry.TriggerLine;
             var AllExcelData = Entry.AllExcelData;
@@ -255,6 +258,59 @@ namespace AEAssist
             Name.Content = TriggerLine.Name;
             TargetZone.Content = $"{TriggerLine.CurrZoneId} | {TriggerLine.SubZoneId}";
             TargetJob.Content = TriggerLine.TargetJob;
+        }*/
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+        
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+
+            // Begin dragging the window
+            DragMove();
+        }
+
+        private void Selector_OnSelected(object sender, EventArgs eventArgs)
+        {
+            var selected = JobComboBox.Text;
+            MessageBox.Show(selected);
+        }
+
+        private void AddConditionOrActionBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            var comboBox = new ComboBox()
+            {
+                Width = 100,
+                Margin = new Thickness(5),
+                Style = FindResource("JobComboBox") as Style,
+                HorizontalAlignment = HorizontalAlignment.Left,
+            };
+            comboBox.Items.Add("Action");
+            comboBox.Items.Add("Condition");
+            comboBox.DropDownClosed += (ss, ee) =>
+            {
+                MessageBox.Show(comboBox.Text);
+            };
+            mainStackPanel.Children.Add(comboBox);
+        }
+
+        private void AddGrouIdBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void IdTextBox_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                var trigger = new Trigger
+                {
+                    Id = IdTextBox.Text,
+                };
+                ListView.Items.Add(trigger);
+            }
         }
     }
 }

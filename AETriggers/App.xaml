@@ -2,4 +2,20 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
+    <!-- Styles that need to be applied -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/RoundedButtonStyle.xaml" />
+                <ResourceDictionary Source="Theme/AuthorTextBoxStyle.xaml" />
+                <ResourceDictionary Source="Theme/NameTextBoxStyle.xaml" />
+                <ResourceDictionary Source="Theme/ZoneTextBoxStyle.xaml" />
+                <ResourceDictionary Source="Theme/SubZoneTextBoxStyle.xaml" />
+                <ResourceDictionary Source="Theme/CloseButtonStyle.xaml" />
+                <ResourceDictionary Source="Theme/JobComboBoxStyle.xaml" />
+                <ResourceDictionary Source="Theme/IDTextBoxStyle.xaml" />
+                <ResourceDictionary Source="Theme/AddButtonStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>

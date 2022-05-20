@@ -3,13 +3,198 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:aeTriggers="clr-namespace:AETriggers"
         mc:Ignorable="d"
-        Title="AETriggers" Height="180" Width="225">
-    <StackPanel Margin="5">
+        Height="600" 
+        Width="920"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        >
+    
+    <Border Background="#272537" CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition />
+                <RowDefinition Height="50"  />
+            </Grid.RowDefinitions>
+            <Border Grid.Column="0" Grid.Row="0" BorderBrush="black" BorderThickness="0, 0, 3,3" />
+            <Border Grid.Column="0" Grid.Row="1" BorderBrush="black" BorderThickness="0, 0, 3,3" />
+            <Border Grid.Column="0" Grid.Row="2" BorderBrush="black" BorderThickness="0, 0, 3,0" />
+            <Border Grid.Column="1" Grid.Row="0" BorderBrush="black" BorderThickness="0, 0, 0,3" />
+            <Border Grid.Column="1" Grid.Row="1" BorderBrush="black" BorderThickness="0, 0, 0,0" />
+            <Border Grid.Column="1" Grid.Row="2" BorderBrush="black" BorderThickness="0, 3, 0,0" />
+            
+            <TextBlock Grid.Row="0" 
+                       Grid.Column="0" 
+                       Text="AETriggers" 
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Foreground="White"
+                       FontSize="22"
+                       Margin="20,0,0,0" />
+            
+            <!--Author TextBox-->
+            <TextBox Grid.Row="0" 
+                     Grid.Column="1"
+                     Name="AuthorTextBox"
+                     Width="150"
+                     Height="30"
+                     Margin="5,5,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Style="{StaticResource TextBoxAuthor}" />
+            
+            <!--Name TextBox-->
+            <TextBox Grid.Row="0" 
+                     Grid.Column="1"
+                     Name="NameTextBox"
+                     Width="150"
+                     Height="30"
+                     Margin="5,10,0,0"
+                     HorizontalAlignment="Left"
+                     Style="{StaticResource TextBoxName}" />
+            
+            <!--Zone TextBox-->
+            <TextBox Grid.Row="0" 
+                     Grid.Column="1"
+                     Name="ZoneTextBox"
+                     Width="150"
+                     Height="30"
+                     Margin="0,5,150,0"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Top"
+                     Style="{StaticResource TextBoxZone}" />
+            
+            <!--SubZoneId TextBox-->
+            <TextBox Grid.Row="0" 
+                     Grid.Column="1"
+                     Name="SubZoneIdTextBox"
+                     Width="100"
+                     Height="30"
+                     Margin="0,5,30,0"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Top"
+                     Style="{StaticResource TextBoxSubZone}" />
+            
+            <ComboBox
+                Name="JobComboBox"
+                Grid.Row="0" 
+                Grid.Column="1"
+                Width="100"
+                Height="30"
+                Margin="0,5,30,20"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom" 
+                Style="{DynamicResource JobComboBox}"
+                SelectedIndex="0" ItemsSource="{Binding Source={aeTriggers:EnumBindingSource aeTriggers:Jobs}}"
+                DropDownClosed="Selector_OnSelected"
+                />
+            
+            <!--Id TextBox-->
+            <TextBox Grid.Row="2" 
+                     Grid.Column="0"
+                     Name="IdTextBox"
+                     Width="140"
+                     Margin="0,0,0,0"
+                     HorizontalAlignment="Left"
+                     FontSize="20"
+                     Style="{StaticResource TextBoxId}" 
+                     KeyDown="IdTextBox_OnKeyDown" />
+            
+            <!-- List View -->
+            <ListView Grid.Row="1" 
+                      Grid.Column="0" 
+                      Name="ListView"
+                      Foreground="White"
+                      Background="Transparent" 
+                      BorderThickness="0" />
+
+            <!-- Load Button -->
+            <Button Grid.Column="1" 
+                    Grid.Row="2"
+                    Content="Load"
+                    Width="100" 
+                    HorizontalAlignment="Right" 
+                    Margin="0, 5, 110,5"
+                    Foreground="White"
+                    Background="Black"
+                    BorderThickness="0"
+                    Style="{StaticResource RoundedButtonStyle}"/>
+
+            <!-- Export Button -->
+            <Button Grid.Column="1" 
+                    Grid.Row="2" 
+                    Content="Export" 
+                    Width="100" 
+                    HorizontalAlignment="Right"
+                    Margin="0, 5, 5,5"
+                    Background="Black"
+                    Foreground="White"
+                    BorderThickness="0" 
+                    Style="{StaticResource RoundedButtonStyle}"/>
+            
+            <!-- Quit Button -->
+            <Button Grid.Column="1" 
+                    Grid.Row="2"
+                    Content="QUIT"
+                    Width="100"
+                    HorizontalAlignment="Left"
+                    Margin="0, 5, 0,5"
+                    Foreground="White"
+                    Background="Black"
+                    BorderThickness="0"
+                    Style="{StaticResource CloseButtonStyle}"
+                    Click="CloseButton_Click" />
+            
+            <!-- AddConditionORAction Button -->
+            <Button Grid.Column="1" 
+                    Grid.Row="2"
+                    Name="AddConditionOrActionBtn"
+                    Content="Add Condition/Action"
+                    Width="300"
+                    HorizontalAlignment="Center"
+                    Margin="0, 5, 115,5"
+                    Foreground="White"
+                    Background="Black"
+                    BorderThickness="0"
+                    Style="{StaticResource RoundedButtonStyle}"
+                    Click="AddConditionOrActionBtn_OnClick"/>
+            
+            <!-- AddGroup Button -->
+            <Button Grid.Column="0" 
+                    Grid.Row="2"
+                    Name="AddGroupButton"
+                    Width="60"
+                    HorizontalAlignment="Right"
+                    Margin="0, 0, 0,0"
+                    Foreground="White"
+                    Background="Transparent"
+                    BorderThickness="3, 0, 0 , 3"
+                    BorderBrush="Black"
+                    Style="{StaticResource AddButtonStyle}"
+                    Click="AddGrouIdBtn_OnClick">
+                <Image Source="Resources\images/AddIcon.png" />
+            </Button>
+            <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel Name="mainStackPanel">
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+    <!--<StackPanel Margin="5">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Margin="5" Name="Load" Content="Load Excel" Click="Load_OnClick" />
             <Button Margin="5" Name="Export" Content="Export" Click="Export_OnClick" />
-            <!-- <Button Name="LoadJson" Content="加载导出文件(检验用)" Click="LoadJson_OnClick"></Button> -->
+            ~1~ <Button Name="LoadJson" Content="加载导出文件(检验用)" Click="LoadJson_OnClick"></Button> @1@
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Content="Author:" />
@@ -27,6 +212,5 @@
             <Label Content="TargetJob:" />
             <Label Name="TargetJob" Content="" />
         </StackPanel>
-
-    </StackPanel>
+    </StackPanel>-->
 </Window>
