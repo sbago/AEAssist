@@ -27,6 +27,10 @@ namespace AEAssist.AI.Reaper.Ability
                 && !SpellsDefine.GrimSwathe.RecentlyUsed())
                 return -3;
 
+            //alway use in the second half of GCD
+            if (!AIRoot.Instance.Is2ndAbilityTime())
+                return -11;
+                    
             var spell = ReaperSpellHelper.Gibbit_Gallows(Core.Me.CurrentTarget);
             if (spell == null)
                 return -4;
