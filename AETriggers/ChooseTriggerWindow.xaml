@@ -1,0 +1,30 @@
+<Window x:Class="AETriggers.ChooseTriggerWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:AETriggers"
+             mc:Ignorable="d"
+             ResizeMode="NoResize"
+             WindowStyle="None"
+             Topmost="True"
+             ShowInTaskbar="False"
+             Height="300" Width="300">
+
+        <TreeView Name="ChooseTriggerTreeView">
+            <TreeViewItem Header="Cond" Name="CondTreeViews" IsExpanded="True">
+                <TreeViewItem.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Name}" Click="TreeViewBtnClick" />
+                    </DataTemplate>
+                </TreeViewItem.ItemTemplate>
+            </TreeViewItem>
+            <TreeViewItem Header="Action" Name="ActionTreeViews" IsExpanded="True">
+                <TreeViewItem.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Name}" Click="TreeViewBtnClick" />
+                    </DataTemplate>
+                </TreeViewItem.ItemTemplate>
+            </TreeViewItem>
+        </TreeView>
+</Window>

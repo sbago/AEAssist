@@ -184,7 +184,7 @@
                     Click="AddGrouIdBtn_OnClick">
                 <Image Source="Resources\images/AddIcon.png" />
             </Button>
-            <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Name="Main" Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto" PreviewMouseDown="Main_OnMouseDown">
                 <StackPanel Name="mainStackPanel">
                 </StackPanel>
             </ScrollViewer>

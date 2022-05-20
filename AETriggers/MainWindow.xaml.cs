@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using AETriggers;
 using AETriggers.TriggerModel;
 using Microsoft.Win32;
 using NPOI.HSSF.UserModel;
@@ -21,6 +22,9 @@ namespace AEAssist
     /// </summary>
     public partial class MainWindow
     {
+
+        private ChooseTriggerWindow _chooseTriggerWindow;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -30,8 +34,7 @@ namespace AEAssist
                 Load.Content = "加载Excel表";
                 Export.Content = "导出";
             }*/
-
-
+            _chooseTriggerWindow = new ChooseTriggerWindow();
             Entry.Init();
         }
         
@@ -311,6 +314,20 @@ namespace AEAssist
                 };
                 ListView.Items.Add(trigger);
             }
+        }
+        
+
+        private void Main_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton != MouseButton.Right)
+            {
+                _chooseTriggerWindow.Hide();
+                return;
+            }
+
+            var mousePos = e.GetPosition(this);
+            var screenPos = this.PointToScreen(mousePos);
+            _chooseTriggerWindow.Show(screenPos);
         }
     }
 }

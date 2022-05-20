@@ -80,6 +80,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ChooseTriggerWindow.xaml.cs">
+      <DependentUpon>ChooseTriggerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CreaterWindow.xaml.cs">
       <DependentUpon>CreaterWindow.xaml</DependentUpon>
     </Compile>
@@ -90,7 +93,6 @@
     <Compile Include="TriggerModel\ITriggerAction.cs" />
     <Compile Include="TriggerModel\ITriggerBase.cs" />
     <Compile Include="TriggerModel\ITriggerCond.cs" />
-    <Compile Include="TriggerModel\Model.cs" />
     <Compile Include="TriggerModel\MongoHelper.cs" />
     <Compile Include="TriggerModel\Trigger.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_BatteryList.cs" />
@@ -118,6 +120,7 @@
     <Compile Include="TriggerModel\TriggerHelper.cs" />
     <Compile Include="TriggerModel\TriggerLine.cs" />
     <Compile Include="TriggerModel\TriggerMgr.cs" />
+    <Page Include="ChooseTriggerWindow.xaml" />
     <Page Include="CreaterWindow.xaml" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -158,9 +161,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DisplayAttribute\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\images\AddIcon.png" />
