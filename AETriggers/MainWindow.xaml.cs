@@ -22,9 +22,10 @@ namespace AEAssist
     /// </summary>
     public partial class MainWindow
     {
-
-        private ChooseTriggerWindow _chooseTriggerWindow;
-        
+        public class TestData
+        {
+            public string Name { get; set; }
+        }
         public MainWindow()
         {
             InitializeComponent();
@@ -34,7 +35,24 @@ namespace AEAssist
                 Load.Content = "加载Excel表";
                 Export.Content = "导出";
             }*/
-            _chooseTriggerWindow = new ChooseTriggerWindow();
+
+            var list1 = new List<TestData>()
+            {
+                new TestData() {Name = "AfterBattleStart"}, //todo: AutoCreate
+                new TestData() {Name = "AfterOtherTrigger"},
+            };
+            
+            var list2 = new List<TestData>()
+            {
+                new TestData() {Name = "SwitchBurst"},
+                new TestData() {Name = "SwitchAOE"},
+            };
+
+            //
+            Conds.ItemsSource = list1;
+            Actions.ItemsSource = list2;
+
+            
             Entry.Init();
         }
         
@@ -283,51 +301,144 @@ namespace AEAssist
 
         private void AddConditionOrActionBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            var comboBox = new ComboBox()
-            {
-                Width = 100,
-                Margin = new Thickness(5),
-                Style = FindResource("JobComboBox") as Style,
-                HorizontalAlignment = HorizontalAlignment.Left,
-            };
-            comboBox.Items.Add("Action");
-            comboBox.Items.Add("Condition");
-            comboBox.DropDownClosed += (ss, ee) =>
-            {
-                MessageBox.Show(comboBox.Text);
-            };
-            mainStackPanel.Children.Add(comboBox);
+
         }
 
         private void AddGrouIdBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var newId = IdTextBox.Text;
+            if (string.IsNullOrEmpty(newId) || DataBinding.Instance.GroupIds.Contains(newId))
+            {
+                MessageBox.Show("Repeat or Null!");
+                return;
+            }
+            DataBinding.Instance.GroupIds.Add(newId);
+            DataBinding.Instance.AllGroupData[newId] = new DataBinding.GroupData();
         }
 
         private void IdTextBox_OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
             {
-                var trigger = new Trigger
+                var newId = IdTextBox.Text;
+                if (string.IsNullOrEmpty(newId) || DataBinding.Instance.GroupIds.Contains(newId))
                 {
-                    Id = IdTextBox.Text,
-                };
-                ListView.Items.Add(trigger);
+                    MessageBox.Show("Repeat or Null!");
+                    return;
+                }
+                DataBinding.Instance.GroupIds.Add(newId);
+                DataBinding.Instance.AllGroupData[newId] = new DataBinding.GroupData();
             }
         }
         
 
-        private void Main_OnMouseDown(object sender, MouseButtonEventArgs e)
+        // private void Main_OnMouseDown(object sender, MouseButtonEventArgs e)
+        // {
+        //     if (e.ChangedButton != MouseButton.Right)
+        //     {
+        //         _chooseTriggerWindow.Hide();
+        //         return;
+        //     }
+        //
+        //     var mousePos = e.GetPosition(this);
+        //    var screenPos = this.PointToScreen(mousePos);
+        //     _chooseTriggerWindow.Show(screenPos);
+        // }
+
+        private void AuthorTextBox_OnKeyUp(object sender, KeyEventArgs e)
         {
-            if (e.ChangedButton != MouseButton.Right)
+            
+        }
+
+        private void TriggerOnClickHandler(object sender, RoutedEventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            if (menuItem == null)
+                return;
+            
+            if (string.IsNullOrEmpty(DataBinding.Instance.CurrChoosedId))
+                return;
+            if (!DataBinding.Instance.AllGroupData.TryGetValue(DataBinding.Instance.CurrChoosedId, out var group))
             {
-                _chooseTriggerWindow.Hide();
                 return;
             }
 
-            var mousePos = e.GetPosition(this);
-            var screenPos = this.PointToScreen(mousePos);
-            _chooseTriggerWindow.Show(screenPos);
+            var currTriggers = group.Triggers;
+            currTriggers.Add(new DataBinding.Trigger()
+            {
+                TypeName = menuItem.Header.ToString(),
+            });
+        }
+
+        private void GroupIdRename_EventHandler(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var button = sender as Button;
+                var stackPanel = button.Parent as StackPanel;
+                var textBlock = stackPanel.Children[0] as TextBlock;
+
+                var oldId = textBlock.Text;
+                var newId = oldId + "_1"; //todo: popup a messagebox with textbox.
+                bool currChoosed = false;
+                if (DataBinding.Instance.CurrChoosedId == oldId)
+                {
+                    DataBinding.Instance.CurrChoosedId = string.Empty;
+                    TriggersListView.ItemsSource = null;
+                    currChoosed = true;
+                }
+
+                DataBinding.Instance.GroupIds.Remove(oldId);
+                var groupData =  DataBinding.Instance.AllGroupData[oldId];
+                DataBinding.Instance.AllGroupData.Remove(oldId);
+                DataBinding.Instance.GroupIds.Add(newId);
+                DataBinding.Instance.AllGroupData[newId] = groupData;
+                if (currChoosed)
+                {
+                    DataBinding.Instance.CurrChoosedId = newId;
+                    TriggersListView.ItemsSource = groupData.Triggers;
+                }
+
+                //todo: get newId,
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.ToString());
+            }
+        }
+
+        private void GroupIdDel_EventHandler(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var button = sender as Button;
+                var stackPanel = button.Parent as StackPanel;
+                var textBlock = stackPanel.Children[0] as TextBlock;
+
+                var delId = textBlock.Text;
+                if (DataBinding.Instance.CurrChoosedId == delId)
+                {
+                    DataBinding.Instance.CurrChoosedId = string.Empty;
+                    TriggersListView.ItemsSource = null;
+                }
+
+                DataBinding.Instance.GroupIds.Remove(delId);
+                DataBinding.Instance.AllGroupData.Remove(delId);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.ToString());
+            }
+        }
+
+        private void ShowGroup_EventHandler(object sender, MouseButtonEventArgs e)
+        {
+            var TextBlock = sender as TextBlock;
+            var id = TextBlock.Text;
+            DataBinding.Instance.CurrChoosedId = id;
+            var groupData = DataBinding.Instance.AllGroupData[id];
+            TriggersListView.ItemsSource = groupData.Triggers;
+            MessageBox.Show(id);
         }
     }
 }

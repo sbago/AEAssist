@@ -62,6 +62,7 @@ namespace AEAssist.AI
                 return;
             }
 
+            LogHelper.Debug("ApplySlotQueue: "+type.Name);
             battleData.CurrApply = queue;
             battleData.ApplyIndex = 0;
         }

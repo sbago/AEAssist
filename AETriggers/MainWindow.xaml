@@ -5,26 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:aeTriggers="clr-namespace:AETriggers"
         mc:Ignorable="d"
-        Height="600" 
+        Height="600"
         Width="920"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True"
-        WindowStartupLocation="CenterScreen"
-        >
+        WindowStartupLocation="CenterScreen">
     
+    <Window.DataContext>
+        <Binding Source="{x:Static aeTriggers:DataBinding.Instance}" />
+    </Window.DataContext>
+
     <Border Background="#272537" CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="200" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="100" />
                 <RowDefinition />
-                <RowDefinition Height="50"  />
+                <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <Border Grid.Column="0" Grid.Row="0" BorderBrush="black" BorderThickness="0, 0, 3,3" />
             <Border Grid.Column="0" Grid.Row="1" BorderBrush="black" BorderThickness="0, 0, 3,3" />
@@ -32,18 +35,18 @@
             <Border Grid.Column="1" Grid.Row="0" BorderBrush="black" BorderThickness="0, 0, 0,3" />
             <Border Grid.Column="1" Grid.Row="1" BorderBrush="black" BorderThickness="0, 0, 0,0" />
             <Border Grid.Column="1" Grid.Row="2" BorderBrush="black" BorderThickness="0, 3, 0,0" />
-            
-            <TextBlock Grid.Row="0" 
-                       Grid.Column="0" 
-                       Text="AETriggers" 
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Text="AETriggers"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
                        Foreground="White"
                        FontSize="22"
                        Margin="20,0,0,0" />
-            
+
             <!--Author TextBox-->
-            <TextBox Grid.Row="0" 
+            <TextBox Grid.Row="0"
                      Grid.Column="1"
                      Name="AuthorTextBox"
                      Width="150"
@@ -51,19 +54,19 @@
                      Margin="5,5,0,0"
                      HorizontalAlignment="Left"
                      VerticalAlignment="Top"
-                     KeyUp="AuthorTextBox_OnKeyUp"/>
-            
+                     KeyUp="AuthorTextBox_OnKeyUp" />
+
             <!--Name TextBox-->
-            <TextBox Grid.Row="0" 
+            <TextBox Grid.Row="0"
                      Grid.Column="1"
                      Name="NameTextBox"
                      Width="150"
                      Height="30"
                      Margin="5,10,0,0"
                      HorizontalAlignment="Left" />
-            
+
             <!--Zone TextBox-->
-            <TextBox Grid.Row="0" 
+            <TextBox Grid.Row="0"
                      Grid.Column="1"
                      Name="ZoneTextBox"
                      Width="150"
@@ -71,9 +74,9 @@
                      Margin="0,5,150,0"
                      HorizontalAlignment="Right"
                      VerticalAlignment="Top" />
-            
+
             <!--SubZoneId TextBox-->
-            <TextBox Grid.Row="0" 
+            <TextBox Grid.Row="0"
                      Grid.Column="1"
                      Name="SubZoneIdTextBox"
                      Width="100"
@@ -81,23 +84,22 @@
                      Margin="0,5,30,0"
                      HorizontalAlignment="Right"
                      VerticalAlignment="Top" />
-            
+
             <ComboBox
                 Name="JobComboBox"
-                Grid.Row="0" 
+                Grid.Row="0"
                 Grid.Column="1"
                 Width="100"
                 Height="30"
                 Margin="0,5,30,20"
                 HorizontalAlignment="Right"
-                VerticalAlignment="Bottom" 
+                VerticalAlignment="Bottom"
                 Style="{DynamicResource JobComboBox}"
                 SelectedIndex="0" ItemsSource="{Binding Source={aeTriggers:EnumBindingSource aeTriggers:Jobs}}"
-                DropDownClosed="Selector_OnSelected"
-                />
-            
+                DropDownClosed="Selector_OnSelected" />
+
             <!--Id TextBox-->
-            <TextBox Grid.Row="2" 
+            <TextBox Grid.Row="2"
                      Grid.Column="0"
                      Name="IdTextBox"
                      Width="140"
@@ -105,44 +107,52 @@
                      HorizontalAlignment="Left"
                      FontSize="20"
                      KeyDown="IdTextBox_OnKeyDown" />
-            
+
             <!-- List View -->
-            <ListView Grid.Row="1" 
-                      Grid.Column="0" 
-                      Name="ListView"
+            <ListView Grid.Row="1"
+                      Grid.Column="0"
+                      Name="GroupIdList"
                       Foreground="White"
-                      Background="Transparent" 
-                      BorderThickness="0" 
-                      ItemsSource="{Binding TriggerList}"
-                      >
-            </ListView>
+                      Background="Transparent"
+                      BorderThickness="0"
+                      ItemsSource="{Binding GroupIds}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Width="100" Text="{Binding}" MouseLeftButtonDown="ShowGroup_EventHandler"/>
+                            <Button Width="30" Content="Rename" Click="GroupIdRename_EventHandler" />
+                            <Button Width="30" Content="Del" Click="GroupIdDel_EventHandler"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                </ListView>
 
             <!-- Load Button -->
-            <Button Grid.Column="1" 
+            <Button Grid.Column="1"
                     Grid.Row="2"
                     Content="Load"
-                    Width="100" 
-                    HorizontalAlignment="Right" 
+                    Width="100"
+                    HorizontalAlignment="Right"
                     Margin="0, 5, 110,5"
                     Foreground="White"
                     Background="Black"
                     BorderThickness="0"
-                    Style="{StaticResource RoundedButtonStyle}"/>
+                    Style="{StaticResource RoundedButtonStyle}" />
 
             <!-- Export Button -->
-            <Button Grid.Column="1" 
-                    Grid.Row="2" 
-                    Content="Export" 
-                    Width="100" 
+            <Button Grid.Column="1"
+                    Grid.Row="2"
+                    Content="Export"
+                    Width="100"
                     HorizontalAlignment="Right"
                     Margin="0, 5, 5,5"
                     Background="Black"
                     Foreground="White"
-                    BorderThickness="0" 
-                    Style="{StaticResource RoundedButtonStyle}"/>
-            
+                    BorderThickness="0"
+                    Style="{StaticResource RoundedButtonStyle}" />
+
             <!-- Quit Button -->
-            <Button Grid.Column="1" 
+            <Button Grid.Column="1"
                     Grid.Row="2"
                     Content="QUIT"
                     Width="100"
@@ -153,9 +163,9 @@
                     BorderThickness="0"
                     Style="{StaticResource CloseButtonStyle}"
                     Click="CloseButton_Click" />
-            
+
             <!-- AddConditionORAction Button -->
-            <Button Grid.Column="1" 
+            <Button Grid.Column="1"
                     Grid.Row="2"
                     Name="AddConditionOrActionBtn"
                     Content="Add Condition/Action"
@@ -166,10 +176,10 @@
                     Background="Black"
                     BorderThickness="0"
                     Style="{StaticResource RoundedButtonStyle}"
-                    Click="AddConditionOrActionBtn_OnClick"/>
-            
+                    Click="AddConditionOrActionBtn_OnClick" />
+
             <!-- AddGroup Button -->
-            <Button Grid.Column="0" 
+            <Button Grid.Column="0"
                     Grid.Row="2"
                     Name="AddGroupButton"
                     Width="60"
@@ -183,8 +193,43 @@
                     Click="AddGrouIdBtn_OnClick">
                 <Image Source="Resources\images/AddIcon.png" />
             </Button>
-            <ScrollViewer Name="Main" Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto" PreviewMouseDown="Main_OnMouseDown">
-                <StackPanel Name="mainStackPanel">
+            <ScrollViewer Name="Main" Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel Name="mainStackPanel" Background="Transparent">
+                    <StackPanel.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Cond" Name="Conds">
+                                <MenuItem.ItemContainerStyle>
+                                    <Style TargetType="MenuItem">
+                                        <Setter Property="Header" Value="{Binding Name}"/>
+                                        <EventSetter Event="Click" Handler="TriggerOnClickHandler"/>
+                                    </Style>
+                                </MenuItem.ItemContainerStyle>
+                            </MenuItem>
+                            <MenuItem Header="Action" Name="Actions">
+                                <MenuItem.ItemContainerStyle>
+                                    <Style TargetType="MenuItem">
+                                        <Setter Property="Header" Value="{Binding Name}"/>
+                                        <EventSetter Event="Click" Handler="TriggerOnClickHandler"/>
+                                    </Style>
+                                </MenuItem.ItemContainerStyle>
+                            </MenuItem>
+                        </ContextMenu>
+                    </StackPanel.ContextMenu>
+                    <ListView Name="TriggersListView"
+                              Foreground="White"
+                              Background="Transparent"
+                              BorderThickness="0">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding TypeName}"/>
+                                    <TextBox Text="{Binding Param1}"/>
+                                    <TextBlock Text="{Binding Param2}"/>
+                                    <TextBlock Text="{Binding Param3}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        </ListView>
                 </StackPanel>
             </ScrollViewer>
         </Grid>
