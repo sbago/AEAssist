@@ -13,5 +13,14 @@ namespace AEAssist.TriggerAction
 
             value = va == 1;
         }
+        
+        public string[] Pack2Json()
+        {
+            return new string[]
+            {
+                value ? "1" : "0"
+            };
+        }
+        
     }
 }

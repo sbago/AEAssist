@@ -17,5 +17,14 @@ namespace AEAssist.TriggerCond
             if (delay < 0) throw new Exception("Must >=0 : " + delay);
             delayTime = delay;
         }
+
+        public string[] Pack2Json()
+        {
+            return new string[]
+            {
+                name,
+                delayTime.ToString()
+            };
+        }
     }
 }

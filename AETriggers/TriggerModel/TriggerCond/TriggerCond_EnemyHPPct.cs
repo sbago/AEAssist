@@ -2,7 +2,11 @@
 
 namespace AEAssist.TriggerCond
 {
-    [Trigger("EnemyHPPct")]
+    [Trigger("EnemyHPPct",Tooltip = "the specify value that specify enemy'hp less than\n指定敌人的血量低于多少时",
+        ParamTooltip = "[enemy name(contains) or NpcId],[Percentage of hp, retain three decimal places (51.123 = 51.123%)],[Time in sec]\n" +
+                       "[敌人的名字(包含),或者NpcId],[血量百分比,保留3位小数(51.123 = 51.123%)],[过了多少秒]",
+        Example = "10720,50.5,20\n\thydaelyn,50.12,3\n\t海德林,40,0")
+    ]
     public class TriggerCond_EnemyHPPct : ITriggerCond
     {
         public int delayTime;
@@ -22,6 +26,16 @@ namespace AEAssist.TriggerCond
 
             if (delay < 0) throw new Exception("Must >=0 : " + delay);
             delayTime = delay;
+        }
+
+        public string[] Pack2Json()
+        {
+            return new string[]
+            {
+                Name,
+                HpPct.ToString(),
+                delayTime.ToString()
+            };
         }
     }
 }

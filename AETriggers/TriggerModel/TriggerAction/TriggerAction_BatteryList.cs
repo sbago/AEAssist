@@ -24,5 +24,20 @@ namespace AEAssist.TriggerAction
                 BatteryList.Add(battery);
             }
         }
+
+        public string[] Pack2Json()
+        {
+            var str = string.Empty;
+            for (int i = 0; i < BatteryList.Count; i++)
+            {
+                str += BatteryList[i].ToString()+'|';
+            }
+
+            str = str.Remove(str.Length - 1);
+            return new string[]
+            {
+                str
+            };
+        }
     }
 }

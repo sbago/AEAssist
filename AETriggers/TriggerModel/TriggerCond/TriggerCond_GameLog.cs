@@ -19,5 +19,15 @@ namespace AEAssist.TriggerCond
             if (!int.TryParse(values[2], out var delay)) throw new Exception($"{values[2]}Error!\n");
             delayTime = delay;
         }
+
+        public string[] Pack2Json()
+        {
+            return new string[]
+            {
+                MsgType.ToString(),
+                ContainValue.ToString(),
+                delayTime.ToString()
+            };
+        }
     }
 }

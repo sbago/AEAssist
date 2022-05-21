@@ -46,9 +46,10 @@ namespace AEAssist.TriggerSystem
 
         public bool HandleTriggers(Trigger trigger)
         {
-            foreach (var v in trigger.TriggerConds)
-                if (!HandleCond(v))
-                    return false;
+            if (trigger.TriggerConds.Count > 0)
+                foreach (var v in trigger.TriggerConds)
+                    if (!HandleCond(v))
+                        return false;
 
             LogHelper.Info("Hit Trigger: " + trigger.Id);
 

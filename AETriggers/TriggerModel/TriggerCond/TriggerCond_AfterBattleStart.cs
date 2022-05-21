@@ -2,7 +2,11 @@
 
 namespace AEAssist.TriggerCond
 {
-    [Trigger("AfterBattleStart")]
+    [Trigger("AfterBattleStart",
+        Tooltip:"How many seconds have elapsed since the start of the battle\n" +
+                "战斗开始后多少秒",
+        ParamTooltip = "[time in sec]\n[多少秒]" ,
+        Example = "20")]
     public class TriggerCond_AfterBattleStart : ITriggerCond
     {
         public int Time;
@@ -14,6 +18,14 @@ namespace AEAssist.TriggerCond
             Time = time;
             if (Time < 0) throw new Exception("Out of range!");
             if (Time > 2000) throw new Exception($"Time is too large! : Sec: {Time}");
+        }
+
+        public string[] Pack2Json()
+        {
+            return new string[]
+            {
+                this.Time.ToString()
+            };
         }
     }
 }

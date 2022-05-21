@@ -13,5 +13,13 @@ namespace AEAssist.TriggerAction
 
             SpellId = spell;
         }
+
+        public string[] Pack2Json()
+        {
+            return new string[]
+            {
+                SpellId.ToString()
+            };
+        }
     }
 }

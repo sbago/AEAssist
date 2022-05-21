@@ -31,5 +31,20 @@ namespace AEAssist.TriggerAction
                 Durations.Add(duration);
             }
         }
+
+        public string[] Pack2Json()
+        {
+            var str = string.Empty;
+            for (int i = 0; i < SongIndex.Count; i++)
+            {
+                str += $"{SongIndex[i]}:{Durations[i]}|";
+            }
+
+            str = str.Remove(str.Length - 1);
+            return new string[]
+            {
+                str
+            };
+        }
     }
 }

@@ -15,5 +15,14 @@ namespace AEAssist.TriggerAction
             SpellId = spell;
             Lock = lockValue == 1;
         }
+
+        public string[] Pack2Json()
+        {
+            return new string[]
+            {
+                SpellId.ToString(),
+                Lock ? "1" : "0"
+            };
+        }
     }
 }

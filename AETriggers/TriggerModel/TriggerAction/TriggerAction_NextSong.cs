@@ -22,5 +22,14 @@ namespace AEAssist.TriggerAction
 
             Duration = dura;
         }
+
+        public string[] Pack2Json()
+        {
+            return new string[]
+            {
+                value.ToString(),
+                Duration.ToString()
+            };
+        }
     }
 }

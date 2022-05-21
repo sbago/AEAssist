@@ -16,5 +16,13 @@ namespace AEAssist.TriggerAction
 
             this.index = index;
         }
+        
+        public string[] Pack2Json()
+        {
+            return new string[]
+            {
+                index.ToString()
+            };
+        }
     }
 }

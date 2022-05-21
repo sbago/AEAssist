@@ -7,7 +7,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using AETriggers;
-using AETriggers.TriggerModel;
 using Microsoft.Win32;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
@@ -22,9 +21,10 @@ namespace AEAssist
     /// </summary>
     public partial class MainWindow
     {
-        public class TestData
+        public class TriggerTypeData
         {
             public string Name { get; set; }
+            public string Tooltip { get; set; }
         }
         public MainWindow()
         {
@@ -36,161 +36,39 @@ namespace AEAssist
                 Export.Content = "导出";
             }*/
 
-            var list1 = new List<TestData>()
+            var list1 = new List<TriggerTypeData>();
+            foreach (var v in TriggerMgr.Instance.AllCondType)
             {
-                new TestData() {Name = "AfterBattleStart"}, //todo: AutoCreate
-                new TestData() {Name = "AfterOtherTrigger"},
-            };
-            
-            var list2 = new List<TestData>()
-            {
-                new TestData() {Name = "SwitchBurst"},
-                new TestData() {Name = "SwitchAOE"},
-            };
-
-            //
+                var attr = TriggerMgr.Instance.AllAttrs[v];
+                list1.Add(new TriggerTypeData()
+                {
+                    Name = attr.Name,
+                    Tooltip = attr.Tooltip
+                });
+            }
             Conds.ItemsSource = list1;
+
+
+            var list2 = new List<TriggerTypeData>();
+            foreach (var v in TriggerMgr.Instance.AllActionType)
+            {
+                var attr = TriggerMgr.Instance.AllAttrs[v];
+                list2.Add(new TriggerTypeData()
+                {
+                    Name = attr.Name,
+                    Tooltip = attr.Tooltip
+                });
+            }
             Actions.ItemsSource = list2;
 
+            JobComboBox.SelectedValue = Jobs.Any;
             
             Entry.Init();
         }
         
-        private void Load_OnClick(object sender, RoutedEventArgs e)
-        {
-            var openFile = new OpenFileDialog();
-            openFile.Filter = "Excel(*.xlsx)|*.xlsx|Excel(*.xls)|*.xls";
-            openFile.InitialDirectory = new DirectoryInfo("../").FullName;
-            openFile.Multiselect = false;
-            var ret = openFile.ShowDialog();
-
-            if (!ret.HasValue || !ret.Value)
-                return;
-            var file = openFile.FileName;
-            IWorkbook workbook;
-            var fileExt = Path.GetExtension(file).ToLower();
-            try
-            {
-                using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read,
-                    FileShare.ReadWrite))
-                {
-                    if (fileExt == ".xlsx")
-                        workbook = new XSSFWorkbook(fs);
-                    else if (fileExt == ".xls")
-                        workbook = new HSSFWorkbook(fs);
-                    else
-                        workbook = null;
-
-                    if (workbook == null)
-                    {
-                        MessageBox.Show("Load excel failed!");
-                        return;
-                    }
-
-                    var sheet = workbook.GetSheetAt(0);
-
-                    // for (int i = 0; i < sheet.LastRowNum; i++)
-                    // {
-                    //     var row = sheet.GetRow(i);
-                    //     foreach (var v in row.Cells)
-                    //     {
-                    //         if (v != null && !string.IsNullOrEmpty(v.ToString()))
-                    //             MessageBox.Show($"{v.RowIndex} {v.ColumnIndex} : {v.ToString()}");
-                    //     }
-                    // }
-
-
-                    var authorName = sheet.GetRow(0).GetCell(1).ToString().Trim();
-                    var name = sheet.GetRow(1).GetCell(1).ToString().Trim();
-                    var targetZoneIdStr = sheet.GetRow(2).GetCell(1).ToString().Trim();
-                    var subZoneIdStr = sheet.GetRow(2).GetCell(2).ToString().Trim();
-                    var job = sheet.GetRow(3).GetCell(1).ToString().Trim();
-
-                    if (!ushort.TryParse(targetZoneIdStr, out var targetZoneId))
-                    {
-                        MessageBox.Show($"Load excel failed! {targetZoneIdStr} format error");
-                        return;
-                    }
-
-                    if (!ushort.TryParse(subZoneIdStr, out var subZoneId))
-                    {
-                        MessageBox.Show($"Load excel failed! {subZoneIdStr} format error");
-                        return;
-                    }
-
-
-                    Entry.TriggerLine = new TriggerLine
-                    {
-                        Author = authorName,
-                        Name = name,
-                        CurrZoneId = targetZoneId,
-                        SubZoneId = subZoneId,
-                        TargetJob = job,
-                        ConfigVersion = TriggerLine.CurrConfigVersion
-                    };
-
-                    var AllExcelData = Entry.AllExcelData;
-
-                    Entry.AllExcelData.Clear();
-                    for (var i = 6; i < sheet.LastRowNum; i++)
-                    {
-                        var row = sheet.GetRow(i);
-                        var cell = row.GetCell(1);
-                        var notData = cell != null && cell.ToString().StartsWith("#");
-                        if (notData)
-                            continue;
-                        var groupId = row.GetCell(2)?.ToString().Trim();
-                        var type = row.GetCell(3)?.ToString().Trim();
-                        var valueType = row.GetCell(4)?.ToString().Trim();
-
-                        if (groupId == null || type == null || valueType == null)
-                            continue;
-
-                        var valueParams = new string[3];
-                        valueParams[0] = row.GetCell(5)?.ToString().Trim();
-                        valueParams[1] = row.GetCell(6)?.ToString().Trim();
-                        valueParams[2] = row.GetCell(7)?.ToString().Trim();
-
-                        if (!AllExcelData.TryGetValue(groupId, out var list))
-                        {
-                            list = new List<Entry.ExcelData>();
-                            AllExcelData[groupId] = list;
-                        }
-
-                        list.Add(new Entry.ExcelData
-                        {
-                            groupId = groupId,
-                            type = type,
-                            valueType = valueType,
-                            valueParams = valueParams
-                        });
-                    }
-
-                    var loadRet = LoadExcelData();
-
-                    if (loadRet)
-                    {
-                        MessageBox.Show("Load Success!");
-                    }
-                    else
-                    {
-                        Entry.TriggerLine = null;
-                        AllExcelData.Clear();
-                        MessageBox.Show("Load Failed!");
-                    }
-
-                    /*RefreshUI();*/
-                }
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.ToString());
-            }
-        }
-
         private void Export_OnClick(object sender, RoutedEventArgs e)
         {
-            var TriggerLine = Entry.TriggerLine;
+            var TriggerLine = DataBinding.Instance.Export();
             if (TriggerLine == null)
                 return;
             var openFile = new SaveFileDialog();
@@ -199,57 +77,10 @@ namespace AEAssist
             openFile.FileName =
                 $"[{TriggerLine.TargetJob}] [{TriggerLine.Name}] [{TriggerLine.Author}].json";
             var ret = openFile.ShowDialog();
-            if (!ret.HasValue || !ret.Value)                                                
+            if (!ret.HasValue || !ret.Value)
                 return;
             TriggerHelper.SaveTriggerLine(TriggerLine, openFile.FileName);
             MessageBox.Show("Export Success!");
-        }
-
-        private bool LoadExcelData()
-        {
-            var TriggerLine = Entry.TriggerLine;
-            var AllExcelData = Entry.AllExcelData;
-            if (TriggerLine == null || AllExcelData.Count == 0)
-                return false;
-            foreach (var v in AllExcelData)
-            {
-                var trigger = new Trigger
-                {
-                    Id = v.Key
-                };
-                TriggerLine.Triggers.Add(trigger);
-
-                foreach (var data in v.Value)
-                {
-                    var strs = data.valueType.Split(':');
-                    var category = strs[0];
-                    var typeName = strs[1];
-
-                    //MessageBox.Show(typeName);
-
-
-                    try
-                    {
-                        var type = TriggerMgr.Instance.Name2Type[typeName];
-                        var instance = Activator.CreateInstance(type) as ITriggerBase;
-                        instance.WriteFromJson(data.valueParams);
-
-                        if (instance is ITriggerCond)
-                            trigger.TriggerConds.Add(instance as ITriggerCond);
-                        else
-                            trigger.TriggerActions.Add(instance as ITriggerAction);
-                    }
-                    catch (Exception e)
-                    {
-                        var pre =
-                            $"Type: {data.valueType} TypeName {typeName} Params : [{ListToString(data.valueParams)}]\n ";
-                        MessageBox.Show(pre + e);
-                        return false;
-                    }
-                }
-            }
-
-            return true;
         }
 
         private string ListToString(string[] pa)
@@ -295,8 +126,7 @@ namespace AEAssist
 
         private void Selector_OnSelected(object sender, EventArgs eventArgs)
         {
-            var selected = JobComboBox.Text;
-            MessageBox.Show(selected);
+            DataBinding.Instance.TargetJob = JobComboBox.SelectedValue.ToString();
         }
 
         private void AddConditionOrActionBtn_OnClick(object sender, RoutedEventArgs e)
@@ -363,11 +193,7 @@ namespace AEAssist
                 return;
             }
 
-            var currTriggers = group.Triggers;
-            currTriggers.Add(new DataBinding.Trigger()
-            {
-                TypeName = menuItem.Header.ToString(),
-            });
+            group.AddTrigger(menuItem.Header.ToString());
         }
 
         private void GroupIdRename_EventHandler(object sender, RoutedEventArgs e)
@@ -384,7 +210,7 @@ namespace AEAssist
                 if (DataBinding.Instance.CurrChoosedId == oldId)
                 {
                     DataBinding.Instance.CurrChoosedId = string.Empty;
-                    TriggersListView.ItemsSource = null;
+                    CondsListView.ItemsSource = null;
                     currChoosed = true;
                 }
 
@@ -396,7 +222,8 @@ namespace AEAssist
                 if (currChoosed)
                 {
                     DataBinding.Instance.CurrChoosedId = newId;
-                    TriggersListView.ItemsSource = groupData.Triggers;
+                    CondsListView.ItemsSource = groupData.CondTriggers;
+                    ActionsListView.ItemsSource = groupData.ActionTriggers;
                 }
 
                 //todo: get newId,
@@ -419,7 +246,8 @@ namespace AEAssist
                 if (DataBinding.Instance.CurrChoosedId == delId)
                 {
                     DataBinding.Instance.CurrChoosedId = string.Empty;
-                    TriggersListView.ItemsSource = null;
+                    CondsListView.ItemsSource = null;
+                    ActionsListView.ItemsSource = null;
                 }
 
                 DataBinding.Instance.GroupIds.Remove(delId);
@@ -437,8 +265,29 @@ namespace AEAssist
             var id = TextBlock.Text;
             DataBinding.Instance.CurrChoosedId = id;
             var groupData = DataBinding.Instance.AllGroupData[id];
-            TriggersListView.ItemsSource = groupData.Triggers;
-            MessageBox.Show(id);
+            CondsListView.ItemsSource = groupData.CondTriggers;
+            ActionsListView.ItemsSource = groupData.ActionTriggers;
+        }
+
+        private void LoadTriggerLine_OnClick(object sender, RoutedEventArgs e)
+        {
+            var openFile = new OpenFileDialog();
+            openFile.Filter = "Json(*.json)|*.json";
+            openFile.InitialDirectory = Environment.CurrentDirectory;
+            openFile.Multiselect = false;
+            var ret = openFile.ShowDialog();
+
+            if (!ret.HasValue || !ret.Value)
+                return;
+            var file = openFile.FileName;
+            {
+                var str = "";
+                TriggerLine line = null;
+                (str, line) = TriggerHelper.LoadTriggerLine(file);
+                if (str != null && line == null) MessageBox.Show(str);
+
+                if (line != null) DataBinding.Instance.Load(line);
+            }
         }
     }
 }
