@@ -109,6 +109,16 @@
                                 Click="UseHarvestMoon_OnClick">
                             <Image Source="../../Resources/Spells/Reaper/HarvestMoon.png" Stretch="Uniform" />
                         </Button>
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="5,2,5,2" Name="UseBloodbath"
+                                Click="UseBloodbath_OnClick">
+                            <Image Source="../../Resources/Spells/Bloodbath.png" Stretch="Uniform" />
+                        </Button>
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="30" Height="30" Margin="5,2,5,2" Name="UseSecondwind"
+                                Click="UseUseSecondwind_OnClick">
+                            <Image Source="../../Resources/Spells/SecondWind.png" Stretch="Uniform" />
+                        </Button>
                     </WrapPanel>
                     
                     <StackPanel Margin="5" Orientation="Horizontal">

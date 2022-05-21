@@ -97,5 +97,10 @@ namespace AEAssist.View.Overlay
         {
             AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.HeadGraze.GetSpellEntity();
         }
+
+        private void UseUseSecondwind_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.SecondWind.GetSpellEntity();
+        }
     }
 }

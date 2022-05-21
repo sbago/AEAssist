@@ -47,6 +47,10 @@ namespace AEAssist.AI.Reaper
         {
             if (MovementManager.IsMoving)
                 return false;
+
+            // maybe after revive todo: get the id of revive aura
+            if (Core.Me.CurrentHealth * 100 / Core.Me.MaxHealth < 50)
+                return false;
             
             if (Core.Me.HasAura(AurasDefine.Soulsow))
                 return true;

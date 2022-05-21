@@ -58,5 +58,15 @@ namespace AEAssist.View.Overlay
         {
             AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.LegSweep.GetSpellEntity();
         }
+
+        private void UseBloodbath_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Bloodbath.GetSpellEntity();
+        }
+
+        private void UseUseSecondwind_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.SecondWind.GetSpellEntity();
+        }
     }
 }

@@ -486,6 +486,8 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Content Include="Resources\Lan_zh-CN.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Spells\Bloodbath.png" />
+    <Resource Include="Resources\Spells\Samurai\ThirdEye.png" />
     <Resource Include="Resources\Spells\Peloton.png" />
     <Resource Include="Resources\Spells\Dancer\ClosedPosition.png" />
     <Resource Include="Resources\Spells\Dancer\EnAvant.png" />
@@ -726,10 +728,6 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
   <ItemGroup>
     <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
     <PackageReference Include="System.ObjectModel" Version="4.3.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\Spells\MagicalRangedDPSRoleActions" />
-    <Folder Include="Resources\Spells\TankRoleActions" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
