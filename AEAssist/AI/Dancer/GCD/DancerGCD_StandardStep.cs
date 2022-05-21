@@ -13,7 +13,7 @@ namespace AEAssist.AI.Dancer.GCD
     {
         public int Check(SpellEntity lastGCD)
         {
-            if (!SpellsDefine.StandardStep.IsUnlock())
+            if (!SpellsDefine.StandardStep.IsUnlock() && Core.Me.ClassLevel < 15)
             {
                 return -10;
             }
@@ -28,17 +28,22 @@ namespace AEAssist.AI.Dancer.GCD
                 return -2;
             }
 
-            if (SpellsDefine.Flourish.GetSpellEntity().SpellData.Cooldown < TimeSpan.FromSeconds(4))
+            if (SpellsDefine.Flourish.IsUnlock())
             {
-                return -3;
+                if (SpellsDefine.Flourish.GetSpellEntity().SpellData.Cooldown < TimeSpan.FromSeconds(4))
+                {
+                    return -3;
+                }
             }
+
 
             var bd = AIRoot.GetBattleData<BattleData>();
             if (Core.Me.HasAura(AurasDefine.TechnicalFinish) &&
                 bd.lastAbilitySpell != SpellsDefine.Flourish.GetSpellEntity() &&
                 bd.lastGCDSpell != SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity())
             {
-                if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.TechnicalFinish, 4000))
+                if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.TechnicalFinish, 4000) &&
+                    !(SpellsDefine.Devilment.GetSpellEntity().SpellData.Cooldown < TimeSpan.FromSeconds(4)))
                 {
                     if (!Core.Me.HasAura(AurasDefine.FlourshingFlow) &&
                         !Core.Me.HasAura(AurasDefine.FlourishingSymmetry) &&

@@ -21,7 +21,10 @@ namespace AEAssist.AI.Dancer.GCD
             {
                 return -1;
             }
-
+            if (!Core.Me.HasAura(AurasDefine.Devilment))
+            {
+                return -2;
+            }
             if (Core.Me.HasAura(AurasDefine.FlourishingFinish))
             {
                 return 1;

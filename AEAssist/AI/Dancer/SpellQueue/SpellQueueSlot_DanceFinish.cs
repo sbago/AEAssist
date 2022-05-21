@@ -32,6 +32,10 @@ namespace AEAssist.AI.Dancer.SpellQueue
                 else
                 {
                     slot.SetGCD(SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity().Id, SpellTargetType.Self);
+                    if (SpellsDefine.Devilment.IsReady())
+                    {
+                        slot.EnqueueAbility((SpellsDefine.Devilment.GetSpellEntity().Id, SpellTargetType.Self));
+                    }
                 }
             }
             catch

@@ -53,6 +53,10 @@ namespace AEAssist.Define
             ShieldSamba,
             EnAvant,
             CuringWaltz,
+            Windmill,
+            RisingWindmill,
+            Bladeshower,
+            Bloodshower
             
             
             
