@@ -18,6 +18,13 @@ namespace AEAssist.AI.Dancer.Ability
             {
                 return -1;
             }
+            if (AEAssist.DataBinding.Instance.FinalBurst) return 2;
+
+            if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.FourfoldFanDance, 5000) &&
+                !Core.Me.HasAura(AurasDefine.Devilment))
+            {
+                return -2;
+            }
             return 0;
         }
 

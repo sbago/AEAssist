@@ -13,10 +13,10 @@ namespace AEAssist.AI.Dancer
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>()
         {
             new DancerGCD_DanceStep(),
+            new DancerGCD_SaberDance(),
             new DancerGCD_StarfallDance(),
             new DancerGCD_Tillana(),
             new DancerGCD_TechnicalStep(),
-            new DancerGCD_SaberDance(),
             new DancerGCD_StandardStep(),
             new DancerGCD_Procs(),
             new DancerGCD_BaseGCD()
