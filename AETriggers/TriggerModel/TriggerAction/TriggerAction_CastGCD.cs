@@ -2,7 +2,7 @@
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("CastGCD")]
+    [Trigger("CastGCD",ParamTooltip = "[SpellId]")]
     public class TriggerAction_CastGCD : ITriggerAction
     {
         public uint SpellId;

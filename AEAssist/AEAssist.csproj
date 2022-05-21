@@ -92,9 +92,6 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_LockSpell.cs">
       <Link>TriggerModel\TriggerAction\TriggerAction_LockSpell.cs</Link>
     </Compile>
-    <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_NextSong.cs">
-      <Link>TriggerModel\TriggerAction\TriggerAction_NextSong.cs</Link>
-    </Compile>
     <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SongList.cs">
       <Link>TriggerModel\TriggerAction\TriggerAction_SongList.cs</Link>
     </Compile>
@@ -367,7 +364,6 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_CastAbility.cs" />
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_CastGCD.cs" />
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_LockSpell.cs" />
-    <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_NextSong.cs" />
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SongList.cs" />
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchAOE.cs" />
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchApex.cs" />

@@ -2,7 +2,9 @@
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("LockSpell")]
+    [Trigger("LockSpell",Tooltip = "whether to use specify spell",
+        ParamTooltip = "[SpellId],[1/0=lock/unlock]",
+        Example = "12345,1")]
     public class TriggerAction_LockSpell : ITriggerAction
     {
         public bool Lock;

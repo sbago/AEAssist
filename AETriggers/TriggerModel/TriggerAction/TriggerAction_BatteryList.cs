@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("BatteryList")]
+    [Trigger("BatteryList",Tooltip = "Specify when the battery will be used later. (Opener is not counted)",
+        Example = "60|80|50")]
     public class TriggerAction_BatteryList : ITriggerAction
     {
         public List<int> BatteryList = new List<int>();

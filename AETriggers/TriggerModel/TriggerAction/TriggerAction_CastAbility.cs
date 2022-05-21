@@ -2,7 +2,7 @@
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("CastAbility")]
+    [Trigger("CastAbility",ParamTooltip = "[SpellId]")]
     public class TriggerAction_CastAbility : ITriggerAction
     {
         public uint SpellId;

@@ -2,7 +2,7 @@
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("SwitchPotion")]
+    [Trigger("SwitchPotion",ParamTooltip = "0 = off, 1 = on")]
     public class TriggerAction_SwitchPotion : ITriggerAction
     {
         public bool value;

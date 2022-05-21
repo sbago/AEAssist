@@ -2,7 +2,7 @@
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("SwitchAOE")]
+    [Trigger("SwitchAOE",ParamTooltip = "0 = off, 1 = on")]
     public class TriggerAction_SwitchAOE : ITriggerAction
     {
         public bool value;

@@ -2,7 +2,9 @@
 
 namespace AEAssist.TriggerCond
 {
-    [Trigger("GameLog")]
+    [Trigger("GameLog",Tooltip = "Specify string included in character lines or system prompts",
+        ParamTooltip = "[MessageType(0=ignore)],[content],[Time in sec]",
+        Example = "0,haha,0\n\t68,testStr,5")]
     public class TriggerCond_GameLog : ITriggerCond
     {
         public string ContainValue;

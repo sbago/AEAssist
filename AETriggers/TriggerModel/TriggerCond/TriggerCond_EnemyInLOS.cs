@@ -2,7 +2,10 @@
 
 namespace AEAssist.TriggerCond
 {
-    [Trigger("EnemyInLOS")]
+    [Trigger("EnemyIsTargetable",
+        Tooltip = "Specify enemy is targetable\n某个敌人可选中",
+        ParamTooltip = "[enemy name(contains) or NpcId],[Time in sec]",
+        Example = "10720,3")]
     public class TriggerCond_EnemyInLOS : ITriggerCond
     {
         public int delayTime;

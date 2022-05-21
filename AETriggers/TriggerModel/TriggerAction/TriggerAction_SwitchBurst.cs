@@ -2,7 +2,7 @@
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("SwitchBurst")]
+    [Trigger("SwitchBurst",ParamTooltip = "0 = off, 1 = on")]
     public class TriggerAction_SwitchBurst : ITriggerAction
     {
         public bool value;

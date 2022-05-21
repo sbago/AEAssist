@@ -2,7 +2,7 @@
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("SwitchApex")]
+    [Trigger("SwitchApex",ParamTooltip = "0 = off, 1 = on")]
     public class TriggerAction_SwitchApex : ITriggerAction
     {
         public bool value;

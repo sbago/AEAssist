@@ -2,7 +2,7 @@
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("SwitchSong")]
+    [Trigger("SwitchSong",Tooltip = "Immediately switch the song. (1 for MB, 2 for AP, 3 for WM). -1=toggle off the song,0 =toggle on ")]
     public class TriggerAction_SwitchSong : ITriggerAction
     {
         public int index;

@@ -3,7 +3,11 @@ using System.Collections.Generic;
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("SongList")]
+    [Trigger("SongList",Tooltip = "If the first song of the song list is the same as the current song, then it will be counted from the current song." +
+                                  "Otherwise, the song list will start from the next song." +
+                                  "If all songs in the song list are sung and the battle is not over, the default settings will be used for subsequent songs",
+        ParamTooltip = "Song number (1 for MB, 2 for AP, 3 for WM): duration (number of seconds), separator is |",
+        Example = "3:43|1:42|2:40")]
     public class TriggerAction_SongList : ITriggerAction
     {
         public List<int> Durations = new List<int>();
