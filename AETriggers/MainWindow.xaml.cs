@@ -26,6 +26,9 @@ namespace AEAssist
             public string Name { get; set; }
             public string Tooltip { get; set; }
         }
+
+        private RenameWindow _renameWindow;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -62,6 +65,8 @@ namespace AEAssist
             Actions.ItemsSource = list2;
 
             JobComboBox.SelectedValue = Jobs.Any;
+
+            _renameWindow = new RenameWindow();
             
             Entry.Init();
         }
@@ -205,33 +210,41 @@ namespace AEAssist
                 var textBlock = stackPanel.Children[0] as TextBlock;
 
                 var oldId = textBlock.Text;
-                var newId = oldId + "_1"; //todo: popup a messagebox with textbox.
-                bool currChoosed = false;
-                if (DataBinding.Instance.CurrChoosedId == oldId)
-                {
-                    DataBinding.Instance.CurrChoosedId = string.Empty;
-                    CondsListView.ItemsSource = null;
-                    currChoosed = true;
-                }
-
-                DataBinding.Instance.GroupIds.Remove(oldId);
-                var groupData =  DataBinding.Instance.AllGroupData[oldId];
-                DataBinding.Instance.AllGroupData.Remove(oldId);
-                DataBinding.Instance.GroupIds.Add(newId);
-                DataBinding.Instance.AllGroupData[newId] = groupData;
-                if (currChoosed)
-                {
-                    DataBinding.Instance.CurrChoosedId = newId;
-                    CondsListView.ItemsSource = groupData.CondTriggers;
-                    ActionsListView.ItemsSource = groupData.ActionTriggers;
-                }
-
+                 var mousePos =  Mouse.GetPosition(this);
+                var screenPos = this.PointToScreen(mousePos);
+                _renameWindow.Display(screenPos,v=>Rename(oldId,v));
                 //todo: get newId,
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.ToString());
             }
+        }
+
+        void Rename(string oldId,string newId)
+        {
+            bool currChoosed = false;
+            if (DataBinding.Instance.CurrChoosedId == oldId)
+            {
+                DataBinding.Instance.CurrChoosedId = string.Empty;
+                CondsListView.ItemsSource = null;
+                currChoosed = true;
+            }
+
+            var oldIndex = DataBinding.Instance.GroupIds.IndexOf(oldId);
+
+            DataBinding.Instance.GroupIds.Remove(oldId);
+            var groupData =  DataBinding.Instance.AllGroupData[oldId];
+            DataBinding.Instance.AllGroupData.Remove(oldId);
+            DataBinding.Instance.GroupIds.Insert(oldIndex,newId);
+            DataBinding.Instance.AllGroupData[newId] = groupData;
+            if (currChoosed)
+            {
+                DataBinding.Instance.CurrChoosedId = newId;
+                CondsListView.ItemsSource = groupData.CondTriggers;
+                ActionsListView.ItemsSource = groupData.ActionTriggers;
+            }
+
         }
 
         private void GroupIdDel_EventHandler(object sender, RoutedEventArgs e)

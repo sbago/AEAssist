@@ -84,8 +84,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CreaterWindow.xaml.cs">
-      <DependentUpon>CreaterWindow.xaml</DependentUpon>
+    <Compile Include="RenameWindow.xaml.cs">
+      <DependentUpon>RenameWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Entry.cs" />
     <Compile Include="EnumBindingSourceExtension.cs" />
@@ -121,7 +121,7 @@
     <Compile Include="TriggerModel\TriggerHelper.cs" />
     <Compile Include="TriggerModel\TriggerLine.cs" />
     <Compile Include="TriggerModel\TriggerMgr.cs" />
-    <Page Include="CreaterWindow.xaml" />
+    <Page Include="RenameWindow.xaml" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

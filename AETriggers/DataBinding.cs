@@ -23,11 +23,14 @@ namespace AETriggers
                 this.TypeName = typeName;
                 ParamTooltip = ParamToolTip();
                 NeedParam = IsNeedParam();
+                Tooltip = ToolTip();
             }
 
             public string TypeName { get; set; }
             public string Param { get; set; }
             public string ParamTooltip { get; set; }
+
+            public string Tooltip { get; set; }
 
             public Visibility NeedParam { get; set; }
 
@@ -50,6 +53,13 @@ namespace AETriggers
                 }
 
                 return toolTip;
+            }
+
+            public string ToolTip()
+            {
+                var t = TriggerMgr.Instance.Name2Type[TypeName];
+                var attr = TriggerMgr.Instance.AllAttrs[t];
+                return attr.Tooltip;
             }
         }
 
