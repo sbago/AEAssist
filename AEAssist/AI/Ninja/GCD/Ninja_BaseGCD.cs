@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
+using ff14bot;
 
 namespace AEAssist.AI.Ninja.GCD
 {
-    public class Ninja_BaseCombo : IAIHandler
+    public class Ninja_BaseGCD : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {
@@ -13,10 +14,7 @@ namespace AEAssist.AI.Ninja.GCD
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.SpinningEdge.GetSpellEntity();
-            if (await spell.DoGCD())
-                return spell;
-            return null;
+            return await NinjaSpellHelper.BaseGCDCombo(Core.Me.CurrentTarget);
         }
     }
 }

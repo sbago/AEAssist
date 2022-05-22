@@ -21,5 +21,12 @@ namespace AEAssist.Helper
                 return min;
             return _random.Next(min, max);
         }
+        public static bool RandomBool()
+        {
+            var value = RandomInt(0, 1);
+            if (value == 0)
+                return false;
+            return true;
+        }
     }
 }

@@ -35,6 +35,13 @@ namespace AEAssist.AI.Dancer.GCD
                     return -3;
                 }
             }
+            if (SpellsDefine.TechnicalStep.IsUnlock())
+            {
+                if (SpellsDefine.TechnicalStep.GetSpellEntity().SpellData.Cooldown < TimeSpan.FromSeconds(4))
+                {
+                    return -3;
+                }
+            }
 
 
             var bd = AIRoot.GetBattleData<BattleData>();
