@@ -7,10 +7,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/RoundedButtonStyle.xaml" />
-                <ResourceDictionary Source="Theme/AuthorTextBoxStyle.xaml" />
-                <ResourceDictionary Source="Theme/NameTextBoxStyle.xaml" />
-                <ResourceDictionary Source="Theme/ZoneTextBoxStyle.xaml" />
-                <ResourceDictionary Source="Theme/SubZoneTextBoxStyle.xaml" />
+                <ResourceDictionary Source="Theme/GeneralTextBoxStyle.xaml" />
                 <ResourceDictionary Source="Theme/CloseButtonStyle.xaml" />
                 <ResourceDictionary Source="Theme/JobComboBoxStyle.xaml" />
                 <ResourceDictionary Source="Theme/IDTextBoxStyle.xaml" />
