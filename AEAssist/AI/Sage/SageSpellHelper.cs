@@ -392,7 +392,10 @@ namespace AEAssist.AI.Sage
             foreach (var character in GroupHelper.CastableParty)
             {
                 // check if we can EukrasianDiagnosis.
-                if(character.IsTank())
+                if (character.IsTank())
+                    continue;
+                // if healer skip
+                if(character.IsHealer())
                     continue;
                 if (count >= need)
                     return;
