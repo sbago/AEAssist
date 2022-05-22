@@ -101,6 +101,7 @@
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_CastAbility.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_CastGCD.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_LockSpell.cs" />
+    <Compile Include="TriggerModel\TriggerAction\TriggerAction_DisableOtherTrigger.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_SongList.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchAOE.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchApex.cs" />

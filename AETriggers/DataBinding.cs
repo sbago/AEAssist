@@ -14,7 +14,7 @@ namespace AETriggers
     {
         public static DataBinding Instance = new DataBinding();
 
-        
+        [AddINotifyPropertyChangedInterface]
         public class Trigger
         {
 
@@ -33,6 +33,8 @@ namespace AETriggers
             public string Tooltip { get; set; }
 
             public Visibility NeedParam { get; set; }
+
+            public Visibility DelButton { get; set; } = Visibility.Hidden;
 
             public Visibility IsNeedParam()
             {

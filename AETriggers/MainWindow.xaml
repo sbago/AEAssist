@@ -240,7 +240,8 @@
                     <ListView Margin="5" Name="CondsListView"
                               Foreground="White"
                               Background="Transparent"
-                              BorderThickness="0">
+                              BorderThickness="0"
+                              SelectionChanged="ListView_OnSelectionChanged">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -248,7 +249,9 @@
                                                ToolTip="{Binding Tooltip}" />
                                     <TextBox Visibility="{Binding NeedParam,Mode=TwoWay}" Width="300"
                                              Text="{Binding Param,Mode=TwoWay}"
-                                             ToolTip="{Binding ParamTooltip,Mode=TwoWay}" />
+                                             ToolTip="{Binding ParamTooltip,Mode=TwoWay}"
+                                             ToolTipService.ShowDuration="60000"/>
+                                    <Button Visibility="{Binding DelButton,Mode=TwoWay}" Content="X" Width="30" Height="30" Click="Cond_DeleteTriggerBehavior_OnClick"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -258,7 +261,8 @@
                     <ListView Margin="5" Name="ActionsListView"
                               Foreground="White"
                               Background="Transparent"
-                              BorderThickness="0">
+                              BorderThickness="0"
+                              SelectionChanged="ListView_OnSelectionChanged">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -266,7 +270,9 @@
                                                ToolTip="{Binding Tooltip}" />
                                     <TextBox Visibility="{Binding NeedParam,Mode=TwoWay}" Width="300"
                                              Text="{Binding Param,Mode=TwoWay}"
-                                             ToolTip="{Binding ParamTooltip,Mode=TwoWay}" />
+                                             ToolTip="{Binding ParamTooltip,Mode=TwoWay}"
+                                             ToolTipService.ShowDuration="60000"/>
+                                    <Button Visibility="{Binding DelButton,Mode=TwoWay}" Content="X" Width="30" Height="30" Click="Action_DeleteTriggerBehavior_OnClick"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

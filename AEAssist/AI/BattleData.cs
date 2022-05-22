@@ -143,10 +143,40 @@ namespace AEAssist.AI
             }
         }
 
+        public void SetExecuted(string triggerId)
+        {
+            ExecutedTriggers.Add(triggerId,0);
+        }
+
         public long GetExecutedTriggersTime(string id)
         {
             ExecutedTriggers.TryGetValue(id, out var time);
             return time;
+        }
+        
+        public long GetExecutedTriggersTime_And(List<string> ids)
+        {
+            long maxTime = 0;
+            foreach (var v in ids)
+            {
+                if (!ExecutedTriggers.TryGetValue(v,out var time))
+                    return 0;
+                if (time > maxTime)
+                    maxTime = time;
+            }
+            return maxTime;
+        }
+        
+        public long GetExecutedTriggersTime_Or(List<string> ids)
+        {
+            foreach (var v in ids)
+            {
+                if (ExecutedTriggers.TryGetValue(v, out var time))
+                {
+                    return time;
+                }
+            }
+            return 0;
         }
 
         public void RecordCondHitTime(ITriggerCond cond)
