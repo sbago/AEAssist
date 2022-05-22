@@ -24,6 +24,8 @@ namespace AEAssist
 
         public string SageOpener { get; set; } = "Default";
 
+        public int SageResPriority { get; set; } = 0;
+
         public void Reset()
         {
             EarlyDecisionMode = true;

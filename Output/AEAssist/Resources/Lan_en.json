@@ -48,6 +48,7 @@
   "Label_CurrTriggerLine": "CurrTriggerLine:",
   "Label_ChoosePotion": "Choose Potion",
   "Label_PotionNum": "Num:",
+  "Label_ChooseResPriority" : "Choose Res Priority",
   "Toggle_PreferGallow": "Prefer Gallow",
   "Btn_LoadTriggerLine": "Load",
   "Btn_ClearTriggerLine": "Clear",

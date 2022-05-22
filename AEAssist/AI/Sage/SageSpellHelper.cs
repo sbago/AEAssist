@@ -14,7 +14,7 @@ namespace AEAssist.AI.Sage
     public class SageSpellHelper
     {
         public static SpellEntity GetEukrasianDosis()
-        {   
+        {
             // If Eukrasian Dosis is not unlocked return early because nothing else will be unlocked.
             if (!SpellsDefine.EukrasianDosis.IsUnlock())
             {
@@ -30,6 +30,7 @@ namespace AEAssist.AI.Sage
                     LogHelper.Debug("EukrasianDosis not found. skipping.");
                     return null;
                 }
+
                 LogHelper.Debug("EukrasianDosis found trying to use..");
                 return SpellsDefine.EukrasianDosis.GetSpellEntity();
             }
@@ -42,6 +43,7 @@ namespace AEAssist.AI.Sage
                     LogHelper.Debug("EukrasianDosisII not found. skipping.");
                     return null;
                 }
+
                 LogHelper.Debug("EukrasianDosisII found trying to use..");
                 return SpellsDefine.EukrasianDosisII.GetSpellEntity();
             }
@@ -51,6 +53,7 @@ namespace AEAssist.AI.Sage
                 LogHelper.Debug("EukrasianDosisIII not found. skipping.");
                 return null;
             }
+
             LogHelper.Debug("EukrasianDosisIII found trying to use..");
             return SpellsDefine.EukrasianDosisIII.GetSpellEntity();
         }
@@ -76,10 +79,11 @@ namespace AEAssist.AI.Sage
                     LogHelper.Debug("Phlegma is ready. using.");
                     return SpellsDefine.Phlegma.GetSpellEntity();
                 }
+
                 LogHelper.Debug("Phlegma not ready. skipping.");
                 return null;
             }
-            
+
             if (!SpellsDefine.PhlegmaIII.IsUnlock())
             {
                 if (!ActionManager.HasSpell(SpellsDefine.PhlegmaII))
@@ -93,6 +97,7 @@ namespace AEAssist.AI.Sage
                     LogHelper.Debug("PhlegmaII is ready. using.");
                     return SpellsDefine.PhlegmaII.GetSpellEntity();
                 }
+
                 LogHelper.Debug("PhlegmaII not ready. skipping.");
                 return null;
             }
@@ -108,7 +113,7 @@ namespace AEAssist.AI.Sage
                 LogHelper.Debug("PhlegmaIII ready. using.");
                 return SpellsDefine.PhlegmaIII.GetSpellEntity();
             }
-            
+
             LogHelper.Debug("PhlegmaIII not ready. skipping.");
             return null;
         }
@@ -128,6 +133,7 @@ namespace AEAssist.AI.Sage
                     LogHelper.Debug("Physis not found. skipping.");
                     return null;
                 }
+
                 LogHelper.Debug("Using Physis.");
                 return SpellsDefine.Physis.IsReady() ? SpellsDefine.Physis.GetSpellEntity() : null;
             }
@@ -137,12 +143,13 @@ namespace AEAssist.AI.Sage
                 LogHelper.Debug("PhysisII not found. skipping.");
                 return null;
             }
-            
+
             if (SpellsDefine.PhysisII.IsReady())
             {
                 LogHelper.Debug("PhysisII ready using.");
                 return SpellsDefine.PhysisII.GetSpellEntity();
             }
+
             LogHelper.Debug("PhysisII not ready. skipping.");
             return null;
         }
@@ -152,7 +159,7 @@ namespace AEAssist.AI.Sage
             if (!SpellsDefine.Dosis.IsUnlock())
             {
                 LogHelper.Debug("Dosis not unlocked. skipping.");
-                return null;   
+                return null;
             }
 
             if (!SpellsDefine.DosisII.IsUnlock())
@@ -162,10 +169,11 @@ namespace AEAssist.AI.Sage
                     LogHelper.Debug("Dosis not found. skipping.");
                     return null;
                 }
+
                 LogHelper.Debug("Using Dosis. ");
                 return SpellsDefine.Dosis.GetSpellEntity();
             }
-            
+
             if (!SpellsDefine.DosisIII.IsUnlock())
             {
                 if (!ActionManager.HasSpell(SpellsDefine.DosisII))
@@ -173,10 +181,11 @@ namespace AEAssist.AI.Sage
                     LogHelper.Debug("DosisII not found. skipping.");
                     return null;
                 }
+
                 LogHelper.Debug("Using DosisII. ");
                 return SpellsDefine.DosisII.GetSpellEntity();
             }
-            
+
             if (ActionManager.HasSpell(SpellsDefine.DosisIII)) return SpellsDefine.DosisIII.GetSpellEntity();
             LogHelper.Debug("DosisIII not found: unlocked?");
             return null;
@@ -196,7 +205,8 @@ namespace AEAssist.AI.Sage
                 {
                     LogHelper.Debug("Dyskrasia not found: unlocked?");
                     return null;
-                } 
+                }
+
                 LogHelper.Debug("Using Dykrasia");
                 return SpellsDefine.Dyskrasia.GetSpellEntity();
             }
@@ -227,6 +237,7 @@ namespace AEAssist.AI.Sage
                     LogHelper.Debug("Toxikon couldn't be found: unlocked?");
                     return null;
                 }
+
                 LogHelper.Debug("Using Toxikon");
                 return SpellsDefine.Toxikon.GetSpellEntity();
             }
@@ -240,7 +251,7 @@ namespace AEAssist.AI.Sage
         {
             return GetDosis();
         }
-        
+
         private static int GetEukrasianDosisAura()
         {
             LogHelper.Debug("Checking if EukrasianDosis is unlocked...");
@@ -249,7 +260,7 @@ namespace AEAssist.AI.Sage
                 LogHelper.Debug("EukrasianDosis not unlocked...");
                 return 0;
             }
-            
+
             LogHelper.Debug("Checking if EukrasianDosisII is unlocked...");
             if (!SpellsDefine.EukrasianDosisII.IsUnlock())
             {
@@ -259,23 +270,25 @@ namespace AEAssist.AI.Sage
                     LogHelper.Debug("Failed to use EukrasianDosis...");
                     return 0;
                 }
+
                 LogHelper.Debug("EukrasianDosis found using...");
                 return AurasDefine.EukrasianDosis;
             }
-            
+
             LogHelper.Debug("Checking if EukrasianDosisIII is unlocked...");
             if (SpellsDefine.EukrasianDosisIII.IsUnlock())
             {
                 LogHelper.Debug("Using EukrasianDosisIII...");
                 return AurasDefine.EukrasianDosisIII;
             }
-            
+
             LogHelper.Debug("Checking if EukrasianDosisII is unlocked...");
             if (!ActionManager.HasSpell(SpellsDefine.EukrasianDosisII))
             {
                 LogHelper.Debug("EukrasianDosisII not found...skipping?");
                 return 0;
             }
+
             LogHelper.Debug("EukrasianDosisII found...using?");
             return AurasDefine.EukrasianDosisII;
         }
@@ -286,13 +299,13 @@ namespace AEAssist.AI.Sage
             LogHelper.Debug("Checking if target has EukrasianDosis: " + target.EnglishName);
             return id == 0 || target.HasMyAuraWithTimeleft((uint)id);
         }
-        
+
         public static void RecordEukrasianDosis()
         {
             var targetId = Core.Me.CurrentTarget.ObjectId;
             AIRoot.GetBattleData<SageBattleData>().lastEukrasianDosisWithObj[targetId] = true;
         }
-        
+
         public static void RemoveRecordEukrasianDosis()
         {
             var targetId = Core.Me.CurrentTarget.ObjectId;
@@ -306,34 +319,131 @@ namespace AEAssist.AI.Sage
             if (dosisId == 0) return false;
 
             var ttkEukrasianDosis = SettingMgr.GetSetting<SageSettings>().TTK_EukrasianDosis;
-            
+
             bool NormalCheck()
             {
                 if (DataBinding.Instance.EarlyDecisionMode)
                     timeLeft += SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
-                return !target.HasMyAuraWithTimeleft((uint) dosisId, timeLeft);
+                return !target.HasMyAuraWithTimeleft((uint)dosisId, timeLeft);
             }
 
             if (AIRoot.GetBattleData<SageBattleData>().IsTargetLastEukrasianDosis()) return NormalCheck();
-            if (ttkEukrasianDosis > 0 && target.HasMyAuraWithTimeleft((uint) dosisId, ttkEukrasianDosis * 1000) &&
+            if (ttkEukrasianDosis > 0 && target.HasMyAuraWithTimeleft((uint)dosisId, ttkEukrasianDosis * 1000) &&
                 TTKHelper.IsTargetTTK(target, ttkEukrasianDosis, false))
                 return NormalCheck();
 
             return NormalCheck();
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
         /// <returns>ret == true : Successful use</returns>
-        public static async Task<(bool ret,SpellEntity Eukrasia)> CastEukrasia()
+        public static async Task<(bool ret, SpellEntity Eukrasia)> CastEukrasia()
         {
-            if (Core.Me.HasMyAura(AurasDefine.Eukrasia)|| SpellsDefine.Eukrasia.RecentlyUsed() ) return (false,null);
+            if (Core.Me.HasMyAura(AurasDefine.Eukrasia) || SpellsDefine.Eukrasia.RecentlyUsed()) return (false, null);
             var spell = SpellsDefine.Eukrasia.GetSpellEntity();
             var ret = await spell.DoGCD();
             return (ret, spell);
         }
+
+        public static async Task CastSwiftCast()
+        {
+            LogHelper.Debug("Checking if we have swiftcast aura or Swiftcast recentlyUsed");
+            if (Core.Me.HasAura(AurasDefine.Swiftcast) || SpellsDefine.Swiftcast.RecentlyUsed()) return;
+            LogHelper.Debug("Swiftcast can be used: using.");
+            var spell = SpellsDefine.Swiftcast.GetSpellEntity();
+            var ret = await spell.DoAbility();
+        }
         
+        public static async Task CastEgeiroToTarget(Character target)
+        {
+            if (!SpellsDefine.Egeiro.IsUnlock()) return;
+            await CastSwiftCast();
+            var spell = new SpellEntity(SpellsDefine.Egeiro, target as BattleCharacter);
+            await spell.DoGCD();
+        }
+        
+        public static async Task<SpellEntity> CastResPriority()
+        {
+            var priority = SettingMgr.GetSetting<SageSettings>().SageResPriority;
+            var deadAllies = GroupHelper.DeadAllies;
+
+            switch (priority)
+            {
+                // Healer>Tanks>DPS
+                case 0:
+                    LogHelper.Debug("Healer>Tanks>DPS-RESSING");
+                    foreach (var deadAlly in deadAllies)
+                    {
+                        if (deadAlly.IsHealer())
+                        {
+                            LogHelper.Debug("Trying to swift res the healer.");
+                            await CastEgeiroToTarget(deadAlly);
+                            break;
+                        }
+                        
+                        if (deadAlly.IsTank())
+                        {
+                            LogHelper.Debug("Trying to swift res the tank.");
+                            await CastEgeiroToTarget(deadAlly);
+                            break;
+                        }
+                        LogHelper.Debug("Trying to swift res the dps.");
+                        await CastEgeiroToTarget(deadAlly);
+                        break;
+                    }
+                    return null;
+                // Tanks>Healer>DPS
+                case 1:
+                    LogHelper.Debug("Tanks>Healer>DPS-RESSING");
+                    foreach (var deadAlly in deadAllies)
+                    {
+                        if (deadAlly.IsTank())
+                        {
+                            LogHelper.Debug("Trying to swift res the Tanks.");
+                            await CastEgeiroToTarget(deadAlly);
+                            break;
+                        }
+                        
+                        if (deadAlly.IsHealer())
+                        {
+                            LogHelper.Debug("Trying to swift res the healer.");
+                            await CastEgeiroToTarget(deadAlly);
+                            break;
+                        }
+                        LogHelper.Debug("Trying to swift res the dps.");
+                        await CastEgeiroToTarget(deadAlly);
+                        break;
+                    }
+                    return null;
+                // DPS>Healer>Tanks
+                case 2:
+                    foreach (var deadAlly in deadAllies)
+                    {
+                        if (deadAlly.IsDps())
+                        {
+                            LogHelper.Debug("Trying to swift res the dps.");
+                            LogHelper.Debug("DPS>Healer>Tanks-RESSING");
+                            await CastEgeiroToTarget(deadAlly);
+                            break;
+                        }
+                        
+                        if (deadAlly.IsHealer())
+                        {
+                            LogHelper.Debug("Trying to swift res the healer.");
+                            await CastEgeiroToTarget(deadAlly);
+                            break;
+                        }
+                        LogHelper.Debug("Trying to swift res the Tanks.");
+                        await CastEgeiroToTarget(deadAlly);
+                        break;
+                    }
+                    return null;
+            }
+            return null;
+        }
+
         public static async Task<bool> CastEukrasianDiagnosis(Character target)
         {
             if (!SpellsDefine.EukrasianDiagnosis.IsUnlock()) return false;
@@ -412,10 +522,7 @@ namespace AEAssist.AI.Sage
                     if (time < retryTime)
                         count++;
                 }
-                
             }
-
         }
-
     }
 }
