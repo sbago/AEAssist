@@ -27,7 +27,8 @@ namespace AEAssist.AI.Dancer.GCD
             {
                 return -1;
             }
-            
+            if (AEAssist.DataBinding.Instance.FinalBurst) return 2;
+
             if (Core.Me.HasAura(AurasDefine.Devilment))
             {
                 return 0;

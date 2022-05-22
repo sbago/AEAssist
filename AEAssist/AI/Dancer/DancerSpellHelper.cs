@@ -52,10 +52,13 @@ namespace AEAssist.AI.Sage
                     return SpellsDefine.Windmill.GetSpellEntity();
                 }
             }
-            else if (await SpellsDefine.Bladeshower.DoGCD())
+            else if (SpellsDefine.Bladeshower.IsUnlock())
             {
-                AIRoot.GetBattleData<DancerBattleData>().CurrCombo = DancerComboStages.Windmill;
-                return SpellsDefine.Bladeshower.GetSpellEntity();
+                if (await SpellsDefine.Bladeshower.DoGCD())
+                {
+                    AIRoot.GetBattleData<DancerBattleData>().CurrCombo = DancerComboStages.Windmill;
+                    return SpellsDefine.Bladeshower.GetSpellEntity();
+                }
             }
 
             return null;
@@ -63,8 +66,10 @@ namespace AEAssist.AI.Sage
 
         public static async Task<SpellEntity> BaseGCDCombo(GameObject target)
         {
-            if (TargetHelper.CheckNeedUseAOE(target, 5, 5,3)) return await UseAOECombo(target);
-
+            if (SpellsDefine.Windmill.IsUnlock())
+            {
+                if (TargetHelper.CheckNeedUseAOE(target, 5, 5,3)) return await UseAOECombo(target);
+            }
             return await UseSingleCombo(target);
         }
 

@@ -26,11 +26,13 @@ namespace AEAssist.AI.Dancer.Ability
             {
                 return -2;
             }
-            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
-            if (bdls == SpellsDefine.DoubleStandardFinish.GetSpellEntity() || bdls == SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity())
-            {
-                return -5;
-            }
+            if (AEAssist.DataBinding.Instance.FinalBurst) return 2;
+
+            // var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
+            // if (bdls == SpellsDefine.DoubleStandardFinish.GetSpellEntity() || bdls == SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity())
+            // {
+            //     return -5;
+            // }
             if (Core.Me.HasAura(AurasDefine.Devilment))
             {
                 return 1;
