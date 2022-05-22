@@ -163,6 +163,8 @@ namespace AEAssist
                 }
                 DataBinding.Instance.GroupIds.Add(newId);
                 DataBinding.Instance.AllGroupData[newId] = new DataBinding.GroupData();
+                // reset text box value after enter.
+                IdTextBox.Text = "";
             }
         }
         
