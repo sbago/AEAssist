@@ -192,9 +192,13 @@ namespace AEAssist
             var menuItem = sender as MenuItem;
             if (menuItem == null)
                 return;
-            
+
             if (string.IsNullOrEmpty(DataBinding.Instance.CurrChoosedId))
+            {
+                MessageBox.Show("Pls choose a group on left");
                 return;
+            }
+
             if (!DataBinding.Instance.AllGroupData.TryGetValue(DataBinding.Instance.CurrChoosedId, out var group))
             {
                 return;
