@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using AEAssist.View;
+using PropertyChanged;
 
 namespace AEAssist.TriggerAction
 {
@@ -8,10 +10,12 @@ namespace AEAssist.TriggerAction
                                   "If all songs in the song list are sung and the battle is not over, the default settings will be used for subsequent songs",
         ParamTooltip = "Song number (1 for MB, 2 for AP, 3 for WM): duration (number of seconds), separator is |",
         Example = "3:43|1:42|2:40")]
+    [AddINotifyPropertyChangedInterface]
+    [GUIDefault]
     public class TriggerAction_SongList : ITriggerAction
     {
-        public List<int> Durations = new List<int>();
-        public List<int> SongIndex = new List<int>();
+        public List<int> Durations { get; set; }= new List<int>();
+        public List<int> SongIndex { get; set; }= new List<int>();
 
         public void WriteFromJson(string[] values)
         {

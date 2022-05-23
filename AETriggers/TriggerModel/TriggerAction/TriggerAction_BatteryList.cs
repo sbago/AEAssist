@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using AEAssist.View;
+using PropertyChanged;
 
 namespace AEAssist.TriggerAction
 {
     [Trigger("BatteryList",Tooltip = "Specify when the battery will be used later. (Opener is not counted)",
         Example = "60|80|50")]
+    [AddINotifyPropertyChangedInterface]
+    [GUIDefault]
     public class TriggerAction_BatteryList : ITriggerAction
     {
-        public List<int> BatteryList = new List<int>();
+        public List<int> BatteryList{ get; set; } = new List<int>();
 
         public void WriteFromJson(string[] values)
         {

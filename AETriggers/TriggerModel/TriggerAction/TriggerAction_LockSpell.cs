@@ -1,14 +1,16 @@
 ﻿using System;
+using PropertyChanged;
 
 namespace AEAssist.TriggerAction
 {
     [Trigger("LockSpell",Tooltip = "whether to use specify spell",
         ParamTooltip = "[SpellId],[1/0=lock/unlock]",
         Example = "12345,1")]
+    [AddINotifyPropertyChangedInterface]
     public class TriggerAction_LockSpell : ITriggerAction
     {
-        public bool Lock;
-        public uint SpellId;
+        public bool Lock{ get; set; }
+        public uint SpellId{ get; set; }
 
         public void WriteFromJson(string[] values)
         {

@@ -95,6 +95,9 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_LockSpell.cs">
       <Link>TriggerModel\TriggerAction\TriggerAction_LockSpell.cs</Link>
     </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_ReplayOpener.cs">
+      <Link>TriggerModel\TriggerAction\TriggerAction_ReplayOpener.cs</Link>
+    </Compile>
     <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_SongList.cs">
       <Link>TriggerModel\TriggerAction\TriggerAction_SongList.cs</Link>
     </Compile>
@@ -151,6 +154,12 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     </Compile>
     <Compile Include="..\AETriggers\TriggerModel\TriggerMgr.cs">
       <Link>TriggerModel\TriggerMgr.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\View\GUIDefault.cs">
+      <Link>TriggerModel\View\GUIDefault.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\View\GUIIgnore.cs">
+      <Link>TriggerModel\View\GUIIgnore.cs</Link>
     </Compile>
     <Compile Include="AI\AIMgrs.cs" />
     <Compile Include="AI\Bard\Ability\BardAbility_Barrage.cs" />
@@ -228,6 +237,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Dancer\SpellQueue\SpellQueueSlot_DanceFinish.cs" />
     <Compile Include="AI\Dancer\SpellQueue\SpellQueueSlot_DanceStep.cs" />
     <Compile Include="AI\Dancer\SpellQueue\SpellQueue_Dance.cs" />
+    <Compile Include="AI\GeneralAI\PhysicsRangeDPSHelper.cs" />
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_Hypercharge.cs" />
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UnderHyperChargetGCD.cs" />
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UseBattery.cs" />
@@ -396,6 +406,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_CastGCD.cs" />
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_LockSpell.cs" />
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_RemoveOtherTrigger.cs" />
+    <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_ReplayOpener.cs" />
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SongList.cs" />
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchAOE.cs" />
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchApex.cs" />

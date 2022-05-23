@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using AEAssist.View;
+using PropertyChanged;
 
 namespace AEAssist.TriggerCond
 {
@@ -7,13 +9,15 @@ namespace AEAssist.TriggerCond
         ParamTooltip = "[Other trigger's group id(Has ComplexMode)],[Time in sec]\nComplexMode:\n\tAnd:[Trigger1&Trigger2&...]/Or:[Trigger1|Trigger2|Trigger3....]\n" +
                        "[另一组触发器Id(有复杂模式ComplexMode)],[过了多少秒]",
         Example = "group5,30\n\tgroup1&group2,5\n\tgroup3|group4|group6,10")]
+    [AddINotifyPropertyChangedInterface]
+    [GUIDefault]
     public class TriggerCond_AfterOtherTrigger : ITriggerCond
     {
-        public int Time;
-        public string TriggerId;
-        
-        public int Complex; // 0 = false,1 = and,2 = or
-        public List<string> ComplexTriggers = new List<string>();
+        public int Time { get; set; }
+        public string TriggerId { get; set; }
+
+        public int Complex { get; set; } // 0 = false,1 = and,2 = or
+        public List<string> ComplexTriggers { get; set; } = new List<string>();
 
         public void WriteFromJson(string[] values)
         {

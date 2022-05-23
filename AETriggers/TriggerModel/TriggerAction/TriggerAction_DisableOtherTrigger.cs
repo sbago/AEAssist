@@ -1,11 +1,13 @@
 using System;
+using PropertyChanged;
 
 namespace AEAssist.TriggerAction
 {
     [Trigger("DisableOtherTrigger",Tooltip = "关闭另一组触发器",ParamTooltip = "[Other trigger's group id]")]
+    [AddINotifyPropertyChangedInterface]
     public class TriggerAction_DisableOtherTrigger : ITriggerAction
     {
-        public string TriggerId;
+        public string TriggerId{ get; set; }
 
         public void WriteFromJson(string[] values)
         {

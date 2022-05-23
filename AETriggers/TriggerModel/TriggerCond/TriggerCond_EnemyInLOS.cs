@@ -1,4 +1,5 @@
 ﻿using System;
+using PropertyChanged;
 
 namespace AEAssist.TriggerCond
 {
@@ -6,10 +7,11 @@ namespace AEAssist.TriggerCond
         Tooltip = "Specify enemy is targetable\n某个敌人可选中",
         ParamTooltip = "[enemy name(contains) or NpcId],[Time in sec]",
         Example = "10720,3")]
+    [AddINotifyPropertyChangedInterface]
     public class TriggerCond_EnemyInLOS : ITriggerCond
     {
-        public int delayTime;
-        public string name;
+        public int delayTime { get; set; }
+        public string name { get; set; }
 
         public void WriteFromJson(string[] values)
         {

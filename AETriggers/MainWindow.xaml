@@ -11,7 +11,8 @@
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon="Resources/images/Icon.ico">
 
     <Window.DataContext>
         <Binding Source="{x:Static aeTriggers:DataBinding.Instance}" />
@@ -57,7 +58,7 @@
                      KeyUp="AuthorTextBox_OnKeyUp"
                      Tag="Author"
                      Style="{StaticResource GeneralTextBoxStyle}"
-                     Text="{Binding Author,Mode=TwoWay}"/>
+                     Text="{Binding Author,Mode=TwoWay}" />
 
             <!--Name TextBox-->
             <TextBox Grid.Row="0"
@@ -79,7 +80,7 @@
                      Height="30"
                      Margin="0,5,150,0"
                      HorizontalAlignment="Right"
-                     VerticalAlignment="Top" 
+                     VerticalAlignment="Top"
                      Tag="Zone Id"
                      Style="{StaticResource GeneralTextBoxStyle}" />
 
@@ -91,11 +92,11 @@
                      Height="30"
                      Margin="0,5,30,0"
                      HorizontalAlignment="Right"
-                     VerticalAlignment="Top" 
+                     VerticalAlignment="Top"
                      Tag="SubZone ID"
-                     Style="{StaticResource GeneralTextBoxStyle}"/>
-            
-            <Label Grid.Row="0" 
+                     Style="{StaticResource GeneralTextBoxStyle}" />
+
+            <Label Grid.Row="0"
                    Grid.Column="1"
                    Width="100"
                    Height="50"
@@ -103,10 +104,10 @@
                    HorizontalAlignment="Right"
                    VerticalAlignment="Bottom">
                 <TextBlock Text="JOB:"
-                           Foreground="White" 
+                           Foreground="White"
                            FontSize="20" />
             </Label>
-            
+
             <ComboBox
                 Name="JobComboBox"
                 Grid.Row="0"
@@ -190,22 +191,6 @@
                     BorderThickness="0"
                     Style="{StaticResource CloseButtonStyle}"
                     Click="CloseButton_Click" />
-
-            <!-- ~1~ AddConditionORAction Button @1@ -->
-            <!-- <Button Grid.Column="1" -->
-            <!--         Grid.Row="2" -->
-            <!--         Name="AddConditionOrActionBtn" -->
-            <!--         Content="Add Condition/Action" -->
-            <!--         Width="300" -->
-            <!--         HorizontalAlignment="Center" -->
-            <!--         Margin="0, 5, 115,5" -->
-            <!--         Foreground="White" -->
-            <!--         Background="Black" -->
-            <!--         BorderThickness="0" -->
-            <!--         Style="{StaticResource RoundedButtonStyle}" -->
-            <!--         Click="AddConditionOrActionBtn_OnClick" /> -->
-
-            <!-- AddGroup Button -->
             <Button Grid.Column="0"
                     Grid.Row="2"
                     Name="AddGroupButton"
@@ -220,111 +205,100 @@
                     Click="AddGrouIdBtn_OnClick">
                 <Image Source="Resources\images/AddIcon.png" />
             </Button>
-            <ScrollViewer Name="Main" Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                <StackPanel Name="mainStackPanel" Background="Transparent">
-                    <StackPanel.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="Cond" Name="Conds">
-                                <MenuItem.ItemContainerStyle>
-                                    <Style TargetType="MenuItem">
-                                        <Setter Property="Header" Value="{Binding Name}" />
-                                        <Setter Property="ToolTip" Value="{Binding Tooltip}" />
-                                        <EventSetter Event="Click" Handler="TriggerOnClickHandler" />
-                                    </Style>
-                                </MenuItem.ItemContainerStyle>
-                            </MenuItem>
-                            <MenuItem Header="Action" Name="Actions">
-                                <MenuItem.ItemContainerStyle>
-                                    <Style TargetType="MenuItem">
-                                        <Setter Property="Header" Value="{Binding Name}" />
-                                        <Setter Property="ToolTip" Value="{Binding Tooltip}" />
-                                        <EventSetter Event="Click" Handler="TriggerOnClickHandler" />
-                                    </Style>
-                                </MenuItem.ItemContainerStyle>
-                            </MenuItem>
-                        </ContextMenu>
-                    </StackPanel.ContextMenu>
-                    <Border>
-                        <StackPanel>
-                            <TextBlock Margin="5" TextWrapping="WrapWithOverflow" Foreground="Aqua"
-                                       Text="When all the Conditions in a group are satisfied, all the Actions in the group will be triggered." />
-                            <TextBlock Margin="5" TextWrapping="WrapWithOverflow" Foreground="Aqua"
-                                       Text="同一组的Cond全部命中后,这一组的所有Action都会被触发" />
-                        </StackPanel>
-                    </Border>
-                    <Separator Margin="0,5,0,0" />
-                    <StackPanel Margin="5" Orientation="Horizontal">
-                        <TextBlock Text="CurrChoosed: " Foreground="Chartreuse" />
-                        <TextBlock Text="{Binding CurrChoosedId}" Foreground="Peru" />
-                    </StackPanel>
 
-                    <Separator Margin="0,5,0,0" />
-                    <TextBlock Text="Conds:" Foreground="Moccasin" />
-                    <ListView Margin="5" Name="CondsListView"
-                              Foreground="White"
-                              Background="Transparent"
-                              BorderThickness="0"
-                              SelectionChanged="ListView_OnSelectionChanged">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Foreground="Moccasin" Margin="10,2,10,2" Text="{Binding TypeName}"
-                                               ToolTip="{Binding Tooltip}" />
-                                    <TextBox Visibility="{Binding NeedParam,Mode=TwoWay}" Width="300"
-                                             Text="{Binding Param,Mode=TwoWay}"
-                                             ToolTip="{Binding ParamTooltip,Mode=TwoWay}"
-                                             ToolTipService.ShowDuration="60000"/>
-                                    <Button Visibility="{Binding DelButton,Mode=TwoWay}" Content="X" Width="30" Height="30" Click="Cond_DeleteTriggerBehavior_OnClick"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <Separator />
-                    <TextBlock Text="Actions:" Foreground="Aqua" />
-                    <ListView Margin="5" Name="ActionsListView"
-                              Foreground="White"
-                              Background="Transparent"
-                              BorderThickness="0"
-                              SelectionChanged="ListView_OnSelectionChanged">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Foreground="Aqua" Margin="10,2,10,2" Text="{Binding TypeName}"
-                                               ToolTip="{Binding Tooltip}" />
-                                    <TextBox Visibility="{Binding NeedParam,Mode=TwoWay}" Width="300"
-                                             Text="{Binding Param,Mode=TwoWay}"
-                                             ToolTip="{Binding ParamTooltip,Mode=TwoWay}"
-                                             ToolTipService.ShowDuration="60000"/>
-                                    <Button Visibility="{Binding DelButton,Mode=TwoWay}" Content="X" Width="30" Height="30" Click="Action_DeleteTriggerBehavior_OnClick"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="600" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <ScrollViewer Name="Main" VerticalScrollBarVisibility="Auto">
+                    <StackPanel Name="mainStackPanel" Width="600" Background="Transparent">
+                        <StackPanel.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Cond" Name="Conds">
+                                    <MenuItem.ItemContainerStyle>
+                                        <Style TargetType="MenuItem">
+                                            <Setter Property="Header" Value="{Binding Name}" />
+                                            <Setter Property="ToolTip" Value="{Binding Tooltip}" />
+                                            <EventSetter Event="Click" Handler="TriggerOnClickHandler" />
+                                        </Style>
+                                    </MenuItem.ItemContainerStyle>
+                                </MenuItem>
+                                <MenuItem Header="Action" Name="Actions">
+                                    <MenuItem.ItemContainerStyle>
+                                        <Style TargetType="MenuItem">
+                                            <Setter Property="Header" Value="{Binding Name}" />
+                                            <Setter Property="ToolTip" Value="{Binding Tooltip}" />
+                                            <EventSetter Event="Click" Handler="TriggerOnClickHandler" />
+                                        </Style>
+                                    </MenuItem.ItemContainerStyle>
+                                </MenuItem>
+                            </ContextMenu>
+                        </StackPanel.ContextMenu>
+                        <Border>
+                            <StackPanel>
+                                <TextBlock Margin="5" TextWrapping="WrapWithOverflow" Foreground="Aqua"
+                                           Text="When all the Conditions in a group are satisfied, all the Actions in the group will be triggered." />
+                                <TextBlock Margin="5" TextWrapping="WrapWithOverflow" Foreground="Aqua"
+                                           Text="同一组的Cond全部命中后,这一组的所有Action都会被触发" />
+                            </StackPanel>
+                        </Border>
+                        <Separator Margin="0,5,0,0" />
+                        <StackPanel Margin="5" Orientation="Horizontal">
+                            <TextBlock Text="CurrChoosed: " Foreground="Chartreuse" />
+                            <TextBlock Text="{Binding CurrChoosedId}" Foreground="Peru" />
+                        </StackPanel>
+
+                        <Separator Margin="0,5,0,0" />
+                        <TextBlock Text="Conds:" Foreground="Moccasin" />
+                        <ListView Margin="5" Name="CondsListView"
+                                  Foreground="White"
+                                  Background="Transparent"
+                                  BorderThickness="0"
+                                  SelectionChanged="ListView_OnSelectionChanged">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Foreground="Moccasin" Margin="10,2,10,2" Text="{Binding TypeName}"
+                                                   ToolTip="{Binding Tooltip}" />
+                                        <TextBox Visibility="{Binding NeedParam,Mode=TwoWay}" Width="300"
+                                                 Text="{Binding Param,Mode=TwoWay}"
+                                                 ToolTip="{Binding ParamTooltip,Mode=TwoWay}"
+                                                 ToolTipService.ShowDuration="60000" />
+                                        <Button Visibility="{Binding DelButton,Mode=TwoWay}" Content="X" Width="30"
+                                                Height="30" Click="Cond_DeleteTriggerBehavior_OnClick" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Separator />
+                        <TextBlock Text="Actions:" Foreground="Aqua" />
+                        <ListView Margin="5" Name="ActionsListView"
+                                  Foreground="White"
+                                  Background="Transparent"
+                                  BorderThickness="0"
+                                  SelectionChanged="ListView_OnSelectionChanged">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Foreground="Aqua" Margin="10,2,10,2" Text="{Binding TypeName}"
+                                                   ToolTip="{Binding Tooltip}" />
+                                        <TextBox Visibility="{Binding NeedParam,Mode=TwoWay}" Width="300"
+                                                 Text="{Binding Param,Mode=TwoWay}"
+                                                 ToolTip="{Binding ParamTooltip,Mode=TwoWay}"
+                                                 ToolTipService.ShowDuration="60000" />
+                                        <Button Visibility="{Binding DelButton,Mode=TwoWay}" Content="X" Width="30"
+                                                Height="30" Click="Action_DeleteTriggerBehavior_OnClick" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </ScrollViewer>
+                <StackPanel Grid.Column="1" Name="TriggerContent">
+                    <aeTriggers:DynamicTriggerContent />
                 </StackPanel>
-            </ScrollViewer>
+            </Grid>
         </Grid>
     </Border>
-    <!--<StackPanel Margin="5">
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Margin="5" Name="Load" Content="Load Excel" Click="Load_OnClick" />
-            <Button Margin="5" Name="Export" Content="Export" Click="Export_OnClick" />
-            ~1~ <Button Name="LoadJson" Content="加载导出文件(检验用)" Click="LoadJson_OnClick"></Button> @1@
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <Label Content="Author:" />
-            <Label Name="AuthorName" Content="" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <Label Content="Name:" />
-            <Label Name="Name" Content="0" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <Label Content="TargetZone:" />
-            <Label Name="TargetZone" Content="" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <Label Content="TargetJob:" />
-            <Label Name="TargetJob" Content="" />
-        </StackPanel>
-    </StackPanel>-->
 </Window>

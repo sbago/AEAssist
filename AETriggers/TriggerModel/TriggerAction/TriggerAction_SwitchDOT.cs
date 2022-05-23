@@ -1,11 +1,13 @@
 ﻿using System;
+using PropertyChanged;
 
 namespace AEAssist.TriggerAction
 {
     [Trigger("SwitchDOT",ParamTooltip = "0 = off, 1 = on")]
+    [AddINotifyPropertyChangedInterface]
     public class TriggerAction_SwitchDOT : ITriggerAction
     {
-        public bool value;
+        public bool value{ get; set; }
 
         public void WriteFromJson(string[] values)
         {
