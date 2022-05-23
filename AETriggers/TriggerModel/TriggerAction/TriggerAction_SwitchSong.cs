@@ -1,4 +1,5 @@
 ﻿using System;
+using AEAssist.View;
 using PropertyChanged;
 
 namespace AEAssist.TriggerAction
@@ -7,16 +8,15 @@ namespace AEAssist.TriggerAction
     [AddINotifyPropertyChangedInterface]
     public class TriggerAction_SwitchSong : ITriggerAction
     {
+        [GUIToolTip("-1~3.\n(1 for MB, 2 for AP, 3 for WM). -1=toggle off the song,0 =toggle on")]
+        [GUIIntRange(-1,3)]
         public int index{ get; set; }
 
         public void WriteFromJson(string[] values)
         {
             if (!int.TryParse(values[0], out var index)) throw new Exception($"{values[0]} Error!");
-
-            if (index < -1 || index > 3)
-                throw new Exception($"{values[0]} <-1 or >3!");
-
             this.index = index;
+            Check();
         }
         
         public string[] Pack2Json()
@@ -25,6 +25,12 @@ namespace AEAssist.TriggerAction
             {
                 index.ToString()
             };
+        }
+
+        public void Check()
+        {
+            if (index < -1 || index > 3)
+                throw new Exception($"{index} <-1 or >3!");
         }
     }
 }

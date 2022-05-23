@@ -4,5 +4,6 @@
     {
         void WriteFromJson(string[] values);
         string[] Pack2Json();
+        void Check();
     }
 }

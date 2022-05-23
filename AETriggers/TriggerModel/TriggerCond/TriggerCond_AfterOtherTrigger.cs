@@ -5,7 +5,7 @@ using PropertyChanged;
 
 namespace AEAssist.TriggerCond
 {
-    [Trigger("AfterOtherTrigger",Tooltip = "After another group triggered\n等另一组触发了之后",
+    [Trigger("AfterOtherGroup",Tooltip = "After another group triggered\n等另一组触发了之后",
         ParamTooltip = "[Other trigger's group id(Has ComplexMode)],[Time in sec]\nComplexMode:\n\tAnd:[Trigger1&Trigger2&...]/Or:[Trigger1|Trigger2|Trigger3....]\n" +
                        "[另一组触发器Id(有复杂模式ComplexMode)],[过了多少秒]",
         Example = "group5,30\n\tgroup1&group2,5\n\tgroup3|group4|group6,10")]
@@ -13,9 +13,8 @@ namespace AEAssist.TriggerCond
     [GUIDefault]
     public class TriggerCond_AfterOtherTrigger : ITriggerCond
     {
-        public int Time { get; set; }
         public string TriggerId { get; set; }
-
+        public int Time { get; set; }
         public int Complex { get; set; } // 0 = false,1 = and,2 = or
         public List<string> ComplexTriggers { get; set; } = new List<string>();
 
@@ -93,6 +92,11 @@ namespace AEAssist.TriggerCond
                 str1,
                 Time.ToString()
             };
+        }
+
+        public void Check()
+        {
+            
         }
     }
 }

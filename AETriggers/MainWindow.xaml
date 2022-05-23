@@ -261,10 +261,6 @@
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Foreground="Moccasin" Margin="10,2,10,2" Text="{Binding TypeName}"
                                                    ToolTip="{Binding Tooltip}" />
-                                        <TextBox Visibility="{Binding NeedParam,Mode=TwoWay}" Width="300"
-                                                 Text="{Binding Param,Mode=TwoWay}"
-                                                 ToolTip="{Binding ParamTooltip,Mode=TwoWay}"
-                                                 ToolTipService.ShowDuration="60000" />
                                         <Button Visibility="{Binding DelButton,Mode=TwoWay}" Content="X" Width="30"
                                                 Height="30" Click="Cond_DeleteTriggerBehavior_OnClick" />
                                     </StackPanel>
@@ -283,10 +279,10 @@
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Foreground="Aqua" Margin="10,2,10,2" Text="{Binding TypeName}"
                                                    ToolTip="{Binding Tooltip}" />
-                                        <TextBox Visibility="{Binding NeedParam,Mode=TwoWay}" Width="300"
-                                                 Text="{Binding Param,Mode=TwoWay}"
-                                                 ToolTip="{Binding ParamTooltip,Mode=TwoWay}"
-                                                 ToolTipService.ShowDuration="60000" />
+                                        <!-- <TextBox Visibility="{Binding NeedParam,Mode=TwoWay}" Width="300" -->
+                                        <!--          Text="{Binding Param,Mode=TwoWay}" -->
+                                        <!--          ToolTip="{Binding ParamTooltip,Mode=TwoWay}" -->
+                                        <!--          ToolTipService.ShowDuration="60000" /> -->
                                         <Button Visibility="{Binding DelButton,Mode=TwoWay}" Content="X" Width="30"
                                                 Height="30" Click="Action_DeleteTriggerBehavior_OnClick" />
                                     </StackPanel>

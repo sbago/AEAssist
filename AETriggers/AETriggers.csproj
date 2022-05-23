@@ -128,6 +128,9 @@
     <Compile Include="TriggerModel\TriggerMgr.cs" />
     <Compile Include="TriggerModel\View\GUIDefault.cs" />
     <Compile Include="TriggerModel\View\GUIIgnore.cs" />
+    <Compile Include="TriggerModel\View\GUILabel.cs" />
+    <Compile Include="TriggerModel\View\GUIRange.cs" />
+    <Compile Include="TriggerModel\View\GUIToolTip.cs" />
     <Page Include="DynamicTriggerContent.xaml" />
     <Page Include="RenameWindow.xaml" />
     <Page Include="MainWindow.xaml">

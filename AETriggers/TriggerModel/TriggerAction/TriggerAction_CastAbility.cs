@@ -23,5 +23,10 @@ namespace AEAssist.TriggerAction
                 SpellId.ToString()
             };
         }
+
+        public void Check()
+        {
+            
+        }
     }
 }

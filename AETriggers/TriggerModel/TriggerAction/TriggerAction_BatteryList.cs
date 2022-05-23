@@ -44,5 +44,10 @@ namespace AEAssist.TriggerAction
                 str
             };
         }
+
+        public void Check()
+        {
+            
+        }
     }
 }

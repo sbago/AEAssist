@@ -1,4 +1,5 @@
 ﻿using System;
+using AEAssist.View;
 using PropertyChanged;
 
 namespace AEAssist.TriggerCond
@@ -10,8 +11,9 @@ namespace AEAssist.TriggerCond
     [AddINotifyPropertyChangedInterface]
     public class TriggerCond_EnemyInLOS : ITriggerCond
     {
-        public int delayTime { get; set; }
+        [GUILabel("Name/Id")]
         public string name { get; set; }
+        public int delayTime { get; set; }
 
         public void WriteFromJson(string[] values)
         {
@@ -19,8 +21,8 @@ namespace AEAssist.TriggerCond
             if (string.IsNullOrEmpty(name)) throw new Exception("is null!");
 
             if (!int.TryParse(values[1], out var delay)) throw new Exception($"{values[1]}Error!\n");
-            if (delay < 0) throw new Exception("Must >=0 : " + delay);
             delayTime = delay;
+            Check();
         }
 
         public string[] Pack2Json()
@@ -30,6 +32,11 @@ namespace AEAssist.TriggerCond
                 name,
                 delayTime.ToString()
             };
+        }
+
+        public void Check()
+        {
+            if (delayTime < 0) throw new Exception("Must >=0 : " + delayTime);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using AEAssist.View;
 using PropertyChanged;
 
 namespace AEAssist.TriggerCond
@@ -9,8 +10,9 @@ namespace AEAssist.TriggerCond
     [AddINotifyPropertyChangedInterface]
     public class TriggerCond_EnemyCastSpell : ITriggerCond
     {
-        public int delayTime { get; set; }
+        [GUILabel("Name/Id")]
         public string spellName { get; set; }
+        public int delayTime { get; set; }
 
         public void WriteFromJson(string[] values)
         {
@@ -28,6 +30,11 @@ namespace AEAssist.TriggerCond
                 spellName,
                 delayTime.ToString()
             };
+        }
+
+        public void Check()
+        {
+            
         }
     }
 }

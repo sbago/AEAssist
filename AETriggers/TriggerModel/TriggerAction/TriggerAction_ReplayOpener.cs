@@ -17,5 +17,10 @@ namespace AEAssist.TriggerAction
         {
             return null;
         }
+
+        public void Check()
+        {
+            
+        }
     }
 }

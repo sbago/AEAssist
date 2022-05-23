@@ -161,6 +161,15 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="..\AETriggers\TriggerModel\View\GUIIgnore.cs">
       <Link>TriggerModel\View\GUIIgnore.cs</Link>
     </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\View\GUILabel.cs">
+      <Link>TriggerModel\View\GUILabel.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\View\GUIRange.cs">
+      <Link>TriggerModel\View\GUIRange.cs</Link>
+    </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\View\GUIToolTip.cs">
+      <Link>TriggerModel\View\GUIToolTip.cs</Link>
+    </Compile>
     <Compile Include="AI\AIMgrs.cs" />
     <Compile Include="AI\Bard\Ability\BardAbility_Barrage.cs" />
     <Compile Include="AI\Bard\Ability\BardAbility_Bloodletter.cs" />

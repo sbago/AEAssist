@@ -18,8 +18,7 @@ namespace AEAssist.TriggerCond
             if (!int.TryParse(values[0], out var time)) throw new Exception($"{values[0]}Error!\n");
 
             Time = time;
-            if (Time < 0) throw new Exception("Out of range!");
-            if (Time > 2000) throw new Exception($"Time is too large! : Sec: {Time}");
+            Check();
         }
 
         public string[] Pack2Json()
@@ -28,6 +27,12 @@ namespace AEAssist.TriggerCond
             {
                 this.Time.ToString()
             };
+        }
+
+        public void Check()
+        {
+            if (Time < 0) throw new Exception("Out of range!");
+            if (Time > 2000) throw new Exception($"Time is too large! : Sec: {Time}");
         }
     }
 }

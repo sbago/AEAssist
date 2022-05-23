@@ -9,8 +9,8 @@ namespace AEAssist.TriggerAction
     [AddINotifyPropertyChangedInterface]
     public class TriggerAction_LockSpell : ITriggerAction
     {
-        public bool Lock{ get; set; }
         public uint SpellId{ get; set; }
+        public bool Lock{ get; set; }
 
         public void WriteFromJson(string[] values)
         {
@@ -27,6 +27,11 @@ namespace AEAssist.TriggerAction
                 SpellId.ToString(),
                 Lock ? "1" : "0"
             };
+        }
+
+        public void Check()
+        {
+            
         }
     }
 }

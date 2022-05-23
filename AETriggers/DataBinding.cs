@@ -57,8 +57,6 @@ namespace AETriggers
 
             public Visibility IsNeedParam()
             {
-                if (!DefaultStyle)
-                    return Visibility.Hidden;
                 var t = TriggerMgr.Instance.Name2Type[TypeName];
                 var attr = TriggerMgr.Instance.AllAttrs[t];
                 return attr.NeedParams? Visibility.Visible: Visibility.Hidden;
@@ -174,7 +172,8 @@ namespace AETriggers
                 return instance as ITriggerBase;
             }
             else
-            {
+            { 
+                trigger.TriggerObj.Check();
                 return trigger.TriggerObj;
             }
         }

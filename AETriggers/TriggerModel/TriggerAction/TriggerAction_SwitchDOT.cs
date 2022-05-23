@@ -23,6 +23,10 @@ namespace AEAssist.TriggerAction
                 value ? "1" : "0"
             };
         }
-        
+
+        public void Check()
+        {
+            
+        }
     }
 }

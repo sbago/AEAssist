@@ -1,4 +1,5 @@
 ﻿using System;
+using AEAssist.View;
 using PropertyChanged;
 
 namespace AEAssist.TriggerCond
@@ -11,9 +12,12 @@ namespace AEAssist.TriggerCond
     [AddINotifyPropertyChangedInterface]
     public class TriggerCond_EnemyHPPct : ITriggerCond
     {
-        public int delayTime { get; set; }
-        public float HpPct { get; set; } // xx.xxx
+        [GUILabel("Name/Id")]
         public string Name { get; set; }
+        [GUIFloatRange(0,100)]
+        [GUIToolTip("51.123 = 51.123%")]
+        public float HpPct { get; set; } // xx.xxx
+        public int delayTime { get; set; }
 
         public void WriteFromJson(string[] values)
         {
@@ -25,9 +29,8 @@ namespace AEAssist.TriggerCond
             HpPct = va;
 
             if (!int.TryParse(values[2], out var delay)) throw new Exception($"{values[2]}Error!\n");
-
-            if (delay < 0) throw new Exception("Must >=0 : " + delay);
             delayTime = delay;
+            Check();
         }
 
         public string[] Pack2Json()
@@ -38,6 +41,12 @@ namespace AEAssist.TriggerCond
                 HpPct.ToString(),
                 delayTime.ToString()
             };
+        }
+
+        public void Check()
+        {
+            if (delayTime < 0) throw new Exception("Must >=0 : " + delayTime);
+            if(HpPct<0 || HpPct>100) throw new Exception("HpPct error : " + HpPct);
         }
     }
 }
