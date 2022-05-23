@@ -209,10 +209,16 @@ namespace AETriggers
                         str = str.TrimEnd(',');
                     }
 
-                    groupData.CondTriggers.Add(new Trigger(attr.Name)
+                    var trigger = new Trigger(attr.Name)
                     {
                         Param = str
-                    });
+                    };
+                    if (!trigger.DefaultStyle)
+                    {
+                        trigger.TriggerObj = cond;
+                    }
+
+                    groupData.CondTriggers.Add(trigger);
                     
                 }
                 
@@ -231,11 +237,17 @@ namespace AETriggers
                         str = str.TrimEnd(',');
                     }
 
-                    groupData.ActionTriggers.Add(new Trigger(attr.Name)
+                
+                    var trigger = new Trigger(attr.Name)
                     {
                         Param = str
-                    });
+                    };
+                    if (!trigger.DefaultStyle)
+                    {
+                        trigger.TriggerObj = action;
+                    }
                     
+                    groupData.ActionTriggers.Add(trigger);
                 }
                 
             }
