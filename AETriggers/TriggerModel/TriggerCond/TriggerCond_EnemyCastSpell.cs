@@ -1,14 +1,16 @@
 ﻿using System;
+using PropertyChanged;
 
 namespace AEAssist.TriggerCond
 {
     [Trigger("EnemyCastSpell",Tooltip = "when any enemy casting the spell contains specify name or equal specify id\n某个敌人正在读条含有指定名字或者等于指定id的技能",
         ParamTooltip = "[spell name(contains) or spellId],[Time in sec after the beginning of cast]\n[名字或者id],[从开始读条那一刻过了多少秒]",
         Example = "12345,20\n\tfire,5\n\t掌掴,10")]
+    [AddINotifyPropertyChangedInterface]
     public class TriggerCond_EnemyCastSpell : ITriggerCond
     {
-        public int delayTime;
-        public string spellName;
+        public int delayTime { get; set; }
+        public string spellName { get; set; }
 
         public void WriteFromJson(string[] values)
         {

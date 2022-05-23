@@ -1,11 +1,13 @@
 ﻿using System;
+using PropertyChanged;
 
 namespace AEAssist.TriggerAction
 {
     [Trigger("CastGCD",ParamTooltip = "[SpellId]")]
+    [AddINotifyPropertyChangedInterface]
     public class TriggerAction_CastGCD : ITriggerAction
     {
-        public uint SpellId;
+        public uint SpellId{ get; set; }
 
         public void WriteFromJson(string[] values)
         {

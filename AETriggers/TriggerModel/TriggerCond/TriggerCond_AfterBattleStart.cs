@@ -1,4 +1,5 @@
 ﻿using System;
+using PropertyChanged;
 
 namespace AEAssist.TriggerCond
 {
@@ -7,9 +8,10 @@ namespace AEAssist.TriggerCond
                 "战斗开始后多少秒",
         ParamTooltip = "[time in sec]\n[多少秒]" ,
         Example = "20")]
+    [AddINotifyPropertyChangedInterface]
     public class TriggerCond_AfterBattleStart : ITriggerCond
     {
-        public int Time;
+        public int Time { get; set; }
 
         public void WriteFromJson(string[] values)
         {

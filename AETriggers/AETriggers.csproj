@@ -85,6 +85,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DynamicTriggerContent.xaml.cs">
+      <DependentUpon>DynamicTriggerContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RenameWindow.xaml.cs">
       <DependentUpon>RenameWindow.xaml</DependentUpon>
     </Compile>
@@ -103,6 +106,7 @@
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_CastGCD.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_LockSpell.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_DisableOtherTrigger.cs" />
+    <Compile Include="TriggerModel\TriggerAction\TriggerAction_ReplayOpener.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_SongList.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchAOE.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchApex.cs" />
@@ -122,6 +126,9 @@
     <Compile Include="TriggerModel\TriggerHelper.cs" />
     <Compile Include="TriggerModel\TriggerLine.cs" />
     <Compile Include="TriggerModel\TriggerMgr.cs" />
+    <Compile Include="TriggerModel\View\GUIDefault.cs" />
+    <Compile Include="TriggerModel\View\GUIIgnore.cs" />
+    <Page Include="DynamicTriggerContent.xaml" />
     <Page Include="RenameWindow.xaml" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

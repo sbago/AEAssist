@@ -1,4 +1,5 @@
 ﻿using System;
+using PropertyChanged;
 
 namespace AEAssist.TriggerCond
 {
@@ -7,11 +8,12 @@ namespace AEAssist.TriggerCond
                        "[敌人的名字(包含),或者NpcId],[血量百分比,保留3位小数(51.123 = 51.123%)],[过了多少秒]",
         Example = "10720,50.5,20\n\thydaelyn,50.12,3\n\t海德林,40,0")
     ]
+    [AddINotifyPropertyChangedInterface]
     public class TriggerCond_EnemyHPPct : ITriggerCond
     {
-        public int delayTime;
-        public float HpPct; // xx.xxx
-        public string Name;
+        public int delayTime { get; set; }
+        public float HpPct { get; set; } // xx.xxx
+        public string Name { get; set; }
 
         public void WriteFromJson(string[] values)
         {

@@ -325,7 +325,17 @@ namespace AEAssist
 
         private void ListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
+            if (sender == CondsListView)
+            {
+                ActionsListView.SelectedIndex = -1;
+            }
+            else
+            {
+                CondsListView.SelectedIndex = -1;
+            }
+
+
             foreach (var v in e.RemovedItems)
             {
                 var trigger = v as DataBinding.Trigger;
@@ -336,6 +346,12 @@ namespace AEAssist
             {
                 var trigger = v as DataBinding.Trigger;
                 trigger.DelButton = Visibility.Visible;
+            }
+
+            if (e.AddedItems.Count > 0)
+            {
+                var content = TriggerContent.Children[0] as DynamicTriggerContent;
+                content.Init(e.AddedItems[0] as DataBinding.Trigger);
             }
         }
     }

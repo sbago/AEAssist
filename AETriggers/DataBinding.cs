@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using AEAssist;
+using AEAssist.View;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.Options;
 using PropertyChanged;
@@ -21,6 +22,7 @@ namespace AETriggers
             public Trigger(string typeName)
             {
                 this.TypeName = typeName;
+                SetTriggerObj();
                 ParamTooltip = ParamToolTip();
                 NeedParam = IsNeedParam();
                 Tooltip = ToolTip();
@@ -36,8 +38,27 @@ namespace AETriggers
 
             public Visibility DelButton { get; set; } = Visibility.Hidden;
 
+            public bool DefaultStyle { get; set; }
+            public ITriggerBase TriggerObj { get; set; }
+
+            void SetTriggerObj()
+            {
+                var t = TriggerMgr.Instance.Name2Type[TypeName];
+                var attr = t.GetCustomAttributes(typeof(GUIDefaultAttribute), false);
+                if (attr != null && attr.Length > 0)
+                {
+                    DefaultStyle = true;
+                }
+                else
+                {
+                    TriggerObj = Activator.CreateInstance(t) as ITriggerBase;
+                }
+            }
+
             public Visibility IsNeedParam()
             {
+                if (!DefaultStyle)
+                    return Visibility.Hidden;
                 var t = TriggerMgr.Instance.Name2Type[TypeName];
                 var attr = TriggerMgr.Instance.AllAttrs[t];
                 return attr.NeedParams? Visibility.Visible: Visibility.Hidden;
@@ -141,13 +162,21 @@ namespace AETriggers
         ITriggerBase ConvertToData(Trigger trigger)
         {
 
-            var typeName = trigger.TypeName;
-            var values = trigger.Param.Split(',');
+            if (trigger.DefaultStyle)
+            {
 
-            var type = TriggerMgr.Instance.Name2Type[typeName];
-            var instance = Activator.CreateInstance(type) as ITriggerBase;
-            instance.WriteFromJson(values);
-            return instance as ITriggerBase;
+                var typeName = trigger.TypeName;
+                var values = trigger.Param.Split(',');
+
+                var type = TriggerMgr.Instance.Name2Type[typeName];
+                var instance = Activator.CreateInstance(type) as ITriggerBase;
+                instance.WriteFromJson(values);
+                return instance as ITriggerBase;
+            }
+            else
+            {
+                return trigger.TriggerObj;
+            }
         }
 
 

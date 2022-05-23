@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AEAssist.AI.GeneralAI;
 using AEAssist.Define;
 using AEAssist.Helper;
 using AEAssist.Rotations.Core;
@@ -25,29 +26,13 @@ namespace AEAssist.AI.Machinist
         
         public async Task<bool> PreCombatBuff()
         {
-            if (PartyManager.IsInParty)
-                if (TargetMgr.Instance.EnemysIn25.Count > 0)
-                    return false;
-
             if (!SettingMgr.GetSetting<BardSettings>().UsePeloton)
             {
                 GUIHelper.ShowInfo(Language.Instance.Content_Bard_PreCombat1);
                 return false;
             }
-
-            if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
-                return false;
-
-            if (Core.Me.ContainAura(AurasDefine.Peloton, 100))
-                return false;
-
-            if (await SpellsDefine.Peloton.DoAbility())
-            {
-                GUIHelper.ShowInfo(Language.Instance.Content_Bard_PreCombat3);
-                return true;
-            }
-
-            return false;
+            
+            return await PhysicsRangeDPSHelper.UsePoleton();
         }
         public Task<bool> NoTarget()
         {
