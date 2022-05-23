@@ -12,6 +12,7 @@
         Background="Transparent"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
+        KeyDown="MainWindow_OnKeyDown"
         Icon="Resources/images/Icon.ico">
 
     <Window.DataContext>
@@ -156,8 +157,8 @@
             <!-- Load Button -->
             <Button Grid.Column="1"
                     Grid.Row="2"
-                    Content="Quick Save"
-                    Width="100"
+                    Content="Quick Save(Ctrl+S)"
+                    Width="150"
                     HorizontalAlignment="Right"
                     Margin="0, 5, 220,5"
                     Foreground="White"

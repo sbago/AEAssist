@@ -4,14 +4,21 @@ using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using AETriggers;
-using Microsoft.Win32;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using Application = System.Windows.Application;
+using Button = System.Windows.Controls.Button;
 using HorizontalAlignment = System.Windows.HorizontalAlignment;
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using MenuItem = System.Windows.Controls.MenuItem;
+using MessageBox = System.Windows.MessageBox;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using Trigger = AEAssist.Trigger;
 
 namespace AEAssist
@@ -195,7 +202,7 @@ namespace AEAssist
 
             if (string.IsNullOrEmpty(DataBinding.Instance.CurrChoosedId))
             {
-                MessageBox.Show("Pls choose a group on left");
+                MessageBox.Show("Pls choose a group on left\n请在左边选择一个Group");
                 return;
             }
 
@@ -391,6 +398,48 @@ namespace AEAssist
             catch (Exception exception)
             {
                 MessageBox.Show(exception.ToString());
+            }
+        }
+
+        private void MainWindow_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            // The text box grabs all input.
+            e.Handled = true;
+
+            // Fetch the actual shortcut key.
+            var key = e.Key == Key.System ? e.SystemKey : e.Key;
+
+            switch (key)
+            {
+                case Key.Escape:
+                    return;
+                case Key.LeftShift:
+                case Key.RightShift:
+                case Key.LeftCtrl:
+                case Key.RightCtrl:
+                case Key.LeftAlt:
+                case Key.RightAlt:
+                case Key.LWin:
+                case Key.RWin:
+                    return;
+            }
+
+            // Ignore modifier keys.
+            var ModKeySetting = ModifierKeys.None;
+
+            if ((Keyboard.Modifiers & ModifierKeys.Control) != 0) ModKeySetting = ModifierKeys.Control;
+
+            if ((Keyboard.Modifiers & ModifierKeys.Shift) != 0) ModKeySetting = ModifierKeys.Shift;
+
+            if ((Keyboard.Modifiers & ModifierKeys.Alt) != 0) ModKeySetting = ModifierKeys.Alt;
+
+            if (Keyboard.Modifiers == 0) ModKeySetting = ModifierKeys.None;
+
+            var newKey = (Keys)KeyInterop.VirtualKeyFromKey(key);
+
+            if (ModKeySetting == ModifierKeys.Control && newKey == Keys.S)
+            {
+                SaveTriggerline_OnClick(sender, null);
             }
         }
     }
