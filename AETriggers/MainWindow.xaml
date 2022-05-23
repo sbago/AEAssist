@@ -11,7 +11,8 @@
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon="Resources/images/Icon.ico">
 
     <Window.DataContext>
         <Binding Source="{x:Static aeTriggers:DataBinding.Instance}" />
