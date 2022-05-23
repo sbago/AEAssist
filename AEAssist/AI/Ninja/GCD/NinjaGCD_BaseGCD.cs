@@ -5,7 +5,7 @@ using ff14bot;
 
 namespace AEAssist.AI.Ninja.GCD
 {
-    public class Ninja_BaseGCD : IAIHandler
+    public class NinjaGCD_BaseGCD : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {

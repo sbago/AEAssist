@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
+using ff14bot.Managers;
 
 namespace AEAssist.AI.Ninja.Ability
 {
@@ -13,6 +14,14 @@ namespace AEAssist.AI.Ninja.Ability
             if (!SpellsDefine.Mug.IsUnlock())
             {
                 return -10;
+            }
+            if (!SpellsDefine.Mug.IsReady())
+            {
+                return -5;
+            }
+            if (ActionResourceManager.Ninja.NinkiGauge < 60)
+            {
+                return 0;
             }
             return -4;
         }

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
+using ff14bot.Managers;
 
 namespace AEAssist.AI.Ninja.Ability
 {
@@ -13,6 +14,22 @@ namespace AEAssist.AI.Ninja.Ability
             if (!SpellsDefine.Bunshin.IsUnlock())
             {
                 return -10;
+            }
+
+            if (!SpellsDefine.Bunshin.IsReady())
+            {
+                return -5;
+            }
+
+            if (ActionResourceManager.Ninja.NinkiGauge >= 50)
+            {
+                return 0;
+            }
+
+            if (ActionResourceManager.Ninja.NinkiGauge >= 5 &&
+                SpellsDefine.Mug.RecentlyUsed())
+            {
+                return 1;
             }
             return -4;
         }

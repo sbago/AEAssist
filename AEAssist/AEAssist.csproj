@@ -234,16 +234,17 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Ninja\Ability\NinjaAbility_Assassinate.cs" />
     <Compile Include="AI\Ninja\Ability\NinjaAbility_Bhavacakra.cs" />
     <Compile Include="AI\Ninja\Ability\NinjaAbility_Bunshin.cs" />
-    <Compile Include="AI\Ninja\Ability\NinjaAbility_DreamWithinaDream.cs" />
-    <Compile Include="AI\Ninja\Ability\NinjaAbility_HellfrogMedium.cs" />
     <Compile Include="AI\Ninja\Ability\NinjaAbility_Meisui.cs" />
     <Compile Include="AI\Ninja\Ability\NinjaAbility_Mug.cs" />
-    <Compile Include="AI\Ninja\Ability\NinjaAbility_TenChiJin.cs" />
     <Compile Include="AI\Ninja\Ability\NinjaAbility_TrickAttack.cs" />
     <Compile Include="AI\Ninja\Ability\NinjaAbility_TrueNorth.cs" />
+    <Compile Include="AI\Ninja\GCD\NinjaGCD_Kassatsu.cs" />
+    <Compile Include="AI\Ninja\GCD\NinjaGCD_Raiju.cs" />
+    <Compile Include="AI\Ninja\GCD\NinjaGCD_Raiton.cs" />
+    <Compile Include="AI\Ninja\GCD\NinjaGCD_Suiton.cs" />
     <Compile Include="AI\Ninja\NinjaBattleData.cs" />
     <Compile Include="AI\Ninja\NinjaSpellHelper.cs" />
-    <Compile Include="AI\Ninja\GCD\Ninja_BaseGCD.cs" />
+    <Compile Include="AI\Ninja\GCD\NinjaGCD_BaseGCD.cs" />
     <Compile Include="AI\Ninja\NinjaRotation.cs" />
     <Compile Include="AI\Ninja\Ninja_AIPriority.cs" />
     <Compile Include="AI\Ninja\SpellQueue\SpellQueueSlot_Doton.cs" />
@@ -513,6 +514,8 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Content Include="Resources\Lan_zh-CN.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Spells\Dancer\Flourish.png" />
+    <Resource Include="Resources\Spells\Dancer\SaberDance.png" />
     <Resource Include="Resources\Spells\Bloodbath.png" />
     <Resource Include="Resources\Spells\Samurai\ThirdEye.png" />
     <Resource Include="Resources\Spells\Peloton.png" />

@@ -139,43 +139,31 @@ namespace AEAssist.AI.Ninja
         public static int NinjutsuCheck()
         {
             var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
+            // if we started cast Ninjutsu
             if (Core.Me.HasAura(AurasDefine.Mudra))
             {
+                //TODO: get musked spell, check it's not rabbi thing
                 return 0;
             }
-            else
+            // if we didn't start cast Ninjutsu
+            if (bdls != SpellsDefine.Ten.GetSpellEntity() &&
+                bdls != SpellsDefine.Chi.GetSpellEntity() &&
+                bdls != SpellsDefine.Jin.GetSpellEntity())
             {
-                if (bdls != SpellsDefine.Ten.GetSpellEntity() &&
-                    bdls != SpellsDefine.Chi.GetSpellEntity() &&
-                    bdls != SpellsDefine.Jin.GetSpellEntity())
-                {
-                    return 0;
-                }
+                return 0;
             }
             return -4;
         }
 
 
-
-        public static SpellEntity GetDanceStep(ActionResourceManager.Dancer.DanceStep step)
+        public static SpellEntity GetBhavacakra(GameObject target)
         {
-            switch (step)
-            {
-                case ActionResourceManager.Dancer.DanceStep.Emboite:
-                    return SpellsDefine.Emboite.GetSpellEntity();
+            //should be TargetHelper.CheckNeedUseAOE(target, 25, 6, 4) in 6.1
+            if (TargetHelper.CheckNeedUseAOE(target, 25, 6,3)) return SpellsDefine.HellfrogMedium.GetSpellEntity();
 
-                case ActionResourceManager.Dancer.DanceStep.Entrechat:
-                    return SpellsDefine.Entrechat.GetSpellEntity();
-
-                case ActionResourceManager.Dancer.DanceStep.Jete:
-                    return SpellsDefine.Jete.GetSpellEntity();
-
-                case ActionResourceManager.Dancer.DanceStep.Pirouette:
-                    return SpellsDefine.Pirouette.GetSpellEntity();
-            }
-
-            return null;
+            return SpellsDefine.Bhavacakra.GetSpellEntity();
         }
+
 
         public static async Task PreCombatDanceSteps()
         {

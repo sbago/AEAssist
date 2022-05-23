@@ -12,7 +12,7 @@ namespace AEAssist.AI.Ninja
     {
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>()
         {
-            new Ninja_BaseGCD(),
+            new NinjaGCD_BaseGCD(),
         };
 
         public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()

@@ -1,4 +1,5 @@
-﻿using System.CodeDom;
+﻿using System;
+using System.CodeDom;
 using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
@@ -14,6 +15,13 @@ namespace AEAssist.AI.Ninja.Ability
             {
                 return -10;
             }
+
+            if (Core.Me.HasAura(AurasDefine.Suiton) &&
+                SpellsDefine.TrickAttack.GetSpellEntity().Cooldown > TimeSpan.FromSeconds(10))
+            {
+                return 1;
+            }
+            
             return -4;
         }
 

@@ -15,18 +15,34 @@ namespace AEAssist.AI.Ninja.Ability
             {
                 return -10;
             }
+
+            if (SpellsDefine.DreamWithinaDream.IsUnlock())
+            {
+                if (!SpellsDefine.DreamWithinaDream.IsReady())
+                {
+                    return -1;
+                }
+            }
+            else if (!SpellsDefine.Assassinate.IsReady())
+            {
+                return -1;
+            }
             var target = Core.Me.CurrentTarget as Character;
-            if (SpellsDefine.Assassinate.IsReady() &&
-                target.ContainAura(AurasDefine.VulnerabilityTrickAttack))
+            if (target.ContainAura(AurasDefine.VulnerabilityTrickAttack))
             {
                 return 0;
             }
+            
             return -4;
         }
 
         public async Task<SpellEntity> Run()
         {
             var spell = SpellsDefine.Assassinate.GetSpellEntity();
+            if (SpellsDefine.DreamWithinaDream.IsUnlock())
+            {
+                spell = SpellsDefine.DreamWithinaDream.GetSpellEntity();
+            }
             if (spell == null)
                 return null;
             var ret = await spell.DoAbility();
