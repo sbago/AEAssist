@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AEAssist.AI.Ninja.Ability;
 using AEAssist.AI.Ninja.GCD;
 using AEAssist.Helper;
 using ff14bot.Enums;
@@ -11,11 +12,12 @@ namespace AEAssist.AI.Ninja
     {
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>()
         {
-            new Ninja_BaseCombo(),
+            new NinjaGCD_BaseGCD(),
         };
 
         public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()
         {
+            new NinjaAbility_TrickAttack(),
 
         };
         public async Task<bool> UsePotion()

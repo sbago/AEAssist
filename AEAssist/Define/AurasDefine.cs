@@ -321,8 +321,14 @@ namespace AEAssist.Define
             LanceCharge = 1864,
             Equilibrium = 2681,
             Oblation = 2682,
-            Weakness = 43;
-
+            Weakness = 43,
+            //NIN
+            RaijuReady = 2690,
+            PhantomKamaitachiReady = 2723,
+            Bunshin = 1954;
+            
+            
+ 
         private const int
             Invincibility0 = 981,
             Invincibility1 = 969,

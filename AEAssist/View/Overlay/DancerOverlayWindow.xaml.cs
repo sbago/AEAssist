@@ -29,6 +29,10 @@ namespace AEAssist.View.Overlay
         {
             AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.CuringWaltz.GetSpellEntity();
         }
+        private void UseFlourish_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Flourish.GetSpellEntity();
+        }
         private void UseEnAvant_OnClick(object sender, RoutedEventArgs e)
         {
             AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.EnAvant.GetSpellEntity();
@@ -38,7 +42,10 @@ namespace AEAssist.View.Overlay
         {
             AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.ArmsLength.GetSpellEntity();
         }
-
+        private void UseSaberDance_OnClick(object sender, RoutedEventArgs e)
+        {
+            AIRoot.GetBattleData<BattleData>().NextGcdSpellId = SpellsDefine.SaberDance.GetSpellEntity();
+        }
         private void UseSprint_OnClick(object sender, RoutedEventArgs e)
         {
             AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = SpellsDefine.Sprint.GetSpellEntity();
