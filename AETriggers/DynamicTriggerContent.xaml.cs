@@ -98,7 +98,7 @@ namespace AETriggers
             {
                 var element1 = new TextBox();
                 element1.Margin = new Thickness(15, 0, 5, 0);
-                element1.Width = 80;
+                element1.Width = 150;
                 element1.Text = v.GetValue(obj).ToString();
                 element1.TextChanged += (s, o) =>
                 {
@@ -137,7 +137,7 @@ namespace AETriggers
         {
             var element1 = new TextBox();
             element1.Margin = new Thickness(15, 0, 5, 0);
-            element1.Width = 80;
+            element1.Width = 150;
             var prop = new Binding(v.Name);
             prop.Source = obj;
             prop.Mode = BindingMode.TwoWay;
@@ -153,7 +153,7 @@ namespace AETriggers
             {
                 var element1 = new TextBox();
                 element1.Margin = new Thickness(15, 0, 5, 0);
-                element1.Width = 80;
+                element1.Width = 150;
                 element1.Text = v.GetValue(obj).ToString();
                 element1.TextChanged += (s, o) =>
                 {

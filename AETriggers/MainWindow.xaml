@@ -152,6 +152,19 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            
+            <!-- Load Button -->
+            <Button Grid.Column="1"
+                    Grid.Row="2"
+                    Content="Quick Save"
+                    Width="100"
+                    HorizontalAlignment="Right"
+                    Margin="0, 5, 220,5"
+                    Foreground="White"
+                    Background="Black"
+                    BorderThickness="0"
+                    Style="{StaticResource RoundedButtonStyle}"
+                    Click="SaveTriggerline_OnClick" />
 
             <!-- Load Button -->
             <Button Grid.Column="1"

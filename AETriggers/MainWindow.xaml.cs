@@ -335,10 +335,20 @@ namespace AEAssist
             if (sender == CondsListView)
             {
                 ActionsListView.SelectedIndex = -1;
+                foreach (var v in ActionsListView.Items)
+                {
+                    var trigger = v as DataBinding.Trigger;
+                    trigger.DelButton = Visibility.Hidden;
+                }
             }
             else
             {
                 CondsListView.SelectedIndex = -1;
+                foreach (var v in CondsListView.Items)
+                {
+                    var trigger = v as DataBinding.Trigger;
+                    trigger.DelButton = Visibility.Hidden;
+                }
             }
 
 
@@ -358,6 +368,26 @@ namespace AEAssist
             {
                 var content = TriggerContent.Children[0] as DynamicTriggerContent;
                 content.Init(e.AddedItems[0] as DataBinding.Trigger);
+            }
+        }
+
+        private void SaveTriggerline_OnClick(object sender, RoutedEventArgs e)
+        {
+            var TriggerLine = DataBinding.Instance.Export();
+            if (TriggerLine == null)
+                return;
+            try
+            {
+                var dirPath = Directory.GetCurrentDirectory()+ "/Triggerline/";
+                var filePath =dirPath+ "/TempFile_" + DateTimeOffset.Now.ToFileTime()+".json";
+                if (!Directory.Exists(dirPath))
+                    Directory.CreateDirectory(dirPath);
+                TriggerHelper.SaveTriggerLine(TriggerLine, filePath);
+                MessageBox.Show($"Export Success!\n{filePath}");
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.ToString());
             }
         }
     }
