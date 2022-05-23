@@ -89,6 +89,9 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_CastGCD.cs">
       <Link>TriggerModel\TriggerAction\TriggerAction_CastGCD.cs</Link>
     </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_DisableOtherTrigger.cs">
+      <Link>TriggerModel\TriggerAction\TriggerAction_DisableOtherTrigger.cs</Link>
+    </Compile>
     <Compile Include="..\AETriggers\TriggerModel\TriggerAction\TriggerAction_LockSpell.cs">
       <Link>TriggerModel\TriggerAction\TriggerAction_LockSpell.cs</Link>
     </Compile>
@@ -278,6 +281,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Sage\GCD\SageBaseGCD.cs" />
     <Compile Include="AI\Sage\GCD\SageGCDDot.cs" />
     <Compile Include="AI\Sage\GCD\SageGCDDyskrasia.cs" />
+    <Compile Include="AI\Sage\GCD\SageGCDEgeiro.cs" />
     <Compile Include="AI\Sage\GCD\SageGCDPhlegma.cs" />
     <Compile Include="AI\Sage\GCD\SageGCDToxikon.cs" />
     <Compile Include="AI\Sage\OpenerSageStandard90.cs" />
@@ -390,6 +394,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_CastAbility.cs" />
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_CastGCD.cs" />
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_LockSpell.cs" />
+    <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_RemoveOtherTrigger.cs" />
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SongList.cs" />
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchAOE.cs" />
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_SwitchApex.cs" />

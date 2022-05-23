@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:aeTriggers="clr-namespace:AETriggers"
         mc:Ignorable="d"
-        Height="600"
-        Width="920"
+        Height="800"
+        Width="1100"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
@@ -55,7 +55,9 @@
                      HorizontalAlignment="Left"
                      VerticalAlignment="Top"
                      KeyUp="AuthorTextBox_OnKeyUp"
-                     Text="{Binding Author,Mode=TwoWay}" />
+                     Tag="Author"
+                     Style="{StaticResource GeneralTextBoxStyle}"
+                     Text="{Binding Author,Mode=TwoWay}"/>
 
             <!--Name TextBox-->
             <TextBox Grid.Row="0"
@@ -65,6 +67,8 @@
                      Height="30"
                      Margin="5,10,0,0"
                      HorizontalAlignment="Left"
+                     Tag="Name"
+                     Style="{StaticResource GeneralTextBoxStyle}"
                      Text="{Binding Name,Mode=TwoWay}" />
 
             <!--Zone TextBox-->
@@ -75,7 +79,9 @@
                      Height="30"
                      Margin="0,5,150,0"
                      HorizontalAlignment="Right"
-                     VerticalAlignment="Top" />
+                     VerticalAlignment="Top" 
+                     Tag="Zone Id"
+                     Style="{StaticResource GeneralTextBoxStyle}" />
 
             <!--SubZoneId TextBox-->
             <TextBox Grid.Row="0"
@@ -85,8 +91,22 @@
                      Height="30"
                      Margin="0,5,30,0"
                      HorizontalAlignment="Right"
-                     VerticalAlignment="Top" />
-
+                     VerticalAlignment="Top" 
+                     Tag="SubZone ID"
+                     Style="{StaticResource GeneralTextBoxStyle}"/>
+            
+            <Label Grid.Row="0" 
+                   Grid.Column="1"
+                   Width="100"
+                   Height="50"
+                   Margin="0,5,100,5"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom">
+                <TextBlock Text="JOB:"
+                           Foreground="White" 
+                           FontSize="20" />
+            </Label>
+            
             <ComboBox
                 Name="JobComboBox"
                 Grid.Row="0"
@@ -107,8 +127,11 @@
                      Width="140"
                      Margin="0,0,0,0"
                      HorizontalAlignment="Left"
-                     FontSize="20"
-                     KeyDown="IdTextBox_OnKeyDown" />
+                     BorderThickness="0"
+                     Background="Transparent"
+                     FontSize="15"
+                     Tag="Group Id"
+                     KeyDown="IdTextBox_OnKeyDown" Style="{StaticResource  TextBoxStyleID}" />
 
             <!-- List View -->
             <ListView Grid.Row="1"
@@ -240,7 +263,8 @@
                     <ListView Margin="5" Name="CondsListView"
                               Foreground="White"
                               Background="Transparent"
-                              BorderThickness="0">
+                              BorderThickness="0"
+                              SelectionChanged="ListView_OnSelectionChanged">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -248,7 +272,9 @@
                                                ToolTip="{Binding Tooltip}" />
                                     <TextBox Visibility="{Binding NeedParam,Mode=TwoWay}" Width="300"
                                              Text="{Binding Param,Mode=TwoWay}"
-                                             ToolTip="{Binding ParamTooltip,Mode=TwoWay}" />
+                                             ToolTip="{Binding ParamTooltip,Mode=TwoWay}"
+                                             ToolTipService.ShowDuration="60000"/>
+                                    <Button Visibility="{Binding DelButton,Mode=TwoWay}" Content="X" Width="30" Height="30" Click="Cond_DeleteTriggerBehavior_OnClick"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -258,7 +284,8 @@
                     <ListView Margin="5" Name="ActionsListView"
                               Foreground="White"
                               Background="Transparent"
-                              BorderThickness="0">
+                              BorderThickness="0"
+                              SelectionChanged="ListView_OnSelectionChanged">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -266,7 +293,9 @@
                                                ToolTip="{Binding Tooltip}" />
                                     <TextBox Visibility="{Binding NeedParam,Mode=TwoWay}" Width="300"
                                              Text="{Binding Param,Mode=TwoWay}"
-                                             ToolTip="{Binding ParamTooltip,Mode=TwoWay}" />
+                                             ToolTip="{Binding ParamTooltip,Mode=TwoWay}"
+                                             ToolTipService.ShowDuration="60000"/>
+                                    <Button Visibility="{Binding DelButton,Mode=TwoWay}" Content="X" Width="30" Height="30" Click="Action_DeleteTriggerBehavior_OnClick"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

@@ -74,6 +74,7 @@
   "Label_StrChoosePotion" : "StrChoosePotion",
   "Label_MindChoosePotion" : "MindChoosePotion",
   "Label_ChooseOpener" : "ChooseOpener",
+  "Label_ChooseResPriority" : "ChooseResPriority",
   "Label_PotionNum" : "PotionNum",
   "Label_DotblackList" : "DotblackList",
   "Toggle_PreferGallow" : "PreferGallow",

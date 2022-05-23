@@ -118,7 +118,7 @@ namespace AEAssist
         }*/
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
         }
         
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
@@ -163,6 +163,8 @@ namespace AEAssist
                 }
                 DataBinding.Instance.GroupIds.Add(newId);
                 DataBinding.Instance.AllGroupData[newId] = new DataBinding.GroupData();
+                // reset text box value after enter.
+                IdTextBox.Text = "";
             }
         }
         
@@ -190,9 +192,13 @@ namespace AEAssist
             var menuItem = sender as MenuItem;
             if (menuItem == null)
                 return;
-            
+
             if (string.IsNullOrEmpty(DataBinding.Instance.CurrChoosedId))
+            {
+                MessageBox.Show("Pls choose a group on left");
                 return;
+            }
+
             if (!DataBinding.Instance.AllGroupData.TryGetValue(DataBinding.Instance.CurrChoosedId, out var group))
             {
                 return;
@@ -300,6 +306,36 @@ namespace AEAssist
                 if (str != null && line == null) MessageBox.Show(str);
 
                 if (line != null) DataBinding.Instance.Load(line);
+            }
+        }
+
+        private void Cond_DeleteTriggerBehavior_OnClick(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = CondsListView.SelectedValue as DataBinding.Trigger;
+            CondsListView.SelectedValue = null;
+            DataBinding.Instance.AllGroupData[DataBinding.Instance.CurrChoosedId].CondTriggers.Remove(selectedItem);
+        }
+        
+        private void Action_DeleteTriggerBehavior_OnClick(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = ActionsListView.SelectedValue as DataBinding.Trigger;
+            ActionsListView.SelectedValue = null;
+            DataBinding.Instance.AllGroupData[DataBinding.Instance.CurrChoosedId].ActionTriggers.Remove(selectedItem);
+        }
+
+        private void ListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            foreach (var v in e.RemovedItems)
+            {
+                var trigger = v as DataBinding.Trigger;
+                trigger.DelButton = Visibility.Hidden;
+            }
+
+            foreach (var v in e.AddedItems)
+            {
+                var trigger = v as DataBinding.Trigger;
+                trigger.DelButton = Visibility.Visible;
             }
         }
     }

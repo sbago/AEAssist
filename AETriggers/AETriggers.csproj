@@ -101,6 +101,7 @@
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_CastAbility.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_CastGCD.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_LockSpell.cs" />
+    <Compile Include="TriggerModel\TriggerAction\TriggerAction_DisableOtherTrigger.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_SongList.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchAOE.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchApex.cs" />
@@ -134,14 +135,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Theme\AddButtonStyle.xaml" />
-    <Page Include="Theme\AuthorTextBoxStyle.xaml" />
+    <Page Include="Theme\GeneralTextBoxStyle.xaml" />
     <Page Include="Theme\CloseButtonStyle.xaml" />
     <Page Include="Theme\IDTextBoxStyle.xaml" />
     <Page Include="Theme\JobComboBoxStyle.xaml" />
-    <Page Include="Theme\NameTextBoxStyle.xaml" />
     <Page Include="Theme\RoundedButtonStyle.xaml" />
-    <Page Include="Theme\SubZoneTextBoxStyle.xaml" />
-    <Page Include="Theme\ZoneTextBoxStyle.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

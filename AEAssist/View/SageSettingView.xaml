@@ -47,6 +47,12 @@
                               SelectedValuePath="Name" SelectionChanged="ChooseOpener_OnSelectionChanged" />
                 </StackPanel>
                 
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="{Binding Language.Label_ChooseResPriority}" Width="120" />
+                    <ComboBox IsEditable="False" Name="SageResPriority" Width="150" DisplayMemberPath="Value"
+                              SelectedValuePath="Key" DropDownClosed="ChooseResPriority_OnSelectionChanged"/>
+                </StackPanel>
+                
             </StackPanel>
         </TabItem>
     </TabControl>

@@ -15,6 +15,8 @@ namespace AEAssist.Helper
         public static List<PotionData> DexPotions { get; set; } = new List<PotionData>();
         public static List<PotionData> StrPotions { get; set; } = new List<PotionData>();
         public static List<PotionData> MindPotions { get; set; } = new List<PotionData>();
+        
+        public static List<PotionData> INTPotions { get; set; } = new List<PotionData>();
 
         public static void Init()
         {
@@ -73,24 +75,48 @@ namespace AEAssist.Helper
             MindPotions.Add(new PotionData
             {
                 ID = 36113,
-                Name = "Grade 6 Mind/6级智力"
+                Name = "Grade 6 Mind/6级意力"
             });
             MindPotions.Add(new PotionData
             {
                 ID = 36108,
-                Name = "Grade 5 Mind/5级智力"
+                Name = "Grade 5 Mind/5级意力"
             });
             MindPotions.Add(new PotionData
             {
                 ID = 31897,
-                Name = "Grade 4 Mind/4级智力"
+                Name = "Grade 4 Mind/4级意力"
             });
             MindPotions.Add(new PotionData
             {
                 ID = 29496,
-                Name = "Grade 3 Mind/3级智力"
+                Name = "Grade 3 Mind/3级意力"
             });
+
+            if (INTPotions == null)
+                INTPotions = new List<PotionData>();
             
+            INTPotions.Add(new PotionData
+            {
+                ID = 36112,
+                Name = "Grade 6 INT/6智益力"
+            });
+            INTPotions.Add(new PotionData
+            {
+                ID = 36107,
+                Name = "Grade 5 INT/5级智力"
+            });
+            INTPotions.Add(new PotionData
+            {
+                ID = 31896,
+                Name = "Grade 4 INT/4级智力"
+            });
+            INTPotions.Add(new PotionData
+            {
+                ID = 29495,
+                Name = "Grade 3 INT/3级智力"
+            });
+
         }
 
         public static async Task<bool> UsePotion(int potionRawId)
@@ -126,8 +152,8 @@ namespace AEAssist.Helper
 
         internal static bool CheckPotion(int potionRawId)
         {
+            LogHelper.Debug("CheckPotion :" + potionRawId);
             var item = InventoryManager.FilledSlots.FirstOrDefault(s => s.RawItemId == potionRawId);
-
             if (item == null || !item.CanUse(Core.Me)) return false;
 
             return true;
