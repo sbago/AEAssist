@@ -371,6 +371,7 @@ namespace AEAssist
             }
         }
 
+        private bool notice;
         private void SaveTriggerline_OnClick(object sender, RoutedEventArgs e)
         {
             var TriggerLine = DataBinding.Instance.Export();
@@ -383,7 +384,9 @@ namespace AEAssist
                 if (!Directory.Exists(dirPath))
                     Directory.CreateDirectory(dirPath);
                 TriggerHelper.SaveTriggerLine(TriggerLine, filePath);
-                MessageBox.Show($"Export Success!\n{filePath}");
+                if (!notice)
+                    MessageBox.Show($"Export Success!Only first notice:\n{filePath}");
+                notice = true;
             }
             catch (Exception exception)
             {
