@@ -267,6 +267,8 @@ namespace AEAssist
                     DataBinding.Instance.CurrChoosedId = string.Empty;
                     CondsListView.ItemsSource = null;
                     ActionsListView.ItemsSource = null;
+                    var content = TriggerContent.Children[0] as DynamicTriggerContent;
+                    content.Clear();
                 }
 
                 DataBinding.Instance.GroupIds.Remove(delId);
@@ -314,6 +316,8 @@ namespace AEAssist
             var selectedItem = CondsListView.SelectedValue as DataBinding.Trigger;
             CondsListView.SelectedValue = null;
             DataBinding.Instance.AllGroupData[DataBinding.Instance.CurrChoosedId].CondTriggers.Remove(selectedItem);
+            var content = TriggerContent.Children[0] as DynamicTriggerContent;
+            content.Clear();
         }
         
         private void Action_DeleteTriggerBehavior_OnClick(object sender, RoutedEventArgs e)
@@ -321,6 +325,8 @@ namespace AEAssist
             var selectedItem = ActionsListView.SelectedValue as DataBinding.Trigger;
             ActionsListView.SelectedValue = null;
             DataBinding.Instance.AllGroupData[DataBinding.Instance.CurrChoosedId].ActionTriggers.Remove(selectedItem);
+            var content = TriggerContent.Children[0] as DynamicTriggerContent;
+            content.Clear();
         }
 
         private void ListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
