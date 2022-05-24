@@ -22,7 +22,7 @@
     <Border Background="#272537" CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="300" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
@@ -128,7 +128,7 @@
             <TextBox Grid.Row="2"
                      Grid.Column="0"
                      Name="IdTextBox"
-                     Width="140"
+                     Width="240"
                      Margin="0,0,0,0"
                      HorizontalAlignment="Left"
                      BorderThickness="0"
@@ -148,7 +148,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Width="80" Text="{Binding}" MouseLeftButtonDown="ShowGroup_EventHandler" />
+                            <TextBlock Width="188" Text="{Binding}" MouseLeftButtonDown="ShowGroup_EventHandler" />
                             <Button Width="60" Content="Rename" Click="GroupIdRename_EventHandler" />
                             <Button Width="40" Content="Del" Click="GroupIdDel_EventHandler" />
                         </StackPanel>
