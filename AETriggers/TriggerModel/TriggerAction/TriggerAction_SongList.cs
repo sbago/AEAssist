@@ -48,7 +48,8 @@ namespace AEAssist.TriggerAction
                 str += $"{SongIndex[i]}:{Durations[i]}|";
             }
 
-            str = str.Remove(str.Length - 1);
+            if (str.Length > 0)
+                str = str.Remove(str.Length - 1);
             return new string[]
             {
                 str

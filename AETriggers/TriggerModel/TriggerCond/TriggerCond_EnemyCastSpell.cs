@@ -12,6 +12,7 @@ namespace AEAssist.TriggerCond
     {
         [GUILabel("Name/Id")]
         public string spellName { get; set; }
+        [GUIToolTip("how long after the enemy start casting the specify spell (sec)\n敌人开始读条后过多少秒")]
         public int delayTime { get; set; }
 
         public void WriteFromJson(string[] values)

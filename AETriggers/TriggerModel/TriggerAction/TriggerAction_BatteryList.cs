@@ -35,10 +35,11 @@ namespace AEAssist.TriggerAction
             var str = string.Empty;
             for (int i = 0; i < BatteryList.Count; i++)
             {
-                str += BatteryList[i].ToString()+'|';
+                str += BatteryList[i].ToString() + '|';
             }
 
-            str = str.Remove(str.Length - 1);
+            if (str.Length > 0)
+                str = str.Remove(str.Length - 1);
             return new string[]
             {
                 str

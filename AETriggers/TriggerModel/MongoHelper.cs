@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.IO;
 using System.Reflection;
 using MongoDB.Bson;
@@ -146,6 +147,19 @@ namespace AEAssist
         public static T Clone<T>(T t)
         {
             return FromBson<T>(ToBson(t));
+        }
+
+        public static string ArrayToString(this IEnumerable enumerable)
+        {
+            if (enumerable == null)
+                return string.Empty;
+            var str = string.Empty;
+            foreach (var v in enumerable)
+            {
+                str += v.ToString()+",";
+            }
+
+            return str;
         }
     }
 }

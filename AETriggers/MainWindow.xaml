@@ -79,6 +79,7 @@
                      Name="ZoneTextBox"
                      Width="150"
                      Height="30"
+                     IsEnabled="False"
                      Margin="0,5,150,0"
                      HorizontalAlignment="Right"
                      VerticalAlignment="Top"
@@ -91,6 +92,7 @@
                      Name="SubZoneIdTextBox"
                      Width="100"
                      Height="30"
+                     IsEnabled="False"
                      Margin="0,5,30,0"
                      HorizontalAlignment="Right"
                      VerticalAlignment="Top"
@@ -227,28 +229,28 @@
                 </Grid.ColumnDefinitions>
                 <ScrollViewer Name="Main" VerticalScrollBarVisibility="Auto">
                     <StackPanel Name="mainStackPanel" Width="600" Background="Transparent">
-                        <StackPanel.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Cond" Name="Conds">
-                                    <MenuItem.ItemContainerStyle>
-                                        <Style TargetType="MenuItem">
-                                            <Setter Property="Header" Value="{Binding Name}" />
-                                            <Setter Property="ToolTip" Value="{Binding Tooltip}" />
-                                            <EventSetter Event="Click" Handler="TriggerOnClickHandler" />
-                                        </Style>
-                                    </MenuItem.ItemContainerStyle>
-                                </MenuItem>
-                                <MenuItem Header="Action" Name="Actions">
-                                    <MenuItem.ItemContainerStyle>
-                                        <Style TargetType="MenuItem">
-                                            <Setter Property="Header" Value="{Binding Name}" />
-                                            <Setter Property="ToolTip" Value="{Binding Tooltip}" />
-                                            <EventSetter Event="Click" Handler="TriggerOnClickHandler" />
-                                        </Style>
-                                    </MenuItem.ItemContainerStyle>
-                                </MenuItem>
-                            </ContextMenu>
-                        </StackPanel.ContextMenu>
+                        <!-- <StackPanel.ContextMenu> -->
+                        <!--     <ContextMenu> -->
+                        <!--         <MenuItem Header="Cond" Name="Conds"> -->
+                        <!--             <MenuItem.ItemContainerStyle> -->
+                        <!--                 <Style TargetType="MenuItem"> -->
+                        <!--                     <Setter Property="Header" Value="{Binding Name}" /> -->
+                        <!--                     <Setter Property="ToolTip" Value="{Binding Tooltip}" /> -->
+                        <!--                     <EventSetter Event="Click" Handler="TriggerOnClickHandler" /> -->
+                        <!--                 </Style> -->
+                        <!--             </MenuItem.ItemContainerStyle> -->
+                        <!--         </MenuItem> -->
+                        <!--         <MenuItem Header="Action" Name="Actions"> -->
+                        <!--             <MenuItem.ItemContainerStyle> -->
+                        <!--                 <Style TargetType="MenuItem"> -->
+                        <!--                     <Setter Property="Header" Value="{Binding Name}" /> -->
+                        <!--                     <Setter Property="ToolTip" Value="{Binding Tooltip}" /> -->
+                        <!--                     <EventSetter Event="Click" Handler="TriggerOnClickHandler" /> -->
+                        <!--                 </Style> -->
+                        <!--             </MenuItem.ItemContainerStyle> -->
+                        <!--         </MenuItem> -->
+                        <!--     </ContextMenu> -->
+                        <!-- </StackPanel.ContextMenu> -->
                         <Border>
                             <StackPanel>
                                 <TextBlock Margin="5" Foreground="Aqua" TextWrapping="Wrap"

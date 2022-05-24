@@ -38,6 +38,7 @@ namespace AETriggers
                 var textBox = new TextBox();
                 textBox.Width = 150;
                 textBox.ToolTip = trigger.ParamTooltip;
+                textBox.Background = Brushes.Khaki;
                 ToolTipService.SetShowDuration(textBox, 60000);
                 var prop = new Binding("Param");
                 prop.Source = trigger;

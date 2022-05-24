@@ -205,8 +205,12 @@ namespace AEAssist.AI
 
        
             if (await AISpellQueueMgr.Instance.UseSpellQueue()) return false;
-
+            
             var spellQueue = AIRoot.GetBattleData<SpellQueueData>();
+            if (await spellQueue.ApplySlot())
+            {
+                return false;
+            }
             if (battleData.NextSpellSlot != null)
             {
                 if (battleData.SlotRetryEndTime < TimeHelper.Now())
@@ -221,11 +225,6 @@ namespace AEAssist.AI
                     battleData.NextSpellSlot = null;
                 }
 
-            }
-
-            if (await spellQueue.ApplySlot())
-            {
-                return false;
             }
 
 

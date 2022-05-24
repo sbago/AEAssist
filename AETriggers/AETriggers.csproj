@@ -109,6 +109,7 @@
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_DisableOtherTrigger.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_ReplayOpener.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_SongList.cs" />
+    <Compile Include="TriggerModel\TriggerAction\TriggerAction_SpellQueue.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchAOE.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchApex.cs" />
     <Compile Include="TriggerModel\TriggerAction\TriggerAction_SwitchBurst.cs" />

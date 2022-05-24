@@ -46,30 +46,124 @@ namespace AEAssist
                 Export.Content = "导出";
             }*/
 
-            var list1 = new List<TriggerTypeData>();
+            var contextMenu = new System.Windows.Controls.ContextMenu();
+            Dictionary<string, MenuItem> _menuItemsDict = new Dictionary<string, MenuItem>();
+            Dictionary<string, TriggerAttribute> path2Triggers = new Dictionary<string, TriggerAttribute>();
+
             foreach (var v in TriggerMgr.Instance.AllCondType)
             {
                 var attr = TriggerMgr.Instance.AllAttrs[v];
-                list1.Add(new TriggerTypeData()
+                if (attr.Name.Contains("/"))
                 {
-                    Name = attr.Name,
-                    Tooltip = attr.Tooltip
-                });
+                    var path = "Conds/" + attr.Name;
+                    path2Triggers.Add(path,attr);
+                }
+                else
+                {
+                    var path = "Conds/General/" + attr.Name;
+                    path2Triggers.Add(path,attr);
+                }
+
+              
             }
-            Conds.ItemsSource = list1;
-
-
-            var list2 = new List<TriggerTypeData>();
+            
             foreach (var v in TriggerMgr.Instance.AllActionType)
             {
                 var attr = TriggerMgr.Instance.AllAttrs[v];
-                list2.Add(new TriggerTypeData()
+                if (attr.Name.Contains("/"))
                 {
-                    Name = attr.Name,
-                    Tooltip = attr.Tooltip
-                });
+                    var path = "Actions/" + attr.Name;
+                    path2Triggers.Add(path,attr);
+                }
+                else
+                {
+                    var path = "Actions/General/" + attr.Name;
+                    path2Triggers.Add(path,attr);
+                }
             }
-            Actions.ItemsSource = list2;
+
+            foreach (var v in path2Triggers)
+            {
+                var afterSplit = v.Key.Split('/');
+                for (int i = 0; i < afterSplit.Length; i++)
+                {
+                    var path = string.Empty;
+                    for (int j = 0; j <= i; j++)
+                    {
+                        path += afterSplit[j] + "/";
+                    }
+
+                    if (path.Length > 0)
+                        path = path.Remove(path.Length - 1);
+
+                    if (!_menuItemsDict.TryGetValue(path, out var menuItem))
+                    {
+                        _menuItemsDict[path] = new MenuItem()
+                        {
+                            Header = new TextBlock()
+                            {
+                                Text = afterSplit[i],
+                                TextTrimming = TextTrimming.None,
+                                TextAlignment = TextAlignment.Left,
+                                TextWrapping =  TextWrapping.NoWrap,
+                                HorizontalAlignment = HorizontalAlignment.Left
+                            },
+                            Height = 20,
+                            HorizontalAlignment = HorizontalAlignment.Left,
+                            HorizontalContentAlignment = HorizontalAlignment.Right
+                        };
+                        menuItem = _menuItemsDict[path];
+
+                        if (i > 0)
+                        {
+                            var lastLevelMenu = string.Empty;
+                            for (int j = 0; j < i; j++)
+                            {
+                                lastLevelMenu+= afterSplit[j] + "/";
+                            }
+                            if (lastLevelMenu.Length > 0)
+                                lastLevelMenu = lastLevelMenu.Remove(lastLevelMenu.Length - 1);
+                            var lastMenu = _menuItemsDict[lastLevelMenu];
+                            if (afterSplit[i] == "General")
+                            {
+                                lastMenu.Items.Insert(0,menuItem);
+                            }
+                            else
+                            {
+                                lastMenu.Items.Add(menuItem);
+                            }
+                        }
+
+                        if (i == 0)
+                        {
+                            contextMenu.Items.Add(menuItem);
+                        }
+                    }
+
+                    if (i == afterSplit.Length - 1)
+                    {
+                        menuItem.ToolTip = v.Value.Tooltip;
+                        var name = v.Value.Name;
+                        menuItem.Click += (sender, args) =>
+                        {
+                            if (string.IsNullOrEmpty(DataBinding.Instance.CurrChoosedId))
+                            {
+                                MessageBox.Show("Pls choose a group on left\n请在左边选择一个Group");
+                                return;
+                            }
+
+                            if (!DataBinding.Instance.AllGroupData.TryGetValue(DataBinding.Instance.CurrChoosedId, out var group))
+                            {
+                                return;
+                            }
+
+                            group.AddTrigger(name.ToString());
+                        };
+                    }
+                }
+            }
+
+            mainStackPanel.ContextMenu = contextMenu;
 
             JobComboBox.SelectedValue = Jobs.Any;
 
