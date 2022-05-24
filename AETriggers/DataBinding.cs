@@ -267,6 +267,24 @@ namespace AETriggers
 
         public string CurrChoosedId { get; set; }
 
+        public Dictionary<int, string> SpellsDictionary { get; set; } = new Dictionary<int, string>()
+        {
+            // Sage
+            { 24302, "PhysisII"},
+            {24292, "EukrasianPrognosis"},
+            {24298, "Kerachole"},
+            {24299, "Ixochole"},
+            {24300, "Zoe"},
+            {24301, "Pepsis"},
+            {24303, "Taurochole"},
+            {24305, "Haima"},
+            {24309, "24309"},
+            {24310, "Holos"},
+            {24311, "Panhaima"},
+            {24317, "Krasis"},
+            {24318, "Pneuma"}
+        };
+
     }
     
 }
