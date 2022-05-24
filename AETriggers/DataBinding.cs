@@ -164,11 +164,15 @@ namespace AETriggers
             {
 
                 var typeName = trigger.TypeName;
-                var values = trigger.Param.Split(',');
-
                 var type = TriggerMgr.Instance.Name2Type[typeName];
                 var instance = Activator.CreateInstance(type) as ITriggerBase;
+                string[] values = null;
+                if (trigger.Param != null)
+                {
+                    values = trigger.Param.Split(',');
+                }
                 instance.WriteFromJson(values);
+
                 return instance as ITriggerBase;
             }
             else

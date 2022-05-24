@@ -1,0 +1,37 @@
+{
+  "_t" : "TriggerLine",
+  "Author" : null,
+  "ConfigVersion" : { "$numberInt" : "3" },
+  "CurrZoneId" : { "$numberInt" : "0" },
+  "Name" : null,
+  "SubZoneId" : { "$numberInt" : "0" },
+  "TargetJob" : null,
+  "Triggers" : [{
+      "_id" : "1",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SongList",
+          "Durations" : [{ "$numberInt" : "32" }, { "$numberInt" : "43" }],
+          "SongIndex" : [{ "$numberInt" : "1" }, { "$numberInt" : "2" }]
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_EnemyInLOS",
+          "name" : "2345",
+          "delayTime" : { "$numberInt" : "0" }
+        }]
+    }, {
+      "_id" : "2",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_UsePotion"
+        }, {
+          "_t" : "TriggerAction_SwitchBurst",
+          "value" : true
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterOtherTrigger",
+          "TriggerId" : "1",
+          "Time" : { "$numberInt" : "34" },
+          "Complex" : { "$numberInt" : "0" },
+          "ComplexTriggers" : []
+        }]
+    }]
+}
