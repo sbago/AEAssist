@@ -404,7 +404,7 @@ namespace AEAssist
         private void MainWindow_OnKeyDown(object sender, KeyEventArgs e)
         {
             // The text box grabs all input.
-            e.Handled = true;
+      
 
             // Fetch the actual shortcut key.
             var key = e.Key == Key.System ? e.SystemKey : e.Key;
@@ -440,6 +440,7 @@ namespace AEAssist
             if (ModKeySetting == ModifierKeys.Control && newKey == Keys.S)
             {
                 SaveTriggerline_OnClick(sender, null);
+                e.Handled = true;
             }
         }
     }

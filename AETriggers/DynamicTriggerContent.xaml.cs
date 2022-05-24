@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
 using AEAssist.View;
 
@@ -155,14 +156,26 @@ namespace AETriggers
                 element1.Margin = new Thickness(15, 0, 5, 0);
                 element1.Width = 150;
                 element1.Text = v.GetValue(obj).ToString();
-                element1.TextChanged += (s, o) =>
+                element1.KeyDown += (s, o) =>
                 {
+                    if (o.Key != Key.Enter)
+                        return;
                     object value_obj = null;
 
                     int.TryParse(element1.Text, out var value);
                     value_obj = value;
                     v.SetValue(obj, value_obj);
+                    element1.Text = value.ToString();
                 };
+                // element1.TextChanged += (s, o) =>
+                // {
+                //     if(o.)
+                //     object value_obj = null;
+                //
+                //     int.TryParse(element1.Text, out var value);
+                //     value_obj = value;
+                //     v.SetValue(obj, value_obj);
+                // };
                 panel.Children.Add(element1);
             }
             else
@@ -178,6 +191,7 @@ namespace AETriggers
                 element1.TickFrequency = 1;
                 element1.Maximum = rangeAttr.MaxValue;
                 element1.Minimum = rangeAttr.MinValue;
+                element1.Value = (int)v.GetValue(obj);
                 element1.ValueChanged += (s, o) =>
                 {
                     object value_obj = null;
@@ -204,8 +218,10 @@ namespace AETriggers
                 element1.Margin = new Thickness(15, 0, 5, 0);
                 element1.Width = 80;
                 element1.Text = v.GetValue(obj).ToString();
-                element1.TextChanged += (s, o) =>
+                element1.KeyDown += (s, o) =>
                 {
+                    if (o.Key != Key.Enter)
+                        return;
                     object value_obj = null;
 
                     float.TryParse(element1.Text, out var value);
@@ -215,6 +231,7 @@ namespace AETriggers
                     }
                     value_obj = value;
                     v.SetValue(obj, value_obj);
+                    element1.Text = value_obj.ToString();
                 };
                 panel.Children.Add(element1);
             }
