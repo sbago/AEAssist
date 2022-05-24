@@ -14,16 +14,30 @@ namespace AEAssist.AI.Dancer.Ability
             {
                 return -10;
             }
-            if (AIRoot.Instance.CloseBurst)
-                return -5;
             
-            if (SpellsDefine.Flourish.IsReady() &&
-                !Core.Me.HasAura(AurasDefine.FlourshingFlow) &&
-                !Core.Me.HasAura(AurasDefine.FlourishingSymmetry) &&
-                !Core.Me.HasAura(AurasDefine.FourfoldFanDance))
+            if (!SpellsDefine.Flourish.IsReady())
+            {
+                return -1;
+            }
+
+            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
+            var bdla = AIRoot.GetBattleData<BattleData>().lastAbilitySpell;
+            if (
+                (!Core.Me.HasAura(AurasDefine.FlourshingFlow) || (Core.Me.HasAura(AurasDefine.FlourshingFlow) &&
+                                                                  (bdls == SpellsDefine.Bloodshower.GetSpellEntity() ||
+                                                                   bdls == SpellsDefine.Fountainfall
+                                                                       .GetSpellEntity()))) &&
+                (!Core.Me.HasAura(AurasDefine.FlourishingSymmetry) ||
+                 (Core.Me.HasAura(AurasDefine.FlourishingSymmetry) &&
+                  (bdls == SpellsDefine.RisingWindmill.GetSpellEntity() ||
+                   bdls == SpellsDefine.ReverseCascade.GetSpellEntity()))) &&
+                (!Core.Me.HasAura(AurasDefine.ThreeFoldFanDance) || (Core.Me.HasAura(AurasDefine.ThreeFoldFanDance) &&
+                                                                     bdla == SpellsDefine.FanDance3.GetSpellEntity()))
+            )
             {
                 return 1;
             }
+
             return -4;
         }
 

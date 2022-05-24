@@ -14,11 +14,11 @@ namespace AEAssist.AI.Dancer
         {
             new DancerGCD_DanceStep(),
             new DancerGCD_SaberDance(),
+            new DancerGCD_TechnicalStep(),
+            new DancerGCD_Procs(),
             new DancerGCD_StarfallDance(),
             new DancerGCD_Tillana(),
-            new DancerGCD_TechnicalStep(),
             new DancerGCD_StandardStep(),
-            new DancerGCD_Procs(),
             new DancerGCD_BaseGCD()
         };
 

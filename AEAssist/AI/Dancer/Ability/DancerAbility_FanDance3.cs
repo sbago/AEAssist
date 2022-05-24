@@ -14,7 +14,7 @@ namespace AEAssist.AI.Dancer.Ability
             {
                 return -10;
             }
-            if (!Core.Me.HasAura(AurasDefine.FlourishingFanDance))
+            if (!Core.Me.HasAura(AurasDefine.ThreeFoldFanDance))
             {
                 return -1;
             }

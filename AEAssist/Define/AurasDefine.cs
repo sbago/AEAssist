@@ -188,7 +188,7 @@ namespace AEAssist.Define
             FlourshingShower = 1817,
             StandardStep = 1818,
             TechnicalStep = 1819,
-            FlourishingFanDance = 1820,
+            ThreeFoldFanDance = 1820,
             StandardFinish = 1821,
             RaidenReady = 1863,
             TechnicalFinish = 1822,
