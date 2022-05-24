@@ -319,7 +319,7 @@ namespace AEAssist
                 var textBlock = stackPanel.Children[0] as TextBlock;
 
                 var oldId = textBlock.Text;
-                 var mousePos =  Mouse.GetPosition(this);
+                var mousePos =  Mouse.GetPosition(this);
                 var screenPos = this.PointToScreen(mousePos);
                 _renameWindow.Display(screenPos,v=>Rename(oldId,v));
                 //todo: get newId,
