@@ -3,7 +3,7 @@ using PropertyChanged;
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("SwitchFinalBurst",ParamTooltip = "0 = off, 1 = on")]
+    [Trigger("SwitchFinalBurst 资源倾泻",ParamTooltip = "0 = off, 1 = on")]
     [AddINotifyPropertyChangedInterface]
     public class TriggerAction_SwitchFinalBurst : ITriggerAction
     {

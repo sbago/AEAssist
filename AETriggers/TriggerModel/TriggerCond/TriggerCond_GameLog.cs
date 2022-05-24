@@ -4,7 +4,7 @@ using PropertyChanged;
 
 namespace AEAssist.TriggerCond
 {
-    [Trigger("GameLog",Tooltip = "Specify string included in character lines or system prompts\n副本内台词/系统提示的监控",
+    [Trigger("GameLog 台词或提示监控",Tooltip = "Specify string included in character lines or system prompts\n副本内台词/系统提示的监控",
         ParamTooltip = "[MessageType(0=ignore)],[content],[Time in sec]",
         Example = "0,haha,0\n\t68,testStr,5")]
     [AddINotifyPropertyChangedInterface]

@@ -3,7 +3,7 @@ using PropertyChanged;
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("UsePotion",Tooltip = "Immediately use the Potion configured in PotionSetting\n" +
+    [Trigger("UsePotion 使用爆发药",Tooltip = "Immediately use the Potion configured in PotionSetting\n" +
                                    "立即使用爆发药设置中的爆发药",
         NeedParams = false)]
     [AddINotifyPropertyChangedInterface]

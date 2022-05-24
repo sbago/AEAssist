@@ -13,13 +13,13 @@ namespace AEAssist
         public bool EarlyDecisionMode { get; set; }
 
         public int StrongGCDCheckTime { get; set; } = 6000;
-        public bool WildfireFirst { get; set; }
+        public bool WildfireFirst { get; set; } = true;
 
         public void Reset()
         {
             EarlyDecisionMode = true;
             StrongGCDCheckTime = 6000;
-            WildfireFirst = false;
+            WildfireFirst = true;
         }
 
         public void OnLoad()

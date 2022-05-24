@@ -4,7 +4,7 @@ using PropertyChanged;
 
 namespace AEAssist.TriggerCond
 {
-    [Trigger("EnemyIsTargetable",
+    [Trigger("EnemyIsTargetable 敌人可选中",
         Tooltip = "Specify enemy is targetable\n某个敌人可选中",
         ParamTooltip = "[enemy name(contains) or NpcId],[Time in sec]",
         Example = "10720,3")]

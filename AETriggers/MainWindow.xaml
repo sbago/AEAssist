@@ -251,10 +251,10 @@
                         </StackPanel.ContextMenu>
                         <Border>
                             <StackPanel>
+                                <TextBlock Margin="5" Foreground="Aqua" TextWrapping="Wrap"
+                                           Text="When all the Conditions in a group are satisfied, all the Actions in the group will be triggered.Each group is a one-time event." />
                                 <TextBlock Margin="5" TextWrapping="WrapWithOverflow" Foreground="Aqua"
-                                           Text="When all the Conditions in a group are satisfied, all the Actions in the group will be triggered." />
-                                <TextBlock Margin="5" TextWrapping="WrapWithOverflow" Foreground="Aqua"
-                                           Text="同一组的Cond全部命中后,这一组的所有Action都会被触发" />
+                                           Text="同一组的Cond全部命中后,这一组的所有Action都会被触发.每一组都是一次性的" />
                             </StackPanel>
                         </Border>
                         <Separator Margin="0,5,0,0" />

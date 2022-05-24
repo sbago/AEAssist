@@ -3,7 +3,7 @@ using PropertyChanged;
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("SwitchApex",ParamTooltip = "0 = off, 1 = on")]
+    [Trigger("BRD/SwitchApex 绝峰",ParamTooltip = "0 = off, 1 = on")]
     [AddINotifyPropertyChangedInterface]
     public class TriggerAction_SwitchApex : ITriggerAction
     {

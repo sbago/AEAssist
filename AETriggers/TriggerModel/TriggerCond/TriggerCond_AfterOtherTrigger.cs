@@ -5,7 +5,7 @@ using PropertyChanged;
 
 namespace AEAssist.TriggerCond
 {
-    [Trigger("AfterOtherGroup",Tooltip = "After another group triggered\n等另一组触发了之后",
+    [Trigger("AfterOtherGroup 另一组触发后",Tooltip = "After another group triggered\n等另一组触发了之后",
         ParamTooltip = "[Other trigger's group id(Has ComplexMode)],[Time in sec]\nComplexMode:\n\tAnd:[Trigger1&Trigger2&...]/Or:[Trigger1|Trigger2|Trigger3....]\n" +
                        "[另一组触发器Id(有复杂模式ComplexMode)],[过了多少秒]",
         Example = "group5,30\n\tgroup1&group2,5\n\tgroup3|group4|group6,10")]

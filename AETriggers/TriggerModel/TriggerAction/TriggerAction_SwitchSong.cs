@@ -4,7 +4,7 @@ using PropertyChanged;
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("SwitchSong",Tooltip = "Immediately switch the song. (1 for MB, 2 for AP, 3 for WM). -1=toggle off the song,0 =toggle on ")]
+    [Trigger("BRD/SwitchSong 诗人歌曲控制",Tooltip = "Immediately switch the song. (1 for MB, 2 for AP, 3 for WM). -1=toggle off the song,0 =toggle on ")]
     [AddINotifyPropertyChangedInterface]
     public class TriggerAction_SwitchSong : ITriggerAction
     {

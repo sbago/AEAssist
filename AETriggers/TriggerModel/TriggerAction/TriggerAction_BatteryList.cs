@@ -5,7 +5,7 @@ using PropertyChanged;
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("BatteryList",Tooltip = "Specify when the battery will be used later. (Opener is not counted)",
+    [Trigger("MCH/BatteryList 机工电量列表",Tooltip = "Specify when the battery will be used later. (Opener is not counted)",
         Example = "60|80|50")]
     [AddINotifyPropertyChangedInterface]
     [GUIDefault]

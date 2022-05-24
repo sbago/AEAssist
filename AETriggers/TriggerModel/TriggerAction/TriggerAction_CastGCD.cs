@@ -3,7 +3,7 @@ using PropertyChanged;
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("CastGCD",ParamTooltip = "[SpellId]")]
+    [Trigger("CastGCD 使用GCD",ParamTooltip = "[SpellId]")]
     [AddINotifyPropertyChangedInterface]
     public class TriggerAction_CastGCD : ITriggerAction
     {

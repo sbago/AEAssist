@@ -3,7 +3,7 @@ using PropertyChanged;
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("CastAbility",ParamTooltip = "[SpellId]")]
+    [Trigger("CastAbility 使用能力技",ParamTooltip = "[SpellId]")]
     [AddINotifyPropertyChangedInterface]
     public class TriggerAction_CastAbility : ITriggerAction
     {

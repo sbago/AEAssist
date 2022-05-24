@@ -3,7 +3,7 @@ using PropertyChanged;
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("SwitchPotion",ParamTooltip = "0 = off, 1 = on")]
+    [Trigger("SwitchPotion 爆发药控制",ParamTooltip = "0 = off, 1 = on")]
     [AddINotifyPropertyChangedInterface]
     public class TriggerAction_SwitchPotion : ITriggerAction
     {

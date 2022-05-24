@@ -3,7 +3,7 @@ using PropertyChanged;
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("ReplayOpener",Tooltip = "Replay the opener",NeedParams = false)]
+    [Trigger("ReplayOpener 重新用起手",Tooltip = "Replay the opener",NeedParams = false)]
     [AddINotifyPropertyChangedInterface]
     [GUIDefault]
     public class TriggerAction_ReplayOpener : ITriggerAction

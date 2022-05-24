@@ -5,7 +5,7 @@ using PropertyChanged;
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("SongList",Tooltip = "If the first song of the song list is the same as the current song, then it will be counted from the current song." +
+    [Trigger("BRD/SongList 诗人歌单",Tooltip = "If the first song of the song list is the same as the current song, then it will be counted from the current song." +
                                   "Otherwise, the song list will start from the next song." +
                                   "If all songs in the song list are sung and the battle is not over, the default settings will be used for subsequent songs",
         ParamTooltip = "Song number (1 for MB, 2 for AP, 3 for WM): duration (number of seconds), separator is |",

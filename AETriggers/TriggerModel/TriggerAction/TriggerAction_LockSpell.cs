@@ -3,7 +3,7 @@ using PropertyChanged;
 
 namespace AEAssist.TriggerAction
 {
-    [Trigger("LockSpell",Tooltip = "whether to use specify spell",
+    [Trigger("LockSpell 锁定技能",Tooltip = "whether to use specify spell",
         ParamTooltip = "[SpellId],[1/0=lock/unlock]",
         Example = "12345,1")]
     [AddINotifyPropertyChangedInterface]

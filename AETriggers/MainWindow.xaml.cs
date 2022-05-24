@@ -156,6 +156,8 @@ namespace AEAssist
             }
             DataBinding.Instance.GroupIds.Add(newId);
             DataBinding.Instance.AllGroupData[newId] = new DataBinding.GroupData();
+            ChooseGroup(newId);
+            
         }
 
         private void IdTextBox_OnKeyDown(object sender, KeyEventArgs e)
@@ -271,11 +273,7 @@ namespace AEAssist
                 var delId = textBlock.Text;
                 if (DataBinding.Instance.CurrChoosedId == delId)
                 {
-                    DataBinding.Instance.CurrChoosedId = string.Empty;
-                    CondsListView.ItemsSource = null;
-                    ActionsListView.ItemsSource = null;
-                    var content = TriggerContent.Children[0] as DynamicTriggerContent;
-                    content.Clear();
+                    Reset();
                 }
 
                 DataBinding.Instance.GroupIds.Remove(delId);
@@ -291,10 +289,26 @@ namespace AEAssist
         {
             var TextBlock = sender as TextBlock;
             var id = TextBlock.Text;
+            ChooseGroup(id);
+        }
+
+        void ChooseGroup(string id)
+        {
             DataBinding.Instance.CurrChoosedId = id;
             var groupData = DataBinding.Instance.AllGroupData[id];
             CondsListView.ItemsSource = groupData.CondTriggers;
             ActionsListView.ItemsSource = groupData.ActionTriggers;
+        }
+
+        void Reset()
+        {
+            DataBinding.Instance.CurrChoosedId = string.Empty;
+            CondsListView.ItemsSource = null;
+            ActionsListView.ItemsSource = null;
+            var content = TriggerContent.Children[0] as DynamicTriggerContent;
+            content.Clear();
+            ActionsListView.SelectedIndex = -1;
+            CondsListView.SelectedIndex = -1;
         }
 
         private void LoadTriggerLine_OnClick(object sender, RoutedEventArgs e)
@@ -314,7 +328,11 @@ namespace AEAssist
                 (str, line) = TriggerHelper.LoadTriggerLine(file);
                 if (str != null && line == null) MessageBox.Show(str);
 
-                if (line != null) DataBinding.Instance.Load(line);
+                if (line != null)
+                {
+                    Reset();
+                    DataBinding.Instance.Load(line);
+                }
             }
         }
 

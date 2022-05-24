@@ -3,7 +3,7 @@ using PropertyChanged;
 
 namespace AEAssist.TriggerCond
 {
-    [Trigger("AfterBattleStart",
+    [Trigger("AfterBattleStart 战斗开始后多少秒",
         Tooltip:"How many seconds have elapsed since the start of the battle\n" +
                 "战斗开始后多少秒",
         ParamTooltip = "[time in sec]\n[多少秒]" ,
