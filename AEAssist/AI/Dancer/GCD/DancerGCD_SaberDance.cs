@@ -16,8 +16,6 @@ namespace AEAssist.AI.Dancer.GCD
             {
                 return -10;
             }
-            if (AIRoot.Instance.CloseBurst)
-                return -5;
             if (Core.Me.HasAura(AurasDefine.StandardStep) ||
                 Core.Me.HasAura(AurasDefine.TechnicalStep))
             {

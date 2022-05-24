@@ -22,7 +22,8 @@ namespace AEAssist.AI.Dancer.Ability
                 return -1;
             }
 
-            if (Core.Me.HasAura(AurasDefine.FlourishingFanDance))
+            if (Core.Me.HasAura(AurasDefine.ThreeFoldFanDance) ||
+                SpellsDefine.Flourish.RecentlyUsed())
             {
                 return -2;
             }
