@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using AEAssist;
 using AEAssist.View;
@@ -285,6 +286,17 @@ namespace AETriggers
             {24318, "Pneuma"}
         };
 
+        // Sort  observalble collection GroupsIds by id.
+        public void SortGroupIds(ObservableCollection <string> groupsIds)
+        {
+            var list = groupsIds.ToList();
+            list.Sort();
+            groupsIds.Clear();
+            foreach (var v in list)
+            {
+                groupsIds.Add(v);
+            }
+        }
     }
     
 }

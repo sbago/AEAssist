@@ -428,6 +428,9 @@ namespace AEAssist
                     DataBinding.Instance.Load(line);
                 }
             }
+            // sort GroupIds collection, and update UI.
+            DataBinding.Instance.SortGroupIds(DataBinding.Instance.GroupIds);
+            
         }
 
         private void Cond_DeleteTriggerBehavior_OnClick(object sender, RoutedEventArgs e)
