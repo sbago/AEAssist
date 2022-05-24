@@ -5,7 +5,7 @@
   "CurrZoneId" : { "$numberInt" : "0" },
   "Name" : "P3S Bard",
   "SubZoneId" : { "$numberInt" : "0" },
-  "TargetJob" : "Bard",
+  "TargetJob" : "Any",
   "Triggers" : [{
       "_id" : "1",
       "TriggerActions" : [{

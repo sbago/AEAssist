@@ -1,0 +1,31 @@
+{
+  "_t" : "TriggerLine",
+  "Author" : "M.",
+  "ConfigVersion" : { "$numberInt" : "3" },
+  "CurrZoneId" : { "$numberInt" : "0" },
+  "Name" : "P2S 通用爆发",
+  "SubZoneId" : { "$numberInt" : "0" },
+  "TargetJob" : "Any",
+  "Triggers" : [{
+      "_id" : "1",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchBurst",
+          "value" : false
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "220" }
+        }]
+    }, {
+      "_id" : "2",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchBurst",
+          "value" : true
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterOtherTrigger",
+          "Time" : { "$numberInt" : "42" },
+          "TriggerId" : "2"
+        }]
+    }]
+}

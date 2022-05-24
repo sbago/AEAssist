@@ -7,17 +7,6 @@
   "SubZoneId" : { "$numberInt" : "0" },
   "TargetJob" : "Any",
   "Triggers" : [{
-      "_id" : "1",
-      "TriggerActions" : [{
-          "_t" : "TriggerAction_SongList",
-          "Durations" : [{ "$numberInt" : "43" }, { "$numberInt" : "43" }, { "$numberInt" : "45" }],
-          "SongIndex" : [{ "$numberInt" : "3" }, { "$numberInt" : "1" }, { "$numberInt" : "2" }]
-        }],
-      "TriggerConds" : [{
-          "_t" : "TriggerCond_AfterBattleStart",
-          "Time" : { "$numberInt" : "0" }
-        }]
-    }, {
       "_id" : "2",
       "TriggerActions" : [{
           "_t" : "TriggerAction_SwitchBurst",
@@ -25,7 +14,7 @@
         }],
       "TriggerConds" : [{
           "_t" : "TriggerCond_AfterBattleStart",
-          "Time" : { "$numberInt" : "20" }
+          "Time" : { "$numberInt" : "120" }
         }]
     }, {
       "_id" : "4",
@@ -45,9 +34,9 @@
         }],
       "TriggerConds" : [{
           "_t" : "TriggerCond_EnemyHPPct",
-          "delayTime" : { "$numberInt" : "0" },
+          "Name" : "10742",
           "HpPct" : { "$numberDouble" : "50.5" },
-          "Name" : "10742"
+          "delayTime" : { "$numberInt" : "0" }
         }]
     }]
 }

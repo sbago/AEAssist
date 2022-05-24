@@ -86,6 +86,12 @@ namespace AEAssist.Define
             Tactician
         };
 
+        public static HashSet<uint> AbilityAsGCDSet = new HashSet<uint>()
+        {
+            StandardStep,
+            TechnicalStep
+        };
+
         // DPS Role
 
         #region DPS Role

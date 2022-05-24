@@ -161,7 +161,7 @@ namespace AEAssist.Helper
             if (AEAssist.DataBinding.Instance.EarlyDecisionMode)
                 time = SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs;
 
-            if (spellData.SpellType == SpellType.Ability)
+            if (spellData.SpellType == SpellType.Ability && !SpellsDefine.AbilityAsGCDSet.Contains(spellData.Id))
                 time = 100;
             
             if (spellData.Cooldown.TotalMilliseconds > time)
