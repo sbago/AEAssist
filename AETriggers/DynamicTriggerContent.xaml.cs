@@ -149,7 +149,7 @@ namespace AETriggers
 
         void CreateInt(PropertyInfo v, object obj, StackPanel panel)
         {
-
+            var toolTip = v.GetCustomAttribute<GUIToolTipAttribute>();
             var rangeAttr = v.GetCustomAttribute<GUIIntRangeAttribute>();
             if (rangeAttr == null)
             {
@@ -157,6 +157,8 @@ namespace AETriggers
                 element1.Margin = new Thickness(15, 0, 5, 0);
                 element1.Width = 150;
                 element1.Text = v.GetValue(obj).ToString();
+                if (toolTip != null)
+                    element1.ToolTip = toolTip.tip;
                 element1.KeyDown += (s, o) =>
                 {
                     if (o.Key != Key.Enter)
@@ -182,17 +184,19 @@ namespace AETriggers
             else
             {
                 var element2 = new TextBlock();
-                element2.Margin = new Thickness(15, 0, 5, 0);
+                element2.Margin = new Thickness(5, 0, 5, 0);
                 element2.Foreground = Brushes.Aqua;
                 element2.Text = v.GetValue(obj).ToString();
                 
                 var element1 = new Slider();
-                element1.Margin = new Thickness(15, 0, 5, 0);
+                element1.Margin = new Thickness(5, 0, 5, 0);
                 element1.Width = 80;
                 element1.TickFrequency = 1;
                 element1.Maximum = rangeAttr.MaxValue;
                 element1.Minimum = rangeAttr.MinValue;
                 element1.Value = (int)v.GetValue(obj);
+                if (toolTip != null)
+                    element1.ToolTip = toolTip.tip;
                 element1.ValueChanged += (s, o) =>
                 {
                     object value_obj = null;

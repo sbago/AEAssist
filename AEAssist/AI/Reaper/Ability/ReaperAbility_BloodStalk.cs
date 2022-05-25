@@ -44,8 +44,11 @@ namespace AEAssist.AI.Reaper.Ability
                 return -10;
             }
 
-            if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
+            if (ActionManager.ComboTimeLeft >0 && ActionManager.ComboTimeLeft < 3.5f)
                 return -11;
+
+            if (!Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget))
+                return -12;
             return 0;
         }
 

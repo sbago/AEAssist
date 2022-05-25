@@ -18,6 +18,10 @@ namespace AEAssist.AI.Reaper.Ability
                 return -3;
             if (AEAssist.SettingMgr.GetSetting<ReaperSettings>().DoubleEnshroudPrefer)
             {
+                if (!SpellsDefine.PlentifulHarvest.IsUnlock())
+                    return 1;
+                if (!SpellsDefine.Enshroud.IsUnlock())
+                    return -7;
                 if ((SpellsDefine.PlentifulHarvest.RecentlyUsed() || ActionResourceManager.Reaper.ShroudGauge >= 50) &&
                     !Core.Me.HasAura(AurasDefine.Enshrouded))
                     return -4;

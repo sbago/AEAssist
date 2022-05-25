@@ -124,6 +124,7 @@
     <Compile Include="TriggerModel\TriggerCond\TriggerCond_EnemyCastSpell.cs" />
     <Compile Include="TriggerModel\TriggerCond\TriggerCond_EnemyHPPct.cs" />
     <Compile Include="TriggerModel\TriggerCond\TriggerCond_EnemyInLOS.cs" />
+    <Compile Include="TriggerModel\TriggerCond\TriggerCond_EnemyTTK.cs" />
     <Compile Include="TriggerModel\TriggerCond\TriggerCond_GameLog.cs" />
     <Compile Include="TriggerModel\TriggerHelper.cs" />
     <Compile Include="TriggerModel\TriggerLine.cs" />

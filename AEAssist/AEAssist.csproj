@@ -146,6 +146,9 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyInLOS.cs">
       <Link>TriggerModel\TriggerCond\TriggerCond_EnemyInLOS.cs</Link>
     </Compile>
+    <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_EnemyTTK.cs">
+      <Link>TriggerModel\TriggerCond\TriggerCond_EnemyTTK.cs</Link>
+    </Compile>
     <Compile Include="..\AETriggers\TriggerModel\TriggerCond\TriggerCond_GameLog.cs">
       <Link>TriggerModel\TriggerCond\TriggerCond_GameLog.cs</Link>
     </Compile>
@@ -434,6 +437,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyCastSpell.cs" />
     <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyHpPct.cs" />
     <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyInLOS.cs" />
+    <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyTTK.cs" />
     <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_GameLog.cs" />
     <Compile Include="TriggerSystem\TriggerSystemMgr.cs" />
     <Compile Include="View\BardSettingView.xaml.cs">

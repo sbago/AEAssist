@@ -392,6 +392,8 @@ namespace AEAssist
             var groupData = DataBinding.Instance.AllGroupData[id];
             CondsListView.ItemsSource = groupData.CondTriggers;
             ActionsListView.ItemsSource = groupData.ActionTriggers;
+            var content = TriggerContent.Children[0] as DynamicTriggerContent;
+            content.Clear();
         }
 
         void Reset()
@@ -557,6 +559,12 @@ namespace AEAssist
                 SaveTriggerline_OnClick(sender, null);
                 e.Handled = true;
             }
+        }
+
+        private void SortGroupButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            // sort GroupIds collection, and update UI.
+            DataBinding.Instance.SortGroupIds(DataBinding.Instance.GroupIds);
         }
     }
 }

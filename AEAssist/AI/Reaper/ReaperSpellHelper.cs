@@ -186,12 +186,17 @@ namespace AEAssist.AI.Reaper
 
             var coolDown = SpellsDefine.ArcaneCircle.GetSpellEntity().Cooldown.TotalMilliseconds;
 
+            if (AEAssist.SettingMgr.GetSetting<ReaperSettings>().DoubleEnshroudPrefer && !SpellsDefine.ArcaneCircle.IsUnlock())
+            {
+                return -106;
+            }
+
             if (AEAssist.SettingMgr.GetSetting<ReaperSettings>().DoubleEnshroudPrefer
                 && SpellsDefine.PlentifulHarvest.IsUnlock()
                 && ActionResourceManager.Reaper.ShroudGauge < 90
                 && coolDown > 5000
                 && coolDown < ConstValue.ReaperDoubleEnshroudMaxCheckTime)
-                return -106;
+                return -107;
 
             if (PrepareEnterDoubleEnshroud())
                 // 连击不能断,太亏
@@ -205,10 +210,11 @@ namespace AEAssist.AI.Reaper
         {
             if (AIRoot.Instance.CloseBurst)
                 return false;
+            if (!SpellsDefine.ArcaneCircle.IsUnlock() || !SpellsDefine.Enshroud.IsUnlock())
+                return false;
             var coolDown = SpellsDefine.ArcaneCircle.GetSpellEntity().Cooldown.TotalMilliseconds;
             if (AEAssist.SettingMgr.GetSetting<ReaperSettings>().DoubleEnshroudPrefer
-                && SpellsDefine.PlentifulHarvest.IsUnlock()
-                && ActionResourceManager.Reaper.ShroudGauge < 90)
+                && SpellsDefine.PlentifulHarvest.IsUnlock())
                 if (coolDown <= 5000)
                     return true;
 

@@ -113,6 +113,7 @@ namespace AETriggers
             GroupIds = new ObservableCollection<string>();
             AllGroupData = new Dictionary<string, GroupData>();
             CurrChoosedId = string.Empty;
+            TargetJob = Jobs.Any.ToString();
         }
 
 
@@ -261,7 +262,7 @@ namespace AETriggers
         public string Author { get; set; }
         public string Name { get; set; }
 
-        public string TargetJob { get; set; }
+        public string TargetJob { get; set; } = Jobs.Any.ToString();
 
         public ObservableCollection<string> GroupIds { get; set; } = new ObservableCollection<string>();
         public Dictionary<string, GroupData> AllGroupData { get; set; } = new Dictionary<string, GroupData>();
