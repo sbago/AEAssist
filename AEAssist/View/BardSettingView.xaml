@@ -39,6 +39,10 @@
                           Content="{Binding Language.Textbox_Bard_EmpyrealArrow}" Width="200" Height="25"
                           HorizontalAlignment="Left"
                           IsChecked="{Binding BardSettings.EarlyEmpyrealArrow,Mode=TwoWay}" />
+                <CheckBox 
+                          Content="{Binding Language.Textbox_BardApexWaitBuffs}" Width="200" Height="25"
+                          HorizontalAlignment="Left"
+                          IsChecked="{Binding BardSettings.ApexWaitBuffs,Mode=TwoWay}" />
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="{Binding Language.Textbox_Bard_ApexArrow_SoulVoiceGauge}" Width="200" />

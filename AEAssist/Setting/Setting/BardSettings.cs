@@ -27,17 +27,19 @@ namespace AEAssist
 
         public int TTK_IronJaws { get; set; } 
 
-        public int Dot_TimeLeft { get; set; } = ConstValue.AuraTick;
+        public int Dot_TimeLeft { get; set; } = 2500;
 
         public bool EarlyEmpyrealArrow { get; set; } = true;
 
         public bool EarlyDecisionMode { get; set; }
 
+        public bool ApexWaitBuffs { get; set; }
+
         public void Reset()
         {
             CurrentSongPlaylist = SongStrategyEnum.WM_MB_AP;
             RestHealthPercent = 70f;
-            ApexArrowValue = 95;
+            ApexArrowValue = 100;
             Songs_WM_TimeLeftForSwitch = 2000;
             Songs_MB_TimeLeftForSwitch = 11000;
             Songs_AP_TimeLeftForSwitch = 2000;
@@ -45,8 +47,9 @@ namespace AEAssist
             BuffsDelay2GCD = false;
             TTK_IronJaws = 28;
             EarlyDecisionMode = true;
-            Dot_TimeLeft = ConstValue.AuraTick;
+            Dot_TimeLeft = 2500;
             EarlyEmpyrealArrow = true;
+            ApexWaitBuffs = false;
         }
 
         public void OnLoad()

@@ -121,6 +121,7 @@ namespace AEAssist
         public string Textbox_Bard_TTK2BuffEnhancedIronJaw { get; set; }
         public string Textbox_Bard_DotTimeLeft { get; set; }
         public string Textbox_Bard_EmpyrealArrow { get; set; }
+        public string Textbox_BardApexWaitBuffs { get; set; }
         public string Label_CurrTriggerLine { get; set; }
         public string Label_DexChoosePotion { get; set; }
         public string Label_StrChoosePotion { get; set; }

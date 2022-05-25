@@ -69,6 +69,7 @@
   "Textbox_Bard_TTK2BuffEnhancedIronJaw" : "Bard",
   "Textbox_Bard_DotTimeLeft" : "Bard",
   "Textbox_Bard_EmpyrealArrow" : "Bard",
+  "Textbox_BardApexWaitBuffs" : "BardApexWaitBuffs",
   "Label_CurrTriggerLine" : "CurrTriggerLine",
   "Label_DexChoosePotion" : "DexChoosePotion",
   "Label_StrChoosePotion" : "StrChoosePotion",

@@ -11,8 +11,6 @@ namespace AEAssist.AI.Bard.GCD
         {
             if (!AEAssist.DataBinding.Instance.UseApex)
                 return -1;
-            if (ActionResourceManager.Bard.SoulVoice >= SettingMgr.GetSetting<BardSettings>().ApexArrowValue)
-                return 1;
 
             if (ActionResourceManager.Bard.SoulVoice >= 20 && AEAssist.DataBinding.Instance.FinalBurst) return 2;
 
@@ -21,6 +19,18 @@ namespace AEAssist.AI.Bard.GCD
                     25,
                     2, ConstValue.BardAOECount)))
                 return 3;
+
+
+            if (ActionResourceManager.Bard.SoulVoice >= SettingMgr.GetSetting<BardSettings>().ApexArrowValue)
+            {
+                if (SettingMgr.GetSetting<BardSettings>().ApexWaitBuffs)
+                {
+                    if (BardSpellHelper.Prepare2BurstBuffs())
+                        return -4;
+                }
+
+                return 2;
+            }
 
             return -2;
         }

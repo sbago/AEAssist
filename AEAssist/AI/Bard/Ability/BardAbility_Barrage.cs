@@ -20,6 +20,12 @@ namespace AEAssist.AI.Bard.Ability
 
             var burstShot = BardSpellHelper.GetHeavyShot();
 
+            var buff = Core.Me.GetAuraById(AurasDefine.RagingStrikes);
+            if (buff != null && buff.TimespanLeft.TotalMilliseconds < 7000)
+            {
+                return 2;
+            }
+
             if (AIRoot.GetBattleData<BattleData>().lastGCDSpell == burstShot
                 && !AIRoot.Instance.Is2ndAbilityTime())
                 return -4;

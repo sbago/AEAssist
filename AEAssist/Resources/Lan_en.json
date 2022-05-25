@@ -95,5 +95,6 @@
   "TabItem_TriggerLine": "TriggerLine",
   "Toggle_AutoSwitchTriggerLine": "Auto switch",
   "Toggle_UseMeikyoShisui": "MeikyoShisui",
-  "Combox_Hotkey_EnAvant": "(DNC)EnAvant"
+  "Combox_Hotkey_EnAvant": "(DNC)EnAvant",
+  "Textbox_BardApexWaitBuffs": "Force Apex wait buffs"
 }

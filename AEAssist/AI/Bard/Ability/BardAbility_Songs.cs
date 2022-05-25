@@ -2,6 +2,8 @@
 using AEAssist.Define;
 using AEAssist.Helper;
 using AEAssist;
+using Buddy.Coroutines;
+using ff14bot;
 using ff14bot.Managers;
 
 namespace AEAssist.AI.Bard.Ability
@@ -14,12 +16,6 @@ namespace AEAssist.AI.Bard.Ability
                 return -10;
             if (TimeHelper.Now() - AIRoot.GetBattleData<BardBattleData>().lastCastSongTime < 3000)
                 return -2;
-
-            if ((AIRoot.GetBattleData<BardBattleData>().lastSong == ActionResourceManager.Bard.BardSong.ArmysPaeon
-                || AIRoot.GetBattleData<BardBattleData>().lastSong == ActionResourceManager.Bard.BardSong.None)
-                && AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs > 10000)
-                if (!AIRoot.Instance.Is2ndAbilityTime())
-                    return -3;
 
             if (!SpellsDefine.TheWanderersMinuet.IsReady()
                 && !SpellsDefine.MagesBallad.IsReady()
@@ -45,6 +41,12 @@ namespace AEAssist.AI.Bard.Ability
                     if (ActionResourceManager.Bard.Repertoire > 0 && await SpellsDefine.PitchPerfect.DoAbility())
                         castPitch = true;
 
+            if (AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs > 10000 && spell.Id == SpellsDefine.TheWanderersMinuet)
+            {
+                var halfGCD = AIRoot.Instance.GetGCDDuration() / 2;
+                await Coroutine.Sleep((int)(halfGCD-100));
+            }
+
             var ret = await spell.DoAbility();
             if (ret)
             {
@@ -66,8 +68,8 @@ namespace AEAssist.AI.Bard.Ability
             var currSong = ActionResourceManager.Bard.ActiveSong;
             if (currSong == ActionResourceManager.Bard.BardSong.None)
                 currSong = bardBattleData.lastSong;
-            // 800是因为考虑到能力技窗口期
-            var remainTime = ActionResourceManager.Bard.Timer.TotalMilliseconds - 800;
+            // 300是因为考虑到服务器延时
+            var remainTime = ActionResourceManager.Bard.Timer.TotalMilliseconds - 300;
             SpellEntity spell = null;
             forceNextSong = false;
             if (AIRoot.Instance.CloseBurst)
@@ -114,12 +116,14 @@ namespace AEAssist.AI.Bard.Ability
 
                             break;
                         case ActionResourceManager.Bard.BardSong.MagesBallad:
-                            if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_MB_TimeLeftForSwitch)
+                            if ( SpellsDefine.TheWanderersMinuet.GetSpellEntity().Cooldown.TotalMilliseconds < 100
+                                 || remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_MB_TimeLeftForSwitch)
                                 spell = GetSongsByOrder(SpellsDefine.MagesBallad.GetSpellEntity(), out forceNextSong);
 
                             break;
                         case ActionResourceManager.Bard.BardSong.ArmysPaeon:
-                            if (remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_AP_TimeLeftForSwitch)
+                            if (SpellsDefine.TheWanderersMinuet.GetSpellEntity().Cooldown.TotalMilliseconds < 100
+                                || remainTime <= SettingMgr.GetSetting<BardSettings>().Songs_AP_TimeLeftForSwitch)
                                 spell = GetSongsByOrder(SpellsDefine.ArmysPaeon.GetSpellEntity(), out forceNextSong);
 
                             break;
