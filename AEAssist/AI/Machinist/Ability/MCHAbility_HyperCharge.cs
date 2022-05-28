@@ -32,10 +32,7 @@ namespace AEAssist.AI.Machinist.Ability
             
             if (MCHSpellHelper.CheckReassmableGCD(SettingMgr.GetSetting<MCHSettings>().StrongGCDCheckTime))
                 return -6;
-
-            if (ActionResourceManager.Machinist.Heat >= 90)
-                return 11;
-
+            
             if (SpellsDefine.BarrelStabilizer.GetSpellEntity().Cooldown.TotalMilliseconds < 5000) return 1;
 
 

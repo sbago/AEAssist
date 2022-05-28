@@ -15,17 +15,31 @@ namespace AEAssist.TriggerSystem.TriggerCond
             else
             {
                 var enemys = TargetMgr.Instance.Enemys;
+                if (cond.strs == null)
+                {
+                    if (cond.spellName.Contains("|"))
+                        cond.strs = new string[] { cond.spellName };
+                    else
+                    {
+                        cond.strs = cond.spellName.Split('|');
+                    }
+                }
+                
                 foreach (var v in enemys.Values)
                 {
                     if (v.SpellCastInfo == null || !v.IsCasting)
                         continue;
                     //LogHelper.Info($"Character {v.Name} Casting===>{v.SpellCastInfo.SpellData.LocalizedName}");
-                    if (v.SpellCastInfo.SpellData.LocalizedName.Contains(cond.spellName)
-                        || v.SpellCastInfo.SpellData.Id.ToString() == cond.spellName
-                        || v.SpellCastInfo.Name.Contains(cond.spellName))
+
+                    foreach (var str in cond.strs)
                     {
-                        AIRoot.GetBattleData<BattleData>().RecordCondHitTime(cond);
-                        return false;
+                        if (v.SpellCastInfo.SpellData.LocalizedName.Contains(str)
+                            || v.SpellCastInfo.SpellData.Id.ToString() == str
+                            || v.SpellCastInfo.Name.Contains(str))
+                        {
+                            AIRoot.GetBattleData<BattleData>().RecordCondHitTime(cond);
+                            return false;
+                        }   
                     }
                 }
             }

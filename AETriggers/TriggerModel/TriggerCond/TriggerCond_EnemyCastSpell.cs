@@ -1,5 +1,6 @@
 ﻿using System;
 using AEAssist.View;
+using MongoDB.Bson.Serialization.Attributes;
 using PropertyChanged;
 
 namespace AEAssist.TriggerCond
@@ -11,9 +12,13 @@ namespace AEAssist.TriggerCond
     public class TriggerCond_EnemyCastSpell : ITriggerCond
     {
         [GUILabel("Name/Id")]
+        [GUIToolTip("Example:\nSpell1\n123\nSpell1|Spell2\n1234|Spell2|1236|..etc")]
         public string spellName { get; set; }
         [GUIToolTip("how long after the enemy start casting the specify spell (sec)\n敌人开始读条后过多少秒")]
         public int delayTime { get; set; }
+
+        [BsonIgnore]
+        public string[] strs;
 
         public void WriteFromJson(string[] values)
         {

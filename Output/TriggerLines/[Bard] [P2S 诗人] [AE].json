@@ -1,0 +1,48 @@
+{
+  "_t" : "TriggerLine",
+  "Author" : "AE",
+  "ConfigVersion" : { "$numberInt" : "3" },
+  "CurrZoneId" : { "$numberInt" : "0" },
+  "Name" : "P2S 诗人",
+  "SubZoneId" : { "$numberInt" : "0" },
+  "TargetJob" : "Bard",
+  "Triggers" : [{
+      "_id" : "1",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SongList",
+          "Durations" : [{ "$numberInt" : "43" }, { "$numberInt" : "36" }, { "$numberInt" : "41" }, { "$numberInt" : "43" }, { "$numberInt" : "43" }, { "$numberInt" : "40" }],
+          "SongIndex" : [{ "$numberInt" : "3" }, { "$numberInt" : "1" }, { "$numberInt" : "2" }, { "$numberInt" : "3" }, { "$numberInt" : "1" }, { "$numberInt" : "2" }]
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "0" }
+        }]
+    }, {
+      "_id" : "2",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchBurst",
+          "value" : false
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "220" }
+        }]
+    }, {
+      "_id" : "3",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_SwitchBurst",
+          "value" : true
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterOtherTrigger",
+          "TriggerId" : "2",
+          "Time" : { "$numberInt" : "20" },
+          "Complex" : { "$numberInt" : "0" },
+          "ComplexTriggers" : []
+        }, {
+          "_t" : "TriggerCond_EnemyInLOS",
+          "name" : "10348",
+          "delayTime" : { "$numberInt" : "0" }
+        }]
+    }]
+}

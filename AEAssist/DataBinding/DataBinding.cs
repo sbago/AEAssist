@@ -34,7 +34,7 @@ namespace AEAssist
 
         public bool Move { get; set; }
         
-        public bool AutoAttack { get; set; }
+        public bool Pull { get; set; }
 
         public bool UseTrueNorth { get; set; }
 
@@ -98,7 +98,6 @@ namespace AEAssist
             Move = false;
             UseApex = true;
             UseDot = true;
-            AutoAttack = false;
             UseSoulGauge = true;
             UseAOE = true;
             TimeStr = "";

@@ -167,7 +167,7 @@ namespace AEAssist.AI
             }
 
             if (!((Character) Core.Me.CurrentTarget).HasTarget && !CountDownHandler.Instance.CanDoAction
-                                                               && !AEAssist.DataBinding.Instance.AutoAttack)
+                                                               && !AEAssist.DataBinding.Instance.Pull)
             {
                 if (CanNotice("key2", 1000))
                     GUIHelper.ShowInfo(Language.Instance.Content_AIRoot_CanAttack, 500);
