@@ -14,10 +14,12 @@ namespace AEAssist.AI.Dancer.Ability
             {
                 return -10;
             }
+            if (!SpellsDefine.Devilment.IsReady())
+            {
+                return -10;
+            }
             var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
-            if (SpellsDefine.Devilment.IsReady() &&
-                (bdls == SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity() || Core.Me.HasAura(AurasDefine.TechnicalFinish))
-               )
+            if (bdls == SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity() || Core.Me.HasAura(AurasDefine.TechnicalFinish))
             {
                 return 0;
             }

@@ -23,17 +23,15 @@ namespace AEAssist.AI.Dancer.Ability
             }
 
             if (Core.Me.HasAura(AurasDefine.ThreeFoldFanDance) ||
-                SpellsDefine.Flourish.RecentlyUsed())
+                SpellsDefine.Flourish.RecentlyUsed() || SpellsDefine.FanDance.RecentlyUsed())
             {
                 return -2;
             }
-            if (AEAssist.DataBinding.Instance.FinalBurst) return 2;
 
-            // var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
-            // if (bdls == SpellsDefine.DoubleStandardFinish.GetSpellEntity() || bdls == SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity())
-            // {
-            //     return -5;
-            // }
+            if (SpellsDefine.FanDance.RecentlyUsed()) return -3;
+            
+            if (AEAssist.DataBinding.Instance.FinalBurst) return 2;
+            
             if (Core.Me.HasAura(AurasDefine.Devilment))
             {
                 return 1;
