@@ -57,6 +57,8 @@ namespace AEAssist
                 AIRoot.Instance.Init();
                 AIMgrs.Instance.Init();
                 
+                UIHelper.SetToolTipDuration();
+                
                 LogHelper.Info("Initialized!");
             }
             catch (Exception e)

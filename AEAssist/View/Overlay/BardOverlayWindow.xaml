@@ -51,7 +51,8 @@
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="{Binding HotkeySetting.CloseBuffBtnName}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                  IsChecked="{Binding Burst,Mode=TwoWay}" />
+                                  IsChecked="{Binding Burst,Mode=TwoWay}"
+                                  ToolTip="{Binding Language.ToolTip_Bard_Burst}"/>
 
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="AOE"
@@ -86,7 +87,8 @@
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="{Binding Language.Toggle_FinalBurst}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                  IsChecked="{Binding FinalBurst,Mode=TwoWay}" />
+                                  IsChecked="{Binding FinalBurst,Mode=TwoWay}"
+                                  ToolTip="{Binding Language.ToolTip_Bard_FinalBurst}"/>
 
                     </WrapPanel>
                     <WrapPanel Margin="10">

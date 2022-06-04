@@ -96,5 +96,12 @@
   "Toggle_AutoSwitchTriggerLine": "Auto switch",
   "Toggle_UseMeikyoShisui": "MeikyoShisui",
   "Combox_Hotkey_EnAvant": "(DNC)EnAvant",
-  "Textbox_BardApexWaitBuffs": "Force Apex wait buffs"
+  "Textbox_BardApexWaitBuffs": "Force Apex wait buffs",
+  "ToolTip_Bard_FinalBurst": "for bard,apex will use if soul value >=20,pitch perfect will use if repertoire>=1. \nUsed to finish off targets that dies <6 seconds.\nand this toggle will auto set to on when the target is dies <6 sec",
+  "ToolTip_Bard_Burst": "If it is off, then barrage/battle voice/radiant final and ragingstrikes will not be used",
+  "ToolTip_MCH_FinalBurst": "for mch,the QueenOverdrive/Detonator will use.\nUsed to finish off targets that dies <6 seconds.\nand this toggle will auto set to on when the target is dies <6 sec",
+  "ToolTip_MCH_WildFireFirst": "Normally, the use of Wildfire is delayed due to the high power GCD that is about to cool down, after activation, Wildfire will be used as soon as 50 points of heat are available.\nThis can be set to the default active state. (In the exclusive GUI of MCH.)",
+  "ToolTip_MCH_Burst": "If it is off, then battery / wildfire / HyperCharge will not be used",
+  "ToolTip_RPR_Burst": "If it is off, then Enshround / ArcaneCircle will not be used",
+  "ToolTip_RPR_DoubleEnshroundPrefer": "Each Arcane Circle window will contain 2 uses of Communio and 1 use of Plentiful Harvest.\nBut if you don't have at least 50 points of blue energy when Arcane Circle cooldowns. Then it will not be used in this way"
 }

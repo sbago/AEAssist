@@ -33,11 +33,24 @@ namespace AEAssist.AI.Machinist.Ability
             if (MCHSpellHelper.CheckReassmableGCD(SettingMgr.GetSetting<MCHSettings>().StrongGCDCheckTime))
                 return -6;
             
-            if (SpellsDefine.BarrelStabilizer.GetSpellEntity().Cooldown.TotalMilliseconds < 5000) return 1;
-
-
             // 25秒是积累50点热度需要的时间
-            if (SpellsDefine.Wildfire.GetSpellEntity().Cooldown.TotalMilliseconds < 25000) return -6;
+            var cooldown = SpellsDefine.Wildfire.GetSpellEntity().Cooldown.TotalMilliseconds;
+            if (cooldown > 0)
+            {
+                if (cooldown > SpellsDefine.BarrelStabilizer.GetSpellEntity().Cooldown.TotalMilliseconds)
+                {
+                    return 1;
+                }
+
+                var delta = ActionResourceManager.Machinist.Heat - 50;
+                // every gcd can get 5 heat.
+                if ((cooldown / 2500) * 5 + delta >= 50)
+                {
+                    return 2;
+                }
+
+                return -12;
+            }
 
             return 0;
         }

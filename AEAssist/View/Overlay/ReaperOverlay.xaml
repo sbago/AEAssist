@@ -47,7 +47,8 @@
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="{Binding HotkeySetting.CloseBuffBtnName}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                  IsChecked="{Binding Burst,Mode=TwoWay}" />
+                                  IsChecked="{Binding Burst,Mode=TwoWay}"
+                                  ToolTip="{Binding Language.ToolTip_RPR_Burst}"/>
 
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="AOE"
@@ -67,7 +68,8 @@
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="{Binding Language.Toggle_PreferDoubleEnshroud}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                  IsChecked="{Binding ReaperSettings.DoubleEnshroudPrefer,Mode=TwoWay}" />
+                                  IsChecked="{Binding ReaperSettings.DoubleEnshroudPrefer,Mode=TwoWay}" 
+                                  ToolTip="{Binding Language.ToolTip_RPR_DoubleEnshroundPrefer}"/>
 
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="{Binding Language.Toggle_UseHarpe}"
