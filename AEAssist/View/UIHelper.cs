@@ -31,9 +31,14 @@ namespace AEAssist.View
         {
             AEAssist.View.OverlayManager.OverlayManager.Instance.RefreshOverlay();
         }
+
+        private static bool hasDown = false;
         
         public static void SetToolTipDuration(int time = 60000)
         {
+            if (hasDown)
+                return;
+            hasDown = true;
             ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject),new FrameworkPropertyMetadata((object) time));
         }
     }
