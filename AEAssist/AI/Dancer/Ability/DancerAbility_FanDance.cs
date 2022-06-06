@@ -22,12 +22,25 @@ namespace AEAssist.AI.Dancer.Ability
                 return -1;
             }
 
-            if (Core.Me.HasAura(AurasDefine.ThreeFoldFanDance) ||
-                SpellsDefine.Flourish.RecentlyUsed() || SpellsDefine.FanDance.RecentlyUsed())
+            if (SpellsDefine.FanDance.RecentlyUsed())
             {
                 return -2;
             }
 
+            if (Core.Me.HasAura(AurasDefine.ThreeFoldFanDance) && !SpellsDefine.FanDance3.RecentlyUsed())
+            {
+                return -3;
+            }
+            
+            if (SpellsDefine.Flourish.RecentlyUsed())
+            {
+                return -2;
+            }
+
+            if (SpellsDefine.FanDance3.RecentlyUsed() && !SpellsDefine.Flourish.RecentlyUsed())
+            {
+                return 1;
+            }
             if (SpellsDefine.FanDance.RecentlyUsed()) return -3;
             
             if (AEAssist.DataBinding.Instance.FinalBurst) return 2;

@@ -54,7 +54,8 @@ namespace AEAssist.AI.Dancer.GCD
                 {
                     if (!Core.Me.HasAura(AurasDefine.FlourshingFlow) &&
                         !Core.Me.HasAura(AurasDefine.FlourishingSymmetry) &&
-                        ActionResourceManager.Dancer.Esprit < 50)
+                        ActionResourceManager.Dancer.Esprit < 50 &&
+                        !Core.Me.HasAura(AurasDefine.FlourishingFinish))
                     {
                         return 1;
                     }

@@ -14,6 +14,11 @@ namespace AEAssist.AI.Dancer.Ability
             {
                 return -10;
             }
+
+            if (SpellsDefine.Flourish.RecentlyUsed() && !SpellsDefine.FanDance3.RecentlyUsed())
+            {
+                return 1;
+            }
             if (!Core.Me.HasAura(AurasDefine.ThreeFoldFanDance))
             {
                 return -1;

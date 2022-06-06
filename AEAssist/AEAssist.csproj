@@ -238,11 +238,13 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Dancer\DancerRotation.cs" />
     <Compile Include="AI\AISpellQueueMgr.cs" />
     <Compile Include="AI\Dancer\Dancer_AIPriority.cs" />
+    <Compile Include="AI\Dancer\GCD\DancerGCD_BaseComboSave.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_BaseGCD.cs" />
     <Compile Include="AI\Dancer\DancerSpellHelper.cs" />
     <Compile Include="AI\Dancer\DancerBattleData.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_DanecStep.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_Procs.cs" />
+    <Compile Include="AI\Dancer\GCD\DancerGCD_ProcsSave.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_SaberDance.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_StandardStep.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_StarfallDance.cs" />
@@ -383,6 +385,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="DataBinding\DebugCenter.cs" />
     <Compile Include="DataBinding\Language.cs" />
     <Compile Include="DataBinding\LanguageOptionData.cs" />
+    <Compile Include="DataBinding\MeleePosition.cs" />
     <Compile Include="DataBinding\PotionData.cs" />
     <Compile Include="Define\ConstValue.cs" />
     <Compile Include="Define\DataStruct\CircleList.cs" />
@@ -469,6 +472,9 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="View\MCHSettingView.xaml.cs">
       <DependentUpon>MCHSettingView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MeleeOverlay.xaml.cs">
+      <DependentUpon>MeleeOverlay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\OverlayHeader.xaml.cs">
       <DependentUpon>OverlayHeader.xaml</DependentUpon>
     </Compile>
@@ -542,6 +548,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Content Include="Resources\Lan_zh-CN.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Page Include="View\Style\MeleeBox.xaml" />
     <Resource Include="Resources\Spells\Dancer\Flourish.png" />
     <Resource Include="Resources\Spells\Dancer\SaberDance.png" />
     <Resource Include="Resources\Spells\Bloodbath.png" />
@@ -630,6 +637,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Page Include="View\GeneralSetting\UserControl_General.xaml" />
     <Page Include="View\GeneralSetting\UserControl_Hotkey.xaml" />
     <Page Include="View\MCHSettingView.xaml" />
+    <Page Include="View\MeleeOverlay.xaml" />
     <Page Include="View\OverlayHeader.xaml" />
     <Page Include="View\Overlay\Bard_Overlay2.xaml">
       <SubType>Designer</SubType>

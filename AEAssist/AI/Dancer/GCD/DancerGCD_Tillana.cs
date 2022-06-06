@@ -5,6 +5,8 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Managers;
+using ff14bot.Objects;
+using ff14bot.RemoteWindows;
 
 namespace AEAssist.AI.Dancer.GCD
 {
@@ -17,19 +19,25 @@ namespace AEAssist.AI.Dancer.GCD
                 return -10;
             }
 
-            if (Core.Me.CurrentTarget.Distance(Core.Me) > 15)
+            if (!Core.Me.HasAura(AurasDefine.FlourishingFinish))
             {
-                return -1;
+                return -10;
+            }
+
+            // if (Core.Me.CurrentTarget.Distance(Core.Me) > 15)
+            // {
+            //     return -1;
+            // }
+            
+            if (!Core.Me.HasMyAuraWithTimeleft(AurasDefine.FlourishingFinish, 5000))
+            {
+                return 2;
             }
             if (!Core.Me.HasAura(AurasDefine.Devilment))
             {
                 return -2;
             }
-            if (Core.Me.HasAura(AurasDefine.FlourishingFinish))
-            {
-                return 1;
-            }
-            return -4;
+            return 0;
         }
 
         public async Task<SpellEntity> Run()
