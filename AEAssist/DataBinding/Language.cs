@@ -178,5 +178,15 @@ namespace AEAssist
         public string Textbox_Sage_DotTimeLeft { get; set; }
         
         public string TextBox_Lucid_Dreaming { get; set; }
+
+        public string ToolTip_Bard_FinalBurst { get; set; }
+        public string ToolTip_Bard_Burst { get; set; }
+        
+        public string ToolTip_MCH_FinalBurst { get; set; }
+        public string ToolTip_MCH_WildFireFirst { get; set; }
+        public string ToolTip_MCH_Burst { get; set; }
+        
+        public string ToolTip_RPR_Burst { get; set; }
+        public string ToolTip_RPR_DoubleEnshroundPrefer{ get; set; }
     }
 }

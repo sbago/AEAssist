@@ -106,5 +106,12 @@
   "Toggle_FinalBurst" : "FinalBurst",
   "Label_OverlayScale" : "OverlayScale",
   "Textbox_Sage_DotTimeLeft" : "Sage",
-  "TextBox_Lucid_Dreaming" : "Lucid"
+  "TextBox_Lucid_Dreaming" : "Lucid",
+  "ToolTip_Bard_FinalBurst" : "Bard",
+  "ToolTip_Bard_Burst" : "Bard",
+  "ToolTip_MCH_FinalBurst" : "MCH",
+  "ToolTip_MCH_WildFireFirst" : "MCH",
+  "ToolTip_MCH_Burst" : "MCH",
+  "ToolTip_RPR_Burst" : "RPR",
+  "ToolTip_RPR_DoubleEnshroundPrefer" : "RPR"
 }

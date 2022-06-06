@@ -90,11 +90,12 @@ namespace AEAssist.AI.Machinist
         public static SpellEntity GetReassembleGCD()
         {
             SpellEntity spell = null;
-            if (SpellsDefine.AirAnchor.IsReady())
+            if (SpellsDefine.ChainSaw.IsReady()) 
+                spell = SpellsDefine.ChainSaw.GetSpellEntity();
+            else if (SpellsDefine.AirAnchor.IsReady())
                 spell = SpellsDefine.AirAnchor.GetSpellEntity();
             else if (SpellsDefine.Drill.IsReady())
                 spell = SpellsDefine.Drill.GetSpellEntity();
-            else if (SpellsDefine.ChainSaw.IsReady()) spell = SpellsDefine.ChainSaw.GetSpellEntity();
 
             return spell;
         }

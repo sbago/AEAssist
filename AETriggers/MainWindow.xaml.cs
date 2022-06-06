@@ -45,7 +45,7 @@ namespace AEAssist
                 Load.Content = "加载Excel表";
                 Export.Content = "导出";
             }*/
-
+            ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject),new FrameworkPropertyMetadata((object) 60000));
             var contextMenu = new System.Windows.Controls.ContextMenu();
             Dictionary<string, MenuItem> _menuItemsDict = new Dictionary<string, MenuItem>();
             Dictionary<string, TriggerAttribute> path2Triggers = new Dictionary<string, TriggerAttribute>();
