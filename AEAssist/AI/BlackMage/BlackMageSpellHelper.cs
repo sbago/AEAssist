@@ -226,25 +226,6 @@ namespace AEAssist.AI.BlackMage
 
         public static bool test()
         {
-            GameObject target = null;
-            target = Core.Me.CurrentTarget as GameObject;
-            if (target.IsWithinInteractRange)
-            {
-                target.Target();
-                target.Interact();
-                if (await Coroutine.Wait(5000, () => RaptureAtkUnitManager.GetWindowByName("HousingSignBoard").IsVisible))
-                {
-                    RaptureAtkUnitManager.GetWindowByName("HousingSignBoard").SendAction(1,3, 1);
-                    if (await Coroutine.Wait(5000, () => SelectString.IsOpen))
-                    {
-                        SelectString.ClickLineContains("部队");
-                        if (await Coroutine.Wait(5000, () => SelectYesno.IsOpen))
-                        {
-                            SelectYesno.ClickYes();
-                        }
-                    }
-                }
-            }
             return true;
         }
 
