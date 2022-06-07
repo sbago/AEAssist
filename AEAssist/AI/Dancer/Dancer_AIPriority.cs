@@ -27,6 +27,7 @@ namespace AEAssist.AI.Dancer
         public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()
         {
             new DancerAbility_Devilment(),
+            new DancerAbility_UsePotion(),
             new DancerAbility_Flourish(),
             new DancerAbility_FanDance4(),
             new DancerAbility_FanDance3(),

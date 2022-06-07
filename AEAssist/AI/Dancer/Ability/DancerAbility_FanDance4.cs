@@ -20,8 +20,14 @@ namespace AEAssist.AI.Dancer.Ability
             }
             if (AEAssist.DataBinding.Instance.FinalBurst) return 2;
 
-            if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.FourfoldFanDance, 5000) &&
-                !Core.Me.HasAura(AurasDefine.Devilment))
+            if (SpellsDefine.Flourish.RecentlyUsed())
+            {
+                if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.FourfoldFanDance, SpellsDefine.Devilment.GetSpellEntity().Cooldown.Milliseconds + 2500))
+                {
+                    return -2;
+                }
+            }
+            if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.FourfoldFanDance, SpellsDefine.Devilment.GetSpellEntity().Cooldown.Milliseconds + 2500))
             {
                 return -2;
             }
