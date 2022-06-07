@@ -24,10 +24,13 @@ namespace AEAssist.AI.Dancer.GCD
                 return -10;
             }
 
-            // if (Core.Me.CurrentTarget.Distance(Core.Me) > 15)
-            // {
-            //     return -1;
-            // }
+            if (SettingMgr.GetSetting<DancerSettings>().UseDanceOnlyInRange)
+            {
+                if (Core.Me.CurrentTarget.Distance(Core.Me) > 15)
+                {
+                    return -1;
+                }
+            }
             
             if (!Core.Me.HasMyAuraWithTimeleft(AurasDefine.FlourishingFinish, 5000))
             {

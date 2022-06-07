@@ -39,6 +39,7 @@ namespace AEAssist
         public bool UseTrueNorth { get; set; }
 
         public bool UseAOE { get; set; } = true;
+        public bool UseFlourish { get; set; } = true;
 
         public bool UseBattery { get; set; } = true;
 
@@ -56,6 +57,7 @@ namespace AEAssist
         public SamuraiSettings SamuraiSettings => SettingMgr.GetSetting<SamuraiSettings>();
 
         public SageSettings SageSettings => SettingMgr.GetSetting<SageSettings>();
+        public DancerSettings DancerSettings => SettingMgr.GetSetting<DancerSettings>();
 
         public DebugCenter DebugCenter => DebugCenter.Intance;
 
@@ -100,6 +102,7 @@ namespace AEAssist
             UseDot = true;
             UseSoulGauge = true;
             UseAOE = true;
+            UseFlourish = true;
             TimeStr = "";
             UseBattery = true;
             UseSong = true;

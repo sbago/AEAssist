@@ -42,6 +42,13 @@ namespace AEAssist.AI.Dancer.GCD
                     return -3;
                 }
             }
+            if (SettingMgr.GetSetting<DancerSettings>().UseDanceOnlyInRange)
+            {
+                if (Core.Me.CurrentTarget.Distance(Core.Me) > 15)
+                {
+                    return -1;
+                }
+            }
 
 
             var bd = AIRoot.GetBattleData<BattleData>();

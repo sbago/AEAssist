@@ -235,6 +235,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Dancer\Ability\DancerAbility_FanDance3.cs" />
     <Compile Include="AI\Dancer\Ability\DancerAbility_FanDance4.cs" />
     <Compile Include="AI\Dancer\Ability\DancerAbility_Flourish.cs" />
+    <Compile Include="AI\Dancer\Ability\DancerAbility_UsePotion.cs" />
     <Compile Include="AI\Dancer\DancerRotation.cs" />
     <Compile Include="AI\AISpellQueueMgr.cs" />
     <Compile Include="AI\Dancer\Dancer_AIPriority.cs" />
@@ -410,7 +411,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="Rotations\Core\RotationManager.cs" />
     <Compile Include="Rotations\JobAttribute.cs" />
     <Compile Include="Setting\Setting\BlackMageSetting.cs" />
-    <Compile Include="Setting\Setting\DancerSetting.cs" />
+    <Compile Include="Setting\Setting\DancerSettings.cs" />
     <Compile Include="Setting\Setting\HotkeySetting.cs" />
     <Compile Include="Setting\Setting\MCHSettings.cs" />
     <Compile Include="Setting\Setting\NinjaSetting.cs" />
@@ -448,6 +449,9 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     </Compile>
     <Compile Include="View\CommonOverlay.xaml.cs">
       <DependentUpon>CommonOverlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DancerSettingView.xaml.cs">
+      <DependentUpon>DancerSettingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GeneralSettingView.xaml.cs">
       <DependentUpon>GeneralSettingView.xaml</DependentUpon>
@@ -548,6 +552,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Content Include="Resources\Lan_zh-CN.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Page Include="View\DancerSettingView.xaml" />
     <Page Include="View\Style\MeleeBox.xaml" />
     <Resource Include="Resources\Spells\Dancer\Flourish.png" />
     <Resource Include="Resources\Spells\Dancer\SaberDance.png" />
