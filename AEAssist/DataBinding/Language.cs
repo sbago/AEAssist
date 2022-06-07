@@ -61,6 +61,7 @@ namespace AEAssist
         
         // Casters Roles Defaults
         public string Toggle_LucidDreaming { get; set; }
+        public string Toggle_SwiftRes { get; set; }
         public string Toggle_Esuna { get; set; }
         public string Toggle_SureCast { get; set; }
         public string Toggle_SwiftCast { get; set; }
