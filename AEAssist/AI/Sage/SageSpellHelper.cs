@@ -381,7 +381,7 @@ namespace AEAssist.AI.Sage
                         if (deadAlly.HasAura(AurasDefine.Raise)) continue;
                         
                         // check if the distance from the player is more than 30
-                        if (deadAlly.Distance(Core.Me) > 30) continue;
+                        if (deadAlly.Distance(Core.Me) > 40) continue;
 
                         if (deadAlly.IsHealer())
                         {
@@ -411,7 +411,7 @@ namespace AEAssist.AI.Sage
                         if (deadAlly.HasAura(AurasDefine.Raise)) continue;
                         
                         // check if the distance from the player is more than 30
-                        if (deadAlly.Distance(Core.Me) > 30) continue;
+                        if (deadAlly.Distance(Core.Me) > 40) continue;
                         
                         if (deadAlly.IsTank())
                         {
@@ -440,7 +440,7 @@ namespace AEAssist.AI.Sage
                         if (deadAlly.HasAura(AurasDefine.Raise)) continue;
                         
                         // check if the distance from the player is more than 30
-                        if (deadAlly.Distance(Core.Me) > 30) continue;
+                        if (deadAlly.Distance(Core.Me) > 40) continue;
                         
                         if (deadAlly.IsDps())
                         {
