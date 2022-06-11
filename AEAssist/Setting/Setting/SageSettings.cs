@@ -19,6 +19,8 @@ namespace AEAssist
 
         public int LucidDreamingTrigger { get; set; } = ConstValue.LucidDreamingDefaultRefresh;
         public bool LucidDreamingToggle { get; set; } = true;
+
+        public bool SwiftResToggle { get; set; } = true;
         
         public bool EarlyDecisionMode { get; set; }
 

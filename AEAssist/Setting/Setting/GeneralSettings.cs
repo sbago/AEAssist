@@ -58,6 +58,9 @@ namespace AEAssist
 
         public string LanguagePrefer { get; set; }
 
+        public double OverlayPos_X { get; set; } = 60;
+        public double OverlayPos_Y { get; set; } = 60;
+
         public void Reset()
         {
             UserLatencyOffset = 50;

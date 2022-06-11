@@ -14,7 +14,7 @@ namespace AEAssist.AI.Reaper
     {
         public int Check()
         {
-            if (!Core.Me.CurrentTarget.IsBoss() && PartyManager.NumMembers <= 4)
+            if (PartyManager.NumMembers <= 4)
                 return -5;
             if (!AEAssist.DataBinding.Instance.Burst)
                 return -100;

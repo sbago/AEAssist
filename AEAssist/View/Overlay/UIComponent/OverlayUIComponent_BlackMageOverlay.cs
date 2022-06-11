@@ -30,16 +30,22 @@ namespace AEAssist.View.Overlay.UIComponent
                     Content = overlayUc,
                     Width = overlayUc.Width + 5,
                     Height = overlayUc.Height,
-                    X = 60,
-                    Y = 60,
+                    X = SettingMgr.GetSetting<GeneralSettings>().OverlayPos_X,
+                    Y =  SettingMgr.GetSetting<GeneralSettings>().OverlayPos_Y,
                     AllowMoving = true,
                     AllowResizing = false
                 };
                 LogHelper.Info("CreateOverlay " + _control.Width + "  " + _control.Height);
 
-                _control.MouseLeave += (sender, args) => { };
-
-                _control.MouseLeftButtonDown += (sender, args) => { _control.DragMove(); };
+                _control.MouseLeave += (sender, args) =>
+                {
+                    SettingMgr.GetSetting<GeneralSettings>().OverlayPos_X = _control.X;
+                    SettingMgr.GetSetting<GeneralSettings>().OverlayPos_Y = _control.Y;
+                };
+                _control.MouseLeftButtonDown += (sender, args) =>
+                {
+                    _control.DragMove();
+                };
 
                 return _control;
             }

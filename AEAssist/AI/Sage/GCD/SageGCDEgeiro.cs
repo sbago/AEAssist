@@ -8,6 +8,8 @@ namespace AEAssist.AI.Sage.GCD
     {
         public int Check(SpellEntity lastSpell)
         {
+            LogHelper.Debug("Checking if SwiftRes Toggle is on...");
+            if (!SettingMgr.GetSetting<SageSettings>().SwiftResToggle) return -3;
             LogHelper.Debug("Checking if swiftcast is ready");
             if (!SpellsDefine.Swiftcast.IsReady()) return -5;
             LogHelper.Debug("checking if allies are dead");

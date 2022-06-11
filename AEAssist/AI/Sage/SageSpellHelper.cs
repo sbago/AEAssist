@@ -376,6 +376,13 @@ namespace AEAssist.AI.Sage
                     LogHelper.Debug("Healer>Tanks>DPS-RESSING");
                     foreach (var deadAlly in deadAllies)
                     {
+                        // check if the player already ressed.
+                        LogHelper.Debug("checking if the player already rezzed if so skipping.");
+                        if (deadAlly.HasAura(AurasDefine.Raise)) continue;
+                        
+                        // check if the distance from the player is more than 30
+                        if (deadAlly.Distance(Core.Me) > 40) continue;
+
                         if (deadAlly.IsHealer())
                         {
                             LogHelper.Debug("Trying to swift res the healer.");
@@ -399,6 +406,13 @@ namespace AEAssist.AI.Sage
                     LogHelper.Debug("Tanks>Healer>DPS-RESSING");
                     foreach (var deadAlly in deadAllies)
                     {
+                        // check if the player already ressed.
+                        LogHelper.Debug("checking if the player already rezzed if so skipping.");
+                        if (deadAlly.HasAura(AurasDefine.Raise)) continue;
+                        
+                        // check if the distance from the player is more than 30
+                        if (deadAlly.Distance(Core.Me) > 40) continue;
+                        
                         if (deadAlly.IsTank())
                         {
                             LogHelper.Debug("Trying to swift res the Tanks.");
@@ -421,6 +435,13 @@ namespace AEAssist.AI.Sage
                 case 2:
                     foreach (var deadAlly in deadAllies)
                     {
+                        // check if the player already ressed.
+                        LogHelper.Debug("checking if the player already rezzed if so skipping.");
+                        if (deadAlly.HasAura(AurasDefine.Raise)) continue;
+                        
+                        // check if the distance from the player is more than 30
+                        if (deadAlly.Distance(Core.Me) > 40) continue;
+                        
                         if (deadAlly.IsDps())
                         {
                             LogHelper.Debug("Trying to swift res the dps.");
