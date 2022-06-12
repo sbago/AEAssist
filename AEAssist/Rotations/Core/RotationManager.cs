@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using AEAssist.AI;
 using AEAssist.Define;
 using AEAssist.Helper;
+using AEAssist.Utilities.CombatMessages;
+using AEAssist.View.OverlayManager;
 using ff14bot.Enums;
 using ff14bot.Managers;
 
@@ -51,6 +53,7 @@ namespace AEAssist.Rotations.Core
                 _classJobType = ff14bot.Core.Me.CurrentJob;
                 CountDownHandler.Instance.ClearListener();
                 GetRotation().Init();
+                CombatMessageManager.RegisterMessageStrategiesForClass(ff14bot.Core.Me.CurrentJob);
             }
         }
 

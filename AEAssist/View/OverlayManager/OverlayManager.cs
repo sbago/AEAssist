@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using AEAssist.Helper;
+using AEAssist.View.Overlay.UIComponent;
 using Buddy.Overlay;
 using ff14bot;
 using ff14bot.Enums;
@@ -21,6 +22,8 @@ namespace AEAssist.View.OverlayManager
         private HashSet<OverlayUIComponent> _existOverlays = new HashSet<OverlayUIComponent>();
 
         private HashSet<OverlayUIComponent> _delSet = new HashSet<OverlayUIComponent>();
+        
+        private static OverlayUIComponent_CombatMessage CombatMessageOverlay;
 
         public void Init()
         {
@@ -107,6 +110,35 @@ namespace AEAssist.View.OverlayManager
             {
                 v.Control.Refresh();
             }
+        }
+
+        public static void StartCombatMessageOverlay()
+        {
+            if (!Core.OverlayManager.IsActive)
+                return;
+
+            // if (!BaseSettings.Instance.UseCombatMessageOverlay)
+            //     return;
+
+            // if (CombatMessageOverlay == null)
+            // {
+            //     CombatMessageOverlay =
+            //         new CombatMessageUiComponent(BaseSettings.Instance.CombatMessageOverlayAdjustable);
+            // }
+
+            Core.OverlayManager.AddUIComponent(CombatMessageOverlay);
+        }
+        
+        public static void StopCombatMessageOverlay()
+        {
+            if (!Core.OverlayManager.IsActive)
+                return;
+
+            if (CombatMessageOverlay != null)
+            {
+                Core.OverlayManager.RemoveUIComponent(CombatMessageOverlay);
+            }
+            CombatMessageOverlay = null;
         }
     }
 }

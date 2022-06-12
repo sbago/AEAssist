@@ -265,6 +265,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Monk\MonkRotation.cs" />
     <Compile Include="AI\Monk\MonkSpellHelper.cs" />
     <Compile Include="AI\Monk\Monk_AIPriority.cs" />
+    <Compile Include="AI\Monk\MonkCombatMessageStrategy.cs" />
     <Compile Include="AI\Ninja\Ability\NinjaAbility_Assassinate.cs" />
     <Compile Include="AI\Ninja\Ability\NinjaAbility_Bhavacakra.cs" />
     <Compile Include="AI\Ninja\Ability\NinjaAbility_Bunshin.cs" />
@@ -389,6 +390,10 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Samurai\Samurai_AIPriorityQueue.cs" />
     <Compile Include="AI\SpellHistoryMgr.cs" />
     <Compile Include="AI\SpellQueueData.cs" />
+    <Compile Include="Converters\BooleanConverterT.cs" />
+    <Compile Include="Converters\BooleanToOpaqueConverter.cs" />
+    <Compile Include="DataBinding\CombatMessage.cs" />
+    <Compile Include="DataBinding\CombatMessageOverlayViewModel.cs" />
     <Compile Include="DataBinding\DebugCenter.cs" />
     <Compile Include="DataBinding\Language.cs" />
     <Compile Include="DataBinding\LanguageOptionData.cs" />
@@ -451,6 +456,9 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyTTK.cs" />
     <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_GameLog.cs" />
     <Compile Include="TriggerSystem\TriggerSystemMgr.cs" />
+    <Compile Include="Utilities\CombatMessages\CombatMessageManager.cs" />
+    <Compile Include="Utilities\CombatMessages\CombatMessageStrategy.cs" />
+    <Compile Include="Utilities\CombatMessages\ICombatMessageStrategy.cs" />
     <Compile Include="View\BardSettingView.xaml.cs">
       <DependentUpon>BardSettingView.xaml</DependentUpon>
     </Compile>
@@ -502,6 +510,9 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="View\Overlay\BlackMage_Overlay2.xaml.cs">
       <DependentUpon>BlackMage_Overlay2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Overlay\CombatMessageOverlay.xaml.cs">
+      <DependentUpon>CombatMessageOverlay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Overlay\DancerOverlayWindow.xaml.cs">
       <DependentUpon>DancerOverlayWindow.xaml</DependentUpon>
     </Compile>
@@ -518,6 +529,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
       <DependentUpon>SageOverlayWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Overlay\SamuraiOverlayWindow.xaml.cs" />
+    <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_CombatMessage.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BardOverlay.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BardOverlay2.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BlackMageOverlay.cs" />
@@ -556,10 +568,12 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="Setting\Setting\BardSettings.cs" />
     <Compile Include="Setting\Setting\GeneralSettings.cs" />
     <Compile Include="Setting\Setting\VersionSetting.cs" />
+    <Resource Include="Resources\Images\General\ArrowDownHighlighted.png" />
     <Content Include="Resources\Lan_zh-CN.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Page Include="View\DancerSettingView.xaml" />
+    <Page Include="View\Overlay\CombatMessageOverlay.xaml" />
     <Page Include="View\Style\MeleeBox.xaml" />
     <Resource Include="Resources\Spells\Dancer\Flourish.png" />
     <Resource Include="Resources\Spells\Dancer\SaberDance.png" />
