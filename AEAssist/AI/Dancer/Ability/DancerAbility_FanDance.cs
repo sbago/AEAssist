@@ -22,26 +22,36 @@ namespace AEAssist.AI.Dancer.Ability
                 return -1;
             }
 
-            if (Core.Me.HasAura(AurasDefine.ThreeFoldFanDance) ||
-                SpellsDefine.Flourish.RecentlyUsed())
+            if (SpellsDefine.FanDance.RecentlyUsed())
             {
                 return -2;
             }
+
+            if (Core.Me.HasAura(AurasDefine.ThreeFoldFanDance) && !SpellsDefine.FanDance3.RecentlyUsed())
+            {
+                return -3;
+            }
+
+            if (SpellsDefine.Flourish.RecentlyUsed())
+            {
+                return -2;
+            }
+
+            if (SpellsDefine.FanDance3.RecentlyUsed() && !SpellsDefine.Flourish.RecentlyUsed())
+            {
+                return 1;
+            }
+
             if (AEAssist.DataBinding.Instance.FinalBurst) return 2;
 
-            // var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
-            // if (bdls == SpellsDefine.DoubleStandardFinish.GetSpellEntity() || bdls == SpellsDefine.QuadrupleTechnicalFinish.GetSpellEntity())
-            // {
-            //     return -5;
-            // }
             if (Core.Me.HasAura(AurasDefine.Devilment))
             {
                 return 1;
             }
 
-            if (Core.Me.HasAura(AurasDefine.FlourishingSymmetry) || Core.Me.HasAura(AurasDefine.FlourshingFlow))
+            if (ActionResourceManager.Dancer.FourFoldFeathers == 4)
             {
-                if (ActionResourceManager.Dancer.FourFoldFeathers == 4)
+                if (Core.Me.HasAura(AurasDefine.FlourishingSymmetry) || Core.Me.HasAura(AurasDefine.FlourshingFlow))
                 {
                     return 0;
                 }

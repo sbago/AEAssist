@@ -57,7 +57,12 @@
                                   Content="AOE"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
                                   IsChecked="{Binding UseAOE,Mode=TwoWay}" />
-
+                        
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="Flourish"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding UseFlourish,Mode=TwoWay}" />
+                        
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="{Binding Language.Toggle_Potion}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
@@ -94,6 +99,13 @@
                             <Image Source="../../Resources/Spells/Dancer/CuringWaltz.png" Stretch="Uniform" />
 
                         </Button>
+                        
+                        <!-- <Button Style="{StaticResource ImageButton}" -->
+                        <!--         Width="30" Height="30" Margin="6,2,6,2" Name="UseTacticianLowPriority" -->
+                        <!--         Click="UseTactician_OnClick"> -->
+                        <!--     <Image Source="../../Resources/Spells/Dancer/ShieldSamba.png" Stretch="Uniform" /> -->
+                        <!-- -->
+                        <!-- </Button> -->
                         
                         <Button Style="{StaticResource ImageButton}"
                                 Width="30" Height="30" Margin="5,2,5,2" Name="UseFlourish"

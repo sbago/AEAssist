@@ -4,14 +4,14 @@ using AEAssist.Helper;
 using AEAssist.Rotations.Core;
 using ff14bot.Enums;
 
-namespace AEAssist.AI.Ninja
+namespace AEAssist.AI.Monk
 {
-    [Job(ClassJobType.Ninja)]
-    public class NinjaRotation : IRotation
+    [Job(ClassJobType.Monk)]
+    public class MonkRotation : IRotation
     {
         public void Init()
         {
-            AEAssist.DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<NinjaSettings>().EarlyDecisionMode;
+            AEAssist.DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<MonkSettings>().EarlyDecisionMode;
             LogHelper.Info("EarlyDecisionMode: " + AEAssist.DataBinding.Instance.EarlyDecisionMode);
         }
 

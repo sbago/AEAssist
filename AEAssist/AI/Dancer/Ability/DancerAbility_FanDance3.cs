@@ -1,8 +1,10 @@
+using System;
 using System.Threading.Tasks;
 using AEAssist.AI.Sage;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
+using ff14bot.Managers;
 
 namespace AEAssist.AI.Dancer.Ability
 {
@@ -14,9 +16,37 @@ namespace AEAssist.AI.Dancer.Ability
             {
                 return -10;
             }
+            
             if (!Core.Me.HasAura(AurasDefine.ThreeFoldFanDance))
             {
                 return -1;
+            }
+            //尽量留到爆发期
+            //如果有四个叶子 -> 并且有触发proc -> 使用
+            //如果没有四个叶子 -> buff快到了 -> 使用 （有可能被跳舞拖到过期）
+            
+            if (SpellsDefine.TechnicalStep.GetSpellEntity().SpellData.Cooldown < TimeSpan.FromSeconds(5))
+            {
+                if (ActionResourceManager.Dancer.FourFoldFeathers < 4)
+                {
+                    return -2;
+                }
+                else
+                {
+                    if (Core.Me.HasAura(AurasDefine.FlourishingSymmetry) || Core.Me.HasAura(AurasDefine.FlourshingFlow))
+                    {
+                        //todo: wait for AE
+                        if (SpellsDefine.TechnicalStep.CoolDownInGCDs(1))
+                        {
+                            return -4;
+                        }
+                    }
+                }
+            }
+            
+            if (SpellsDefine.Flourish.RecentlyUsed() && !SpellsDefine.FanDance3.RecentlyUsed())
+            {
+                return 1;
             }
             return 0;
         }

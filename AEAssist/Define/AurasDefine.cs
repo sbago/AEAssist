@@ -325,7 +325,9 @@ namespace AEAssist.Define
             //NIN
             RaijuReady = 2690,
             PhantomKamaitachiReady = 2723,
-            Bunshin = 1954;
+            Bunshin = 1954,
+            //MNK
+            DisciplinedFist = 3001;
             
             
  

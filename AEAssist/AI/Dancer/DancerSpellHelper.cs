@@ -16,45 +16,34 @@ namespace AEAssist.AI.Dancer
         // Bladeshower 落刃雨 AOE2 :Bloodshower 落血雨 
         private static async Task<SpellEntity> UseSingleCombo(GameObject target)
         {
-            if (ActionManager.ComboTimeLeft > 0)
+            if (ActionManager.LastSpellId == SpellsDefine.Cascade &&
+                SpellsDefine.Fountain.IsUnlock())
             {
-                if (AIRoot.GetBattleData<DancerBattleData>().CurrCombo == DancerComboStages.Fountain)
+                if (await SpellsDefine.Fountain.DoGCD())
                 {
-                    if (await SpellsDefine.Fountain.DoGCD())
-                    {
-                        AIRoot.GetBattleData<DancerBattleData>().CurrCombo = DancerComboStages.Cascade;
-                        return SpellsDefine.Fountain.GetSpellEntity();
-                    }
+                    return SpellsDefine.Fountain.GetSpellEntity();
                 }
             }
-
             if (await SpellsDefine.Cascade.DoGCD())
             {
-                AIRoot.GetBattleData<DancerBattleData>().CurrCombo = DancerComboStages.Fountain;
                 return SpellsDefine.Cascade.GetSpellEntity();
             }
-
             return null;
         }
 
         private static async Task<SpellEntity> UseAOECombo(GameObject target)
         {
-            if (AIRoot.GetBattleData<DancerBattleData>().CurrCombo != DancerComboStages.Bladeshower
-                || ActionManager.ComboTimeLeft <= 0)
-            {
-                if (await SpellsDefine.Windmill.DoGCD())
-                {
-                    AIRoot.GetBattleData<DancerBattleData>().CurrCombo = DancerComboStages.Bladeshower;
-                    return SpellsDefine.Windmill.GetSpellEntity();
-                }
-            }
-            else if (SpellsDefine.Bladeshower.IsUnlock())
+            if (ActionManager.LastSpellId == SpellsDefine.Windmill &&
+                SpellsDefine.Bladeshower.IsUnlock())
             {
                 if (await SpellsDefine.Bladeshower.DoGCD())
                 {
-                    AIRoot.GetBattleData<DancerBattleData>().CurrCombo = DancerComboStages.Windmill;
                     return SpellsDefine.Bladeshower.GetSpellEntity();
                 }
+            }
+            if (await SpellsDefine.Windmill.DoGCD())
+            {
+                return SpellsDefine.Windmill.GetSpellEntity();
             }
 
             return null;

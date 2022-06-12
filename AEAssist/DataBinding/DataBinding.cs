@@ -56,6 +56,8 @@ namespace AEAssist
         public SamuraiSettings SamuraiSettings => SettingMgr.GetSetting<SamuraiSettings>();
 
         public SageSettings SageSettings => SettingMgr.GetSetting<SageSettings>();
+        public DancerSettings DancerSettings => SettingMgr.GetSetting<DancerSettings>();
+        public MonkSettings MonkSettings => SettingMgr.GetSetting<MonkSettings>();
 
         public DebugCenter DebugCenter => DebugCenter.Intance;
 
@@ -100,6 +102,7 @@ namespace AEAssist
             UseDot = true;
             UseSoulGauge = true;
             UseAOE = true;
+            UseFlourish = true;
             TimeStr = "";
             UseBattery = true;
             UseSong = true;
@@ -148,6 +151,13 @@ namespace AEAssist
         #region Samurai
 
         public bool UseMeikyoShisui { get; set; } = true;
+
+        #endregion
+        
+        #region Dancer
+
+        public bool UseFlourish { get; set; } = true;
+
 
         #endregion
     }

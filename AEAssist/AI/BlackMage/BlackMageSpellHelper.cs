@@ -9,6 +9,7 @@ using ff14bot;
 using ff14bot.Helpers;
 using ff14bot.Managers;
 using ff14bot.Objects;
+using ff14bot.RemoteWindows;
 
 namespace AEAssist.AI.BlackMage
 {
@@ -107,7 +108,7 @@ namespace AEAssist.AI.BlackMage
             // 0 for no have echochian
             // 3 for have paradox and echochian
             // 2 for only have echochian
-            if (ActionResourceManager.CostTypesStruct.offset_F >= 2)
+            if (ActionResourceManager.CostTypesStruct.offset_F > 2)
             {
                 return true;
             }
@@ -225,10 +226,6 @@ namespace AEAssist.AI.BlackMage
 
         public static bool test()
         {
-            // ActionManager.LastSpell.LocalizedName;
-            // ActionManager.
-            MovementManager.MoveForwardStart();
-            MovementManager.MoveStop();
             return true;
         }
 

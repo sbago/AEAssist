@@ -31,7 +31,7 @@ namespace AEAssist.AI.Dancer.GCD
             {
                 return 0;
             }
-            if (ActionResourceManager.Dancer.Esprit >= 85)
+            if (ActionResourceManager.Dancer.Esprit >= 80)
             {
                 return 1;
             }

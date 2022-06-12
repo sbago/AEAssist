@@ -42,6 +42,13 @@ namespace AEAssist.AI.Dancer.GCD
                     return -3;
                 }
             }
+            if (SettingMgr.GetSetting<DancerSettings>().UseDanceOnlyInRange)
+            {
+                if (Core.Me.CurrentTarget.Distance(Core.Me) > 15)
+                {
+                    return -1;
+                }
+            }
 
 
             var bd = AIRoot.GetBattleData<BattleData>();
@@ -54,7 +61,8 @@ namespace AEAssist.AI.Dancer.GCD
                 {
                     if (!Core.Me.HasAura(AurasDefine.FlourshingFlow) &&
                         !Core.Me.HasAura(AurasDefine.FlourishingSymmetry) &&
-                        ActionResourceManager.Dancer.Esprit < 50)
+                        ActionResourceManager.Dancer.Esprit < 50 &&
+                        !Core.Me.HasAura(AurasDefine.FlourishingFinish))
                     {
                         return 1;
                     }

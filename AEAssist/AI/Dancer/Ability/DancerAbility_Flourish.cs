@@ -20,22 +20,51 @@ namespace AEAssist.AI.Dancer.Ability
                 return -1;
             }
 
-            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
-            var bdla = AIRoot.GetBattleData<BattleData>().lastAbilitySpell;
-            if (
-                (!Core.Me.HasAura(AurasDefine.FlourshingFlow) || (Core.Me.HasAura(AurasDefine.FlourshingFlow) &&
-                                                                  (bdls == SpellsDefine.Bloodshower.GetSpellEntity() ||
-                                                                   bdls == SpellsDefine.Fountainfall
-                                                                       .GetSpellEntity()))) &&
-                (!Core.Me.HasAura(AurasDefine.FlourishingSymmetry) ||
-                 (Core.Me.HasAura(AurasDefine.FlourishingSymmetry) &&
-                  (bdls == SpellsDefine.RisingWindmill.GetSpellEntity() ||
-                   bdls == SpellsDefine.ReverseCascade.GetSpellEntity()))) &&
-                (!Core.Me.HasAura(AurasDefine.ThreeFoldFanDance) || (Core.Me.HasAura(AurasDefine.ThreeFoldFanDance) &&
-                                                                     bdla == SpellsDefine.FanDance3.GetSpellEntity()))
-            )
+            if (!AEAssist.DataBinding.Instance.UseFlourish)
             {
-                return 1;
+                return -3;
+            }
+            
+            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
+            if (!Core.Me.HasAura(AurasDefine.ThreeFoldFanDance))
+            {
+                return 0;
+            }
+            else
+            {
+                if (SpellsDefine.FanDance3.RecentlyUsed())
+                {
+                    return 5;
+                }
+            }
+            
+            // if we have no proc buff
+            if (!Core.Me.HasAura(AurasDefine.FlourshingFlow) && !Core.Me.HasAura(AurasDefine.FlourishingSymmetry))
+            {
+                // and last spell will not proc
+                if (bdls != SpellsDefine.Cascade.GetSpellEntity() && bdls != SpellsDefine.Fountain.GetSpellEntity() &&
+                    bdls != SpellsDefine.Windmill.GetSpellEntity() && bdls != SpellsDefine.Bladeshower.GetSpellEntity())
+                {
+                    return 1;
+                }
+                // if last spell can proc
+                else
+                {
+                    if (!AIRoot.Instance.Is2ndAbilityTime())
+                        return -11;
+                    return 2;
+                }
+            }
+            // if we have proc buff
+            if ((bdls == SpellsDefine.RisingWindmill.GetSpellEntity() || bdls == SpellsDefine.ReverseCascade.GetSpellEntity()) && !Core.Me.HasAura(AurasDefine.FlourshingFlow))
+            {
+                // we are good to go
+                return 3;
+            }
+            if ((bdls == SpellsDefine.Bloodshower.GetSpellEntity() || bdls == SpellsDefine.Fountainfall.GetSpellEntity()) && !Core.Me.HasAura(AurasDefine.FlourishingSymmetry))
+            {
+                // we are good to go
+                return 3;
             }
 
             return -4;
