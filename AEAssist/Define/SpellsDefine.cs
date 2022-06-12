@@ -530,6 +530,8 @@ namespace AEAssist.Define
         public const uint DragonKick = 74;
         public const uint TheForbiddenChakra = 3547;
         public const uint ElixirField = 3545;
+        public const uint FlintStrike = 25882;
+        public const uint CelestialRevolution = 25765;
         public const uint RiddleofEarth = 7394;
         public const uint RiddleofFire = 7395;
         public const uint RiddleofWind = 25766;

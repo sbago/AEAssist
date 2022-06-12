@@ -10,14 +10,16 @@ namespace AEAssist.AI.Monk.Ability
     {
         public int Check(SpellEntity lastSpell)
         {
+            if (ActionResourceManager.Monk.ChakraCount < 5)
+            {
+                return -10;
+            }
+            
             if (!SpellsDefine.SteelPeak.IsUnlock())
             {
                 return -2;
             }
-            if (ActionResourceManager.Monk.FithChakra < 5)
-            {
-                return -10;
-            }
+
 
             return 0;
         }

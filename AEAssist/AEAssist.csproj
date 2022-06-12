@@ -48,6 +48,9 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Reference Include="MongoDB.Bson, Version=2.15.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\MongoDB.Bson.2.15.0\lib\net472\MongoDB.Bson.dll</HintPath>
     </Reference>
+    <Reference Include="RebornBuddy">
+      <HintPath>..\References\RebornBuddy.exe</HintPath>
+    </Reference>
     <Reference Include="RebornBuddy, Version=1.0.473.0, Culture=neutral, PublicKeyToken=48d7174f8a943034">
       <HintPath>..\References\RebornBuddy.exe</HintPath>
       <Private>False</Private>
