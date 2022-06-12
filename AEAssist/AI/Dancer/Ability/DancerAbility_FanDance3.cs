@@ -35,7 +35,6 @@ namespace AEAssist.AI.Dancer.Ability
                 {
                     if (Core.Me.HasAura(AurasDefine.FlourishingSymmetry) || Core.Me.HasAura(AurasDefine.FlourshingFlow))
                     {
-                        //todo: wait for AE
                         if (SpellsDefine.TechnicalStep.CoolDownInGCDs(1))
                         {
                             return -4;

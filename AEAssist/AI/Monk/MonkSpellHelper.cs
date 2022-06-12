@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
 using Buddy.Coroutines;
@@ -93,6 +94,14 @@ namespace AEAssist.AI.Monk
                 if (await SpellsDefine.TwinSnakes.DoGCD())
                 {
                     return SpellsDefine.TwinSnakes.GetSpellEntity();
+                }
+            }
+            //Shadow of the Destroyer 破坏神脚 Action Id:25767
+            if (SpellsDefine.ShadowOfTheDestroyer.IsUnlock())
+            {
+                if (await SpellsDefine.ShadowOfTheDestroyer.DoGCD())
+                {
+                    return SpellsDefine.ShadowOfTheDestroyer.GetSpellEntity();
                 }
             }
             if (Core.Me.HasMyAura(AurasDefine.LeadenFist))
@@ -280,6 +289,30 @@ namespace AEAssist.AI.Monk
             //Lunar Nadi + Solar Nadi
             // ActionResourceManager.CostTypesStruct.offset_C == 6
             if (ActionResourceManager.CostTypesStruct.offset_C == 6)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool LastSpellWasGCD()
+        {
+            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
+            SpellEntity[] GCDs =
+            {
+                SpellsDefine.Bootshine.GetSpellEntity(),
+                SpellsDefine.DragonKick.GetSpellEntity(),
+                SpellsDefine.ArmOfTheDestroyer.GetSpellEntity(),
+                SpellsDefine.ShadowOfTheDestroyer.GetSpellEntity(),
+                SpellsDefine.TwinSnakes.GetSpellEntity(),
+                SpellsDefine.TrueStrike.GetSpellEntity(),
+                SpellsDefine.FourPointFury.GetSpellEntity(),
+                SpellsDefine.Rockbreaker.GetSpellEntity(),
+                SpellsDefine.Demolish.GetSpellEntity(),
+                SpellsDefine.SnapPunch.GetSpellEntity(),
+            };
+            if (GCDs.Contains(bdls))
             {
                 return true;
             }

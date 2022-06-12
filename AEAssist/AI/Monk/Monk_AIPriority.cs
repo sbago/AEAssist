@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AEAssist.AI.Monk.Ability;
 using AEAssist.AI.Monk.GCD;
 using AEAssist.Helper;
 using ff14bot.Enums;
@@ -17,8 +18,12 @@ namespace AEAssist.AI.Monk
 
         public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()
         {
-
+            new MonkAbility_RiddleOfFire(),
+            new MonkAbility_Brotherhood(),
+            new MonkAbility_RiddleOfWind(),
+            new MonkAbility_ChakraAttacks(),
         };
+
         public async Task<bool> UsePotion()
         {
             return await PotionHelper.ForceUsePotion(SettingMgr.GetSetting<GeneralSettings>().StrPotionId);

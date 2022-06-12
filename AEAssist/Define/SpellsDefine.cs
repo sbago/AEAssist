@@ -519,6 +519,8 @@ namespace AEAssist.Define
         public const uint Demolish = 66;
 
         public const uint Rockbreaker = 70;
+        public const uint SteelPeak = 25761;
+        public const uint HowlingFist = 25763;
 
         //public const uint FistsOfWind = 73;
         //public const uint ShoulderTackle = 71;
@@ -530,6 +532,7 @@ namespace AEAssist.Define
         public const uint ElixirField = 3545;
         public const uint RiddleofEarth = 7394;
         public const uint RiddleofFire = 7395;
+        public const uint RiddleofWind = 25766;
         public const uint Brotherhood = 7396;
         public const uint FormShift = 4262;
         public const uint FourPointFury = 16473;
