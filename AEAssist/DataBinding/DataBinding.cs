@@ -39,7 +39,6 @@ namespace AEAssist
         public bool UseTrueNorth { get; set; }
 
         public bool UseAOE { get; set; } = true;
-        public bool UseFlourish { get; set; } = true;
 
         public bool UseBattery { get; set; } = true;
 
@@ -58,6 +57,7 @@ namespace AEAssist
 
         public SageSettings SageSettings => SettingMgr.GetSetting<SageSettings>();
         public DancerSettings DancerSettings => SettingMgr.GetSetting<DancerSettings>();
+        public MonkSettings MonkSettings => SettingMgr.GetSetting<MonkSettings>();
 
         public DebugCenter DebugCenter => DebugCenter.Intance;
 
@@ -151,6 +151,13 @@ namespace AEAssist
         #region Samurai
 
         public bool UseMeikyoShisui { get; set; } = true;
+
+        #endregion
+        
+        #region Dancer
+
+        public bool UseFlourish { get; set; } = true;
+
 
         #endregion
     }

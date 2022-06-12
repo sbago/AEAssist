@@ -20,8 +20,12 @@ namespace AEAssist.AI.Dancer.Ability
                 return -1;
             }
 
+            if (!AEAssist.DataBinding.Instance.UseFlourish)
+            {
+                return -3;
+            }
+            
             var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
-
             if (!Core.Me.HasAura(AurasDefine.ThreeFoldFanDance))
             {
                 return 0;

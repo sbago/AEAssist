@@ -31,7 +31,7 @@ namespace AEAssist.AI.Dancer.Ability
             {
                 return -3;
             }
-            
+
             if (SpellsDefine.Flourish.RecentlyUsed())
             {
                 return -2;
@@ -41,18 +41,17 @@ namespace AEAssist.AI.Dancer.Ability
             {
                 return 1;
             }
-            if (SpellsDefine.FanDance.RecentlyUsed()) return -3;
-            
+
             if (AEAssist.DataBinding.Instance.FinalBurst) return 2;
-            
+
             if (Core.Me.HasAura(AurasDefine.Devilment))
             {
                 return 1;
             }
 
-            if (Core.Me.HasAura(AurasDefine.FlourishingSymmetry) || Core.Me.HasAura(AurasDefine.FlourshingFlow))
+            if (ActionResourceManager.Dancer.FourFoldFeathers == 4)
             {
-                if (ActionResourceManager.Dancer.FourFoldFeathers == 4)
+                if (Core.Me.HasAura(AurasDefine.FlourishingSymmetry) || Core.Me.HasAura(AurasDefine.FlourshingFlow))
                 {
                     return 0;
                 }

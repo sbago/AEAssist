@@ -3,10 +3,10 @@
 namespace AEAssist
 {
     [AddINotifyPropertyChangedInterface]
-    public class NinjaSetting : IBaseSetting
+    public class NinjaSettings : IBaseSetting
     {
 
-        public NinjaSetting()
+        public NinjaSettings()
         {
             Reset();
         }

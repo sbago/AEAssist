@@ -14,19 +14,24 @@ namespace AEAssist.AI.Dancer.Ability
             {
                 return -10;
             }
+            if (SpellsDefine.Flourish.RecentlyUsed())
+            {
+                if (Core.Me.HasAura(AurasDefine.Devilment))
+                {
+                    return 1;
+                }
+            }
             if (!Core.Me.HasAura(AurasDefine.FourfoldFanDance))
             {
                 return -1;
             }
             if (AEAssist.DataBinding.Instance.FinalBurst) return 2;
-
-            if (SpellsDefine.Flourish.RecentlyUsed())
+            
+            if (Core.Me.HasAura(AurasDefine.Devilment))
             {
-                if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.FourfoldFanDance, SpellsDefine.Devilment.GetSpellEntity().Cooldown.Milliseconds + 2500))
-                {
-                    return -2;
-                }
+                return 1;
             }
+
             if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.FourfoldFanDance, SpellsDefine.Devilment.GetSpellEntity().Cooldown.Milliseconds + 2500))
             {
                 return -2;

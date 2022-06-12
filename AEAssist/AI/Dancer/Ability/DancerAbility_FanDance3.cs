@@ -21,7 +21,10 @@ namespace AEAssist.AI.Dancer.Ability
             {
                 return -1;
             }
-
+            //尽量留到爆发期
+            //如果有四个叶子 -> 并且有触发proc -> 使用
+            //如果没有四个叶子 -> buff快到了 -> 使用 （有可能被跳舞拖到过期）
+            
             if (SpellsDefine.TechnicalStep.GetSpellEntity().SpellData.Cooldown < TimeSpan.FromSeconds(5))
             {
                 if (ActionResourceManager.Dancer.FourFoldFeathers < 4)

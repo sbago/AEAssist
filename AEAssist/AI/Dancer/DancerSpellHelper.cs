@@ -28,7 +28,6 @@ namespace AEAssist.AI.Dancer
             {
                 return SpellsDefine.Cascade.GetSpellEntity();
             }
-
             return null;
         }
 
