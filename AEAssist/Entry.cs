@@ -56,7 +56,7 @@ namespace AEAssist
                 // PotionHelper.DebugAllItems();
                 AIRoot.Instance.Init();
                 AIMgrs.Instance.Init();
-                
+
                 UIHelper.SetToolTipDuration();
                 
                 LogHelper.Info("Initialized!");

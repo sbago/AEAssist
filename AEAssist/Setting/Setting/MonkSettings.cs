@@ -22,5 +22,7 @@ namespace AEAssist
         }
 
         public bool EarlyDecisionMode { get; set; }
+        public bool HidePositionalToastsWithTn { get; set; }
+        public int TwinSnakesRefresh { get; set; }
     }
 }

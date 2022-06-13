@@ -381,24 +381,46 @@ namespace AEAssist.AI.Sage
                         if (deadAlly.HasAura(AurasDefine.Raise)) continue;
                         
                         // check if the distance from the player is more than 30
-                        if (deadAlly.Distance(Core.Me) > 40) continue;
+                        if (deadAlly.Distance(Core.Me) >= 40) continue;
 
-                        if (deadAlly.IsHealer())
+                        if (deadAlly.IsDps())
                         {
-                            LogHelper.Debug("Trying to swift res the healer.");
+                            // check if there is tank that's dead too.
+                            if (deadAllies.Any(deadTanks => deadTanks.IsTank()))
+                            {
+                                if (deadAllies.Any(deadHealer => deadHealer.IsHealer()))
+                                {
+                                    LogHelper.Debug("Trying to swift res the healer.");
+                                    await CastEgeiroToTarget(deadAlly);
+                                    return null;
+                                }
+                                LogHelper.Debug("Trying to swift res the tank.");
+                                await CastEgeiroToTarget(deadAlly);
+                                return null;
+                            }
+                            LogHelper.Debug("Trying to swift res the dps.");
                             await CastEgeiroToTarget(deadAlly);
-                            break;
+                            return null;
                         }
                         
                         if (deadAlly.IsTank())
                         {
+                            // check if there is healers that are dead too.
+                            if (deadAllies.Any(deadHealer => deadHealer.IsHealer()))
+                            {
+                                LogHelper.Debug("Trying to swift res the healer.");
+                                await CastEgeiroToTarget(deadAlly);
+                                return null;
+                            }
                             LogHelper.Debug("Trying to swift res the tank.");
                             await CastEgeiroToTarget(deadAlly);
-                            break;
+                            return null;
                         }
-                        LogHelper.Debug("Trying to swift res the dps.");
+
+                        if (!deadAlly.IsHealer()) continue;
+                        LogHelper.Debug("Trying to swift res the healer.");
                         await CastEgeiroToTarget(deadAlly);
-                        break;
+                        return null;
                     }
                     return null;
                 // Tanks>Healer>DPS
@@ -406,29 +428,44 @@ namespace AEAssist.AI.Sage
                     LogHelper.Debug("Tanks>Healer>DPS-RESSING");
                     foreach (var deadAlly in deadAllies)
                     {
-                        // check if the player already ressed.
-                        LogHelper.Debug("checking if the player already rezzed if so skipping.");
-                        if (deadAlly.HasAura(AurasDefine.Raise)) continue;
-                        
-                        // check if the distance from the player is more than 30
-                        if (deadAlly.Distance(Core.Me) > 40) continue;
-                        
-                        if (deadAlly.IsTank())
+                        if (deadAlly.IsDps())
                         {
-                            LogHelper.Debug("Trying to swift res the Tanks.");
+                            // check if there is healers that are dead too.
+                            if (deadAllies.Any(deadHealer => deadHealer.IsHealer()))
+                            {
+                                if (deadAllies.Any(deadTanks => deadTanks.IsTank()))
+                                {
+                                    LogHelper.Debug("Trying to swift res the tank.");
+                                    await CastEgeiroToTarget(deadAlly);
+                                    return null;
+                                }
+                                LogHelper.Debug("Trying to swift res the healer.");
+                                await CastEgeiroToTarget(deadAlly);
+                                return null;
+                            }
+                            LogHelper.Debug("Trying to swift res the dps.");
                             await CastEgeiroToTarget(deadAlly);
-                            break;
+                            return null;
                         }
                         
                         if (deadAlly.IsHealer())
                         {
+                            // check if there is healers that are dead too.
+                            if (deadAllies.Any(deadTanks => deadTanks.IsTank()))
+                            {
+                                LogHelper.Debug("Trying to swift res the tank.");
+                                await CastEgeiroToTarget(deadAlly);
+                                return null;
+                            }
                             LogHelper.Debug("Trying to swift res the healer.");
                             await CastEgeiroToTarget(deadAlly);
-                            break;
+                            return null;
                         }
-                        LogHelper.Debug("Trying to swift res the dps.");
+
+                        if (!deadAlly.IsTank()) continue;
+                        LogHelper.Debug("Trying to swift res the tank.");
                         await CastEgeiroToTarget(deadAlly);
-                        break;
+                        return null;
                     }
                     return null;
                 // DPS>Healer>Tanks
@@ -440,25 +477,46 @@ namespace AEAssist.AI.Sage
                         if (deadAlly.HasAura(AurasDefine.Raise)) continue;
                         
                         // check if the distance from the player is more than 30
-                        if (deadAlly.Distance(Core.Me) > 40) continue;
+                        if (deadAlly.Distance(Core.Me) >= 40) continue;
                         
-                        if (deadAlly.IsDps())
+                        if (deadAlly.IsTank())
                         {
-                            LogHelper.Debug("Trying to swift res the dps.");
-                            LogHelper.Debug("DPS>Healer>Tanks-RESSING");
+                            // check if there is dps that's dead too.
+                            if (deadAllies.Any(deadHealer => deadHealer.IsHealer()))
+                            {
+                                if (deadAllies.Any(deadDps => deadDps.IsDps()))
+                                {
+                                    LogHelper.Debug("Trying to swift res the dps.");
+                                    await CastEgeiroToTarget(deadAlly);
+                                    return null;
+                                }
+                                LogHelper.Debug("Trying to swift res the healer.");
+                                await CastEgeiroToTarget(deadAlly);
+                                return null;
+                            }
+                            LogHelper.Debug("Trying to swift res the tanks.");
                             await CastEgeiroToTarget(deadAlly);
-                            break;
+                            return null;
                         }
                         
                         if (deadAlly.IsHealer())
                         {
+                            // check if there is dps that are dead too.
+                            if (deadAllies.Any(deadDps => deadDps.IsDps()))
+                            {
+                                LogHelper.Debug("Trying to swift res the DPS.");
+                                await CastEgeiroToTarget(deadAlly);
+                                return null;
+                            }
                             LogHelper.Debug("Trying to swift res the healer.");
                             await CastEgeiroToTarget(deadAlly);
-                            break;
+                            return null;
                         }
-                        LogHelper.Debug("Trying to swift res the Tanks.");
+
+                        if (!deadAlly.IsDps()) continue;
+                        LogHelper.Debug("Trying to swift res the DPS.");
                         await CastEgeiroToTarget(deadAlly);
-                        break;
+                        return null;
                     }
                     return null;
             }
