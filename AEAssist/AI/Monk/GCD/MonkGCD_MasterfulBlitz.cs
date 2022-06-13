@@ -1,9 +1,11 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Helpers;
+using ff14bot.Managers;
 using ff14bot.Objects;
 
 namespace AEAssist.AI.Monk.GCD
@@ -16,13 +18,50 @@ namespace AEAssist.AI.Monk.GCD
         //Tornado Kick 斗魂旋风脚 Action Id:3543 真必杀
         public int Check(SpellEntity lastSpell)
         {
-            return 0;
+            if (!SpellsDefine.ElixirField.IsUnlock())
+            {
+                return -10;
+            }
+            if (ActionResourceManager.Monk.BlitzTimer != TimeSpan.Zero || 
+                !ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.None))
+            {
+                return 0;
+            }
+            return -4;
         }
 
+        private SpellEntity GetMasterfulBlitz()
+        {
+            //真必杀
+            if (ActionResourceManager.Monk.ActiveNadi == ActionResourceManager.Monk.Nadi.Both)
+            {
+                //todo add another spell
+                return SpellsDefine.TornadoKick.GetSpellEntity();
+            }
+            //阴必杀
+            
+            if (ActionResourceManager.Monk.MastersGauge.Distinct().ToArray().Length == 1)
+            {
+                return SpellsDefine.ElixirField.GetSpellEntity();
+            }
+            //阳必杀
+            if (ActionResourceManager.Monk.MastersGauge.Distinct().ToArray().Length == 3)
+            {
+                return SpellsDefine.FlintStrike.GetSpellEntity();
+            }
+
+            return SpellsDefine.CelestialRevolution.GetSpellEntity();
+        }
+        
         public async Task<SpellEntity> Run()
         {
-            var target = Core.Me.CurrentTarget as Character;
-            return await MonkSpellHelper.BaseGCDCombo(target);
+            var spell = GetMasterfulBlitz();
+            if (spell == null)
+                return null;
+            var ret = await spell.DoGCD();
+            if (ret)
+                return spell;
+            return null;
         }
     }
 }

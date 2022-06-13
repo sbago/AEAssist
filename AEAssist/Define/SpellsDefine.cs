@@ -56,7 +56,18 @@ namespace AEAssist.Define
             Windmill,
             RisingWindmill,
             Bladeshower,
-            Bloodshower
+            Bloodshower,
+            
+            //Monk
+            ElixirField,
+            FlintStrike,
+            RiddleofFire,
+            Brotherhood,
+            PerfectBalance,
+            RiddleofWind,
+            
+            
+            
             
             
             

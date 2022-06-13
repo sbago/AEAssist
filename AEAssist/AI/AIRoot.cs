@@ -237,8 +237,8 @@ namespace AEAssist.AI
             var coolDown = GetGCDDuration();
 
             var canUseGCD = CanUseGCD();
-
-            LogHelper.Debug($"CanUseGCD: {canUseGCD} coolDown: {coolDown} delta {delta}");
+            // todo revert
+            // LogHelper.Debug($"CanUseGCD: {canUseGCD} coolDown: {coolDown} delta {delta}");
 
             if (!canUseGCD && !Core.Me.IsCasting && battleData.maxAbilityTimes > 0 && coolDown - delta >= coolDown * 0.33f)
                 canUseAbility = true;

@@ -12,6 +12,7 @@ namespace AEAssist.AI.Monk
     {
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>()
         {
+            new MonkGCD_MasterfulBlitz(),
             new MonkGCD_PerfectBalanceGCD(),
             new MonkGCD_BaseGCD(),
         };
@@ -20,6 +21,7 @@ namespace AEAssist.AI.Monk
         {
             new MonkAbility_RiddleOfFire(),
             new MonkAbility_Brotherhood(),
+            new MonkAbility_PerfectBalance(),
             new MonkAbility_RiddleOfWind(),
             new MonkAbility_ChakraAttacks(),
         };

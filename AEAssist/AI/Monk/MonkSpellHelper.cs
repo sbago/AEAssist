@@ -5,6 +5,7 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using Buddy.Coroutines;
 using ff14bot;
+using ff14bot.Helpers;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
@@ -124,7 +125,11 @@ namespace AEAssist.AI.Monk
         {
             if (InCoeurlForm())
             {
-                if (MonkSpellHelper.UsingDot())
+                LogHelper.Error("Using Dot");
+                LogHelper.Error(UsingDot().ToString());
+                LogHelper.Error("DOt timer");
+                LogHelper.Error(target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 5000).ToString());
+                if (UsingDot() == false)
                 {
                     //Snap Punch 崩拳
                     if (await SpellsDefine.SnapPunch.DoGCD())
@@ -194,10 +199,13 @@ namespace AEAssist.AI.Monk
 
         public static bool UsingDot()
         {
+            if (!AEAssist.DataBinding.Instance.UseDot)
+            {
+                return false;
+            }
             var target = Core.Me.CurrentTarget as Character;
-            if (TTKHelper.IsTargetTTK(target, 12, false) ||
-                DotBlacklistHelper.IsBlackList(target) ||
-                !AEAssist.DataBinding.Instance.UseDot)
+            if (TTKHelper.IsTargetTTK(target) ||
+                DotBlacklistHelper.IsBlackList(target))
             {
                 return false;
             }
@@ -227,9 +235,10 @@ namespace AEAssist.AI.Monk
 
         private static async Task<SpellEntity> UseSolarNadiCombo(Character target)
         {
+            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
             //dot < 9s go dot
             //during rof
-            if (!ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.Coeurl) &&
+            if (!ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.OpoOpo) &&
                 (Core.Me.HasMyAura(AurasDefine.RiddleOfFire) || SpellsDefine.RiddleofFire.RecentlyUsed()))
             {
                 if (UsingDot() && !target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 9000))
@@ -246,7 +255,7 @@ namespace AEAssist.AI.Monk
                 }
             }
             
-            if (!ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.OpoOpo))
+            if (!ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.Raptor))
             {
                 if (Core.Me.HasMyAura(AurasDefine.LeadenFist))
                 {
@@ -263,10 +272,10 @@ namespace AEAssist.AI.Monk
                     return SpellsDefine.DragonKick.GetSpellEntity();
                 }
             }
-            
+
             //buff < 7s go buff
 
-            if (!ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.Raptor))
+            if (!ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.Coeurl))
             {
                 if (await SpellsDefine.TwinSnakes.DoGCD())
                 {
@@ -300,7 +309,8 @@ namespace AEAssist.AI.Monk
                 }
                 //什么都没有 
                 //todo 如果时间都够 怎么接下来打阳
-                else if (ActionResourceManager.Monk.ActiveNadi == ActionResourceManager.Monk.Nadi.None)
+                else if (ActionResourceManager.Monk.ActiveNadi == ActionResourceManager.Monk.Nadi.None &&
+                         AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo == MonkNadiCombo.None)
                 {
                     //如果双buff时间都够 打阴
                     if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 7000) &&

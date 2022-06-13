@@ -13,12 +13,13 @@ namespace AEAssist.AI.Monk.GCD
     {
         public int Check(SpellEntity lastSpell)
         {
+            if (ActionResourceManager.Monk.BlitzTimer != TimeSpan.Zero)
+            {
+                AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.None;
+                return -2;
+            }
             if (SpellsDefine.PerfectBalance.RecentlyUsed() || Core.Me.HasAura(AurasDefine.PerfectBalance))
             {
-                if (ActionResourceManager.Monk.BlitzTimer != TimeSpan.Zero)
-                {
-                    return -2;
-                }
                 return 1;
             }
 
