@@ -531,6 +531,9 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="View\Overlay\MCHOverlayWindow.xaml.cs">
       <DependentUpon>MCHOverlayWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Overlay\MonkOverlayWindow.xaml.cs">
+      <DependentUpon>MonkOverlayWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Overlay\ReaperOverlay.xaml.cs">
       <DependentUpon>ReaperOverlay.xaml</DependentUpon>
     </Compile>
@@ -545,6 +548,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BlackMageOverlay2.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_DancerOverlay.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_MCHOverlay.cs" />
+    <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_MonkOverlay.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_ReaperOverlay.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_SageOverlay.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_SamuraiOverlay.cs" />
@@ -577,12 +581,19 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="Setting\Setting\BardSettings.cs" />
     <Compile Include="Setting\Setting\GeneralSettings.cs" />
     <Compile Include="Setting\Setting\VersionSetting.cs" />
+    <Resource Include="Resources\Spells\Monk\Anatman.png" />
+    <Resource Include="Resources\Spells\Monk\FormShift.png" />
+    <Resource Include="Resources\Spells\Monk\Mantra.png" />
+    <Resource Include="Resources\Spells\Monk\PerfectBalance.png" />
+    <Resource Include="Resources\Spells\Monk\RiddleofEarth.png" />
+    <Resource Include="Resources\Spells\Monk\Six-sidedStar.png" />
     <Resource Include="Resources\Images\General\ArrowDownHighlighted.png" />
     <Content Include="Resources\Lan_zh-CN.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Page Include="View\DancerSettingView.xaml" />
     <Page Include="View\Overlay\CombatMessageOverlay.xaml" />
+    <Page Include="View\Overlay\MonkOverlayWindow.xaml" />
     <Page Include="View\Style\MeleeBox.xaml" />
     <Resource Include="Resources\Spells\Dancer\Flourish.png" />
     <Resource Include="Resources\Spells\Dancer\SaberDance.png" />

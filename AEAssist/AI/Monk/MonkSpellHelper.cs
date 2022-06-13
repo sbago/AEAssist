@@ -13,6 +13,23 @@ namespace AEAssist.AI.Monk
 {
     public class MonkSpellHelper
     {
+        public static void SetPostion()
+        {
+            var target = Core.Me.CurrentTarget as Character;
+            if (UsingDot())
+            {
+                if (AIRoot.GetBattleData<BattleData>().lastGCDSpell == SpellsDefine.SnapPunch.GetSpellEntity())
+                {
+                    if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 10000) == false)
+                    {
+                        MeleePosition.Intance.RequiredPosition = MeleePosition.Position.Back;
+                        return;
+                    }
+                }
+            }
+            MeleePosition.Intance.RequiredPosition = MeleePosition.Position.Side;
+            return;
+        }
         public static bool InCoeurlForm()
         {
             if (Core.Me.HasMyAura(AurasDefine.CoeurlForm))
@@ -30,7 +47,7 @@ namespace AEAssist.AI.Monk
             return false;
         }
 
-        public static bool InOpoOpeForm()
+        public static bool InOpoOpoForm()
         {
             if (Core.Me.HasMyAura(AurasDefine.OpoOpoForm))
             {
@@ -125,10 +142,6 @@ namespace AEAssist.AI.Monk
         {
             if (InCoeurlForm())
             {
-                LogHelper.Error("Using Dot");
-                LogHelper.Error(UsingDot().ToString());
-                LogHelper.Error("DOt timer");
-                LogHelper.Error(target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 5000).ToString());
                 if (UsingDot() == false)
                 {
                     //Snap Punch 崩拳

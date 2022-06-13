@@ -29,6 +29,7 @@ namespace AEAssist.Helper
             if (time > 0)
                 targetShowTime = TimeHelper.Now() + time;
             DebugCenter.Intance.ShowMsg(msg,check);
+            MeleePosition.Intance.ShowMsg();
         }
 
         public static void ShowMessageBox(string msg)

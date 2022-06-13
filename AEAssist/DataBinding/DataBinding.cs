@@ -60,6 +60,7 @@ namespace AEAssist
         public MonkSettings MonkSettings => SettingMgr.GetSetting<MonkSettings>();
 
         public DebugCenter DebugCenter => DebugCenter.Intance;
+        public MeleePosition MeleePosition => MeleePosition.Intance;
 
         public HotkeySetting HotkeySetting => SettingMgr.GetSetting<HotkeySetting>();
         public AEAssist.View.Hotkey.HotkeyManager  HotkeyManager => AEAssist.View.Hotkey.HotkeyManager.Instance;

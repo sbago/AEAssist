@@ -524,6 +524,7 @@ namespace AEAssist.Define
         public const uint TrueStrike = 54;
 
         public const uint SnapPunch = 56;
+        public const uint SixSidedStar = 16476;
 
         //public const uint FistsOfEarth = 60;
         public const uint TwinSnakes = 61;
