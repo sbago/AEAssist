@@ -15,20 +15,33 @@ namespace AEAssist.AI.Monk
     {
         public static void SetPostion()
         {
+            if (!Core.Me.HasTarget) return;
             var target = Core.Me.CurrentTarget as Character;
             if (UsingDot())
             {
-                if (AIRoot.GetBattleData<BattleData>().lastGCDSpell == SpellsDefine.SnapPunch.GetSpellEntity())
+                if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 5))
                 {
-                    if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 10000) == false)
-                    {
-                        MeleePosition.Intance.RequiredPosition = MeleePosition.Position.Back;
-                        return;
-                    }
+                    MeleePosition.Intance.RequiredPosition = MeleePosition.Position.None;
+                    MeleePosition.Intance.ShowMsg();
+                    return;
+                }
+                if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 6000) == false)
+                {
+                    MeleePosition.Intance.RequiredPosition = MeleePosition.Position.Back;
+                    MeleePosition.Intance.ShowMsg();
+                    return;
                 }
             }
 
+            if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+            {
+                MeleePosition.Intance.RequiredPosition = MeleePosition.Position.None;
+                MeleePosition.Intance.ShowMsg();
+                return;
+            }
+
             MeleePosition.Intance.RequiredPosition = MeleePosition.Position.Side;
+            MeleePosition.Intance.ShowMsg();
             return;
         }
 
@@ -149,7 +162,7 @@ namespace AEAssist.AI.Monk
 
         public static async Task<SpellEntity> DoOpoOpoGCDS(Character target)
         {
-            if (TargetHelper.CheckNeedUseAOE(target, 5, 5, 3))
+            if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
             {
                 if (SpellsDefine.ShadowOfTheDestroyer.IsUnlock())
                 {
@@ -191,7 +204,7 @@ namespace AEAssist.AI.Monk
         {
             if (InRaptorForm())
             {
-                if (TargetHelper.CheckNeedUseAOE(target, 5, 5, 3))
+                if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
                 {
                     if (SpellsDefine.FourPointFury.IsUnlock())
                     {
@@ -249,7 +262,7 @@ namespace AEAssist.AI.Monk
         {
             if (InCoeurlForm())
             {
-                if (TargetHelper.CheckNeedUseAOE(target, 5, 5, 3))
+                if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
                 {
                     if (SpellsDefine.Rockbreaker.IsUnlock())
                     {
@@ -285,6 +298,7 @@ namespace AEAssist.AI.Monk
                     return SpellsDefine.Demolish.GetSpellEntity();
                 }
             }
+
             return null;
         }
 
@@ -403,44 +417,14 @@ namespace AEAssist.AI.Monk
                 {
                     if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 2000))
                     {
-                        if (Core.Me.HasMyAura(AurasDefine.LeadenFist))
-                        {
-                            //Bootshine 连击
-                            if (await SpellsDefine.Bootshine.DoGCD())
-                            {
-                                LogHelper.Info("PerfectBalance - combo 1 - do it because ROF + Buff");
-                                return SpellsDefine.Bootshine.GetSpellEntity();
-                            }
-                        }
-
-                        //Dragon Kick 双龙脚
-                        if (await SpellsDefine.DragonKick.DoGCD())
-                        {
-                            LogHelper.Info("PerfectBalance - combo 1 - do it because ROF + Buff");
-                            return SpellsDefine.DragonKick.GetSpellEntity();
-                        }
+                        return await PerfectBalanceRaptor(target);
                     }
                 }
                 // if we not have ROF, other two is done, we have to use it
                 else if (ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.Coeurl) &&
                          ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.OpoOpo))
                 {
-                    if (Core.Me.HasMyAura(AurasDefine.LeadenFist))
-                    {
-                        //Bootshine 连击
-                        if (await SpellsDefine.Bootshine.DoGCD())
-                        {
-                            LogHelper.Info("PerfectBalance - combo 1 - do it because other two is done");
-                            return SpellsDefine.Bootshine.GetSpellEntity();
-                        }
-                    }
-
-                    //Dragon Kick 双龙脚
-                    if (await SpellsDefine.DragonKick.DoGCD())
-                    {
-                        LogHelper.Info("PerfectBalance - combo 1 - do it because other two is done");
-                        return SpellsDefine.DragonKick.GetSpellEntity();
-                    }
+                    return await PerfectBalanceRaptor(target);
                 }
             }
 
@@ -450,33 +434,24 @@ namespace AEAssist.AI.Monk
                 // if we need it maintain the buff
                 if (!Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 3000))
                 {
-                    if (await SpellsDefine.TwinSnakes.DoGCD())
-                    {
-                        LogHelper.Info("PerfectBalance - combo 2 - do it to refresh buff");
-                        return SpellsDefine.TwinSnakes.GetSpellEntity();
-                    }
+                    LogHelper.Info("PerfectBalance - combo 2 - do it to refresh buff");
+                    return await PerfectBalanceCoeurl(target);
                 }
 
                 // if we not having RoF, it goes first, because high dmg goes to later
                 if (!Core.Me.HasMyAura(AurasDefine.RiddleOfFire) && !SpellsDefine.RiddleofFire.RecentlyUsed())
                 {
-                    if (await SpellsDefine.TwinSnakes.DoGCD())
-                    {
-                        LogHelper.Info(
-                            "PerfectBalance - combo 2 - do it because we don't have ROF, low dmg combo 2 go first");
-                        return SpellsDefine.TwinSnakes.GetSpellEntity();
-                    }
+                    LogHelper.Info(
+                        "PerfectBalance - combo 2 - do it because we don't have ROF, low dmg combo 2 go first");
+                    return await PerfectBalanceCoeurl(target);
                 }
 
                 // if we have other two, we have to use this
                 if (ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.Raptor) &&
                     ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.OpoOpo))
                 {
-                    if (await SpellsDefine.TwinSnakes.DoGCD())
-                    {
-                        LogHelper.Info("PerfectBalance - combo 2 - do it because other two is done");
-                        return SpellsDefine.TwinSnakes.GetSpellEntity();
-                    }
+                    LogHelper.Info("PerfectBalance - combo 2 - do it because other two is done");
+                    return await PerfectBalanceCoeurl(target);
                 }
             }
 
@@ -495,6 +470,14 @@ namespace AEAssist.AI.Monk
                     }
                     else
                     {
+                        if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+                        {
+                            if (await SpellsDefine.Rockbreaker.DoGCD())
+                            {
+                                return SpellsDefine.Rockbreaker.GetSpellEntity();
+                            }
+                        }
+
                         if (await SpellsDefine.SnapPunch.DoGCD())
                         {
                             LogHelper.Info("PerfectBalance - combo 3 - do it because we don't need to refresh dot");
@@ -506,6 +489,14 @@ namespace AEAssist.AI.Monk
                 if (ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.Coeurl) &&
                     !Core.Me.HasMyAura(AurasDefine.RiddleOfFire))
                 {
+                    if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+                    {
+                        if (await SpellsDefine.Rockbreaker.DoGCD())
+                        {
+                            return SpellsDefine.Rockbreaker.GetSpellEntity();
+                        }
+                    }
+
                     if (await SpellsDefine.SnapPunch.DoGCD())
                     {
                         LogHelper.Info(
@@ -515,6 +506,58 @@ namespace AEAssist.AI.Monk
                 }
             }
 
+
+            return null;
+        }
+
+        private static async Task<SpellEntity> PerfectBalanceOpoOpo(Character target)
+        {
+            return null;
+        }
+
+        private static async Task<SpellEntity> PerfectBalanceCoeurl(Character target)
+        {
+            if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+            {
+                if (await SpellsDefine.FourPointFury.DoGCD())
+                {
+                    return SpellsDefine.FourPointFury.GetSpellEntity();
+                }
+            }
+
+            if (await SpellsDefine.TwinSnakes.DoGCD())
+            {
+                LogHelper.Info("PerfectBalance - combo 2 - do it to refresh buff");
+                return SpellsDefine.TwinSnakes.GetSpellEntity();
+            }
+
+            return null;
+        }
+
+        private static async Task<SpellEntity> PerfectBalanceRaptor(Character target)
+        {
+            if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+            {
+                if (await SpellsDefine.ShadowOfTheDestroyer.DoGCD())
+                {
+                    return SpellsDefine.ShadowOfTheDestroyer.GetSpellEntity();
+                }
+            }
+
+            if (Core.Me.HasMyAura(AurasDefine.LeadenFist))
+            {
+                //Bootshine 连击
+                if (await SpellsDefine.Bootshine.DoGCD())
+                {
+                    return SpellsDefine.Bootshine.GetSpellEntity();
+                }
+            }
+
+            //Dragon Kick 双龙脚
+            if (await SpellsDefine.DragonKick.DoGCD())
+            {
+                return SpellsDefine.DragonKick.GetSpellEntity();
+            }
 
             return null;
         }
@@ -609,14 +652,10 @@ namespace AEAssist.AI.Monk
             return false;
         }
 
-        public static bool MasterfulBiltzReady()
+        public void test()
         {
-            if (ActionResourceManager.Monk.BlitzTimer > TimeSpan.Zero)
-            {
-                return true;
-            }
-
-            return false;
+            var distance2D = Core.Me.CurrentTarget.Distance2D();
+            var ObjectRaduis = Core.Me.CurrentTarget.CombatReach;
         }
     }
 }

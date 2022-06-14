@@ -52,7 +52,7 @@ namespace AEAssist.AI.Monk.Ability
                 return singeTarget;
             }
 
-            if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 10, 5, targetRequired))
+            if (TargetHelper.CheckNeedUseAOETest(Core.Me.CurrentTarget, 10, 5, targetRequired))
             {
                 return multipleTargets;
             }

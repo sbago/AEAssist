@@ -18,33 +18,19 @@ namespace AEAssist
         }
         public Position CurrentPosition { get; set; } = Position.None;
         public Position RequiredPosition { get; set; } = Position.None;
-        public String CurrentPositionString { get; set; } = "";
         public String RequiredPositionString { get; set; } = "";
         public bool IsPositionCorrect { get; set; } = true;
-        public String IsPositionCorrectString { get; set; } = "";
-
+        public System.Windows.Media.Brush IsPositionCorrectColor { get; set; } = System.Windows.Media.Brushes.DarkSeaGreen;
+        
         public void SetString()
         {
-            switch (CurrentPosition)
-            {
-                case Position.Back:
-                    CurrentPositionString = "⬆️";
-                    break;
-                case Position.Side:
-                    CurrentPositionString = "➡️⬅️";
-                    break;
-                default:
-                    CurrentPositionString = "◎";
-                    break;
-            }
-
             switch (RequiredPosition)
             {
                 case Position.Back:
-                    RequiredPositionString = "⬆️";
+                    RequiredPositionString = "▲▲▲";
                     break;
                 case Position.Side:
-                    RequiredPositionString = "➡️⬅️";
+                    RequiredPositionString = "▶◎◀";
                     break;
                 default:
                     RequiredPositionString = "◎";
@@ -53,10 +39,10 @@ namespace AEAssist
             switch (IsPositionCorrect)
             {
                 case false:
-                    IsPositionCorrectString = "❌";
+                    IsPositionCorrectColor = System.Windows.Media.Brushes.DarkRed;
                     break;
                 default:
-                    IsPositionCorrectString = "✅";
+                    IsPositionCorrectColor = System.Windows.Media.Brushes.Green;
                     break;
             }
         }

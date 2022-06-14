@@ -35,7 +35,7 @@
                 <SolidColorBrush Color="#101011" Opacity="0.6" />
             </Border.Background>
             <StackPanel>
-
+                <local:MeleeOverlay HorizontalAlignment="Center" />
 
                 <WrapPanel Width="250" Orientation="Horizontal" HorizontalAlignment="Center"
                            VerticalAlignment="Top">
@@ -46,19 +46,7 @@
                             Content="{Binding HotkeySetting.StopBtnName}"
                             Style="{StaticResource CheckBoxOverlayCustomToggle}"
                             IsChecked="{Binding Stop,Mode=TwoWay}" />
-
-
-                        <CheckBox HorizontalContentAlignment="Center"
-                                  Content="{Binding HotkeySetting.CloseBuffBtnName}"
-                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                  IsChecked="{Binding Burst,Mode=TwoWay}" />
-
-                        <CheckBox HorizontalContentAlignment="Center"
-                                  Content="AOE"
-                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                  IsChecked="{Binding UseAOE,Mode=TwoWay}" />
-
-
+                        
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="{Binding Language.Toggle_Potion}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
@@ -68,10 +56,35 @@
                                   Content="{Binding Language.Toggle_ActiveAttack}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
                                   IsChecked="{Binding Pull,Mode=TwoWay}" />
+                        
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="{Binding HotkeySetting.CloseBuffBtnName}"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding Burst,Mode=TwoWay}" />
+
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="AOE"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding UseAOE,Mode=TwoWay}" />
+                        
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="Dot"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding UseDot,Mode=TwoWay}" />
+                        
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="Lazy"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding FinalBurst,Mode=TwoWay}" />
+                        
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="{Binding Language.Toggle_FinalBurst}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
                                   IsChecked="{Binding FinalBurst,Mode=TwoWay}" />
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="{Binding Language.Toggle_UseTrueNorthWhenMissActionDir}"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding UseTrueNorth,Mode=TwoWay}" />
                     </WrapPanel>
                     <WrapPanel Margin="10">
 
@@ -149,7 +162,6 @@
                         <Image Source="../../Resources/Spells/Sprint.png" Stretch="Uniform" />
                     </Button>
                 </StackPanel>
-                <local:MeleeOverlay HorizontalAlignment="Center" />
                 <local:CommonOverlay HorizontalAlignment="Center" />
             </StackPanel>
         </Border>

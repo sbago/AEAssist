@@ -264,6 +264,8 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_Hypercharge.cs" />
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UnderHyperChargetGCD.cs" />
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UseBattery.cs" />
+    <Compile Include="AI\Monk\Ability\MonkAbility_SetPos.cs" />
+    <Compile Include="AI\Monk\Ability\MonkAbility_UsePotion.cs" />
     <Compile Include="AI\Monk\Ability\MonkAbility_Brotherhood.cs" />
     <Compile Include="AI\Monk\Ability\MonkAbility_ChakraAttacks.cs" />
     <Compile Include="AI\Monk\Ability\MonkAbility_PerfectBalance.cs" />

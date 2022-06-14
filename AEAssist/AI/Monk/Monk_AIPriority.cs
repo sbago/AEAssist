@@ -25,6 +25,8 @@ namespace AEAssist.AI.Monk
             new MonkAbility_Brotherhood(),
             new MonkAbility_ChakraAttacks(),
             new MonkAbility_RiddleOfWind(),
+            new MonkAbility_UsePotion(),
+            new MonkAbility_SetPosition(),
         };
 
         public async Task<bool> UsePotion()

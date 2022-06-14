@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 using AEAssist;
+using AEAssist.AI.Monk;
 using ff14bot;
 
 namespace AEAssist.Helper
@@ -29,7 +30,7 @@ namespace AEAssist.Helper
             if (time > 0)
                 targetShowTime = TimeHelper.Now() + time;
             DebugCenter.Intance.ShowMsg(msg,check);
-            MeleePosition.Intance.ShowMsg();
+            MonkSpellHelper.SetPostion();
         }
 
         public static void ShowMessageBox(string msg)

@@ -48,7 +48,7 @@ namespace AEAssist.AI.Dancer.GCD
 
             if (Core.Me.HasAura(AurasDefine.FlourshingFlow))
             {
-                if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 5, 5, 2))
+                if (TargetHelper.CheckNeedUseAOETest(Core.Me.CurrentTarget, 5, 5, 2))
                 {
                     spell = SpellsDefine.Bloodshower.GetSpellEntity();
                 }
@@ -59,7 +59,7 @@ namespace AEAssist.AI.Dancer.GCD
             }
             else
             {
-                if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 5, 5, 2))
+                if (TargetHelper.CheckNeedUseAOETest(Core.Me.CurrentTarget, 5, 5, 2))
                 {
                     spell = SpellsDefine.RisingWindmill.GetSpellEntity();
                 }

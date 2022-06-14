@@ -17,7 +17,6 @@ namespace AEAssist.AI.Monk.GCD
 
         public async Task<SpellEntity> Run()
         {
-            MonkSpellHelper.SetPostion();
             var target = Core.Me.CurrentTarget as Character;
             return await MonkSpellHelper.BaseGCDCombo(target);
         }
