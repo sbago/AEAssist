@@ -8,7 +8,7 @@ using ff14bot.Managers;
 
 namespace AEAssist.AI.Dancer.Ability
 {
-    public class DancerAbility_FanDance : IAIHandler
+    public class DancerAbility_HandleFanDanceBeforeFlourish : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {
@@ -16,8 +16,7 @@ namespace AEAssist.AI.Dancer.Ability
             {
                 return -10;
             }
-            LogHelper.Error($"Current feathers -- {ActionResourceManager.Dancer.FourFoldFeathers.ToString()}");
-            
+
             if (ActionResourceManager.Dancer.FourFoldFeathers < 1)
             {
                 return -1;
@@ -35,23 +34,17 @@ namespace AEAssist.AI.Dancer.Ability
 
             if (SpellsDefine.Flourish.RecentlyUsed())
             {
-                return -4;
+                return -2;
             }
 
-            if (AEAssist.DataBinding.Instance.FinalBurst) return 2;
-
-            if (Core.Me.HasMyAura(AurasDefine.Devilment))
+            if (SpellsDefine.Flourish.CoolDownInGCDs(2))
             {
-                return 1;
-            }
-
-            if (ActionResourceManager.Dancer.FourFoldFeathers > 3)
-            {
-                if (Core.Me.HasMyAura(AurasDefine.FlourishingSymmetry) || Core.Me.HasMyAura(AurasDefine.FlourshingFlow))
+                if (ActionResourceManager.Dancer.FourFoldFeathers > 3)
                 {
-                    return 0;
+                    return 1;
                 }
             }
+            
 
             return -4;
         }

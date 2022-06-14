@@ -8,7 +8,7 @@ using ff14bot.Managers;
 
 namespace AEAssist.AI.Dancer.GCD
 {
-    public class DancerGCD_SaberDance : IAIHandler
+    public class DancerGCD_SaberDanceBurstWindow : IAIHandler
     {
         public int Check(SpellEntity lastGCD)
         {
@@ -25,22 +25,10 @@ namespace AEAssist.AI.Dancer.GCD
             {
                 return -1;
             }
-            if (AEAssist.DataBinding.Instance.FinalBurst) return 2;
-            
-            if (ActionResourceManager.Dancer.Esprit >= 85)
-            {
-                return 1;
-            }
 
-            if (SpellsDefine.Flourish.CoolDownInGCDs(1) && (!Core.Me.HasMyAura(AurasDefine.FlourshingFlow) &&
-                                                            !Core.Me.HasMyAura(AurasDefine.FlourishingSymmetry)))
+            if (Core.Me.HasAura(AurasDefine.Devilment))
             {
-                return 1;
-            }
-
-            if (SpellsDefine.TechnicalStep.CoolDownInGCDs(1) && !SpellsDefine.TechnicalStep.IsReady())
-            {
-                return 2;
+                return 0;
             }
             return -4;
         }

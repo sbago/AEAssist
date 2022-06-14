@@ -238,6 +238,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Dancer\Ability\DancerAbility_FanDance3.cs" />
     <Compile Include="AI\Dancer\Ability\DancerAbility_FanDance4.cs" />
     <Compile Include="AI\Dancer\Ability\DancerAbility_Flourish.cs" />
+    <Compile Include="AI\Dancer\Ability\DancerAbility_HandleFanDanceBeforeFlourish.cs" />
     <Compile Include="AI\Dancer\Ability\DancerAbility_UsePotion.cs" />
     <Compile Include="AI\Dancer\DancerRotation.cs" />
     <Compile Include="AI\AISpellQueueMgr.cs" />
@@ -250,6 +251,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Dancer\GCD\DancerGCD_Procs.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_ProcsSave.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_SaberDance.cs" />
+    <Compile Include="AI\Dancer\GCD\DancerGCD_SaberDanceBurstWindow.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_StandardStep.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_StarfallDance.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_TechnicalStep.cs" />

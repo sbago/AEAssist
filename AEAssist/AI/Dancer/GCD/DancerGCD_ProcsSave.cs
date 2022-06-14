@@ -21,10 +21,10 @@ namespace AEAssist.AI.Dancer.GCD
                 return -1;
             }
 
-            if (ActionResourceManager.Dancer.FourFoldFeathers == 4)
-            {
-                return -2;
-            }
+            // if (ActionResourceManager.Dancer.FourFoldFeathers == 4)
+            // {
+            //     return -2;
+            // }
             // standered stance 4500
             // if tech is coming soon
             // if combo will drop after tech 
