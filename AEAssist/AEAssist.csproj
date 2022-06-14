@@ -268,6 +268,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Monk\Ability\MonkAbility_RiddleOfWind.cs" />
     <Compile Include="AI\Monk\Ability\MonkAbility_RiddleOfFire.cs" />
     <Compile Include="AI\Monk\GCD\MonkGCD_BaseGCD.cs" />
+    <Compile Include="AI\Monk\GCD\MonkGCD_FormlessFistGCD.cs" />
     <Compile Include="AI\Monk\GCD\MonkGCD_MasterfulBlitz.cs" />
     <Compile Include="AI\Monk\GCD\MonkGCD_PerfectBalanceGCD.cs" />
     <Compile Include="AI\Monk\MonkBattleData.cs" />
@@ -275,6 +276,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Monk\MonkSpellHelper.cs" />
     <Compile Include="AI\Monk\Monk_AIPriority.cs" />
     <Compile Include="AI\Monk\MonkCombatMessageStrategy.cs" />
+    <Compile Include="AI\Monk\Opener_MNK_90_Lunar_Solar.cs" />
     <Compile Include="AI\Ninja\Ability\NinjaAbility_Assassinate.cs" />
     <Compile Include="AI\Ninja\Ability\NinjaAbility_Bhavacakra.cs" />
     <Compile Include="AI\Ninja\Ability\NinjaAbility_Bunshin.cs" />

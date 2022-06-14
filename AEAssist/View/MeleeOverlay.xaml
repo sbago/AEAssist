@@ -23,19 +23,19 @@
         <Binding Source="{x:Static dataBinding:DataBinding.Instance}" />
     </UserControl.DataContext>
     <StackPanel Margin="5">
-        <WrapPanel Width="250" Orientation="Horizontal" HorizontalAlignment="Center"
+        <WrapPanel Width="200" Orientation="Horizontal" HorizontalAlignment="Center"
                    VerticalAlignment="Top">
             <Label Content="Me -->" Foreground="Aqua"></Label>
-            <Label Name="CurrentPositionLabel" Content="{Binding MeleePosition.CurrentPosition}" Foreground="Aqua"/>
+            <Label Name="CurrentPositionLabel" Content="{Binding MeleePosition.CurrentPositionString}" Foreground="Aqua"/>
             <Label Name="IsPositionCorrectLabel1" Content="{Binding MeleePosition.IsPositionCorrectString}"/>
             <Label Name="IsPositionCorrectLabel2" Content="{Binding MeleePosition.IsPositionCorrectString}"/>
             <Label Name="IsPositionCorrectLabel3" Content="{Binding MeleePosition.IsPositionCorrectString}"/>
         </WrapPanel>
         <StackPanel>
-            <WrapPanel Width="250" Orientation="Horizontal" HorizontalAlignment="Center"
+            <WrapPanel Width="200" Orientation="Horizontal" HorizontalAlignment="Center"
                        VerticalAlignment="Top">
                 <Label Content="------>" Foreground="Aqua"></Label>
-                <Label Name="RequiredPositionLabel" Content="{Binding MeleePosition.RequiredPosition}" Foreground="Aqua"/>
+                <Label Name="RequiredPositionLabel" Content="{Binding MeleePosition.RequiredPositionString}" Foreground="Aqua"/>
             </WrapPanel>
         </StackPanel>
     </StackPanel>

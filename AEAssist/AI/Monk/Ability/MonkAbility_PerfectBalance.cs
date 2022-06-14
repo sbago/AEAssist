@@ -27,88 +27,139 @@ namespace AEAssist.AI.Monk.Ability
             {
                 return -2;
             }
+
+            if (ActionResourceManager.Monk.BlitzTimer != TimeSpan.Zero)
+            {
+                return -5;
+            }
+
+            if (Core.Me.HasAura(AurasDefine.FormlessFist) || MonkSpellHelper.LastSpellWasNadi())
+            {
+                return -4;
+            }
+            
+            if (!MonkSpellHelper.InRaptorForm())
+            {
+                return -3;
+            }
+
+
+
             var target = Core.Me.CurrentTarget as Character;
 
             if (!SpellsDefine.ElixirField.IsUnlock())
             {
-                if (MonkSpellHelper.InRaptorForm())
+                // dmg buff
+                if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 9000))
                 {
-                    // dmg buff
-                    if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 7000))
+                    // using dot
+                    if (MonkSpellHelper.UsingDot())
                     {
-                        // using dot
-                        if (MonkSpellHelper.UsingDot())
+                        // dot timeleft safe
+                        if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 9000))
                         {
-                            // dot timeleft safe
-                            if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 9000))
-                            {
-                                return 1;
-                            }
-                        }
-                        // not using dot
-                        else
-                        {
+                            AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
                             return 1;
+                        }
+                    }
+                    // not using dot
+                    else
+                    {
+                        AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
+                        return 1;
+                    }
+                }
 
-                        }
-                    }
-                }
+                return -4;
             }
-            
-            //pre rof 
-            if (SpellsDefine.RiddleofFire.CoolDownInGCDs(2) && !Core.Me.HasAura(AurasDefine.RiddleOfFire))
+
+            //even window
+            if (Core.Me.HasAura(AurasDefine.Brotherhood) || SpellsDefine.Brotherhood.CoolDownInGCDs(10) ||
+                SpellsDefine.Brotherhood.RecentlyUsed())
             {
-                //even rof + bh
-                if (Core.Me.HasAura(AurasDefine.Brotherhood) || SpellsDefine.Brotherhood.CoolDownInGCDs(10) ||
-                    SpellsDefine.Brotherhood.RecentlyUsed())
+                //pre rof ROF+BH 1&3
+                if (SpellsDefine.RiddleofFire.CoolDownInGCDs(1) && !Core.Me.HasAura(AurasDefine.RiddleOfFire))
                 {
-                    if (MonkSpellHelper.InRaptorForm())
+                    if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 15000) &&
+                        Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 10000))
                     {
-                        if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 15000))
-                        {
-                            return 2;
-                        }
+                        AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
+                        return 3;
+                    }
+
+                    AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Solar;
+                    return 1;
+                }
+
+                //pre rof ROF+BH 2
+                if (SpellsDefine.RiddleofFire.CoolDownInGCDs(4) && !Core.Me.HasAura(AurasDefine.RiddleOfFire))
+                {
+                    if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 15000))
+                    {
+                        AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Solar;
+                        return 2;
                     }
                 }
-                //odd
-                // if (MonkSpellHelper.InRaptorForm())
-                // {
-                //     if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 7000) &&
-                //         target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 9000))
-                //     {
-                //         return 1;
-                //     }
-                // }
-            }
-            //during rof 
-            if (Core.Me.HasAura(AurasDefine.RiddleOfFire) || SpellsDefine.RiddleofFire.RecentlyUsed())
-            {
-                if (MonkSpellHelper.InRaptorForm())
+
+                //during rof 
+                if (Core.Me.HasAura(AurasDefine.RiddleOfFire) || SpellsDefine.RiddleofFire.RecentlyUsed())
                 {
-                    //没有演武
-                    //没有必杀技
-                    //上一个技能不是必杀技 => 不会有演武
-                    if (!Core.Me.HasAura(AurasDefine.FormlessFist) && !MonkSpellHelper.LastSpellWasNadi() && ActionResourceManager.Monk.BlitzTimer == TimeSpan.Zero)
+                    //ROF+BH 2
+                    if (ActionResourceManager.Monk.ActiveNadi == ActionResourceManager.Monk.Nadi.Solar &&
+                        Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 10000) &&
+                        target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 15000)
+                       )
                     {
-                        //even
-                        if (Core.Me.HasAura(AurasDefine.Brotherhood) || SpellsDefine.Brotherhood.RecentlyUsed())
+                        AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
+                        return 1;
+                    }
+                    else
+                    {
+                        //ROF+BH 1&3
+                        if (ActionResourceManager.Monk.ActiveNadi == ActionResourceManager.Monk.Nadi.Solar ||
+                            ActionResourceManager.Monk.ActiveNadi == ActionResourceManager.Monk.Nadi.Both)
                         {
-                            return 1;
+                            AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
                         }
-                        //odd
-                        if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 7000) &&
-                            target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 9000))
+                        else if (ActionResourceManager.Monk.ActiveNadi == ActionResourceManager.Monk.Nadi.Lunar)
                         {
-                            return 1;
+                            AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Solar;
                         }
+
+                        return 1;
                     }
                 }
             }
+            //odd window
+            else
+            {   
+                //Pre PB
+                if (SpellsDefine.RiddleofFire.CoolDownInGCDs(2) && !Core.Me.HasAura(AurasDefine.RiddleOfFire))
+                {
+                    if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 15000) &&
+                        Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 10000))
+                    {
+                        AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
+                        return 4;
+                    }
+                }
+
+                if (Core.Me.HasMyAura(AurasDefine.RiddleOfFire))
+                {
+                    if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 15000) &&
+                        Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 10000))
+                    {
+                        AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
+                        return 5;
+                    }
+                }
+            }
+
+
             return -4;
         }
 
-        
-        
+
         public async Task<SpellEntity> Run()
         {
             var spell = SpellsDefine.PerfectBalance.GetSpellEntity();

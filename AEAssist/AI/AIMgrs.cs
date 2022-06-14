@@ -84,9 +84,8 @@ namespace AEAssist.AI
                 if (AIRoot.GetBattleData<BattleData>().maxAbilityTimes == 0)
                     return null;
                 var ret = v.Check(lastAbility);
-                //todo revert
-                // LogHelper.Debug(
-                //     $"{AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
+                LogHelper.Debug(
+                    $"{AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs / 1000.0f:#0.000}  Check:{v.GetType().Name} ret: {ret}");
                 if (ret >= 0)
                 {
                     return await v.Run();

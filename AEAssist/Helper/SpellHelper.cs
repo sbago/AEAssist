@@ -154,9 +154,8 @@ namespace AEAssist.Helper
 
             if (spellData.Charges >= 1)
                 return true;
-            //todo revert
-            // LogHelper.Debug(
-            //     $" {spellData.LocalizedName} Charge {spellData.Charges} MaxCharge {spellData.MaxCharges}!");
+            LogHelper.Debug(
+                $" {spellData.LocalizedName} Charge {spellData.Charges} MaxCharge {spellData.MaxCharges}!");
 
             var time = 0;
             if (AEAssist.DataBinding.Instance.EarlyDecisionMode)

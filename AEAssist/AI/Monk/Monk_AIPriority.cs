@@ -14,16 +14,17 @@ namespace AEAssist.AI.Monk
         {
             new MonkGCD_MasterfulBlitz(),
             new MonkGCD_PerfectBalanceGCD(),
+            new MonkGCD_FormlessFistGCD(),
             new MonkGCD_BaseGCD(),
         };
 
         public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()
         {
             new MonkAbility_RiddleOfFire(),
-            new MonkAbility_Brotherhood(),
             new MonkAbility_PerfectBalance(),
-            new MonkAbility_RiddleOfWind(),
+            new MonkAbility_Brotherhood(),
             new MonkAbility_ChakraAttacks(),
+            new MonkAbility_RiddleOfWind(),
         };
 
         public async Task<bool> UsePotion()

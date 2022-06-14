@@ -36,6 +36,11 @@ namespace AEAssist.AI.Monk.GCD
             if (ActionResourceManager.Monk.ActiveNadi == ActionResourceManager.Monk.Nadi.Both)
             {
                 //todo add another spell
+                //Phantom Rush 梦幻斗舞 Action Id:25769
+                if (SpellsDefine.PhantomRush.IsUnlock())
+                {
+                    return SpellsDefine.PhantomRush.GetSpellEntity();
+                }
                 return SpellsDefine.TornadoKick.GetSpellEntity();
             }
             //阴必杀
@@ -47,6 +52,11 @@ namespace AEAssist.AI.Monk.GCD
             //阳必杀
             if (ActionResourceManager.Monk.MastersGauge.Distinct().ToArray().Length == 3)
             {
+                //Rising Phoenix 凤凰舞 Action Id:25768
+                if (SpellsDefine.RisingPhoenix.IsUnlock())
+                {
+                    return SpellsDefine.RisingPhoenix.GetSpellEntity();
+                }
                 return SpellsDefine.FlintStrike.GetSpellEntity();
             }
 
