@@ -63,6 +63,10 @@
                                   Content="{Binding Language.Toggle_Battery}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
                                   IsChecked="{Binding UseBattery,Mode=TwoWay}" />
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="{Binding Language.Toggle_Heat}"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding UseHeat,Mode=TwoWay}" />
 
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="{Binding Language.Toggle_Potion}"

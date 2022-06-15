@@ -5,6 +5,9 @@ using ff14bot.Enums;
 
 namespace AEAssist.View.Overlay.UIComponent
 {
+    [Job(ClassJobType.Monk)]
+    [Job(ClassJobType.Dragoon)]
+    [Job(ClassJobType.Reaper)]
     public class OverlayUIComponent_CombatMessage : OverlayUIComponent
     {
         public OverlayUIComponent_CombatMessage() : base(true)
@@ -41,20 +44,20 @@ namespace AEAssist.View.Overlay.UIComponent
                     Content = overlayUc,
                     Width = overlayUc.Width + 5,
                     Height = overlayUc.Height,
-                    X = SettingMgr.GetSetting<GeneralSettings>().OverlayPos_X,
-                    Y =  SettingMgr.GetSetting<GeneralSettings>().OverlayPos_Y,
+                    X = 60,
+                    Y =  60,
                     AllowMoving = IsHitTestable,
                     AllowResizing = IsHitTestable
                 };
 
-                _control.MouseLeave += (sender, args) =>
-                {
-                    if (IsHitTestable)
-                    {
-                        SettingMgr.GetSetting<GeneralSettings>().OverlayPos_X = _control.X;
-                        SettingMgr.GetSetting<GeneralSettings>().OverlayPos_Y = _control.Y;
-                    }
-                };
+                // _control.MouseLeave += (sender, args) =>
+                // {
+                //     if (IsHitTestable)
+                //     {
+                //         SettingMgr.GetSetting<GeneralSettings>().OverlayPos_X = _control.X;
+                //         SettingMgr.GetSetting<GeneralSettings>().OverlayPos_Y = _control.Y;
+                //     }
+                // };
 
                 _control.MouseLeftButtonDown += (sender, args) =>
                 {

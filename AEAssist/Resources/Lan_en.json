@@ -98,6 +98,7 @@
   "Toggle_UseMeikyoShisui": "MeikyoShisui",
   "Combox_Hotkey_EnAvant": "(DNC)EnAvant",
   "Textbox_BardApexWaitBuffs": "Force Apex wait buffs",
+  "Toggle_Heat": "Heat",
   "ToolTip_Bard_FinalBurst": "for bard,apex will use if soul value >=20,pitch perfect will use if repertoire>=1. \nUsed to finish off targets that dies <6 seconds.\nand this toggle will auto set to on when the target is dies <6 sec",
   "ToolTip_Bard_Burst": "If it is off, then barrage/battle voice/radiant final and ragingstrikes will not be used",
   "ToolTip_MCH_FinalBurst": "for mch,the QueenOverdrive/Detonator will use.\nUsed to finish off targets that dies <6 seconds.\nand this toggle will auto set to on when the target is dies <6 sec",

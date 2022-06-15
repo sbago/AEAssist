@@ -41,6 +41,8 @@ namespace AEAssist
         public bool UseAOE { get; set; } = true;
 
         public bool UseBattery { get; set; } = true;
+        
+        public bool UseHeat { get; set; } = true;
 
         public string TimeStr { get; set; }
 
@@ -108,6 +110,7 @@ namespace AEAssist
             LazyOn = false;
             TimeStr = "";
             UseBattery = true;
+            UseHeat = true;
             UseSong = true;
             UseEnshroud = true;
             FinalBurst = false;

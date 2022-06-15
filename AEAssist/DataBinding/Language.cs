@@ -53,6 +53,9 @@ namespace AEAssist
 
         public string Toggle_Potion { get; set; }
         public string Toggle_Battery { get; set; }
+        
+        public string Toggle_Heat { get; set; }
+        
         public string Toggle_Apex { get; set; }
         public string Toggle_ActiveAttack { get; set; }
         public string Toggle_PreferDoubleEnshroud { get; set; }
