@@ -53,7 +53,7 @@ namespace AEAssist.AI.Dancer
         {
             if (SpellsDefine.Windmill.IsUnlock())
             {
-                if (TargetHelper.CheckNeedUseAOE(target, 5, 5,3)) return await UseAOECombo(target);
+                if (TargetHelper.CheckNeedUseAOETest(target, 5, 5,3)) return await UseAOECombo(target);
             }
             return await UseSingleCombo(target);
         }
@@ -108,7 +108,7 @@ namespace AEAssist.AI.Dancer
         {
             if (SpellsDefine.RisingWindmill.IsUnlock())
             {
-                if (TargetHelper.CheckNeedUseAOE(target, 5, 5,2)) return await UseProcAOECombo(target);
+                if (TargetHelper.CheckNeedUseAOETest(target, 5, 5,2)) return await UseProcAOECombo(target);
             }
 
             return await UseProcSingleCombo(target);

@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using AEAssist.AI.Sage;
 using AEAssist.Define;
@@ -14,14 +15,7 @@ namespace AEAssist.AI.Dancer.Ability
             {
                 return -10;
             }
-            if (SpellsDefine.Flourish.RecentlyUsed())
-            {
-                if (Core.Me.HasAura(AurasDefine.Devilment))
-                {
-                    return 1;
-                }
-            }
-            if (!Core.Me.HasAura(AurasDefine.FourfoldFanDance))
+            if (!Core.Me.HasAura(AurasDefine.FourfoldFanDance) && !SpellsDefine.Flourish.RecentlyUsed())
             {
                 return -1;
             }
@@ -32,7 +26,11 @@ namespace AEAssist.AI.Dancer.Ability
                 return 1;
             }
 
-            if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.FourfoldFanDance, SpellsDefine.Devilment.GetSpellEntity().Cooldown.Milliseconds + 2500))
+            double doubletime = (SpellsDefine.Devilment.GetSpellEntity().SpellData.Cooldown +
+                                 TimeSpan.FromMilliseconds(1000)).TotalMilliseconds + AIRoot.Instance.GetGCDDuration();
+            int time = (int) doubletime;
+
+            if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.FourfoldFanDance, time))
             {
                 return -2;
             }

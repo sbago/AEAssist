@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 using AEAssist;
+using AEAssist.AI.Monk;
 using ff14bot;
 
 namespace AEAssist.Helper

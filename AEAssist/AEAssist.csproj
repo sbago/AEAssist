@@ -48,6 +48,9 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Reference Include="MongoDB.Bson, Version=2.15.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\MongoDB.Bson.2.15.0\lib\net472\MongoDB.Bson.dll</HintPath>
     </Reference>
+    <Reference Include="RebornBuddy">
+      <HintPath>..\References\RebornBuddy.exe</HintPath>
+    </Reference>
     <Reference Include="RebornBuddy, Version=1.0.473.0, Culture=neutral, PublicKeyToken=48d7174f8a943034">
       <HintPath>..\References\RebornBuddy.exe</HintPath>
       <Private>False</Private>
@@ -235,6 +238,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Dancer\Ability\DancerAbility_FanDance3.cs" />
     <Compile Include="AI\Dancer\Ability\DancerAbility_FanDance4.cs" />
     <Compile Include="AI\Dancer\Ability\DancerAbility_Flourish.cs" />
+    <Compile Include="AI\Dancer\Ability\DancerAbility_HandleFanDanceBeforeFlourish.cs" />
     <Compile Include="AI\Dancer\Ability\DancerAbility_UsePotion.cs" />
     <Compile Include="AI\Dancer\DancerRotation.cs" />
     <Compile Include="AI\AISpellQueueMgr.cs" />
@@ -247,6 +251,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Dancer\GCD\DancerGCD_Procs.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_ProcsSave.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_SaberDance.cs" />
+    <Compile Include="AI\Dancer\GCD\DancerGCD_SaberDanceBurstWindow.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_StandardStep.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_StarfallDance.cs" />
     <Compile Include="AI\Dancer\GCD\DancerGCD_TechnicalStep.cs" />
@@ -259,12 +264,24 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_Hypercharge.cs" />
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UnderHyperChargetGCD.cs" />
     <Compile Include="AI\Machinist\SpellEvent\SpellEvent_UseBattery.cs" />
+    <Compile Include="AI\Monk\Ability\MonkAbility_SetPos.cs" />
+    <Compile Include="AI\Monk\Ability\MonkAbility_UsePotion.cs" />
+    <Compile Include="AI\Monk\Ability\MonkAbility_Brotherhood.cs" />
+    <Compile Include="AI\Monk\Ability\MonkAbility_ChakraAttacks.cs" />
+    <Compile Include="AI\Monk\Ability\MonkAbility_PerfectBalance.cs" />
+    <Compile Include="AI\Monk\Ability\MonkAbility_RiddleOfWind.cs" />
+    <Compile Include="AI\Monk\Ability\MonkAbility_RiddleOfFire.cs" />
+    <Compile Include="AI\Monk\Ability\MonkAbility_TrueNorth.cs" />
     <Compile Include="AI\Monk\GCD\MonkGCD_BaseGCD.cs" />
+    <Compile Include="AI\Monk\GCD\MonkGCD_FormlessFistGCD.cs" />
+    <Compile Include="AI\Monk\GCD\MonkGCD_MasterfulBlitz.cs" />
     <Compile Include="AI\Monk\GCD\MonkGCD_PerfectBalanceGCD.cs" />
     <Compile Include="AI\Monk\MonkBattleData.cs" />
     <Compile Include="AI\Monk\MonkRotation.cs" />
     <Compile Include="AI\Monk\MonkSpellHelper.cs" />
     <Compile Include="AI\Monk\Monk_AIPriority.cs" />
+    <Compile Include="AI\Monk\MonkCombatMessageStrategy.cs" />
+    <Compile Include="AI\Monk\Opener_MNK_90_Lunar_Solar.cs" />
     <Compile Include="AI\Ninja\Ability\NinjaAbility_Assassinate.cs" />
     <Compile Include="AI\Ninja\Ability\NinjaAbility_Bhavacakra.cs" />
     <Compile Include="AI\Ninja\Ability\NinjaAbility_Bunshin.cs" />
@@ -389,6 +406,10 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Samurai\Samurai_AIPriorityQueue.cs" />
     <Compile Include="AI\SpellHistoryMgr.cs" />
     <Compile Include="AI\SpellQueueData.cs" />
+    <Compile Include="Converters\BooleanConverterT.cs" />
+    <Compile Include="Converters\BooleanToOpaqueConverter.cs" />
+    <Compile Include="DataBinding\CombatMessage.cs" />
+    <Compile Include="DataBinding\CombatMessageOverlayViewModel.cs" />
     <Compile Include="AI\WhiteMage\Ability\WhiteMageAbilityLucidDreaming.cs" />
     <Compile Include="AI\WhiteMage\GCD\WhiteMageBaseGCD.cs" />
     <Compile Include="AI\WhiteMage\GCD\WhiteMageGCDDot.cs" />
@@ -461,6 +482,9 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_EnemyTTK.cs" />
     <Compile Include="TriggerSystem\TriggerCond\TriggerCondHandler_GameLog.cs" />
     <Compile Include="TriggerSystem\TriggerSystemMgr.cs" />
+    <Compile Include="Utilities\CombatMessages\CombatMessageManager.cs" />
+    <Compile Include="Utilities\CombatMessages\CombatMessageStrategy.cs" />
+    <Compile Include="Utilities\CombatMessages\ICombatMessageStrategy.cs" />
     <Compile Include="View\BardSettingView.xaml.cs">
       <DependentUpon>BardSettingView.xaml</DependentUpon>
     </Compile>
@@ -512,6 +536,9 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="View\Overlay\BlackMage_Overlay2.xaml.cs">
       <DependentUpon>BlackMage_Overlay2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Overlay\CombatMessageOverlay.xaml.cs">
+      <DependentUpon>CombatMessageOverlay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Overlay\DancerOverlayWindow.xaml.cs">
       <DependentUpon>DancerOverlayWindow.xaml</DependentUpon>
     </Compile>
@@ -521,6 +548,8 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="View\Overlay\MCHOverlayWindow.xaml.cs">
       <DependentUpon>MCHOverlayWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Overlay\MonkOverlayWindow.xaml.cs">
+      <DependentUpon>MonkOverlayWindow.xaml</DependentUpon>
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_WhiteMageOverlay.cs" />
     <Compile Include="View\Overlay\WhiteMageOverlayWindow.xaml.cs">
       <DependentUpon>WhiteMageOverlayWindow.xaml</DependentUpon>
@@ -532,12 +561,14 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
       <DependentUpon>SageOverlayWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Overlay\SamuraiOverlayWindow.xaml.cs" />
+    <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_CombatMessage.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BardOverlay.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BardOverlay2.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BlackMageOverlay.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_BlackMageOverlay2.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_DancerOverlay.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_MCHOverlay.cs" />
+    <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_MonkOverlay.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_ReaperOverlay.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_SageOverlay.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_SamuraiOverlay.cs" />
@@ -573,6 +604,13 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="Setting\Setting\BardSettings.cs" />
     <Compile Include="Setting\Setting\GeneralSettings.cs" />
     <Compile Include="Setting\Setting\VersionSetting.cs" />
+    <Resource Include="Resources\Spells\Monk\Anatman.png" />
+    <Resource Include="Resources\Spells\Monk\FormShift.png" />
+    <Resource Include="Resources\Spells\Monk\Mantra.png" />
+    <Resource Include="Resources\Spells\Monk\PerfectBalance.png" />
+    <Resource Include="Resources\Spells\Monk\RiddleofEarth.png" />
+    <Resource Include="Resources\Spells\Monk\Six-sidedStar.png" />
+    <Resource Include="Resources\Images\General\ArrowDownHighlighted.png" />
     <Content Include="Resources\Lan_zh-CN.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -584,6 +622,8 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Resource Include="Resources\Spells\WhiteMage\PresenceofMind.png" />
     <Resource Include="Resources\Spells\WhiteMage\ThinAir.png" />
     <Page Include="View\DancerSettingView.xaml" />
+    <Page Include="View\Overlay\CombatMessageOverlay.xaml" />
+    <Page Include="View\Overlay\MonkOverlayWindow.xaml" />
     <Page Include="View\Overlay\WhiteMageOverlayWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

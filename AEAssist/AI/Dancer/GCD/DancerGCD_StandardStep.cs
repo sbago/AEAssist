@@ -62,7 +62,9 @@ namespace AEAssist.AI.Dancer.GCD
                     if (!Core.Me.HasAura(AurasDefine.FlourshingFlow) &&
                         !Core.Me.HasAura(AurasDefine.FlourishingSymmetry) &&
                         ActionResourceManager.Dancer.Esprit < 50 &&
-                        !Core.Me.HasAura(AurasDefine.FlourishingFinish))
+                        !Core.Me.HasAura(AurasDefine.FlourishingFinish) &&
+                        ActionResourceManager.Dancer.FourFoldFeathers == 0 &&
+                        !Core.Me.HasMyAura(AurasDefine.ThreeFoldFanDance))
                     {
                         return 1;
                     }
