@@ -23,6 +23,7 @@ namespace AEAssist.Define
         PM7,
         PM8,
         SpecifyTarget = 9,
+        Location = 10,
     }
 
 

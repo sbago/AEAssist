@@ -389,6 +389,15 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Samurai\Samurai_AIPriorityQueue.cs" />
     <Compile Include="AI\SpellHistoryMgr.cs" />
     <Compile Include="AI\SpellQueueData.cs" />
+    <Compile Include="AI\WhiteMage\Ability\WhiteMageAbilityLucidDreaming.cs" />
+    <Compile Include="AI\WhiteMage\GCD\WhiteMageBaseGCD.cs" />
+    <Compile Include="AI\WhiteMage\GCD\WhiteMageGCDDot.cs" />
+    <Compile Include="AI\WhiteMage\GCD\WhiteMageGCDHoly.cs" />
+    <Compile Include="AI\WhiteMage\SpellEvent\SpellEventDot.cs" />
+    <Compile Include="AI\WhiteMage\WhiteMageBattleData.cs" />
+    <Compile Include="AI\WhiteMage\WhiteMageRotation.cs" />
+    <Compile Include="AI\WhiteMage\WhiteMageSpellHelper.cs" />
+    <Compile Include="AI\WhiteMage\WhiteMage_AIPriorityQueue.cs" />
     <Compile Include="DataBinding\DebugCenter.cs" />
     <Compile Include="DataBinding\Language.cs" />
     <Compile Include="DataBinding\LanguageOptionData.cs" />
@@ -425,6 +434,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="Setting\Setting\ReaperSettings.cs" />
     <Compile Include="Setting\Setting\SageSettings.cs" />
     <Compile Include="Setting\Setting\SamuraiSettings.cs" />
+    <Compile Include="Setting\Setting\WhiteMageSetting.cs" />
     <Compile Include="TriggerSystem\ITriggerActionHandler.cs" />
     <Compile Include="TriggerSystem\ITriggerCondHandler.cs" />
     <Compile Include="TriggerSystem\TriggerAction\TriggerActionHandler_BatteryList.cs" />
@@ -511,6 +521,10 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="View\Overlay\MCHOverlayWindow.xaml.cs">
       <DependentUpon>MCHOverlayWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_WhiteMageOverlay.cs" />
+    <Compile Include="View\Overlay\WhiteMageOverlayWindow.xaml.cs">
+      <DependentUpon>WhiteMageOverlayWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Overlay\ReaperOverlay.xaml.cs">
       <DependentUpon>ReaperOverlay.xaml</DependentUpon>
     </Compile>
@@ -529,6 +543,9 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_SamuraiOverlay.cs" />
     <Compile Include="View\ReaperSettingView.xaml.cs">
       <DependentUpon>ReaperSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WhiteMageSettingView.xaml.cs">
+      <DependentUpon>WhiteMageSettingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SageSettingView.xaml.cs">
       <DependentUpon>SageSettingView.xaml</DependentUpon>
@@ -559,7 +576,21 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Content Include="Resources\Lan_zh-CN.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Spells\WhiteMage\AfflatusRapture.png" />
+    <Resource Include="Resources\Spells\WhiteMage\Assize.png" />
+    <Resource Include="Resources\Spells\WhiteMage\Asylum.png" />
+    <Resource Include="Resources\Spells\WhiteMage\LiturgyoftheBell.png" />
+    <Resource Include="Resources\Spells\WhiteMage\PlenaryIndulgence.png" />
+    <Resource Include="Resources\Spells\WhiteMage\PresenceofMind.png" />
+    <Resource Include="Resources\Spells\WhiteMage\ThinAir.png" />
     <Page Include="View\DancerSettingView.xaml" />
+    <Page Include="View\Overlay\WhiteMageOverlayWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WhiteMageSettingView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\Style\MeleeBox.xaml" />
     <Resource Include="Resources\Spells\Dancer\Flourish.png" />
     <Resource Include="Resources\Spells\Dancer\SaberDance.png" />
@@ -799,14 +830,15 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
     <PackageReference Include="System.ObjectModel" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AI\Monk\Ability" />
-    <Folder Include="AI\Monk\SpellQueue" />
+    <Folder Include="AI\Monk\Ability\" />
+    <Folder Include="AI\Monk\SpellQueue\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
