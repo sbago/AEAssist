@@ -53,6 +53,7 @@ namespace AEAssistLoader
                         return new[] { Core.Me.CurrentJob };
                     case ClassJobType.Samurai:
                     case ClassJobType.Sage:
+                    case ClassJobType.WhiteMage:
                     case ClassJobType.BlackMage:
                     case ClassJobType.Monk:
                     case ClassJobType.Ninja:
