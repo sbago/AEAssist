@@ -550,6 +550,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     </Compile>
     <Compile Include="View\Overlay\MonkOverlayWindow.xaml.cs">
       <DependentUpon>MonkOverlayWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_WhiteMageOverlay.cs" />
     <Compile Include="View\Overlay\WhiteMageOverlayWindow.xaml.cs">
       <DependentUpon>WhiteMageOverlayWindow.xaml</DependentUpon>
