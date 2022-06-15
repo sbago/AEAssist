@@ -38,6 +38,7 @@
   "Toggle_UsePoleton" : "UsePoleton",
   "Toggle_Bard_Delay1GCDToUseBuffs" : "Bard",
   "Toggle_WildfireNoDelay" : "WildfireNoDelay",
+  "Toggle_Wildfire" : "Wildfire",
   "TabItem_General" : "General",
   "TabItem_Hotkey" : "Hotkey",
   "TabItem_BaseSetting" : "BaseSetting",

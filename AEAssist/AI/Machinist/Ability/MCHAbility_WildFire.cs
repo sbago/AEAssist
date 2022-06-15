@@ -15,6 +15,8 @@ namespace AEAssist.AI.Machinist.Ability
                 return -1;
             if (AIRoot.Instance.CloseBurst)
                 return -2;
+            if (!DataBinding.Instance.Wildfire)
+                return -100;
             if (ActionResourceManager.Machinist.Heat < 50)
                 return -3;
             if (TTKHelper.IsTargetTTK(Core.Me.CurrentTarget as Character))
@@ -24,7 +26,7 @@ namespace AEAssist.AI.Machinist.Ability
                 return -4;
             if (SpellsDefine.BarrelStabilizer.IsReady())
                 return -101;
-            if (!AEAssist.DataBinding.Instance.WildfireNoDelay &&
+            if (!SettingMgr.GetSetting<MCHSettings>().WildfireFirst &&
                 MCHSpellHelper.CheckReassmableGCD(SettingMgr.GetSetting<MCHSettings>().StrongGCDCheckTime))
                 return -5;
 

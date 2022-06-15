@@ -78,6 +78,7 @@ namespace AEAssist
         public string Toggle_UsePoleton { get; set; }
         public string Toggle_Bard_Delay1GCDToUseBuffs { get; set; }
         public string Toggle_WildfireNoDelay { get; set; }
+        public string Toggle_Wildfire { get; set; }
 
         public string TabItem_General { get; set; }
         public string TabItem_Hotkey { get; set; }

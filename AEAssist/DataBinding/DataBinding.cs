@@ -72,8 +72,8 @@ namespace AEAssist
         public string TriggerLineName { get; set; } = "NULL";
 
         #region MCH
-
-        public bool WildfireNoDelay { get; set; }
+        
+        public bool Wildfire { get; set; }
 
         #endregion
 
@@ -116,7 +116,7 @@ namespace AEAssist
             FinalBurst = false;
             UseMeikyoShisui = true;
             SageSettings.LucidDreamingToggle = true;
-            WildfireNoDelay = SettingMgr.GetSetting<MCHSettings>().WildfireFirst;
+            Wildfire = true;
         }
 
 
