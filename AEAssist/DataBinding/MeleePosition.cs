@@ -1,6 +1,8 @@
 ﻿using System;
+using AEAssist.Helper;
 using AEAssist.View;
 using ff14bot;
+using ff14bot.Objects;
 using PropertyChanged;
 
 namespace AEAssist
@@ -20,7 +22,11 @@ namespace AEAssist
         public Position RequiredPosition { get; set; } = Position.None;
         public String RequiredPositionString { get; set; } = "";
         public bool IsPositionCorrect { get; set; } = true;
-        public System.Windows.Media.Brush IsPositionCorrectColor { get; set; } = System.Windows.Media.Brushes.DarkSeaGreen;
+
+        public int TargetDistance { get; set; } = 0;
+        
+        public System.Windows.Media.Brush IsPositionCorrectColor { get; set; } = System.Windows.Media.Brushes.Green;
+        public System.Windows.Media.Brush IsTargetDistanceSafe { get; set; } = System.Windows.Media.Brushes.Green;
         
         public void SetString()
         {
@@ -46,15 +52,44 @@ namespace AEAssist
                     break;
             }
         }
+
+        private void SetDistance(GameObject CurrentTarget)
+        {
+            var distanceF = TargetHelper.GetTargetDistanceFromMeTest(CurrentTarget, Core.Me);
+            var distanceI = (int)Math.Round(distanceF*100);
+            TargetDistance = distanceI;
+            if (distanceI > 300)
+            {
+                TargetDistance = 300;
+            }
+
+            if (distanceI > 300)
+            {
+                IsTargetDistanceSafe = System.Windows.Media.Brushes.DarkRed;
+            }
+            else if (200 < distanceI)
+            {
+                IsTargetDistanceSafe = System.Windows.Media.Brushes.Coral;
+            }
+            else
+            {
+                IsTargetDistanceSafe = System.Windows.Media.Brushes.Green;
+            }
+            
+            
+        }
+        
         public void ShowMsg()
         {
             if (Core.Me.HasTarget)
             {
-                if (Core.Me.CurrentTarget.IsBehind)
+                var CurrentTarget = Core.Me.CurrentTarget;
+                SetDistance(CurrentTarget);
+                if (CurrentTarget.IsBehind)
                 {
                     CurrentPosition = Position.Back;
                 }
-                else if (Core.Me.CurrentTarget.IsFlanking)
+                else if (CurrentTarget.IsFlanking)
                 {
                     CurrentPosition = Position.Side;
                 }

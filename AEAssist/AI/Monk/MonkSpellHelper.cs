@@ -15,7 +15,13 @@ namespace AEAssist.AI.Monk
     {
         public static void SetPostion()
         {
-            if (!Core.Me.HasTarget) return;
+            if (!Core.Me.HasTarget)
+            {
+                MeleePosition.Intance.RequiredPosition = MeleePosition.Position.None;
+                MeleePosition.Intance.ShowMsg();
+                return;
+            }
+
             var target = Core.Me.CurrentTarget as Character;
             if (UsingDot())
             {
@@ -25,6 +31,7 @@ namespace AEAssist.AI.Monk
                     MeleePosition.Intance.ShowMsg();
                     return;
                 }
+
                 if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 6000) == false)
                 {
                     MeleePosition.Intance.RequiredPosition = MeleePosition.Position.Back;
@@ -253,6 +260,38 @@ namespace AEAssist.AI.Monk
                 {
                     return SpellsDefine.TwinSnakes.GetSpellEntity();
                 }
+            }
+
+            return null;
+        }
+
+        public static SpellEntity GetCoeurlGCDS(Character target)
+        {
+            if (InCoeurlForm())
+            {
+                if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+                {
+                    if (SpellsDefine.Rockbreaker.IsUnlock())
+                    {
+                        //Rockbreaker 地烈劲
+                        return SpellsDefine.Rockbreaker.GetSpellEntity();
+                    }
+                }
+
+                if (UsingDot() == false)
+                {
+                    //Snap Punch 崩拳
+                    return SpellsDefine.SnapPunch.GetSpellEntity();
+                }
+
+                if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 5000))
+                {
+                    //Snap Punch 崩拳
+                    return SpellsDefine.SnapPunch.GetSpellEntity();
+                }
+
+                //Demolish 破碎拳
+                return SpellsDefine.Demolish.GetSpellEntity();
             }
 
             return null;

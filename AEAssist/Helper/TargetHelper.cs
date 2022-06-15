@@ -54,6 +54,12 @@ namespace AEAssist.Helper
             return combatDistance;
         }
         
+        public static float GetTargetDistanceFromMeTest (GameObject target, GameObject origin)
+        {
+            var combatDistance = Math.Max(target.Distance2D(origin) - Core.Target.CombatReach - 0.5f, 0);
+            return combatDistance;
+        }
+        
         
         public static bool CheckNeedUseAOE(int targetRange, int damageRange, int needCount = 3)
         {

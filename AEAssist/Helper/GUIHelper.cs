@@ -30,7 +30,6 @@ namespace AEAssist.Helper
             if (time > 0)
                 targetShowTime = TimeHelper.Now() + time;
             DebugCenter.Intance.ShowMsg(msg,check);
-            MonkSpellHelper.SetPostion();
         }
 
         public static void ShowMessageBox(string msg)

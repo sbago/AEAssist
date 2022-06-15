@@ -27,10 +27,12 @@
                Foreground="{Binding MeleePosition.IsPositionCorrectColor}"
                Content="{Binding MeleePosition.RequiredPositionString}" />
         <StackPanel>
-            <WrapPanel Width="200" Orientation="Horizontal" HorizontalAlignment="Center"
-                       VerticalAlignment="Top">
-                <!-- <Label Name="RequiredPositionLabel" Content="{Binding MeleePosition.RequiredPositionString}" Foreground="Aqua"/> -->
-            </WrapPanel>
+            <ProgressBar x:Name = "MeleeDistance" Value = "{Binding MeleePosition.TargetDistance}" Margin = "5" Maximum = "300"
+                         Height = "30" IsIndeterminate = "False" 
+                         BorderThickness="3"
+                         Foreground="{Binding MeleePosition.IsTargetDistanceSafe}"
+                         Width = "220"
+            />
         </StackPanel>
     </StackPanel>
 </UserControl>

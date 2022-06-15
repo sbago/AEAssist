@@ -271,6 +271,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Monk\Ability\MonkAbility_PerfectBalance.cs" />
     <Compile Include="AI\Monk\Ability\MonkAbility_RiddleOfWind.cs" />
     <Compile Include="AI\Monk\Ability\MonkAbility_RiddleOfFire.cs" />
+    <Compile Include="AI\Monk\Ability\MonkAbility_TrueNorth.cs" />
     <Compile Include="AI\Monk\GCD\MonkGCD_BaseGCD.cs" />
     <Compile Include="AI\Monk\GCD\MonkGCD_FormlessFistGCD.cs" />
     <Compile Include="AI\Monk\GCD\MonkGCD_MasterfulBlitz.cs" />
