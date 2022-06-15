@@ -56,6 +56,7 @@ namespace AEAssist
         public SamuraiSettings SamuraiSettings => SettingMgr.GetSetting<SamuraiSettings>();
 
         public SageSettings SageSettings => SettingMgr.GetSetting<SageSettings>();
+        public WhiteMageSettings WhiteMageSettings => SettingMgr.GetSetting<WhiteMageSettings>();
         public DancerSettings DancerSettings => SettingMgr.GetSetting<DancerSettings>();
         public MonkSettings MonkSettings => SettingMgr.GetSetting<MonkSettings>();
 
