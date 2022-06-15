@@ -8,6 +8,7 @@
   &lt;Assembly Path="C:\Users\Administrator\.nuget\packages\materialdesignextensions\4.0.0-a02\lib\net452\MaterialDesignExtensions.dll" /&gt;&#xD;
   &lt;Assembly Path="J:\AEAssist\Harmony\AEAssist\References\RebornBuddy.exe" /&gt;&#xD;
   &lt;Assembly Path="J:\RebornbuddyCN 1.0.470.0\RebornBuddy.exe" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\Black\RiderProjects\AEAssist\AEAssist\References\RebornBuddy.exe" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=AEAssist_002FProperties_002FResources/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=AEAssist_002FResources_002FIcons/@EntryIndexedValue">True</s:Boolean>

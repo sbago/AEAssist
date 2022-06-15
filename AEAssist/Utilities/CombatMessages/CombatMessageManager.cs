@@ -67,7 +67,7 @@ namespace AEAssist.Utilities.CombatMessages
 
                 case ClassJobType.Pugilist:
                 case ClassJobType.Monk:
-                    // MonkCombatMessageStrategy.RegisterCombatMessages();
+                    MonkCombatMessageStrategy.RegisterCombatMessages();
                     break;
 
                 case ClassJobType.Marauder:

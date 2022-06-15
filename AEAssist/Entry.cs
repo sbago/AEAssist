@@ -6,6 +6,7 @@ using AEAssist.Define;
 using AEAssist.Gamelog;
 using AEAssist.Helper;
 using AEAssist.Rotations.Core;
+using AEAssist.Utilities.CombatMessages;
 using AEAssist.View;
 using AEAssist.View.OverlayManager;
 using ff14bot.Behavior;
@@ -75,6 +76,7 @@ namespace AEAssist
             WorldHelper.CheckZone();
             GamelogManager.Pulse();
             SettingMgr.Instance.AutoSave();
+            CombatMessageManager.UpdateDisplayedMessage();
         }
 
         public void Shutdown()
