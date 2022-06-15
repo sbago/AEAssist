@@ -102,5 +102,6 @@
   "ToolTip_MCH_Burst": "关闭后,不主动使用过热,机器人,野火",
   "ToolTip_RPR_Burst": "关闭后,不主动使用附体,神秘环",
   "ToolTip_RPR_DoubleEnshroundPrefer": "开启后,在资源满足时,会优先打双附体",
-  "Toggle_Heat": "热量"
+  "Toggle_Heat": "热量",
+  "Toggle_Wildfire": "野火"
 }

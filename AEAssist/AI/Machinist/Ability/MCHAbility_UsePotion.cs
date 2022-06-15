@@ -14,6 +14,8 @@ namespace AEAssist.AI.Machinist.Ability
                 return -1;
             if (AIRoot.Instance.CloseBurst)
                 return -2;
+            if (!DataBinding.Instance.Wildfire)
+                return -100;
             if (AIRoot.GetBattleData<BattleData>().maxAbilityTimes <
                 SettingMgr.GetSetting<GeneralSettings>().MaxAbilityTimsInGCD)
                 return -3;
