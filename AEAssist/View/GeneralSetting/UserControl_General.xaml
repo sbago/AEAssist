@@ -44,5 +44,15 @@
                   Content="{Binding Language.Toggle_ShowBattleTime}" Width="150" Height="25" Margin="10"
                   HorizontalAlignment="Left"
                   IsChecked="{Binding GeneralSettings.ShowBattleTime}" />
+        
+        <CheckBox Name="UseCombatMessageOverlay" 
+                  Content="{Binding Language.Toggle_CombatMessageOverlay}" 
+                  Width="200" 
+                  Height="25"
+                  HorizontalAlignment="Left"
+                  Checked="UseCombatMessageOverlay_OnChecked"
+                  Unchecked="UseCombatMessageOverlay_OnUnchecked"
+                  IsChecked="{Binding GeneralSettings.UseCombatMessageOverlay}"
+                  />
     </WrapPanel>
 </UserControl>

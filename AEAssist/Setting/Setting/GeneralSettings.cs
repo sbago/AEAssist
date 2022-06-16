@@ -34,6 +34,8 @@ namespace AEAssist
         public bool ShowToast { get; set; }
 
         public bool ShowBattleTime { get; set; }
+        
+        public bool UseCombatMessageOverlay { get; set; }
 
         public int DexPotionId { get; set; }
         

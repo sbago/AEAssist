@@ -23,6 +23,8 @@ namespace AEAssist.View.OverlayManager
 
         private HashSet<OverlayUIComponent> _delSet = new HashSet<OverlayUIComponent>();
         
+        private static OverlayUIComponent_CombatMessage CombatMessageOverlay;
+        
         public void Init()
         {
             var baseType = typeof(OverlayUIComponent);
@@ -112,6 +114,37 @@ namespace AEAssist.View.OverlayManager
                 v.Control.Refresh();
             }
         }
+
+        public void StartCombatMessageOverlay()
+        {
+            if (!Core.OverlayManager.IsActive)
+            {
+                return;
+            }
+
+            if (!DataBinding.Instance.GeneralSettings.UseCombatMessageOverlay)
+            {
+                return;
+            }
+
+            if (CombatMessageOverlay == null)
+            {
+                CombatMessageOverlay = new OverlayUIComponent_CombatMessage();
+            }
+            
+            Core.OverlayManager.AddUIComponent(CombatMessageOverlay);
+        }
         
+        public void StopCombatMessageOverlay()
+        {
+            if (!Core.OverlayManager.IsActive)
+                return;
+
+            if (CombatMessageOverlay != null)
+            {
+                Core.OverlayManager.RemoveUIComponent(CombatMessageOverlay);
+            }
+            CombatMessageOverlay = null;
+        }
     }
 }

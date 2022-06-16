@@ -33,6 +33,8 @@ namespace AEAssist
         public string Toggle_ShowGameLog { get; set; }
         public string Toggle_ShowDebugLog { get; set; }
         public string Toggle_ShowBattleTime { get; set; }
+        
+        public string Toggle_CombatMessageOverlay { get; set; }
 
         public string Toggle_NextAbilityFirst { get; set; }
         public string Toggle_AutoInterrupt { get; set; }

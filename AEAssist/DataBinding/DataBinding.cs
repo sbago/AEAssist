@@ -127,7 +127,6 @@ namespace AEAssist
                     $"{Language.Instance.Content_BattleTime}:  {AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs / 1000}";
             else
                 TimeStr = $"{Language.Instance.Content_LocalTime}:  {DateTime.Now:hh:mm:ss}";
-            
         }
 
         public void ApplyScale()

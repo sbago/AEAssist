@@ -8,6 +8,7 @@
   "Toggle_ShowGameLog": "Show GameLog",
   "Toggle_ShowDebugLog": "Show DebugLog",
   "Toggle_ShowBattleTime": "Show BattleTime",
+  "Toggle_CombatMessageOverlay": "Show Combat Message Overlay",
   "Toggle_EarlyDecisionMode": "Early Decision",
   "Toggle_UseHotkey": "Use Hotkey",
   "Toggle_UseTTK": "Use TTK",

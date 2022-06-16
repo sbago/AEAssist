@@ -9,6 +9,7 @@
   "Toggle_ShowGameLog" : "ShowGameLog",
   "Toggle_ShowDebugLog" : "ShowDebugLog",
   "Toggle_ShowBattleTime" : "ShowBattleTime",
+  "Toggle_CombatMessageOverlay" : "CombatMessageOverlay",
   "Toggle_NextAbilityFirst" : "NextAbilityFirst",
   "Toggle_AutoInterrupt" : "AutoInterrupt",
   "Toggle_AutoFinalBurst" : "AutoFinalBurst",
