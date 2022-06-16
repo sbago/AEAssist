@@ -5,9 +5,6 @@ using ff14bot.Enums;
 
 namespace AEAssist.View.Overlay.UIComponent
 {
-    [Job(ClassJobType.Monk)]
-    [Job(ClassJobType.Dragoon)]
-    [Job(ClassJobType.Reaper)]
     public class OverlayUIComponent_CombatMessage : OverlayUIComponent
     {
         public OverlayUIComponent_CombatMessage() : base(true)
