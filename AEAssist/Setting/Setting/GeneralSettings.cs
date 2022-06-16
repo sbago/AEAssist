@@ -58,6 +58,8 @@ namespace AEAssist
         public double OverlayScale_X { get; set; } = 1.0f;
         public double OverlayScale_Y { get; set; } = 1.0f;
 
+        public string CombatMessageFontSize { get; set; } = "30";
+
         public string LanguagePrefer { get; set; }
 
         public double OverlayPos_X { get; set; } = 60;

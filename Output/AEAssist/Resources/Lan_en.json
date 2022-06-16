@@ -51,6 +51,7 @@
   "Label_ChoosePotion": "Choose Potion",
   "Label_PotionNum": "Num:",
   "Label_ChooseResPriority" : "Choose Res Priority",
+  "Label_CombatMessageFontSize" : "Font Size",
   "Toggle_PreferGallow": "Prefer Gallow",
   "Btn_LoadTriggerLine": "Load",
   "Btn_ClearTriggerLine": "Clear",

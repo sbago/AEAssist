@@ -182,6 +182,8 @@ namespace AEAssist
 
         public string Label_OverlayScale { get; set; }
         
+        public string Label_CombatMessageFontSize { get; set; }
+        
         public string Textbox_Sage_DotTimeLeft { get; set; }
 
         public string Textbox_WhiteMage_DotTimeLeft { get; set; }
