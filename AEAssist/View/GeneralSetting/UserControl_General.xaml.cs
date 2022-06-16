@@ -16,13 +16,13 @@ namespace AEAssist.View.GeneralSetting
             OverlayManager.OverlayManager.Instance.SwitchOverlay();
         }
         
-        private void UseCombatMessageOverlay_OnChecked(object sender, RoutedEventArgs e)
+        private void UseCombatMessageOverlay_OnClick(object sender, RoutedEventArgs e)
         {
-            OverlayManager.OverlayManager.Instance.StartCombatMessageOverlay();
-        }
-
-        private void UseCombatMessageOverlay_OnUnchecked(object sender, RoutedEventArgs e)
-        {
+            if (DataBinding.Instance.GeneralSettings.UseCombatMessageOverlay)
+            {
+                OverlayManager.OverlayManager.Instance.StartCombatMessageOverlay();
+                return;
+            }
             OverlayManager.OverlayManager.Instance.StopCombatMessageOverlay();
         }
     }
