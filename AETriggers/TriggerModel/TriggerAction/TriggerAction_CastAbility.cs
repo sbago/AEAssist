@@ -12,7 +12,7 @@ namespace AEAssist.TriggerAction
 
         [GUIIntRange(0,3)]
         [GUIToolTip("0: DefaultByCode 1: Self 2: Target 3: Target's Target \n 0: 默认 1: 自己 2: 目标 3: 目标的目标 ")]
-        public uint TargetType { get; set; }
+        public int TargetType { get; set; }
 
         public void WriteFromJson(string[] values)
         {
