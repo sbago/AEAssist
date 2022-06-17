@@ -19,6 +19,7 @@ namespace AEAssist
             Dot_TimeLeft = ConstValue.AuraTick;
             TTK_Aero = 30;
             WhiteMageOpener = "Default";
+            TetragrammatonHp = 80f;
         }
         public void OnLoad()
         {
@@ -34,5 +35,6 @@ namespace AEAssist
         public bool EarlyDecisionMode { get; set; }
         public string WhiteMageOpener { get; set; } = "Default";
         public int WhiteMageResPriority { get; set; } = 0;
+        public float TetragrammatonHp { get; set; } = 80f;
     }
 }

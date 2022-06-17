@@ -240,17 +240,24 @@ namespace AEAssist.AI.WhiteMage
             var spell = SpellsDefine.Swiftcast.GetSpellEntity();
             var ret = await spell.DoAbility();
         }
+        public static async Task CastThinAir()
+        {
+            if (Core.Me.HasAura(AurasDefine.ThinAir) || SpellsDefine.ThinAir.RecentlyUsed()) return;
+            var spell = SpellsDefine.ThinAir.GetSpellEntity();
+            var ret = await spell.DoAbility();
+        }
         public static async Task CastRaiseToTarget(Character target)
         {
             if (!SpellsDefine.Raise.IsUnlock()) return;
             await CastSwiftCast();
+            await CastThinAir();
             var spell = new SpellEntity(SpellsDefine.Raise, target as BattleCharacter);
             await spell.DoGCD();
         }
 
         public static async Task<SpellEntity> CastResPriority()
         {
-            var priority = SettingMgr.GetSetting<SageSettings>().SageResPriority;
+            var priority = SettingMgr.GetSetting<WhiteMageSettings>().WhiteMageResPriority;
             var deadAllies = GroupHelper.DeadAllies;
 
             switch (priority)
@@ -407,6 +414,60 @@ namespace AEAssist.AI.WhiteMage
             return null;
         }
 
-       
+        /*public static async Task<SpellEntity> CastTetragrammaton(Character target)
+        {
+            if (!SpellsDefine.Tetragrammaton.IsUnlock()) return;
+            
+            if (GroupHelper.InParty)
+            {
+                var tetragrammatonTarget = GroupHelper.CastableAlliesWithin30.FirstOrDefault(r => r.CurrentHealth > 0 && r.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().TetragrammatonHp);
+                if(tetragrammatonTarget == null)
+                {
+                    return false;
+                }
+                //var spell = new SpellEntity(SpellsDefine.Tetragrammaton, tetragrammatonTarget as BattleCharacter);
+                //return await spell.DoAbility();
+                return true;
+            }
+            return false;
+        }*/
+        public static async Task<SpellEntity> CastTetragrammatonPriority()
+        {
+            LogHelper.Debug("Trying to use TetragrammatonPriority");
+            if (GroupHelper.InParty)
+            {
+                LogHelper.Debug("inparty");
+                var tetragrammatonTargets = GroupHelper.CastableAlliesWithin30;
+                foreach (var tetragrammatonTarget in tetragrammatonTargets)
+                {
+                    if (tetragrammatonTarget.CurrentHealth > 0 && tetragrammatonTarget.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().TetragrammatonHp)
+                    {
+                        LogHelper.Debug("tryuse");
+                        await CastTetragrammaton(tetragrammatonTarget);
+                    }
+                    LogHelper.Debug(Convert.ToString(SettingMgr.GetSetting<WhiteMageSettings>().TetragrammatonHp));
+                    LogHelper.Debug(Convert.ToString(tetragrammatonTarget.CurrentHealthPercent));
+                    LogHelper.Debug(Convert.ToString(tetragrammatonTarget.CurrentHealth));
+
+                }
+                    //.FirstOrDefault(r => r.CurrentHealth > 0 && r.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().TetragrammatonHp);
+                //if (tetragrammatonTarget == null)
+               // {
+                //    return null;
+                //}
+                //var spell = new SpellEntity(SpellsDefine.Tetragrammaton, tetragrammatonTarget as BattleCharacter);
+                //return await spell.DoAbility();
+                //await CastTetragrammaton(tetragrammatonTarget);
+            }
+            LogHelper.Debug("not in inparty");
+            return null;
+        }
+        public static async Task CastTetragrammaton(Character target)
+        {
+            if (!SpellsDefine.Tetragrammaton.IsUnlock()) return;
+            
+            var spell = new SpellEntity(SpellsDefine.Tetragrammaton, target as BattleCharacter);
+            await spell.DoAbility();
+        }
     }
 }

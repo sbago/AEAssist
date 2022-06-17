@@ -4,6 +4,7 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Helpers;
+using ff14bot.Managers;
 
 namespace AEAssist.AI.WhiteMage.GCD
 {
@@ -12,20 +13,21 @@ namespace AEAssist.AI.WhiteMage.GCD
         public int Check(SpellEntity lastSpell)
         {
             var holy = WhiteMageSpellHelper.GetHoly();
-            if (holy == null) return -1;
+            var aoeChecker = TargetHelper.CheckNeedUseAOE(8, 8, ConstValue.WhiteMageAOECount);
+            if (MovementManager.IsMoving) return -1;
+            if (!aoeChecker) return -2;
+            if (holy == null) return -3;
             var distanceToEnemy = Core.Me.CurrentTarget.Distance();
-            if (!(distanceToEnemy > 7)) return 0;
-            LogHelper.Debug("Distance is greater than 7 so skipping Dykrasia.");
+            if (!(distanceToEnemy > 8)) return 0;
+            LogHelper.Debug("Distance is greater than 8 so skipping Holy.");
             LogHelper.Debug(distanceToEnemy.ToString(CultureInfo.InvariantCulture));
+
             return -1;
         }
 
         public async Task<SpellEntity> Run()
         {
-            var aoeChecker = TargetHelper.CheckNeedUseAOE(0, 8, ConstValue.WhiteMageAOECount);
-            LogHelper.Debug("Checking Enemy if it's around: " + aoeChecker);
-            if (!aoeChecker) return null;
-
+           
             var spell = WhiteMageSpellHelper.GetHoly();
             if (spell == null) return null;
             var ret = await spell.DoGCD();

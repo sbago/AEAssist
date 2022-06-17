@@ -189,7 +189,7 @@ namespace AEAssist
         public string Textbox_WhiteMage_DotTimeLeft { get; set; }
 
         public string TextBox_Lucid_Dreaming { get; set; }
-
+        public string TextBox_Tetragrammaton { get; set; }
         public string ToolTip_Bard_FinalBurst { get; set; }
         public string ToolTip_Bard_Burst { get; set; }
         

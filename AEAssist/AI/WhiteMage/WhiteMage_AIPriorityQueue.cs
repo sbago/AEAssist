@@ -20,15 +20,20 @@ namespace AEAssist.AI.WhiteMage
             new SageGCDDyskrasia(),
             */
             new WhiteMageGcdDot(),
-            new WhiteMageBaseGCD(),
+            new WhiteMageGCDHoly(),
+            new WhiteMageBaseGCD()
             
-            new WhiteMageGCDHoly()
+
+
         };
 
         public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()
         {
-         new WhiteMageAbilityLucidDreaming(),
-         //new SageAbilityUsePotion(),
+            new WhiteMageAbilityLucidDreaming(),
+            new WhiteMageAbilityAssize(),
+            new WhiteMageAbilityThinAir(),
+            new WhiteMageAbilityTetragrammaton(),
+            //new SageAbilityUsePotion(),
         };
         public async Task<bool> UsePotion()
         {
