@@ -44,6 +44,14 @@
                     <Label Content="{Binding Language.TextBox_Tetragrammaton}" Width="200" />
                     <TextBox Width="100" Text="{Binding WhiteMageSettings.TetragrammatonHp,Mode=TwoWay}" />
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="{Binding Language.TextBox_DivineBenison}" Width="200" />
+                    <TextBox Width="100" Text="{Binding WhiteMageSettings.DivineBenisonHp,Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="{Binding Language.TextBox_Regen}" Width="200" />
+                    <TextBox Width="100" Text="{Binding WhiteMageSettings.RegenHp,Mode=TwoWay}" />
+                </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="{Binding Language.Label_ChooseOpener}" Width="100" />

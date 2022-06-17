@@ -1,7 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
+using Buddy.Coroutines;
 using ff14bot;
+using ff14bot.Helpers;
+using ff14bot.Managers;
+using ff14bot.Objects;
 namespace AEAssist.AI.WhiteMage.Ability
 {
     public class WhiteMageAbilityLucidDreaming : IAIHandler

@@ -190,6 +190,8 @@ namespace AEAssist
 
         public string TextBox_Lucid_Dreaming { get; set; }
         public string TextBox_Tetragrammaton { get; set; }
+        public string TextBox_DivineBenison { get; set; }
+        public string TextBox_Regen { get; set; }
         public string ToolTip_Bard_FinalBurst { get; set; }
         public string ToolTip_Bard_Burst { get; set; }
         

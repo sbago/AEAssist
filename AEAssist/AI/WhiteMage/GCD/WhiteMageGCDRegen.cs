@@ -9,25 +9,26 @@ using ff14bot.Helpers;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
-namespace AEAssist.AI.WhiteMage.Ability
+namespace AEAssist.AI.WhiteMage.GCD
 {
-    internal class WhiteMageAbilityTetragrammaton:IAIHandler
+    internal class WhiteMageGCDRegen : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {
-            var skillTarget = GroupHelper.CastableAlliesWithin30.FirstOrDefault(r => r.CurrentHealth > 0 && r.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().TetragrammatonHp);
+            var skillTarget = GroupHelper.CastableAlliesWithin30.FirstOrDefault(r => r.CurrentHealth > 0 && r.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().RegenHp && !r.HasAura(AurasDefine.Regen));
             if (skillTarget == null)
             {
                 return -2;
             }
-            if (!SpellsDefine.Tetragrammaton.IsReady()) return -1;
-            
-            return 0;
-        }
+            if (!SpellsDefine.Regen.IsReady()) return -1;
 
+            return 0;
+
+
+        }
         public Task<SpellEntity> Run()
         {
-            return WhiteMageSpellHelper.CastTetragrammaton();
+            return WhiteMageSpellHelper.CastRegen();
         }
     }
 }

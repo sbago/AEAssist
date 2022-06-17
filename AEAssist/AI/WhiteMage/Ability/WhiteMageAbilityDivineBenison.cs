@@ -11,23 +11,26 @@ using ff14bot.Objects;
 
 namespace AEAssist.AI.WhiteMage.Ability
 {
-    internal class WhiteMageAbilityTetragrammaton:IAIHandler
+    internal class WhiteMageAbilityDivineBenison : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {
-            var skillTarget = GroupHelper.CastableAlliesWithin30.FirstOrDefault(r => r.CurrentHealth > 0 && r.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().TetragrammatonHp);
+            if (!SpellsDefine.DivineBenison.IsReady()) return -1;
+            var skillTarget = GroupHelper.CastableAlliesWithin30.FirstOrDefault(r => r.CurrentHealth > 0 && r.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().DivineBenisonHp);
             if (skillTarget == null)
             {
                 return -2;
             }
-            if (!SpellsDefine.Tetragrammaton.IsReady()) return -1;
-            
+            if (!SpellsDefine.DivineBenison.IsMaxChargeReady())
+            {
+                return -1;
+            }
             return 0;
         }
 
         public Task<SpellEntity> Run()
         {
-            return WhiteMageSpellHelper.CastTetragrammaton();
+            return WhiteMageSpellHelper.CastDivineBenison();
         }
     }
 }
