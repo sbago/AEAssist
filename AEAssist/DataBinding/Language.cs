@@ -177,7 +177,9 @@ namespace AEAssist
         public string Label_OverlayScale { get; set; }
         
         public string Textbox_Sage_DotTimeLeft { get; set; }
-        
+
+        public string Textbox_WhiteMage_DotTimeLeft { get; set; }
+
         public string TextBox_Lucid_Dreaming { get; set; }
 
         public string ToolTip_Bard_FinalBurst { get; set; }

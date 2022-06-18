@@ -108,8 +108,20 @@ namespace AEAssist.Helper
             if (!GameSettingsManager.FaceTargetOnAction)
                 GameSettingsManager.FaceTargetOnAction = true;
 
-            if (!ActionManager.DoAction(spell, target))
-                return false;
+
+            if (spell.GroundTarget)
+            {
+                if (!ActionManager.DoActionLocation(spell.Id, target.Location))
+                    return false;
+            }
+            else
+            {
+                if (!ActionManager.DoAction(spell, target))
+                    return false;
+            }
+
+
+
 
             var needTime = (int) spell.AdjustedCastTime.TotalMilliseconds + waitTime;
             SpellEventMgr.Instance.Run(spell.Id);

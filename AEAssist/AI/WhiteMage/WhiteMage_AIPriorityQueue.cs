@@ -1,0 +1,38 @@
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using AEAssist.AI.WhiteMage.Ability;
+using AEAssist.AI.WhiteMage.GCD;
+using AEAssist.Helper;
+using ff14bot.Enums;
+
+namespace AEAssist.AI.WhiteMage
+{
+    [Job(ClassJobType.WhiteMage)]
+    public class WhiteMage_AIPriorityQueue : IAIPriorityQueue
+    {
+        public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>()
+        {
+            /*new SageGCDEgeiro(),
+            new SageGcdDot(),
+            new SageGcdToxikon(),
+            new SageGcdPhlegma(),
+            new SageBaseGCD(),
+            new SageGCDDyskrasia(),
+            */
+            new WhiteMageGcdDot(),
+            new WhiteMageBaseGCD(),
+            
+            new WhiteMageGCDHoly()
+        };
+
+        public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()
+        {
+         new WhiteMageAbilityLucidDreaming(),
+         //new SageAbilityUsePotion(),
+        };
+        public async Task<bool> UsePotion()
+        {
+            return await PotionHelper.ForceUsePotion(SettingMgr.GetSetting<GeneralSettings>().MindPotionId);
+        }
+    }
+}
