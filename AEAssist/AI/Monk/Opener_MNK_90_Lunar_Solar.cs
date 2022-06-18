@@ -51,6 +51,8 @@ namespace AEAssist.AI.Monk
         {
             slot.SetGCD(SpellsDefine.DragonKick, SpellTargetType.CurrTarget);
             slot.UsePotion = true;
+            MeleePosition.Intance.RequiredPosition = MeleePosition.Position.Back;
+            MeleePosition.Intance.ShowMsg();
         }
 
 
