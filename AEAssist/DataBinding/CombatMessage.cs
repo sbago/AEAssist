@@ -1,5 +1,8 @@
+using PropertyChanged;
+
 namespace AEAssist
 {
+    [AddINotifyPropertyChangedInterface]
     public class CombatMessageModel
     {
         private static CombatMessageModel _instance;
@@ -11,7 +14,7 @@ namespace AEAssist
             ImageSource = "";
         }
 
-        public string Message { get; set; } = "";
+        public string Message { get; set; } = "CombatMessage";
         public string ImageSource { get; set; } = "";
     }
 }

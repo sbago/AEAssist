@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:AEAssist.View"
              xmlns:dataBinding="clr-namespace:AEAssist"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
-    
+             d:DesignHeight="355" d:DesignWidth="435">
+
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,11 +16,11 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    
+
     <UserControl.DataContext>
         <Binding Source="{x:Static dataBinding:DataBinding.Instance}" />
     </UserControl.DataContext>
-    
+
     <TabControl
         Margin="20"
         TabStripPlacement="Top">
@@ -40,19 +40,31 @@
                     <Label Content="{Binding Language.TextBox_Lucid_Dreaming}" Width="200" />
                     <TextBox Width="100" Text="{Binding WhiteMageSettings.LucidDreamingTrigger,Mode=TwoWay}" />
                 </StackPanel>
-                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="{Binding Language.TextBox_Tetragrammaton}" Width="200" />
+                    <TextBox Width="100" Text="{Binding WhiteMageSettings.TetragrammatonHp,Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="{Binding Language.TextBox_DivineBenison}" Width="200" />
+                    <TextBox Width="100" Text="{Binding WhiteMageSettings.DivineBenisonHp,Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="{Binding Language.TextBox_Regen}" Width="200" />
+                    <TextBox Width="100" Text="{Binding WhiteMageSettings.RegenHp,Mode=TwoWay}" />
+                </StackPanel>
+
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="{Binding Language.Label_ChooseOpener}" Width="100" />
                     <ComboBox IsEditable="False" Name="ChooseOpener" Width="150" DisplayMemberPath="Name"
                               SelectedValuePath="Name" SelectionChanged="ChooseOpener_OnSelectionChanged" />
                 </StackPanel>
-                
+
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="{Binding Language.Label_ChooseResPriority}" Width="120" />
                     <ComboBox IsEditable="False" Name="WhiteMageResPriority" Width="150" DisplayMemberPath="Value"
                               SelectedValuePath="Key" DropDownClosed="ChooseResPriority_OnSelectionChanged"/>
                 </StackPanel>
-                
+
             </StackPanel>
         </TabItem>
     </TabControl>

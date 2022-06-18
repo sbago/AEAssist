@@ -381,7 +381,9 @@ namespace AEAssist.AI.Sage
                         if (deadAlly.HasAura(AurasDefine.Raise)) continue;
                         
                         // check if the distance from the player is more than 30
-                        if (deadAlly.Distance(Core.Me) >= 40) continue;
+                        
+                        // if (deadAlly.Distance(Core.Me) >= 40) continue;
+                        if (!ActionManager.CanCastOrQueue(SpellsDefine.Egeiro.GetSpellEntity().SpellData, deadAlly)) continue;
 
                         if (deadAlly.IsDps())
                         {

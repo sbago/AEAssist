@@ -24,7 +24,7 @@ namespace AEAssist.View.OverlayManager
         private HashSet<OverlayUIComponent> _delSet = new HashSet<OverlayUIComponent>();
         
         private static OverlayUIComponent_CombatMessage CombatMessageOverlay;
-
+        
         public void Init()
         {
             var baseType = typeof(OverlayUIComponent);
@@ -38,10 +38,13 @@ namespace AEAssist.View.OverlayManager
                 var attrs = type.GetCustomAttributes(typeof(JobAttribute), false);
                 if (attrs.Length == 0) continue;
 
-                var attr = attrs[0] as JobAttribute;
-                if(!AllOverlays.ContainsKey(attr.ClassJobType))
-                    AllOverlays.Add(attr.ClassJobType, new List<OverlayUIComponent>());
-                AllOverlays[attr.ClassJobType].Add(Activator.CreateInstance(type) as OverlayUIComponent);
+                foreach (var v in attrs)
+                {
+                    var attr = v as JobAttribute;
+                    if(!AllOverlays.ContainsKey(attr.ClassJobType))
+                        AllOverlays.Add(attr.ClassJobType, new List<OverlayUIComponent>());
+                    AllOverlays[attr.ClassJobType].Add(Activator.CreateInstance(type) as OverlayUIComponent);   
+                }
             }
         }
 
@@ -112,24 +115,27 @@ namespace AEAssist.View.OverlayManager
             }
         }
 
-        public static void StartCombatMessageOverlay()
+        public void StartCombatMessageOverlay()
         {
             if (!Core.OverlayManager.IsActive)
+            {
                 return;
+            }
 
-            // if (!BaseSettings.Instance.UseCombatMessageOverlay)
-            //     return;
+            if (!DataBinding.Instance.GeneralSettings.UseCombatMessageOverlay)
+            {
+                return;
+            }
 
-            // if (CombatMessageOverlay == null)
-            // {
-            //     CombatMessageOverlay =
-            //         new CombatMessageUiComponent(BaseSettings.Instance.CombatMessageOverlayAdjustable);
-            // }
-
+            if (CombatMessageOverlay == null)
+            {
+                CombatMessageOverlay = new OverlayUIComponent_CombatMessage();
+            }
+            
             Core.OverlayManager.AddUIComponent(CombatMessageOverlay);
         }
         
-        public static void StopCombatMessageOverlay()
+        public void StopCombatMessageOverlay()
         {
             if (!Core.OverlayManager.IsActive)
                 return;

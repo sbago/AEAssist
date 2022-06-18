@@ -1,0 +1,439 @@
+{
+  "_t" : "TriggerLine",
+  "Author" : "",
+  "ConfigVersion" : { "$numberInt" : "3" },
+  "CurrZoneId" : { "$numberInt" : "0" },
+  "Name" : "",
+  "SubZoneId" : { "$numberInt" : "0" },
+  "TargetJob" : "",
+  "Triggers" : [{
+      "_id" : "0",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "3571" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "0" }
+        }]
+    }, {
+      "_id" : "1",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "136" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "3" }
+        }]
+    }, {
+      "_id" : "2",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "7430" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "5" }
+        }]
+    }, {
+      "_id" : "3",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "7430" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "7" }
+        }]
+    }, {
+      "_id" : "4",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "16536" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "31" }
+        }]
+    }, {
+      "_id" : "5",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "3569" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "34" }
+        }]
+    }, {
+      "_id" : "6",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastGCD",
+          "SpellId" : { "$numberInt" : "16534" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "35" }
+        }]
+    }, {
+      "_id" : "7",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "3571" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "46" }
+        }]
+    }, {
+      "_id" : "8",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "7430" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "69" }
+        }]
+    }, {
+      "_id" : "9",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "3571" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "93" }
+        }]
+    }, {
+      "_id" : "10",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "136" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "126" }
+        }]
+    }, {
+      "_id" : "11",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "25862" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "138" }
+        }]
+    }, {
+      "_id" : "12",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "3571" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "142" }
+        }]
+    }, {
+      "_id" : "13",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "3569" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "157" }
+        }]
+    }, {
+      "_id" : "14",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "7430" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "164" }
+        }]
+    }, {
+      "_id" : "15",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "16536" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "169" }
+        }]
+    }, {
+      "_id" : "16",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "7433" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "179" }
+        }]
+    }, {
+      "_id" : "17",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastGCD",
+          "SpellId" : { "$numberInt" : "16534" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "180" }
+        }]
+    }, {
+      "_id" : "18",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "3571" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "189" }
+        }]
+    }, {
+      "_id" : "19",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "7430" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "219" }
+        }]
+    }, {
+      "_id" : "20",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "3571" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "237" }
+        }]
+    }, {
+      "_id" : "21",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "136" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "249" }
+        }]
+    }, {
+      "_id" : "22",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "7430" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "251" }
+        }]
+    }, {
+      "_id" : "23",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "3569" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "274" }
+        }]
+    }, {
+      "_id" : "24",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "3571" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "283" }
+        }]
+    }, {
+      "_id" : "25",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "16536" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "303" }
+        }]
+    }, {
+      "_id" : "26",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "7433" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "320" }
+        }]
+    }, {
+      "_id" : "27",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastGCD",
+          "SpellId" : { "$numberInt" : "16534" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "321" }
+        }]
+    }, {
+      "_id" : "28",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "25862" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "323" }
+        }]
+    }, {
+      "_id" : "29",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "3571" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "331" }
+        }]
+    }, {
+      "_id" : "30",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastGCD",
+          "SpellId" : { "$numberInt" : "16535" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "336" }
+        }]
+    }, {
+      "_id" : "31",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "7430" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "338" }
+        }]
+    }, {
+      "_id" : "32",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "3571" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "376" }
+        }]
+    }, {
+      "_id" : "33",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "3569" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "384" }
+        }]
+    }, {
+      "_id" : "34",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "136" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "386" }
+        }]
+    }, {
+      "_id" : "35",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "7430" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "407" }
+        }]
+    }, {
+      "_id" : "36",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "3571" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "422" }
+        }]
+    }, {
+      "_id" : "37",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "16536" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "447" }
+        }]
+    }, {
+      "_id" : "38",
+      "TriggerActions" : [{
+          "_t" : "TriggerAction_CastAbility",
+          "SpellId" : { "$numberInt" : "3571" },
+          "TargetType" : { "$numberInt" : "0" }
+        }],
+      "TriggerConds" : [{
+          "_t" : "TriggerCond_AfterBattleStart",
+          "Time" : { "$numberInt" : "467" }
+        }]
+    }]
+}

@@ -50,9 +50,6 @@
         <Reference Include="RebornBuddy">
           <HintPath>..\References\RebornBuddy.exe</HintPath>
         </Reference>
-        <Reference Include="RebornBuddy, Version=1.0.473.0, Culture=neutral, PublicKeyToken=48d7174f8a943034">
-            <HintPath>..\References\RebornBuddy.exe</HintPath>
-        </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />

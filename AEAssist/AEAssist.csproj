@@ -50,6 +50,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     </Reference>
     <Reference Include="RebornBuddy">
       <HintPath>..\References\RebornBuddy.exe</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="RebornBuddy, Version=1.0.473.0, Culture=neutral, PublicKeyToken=48d7174f8a943034">
       <HintPath>..\References\RebornBuddy.exe</HintPath>
@@ -406,6 +407,12 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Samurai\Samurai_AIPriorityQueue.cs" />
     <Compile Include="AI\SpellHistoryMgr.cs" />
     <Compile Include="AI\SpellQueueData.cs" />
+    <Compile Include="AI\WhiteMage\Ability\WhiteMageAbilityAssize.cs" />
+    <Compile Include="AI\WhiteMage\Ability\WhiteMageAbilityTetragrammaton.cs" />
+    <Compile Include="AI\WhiteMage\Ability\WhiteMageAbilityThinAir.cs" />
+    <Compile Include="AI\WhiteMage\Ability\WhiteMageAbilityDivineBenison.cs" />
+    <Compile Include="AI\WhiteMage\GCD\WhiteMageGCDRaise.cs" />
+    <Compile Include="AI\WhiteMage\GCD\WhiteMageGCDRegen.cs" />
     <Compile Include="Converters\BooleanConverterT.cs" />
     <Compile Include="Converters\BooleanToOpaqueConverter.cs" />
     <Compile Include="DataBinding\CombatMessage.cs" />
@@ -550,6 +557,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     </Compile>
     <Compile Include="View\Overlay\MonkOverlayWindow.xaml.cs">
       <DependentUpon>MonkOverlayWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_WhiteMageOverlay.cs" />
     <Compile Include="View\Overlay\WhiteMageOverlayWindow.xaml.cs">
       <DependentUpon>WhiteMageOverlayWindow.xaml</DependentUpon>
@@ -877,7 +885,6 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <PackageReference Include="System.ObjectModel" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AI\Monk\Ability\" />
     <Folder Include="AI\Monk\SpellQueue\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

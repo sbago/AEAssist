@@ -51,6 +51,7 @@ namespace AEAssist
                     IsPositionCorrectColor = System.Windows.Media.Brushes.Green;
                     break;
             }
+            UIHelper.RfreshCurrOverlay();
         }
 
         private void SetDistance(GameObject CurrentTarget)

@@ -66,7 +66,7 @@ namespace AEAssist.Helper
             if (!AEAssist.DataBinding.Instance.UseAOE)
                 return false;
             var count = GetNearbyEnemyCount(Core.Me.CurrentTarget, targetRange, damageRange);
-
+            LogHelper.Debug(Convert.ToString( count));
             if (count >= needCount)
                 return true;
             return false;

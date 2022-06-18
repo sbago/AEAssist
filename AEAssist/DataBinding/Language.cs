@@ -33,6 +33,8 @@ namespace AEAssist
         public string Toggle_ShowGameLog { get; set; }
         public string Toggle_ShowDebugLog { get; set; }
         public string Toggle_ShowBattleTime { get; set; }
+        
+        public string Toggle_CombatMessageOverlay { get; set; }
 
         public string Toggle_NextAbilityFirst { get; set; }
         public string Toggle_AutoInterrupt { get; set; }
@@ -53,6 +55,9 @@ namespace AEAssist
 
         public string Toggle_Potion { get; set; }
         public string Toggle_Battery { get; set; }
+        
+        public string Toggle_Heat { get; set; }
+        
         public string Toggle_Apex { get; set; }
         public string Toggle_ActiveAttack { get; set; }
         public string Toggle_PreferDoubleEnshroud { get; set; }
@@ -75,6 +80,7 @@ namespace AEAssist
         public string Toggle_UsePoleton { get; set; }
         public string Toggle_Bard_Delay1GCDToUseBuffs { get; set; }
         public string Toggle_WildfireNoDelay { get; set; }
+        public string Toggle_Wildfire { get; set; }
 
         public string TabItem_General { get; set; }
         public string TabItem_Hotkey { get; set; }
@@ -176,12 +182,16 @@ namespace AEAssist
 
         public string Label_OverlayScale { get; set; }
         
+        public string Label_CombatMessageFontSize { get; set; }
+        
         public string Textbox_Sage_DotTimeLeft { get; set; }
 
         public string Textbox_WhiteMage_DotTimeLeft { get; set; }
 
         public string TextBox_Lucid_Dreaming { get; set; }
-
+        public string TextBox_Tetragrammaton { get; set; }
+        public string TextBox_DivineBenison { get; set; }
+        public string TextBox_Regen { get; set; }
         public string ToolTip_Bard_FinalBurst { get; set; }
         public string ToolTip_Bard_Burst { get; set; }
         

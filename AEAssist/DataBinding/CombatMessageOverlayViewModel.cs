@@ -1,6 +1,6 @@
 using PropertyChanged;
 
-namespace AEAssist.ViewModels
+namespace AEAssist
 {
     [AddINotifyPropertyChangedInterface]
     public class CombatMessageOverlayViewModel

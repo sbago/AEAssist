@@ -41,6 +41,8 @@ namespace AEAssist
         public bool UseAOE { get; set; } = true;
 
         public bool UseBattery { get; set; } = true;
+        
+        public bool UseHeat { get; set; } = true;
 
         public string TimeStr { get; set; }
 
@@ -70,8 +72,8 @@ namespace AEAssist
         public string TriggerLineName { get; set; } = "NULL";
 
         #region MCH
-
-        public bool WildfireNoDelay { get; set; }
+        
+        public bool Wildfire { get; set; }
 
         #endregion
 
@@ -108,12 +110,13 @@ namespace AEAssist
             LazyOn = false;
             TimeStr = "";
             UseBattery = true;
+            UseHeat = true;
             UseSong = true;
             UseEnshroud = true;
             FinalBurst = false;
             UseMeikyoShisui = true;
             SageSettings.LucidDreamingToggle = true;
-            WildfireNoDelay = SettingMgr.GetSetting<MCHSettings>().WildfireFirst;
+            Wildfire = true;
         }
 
 
@@ -124,7 +127,6 @@ namespace AEAssist
                     $"{Language.Instance.Content_BattleTime}:  {AIRoot.GetBattleData<BattleData>().CurrBattleTimeInMs / 1000}";
             else
                 TimeStr = $"{Language.Instance.Content_LocalTime}:  {DateTime.Now:hh:mm:ss}";
-            
         }
 
         public void ApplyScale()
