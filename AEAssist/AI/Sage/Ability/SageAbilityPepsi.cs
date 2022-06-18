@@ -9,6 +9,10 @@ namespace AEAssist.AI.Sage.Ability
     {
         public int Check(SpellEntity lastSpell)
         {
+            if (!SettingMgr.GetSetting<SageSettings>().Heal)
+            {
+                return -5;
+            }
             // this might not work at all since it will check for EukrasiaPrognosis and EukrasianDiagnosis
             // TODO: Might need a fix.
             if (!SpellsDefine.Pepsis.IsReady() || !Core.Me.HasAura(AurasDefine.EukrasianPrognosis) ||

@@ -11,7 +11,7 @@ using ff14bot.Objects;
 
 namespace AEAssist.AI.WhiteMage.GCD
 {
-    internal class WhiteMageGCDRegen : IAIHandler
+    internal class WhiteMageGCDAfflatusSolace : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {
@@ -19,13 +19,17 @@ namespace AEAssist.AI.WhiteMage.GCD
             {
                 return -5;
             }
-            var skillTarget = GroupHelper.CastableAlliesWithin30.FirstOrDefault(r => r.CurrentHealth > 0 && r.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().RegenHp && !r.HasAura(AurasDefine.Regen));
+            if (ActionResourceManager.WhiteMage.Lily < 1)
+            {
+                return -3;
+            }
+            var skillTarget = GroupHelper.CastableAlliesWithin30.FirstOrDefault(r => r.CurrentHealth > 0 && r.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().AfflatusSolaceHp);
             if (skillTarget == null)
             {
                 return -2;
             }
             
-            LogHelper.Debug("再生选取目标："+Convert.ToString(skillTarget));
+            LogHelper.Debug("安慰之心选取目标："+Convert.ToString(skillTarget));
             //if (!SpellsDefine.Regen.IsReady()) return -1;
 
             return 0;
@@ -34,7 +38,7 @@ namespace AEAssist.AI.WhiteMage.GCD
         }
         public Task<SpellEntity> Run()
         {
-            return WhiteMageSpellHelper.CastRegen();
+            return WhiteMageSpellHelper.CastAfflatusSolace();
         }
     }
 }

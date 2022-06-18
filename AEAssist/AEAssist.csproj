@@ -412,6 +412,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\WhiteMage\Ability\WhiteMageAbilityThinAir.cs" />
     <Compile Include="AI\WhiteMage\Ability\WhiteMageAbilityDivineBenison.cs" />
     <Compile Include="AI\WhiteMage\GCD\WhiteMageGCDRaise.cs" />
+    <Compile Include="AI\WhiteMage\GCD\WhiteMageGCDAfflatusSolace.cs" />
     <Compile Include="AI\WhiteMage\GCD\WhiteMageGCDRegen.cs" />
     <Compile Include="Converters\BooleanConverterT.cs" />
     <Compile Include="Converters\BooleanToOpaqueConverter.cs" />
