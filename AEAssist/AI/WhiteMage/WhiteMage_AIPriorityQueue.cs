@@ -20,6 +20,7 @@ namespace AEAssist.AI.WhiteMage
             new SageGCDDyskrasia(),
             */
             new WhiteMageGcdDot(),
+            new WhiteMageGCDAfflatusSolace(),
             new WhiteMageGCDRegen(),
             new WhiteMageGCDHoly(),
             new WhiteMageBaseGCD()

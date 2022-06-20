@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:AEAssist.View"
              xmlns:dataBinding="clr-namespace:AEAssist"
              mc:Ignorable="d"
-             d:DesignHeight="355" d:DesignWidth="435">
+             d:DesignHeight="450" d:DesignWidth="515">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -51,6 +51,10 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                     <Label Content="{Binding Language.TextBox_Regen}" Width="200" />
                     <TextBox Width="100" Text="{Binding WhiteMageSettings.RegenHp,Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                    <Label Content="{Binding Language.TextBox_AfflatusSolace}" Width="200" />
+                    <TextBox Width="100" Text="{Binding WhiteMageSettings.AfflatusSolaceHp,Mode=TwoWay}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">

@@ -15,6 +15,10 @@ namespace AEAssist.AI.WhiteMage.Ability
     {
         public int Check(SpellEntity lastSpell)
         {
+            if (!SettingMgr.GetSetting<WhiteMageSettings>().Heal)
+            {
+                return -5;
+            }
             var skillTarget = GroupHelper.CastableAlliesWithin30.FirstOrDefault(r => r.CurrentHealth > 0 && r.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().TetragrammatonHp);
             if (skillTarget == null)
             {

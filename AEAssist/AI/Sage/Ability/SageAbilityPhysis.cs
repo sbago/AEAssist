@@ -7,6 +7,10 @@ namespace AEAssist.AI.Sage.Ability
     {
         public int Check(SpellEntity lastSpell)
         {
+            if (!SettingMgr.GetSetting<SageSettings>().Heal)
+            {
+                return -5;
+            }
             var physisCheck = SageSpellHelper.GetPhysis();
             if (physisCheck == null) return -1;
             return 0;

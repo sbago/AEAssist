@@ -217,7 +217,10 @@ namespace AEAssist.AI.WhiteMage
             if (aeroId == 0) return false;
 
             var ttkAero = SettingMgr.GetSetting<WhiteMageSettings>().TTK_Aero;
-
+            if (Core.Me.ClassLevel<72)
+            {
+                ttkAero = 18;
+            }
             bool NormalCheck()
             {
                 if (DataBinding.Instance.EarlyDecisionMode)
@@ -469,6 +472,22 @@ namespace AEAssist.AI.WhiteMage
                 //await CastDivineBenison(skillTarget);
                 if (!SpellsDefine.Regen.IsUnlock()) return null;
                 var spell = new SpellEntity(SpellsDefine.Regen, skillTarget as BattleCharacter);
+                LogHelper.Debug("再生释放目标：" + Convert.ToString(skillTarget));
+                await spell.DoGCD();
+            }
+            return null;
+
+        }
+        public static async Task<SpellEntity> CastAfflatusSolace()
+        {
+
+            if (GroupHelper.InParty)
+            {
+                var skillTarget = GroupHelper.CastableAlliesWithin30.FirstOrDefault(r => r.CurrentHealth > 0 && r.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().AfflatusSolaceHp);
+                //await CastDivineBenison(skillTarget);
+                if (!SpellsDefine.AfflatusSolace.IsUnlock()) return null;
+                var spell = new SpellEntity(SpellsDefine.AfflatusSolace, skillTarget as BattleCharacter);
+                LogHelper.Debug("安慰之心释放目标：" + Convert.ToString(skillTarget));
                 await spell.DoGCD();
             }
             return null;
