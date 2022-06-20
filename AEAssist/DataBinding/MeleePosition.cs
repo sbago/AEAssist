@@ -18,8 +18,17 @@ namespace AEAssist
             Side,
             None
         }
-        public Position CurrentPosition { get; set; } = Position.None;
-        public Position RequiredPosition { get; set; } = Position.None;
+        
+        public enum Priority
+        {
+            Low,
+            Medium,
+            High
+        }
+        
+        private Position CurrentPosition { get; set; } = Position.None;
+        private Position RequiredPosition { get; set; } = Position.None;
+        public Priority CurrentPriority { get; set; } = Priority.Low;
         public String RequiredPositionString { get; set; } = "";
         public bool IsPositionCorrect { get; set; } = true;
 
@@ -28,7 +37,7 @@ namespace AEAssist
         public System.Windows.Media.Brush IsPositionCorrectColor { get; set; } = System.Windows.Media.Brushes.Green;
         public System.Windows.Media.Brush IsTargetDistanceSafe { get; set; } = System.Windows.Media.Brushes.Green;
         
-        public void SetString()
+        private void SetString()
         {
             switch (RequiredPosition)
             {
@@ -42,16 +51,50 @@ namespace AEAssist
                     RequiredPositionString = "◎";
                     break;
             }
+            // UIHelper.RfreshCurrOverlay();
+        }
+
+        public void SetPositionToBack(Priority priority = Priority.Low)
+        {
+            RequiredPosition = Position.Back;
+            CurrentPriority = priority;
+        }
+        
+        public void SetPositionToSide(Priority priority = Priority.Low)
+        {
+            RequiredPosition = Position.Side;
+            CurrentPriority = priority;
+        }
+        
+        public void SetPositionToNone(Priority priority = Priority.Low)
+        {
+            RequiredPosition = Position.None;
+            CurrentPriority = priority;
+        }
+        
+        
+        private void SetColor()
+        {
             switch (IsPositionCorrect)
             {
                 case false:
-                    IsPositionCorrectColor = System.Windows.Media.Brushes.DarkRed;
+                    if (CurrentPriority == Priority.High)
+                    {
+                        IsPositionCorrectColor = System.Windows.Media.Brushes.DarkRed;
+                    }
+                    else if (CurrentPriority == Priority.Medium)
+                    {
+                        IsPositionCorrectColor = System.Windows.Media.Brushes.DarkGoldenrod;
+                    }
+                    else
+                    {
+                        IsPositionCorrectColor = System.Windows.Media.Brushes.DarkKhaki;
+                    }
                     break;
                 default:
                     IsPositionCorrectColor = System.Windows.Media.Brushes.Green;
                     break;
             }
-            UIHelper.RfreshCurrOverlay();
         }
 
         private void SetDistance(GameObject CurrentTarget)
@@ -85,6 +128,7 @@ namespace AEAssist
             if (Core.Me.HasTarget)
             {
                 var CurrentTarget = Core.Me.CurrentTarget;
+                
                 SetDistance(CurrentTarget);
                 if (CurrentTarget.IsBehind)
                 {
@@ -93,10 +137,6 @@ namespace AEAssist
                 else if (CurrentTarget.IsFlanking)
                 {
                     CurrentPosition = Position.Side;
-                }
-                else
-                {
-                    CurrentPosition = Position.None;
                 }
                 if (RequiredPosition != Position.None && CurrentPosition != RequiredPosition)
                 {
@@ -107,6 +147,7 @@ namespace AEAssist
                     IsPositionCorrect = true;
                 }
                 SetString();
+                SetColor();
             }
             // if (!check)
             //     UIHelper.RfreshCurrOverlay();

@@ -17,24 +17,36 @@ namespace AEAssist.AI.Monk
         {
             if (!Core.Me.HasTarget)
             {
-                MeleePosition.Intance.RequiredPosition = MeleePosition.Position.None;
+                MeleePosition.Intance.SetPositionToNone();
                 MeleePosition.Intance.ShowMsg();
                 return;
             }
 
             var target = Core.Me.CurrentTarget as Character;
+            
+            var priority = MeleePosition.Priority.Low;
+            
+            if (InRaptorForm())
+            {
+                priority = MeleePosition.Priority.Medium;
+            }
+            else if (InCoeurlForm())
+            {
+                priority = MeleePosition.Priority.High;
+            }
+
+            
             if (UsingDot())
             {
                 if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 5))
                 {
-                    MeleePosition.Intance.RequiredPosition = MeleePosition.Position.None;
+                    MeleePosition.Intance.SetPositionToNone(priority);
                     MeleePosition.Intance.ShowMsg();
                     return;
                 }
-
                 if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 6000) == false)
                 {
-                    MeleePosition.Intance.RequiredPosition = MeleePosition.Position.Back;
+                    MeleePosition.Intance.SetPositionToBack(priority);
                     MeleePosition.Intance.ShowMsg();
                     return;
                 }
@@ -42,12 +54,11 @@ namespace AEAssist.AI.Monk
 
             if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
             {
-                MeleePosition.Intance.RequiredPosition = MeleePosition.Position.None;
+                MeleePosition.Intance.SetPositionToNone(priority);
                 MeleePosition.Intance.ShowMsg();
                 return;
             }
-
-            MeleePosition.Intance.RequiredPosition = MeleePosition.Position.Side;
+            MeleePosition.Intance.SetPositionToSide(priority);
             MeleePosition.Intance.ShowMsg();
             return;
         }
