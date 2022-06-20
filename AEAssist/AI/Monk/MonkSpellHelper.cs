@@ -25,7 +25,7 @@ namespace AEAssist.AI.Monk
             var target = Core.Me.CurrentTarget as Character;
             if (UsingDot())
             {
-                if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 5))
+                if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 5))
                 {
                     MeleePosition.Intance.RequiredPosition = MeleePosition.Position.None;
                     MeleePosition.Intance.ShowMsg();
@@ -40,7 +40,7 @@ namespace AEAssist.AI.Monk
                 }
             }
 
-            if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+            if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
             {
                 MeleePosition.Intance.RequiredPosition = MeleePosition.Position.None;
                 MeleePosition.Intance.ShowMsg();
@@ -106,7 +106,7 @@ namespace AEAssist.AI.Monk
 
         public static async Task<SpellEntity> DoOpoOpoGCDS(Character target, bool pb = false)
         {
-            if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+            if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
             {
                 if (SpellsDefine.ShadowOfTheDestroyer.IsUnlock())
                 {
@@ -152,7 +152,7 @@ namespace AEAssist.AI.Monk
         {
             if (InRaptorForm())
             {
-                if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+                if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
                 {
                     if (SpellsDefine.FourPointFury.IsUnlock())
                     {
@@ -210,7 +210,7 @@ namespace AEAssist.AI.Monk
         {
             if (InCoeurlForm())
             {
-                if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+                if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
                 {
                     if (SpellsDefine.Rockbreaker.IsUnlock())
                     {
@@ -242,7 +242,7 @@ namespace AEAssist.AI.Monk
         {
             if (InCoeurlForm())
             {
-                if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+                if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
                 {
                     if (SpellsDefine.Rockbreaker.IsUnlock())
                     {
@@ -390,7 +390,7 @@ namespace AEAssist.AI.Monk
                     }
                     else
                     {
-                        if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+                        if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
                         {
                             if (await SpellsDefine.Rockbreaker.DoGCD())
                             {
@@ -409,7 +409,7 @@ namespace AEAssist.AI.Monk
                 if (ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.Coeurl) &&
                     !Core.Me.HasMyAura(AurasDefine.RiddleOfFire))
                 {
-                    if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+                    if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
                     {
                         if (await SpellsDefine.Rockbreaker.DoGCD())
                         {
@@ -437,7 +437,7 @@ namespace AEAssist.AI.Monk
 
         private static async Task<SpellEntity> PerfectBalanceCoeurl(Character target)
         {
-            if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+            if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
             {
                 if (await SpellsDefine.FourPointFury.DoGCD())
                 {
@@ -456,7 +456,7 @@ namespace AEAssist.AI.Monk
 
         private static async Task<SpellEntity> PerfectBalanceRaptor(Character target)
         {
-            if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+            if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
             {
                 if (await SpellsDefine.ShadowOfTheDestroyer.DoGCD())
                 {

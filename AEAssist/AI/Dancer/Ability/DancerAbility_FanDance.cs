@@ -61,7 +61,7 @@ namespace AEAssist.AI.Dancer.Ability
             var spell = SpellsDefine.FanDance.GetSpellEntity();
             if (SpellsDefine.FanDance2.IsUnlock())
             {
-                if (TargetHelper.CheckNeedUseAOETest(Core.Me.CurrentTarget, 5, 5, 2))
+                if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 2))
                 {
                     spell = SpellsDefine.FanDance2.GetSpellEntity();
                 }

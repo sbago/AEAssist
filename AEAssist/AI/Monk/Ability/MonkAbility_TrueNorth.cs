@@ -64,7 +64,7 @@ namespace AEAssist.AI.Monk.Ability
                         }
                         else
                         {
-                            if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+                            if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
                             {
                                 return -1;
                                 // if (await SpellsDefine.Rockbreaker.DoGCD())
@@ -88,7 +88,7 @@ namespace AEAssist.AI.Monk.Ability
                     if (ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.Coeurl) &&
                         !Core.Me.HasMyAura(AurasDefine.RiddleOfFire))
                     {
-                        if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+                        if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
                         {
                             return -1;
                             // if (await SpellsDefine.Rockbreaker.DoGCD())
