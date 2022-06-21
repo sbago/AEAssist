@@ -20,6 +20,8 @@ namespace AEAssist
             TTK_Aero = 30;
             WhiteMageOpener = "Default";
             TetragrammatonHp = 80f;
+            DivineBenisonHp = 90f;
+            RegenHp = 80f;
         }
         public void OnLoad()
         {
@@ -32,9 +34,15 @@ namespace AEAssist
         public int LucidDreamingTrigger { get; set; } = ConstValue.LucidDreamingDefaultRefresh;
         public bool LucidDreamingToggle { get; set; } = true;
         public bool SwiftResToggle { get; set; } = true;
+        public bool Heal { get; set; } = true;
         public bool EarlyDecisionMode { get; set; }
         public string WhiteMageOpener { get; set; } = "Default";
         public int WhiteMageResPriority { get; set; } = 0;
         public float TetragrammatonHp { get; set; } = 80f;
+
+        public float DivineBenisonHp { get; set; } = 90f;
+        public float RegenHp { get; set; } = 80f;
+
+        public float AfflatusSolaceHp { get; set; } = 70f;
     }
 }

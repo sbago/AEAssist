@@ -8,6 +8,10 @@ namespace AEAssist.AI.Sage.Ability
     {
         public int Check(SpellEntity lastSpell)
         {
+            if (!SettingMgr.GetSetting<SageSettings>().Heal)
+            {
+                return -5;
+            }
             if (!SpellsDefine.Holos.IsReady()) return -1;
             return 0;
         }

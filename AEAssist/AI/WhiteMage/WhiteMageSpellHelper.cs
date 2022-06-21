@@ -217,7 +217,10 @@ namespace AEAssist.AI.WhiteMage
             if (aeroId == 0) return false;
 
             var ttkAero = SettingMgr.GetSetting<WhiteMageSettings>().TTK_Aero;
-
+            if (Core.Me.ClassLevel<72)
+            {
+                ttkAero = 18;
+            }
             bool NormalCheck()
             {
                 if (DataBinding.Instance.EarlyDecisionMode)
@@ -431,43 +434,64 @@ namespace AEAssist.AI.WhiteMage
             }
             return false;
         }*/
-        public static async Task<SpellEntity> CastTetragrammatonPriority()
+        public static async Task<SpellEntity> CastTetragrammaton()
         {
-            LogHelper.Debug("Trying to use TetragrammatonPriority");
+            
             if (GroupHelper.InParty)
             {
-                LogHelper.Debug("inparty");
-                var tetragrammatonTargets = GroupHelper.CastableAlliesWithin30;
-                foreach (var tetragrammatonTarget in tetragrammatonTargets)
-                {
-                    if (tetragrammatonTarget.CurrentHealth > 0 && tetragrammatonTarget.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().TetragrammatonHp)
-                    {
-                        LogHelper.Debug("tryuse");
-                        await CastTetragrammaton(tetragrammatonTarget);
-                    }
-                    LogHelper.Debug(Convert.ToString(SettingMgr.GetSetting<WhiteMageSettings>().TetragrammatonHp));
-                    LogHelper.Debug(Convert.ToString(tetragrammatonTarget.CurrentHealthPercent));
-                    LogHelper.Debug(Convert.ToString(tetragrammatonTarget.CurrentHealth));
+                var skillTarget = GroupHelper.CastableAlliesWithin30.FirstOrDefault(r => r.CurrentHealth > 0 && r.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().TetragrammatonHp);
 
-                }
-                    //.FirstOrDefault(r => r.CurrentHealth > 0 && r.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().TetragrammatonHp);
-                //if (tetragrammatonTarget == null)
-               // {
-                //    return null;
-                //}
-                //var spell = new SpellEntity(SpellsDefine.Tetragrammaton, tetragrammatonTarget as BattleCharacter);
-                //return await spell.DoAbility();
-                //await CastTetragrammaton(tetragrammatonTarget);
+                if (!SpellsDefine.Tetragrammaton.IsUnlock()) return null;
+                var spell = new SpellEntity(SpellsDefine.Tetragrammaton, skillTarget as BattleCharacter);
+                await spell.DoAbility();
+                //await CastTetragrammaton(skillTarget);
             }
-            LogHelper.Debug("not in inparty");
             return null;
         }
-        public static async Task CastTetragrammaton(Character target)
+       
+        public static async Task<SpellEntity> CastDivineBenison()
         {
-            if (!SpellsDefine.Tetragrammaton.IsUnlock()) return;
             
-            var spell = new SpellEntity(SpellsDefine.Tetragrammaton, target as BattleCharacter);
-            await spell.DoAbility();
+            if (GroupHelper.InParty)
+            {
+                var skillTarget = GroupHelper.CastableAlliesWithin30.FirstOrDefault(r => r.CurrentHealth > 0 && r.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().DivineBenisonHp);
+                //await CastDivineBenison(skillTarget);
+                if (!SpellsDefine.DivineBenison.IsUnlock()) return null;
+                var spell = new SpellEntity(SpellsDefine.DivineBenison, skillTarget as BattleCharacter);
+                await spell.DoAbility();
+            }
+            return null;
+
+        }
+        public static async Task<SpellEntity> CastRegen()
+        {
+
+            if (GroupHelper.InParty)
+            {
+                var skillTarget = GroupHelper.CastableAlliesWithin30.FirstOrDefault(r => r.CurrentHealth > 0 && r.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().RegenHp && !r.HasAura(AurasDefine.Regen));
+                //await CastDivineBenison(skillTarget);
+                if (!SpellsDefine.Regen.IsUnlock()) return null;
+                var spell = new SpellEntity(SpellsDefine.Regen, skillTarget as BattleCharacter);
+                LogHelper.Debug("再生释放目标：" + Convert.ToString(skillTarget));
+                await spell.DoGCD();
+            }
+            return null;
+
+        }
+        public static async Task<SpellEntity> CastAfflatusSolace()
+        {
+
+            if (GroupHelper.InParty)
+            {
+                var skillTarget = GroupHelper.CastableAlliesWithin30.FirstOrDefault(r => r.CurrentHealth > 0 && r.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().AfflatusSolaceHp);
+                //await CastDivineBenison(skillTarget);
+                if (!SpellsDefine.AfflatusSolace.IsUnlock()) return null;
+                var spell = new SpellEntity(SpellsDefine.AfflatusSolace, skillTarget as BattleCharacter);
+                LogHelper.Debug("安慰之心释放目标：" + Convert.ToString(skillTarget));
+                await spell.DoGCD();
+            }
+            return null;
+
         }
     }
 }

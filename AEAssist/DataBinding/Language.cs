@@ -70,10 +70,11 @@ namespace AEAssist
         public string Toggle_Esuna { get; set; }
         public string Toggle_SureCast { get; set; }
         public string Toggle_SwiftCast { get; set; }
-        
+        public string Heal { get; set; }
+
         #endregion
-        
-        
+
+
         public string Toggle_UseEnshroud { get; set; }
         public string Toggle_UseHarpe { get; set; }
         public string Toggle_UseTrueNorthWhenMissActionDir { get; set; }
@@ -190,6 +191,10 @@ namespace AEAssist
 
         public string TextBox_Lucid_Dreaming { get; set; }
         public string TextBox_Tetragrammaton { get; set; }
+        public string TextBox_DivineBenison { get; set; }
+        public string TextBox_Regen { get; set; }
+        public string TextBox_AfflatusSolace { get; set; }
+        
         public string ToolTip_Bard_FinalBurst { get; set; }
         public string ToolTip_Bard_Burst { get; set; }
         

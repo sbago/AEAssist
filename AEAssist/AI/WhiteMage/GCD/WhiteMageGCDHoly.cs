@@ -29,6 +29,7 @@ namespace AEAssist.AI.WhiteMage.GCD
         {
            
             var spell = WhiteMageSpellHelper.GetHoly();
+            //spell.SpellTargetType = SpellTargetType.Self;
             if (spell == null) return null;
             var ret = await spell.DoGCD();
             return ret ? spell : null;
