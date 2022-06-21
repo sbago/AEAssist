@@ -407,6 +407,11 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Samurai\Samurai_AIPriorityQueue.cs" />
     <Compile Include="AI\SpellHistoryMgr.cs" />
     <Compile Include="AI\SpellQueueData.cs" />
+    <Compile Include="AI\Summoner\GCD\SMN_GCD_Base.cs" />
+    <Compile Include="AI\Summoner\SMN_AIPriorityQueue.cs" />
+    <Compile Include="AI\Summoner\SMN_BattleData.cs" />
+    <Compile Include="AI\Summoner\SMN_Rotation.cs" />
+    <Compile Include="AI\Summoner\SMN_SpellHelper.cs" />
     <Compile Include="AI\WhiteMage\Ability\WhiteMageAbilityAssize.cs" />
     <Compile Include="AI\WhiteMage\Ability\WhiteMageAbilityTetragrammaton.cs" />
     <Compile Include="AI\WhiteMage\Ability\WhiteMageAbilityThinAir.cs" />
@@ -459,6 +464,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="Setting\Setting\NinjaSettings.cs" />
     <Compile Include="Setting\Setting\ReaperSettings.cs" />
     <Compile Include="Setting\Setting\SageSettings.cs" />
+    <Compile Include="Setting\Setting\SMNSettings.cs" />
     <Compile Include="Setting\Setting\SamuraiSettings.cs" />
     <Compile Include="Setting\Setting\WhiteMageSetting.cs" />
     <Compile Include="TriggerSystem\ITriggerActionHandler.cs" />
@@ -884,6 +890,8 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AI\Monk\SpellQueue\" />
+    <Folder Include="AI\Summoner\Ability\" />
+    <Folder Include="AI\Summoner\SpellQueue\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
