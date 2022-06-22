@@ -3,10 +3,6 @@
 namespace AEAssist.AI.Monk
 {
     
-    public enum MonkComboStages
-    {
-
-    }
     public enum MonkNadiCombo
     {
         Lunar,
@@ -16,7 +12,8 @@ namespace AEAssist.AI.Monk
     
     public class MonkBattleData : IBattleData
     {
-        public int PerfectBalanceStack = 0;
         public MonkNadiCombo CurrentMonkNadiCombo = MonkNadiCombo.None;
+        public bool RoFBH2 = false;
+
     }
 }
