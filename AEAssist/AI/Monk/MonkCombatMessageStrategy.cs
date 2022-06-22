@@ -15,12 +15,12 @@ namespace AEAssist.AI.Monk
             //                               "TEST IF THIS SHOWS MEANS WORKING",
             //                               () => !Core.Me.InCombat));
 
-            //Second priority: Don't show anything if positional requirements are Nulled
-            // CombatMessageManager.RegisterMessageStrategy(
-            //     new CombatMessageStrategy(200,
-            //                               "",
-            //                               "/AEAssist;component/Resources/Images/General/ArrowDownHighlighted.png",
-            //                               () => SettingMgr.GetSetting<MonkSettings>().HidePositionalToastsWithTn && Core.Me.HasAura(AurasDefine.TrueNorth) || Core.Me.HasAura(AurasDefine.RiddleOfEarth)));
+            // Second priority: Don't show anything if positional requirements are Nulled
+             // CombatMessageManager.RegisterMessageStrategy(
+             //     new CombatMessageStrategy(200,
+             //                               "",
+             //                               "/AEAssist;component/Resources/Images/General/ArrowDownHighlighted.png",
+             //                               () => SettingMgr.GetSetting<MonkSettings>().HidePositionalToastsWithTn && MonkSpellHelper.InRaptorForm() || Core.Me.HasAura(AurasDefine.RiddleOfEarth)));
 
             //Third priority (tie): Bootshine
             // CombatMessageManager.RegisterMessageStrategy(
