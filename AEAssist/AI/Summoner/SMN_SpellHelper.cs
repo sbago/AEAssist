@@ -13,6 +13,10 @@ using ff14bot.RemoteWindows;
 
 namespace AEAssist.AI.Summoner
 {
+    public static class DebugSetting
+    {
+        public const bool debug = true;
+    }
     public static class SMN_SpellHelper
     {
         

@@ -3,6 +3,8 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot.Managers;
 
+using ff14bot.Helpers;
+using System.Windows.Media;
 namespace AEAssist.AI.Summoner.Ability
 {
     public class SMNAbility_SearingLight : IAIHandler
@@ -17,6 +19,12 @@ namespace AEAssist.AI.Summoner.Ability
         }
         public int Check(SpellEntity lastSpell)
         {
+            if (DebugSetting.debug)
+            {
+                Logging.Write(Colors.Red, this.GetType().Name);
+            }
+
+
             if (!SpellsDefine.SearingLight.IsReady())
                 return -1;
           

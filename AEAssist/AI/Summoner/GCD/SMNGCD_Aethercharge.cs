@@ -25,8 +25,9 @@ namespace AEAssist.AI.Summoner.GCD
             if (AIRoot.Instance.CloseBurst)
                 return -2;
 
-            if (SpellsDefine.SearingLight.CoolDownInGCDs(1))
-                return -3;
+            //等一下灼热之光
+            //if (SpellsDefine.SearingLight.CoolDownInGCDs(1))
+            //    return -3;
 
             return 0;
         }
