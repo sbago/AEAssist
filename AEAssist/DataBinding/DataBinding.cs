@@ -61,7 +61,7 @@ namespace AEAssist
         public WhiteMageSettings WhiteMageSettings => SettingMgr.GetSetting<WhiteMageSettings>();
         public DancerSettings DancerSettings => SettingMgr.GetSetting<DancerSettings>();
         public MonkSettings MonkSettings => SettingMgr.GetSetting<MonkSettings>();
-
+        public SMNSettings SMNSettings => SettingMgr.GetSetting<SMNSettings>();
         public DebugCenter DebugCenter => DebugCenter.Intance;
         public MeleePosition MeleePosition => MeleePosition.Intance;
 

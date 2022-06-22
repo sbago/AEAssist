@@ -407,7 +407,18 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Samurai\Samurai_AIPriorityQueue.cs" />
     <Compile Include="AI\SpellHistoryMgr.cs" />
     <Compile Include="AI\SpellQueueData.cs" />
-    <Compile Include="AI\Summoner\GCD\SMN_GCD_Base.cs" />
+    <Compile Include="AI\Summoner\Ability\SMNAbility_Deathflare.cs" />
+    <Compile Include="AI\Summoner\Ability\SMNAbility_EnkindleBahamut.cs" />
+    <Compile Include="AI\Summoner\Ability\SMNAbility_SearingLight.cs" />
+    <Compile Include="AI\Summoner\Ability\SMNAbility_Fester.cs" />
+    <Compile Include="AI\Summoner\Ability\SMNAbility_EnergyDrain.cs" />
+    <Compile Include="AI\Summoner\GCD\SMNGCD_SummonEmerald.cs" />
+    <Compile Include="AI\Summoner\GCD\SMNGCD_SummonTopaz.cs" />
+    <Compile Include="AI\Summoner\GCD\SMNGCD_SummonRuby.cs" />
+    <Compile Include="AI\Summoner\GCD\SMNGCD_RuinIV.cs" />
+    <Compile Include="AI\Summoner\GCD\SMNGCD_Aethercharge.cs" />
+    <Compile Include="AI\Summoner\GCD\SMNGCD_Base.cs" />
+    <Compile Include="AI\Summoner\GCD\SMNGCD_SummonCarbuncle.cs" />
     <Compile Include="AI\Summoner\SMN_AIPriorityQueue.cs" />
     <Compile Include="AI\Summoner\SMN_BattleData.cs" />
     <Compile Include="AI\Summoner\SMN_Rotation.cs" />
@@ -893,7 +904,6 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AI\Monk\SpellQueue\" />
-    <Folder Include="AI\Summoner\Ability\" />
     <Folder Include="AI\Summoner\SpellQueue\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

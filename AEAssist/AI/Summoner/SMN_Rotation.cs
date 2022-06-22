@@ -6,6 +6,7 @@ using ff14bot.Enums;
 using ff14bot;
 using ff14bot.Managers;
 using ff14bot.Objects;
+using AEAssist.AI.Summoner.GCD;
 
 namespace AEAssist.AI.Summoner
 {
@@ -24,17 +25,23 @@ namespace AEAssist.AI.Summoner
         }
         public async Task<bool> PreCombatBuff()
         {
+            
             return false;
         }
 
         public async Task<bool> NoTarget()
-        {
+        { 
+            // TODO: Add random delay 
+            var SummonCarbuncle = new SMNGCD_SummonCarbuncle();
+            if (SummonCarbuncle.Check(null) >= 0)
+                await SummonCarbuncle.Run();
+
             return false;
         }
 
         public SpellEntity GetBaseGCDSpell()
         {
-            return SMN_SpellHelper.GetBaseGcd();
+            return SMNGCD_Base.getBase().GetSpellEntity();
         }
     }
 }

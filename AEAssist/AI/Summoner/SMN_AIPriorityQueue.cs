@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AEAssist.AI.Bard.Ability;
-using AEAssist.AI.BlackMage.Ability;
-using AEAssist.AI.BlackMage.GCD;
 using AEAssist.Helper;
 using ff14bot.Enums;
-
+using AEAssist.AI.Summoner.GCD;
+using AEAssist.AI.Summoner.Ability;
 namespace AEAssist.AI.Summoner
 {
     [Job(ClassJobType.Summoner)]
@@ -13,11 +11,21 @@ namespace AEAssist.AI.Summoner
     {
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>()
         {
-            new SMN_GCD_Base()
+            new SMNGCD_SummonCarbuncle(),
+            new SMNGCD_Aethercharge(),
+            new SMNGCD_RuinIV(),
+
+            new SMNGCD_Base()
         };
 
         public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()
         {
+            //new SMNAbility_SearingLight(),
+            new SMNAbility_EnergyDrain(),
+            new SMNAbility_Fester(),
+            new SMNAbility_Deathflare(),
+            new SMNAbility_EnkindleBahamut(),
+            
         };
         public Task<bool> UsePotion()
         {
