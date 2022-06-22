@@ -76,45 +76,52 @@ namespace AEAssist.AI.Monk.Ability
                 return -4;
             }
 
-            //even window
-            if (Core.Me.HasAura(AurasDefine.Brotherhood) || SpellsDefine.Brotherhood.CoolDownInGCDs(10) ||
+            //ROF + BH --- Even Window
+            if (Core.Me.HasAura(AurasDefine.Brotherhood) || SpellsDefine.Brotherhood.CoolDownInGCDs(5) ||
                 SpellsDefine.Brotherhood.RecentlyUsed())
             {
-                //pre rof ROF+BH 1&3
-                if (SpellsDefine.RiddleofFire.CoolDownInGCDs(1) && !Core.Me.HasAura(AurasDefine.RiddleOfFire))
+                //Pre
+                if (!Core.Me.HasAura(AurasDefine.RiddleOfFire))
                 {
-                    if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 15000) &&
-                        Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 10000))
+                    //ROF+BH 1&3
+                    if (SpellsDefine.RiddleofFire.AbilityCoolDownInNextXGCDsWindow(0))
                     {
-                        AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
-                        return 3;
-                    }
+                        if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 15000) &&
+                            Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 10000))
+                        {
+                            AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
+                            return 3;
+                        }
 
-                    AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Solar;
-                    return 1;
-                }
-
-                //pre rof ROF+BH 2
-                if (SpellsDefine.RiddleofFire.CoolDownInGCDs(4) && !Core.Me.HasAura(AurasDefine.RiddleOfFire))
-                {
-                    if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 15000))
-                    {
                         AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Solar;
-                        return 2;
+                        return 1;
+                    }
+
+                    //ROF+BH 2
+                    if (SpellsDefine.RiddleofFire.AbilityCoolDownInNextXGCDsWindow(3))
+                    {
+                        if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 15000))
+                        {
+                            AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Solar;
+                            AIRoot.GetBattleData<MonkBattleData>().RoFBH2 = true;
+                            return 20;
+                        }
                     }
                 }
+
 
                 //during rof 
-                if (Core.Me.HasAura(AurasDefine.RiddleOfFire) || SpellsDefine.RiddleofFire.RecentlyUsed())
+                else
                 {
                     //ROF+BH 2
-                    if (ActionResourceManager.Monk.ActiveNadi == ActionResourceManager.Monk.Nadi.Solar &&
-                        Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 10000) &&
-                        target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 15000)
-                       )
+                    if (AIRoot.GetBattleData<MonkBattleData>().RoFBH2)
                     {
-                        AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
-                        return 1;
+                        if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 10000) &&
+                            target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 15000))
+                        {
+                            AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
+                            return 1;
+                        }
                     }
                     else
                     {
@@ -137,7 +144,7 @@ namespace AEAssist.AI.Monk.Ability
             else
             {   
                 //Pre PB
-                if (SpellsDefine.RiddleofFire.CoolDownInGCDs(2) && !Core.Me.HasAura(AurasDefine.RiddleOfFire))
+                if (SpellsDefine.RiddleofFire.AbilityCoolDownInNextXGCDsWindow(2) && !Core.Me.HasAura(AurasDefine.RiddleOfFire))
                 {
                     if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 15000) &&
                         Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 10000))

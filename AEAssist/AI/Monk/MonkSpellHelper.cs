@@ -15,6 +15,15 @@ namespace AEAssist.AI.Monk
     {
         public static void SetPostion()
         {
+            if (AIRoot.GetBattleData<MonkBattleData>().RoFBH2)
+            {
+                if (Core.Me.HasAura(AurasDefine.RiddleOfFire) &&
+                    !Core.Me.HasMyAuraWithTimeleft(AurasDefine.RiddleOfFire, 3000))
+                {
+                    AIRoot.GetBattleData<MonkBattleData>().RoFBH2 = false;
+                }
+
+            }
             if (!Core.Me.HasTarget)
             {
                 MeleePosition.Intance.SetPositionToNone();
@@ -175,16 +184,38 @@ namespace AEAssist.AI.Monk
                     }
                 }
 
-
-                if (!Core.Me.HasMyAura(AurasDefine.RiddleOfFire) && SpellsDefine.RiddleofFire.CoolDownInGCDs(4))
+                //Pre Rof
+                if (!Core.Me.HasMyAura(AurasDefine.RiddleOfFire) && SpellsDefine.RiddleofFire.AbilityCoolDownInNextXGCDsWindow(3))
                 {
-                    if (!target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 7000))
+                    //Even Window
+                    if (SpellsDefine.Brotherhood.AbilityCoolDownInNextXGCDsWindow(10))
                     {
-                        if (await SpellsDefine.TwinSnakes.DoGCD())
+                        if (SpellsDefine.RiddleofFire.AbilityCoolDownInNextXGCDsWindow(3))
                         {
-                            return SpellsDefine.TwinSnakes.GetSpellEntity();
+                            if (!target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 7000))
+                            {
+                                if (await SpellsDefine.TwinSnakes.DoGCD())
+                                {
+                                    return SpellsDefine.TwinSnakes.GetSpellEntity();
+                                }
+                            }
                         }
                     }
+                    //Odd window
+                    else
+                    {
+                        if (SpellsDefine.RiddleofFire.AbilityCoolDownInNextXGCDsWindow(4))
+                        {
+                            if (!target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 7000))
+                            {
+                                if (await SpellsDefine.TwinSnakes.DoGCD())
+                                {
+                                    return SpellsDefine.TwinSnakes.GetSpellEntity();
+                                }
+                            }
+                        }
+                    }
+
                 }
 
                 if (Core.Me.HasMyAura(AurasDefine.RiddleOfFire))
