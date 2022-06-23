@@ -8,13 +8,11 @@ namespace AEAssist.AI.Summoner.GCD
 {
     public class SMNGCD_SummonCarbuncle : IAIHandler
     {
+        uint spell = SpellsDefine.SummonCarbuncle;
         public int Check(SpellEntity lastSpell)
         {
-            if (!SpellsDefine.SummonCarbuncle.IsReady())
+            if (!spell.IsReady())
                 return -1;
-
-            if (!SpellsDefine.SummonCarbuncle.IsUnlock())
-                return -2;
 
             //if (Core.Me.IsMounted || MovementManager.IsMoving || MovementManager.IsOccupied)
             //    return -3;
@@ -38,10 +36,9 @@ namespace AEAssist.AI.Summoner.GCD
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.SummonCarbuncle.GetSpellEntity();
-            spell.SpellTargetType = SpellTargetType.Self;
-            var ret = await spell.DoGCD();
-            return ret ? spell : null;
+            if (await spell.DoGCD()) return spell.GetSpellEntity();
+
+            return null;
 
         }
     }

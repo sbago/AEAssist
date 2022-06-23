@@ -11,21 +11,30 @@ namespace AEAssist.AI.Summoner
     {
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>()
         {
-            new SMNGCD_SummonCarbuncle(),
+            new SMNGCD_TranceBase(),
             new SMNGCD_Aethercharge(),
+            new SMNGCD_PetGarudaOverride(),
+            new SMNGCD_PetGarudaSlipstream(),
+            new SMNGCD_PetIfritCrimson(),
+            new SMNGCD_PetBase(),
+            new SMNGCD_PetTitanSummon(),
+            new SMNGCD_PetIfritSummon(),
+            new SMNGCD_PetGarudaSummon(),
             new SMNGCD_RuinIV(),
-
+            new SMNGCD_SummonCarbuncle(),
             new SMNGCD_Base()
         };
 
         public List<IAIHandler> AbilityQueue { get; } = new List<IAIHandler>()
         {
-            //new SMNAbility_SearingLight(),
+            new SMNAbility_Swiftcast(),
+            new SMNAbility_SearingLight(),
+            new SMNAbility_PetTitanMountainBuster(),
             new SMNAbility_EnergyDrain(),
-            new SMNAbility_Fester(),
             new SMNAbility_Deathflare(),
             new SMNAbility_EnkindleBahamut(),
-            
+            new SMNAbility_Fester(),
+
         };
         public Task<bool> UsePotion()
         {

@@ -41,7 +41,7 @@ namespace AEAssist.AI.Summoner
 
         public SpellEntity GetBaseGCDSpell()
         {
-            return SMNGCD_Base.getBase().GetSpellEntity();
+            return SMNGCD_Base.GetSpell().GetSpellEntity();
         }
     }
 }

@@ -9,20 +9,17 @@ namespace AEAssist.AI.Summoner.Ability
 {
     public class SMNAbility_EnergyDrain : IAIHandler
     {
-        uint getEnergyDrain()
+        uint spell;
+        uint GetSpell()
         {
-            if (TargetHelper.CheckNeedUseAOE(25, 5) && SpellsDefine.EnergySiphon.IsUnlock())
+            if (SMN_SpellHelper.CheckUseAOE() && SpellsDefine.EnergySiphon.IsUnlock())
                 return SpellsDefine.EnergySiphon;
             return SpellsDefine.EnergyDrain;
         }
         public int Check(SpellEntity lastSpell)
         {
-            if (DebugSetting.debug)
-            {
-                Logging.Write(Colors.Red, this.GetType().Name);
-            }
-
-            if (!SpellsDefine.EnergyDrain.IsReady())
+            spell = GetSpell();
+            if (!spell.IsReady())
                 return -1;
             // 有豆子先把豆子打完
             if (ActionResourceManager.Summoner.Aetherflow != 0)
@@ -35,7 +32,6 @@ namespace AEAssist.AI.Summoner.Ability
 
         public async Task<SpellEntity> Run()
         {
-            var spell = getEnergyDrain();
             if (await spell.DoAbility()) return spell.GetSpellEntity();
 
             return null;

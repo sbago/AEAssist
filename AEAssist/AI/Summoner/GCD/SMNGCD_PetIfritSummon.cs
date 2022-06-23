@@ -5,9 +5,10 @@ using ff14bot.Managers;
 using ff14bot;
 namespace AEAssist.AI.Summoner.GCD
 {
-    public class SMNGCD_SummmonRuby : IAIHandler
+    public class SMNGCD_PetIfritSummon : IAIHandler
     {
-        static public uint getSummonRuby()
+        uint spell;
+        static uint GetSpell()
         {
             if (SpellsDefine.SummonIfrit2.IsUnlock())
                 return SpellsDefine.SummonIfrit2;
@@ -17,15 +18,17 @@ namespace AEAssist.AI.Summoner.GCD
         }
         public int Check(SpellEntity lastSpell)
         {
-
+            if (!ActionResourceManager.Summoner.AvailablePets.HasFlag(ActionResourceManager.Summoner.AvailablePetFlags.Ifrit))
+                return -3;
+            spell = GetSpell();
+            //if (spell.IsReady())
+            //    return -1;
             return 0;
         }
 
         public async Task<SpellEntity> Run()
         {
-            var spell = getSummonRuby().GetSpellEntity();
-
-            if (await spell.DoGCD()) return spell;
+            if (await spell.DoGCD()) return spell.GetSpellEntity();
 
             return null;
         }

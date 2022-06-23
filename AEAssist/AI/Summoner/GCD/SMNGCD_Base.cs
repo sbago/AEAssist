@@ -7,10 +7,14 @@ namespace AEAssist.AI.Summoner.GCD
 {
     public class SMNGCD_Base : IAIHandler
     {
-        static public uint getBase()
+        uint spell;
+        static public uint GetSpell()
         {
-            if (TargetHelper.CheckNeedUseAOE(25, 5) && SpellsDefine.TriDisaster.IsUnlock())
-                return SpellsDefine.TriDisaster;
+            if (SMN_SpellHelper.CheckUseAOE())
+                if (SpellsDefine.TriDisaster.IsUnlock())
+                    return SpellsDefine.TriDisaster;
+                else if (SpellsDefine.Outburst.IsUnlock())
+                    return SpellsDefine.Outburst;
 
             if (SpellsDefine.Ruin3.IsUnlock())
                 return SpellsDefine.Ruin3;
@@ -20,15 +24,17 @@ namespace AEAssist.AI.Summoner.GCD
         }
         public int Check(SpellEntity lastSpell)
         {
+            spell = GetSpell();
+            if (!spell.IsReady())
+                return -1;
             return 0;
         }
 
         public async Task<SpellEntity> Run()
         {
-            var spell = getBase().GetSpellEntity();
-            if (spell == null) return null;
-            var ret = await spell.DoGCD();
-            return ret ? spell : null;
+            if (await spell.DoGCD()) return spell.GetSpellEntity();
+
+            return null;
         }
     }
 }

@@ -5,9 +5,10 @@ using ff14bot.Managers;
 using ff14bot;
 namespace AEAssist.AI.Summoner.GCD
 {
-    public class SMNGCD_SummmonTopaz : IAIHandler
+    public class SMNGCD_PetTitanSummon : IAIHandler
     {
-        static public uint getSummonTopaz()
+        uint spell;
+        static public uint GetSpell()
         {
             if (SpellsDefine.SummonTitan2.IsUnlock())
                 return SpellsDefine.SummonTitan2;
@@ -17,15 +18,17 @@ namespace AEAssist.AI.Summoner.GCD
         }
         public int Check(SpellEntity lastSpell)
         {
-
+            if (!ActionResourceManager.Summoner.AvailablePets.HasFlag(ActionResourceManager.Summoner.AvailablePetFlags.Titan))
+                return -3;
+            spell = GetSpell();
+            //if (spell.IsReady())
+            //    return -1;
             return 0;
         }
 
         public async Task<SpellEntity> Run()
         {
-            var spell = getSummonTopaz().GetSpellEntity();
-
-            if (await spell.DoGCD()) return spell;
+            if (await spell.DoGCD()) return spell.GetSpellEntity();
 
             return null;
         }

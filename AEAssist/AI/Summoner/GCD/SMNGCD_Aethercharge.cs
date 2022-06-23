@@ -7,17 +7,21 @@ namespace AEAssist.AI.Summoner.GCD
 {
     public class SMNGCD_Aethercharge : IAIHandler
     {
+        uint spell;
 
-        uint GetAethercharge()
+        uint GetSpell()
         {
+            if (SMN_SpellHelper.PhoenixTrance() && SpellsDefine.SummonPhoenix.IsUnlock())
+                return SpellsDefine.SummonPhoenix;
             if (SpellsDefine.SummonBahamut.IsUnlock())
                 return SpellsDefine.SummonBahamut;
-
-            return SpellsDefine.Aethercharge.IsUnlock() ? SpellsDefine.Aethercharge : 0;
+            if (SpellsDefine.DreadwyrmTrance.IsUnlock())
+                return SpellsDefine.DreadwyrmTrance;
+            return SpellsDefine.Aethercharge;
         }
         public int Check(SpellEntity lastSpell)
         {
-            var spell = GetAethercharge();
+            spell = GetSpell();
 
             if (!spell.IsReady())
                 return -1;
@@ -26,17 +30,15 @@ namespace AEAssist.AI.Summoner.GCD
                 return -2;
 
             //等一下灼热之光
-            //if (SpellsDefine.SearingLight.CoolDownInGCDs(1))
-            //    return -3;
+            if (SpellsDefine.SearingLight.IsUnlock()&& SpellsDefine.SearingLight.CoolDownInGCDs(2))
+                return -3;
 
             return 0;
         }
 
         public async Task<SpellEntity> Run()
         {
-            var spell = GetAethercharge().GetSpellEntity();
-
-            if (await spell.DoGCD()) return spell;
+            if (await spell.DoGCD()) return spell.GetSpellEntity();
 
             return null;
         }

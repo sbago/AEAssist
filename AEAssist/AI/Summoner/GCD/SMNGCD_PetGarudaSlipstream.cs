@@ -5,21 +5,19 @@ using ff14bot.Managers;
 using ff14bot;
 namespace AEAssist.AI.Summoner.GCD
 {
-    public class SMNGCD_RuinIV : IAIHandler
+    public class SMNGCD_PetGarudaSlipstream : IAIHandler
     {
-        uint spell = SpellsDefine.Ruin4;
-       
+        uint spell = SpellsDefine.Slipstream;
         public int Check(SpellEntity lastSpell)
         {
+            if (!Core.Me.HasAura(AurasDefine.GarudasFavor))
+                return -3;
             if (!spell.IsReady())
                 return -1;
-            if (AIRoot.Instance.CloseBurst && !SpellsDefine.EnergyDrain.CoolDownInGCDs(2))
+            if (SpellsDefine.Swiftcast.IsReady()&&!AIRoot.Instance.CloseBurst)
             {
-
-                return -2;
+                return -4;
             }
-            if (!Core.Me.HasAura(AurasDefine.FurtherRuin))
-                return -10;
             return 0;
         }
 

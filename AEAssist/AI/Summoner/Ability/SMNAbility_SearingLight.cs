@@ -9,23 +9,17 @@ namespace AEAssist.AI.Summoner.Ability
 {
     public class SMNAbility_SearingLight : IAIHandler
     {
-      
+        uint spell = SpellsDefine.SearingLight;
         bool CheckAethercharge(int timeleft)
         {
-            if (SpellsDefine.SearingLight.IsUnlock() &&
-                SpellsDefine.SearingLight.GetSpellEntity().Cooldown.TotalMilliseconds < timeleft)
+            if (SpellsDefine.Aethercharge.IsUnlock() &&
+                SpellsDefine.Aethercharge.GetSpellEntity().Cooldown.TotalMilliseconds < timeleft)
                 return true;
             return false;
         }
         public int Check(SpellEntity lastSpell)
         {
-            if (DebugSetting.debug)
-            {
-                Logging.Write(Colors.Red, this.GetType().Name);
-            }
-
-
-            if (!SpellsDefine.SearingLight.IsReady())
+            if (!spell.IsReady())
                 return -1;
           
             if (AIRoot.Instance.CloseBurst)
@@ -41,12 +35,16 @@ namespace AEAssist.AI.Summoner.Ability
             if (!CheckAethercharge((int)time))
                 return -4;
 
+            //if (ActionResourceManager.Summoner.TranceTimer > 0)
+            //{
+            //    return -5;
+            //}
+
             return 0;
         }
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.SearingLight;
             if (await spell.DoAbility()) return spell.GetSpellEntity();
 
             return null;

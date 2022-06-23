@@ -1,34 +1,30 @@
 ﻿using System.Threading.Tasks;
 using AEAssist.Define;
-using ff14bot.Managers;
 using AEAssist.Helper;
+using ff14bot.Managers;
+
 using ff14bot.Helpers;
 using System.Windows.Media;
+using ff14bot;
 
 namespace AEAssist.AI.Summoner.Ability
 {
-    
-    public class SMNAbility_Deathflare : IAIHandler
+    public class SMNAbility_PetTitanMountainBuster : IAIHandler
     {
-        uint spell = SpellsDefine.Deathflare;
-        //死星核爆
+        uint spell = SpellsDefine.MountainBuster;
         public int Check(SpellEntity lastSpell)
         {
-            if (SMN_SpellHelper.PhoenixTrance())
+            //if (!SMN_SpellHelper.Titan())
+            //{
+            //    return -3;
+            //}
+            if (!Core.Me.HasAura(AurasDefine.TitansFavor))
             {
                 return -4;
             }
-
-            if (!SpellsDefine.Deathflare.IsReady())
-                return -1;
-
-            if (ActionResourceManager.Summoner.TranceTimer <= 0 || SMN_SpellHelper.AnyPet())
-            {
-                return -3;
-            }
-
-            
-
+            //if (!spell.IsReady())
+            //    return -1;
+          
             return 0;
         }
 

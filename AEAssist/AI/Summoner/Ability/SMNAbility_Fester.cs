@@ -9,21 +9,17 @@ namespace AEAssist.AI.Summoner.Ability
 {
     public class SMNAbility_Fester : IAIHandler
     {
-        uint getFester()
+        uint spell;
+        uint GetSpell()
         {
-            if (TargetHelper.CheckNeedUseAOE(25, 5) && SpellsDefine.Painflare.IsUnlock())
+            if (SMN_SpellHelper.CheckUseAOE() && SpellsDefine.Painflare.IsUnlock())
                 return SpellsDefine.Painflare;
             return SpellsDefine.Fester;
         }
         public int Check(SpellEntity lastSpell)
         {
-
-            if (DebugSetting.debug)
-            {
-                Logging.Write(Colors.Red, this.GetType().Name);
-            }
-
-            if (!SpellsDefine.Fester.IsReady())
+            spell = GetSpell();
+            if (!spell.IsReady())
                 return -1;
             if (ActionResourceManager.Summoner.Aetherflow <=0)
             {
@@ -49,7 +45,6 @@ namespace AEAssist.AI.Summoner.Ability
 
         public async Task<SpellEntity> Run()
         {
-            var spell = getFester();
             if (await spell.DoAbility()) return spell.GetSpellEntity();
 
             return null;
