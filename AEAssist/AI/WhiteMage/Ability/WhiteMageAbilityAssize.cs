@@ -16,10 +16,10 @@ namespace AEAssist.AI.WhiteMage.Ability
 
         public int Check(SpellEntity lastSpell)
         {
-            if (!SettingMgr.GetSetting<WhiteMageSettings>().Heal)
-            {
-                return -5;
-            }
+            //if (!SettingMgr.GetSetting<WhiteMageSettings>().Heal)
+            //{
+                //return -5;
+            //}
             if (!SpellsDefine.Assize.IsReady()) return -1;
             return 0;
         }

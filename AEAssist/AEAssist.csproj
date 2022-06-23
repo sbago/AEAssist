@@ -613,6 +613,8 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="Setting\Setting\BardSettings.cs" />
     <Compile Include="Setting\Setting\GeneralSettings.cs" />
     <Compile Include="Setting\Setting\VersionSetting.cs" />
+    <Resource Include="Resources\Spells\WhiteMage\CureIII.png" />
+    <Resource Include="Resources\Spells\WhiteMage\MedicaII.png" />
     <Resource Include="Resources\Spells\Monk\Anatman.png" />
     <Resource Include="Resources\Spells\Monk\FormShift.png" />
     <Resource Include="Resources\Spells\Monk\Mantra.png" />

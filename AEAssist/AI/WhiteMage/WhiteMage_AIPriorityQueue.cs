@@ -19,7 +19,8 @@ namespace AEAssist.AI.WhiteMage
             new SageBaseGCD(),
             new SageGCDDyskrasia(),
             */
-            new WhiteMageGcdDot(),
+            new WhiteMageGCDRaise(),
+            new WhiteMageGCDDot(),
             new WhiteMageGCDAfflatusSolace(),
             new WhiteMageGCDRegen(),
             new WhiteMageGCDHoly(),
@@ -34,7 +35,7 @@ namespace AEAssist.AI.WhiteMage
             new WhiteMageAbilityLucidDreaming(),
             new WhiteMageAbilityAssize(),
             new WhiteMageAbilityDivineBenison(),
-            new WhiteMageAbilityThinAir(),
+            //new WhiteMageAbilityThinAir(),
             new WhiteMageAbilityTetragrammaton(),
             //new SageAbilityUsePotion(),
         };

@@ -175,7 +175,27 @@
 
                         
                     </StackPanel>
+                    
+                    <StackPanel Margin="5" Background="Purple" Orientation="Horizontal">
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="40" Height="40" Margin="6,2,6,2" Name="UseCureIII"
+                                ToolTip="Use PlenaryIndulgence"
+                                Click="UseCureIII_OnClick">
+                            <Image Source="../../Resources/Spells/WhiteMage/CureIII.png"
+                                   Stretch="Uniform" />
+                        </Button>
+                        <Button Style="{StaticResource ImageButton}"
+                                Width="40" Height="40" Margin="6,2,6,2" Name="UseMedicaII"
+                                ToolTip="Use PlenaryIndulgence"
+                                Click="UseMedicaII_OnClick">
+                            <Image Source="../../Resources/Spells/WhiteMage/MedicaII.png"
+                                   Stretch="Uniform" />
+                        </Button>
 
+                        
+                                              
+
+                    </StackPanel>
                 </WrapPanel>
                 <view:CommonOverlay HorizontalAlignment="Center" />
             </StackPanel>
