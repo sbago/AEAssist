@@ -19,7 +19,7 @@ namespace AEAssist.AI.Monk.Ability
             if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<GeneralSettings>().StrPotionId))
                 return -6;
         
-            if (SpellsDefine.Brotherhood.CoolDownInGCDs(5))
+            if (SpellsDefine.Brotherhood.CoolDownInGCDs(10) && SpellsDefine.RiddleofFire.CoolDownInGCDs(3))
                 return 0;
 
             return -7;
@@ -27,7 +27,7 @@ namespace AEAssist.AI.Monk.Ability
 
         public async Task<SpellEntity> Run()
         {
-            var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId);
+            var ret = await PotionHelper.UsePotion(SettingMgr.GetSetting<GeneralSettings>().StrPotionId);
             if (ret) AIRoot.Instance.MuteAbilityTime();
 
             await Task.CompletedTask;

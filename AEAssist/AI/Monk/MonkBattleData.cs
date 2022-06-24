@@ -14,6 +14,7 @@ namespace AEAssist.AI.Monk
     {
         public MonkNadiCombo CurrentMonkNadiCombo = MonkNadiCombo.None;
         public bool RoFBH2 = false;
+        public bool DoingOpener = false;
 
     }
 }

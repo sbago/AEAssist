@@ -25,6 +25,10 @@ namespace AEAssist.AI.Monk.GCD
             if (ActionResourceManager.Monk.BlitzTimer != TimeSpan.Zero || 
                 !ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.None))
             {
+                if (AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo != MonkNadiCombo.None)
+                {
+                    AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.None;
+                }
                 return 0;
             }
             return -4;

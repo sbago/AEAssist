@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
@@ -31,6 +32,13 @@ namespace AEAssist.AI.Monk
                 return;
             }
 
+            if (AIRoot.GetBattleData<MonkBattleData>().DoingOpener)
+            {
+                MeleePosition.Intance.SetPositionToBack();
+                MeleePosition.Intance.ShowMsg();
+                return;
+            }
+
             var target = Core.Me.CurrentTarget as Character;
             
             var priority = MeleePosition.Priority.Low;
@@ -44,6 +52,32 @@ namespace AEAssist.AI.Monk
                 priority = MeleePosition.Priority.High;
             }
 
+            if (SpellsDefine.PerfectBalance.RecentlyUsed() || Core.Me.HasMyAura(AurasDefine.PerfectBalance))
+            {
+                var currentNadi = AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo;
+                if (currentNadi == MonkNadiCombo.Lunar)
+                {
+                    MeleePosition.Intance.SetPositionToNone(priority);
+                    MeleePosition.Intance.ShowMsg();
+                    return;
+                }
+
+                if (currentNadi == MonkNadiCombo.Solar)
+                {
+                    if (AIRoot.GetBattleData<MonkBattleData>().RoFBH2)
+                    {
+                        MeleePosition.Intance.SetPositionToSide(priority);
+                        MeleePosition.Intance.ShowMsg();
+                        return;
+                    }
+                    else
+                    {
+                        MeleePosition.Intance.SetPositionToBack(priority);
+                        MeleePosition.Intance.ShowMsg();
+                        return;
+                    }
+                }
+            }
             
             if (UsingDot())
             {
@@ -185,7 +219,7 @@ namespace AEAssist.AI.Monk
                 }
 
                 //Pre Rof
-                if (!Core.Me.HasMyAura(AurasDefine.RiddleOfFire) && SpellsDefine.RiddleofFire.AbilityCoolDownInNextXGCDsWindow(3))
+                if (!Core.Me.HasMyAura(AurasDefine.RiddleOfFire) && SpellsDefine.RiddleofFire.AbilityCoolDownInNextXGCDsWindow(5))
                 {
                     //Even Window
                     if (SpellsDefine.Brotherhood.AbilityCoolDownInNextXGCDsWindow(10))
@@ -204,7 +238,7 @@ namespace AEAssist.AI.Monk
                     //Odd window
                     else
                     {
-                        if (SpellsDefine.RiddleofFire.AbilityCoolDownInNextXGCDsWindow(4))
+                        if (SpellsDefine.RiddleofFire.AbilityCoolDownInNextXGCDsWindow(5))
                         {
                             if (!target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 7000))
                             {

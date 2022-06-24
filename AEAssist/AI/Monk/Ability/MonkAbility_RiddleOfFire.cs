@@ -23,7 +23,7 @@ namespace AEAssist.AI.Monk.Ability
                 return -1;
             }
             
-            if (!AIRoot.Instance.Is2ndAbilityTime())
+            if (!AIRoot.Instance.Is2ndAbilityTime(0.6f))
                 return -11;
 
             return 0;

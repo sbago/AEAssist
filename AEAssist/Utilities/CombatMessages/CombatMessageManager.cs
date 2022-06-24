@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AEAssist.AI.Monk;
+using ff14bot;
 using ff14bot.Enums;
 
 namespace AEAssist.Utilities.CombatMessages
@@ -27,6 +28,10 @@ namespace AEAssist.Utilities.CombatMessages
         // If no messages should be shown, the existing message is cleared
         public static void UpdateDisplayedMessage()
         {
+            if (Core.Me.CurrentJob == ClassJobType.Monk)
+            {
+                MonkSpellHelper.SetPostion();
+            }
             foreach (var message in AEMessageStrategies.Where(message => message.ShowMessage()))
             {
                 CombatMessageModel.Instance.Message = message.Message;

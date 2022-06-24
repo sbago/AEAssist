@@ -28,7 +28,7 @@ namespace AEAssist.AI.Monk
             new MonkAbility_TrueNorth(),
             new MonkAbility_RiddleOfWind(),
             new MonkAbility_UsePotion(),
-            new MonkAbility_SetPosition(),
+            // new MonkAbility_SetPosition(),
         };
 
         public async Task<bool> UsePotion()
