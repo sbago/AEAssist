@@ -40,11 +40,16 @@ namespace AEAssist.AI.Monk
             //                               "TrueStrike: Get behind Enemy",
             //                               () => Core.Me.HasAura(AurasDefine.RaptorForm) && Core.Me.HasAura(AurasDefine.TwinSnakes, true, SettingMgr.GetSetting<MonkSettings>().TwinSnakesRefresh * 1000)));
             //
-            // //Third priority (tie): SnapPunch
-            // CombatMessageManager.RegisterMessageStrategy(
-            //     new CombatMessageStrategy(300,
-            //                               "SnapPunch: Side of Enemy",
-            //                               () => Core.Me.HasAura(AurasDefine.CoeurlForm) && Core.Me.CurrentTarget.HasAnyAura(AurasDefine.Demolish, true, SettingMgr.GetSetting<MonkSettings>().DemolishRefresh * 1000)));
+            //Third priority (tie): SnapPunch
+            CombatMessageManager.RegisterMessageStrategy(
+                new CombatMessageStrategy(300,
+                                          "SnapPunch: Side of Enemy",
+                                          () => MeleePosition.Intance.GetPriority() == MeleePosition.Priority.High && MeleePosition.Intance.GetRequiredPosition() == MeleePosition.Position.Side));
+            //Third priority (tie): Demo
+            CombatMessageManager.RegisterMessageStrategy(
+                new CombatMessageStrategy(300,
+                    "Demolish: Back of Enemy",
+                    () => MeleePosition.Intance.GetPriority() == MeleePosition.Priority.High && MeleePosition.Intance.GetRequiredPosition() == MeleePosition.Position.Back));
             //
             // //Third priority (tie): DragonKick
             // CombatMessageManager.RegisterMessageStrategy(

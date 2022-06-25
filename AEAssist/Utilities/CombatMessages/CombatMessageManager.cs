@@ -28,10 +28,6 @@ namespace AEAssist.Utilities.CombatMessages
         // If no messages should be shown, the existing message is cleared
         public static void UpdateDisplayedMessage()
         {
-            if (Core.Me.CurrentJob == ClassJobType.Monk)
-            {
-                MonkSpellHelper.SetPostion();
-            }
             foreach (var message in AEMessageStrategies.Where(message => message.ShowMessage()))
             {
                 CombatMessageModel.Instance.Message = message.Message;

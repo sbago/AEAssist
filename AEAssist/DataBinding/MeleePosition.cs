@@ -71,6 +71,16 @@ namespace AEAssist
             RequiredPosition = Position.None;
             CurrentPriority = priority;
         }
+
+        public Priority GetPriority()
+        {
+            return CurrentPriority;
+        }
+
+        public Position GetRequiredPosition()
+        {
+            return RequiredPosition;
+        }
         
         
         private void SetColor()
