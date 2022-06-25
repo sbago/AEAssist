@@ -10,10 +10,10 @@ namespace AEAssist.AI.Monk
         {
 
             //Highest priority: Don't show anything if we're not in combat
-            // CombatMessageManager.RegisterMessageStrategy(
-            //     new CombatMessageStrategy(100,
-            //                               "TEST IF THIS SHOWS MEANS WORKING",
-            //                               () => !Core.Me.InCombat));
+            CombatMessageManager.RegisterMessageStrategy(
+                new CombatMessageStrategy(100,
+                                          "",
+                                          () => !Core.Me.InCombat));
 
             // Second priority: Don't show anything if positional requirements are Nulled
              // CombatMessageManager.RegisterMessageStrategy(
@@ -42,7 +42,7 @@ namespace AEAssist.AI.Monk
             //
             //Third priority (tie): SnapPunch
             CombatMessageManager.RegisterMessageStrategy(
-                new CombatMessageStrategy(300,
+                new CombatMessageStrategy(200,
                                           "SnapPunch: Side of Enemy",
                                           () => MeleePosition.Intance.GetPriority() == MeleePosition.Priority.High && MeleePosition.Intance.GetRequiredPosition() == MeleePosition.Position.Side));
             //Third priority (tie): Demo
