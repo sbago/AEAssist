@@ -15,12 +15,18 @@ namespace AEAssist.AI.WhiteMage.GCD
     {
         public int Check(SpellEntity lastSpell)
         {
+            if (!SettingMgr.GetSetting<WhiteMageSettings>().Heal)
+            {
+                return -5;
+            }
             var skillTarget = GroupHelper.CastableAlliesWithin30.FirstOrDefault(r => r.CurrentHealth > 0 && r.CurrentHealthPercent <= SettingMgr.GetSetting<WhiteMageSettings>().RegenHp && !r.HasAura(AurasDefine.Regen));
             if (skillTarget == null)
             {
                 return -2;
             }
-            if (!SpellsDefine.Regen.IsReady()) return -1;
+            
+            LogHelper.Debug("再生选取目标："+Convert.ToString(skillTarget));
+            //if (!SpellsDefine.Regen.IsReady()) return -1;
 
             return 0;
 

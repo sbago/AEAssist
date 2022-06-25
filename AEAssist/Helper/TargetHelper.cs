@@ -126,7 +126,16 @@ namespace AEAssist.Helper
                 return true;
             return false;
         }
-        
+        public static bool CheckNeedUseAOEByMe(int targetRange, int damageRange, int needCount = 3)
+        {
+            if (!AEAssist.DataBinding.Instance.UseAOE)
+                return false;
+            var count = GetNearbyEnemyCountTest(Core.Me, targetRange, damageRange);
+
+            if (count >= needCount)
+                return true;
+            return false;
+        }
         public static bool CheckNeedUseAOETest(GameObject target, int targetRange, int damageRange, int needCount = 3)
         {
             if (!AEAssist.DataBinding.Instance.UseAOE)

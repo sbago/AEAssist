@@ -11,6 +11,10 @@ namespace AEAssist.TriggerSystem.TriggerAction
             var spellQueueSlot = ObjectPool.Instance.Fetch<SpellQueueSlot>();
             foreach (var v in t.GCDQueue)
             {
+                if (v == 0)
+                {
+                    continue;
+                }
                 if (SpellsDefine.TargetIsSelfs.Contains(v))
                 {
                     spellQueueSlot.EnqueueGCD((v, SpellTargetType.Self));
@@ -23,6 +27,10 @@ namespace AEAssist.TriggerSystem.TriggerAction
 
             foreach (var v in t.AbilityQueue)
             {
+                if (v == 0)
+                {
+                    continue;
+                }
                 if (SpellsDefine.TargetIsSelfs.Contains(v))
                 {
                     spellQueueSlot.EnqueueAbility((v, SpellTargetType.Self));

@@ -6,7 +6,7 @@ using ff14bot.Objects;
 
 namespace AEAssist.AI.WhiteMage.GCD
 {
-    public class WhiteMageGcdDot : IAIHandler
+    public class WhiteMageGCDDot : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {

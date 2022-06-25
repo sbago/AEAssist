@@ -13,13 +13,13 @@ namespace AEAssist.TriggerSystem.TriggerAction
             switch (t.TargetType)
             {
                 case 0:
-                    AIRoot.GetBattleData<BattleData>().NextGcdSpellId = new SpellEntity(t.SpellId);
+                    AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = new SpellEntity(t.SpellId);
                     break;
                 case 1:
-                    AIRoot.GetBattleData<BattleData>().NextGcdSpellId = new SpellEntity(t.SpellId,SpellTargetType.Self);
+                    AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = new SpellEntity(t.SpellId,SpellTargetType.Self);
                     break;
                 case 2:
-                    AIRoot.GetBattleData<BattleData>().NextGcdSpellId = new SpellEntity(t.SpellId,SpellTargetType.CurrTarget);
+                    AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = new SpellEntity(t.SpellId,SpellTargetType.CurrTarget);
                     break;
                 case 3:
                     var currTar = Core.Me.CurrentTarget as BattleCharacter;
@@ -28,7 +28,7 @@ namespace AEAssist.TriggerSystem.TriggerAction
                     var tt = currTar.TargetCharacter as BattleCharacter;
                     if(tt == null)
                         break;
-                    AIRoot.GetBattleData<BattleData>().NextGcdSpellId = new SpellEntity(t.SpellId,tt);
+                    AIRoot.GetBattleData<BattleData>().NextAbilitySpellId = new SpellEntity(t.SpellId,tt);
                     break;
             }
         }

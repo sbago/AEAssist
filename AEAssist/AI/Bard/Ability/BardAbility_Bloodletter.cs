@@ -14,6 +14,7 @@ namespace AEAssist.AI.Bard.Ability
                 return -1;
             if (!SpellsDefine.Bloodletter.IsReady())
                 return -2;
+            if (!AEAssist.DataBinding.Instance.Bloodletter) return -3;
 
             if (AEAssist.DataBinding.Instance.FinalBurst) return 2;
 

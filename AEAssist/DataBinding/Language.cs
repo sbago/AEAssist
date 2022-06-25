@@ -70,10 +70,11 @@ namespace AEAssist
         public string Toggle_Esuna { get; set; }
         public string Toggle_SureCast { get; set; }
         public string Toggle_SwiftCast { get; set; }
-        
+        public string Heal { get; set; }
+
         #endregion
-        
-        
+
+
         public string Toggle_UseEnshroud { get; set; }
         public string Toggle_UseHarpe { get; set; }
         public string Toggle_UseTrueNorthWhenMissActionDir { get; set; }
@@ -179,6 +180,7 @@ namespace AEAssist
         public string Btn_ApplyHotkey { get; set; }
 
         public string Toggle_FinalBurst { get; set; }
+        public string Toggle_Bloodletter { get; set; }
 
         public string Label_OverlayScale { get; set; }
         
@@ -192,7 +194,10 @@ namespace AEAssist
         public string TextBox_Tetragrammaton { get; set; }
         public string TextBox_DivineBenison { get; set; }
         public string TextBox_Regen { get; set; }
+        public string TextBox_AfflatusSolace { get; set; }
+        
         public string ToolTip_Bard_FinalBurst { get; set; }
+        public string ToolTip_Bard_Bloodletter { get; set; }
         public string ToolTip_Bard_Burst { get; set; }
         
         public string ToolTip_MCH_FinalBurst { get; set; }
@@ -201,5 +206,16 @@ namespace AEAssist
         
         public string ToolTip_RPR_Burst { get; set; }
         public string ToolTip_RPR_DoubleEnshroundPrefer{ get; set; }
+
+        public string ToolTip_SMN_Burst { get; set; }
+
+        public string ToolTip_SMN_FinalBurst { get; set; }
+
+        public string Toggle_SMN_SaveInstantSpells { get; set; }
+        public string ToolTip_SMN_SaveInstantSpells { get; set;}
+        public string Textbox_SMN_SwiftcastOption { get; set; }
+        public string Toggle_SMN_Crimson { get; set; }
+
+
     }
 }
