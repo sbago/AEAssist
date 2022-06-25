@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AEAssist.AI.Monk;
+using ff14bot;
 using ff14bot.Enums;
 
 namespace AEAssist.Utilities.CombatMessages
@@ -67,7 +68,7 @@ namespace AEAssist.Utilities.CombatMessages
 
                 case ClassJobType.Pugilist:
                 case ClassJobType.Monk:
-                    MonkCombatMessageStrategy.RegisterCombatMessages();
+                     MonkCombatMessageStrategy.RegisterCombatMessages();
                     break;
 
                 case ClassJobType.Marauder:

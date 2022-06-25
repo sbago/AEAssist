@@ -10,23 +10,23 @@ namespace AEAssist.AI.Monk
         {
 
             //Highest priority: Don't show anything if we're not in combat
-            CombatMessageManager.RegisterMessageStrategy(
-                new CombatMessageStrategy(100,
-                                          "TEST IF THIS SHOWS MEANS WORKING",
-                                          () => !Core.Me.InCombat));
+            // CombatMessageManager.RegisterMessageStrategy(
+            //     new CombatMessageStrategy(100,
+            //                               "TEST IF THIS SHOWS MEANS WORKING",
+            //                               () => !Core.Me.InCombat));
 
-            //Second priority: Don't show anything if positional requirements are Nulled
-            CombatMessageManager.RegisterMessageStrategy(
-                new CombatMessageStrategy(200,
-                                          "",
-                                          "/AEAssist;component/Resources/Images/General/ArrowDownHighlighted.png",
-                                          () => SettingMgr.GetSetting<MonkSettings>().HidePositionalToastsWithTn && Core.Me.HasAura(AurasDefine.TrueNorth) || Core.Me.HasAura(AurasDefine.RiddleOfEarth)));
+            // Second priority: Don't show anything if positional requirements are Nulled
+             // CombatMessageManager.RegisterMessageStrategy(
+             //     new CombatMessageStrategy(200,
+             //                               "",
+             //                               "/AEAssist;component/Resources/Images/General/ArrowDownHighlighted.png",
+             //                               () => SettingMgr.GetSetting<MonkSettings>().HidePositionalToastsWithTn && MonkSpellHelper.InRaptorForm() || Core.Me.HasAura(AurasDefine.RiddleOfEarth)));
 
             //Third priority (tie): Bootshine
-            CombatMessageManager.RegisterMessageStrategy(
-                new CombatMessageStrategy(300,
-                                          "Bootshine: Get behind Enemy",
-                                          () => Core.Me.HasAura(AurasDefine.OpoOpoForm) && Core.Me.HasAura(AurasDefine.LeadenFist)));
+            // CombatMessageManager.RegisterMessageStrategy(
+            //     new CombatMessageStrategy(300,
+            //                               "Bootshine: Get behind Enemy",
+            //                               () => Core.Me.HasAura(AurasDefine.OpoOpoForm) && Core.Me.HasAura(AurasDefine.LeadenFist)));
 
             // //Third priority (tie): TwinSnakes
             // CombatMessageManager.RegisterMessageStrategy(
@@ -40,11 +40,16 @@ namespace AEAssist.AI.Monk
             //                               "TrueStrike: Get behind Enemy",
             //                               () => Core.Me.HasAura(AurasDefine.RaptorForm) && Core.Me.HasAura(AurasDefine.TwinSnakes, true, SettingMgr.GetSetting<MonkSettings>().TwinSnakesRefresh * 1000)));
             //
-            // //Third priority (tie): SnapPunch
-            // CombatMessageManager.RegisterMessageStrategy(
-            //     new CombatMessageStrategy(300,
-            //                               "SnapPunch: Side of Enemy",
-            //                               () => Core.Me.HasAura(AurasDefine.CoeurlForm) && Core.Me.CurrentTarget.HasAnyAura(AurasDefine.Demolish, true, SettingMgr.GetSetting<MonkSettings>().DemolishRefresh * 1000)));
+            //Third priority (tie): SnapPunch
+            CombatMessageManager.RegisterMessageStrategy(
+                new CombatMessageStrategy(300,
+                                          "SnapPunch: Side of Enemy",
+                                          () => MeleePosition.Intance.GetPriority() == MeleePosition.Priority.High && MeleePosition.Intance.GetRequiredPosition() == MeleePosition.Position.Side));
+            //Third priority (tie): Demo
+            CombatMessageManager.RegisterMessageStrategy(
+                new CombatMessageStrategy(300,
+                    "Demolish: Back of Enemy",
+                    () => MeleePosition.Intance.GetPriority() == MeleePosition.Priority.High && MeleePosition.Intance.GetRequiredPosition() == MeleePosition.Position.Back));
             //
             // //Third priority (tie): DragonKick
             // CombatMessageManager.RegisterMessageStrategy(

@@ -23,6 +23,7 @@ namespace AEAssist
         public bool SwiftResToggle { get; set; } = true;
         
         public bool EarlyDecisionMode { get; set; }
+        public bool Heal { get; set; } = true;
 
         public string SageOpener { get; set; } = "Default";
 

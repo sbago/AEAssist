@@ -108,8 +108,20 @@ namespace AEAssist.Helper
             if (!GameSettingsManager.FaceTargetOnAction)
                 GameSettingsManager.FaceTargetOnAction = true;
 
-            if (!ActionManager.DoAction(spell, target))
-                return false;
+
+            if (spell.GroundTarget)
+            {
+                if (!ActionManager.DoActionLocation(spell.Id, target.Location))
+                    return false;
+            }
+            else
+            {
+                if (!ActionManager.DoAction(spell, target))
+                    return false;
+            }
+
+
+
 
             var needTime = (int) spell.AdjustedCastTime.TotalMilliseconds + waitTime;
             SpellEventMgr.Instance.Run(spell.Id);
@@ -217,6 +229,27 @@ namespace AEAssist.Helper
             var SpellData = spellId.GetSpellEntity().SpellData;
             return SpellData.CoolDownInGCDs(count);
         }
+        
+        public static bool AbilityCoolDownInNextXGCDsWindow(this SpellData spellData, int count)
+        {
+            var baseGCDTime = RotationManager.Instance.GetBaseGCDSpell().AdjustedCooldown.TotalMilliseconds;
+            var TargetSpellCoolDown = spellData.Cooldown.TotalMilliseconds;
+            //come up in this window
+            var delta = TimeHelper.Now() - AIRoot.GetBattleData<BattleData>().lastCastTime;
+            if (delta + TargetSpellCoolDown <
+                baseGCDTime * (count + 1) - SettingMgr.GetSetting<GeneralSettings>().ActionQueueMs)
+            {
+                return true;
+            }
+            return false;
+        }
+        
+        public static bool AbilityCoolDownInNextXGCDsWindow(this uint spellId, int count)
+        {
+            var SpellData = spellId.GetSpellEntity().SpellData;
+            return SpellData.AbilityCoolDownInNextXGCDsWindow(count);
+        }
+        
 
 
         public static Task<bool> DoGCD(this uint spellId)

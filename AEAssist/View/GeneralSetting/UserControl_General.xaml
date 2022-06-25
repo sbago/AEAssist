@@ -20,17 +20,19 @@
         <Binding Source="{x:Static dataBinding:DataBinding.Instance}" />
     </UserControl.DataContext>
     <WrapPanel HorizontalAlignment="Left" Margin="10">
-        <Button Name="ShowOverlay"
-                Content="{Binding Language.Btn_SwitchOverlay}" Width="150" Height="25" Margin="10"
-                HorizontalAlignment="Left"
-                Click="ShowOverlay_OnClick" />
         <StackPanel Orientation="Horizontal">
             <Label Width="100" VerticalContentAlignment="Center" Margin="5,0,5,0" Content="{Binding Language.Label_OverlayScale}" />
             <TextBox Width="50" VerticalContentAlignment="Center" Height="25" Margin="5,0,5,0" Text="{Binding GeneralSettings.OverlayScale_X,Mode=TwoWay}" />
             <TextBox Width="50" VerticalContentAlignment="Center" Height="25" Margin="5,0,5,0" Text="{Binding GeneralSettings.OverlayScale_Y,Mode=TwoWay}" />
-
         </StackPanel>
-
+        
+        <!-- <StackPanel Orientation="Horizontal" Margin="0, 10"> -->
+        <!--     <Label Width="150"  VerticalContentAlignment="Center" Margin="5,0,5,0" Content="{Binding Language.Label_CombatMessageFontSize}" /> -->
+        <!--     <TextBox Width="50" VerticalContentAlignment="Center" Height="25" Margin="5,0,5,0" Text="{Binding GeneralSettings.OverlayScale_X,Mode=TwoWay}" /> -->
+        <!-- </StackPanel> -->
+        
+        
+        <StackPanel Orientation="Vertical" Width="300">
         <CheckBox Name="ShowGameLog"
                   Content="{Binding Language.Toggle_ShowGameLog}" Width="150" Height="25" Margin="10"
                   HorizontalAlignment="Left"
@@ -44,5 +46,20 @@
                   Content="{Binding Language.Toggle_ShowBattleTime}" Width="150" Height="25" Margin="10"
                   HorizontalAlignment="Left"
                   IsChecked="{Binding GeneralSettings.ShowBattleTime}" />
+        
+        <CheckBox Name="UseCombatMessageOverlay" 
+                  Content="{Binding Language.Toggle_CombatMessageOverlay}" 
+                  Width="200" 
+                  Height="25"
+                  Margin="10"
+                  HorizontalAlignment="Left"
+                  Click="UseCombatMessageOverlay_OnClick"
+                  IsChecked="{Binding GeneralSettings.UseCombatMessageOverlay, Mode=TwoWay}"
+                  />
+        </StackPanel>
+        <Button Name="ShowOverlay"
+                Content="{Binding Language.Btn_SwitchOverlay}" Width="150" Height="25" Margin="10"
+                HorizontalAlignment="Left"
+                Click="ShowOverlay_OnClick" />
     </WrapPanel>
 </UserControl>

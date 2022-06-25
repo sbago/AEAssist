@@ -29,7 +29,6 @@ namespace AEAssist.AI.BlackMage.Ability
             }
             
             // we want it to be used on next thunder
-            // todo: how?
             if (!Core.Me.HasAura(AurasDefine.Sharpcast) &&
                 SpellsDefine.Sharpcast.GetSpellEntity().SpellData.Charges > 1
                 )

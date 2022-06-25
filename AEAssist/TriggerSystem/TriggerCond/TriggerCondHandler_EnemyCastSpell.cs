@@ -14,7 +14,7 @@ namespace AEAssist.TriggerSystem.TriggerCond
             }
             else
             {
-                var enemys = TargetMgr.Instance.Enemys;
+                var enemys = TargetMgr.Instance.Units;
                 if (cond.strs == null)
                 {
                     if (cond.spellName.Contains("|"))

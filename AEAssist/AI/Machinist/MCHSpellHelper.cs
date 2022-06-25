@@ -130,7 +130,7 @@ namespace AEAssist.AI.Machinist
 
         public static uint GetDrillIfWithAOE()
         {
-            if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 12, 12)) return SpellsDefine.Bioblaster;
+            if (SpellsDefine.Bioblaster.IsUnlock() && TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 12, 12)) return SpellsDefine.Bioblaster;
 
             return SpellsDefine.Drill;
         }

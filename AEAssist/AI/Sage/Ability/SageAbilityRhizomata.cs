@@ -9,6 +9,10 @@ namespace AEAssist.AI.Sage.Ability
     {
         public int Check(SpellEntity lastSpell)
         {
+            if (!SettingMgr.GetSetting<SageSettings>().Heal)
+            {
+                return -5;
+            }
             if (!SpellsDefine.Rhizomata.IsReady() || ActionResourceManager.Sage.Addersgall == 3) return -1;
             return 0;
         }
