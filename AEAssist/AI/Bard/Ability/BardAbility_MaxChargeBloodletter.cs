@@ -10,6 +10,7 @@ namespace AEAssist.AI.Bard.Ability
         {
             if (lastSpell == SpellsDefine.Bloodletter.GetSpellEntity())
                 return -1;
+            if (!AEAssist.DataBinding.Instance.Bloodletter) return -3;
             if (!SpellsDefine.Bloodletter.IsReady())
                 return -2;
             if (SpellsDefine.Bloodletter.IsMaxChargeReady())

@@ -89,6 +89,11 @@
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
                                   IsChecked="{Binding FinalBurst,Mode=TwoWay}"
                                   ToolTip="{Binding Language.ToolTip_Bard_FinalBurst}"/>
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="{Binding Language.Toggle_Bloodletter}"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding Bloodletter,Mode=TwoWay}"
+                                  ToolTip="{Binding Language.ToolTip_Bard_Bloodletter}"/>
 
                     </WrapPanel>
                     <WrapPanel Margin="10">
