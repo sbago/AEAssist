@@ -27,13 +27,13 @@ namespace AEAssist
             // var msg = !_closeBuff ? "Burst On" : "Burst Off";
             // GUIHelper.ShowToast(msg,2000);
         } = true;
-        
+
         public bool FinalBurst { get; set; }
-        
+
         public bool Stop { get; set; }
 
         public bool Move { get; set; }
-        
+
         public bool Pull { get; set; }
 
         public bool UseTrueNorth { get; set; }
@@ -41,7 +41,7 @@ namespace AEAssist
         public bool UseAOE { get; set; } = true;
 
         public bool UseBattery { get; set; } = true;
-        
+
         public bool UseHeat { get; set; } = true;
 
         public string TimeStr { get; set; }
@@ -66,16 +66,18 @@ namespace AEAssist
         public MeleePosition MeleePosition => MeleePosition.Intance;
 
         public HotkeySetting HotkeySetting => SettingMgr.GetSetting<HotkeySetting>();
-        public AEAssist.View.Hotkey.HotkeyManager  HotkeyManager => AEAssist.View.Hotkey.HotkeyManager.Instance;
+        public AEAssist.View.Hotkey.HotkeyManager HotkeyManager => AEAssist.View.Hotkey.HotkeyManager.Instance;
         public Language Language => Language.Instance;
 
         public string TriggerLineName { get; set; } = "NULL";
 
         #region MCH
-        
+
         public bool Wildfire { get; set; }
 
         #endregion
+
+
 
         public bool OverlayVisibility { get; set; } = true;
         public void ChangeTriggerLine(TriggerLine line)
@@ -117,6 +119,7 @@ namespace AEAssist
             UseMeikyoShisui = true;
             SageSettings.LucidDreamingToggle = true;
             Wildfire = true;
+            SMNReset();
         }
 
 
@@ -147,7 +150,7 @@ namespace AEAssist
         #endregion
 
         #region Reaper
-        
+
         public bool UseSoulGauge { get; set; } = true;
         public bool UseEnshroud { get; set; } = true;
 
@@ -158,18 +161,30 @@ namespace AEAssist
         public bool UseMeikyoShisui { get; set; } = true;
 
         #endregion
-        
+
         #region Dancer
 
         public bool UseFlourish { get; set; } = true;
-        
+
         #endregion
-        
+
         #region Monk
 
         public bool LazyOn { get; set; } = false;
 
 
         #endregion
+
+        #region SMN
+
+        public bool Crimson { get; set; } = true;
+
+        public bool SaveInstantSpells { get; set; } = false;
+        #endregion
+        public void SMNReset()
+        {
+            Crimson = true;
+            SaveInstantSpells = false;
+        }
     }
 }

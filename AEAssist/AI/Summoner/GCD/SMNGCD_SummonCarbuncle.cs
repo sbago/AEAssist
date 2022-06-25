@@ -3,6 +3,8 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot.Managers;
 using ff14bot;
+using System;
+using Buddy.Coroutines;
 
 namespace AEAssist.AI.Summoner.GCD
 {
@@ -11,32 +13,34 @@ namespace AEAssist.AI.Summoner.GCD
         uint spell = SpellsDefine.SummonCarbuncle;
         public int Check(SpellEntity lastSpell)
         {
+            
+            if (SMN_SpellHelper.HasCarbuncle())
+                return -4;
+           
             if (!spell.IsReady())
                 return -1;
-
-            //if (Core.Me.IsMounted || MovementManager.IsMoving || MovementManager.IsOccupied)
-            //    return -3;
-
-            if (GameObjectManager.PetObjectId != GameObjectManager.EmptyGameObject)
-                return -4;
-
-            //if (PetManager.ActivePetType != PetType.Emerald_Carbuncle)
-
-
-            //GameObjectManager.PetObjectId.
-            //ActionResourceManager.Summoner.AvailablePetFlags
-            
-
-            //if (Core.Me.SummonerGameObject != SmnPets.None)
-            //    return false;
-
 
             return 0;
         }
 
         public async Task<SpellEntity> Run()
         {
+            spell.GetSpellEntity().SpellTargetType = SpellTargetType.Self;
+
             if (await spell.DoGCD()) return spell.GetSpellEntity();
+
+            return null;
+
+        }
+
+        public async Task<SpellEntity> DelayedRun()
+        {
+            spell.GetSpellEntity().SpellTargetType = SpellTargetType.Self;
+            int randomTimer = new Random().Next(2000, 4000);
+
+            await Coroutine.Sleep(randomTimer);
+            if (Check(null)>=0)
+                if (await spell.DoGCD()) return spell.GetSpellEntity();
 
             return null;
 

@@ -26,13 +26,11 @@ namespace AEAssist.AI.Summoner.Ability
 
 
             if (SMN_SpellHelper.Garuda() && Core.Me.HasAura(AurasDefine.GarudasFavor))
-            {
                 return 1;
-            }
             
-            LogHelper.Debug(SMN_SpellHelper.Garuda().ToString());
-            LogHelper.Debug(SpellsDefine.Slipstream.IsReady().ToString());
-            LogHelper.Debug(ActionResourceManager.Summoner.ActivePet.ToString());
+            if (SMN_SpellHelper.Ifrit() && SettingMgr.GetSetting<SMNSettings>().SwiftcastOption > 1)  
+                return 2; 
+
             return -99;
         }
 

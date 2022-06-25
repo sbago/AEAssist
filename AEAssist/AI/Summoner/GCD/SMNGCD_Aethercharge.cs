@@ -9,7 +9,7 @@ namespace AEAssist.AI.Summoner.GCD
     {
         uint spell;
 
-        uint GetSpell()
+        static public uint GetSpell()
         {
             if (SMN_SpellHelper.PhoenixTrance() && SpellsDefine.SummonPhoenix.IsUnlock())
                 return SpellsDefine.SummonPhoenix;

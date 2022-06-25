@@ -13,20 +13,26 @@ namespace AEAssist.AI.Summoner.GCD
         {
             if (Core.Me.HasAura(AurasDefine.IfritsFavor))
                 return SpellsDefine.CrimsonCyclone;
-            if (ActionManager.LastSpell.Id==SpellsDefine.CrimsonCyclone &&Core.Me.CurrentTarget.Distance(Core.Me) <= 3)
-                return SpellsDefine.CrimsonStrike;
+            if (AIRoot.GetBattleData<BattleData>().lastGCDSpell !=null)
+                if (AIRoot.GetBattleData<BattleData>().lastGCDSpell.Id == SpellsDefine.CrimsonCyclone)
+                    return SpellsDefine.CrimsonStrike;
             return 0;
         }
         public int Check(SpellEntity lastSpell)
         {
-            
-                spell = GetSpell();
+            spell = GetSpell();
             if (spell == 0)
                 return -3;
             if (!SMN_SpellHelper.Ifrit())
                 return -4;
             if (!spell.IsReady())
                 return -1;
+            if (spell == SpellsDefine.CrimsonStrike && !Core.Me.CanAttackTargetInRange(Core.Me.CurrentTarget, 3))
+                return -5;
+            if (!DataBinding.Instance.Crimson)
+            {
+                return -6;
+            }
             return 0;
         }
 

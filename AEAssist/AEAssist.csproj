@@ -408,13 +408,19 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\SpellHistoryMgr.cs" />
     <Compile Include="AI\SpellQueueData.cs" />
     <Compile Include="AI\Summoner\Ability\SMNAbility_Deathflare.cs" />
+    <Compile Include="AI\Summoner\Ability\SMNAbility_LucidDreaming.cs" />
     <Compile Include="AI\Summoner\Ability\SMNAbility_EnkindleBahamut.cs" />
+    <Compile Include="AI\Summoner\Ability\SMNAbility_PetTitanMountainBuster.cs" />
+    <Compile Include="AI\Summoner\Ability\SMNAbility_Swiftcast.cs" />
     <Compile Include="AI\Summoner\Ability\SMNAbility_SearingLight.cs" />
     <Compile Include="AI\Summoner\Ability\SMNAbility_Fester.cs" />
     <Compile Include="AI\Summoner\Ability\SMNAbility_EnergyDrain.cs" />
-    <Compile Include="AI\Summoner\GCD\SMNGCD_SummonEmerald.cs" />
-    <Compile Include="AI\Summoner\GCD\SMNGCD_SummonTopaz.cs" />
-    <Compile Include="AI\Summoner\GCD\SMNGCD_SummonRuby.cs" />
+    <Compile Include="AI\Summoner\GCD\SMNGCD_PetSummon.cs" />
+    <Compile Include="AI\Summoner\GCD\_Blank.cs" />
+    <Compile Include="AI\Summoner\GCD\SMNGCD_PetGarudaSlipstream.cs" />
+    <Compile Include="AI\Summoner\GCD\SMNGCD_PetIfritCrimson.cs" />
+    <Compile Include="AI\Summoner\GCD\SMNGCD_TranceBase.cs" />
+    <Compile Include="AI\Summoner\GCD\SMNGCD_PetBase.cs" />
     <Compile Include="AI\Summoner\GCD\SMNGCD_RuinIV.cs" />
     <Compile Include="AI\Summoner\GCD\SMNGCD_Aethercharge.cs" />
     <Compile Include="AI\Summoner\GCD\SMNGCD_Base.cs" />
@@ -570,12 +576,16 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="View\Overlay\Dancer_Overlay2.xaml.cs">
       <DependentUpon>Dancer_Overlay2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Overlay\SMNOverlayWindow.xaml.cs">
+      <DependentUpon>SMNOverlayWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Overlay\MCHOverlayWindow.xaml.cs">
       <DependentUpon>MCHOverlayWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Overlay\MonkOverlayWindow.xaml.cs">
       <DependentUpon>MonkOverlayWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_SMNOverlay.cs" />
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_WhiteMageOverlay.cs" />
     <Compile Include="View\Overlay\WhiteMageOverlayWindow.xaml.cs">
       <DependentUpon>WhiteMageOverlayWindow.xaml</DependentUpon>
@@ -600,6 +610,9 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="View\Overlay\UIComponent\OverlayUIComponent_SamuraiOverlay.cs" />
     <Compile Include="View\ReaperSettingView.xaml.cs">
       <DependentUpon>ReaperSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SMNSettingView.xaml.cs">
+      <DependentUpon>SMNSettingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WhiteMageSettingView.xaml.cs">
       <DependentUpon>WhiteMageSettingView.xaml</DependentUpon>
@@ -630,6 +643,11 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="Setting\Setting\BardSettings.cs" />
     <Compile Include="Setting\Setting\GeneralSettings.cs" />
     <Compile Include="Setting\Setting\VersionSetting.cs" />
+    <Resource Include="Resources\Spells\MagicalRangedDPSRoleActions\Addle.png" />
+    <Resource Include="Resources\Spells\MagicalRangedDPSRoleActions\LucidDreaming.png" />
+    <Resource Include="Resources\Spells\MagicalRangedDPSRoleActions\Surecast.png" />
+    <Resource Include="Resources\Spells\MagicalRangedDPSRoleActions\Swiftcast.png" />
+    <Resource Include="Resources\Spells\Summoner\RadiantAegis.png" />
     <Resource Include="Resources\Spells\Monk\Anatman.png" />
     <Resource Include="Resources\Spells\Monk\FormShift.png" />
     <Resource Include="Resources\Spells\Monk\Mantra.png" />
@@ -649,10 +667,16 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Resource Include="Resources\Spells\WhiteMage\ThinAir.png" />
     <Page Include="View\DancerSettingView.xaml" />
     <Page Include="View\Overlay\CombatMessageOverlay.xaml" />
+    <Page Include="View\Overlay\SMNOverlayWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\Overlay\MonkOverlayWindow.xaml" />
     <Page Include="View\Overlay\WhiteMageOverlayWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SMNSettingView.xaml">
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\WhiteMageSettingView.xaml">
       <SubType>Designer</SubType>

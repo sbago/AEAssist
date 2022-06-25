@@ -14,16 +14,26 @@ namespace AEAssist.AI.Summoner
 {
     public static class SMN_SpellHelper
     {
-        public static bool Debugging
-        {
-            get {
-                return true;
-            }
-        }
         
+        public static bool Debugging { get; set; } = true;
+        
+        public static bool HasCarbuncle()
+        {
 
-        public static bool PhoenixTrance() {
+            if (GameObjectManager.PetObjectId != GameObjectManager.EmptyGameObject)
+                return true;
+            if (AnyPet())
+                return true;
+            return false;
+        }
+        public static bool PhoenixTrance() 
+        {
             return ActionResourceManager.Summoner.AvailablePets.HasFlag(ActionResourceManager.Summoner.AvailablePetFlags.Phoenix);
+        }
+
+        public static bool NotMovingWhileSavingInstantSpells()
+        {
+            return DataBinding.Instance.SaveInstantSpells && (MovementManager.IsMoving);
         }
 
 
