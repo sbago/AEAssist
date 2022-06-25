@@ -34,7 +34,6 @@ namespace AEAssist.AI.WhiteMage.GCD
 
             return 0;
 
-
         }
         public Task<SpellEntity> Run()
         {

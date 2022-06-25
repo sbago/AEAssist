@@ -33,19 +33,6 @@ namespace AEAssist.AI.Dancer.Ability
             
             var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
 
-            SpellEntity[] GCDsCanProc =
-            {
-                SpellsDefine.Cascade.GetSpellEntity(),
-                SpellsDefine.Fountain.GetSpellEntity(),
-                SpellsDefine.Windmill.GetSpellEntity(),
-                SpellsDefine.Bladeshower.GetSpellEntity(),
-            };
-
-            if (GCDsCanProc.Contains(bdls))
-            {
-                return -1;
-            }
-
             if (Core.Me.HasAura(AurasDefine.FlourshingFlow) && (bdls != SpellsDefine.Fountainfall.GetSpellEntity() &&
                                                                 bdls != SpellsDefine.Bloodshower.GetSpellEntity()))
             {
@@ -56,6 +43,22 @@ namespace AEAssist.AI.Dancer.Ability
                                                                      bdls != SpellsDefine.RisingWindmill.GetSpellEntity()))
             {
                 return -2;
+            }
+            
+            SpellEntity[] GCDsCanProc =
+            {
+                SpellsDefine.Cascade.GetSpellEntity(),
+                SpellsDefine.Fountain.GetSpellEntity(),
+                SpellsDefine.Windmill.GetSpellEntity(),
+                SpellsDefine.Bladeshower.GetSpellEntity(),
+            };
+
+            if (GCDsCanProc.Contains(bdls))
+            {
+                if (!AIRoot.Instance.Is2ndAbilityTime())
+                {
+                    return -1;
+                }
             }
 
             if (Core.Me.HasMyAura(AurasDefine.ThreeFoldFanDance) && !SpellsDefine.FanDance3.RecentlyUsed())

@@ -144,7 +144,7 @@ namespace AEAssist
         public bool UseDot { get; set; } = true;
 
         public bool UseApex { get; set; } = true;
-
+        public bool Bloodletter { get; set; } = true;
         public bool UseSong { get; set; } = true;
 
         #endregion

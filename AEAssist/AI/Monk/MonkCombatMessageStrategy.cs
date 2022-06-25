@@ -10,23 +10,23 @@ namespace AEAssist.AI.Monk
         {
 
             //Highest priority: Don't show anything if we're not in combat
-            CombatMessageManager.RegisterMessageStrategy(
-                new CombatMessageStrategy(100,
-                                          "TEST IF THIS SHOWS MEANS WORKING",
-                                          () => !Core.Me.InCombat));
+            // CombatMessageManager.RegisterMessageStrategy(
+            //     new CombatMessageStrategy(100,
+            //                               "TEST IF THIS SHOWS MEANS WORKING",
+            //                               () => !Core.Me.InCombat));
 
-            //Second priority: Don't show anything if positional requirements are Nulled
-            CombatMessageManager.RegisterMessageStrategy(
-                new CombatMessageStrategy(200,
-                                          "",
-                                          "/AEAssist;component/Resources/Images/General/ArrowDownHighlighted.png",
-                                          () => SettingMgr.GetSetting<MonkSettings>().HidePositionalToastsWithTn && Core.Me.HasAura(AurasDefine.TrueNorth) || Core.Me.HasAura(AurasDefine.RiddleOfEarth)));
+            // Second priority: Don't show anything if positional requirements are Nulled
+             // CombatMessageManager.RegisterMessageStrategy(
+             //     new CombatMessageStrategy(200,
+             //                               "",
+             //                               "/AEAssist;component/Resources/Images/General/ArrowDownHighlighted.png",
+             //                               () => SettingMgr.GetSetting<MonkSettings>().HidePositionalToastsWithTn && MonkSpellHelper.InRaptorForm() || Core.Me.HasAura(AurasDefine.RiddleOfEarth)));
 
             //Third priority (tie): Bootshine
-            CombatMessageManager.RegisterMessageStrategy(
-                new CombatMessageStrategy(300,
-                                          "Bootshine: Get behind Enemy",
-                                          () => Core.Me.HasAura(AurasDefine.OpoOpoForm) && Core.Me.HasAura(AurasDefine.LeadenFist)));
+            // CombatMessageManager.RegisterMessageStrategy(
+            //     new CombatMessageStrategy(300,
+            //                               "Bootshine: Get behind Enemy",
+            //                               () => Core.Me.HasAura(AurasDefine.OpoOpoForm) && Core.Me.HasAura(AurasDefine.LeadenFist)));
 
             // //Third priority (tie): TwinSnakes
             // CombatMessageManager.RegisterMessageStrategy(

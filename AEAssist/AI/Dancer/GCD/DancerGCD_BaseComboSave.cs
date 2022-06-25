@@ -16,14 +16,14 @@ namespace AEAssist.AI.Dancer.GCD
             {
                 if (ActionManager.LastSpellId == SpellsDefine.Windmill)
                 {
-                    if (TargetHelper.CheckNeedUseAOETest(Core.Me.CurrentTarget, 5, 5, 3))
+                    if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
                     {
                         return 1;
                     }
                 }
                 if (ActionManager.LastSpellId == SpellsDefine.Cascade)
                 {
-                    if (!TargetHelper.CheckNeedUseAOETest(Core.Me.CurrentTarget, 5, 5, 3))
+                    if (!TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
                     {
                         return 1;
                     }

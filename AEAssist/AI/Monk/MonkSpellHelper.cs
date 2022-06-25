@@ -15,39 +15,59 @@ namespace AEAssist.AI.Monk
     {
         public static void SetPostion()
         {
+            if (AIRoot.GetBattleData<MonkBattleData>().RoFBH2)
+            {
+                if (Core.Me.HasAura(AurasDefine.RiddleOfFire) &&
+                    !Core.Me.HasMyAuraWithTimeleft(AurasDefine.RiddleOfFire, 3000))
+                {
+                    AIRoot.GetBattleData<MonkBattleData>().RoFBH2 = false;
+                }
+
+            }
             if (!Core.Me.HasTarget)
             {
-                MeleePosition.Intance.RequiredPosition = MeleePosition.Position.None;
+                MeleePosition.Intance.SetPositionToNone();
                 MeleePosition.Intance.ShowMsg();
                 return;
             }
 
             var target = Core.Me.CurrentTarget as Character;
+            
+            var priority = MeleePosition.Priority.Low;
+            
+            if (InRaptorForm())
+            {
+                priority = MeleePosition.Priority.Medium;
+            }
+            else if (InCoeurlForm())
+            {
+                priority = MeleePosition.Priority.High;
+            }
+
+            
             if (UsingDot())
             {
-                if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 5))
+                if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 5))
                 {
-                    MeleePosition.Intance.RequiredPosition = MeleePosition.Position.None;
+                    MeleePosition.Intance.SetPositionToNone(priority);
                     MeleePosition.Intance.ShowMsg();
                     return;
                 }
-
                 if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 6000) == false)
                 {
-                    MeleePosition.Intance.RequiredPosition = MeleePosition.Position.Back;
+                    MeleePosition.Intance.SetPositionToBack(priority);
                     MeleePosition.Intance.ShowMsg();
                     return;
                 }
             }
 
-            if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+            if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
             {
-                MeleePosition.Intance.RequiredPosition = MeleePosition.Position.None;
+                MeleePosition.Intance.SetPositionToNone(priority);
                 MeleePosition.Intance.ShowMsg();
                 return;
             }
-
-            MeleePosition.Intance.RequiredPosition = MeleePosition.Position.Side;
+            MeleePosition.Intance.SetPositionToSide(priority);
             MeleePosition.Intance.ShowMsg();
             return;
         }
@@ -106,7 +126,7 @@ namespace AEAssist.AI.Monk
 
         public static async Task<SpellEntity> DoOpoOpoGCDS(Character target, bool pb = false)
         {
-            if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+            if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
             {
                 if (SpellsDefine.ShadowOfTheDestroyer.IsUnlock())
                 {
@@ -152,7 +172,7 @@ namespace AEAssist.AI.Monk
         {
             if (InRaptorForm())
             {
-                if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+                if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
                 {
                     if (SpellsDefine.FourPointFury.IsUnlock())
                     {
@@ -164,16 +184,38 @@ namespace AEAssist.AI.Monk
                     }
                 }
 
-
-                if (!Core.Me.HasMyAura(AurasDefine.RiddleOfFire) && SpellsDefine.RiddleofFire.CoolDownInGCDs(4))
+                //Pre Rof
+                if (!Core.Me.HasMyAura(AurasDefine.RiddleOfFire) && SpellsDefine.RiddleofFire.AbilityCoolDownInNextXGCDsWindow(3))
                 {
-                    if (!target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 7000))
+                    //Even Window
+                    if (SpellsDefine.Brotherhood.AbilityCoolDownInNextXGCDsWindow(10))
                     {
-                        if (await SpellsDefine.TwinSnakes.DoGCD())
+                        if (SpellsDefine.RiddleofFire.AbilityCoolDownInNextXGCDsWindow(3))
                         {
-                            return SpellsDefine.TwinSnakes.GetSpellEntity();
+                            if (!target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 7000))
+                            {
+                                if (await SpellsDefine.TwinSnakes.DoGCD())
+                                {
+                                    return SpellsDefine.TwinSnakes.GetSpellEntity();
+                                }
+                            }
                         }
                     }
+                    //Odd window
+                    else
+                    {
+                        if (SpellsDefine.RiddleofFire.AbilityCoolDownInNextXGCDsWindow(4))
+                        {
+                            if (!target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 7000))
+                            {
+                                if (await SpellsDefine.TwinSnakes.DoGCD())
+                                {
+                                    return SpellsDefine.TwinSnakes.GetSpellEntity();
+                                }
+                            }
+                        }
+                    }
+
                 }
 
                 if (Core.Me.HasMyAura(AurasDefine.RiddleOfFire))
@@ -210,7 +252,7 @@ namespace AEAssist.AI.Monk
         {
             if (InCoeurlForm())
             {
-                if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+                if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
                 {
                     if (SpellsDefine.Rockbreaker.IsUnlock())
                     {
@@ -242,7 +284,7 @@ namespace AEAssist.AI.Monk
         {
             if (InCoeurlForm())
             {
-                if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+                if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
                 {
                     if (SpellsDefine.Rockbreaker.IsUnlock())
                     {
@@ -390,7 +432,7 @@ namespace AEAssist.AI.Monk
                     }
                     else
                     {
-                        if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+                        if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
                         {
                             if (await SpellsDefine.Rockbreaker.DoGCD())
                             {
@@ -409,7 +451,7 @@ namespace AEAssist.AI.Monk
                 if (ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.Coeurl) &&
                     !Core.Me.HasMyAura(AurasDefine.RiddleOfFire))
                 {
-                    if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+                    if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
                     {
                         if (await SpellsDefine.Rockbreaker.DoGCD())
                         {
@@ -437,7 +479,7 @@ namespace AEAssist.AI.Monk
 
         private static async Task<SpellEntity> PerfectBalanceCoeurl(Character target)
         {
-            if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+            if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
             {
                 if (await SpellsDefine.FourPointFury.DoGCD())
                 {
@@ -456,7 +498,7 @@ namespace AEAssist.AI.Monk
 
         private static async Task<SpellEntity> PerfectBalanceRaptor(Character target)
         {
-            if (TargetHelper.CheckNeedUseAOETest(target, 5, 5, 3))
+            if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
             {
                 if (await SpellsDefine.ShadowOfTheDestroyer.DoGCD())
                 {

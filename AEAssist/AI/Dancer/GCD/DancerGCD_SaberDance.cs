@@ -31,17 +31,24 @@ namespace AEAssist.AI.Dancer.GCD
             {
                 return 1;
             }
-
-            if (SpellsDefine.Flourish.CoolDownInGCDs(1) && (!Core.Me.HasMyAura(AurasDefine.FlourshingFlow) &&
-                                                            !Core.Me.HasMyAura(AurasDefine.FlourishingSymmetry)))
+            
+            if (AEAssist.DataBinding.Instance.UseFlourish)
             {
-                return 1;
+                if (SpellsDefine.Flourish.AbilityCoolDownInNextXGCDsWindow(1) && (!Core.Me.HasMyAura(AurasDefine.FlourshingFlow) &&
+                                                                !Core.Me.HasMyAura(AurasDefine.FlourishingSymmetry)))
+                {
+                    return 1;
+                }
             }
 
-            if (SpellsDefine.TechnicalStep.CoolDownInGCDs(1) && !SpellsDefine.TechnicalStep.IsReady())
+            if (!AIRoot.Instance.CloseBurst)
             {
-                return 2;
+                if (SpellsDefine.TechnicalStep.CoolDownInGCDs(1) && !SpellsDefine.TechnicalStep.IsReady())
+                {
+                    return 2;
+                }
             }
+            
             return -4;
         }
 

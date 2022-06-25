@@ -180,6 +180,7 @@ namespace AEAssist
         public string Btn_ApplyHotkey { get; set; }
 
         public string Toggle_FinalBurst { get; set; }
+        public string Toggle_Bloodletter { get; set; }
 
         public string Label_OverlayScale { get; set; }
         
@@ -196,6 +197,7 @@ namespace AEAssist
         public string TextBox_AfflatusSolace { get; set; }
         
         public string ToolTip_Bard_FinalBurst { get; set; }
+        public string ToolTip_Bard_Bloodletter { get; set; }
         public string ToolTip_Bard_Burst { get; set; }
         
         public string ToolTip_MCH_FinalBurst { get; set; }

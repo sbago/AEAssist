@@ -22,6 +22,7 @@ namespace AEAssist.AI.Monk
         {
             new MonkAbility_RiddleOfFire(),
             new MonkAbility_PerfectBalance(),
+            new MonkAbility_LazyPerfectBalance(),
             new MonkAbility_Brotherhood(),
             new MonkAbility_ChakraAttacks(),
             new MonkAbility_TrueNorth(),
