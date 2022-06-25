@@ -103,5 +103,8 @@
   "ToolTip_RPR_Burst": "关闭后,不主动使用附体,神秘环",
   "ToolTip_RPR_DoubleEnshroundPrefer": "开启后,在资源满足时,会优先打双附体",
   "Toggle_Heat": "热量",
-  "Toggle_Wildfire": "野火"
+  "Toggle_Wildfire": "野火",
+  "Toggle_Bloodletter":"失血箭",
+  "ToolTip_Bard_Bloodletter":"是否使用失血箭"
+
 }
