@@ -7,7 +7,7 @@
         xmlns:viewModels="clr-namespace:AEAssist"
         xmlns:dataBinding="clr-namespace:AEAssist"
         mc:Ignorable="d"
-        Title="AEAssist" Height="500" Width="800" WindowStyle="SingleBorderWindow" Icon="Resources/Icon.png"
+        Title="AEAssist" Height="550" Width="800" WindowStyle="SingleBorderWindow" Icon="Resources/Icon.png"
         ResizeMode="NoResize">
 
     <Window.Resources>
