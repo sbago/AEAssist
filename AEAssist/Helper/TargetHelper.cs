@@ -18,6 +18,11 @@ namespace AEAssist.Helper
         {
             return unit != null && unit.CanAttack && unit.CurrentHealth > 0;
         }
+        
+        public static bool ValidUnit(this GameObject unit)
+        {
+            return unit != null && unit.CurrentHealth > 0 && unit.NpcId != 0 && !unit.IsMe;
+        }
 
         public static bool NotInvulnerable(this GameObject unit)
         {

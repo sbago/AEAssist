@@ -55,13 +55,12 @@ namespace AEAssist.AI
 
             foreach (var v in tars)
             {
-                
-                if (!v.CanAttackUnit())
+                if (!v.ValidUnit())
                     continue;
                 Units[v.ObjectId] = v;
                 if (SettingMgr.GetSetting<GeneralSettings>().ShowGameLog)
                 {
-                    if (LastNpcIds.Add(v.NpcId)) LogHelper.Info($"Find new enemy : {v.Name} NpcId: {v.NpcId}");
+                    if (LastNpcIds.Add(v.NpcId)) LogHelper.Info($"Find new enemy : {v.Name} Ename: {v.EnglishName} NpcId: {v.NpcId}");
 
                     if (v.IsCasting && CastingSpell.Add(v.CastingSpellId))
                         LogHelper.Info($"Find enemy casting spell : {v.Name} NpcId: {v.NpcId} " +
