@@ -722,6 +722,8 @@ namespace AEAssist.Define
         public const uint HissatsuGyoten = 7492;
         public const uint HissatsuYaten = 7493;
         public const uint HissatsuSenei = 16481;
+        public const uint Hagakure = 7495;
+        public const uint TsubameGaeshi = 16483;
         public const uint Meditate = 7497;
         public const uint ThirdEye = 7498;
 

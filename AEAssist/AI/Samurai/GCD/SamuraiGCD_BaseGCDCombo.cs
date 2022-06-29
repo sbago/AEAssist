@@ -8,10 +8,6 @@ namespace AEAssist.AI.Samurai.GCD
     {
         public int Check(SpellEntity lastSpell)
         {
-            //if (Core.Me.HasAura(AurasDefine.Kaiten))
-                //return -1;
-            //if (Core.Me.HasAura(AurasDefine.MeikyoShisui) && SamuraiSpellHelper.SenCounts() == 3) return -2;
-
             return 0;
         }
 
