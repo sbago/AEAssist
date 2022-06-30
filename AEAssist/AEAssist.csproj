@@ -379,7 +379,7 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Samurai\GCD\SamuraiGCD_EvenMinutesBurst.cs" />
     <Compile Include="AI\Samurai\GCD\SamuraiGCD_Fillers.cs" />
     <Compile Include="AI\Samurai\GCD\SamuraiGCD_OddMinuteBurst.cs" />
-    <Compile Include="AI\Samurai\GCD\SamuraiGCD_Setsugekka.cs" />
+    <Compile Include="AI\Samurai\GCD\SamuraiGCD_MidareSetsugekka.cs" />
     <Compile Include="AI\Samurai\Opener_SamuraiStandard_90.cs" />
     <Compile Include="AI\Samurai\SpellEvent\SpellEvent_GCD.cs" />
     <Compile Include="AI\Samurai\SpellQueue\SpellQueueSlot_KaeshiNamikiri.cs" />
