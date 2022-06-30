@@ -25,7 +25,7 @@ namespace AEAssist
         public bool EarlyDecisionMode { get; set; }
         public bool Heal { get; set; } = true;
 
-        public bool UseCDPull { get; set; } = true;
+        public bool UseCDPull { get; set; }
 
         public string SageOpener { get; set; } = "Default";
 

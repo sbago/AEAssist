@@ -552,6 +552,11 @@ namespace AEAssist.AI.Sage
 
         public static async Task PrePullEukrasianDiagnosisThreePeople()
         {
+
+            if (!SettingMgr.GetSetting<SageSettings>().UseCDPull)
+            {
+                return;
+            }
             if (GroupHelper.CastableParty.Count <= 3) return;
             
             var count = 0;
