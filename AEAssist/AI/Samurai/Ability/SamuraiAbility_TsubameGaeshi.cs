@@ -11,6 +11,10 @@ namespace AEAssist.AI.Samurai.Ability
         {
             
             if (!SpellsDefine.TsubameGaeshi.IsReady()) return -1;
+            if (lastSpell != SpellsDefine.MidareSetsugekka.GetSpellEntity())
+            {
+                return -1;
+            }
             return 0;
         }
 
