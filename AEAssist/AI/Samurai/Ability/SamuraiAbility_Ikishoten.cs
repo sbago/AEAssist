@@ -9,6 +9,7 @@ namespace AEAssist.AI.Samurai.Ability
     {
         public int Check(SpellEntity lastSpell)
         {
+            if (!SpellsDefine.Ikishoten.IsUnlock()) return -1;
             if (SpellsDefine.Ikishoten.GetSpellEntity().IsReady() &&
                 ActionResourceManager.Samurai.Kenki < 50)
                 return 1;

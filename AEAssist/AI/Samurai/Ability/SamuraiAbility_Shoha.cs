@@ -9,6 +9,7 @@ namespace AEAssist.AI.Samurai.Ability
     {
         public int Check(SpellEntity lastSpell)
         {
+            if (!SpellsDefine.Shoha.IsUnlock()) return -1;
             if (ActionResourceManager.Samurai.Meditation == 3)
                 return 0;
 
