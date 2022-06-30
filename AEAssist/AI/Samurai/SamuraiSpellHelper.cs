@@ -46,25 +46,32 @@ namespace AEAssist.AI.Samurai
             return null;
         }
 
-        public static bool IsMidareSetsugekkaReady()
-        {
-            if (ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Ka) &&
-                ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Getsu) &&
-                ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Setsu))
-            {
-                return true;
-            }
-
-            return false;
-        }
+        // public static bool IsMidareSetsugekkaReady()
+        // {
+        //     if (ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Ka) &&
+        //         ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Getsu) &&
+        //         ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Setsu))
+        //     {
+        //         return true;
+        //     }
+        //
+        //     return false;
+        // }
+        
         public static SpellEntity CoolDownPhaseGCD(GameObject target)
         {
             // https://www.thebalanceffxiv.com/jobs/melee/samurai/basic-guide/
             // Hakaze -> Yukikaze -> Hakaze -> Jinpu -> Gekko -> Hakaze -> Shifu -> Kasha -> Midare Setsugekka -> repeat
             // refer to the balance level 90 samurai
             var lastGCD = ActionManager.LastSpellId;
+            
             if (lastGCD == SpellsDefine.Hakaze)
             {
+                if (SenCounts() == 3)
+                {
+                    return SpellsDefine.MidareSetsugekka.GetSpellEntity();
+                }
+                
                 if (!ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Setsu))
                 {
                     return SpellsDefine.Yukikaze.GetSpellEntity();
@@ -88,8 +95,6 @@ namespace AEAssist.AI.Samurai
             {
                 return SpellsDefine.Kasha.GetSpellEntity();
             }
-            
-            
 
             return SpellsDefine.Hakaze.GetSpellEntity();
             

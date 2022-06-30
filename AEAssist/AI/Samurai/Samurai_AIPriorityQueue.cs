@@ -12,7 +12,6 @@ namespace AEAssist.AI.Samurai
     {
         public List<IAIHandler> GCDQueue { get; } = new List<IAIHandler>
         {
-            new SamuraiGCD_MidareSetsugekka(),
             // new SamuraiGCD_AoERotations(),
             // new SamuraiGCD_OddMinuteBurst(),
             // new SamuraiGCD_EvenMinutesBurst(),
