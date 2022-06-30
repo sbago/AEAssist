@@ -71,6 +71,17 @@ namespace AEAssist
             RequiredPosition = Position.None;
             CurrentPriority = priority;
         }
+
+        public Priority GetPriority()
+        {
+            // LogHelper.Debug("Current Priority is: " + CurrentPriority);
+            return CurrentPriority;
+        }
+
+        public Position GetRequiredPosition()
+        {
+            return RequiredPosition;
+        }
         
         
         private void SetColor()

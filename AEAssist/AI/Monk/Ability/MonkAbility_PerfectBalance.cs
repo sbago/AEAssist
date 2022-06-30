@@ -135,6 +135,18 @@ namespace AEAssist.AI.Monk.Ability
                         {
                             AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Solar;
                         }
+                        else if (ActionResourceManager.Monk.ActiveNadi == ActionResourceManager.Monk.Nadi.None)
+                        {
+                            if (!target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 6000))
+                            {
+                                AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Solar;
+                            }
+                            else
+                            {
+                                AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
+                            }
+                        }
+
 
                         return 1;
                     }

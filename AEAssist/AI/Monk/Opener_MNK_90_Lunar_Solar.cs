@@ -20,8 +20,8 @@ namespace AEAssist.AI.Monk
                 return -100;
             if (!SpellsDefine.RiddleofFire.IsReady())
                 return -4;
-            if (!SpellsDefine.Brotherhood.CoolDownInGCDs(4))
-                return -5;
+            if (!SpellsDefine.Brotherhood.IsReady())
+                return -4;
             if (!SpellsDefine.PerfectBalance.IsMaxChargeReady())
                 return -6;
             return 0;
@@ -41,6 +41,7 @@ namespace AEAssist.AI.Monk
 
         private static void StepPre(SpellQueueSlot slot)
         {
+            AIRoot.GetBattleData<MonkBattleData>().DoingOpener = true;
             if (!ActionManager.CanCastOrQueue(SpellsDefine.Bootshine.GetSpellEntity().SpellData, Core.Me.CurrentTarget))
             {
                 slot.Abilitys.Enqueue((SpellsDefine.Thunderclap, SpellTargetType.CurrTarget));
@@ -49,7 +50,15 @@ namespace AEAssist.AI.Monk
 
         private static void Step0(SpellQueueSlot slot)
         {
-            slot.SetGCD(SpellsDefine.DragonKick, SpellTargetType.CurrTarget);
+            var spell = SpellsDefine.DragonKick;
+            if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
+            {
+                if (SpellsDefine.ShadowOfTheDestroyer.IsUnlock())
+                {
+                    spell = SpellsDefine.ShadowOfTheDestroyer;
+                }
+            }
+            slot.SetGCD(spell, SpellTargetType.CurrTarget);
             slot.UsePotion = true;
             MeleePosition.Intance.SetPositionToBack(MeleePosition.Priority.High);
             MeleePosition.Intance.ShowMsg();
@@ -58,7 +67,12 @@ namespace AEAssist.AI.Monk
 
         private static void Step1(SpellQueueSlot slot)
         {
-            slot.SetGCD(SpellsDefine.TwinSnakes, SpellTargetType.CurrTarget);
+            var spell = SpellsDefine.TwinSnakes;
+            if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
+            {
+                spell = SpellsDefine.FourPointFury;
+            }
+            slot.SetGCD(spell, SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.LegSweep, SpellTargetType.CurrTarget));
             slot.Abilitys.Enqueue((SpellsDefine.RiddleofFire, SpellTargetType.Self));
         }
@@ -73,7 +87,15 @@ namespace AEAssist.AI.Monk
 
         private static void Step3(SpellQueueSlot slot)
         {
-            slot.SetGCD(SpellsDefine.Bootshine, SpellTargetType.CurrTarget);
+            var spell = SpellsDefine.Bootshine;
+            if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
+            {
+                if (SpellsDefine.ShadowOfTheDestroyer.IsUnlock())
+                {
+                    spell = SpellsDefine.ShadowOfTheDestroyer;
+                }
+            }
+            slot.SetGCD(spell, SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.Brotherhood, SpellTargetType.Self));
             slot.Abilitys.Enqueue((SpellsDefine.PerfectBalance, SpellTargetType.Self));
         }
@@ -81,7 +103,16 @@ namespace AEAssist.AI.Monk
 
         private static void Step4(SpellQueueSlot slot)
         {
-            slot.SetGCD(SpellsDefine.DragonKick, SpellTargetType.CurrTarget);
+            AIRoot.GetBattleData<MonkBattleData>().DoingOpener = false;
+            var spell = SpellsDefine.DragonKick;
+            if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
+            {
+                if (SpellsDefine.ShadowOfTheDestroyer.IsUnlock())
+                {
+                    spell = SpellsDefine.ShadowOfTheDestroyer;
+                }
+            }
+            slot.SetGCD(spell, SpellTargetType.CurrTarget);
             slot.Abilitys.Enqueue((SpellsDefine.RiddleofWind, SpellTargetType.Self));
             AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
         }
