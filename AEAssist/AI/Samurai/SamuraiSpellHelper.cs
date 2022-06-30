@@ -65,13 +65,13 @@ namespace AEAssist.AI.Samurai
             // refer to the balance level 90 samurai
             var lastGCD = ActionManager.LastSpellId;
             
+            if (SenCounts() == 3)
+            {
+                return SpellsDefine.MidareSetsugekka.GetSpellEntity();
+            }
+            
             if (lastGCD == SpellsDefine.Hakaze)
             {
-                if (SenCounts() == 3)
-                {
-                    return SpellsDefine.MidareSetsugekka.GetSpellEntity();
-                }
-                
                 if (!ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Setsu))
                 {
                     return SpellsDefine.Yukikaze.GetSpellEntity();
