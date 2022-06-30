@@ -374,11 +374,12 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="AI\Samurai\Ability\SamuraiAbility_ShohaII.cs" />
     <Compile Include="AI\Samurai\Ability\SamuraiAbility_ThirdEye.cs" />
     <Compile Include="AI\Samurai\Ability\SamuraiAbility_TsubameGaeshi.cs" />
+    <Compile Include="AI\Samurai\GCD\SamuraiGCD_AoERotations.cs" />
     <Compile Include="AI\Samurai\GCD\SamuraiGCD_CoolDownPhase.cs" />
     <Compile Include="AI\Samurai\GCD\SamuraiGCD_EvenMinutesBurst.cs" />
     <Compile Include="AI\Samurai\GCD\SamuraiGCD_Fillers.cs" />
     <Compile Include="AI\Samurai\GCD\SamuraiGCD_OddMinuteBurst.cs" />
-    <Compile Include="AI\Samurai\Opener_Samurai_90.cs" />
+    <Compile Include="AI\Samurai\Opener_SamuraiStandard_90.cs" />
     <Compile Include="AI\Samurai\SpellEvent\SpellEvent_GCD.cs" />
     <Compile Include="AI\Samurai\SpellQueue\SpellQueueSlot_KaeshiNamikiri.cs" />
     <Compile Include="AI\Samurai\SpellQueue\SpellQueueSlot_KaeshiSetsugekka.cs" />
