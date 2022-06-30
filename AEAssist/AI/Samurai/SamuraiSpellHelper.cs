@@ -70,6 +70,16 @@ namespace AEAssist.AI.Samurai
                 return SpellsDefine.MidareSetsugekka.GetSpellEntity();
             }
             
+            if (lastGCD == SpellsDefine.Jinpu)
+            {
+                return SpellsDefine.Gekko.GetSpellEntity();
+            }
+
+            if (lastGCD == SpellsDefine.Shifu)
+            {
+                return SpellsDefine.Kasha.GetSpellEntity();
+            }
+            
             if (lastGCD == SpellsDefine.Hakaze)
             {
                 if (!ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Setsu))
@@ -84,16 +94,6 @@ namespace AEAssist.AI.Samurai
                 {
                     return SpellsDefine.Shifu.GetSpellEntity();
                 }
-            }
-
-            if (lastGCD == SpellsDefine.Jinpu)
-            {
-                return SpellsDefine.Gekko.GetSpellEntity();
-            }
-
-            if (lastGCD == SpellsDefine.Shifu)
-            {
-                return SpellsDefine.Kasha.GetSpellEntity();
             }
 
             return SpellsDefine.Hakaze.GetSpellEntity();
