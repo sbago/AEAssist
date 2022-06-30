@@ -46,6 +46,17 @@ namespace AEAssist.AI.Samurai
             return null;
         }
 
+        public static bool IsMidareSetsugekkaReady()
+        {
+            if (ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Ka) &&
+                ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Getsu) &&
+                ActionResourceManager.Samurai.Sen.HasFlag(ActionResourceManager.Samurai.Iaijutsu.Setsu))
+            {
+                return true;
+            }
+
+            return false;
+        }
         public static SpellEntity CoolDownPhaseGCD(GameObject target)
         {
             // https://www.thebalanceffxiv.com/jobs/melee/samurai/basic-guide/
