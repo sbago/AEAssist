@@ -74,7 +74,7 @@ namespace AEAssist
 
         public Priority GetPriority()
         {
-            LogHelper.Debug("Current Priority is: " + CurrentPriority);
+            // LogHelper.Debug("Current Priority is: " + CurrentPriority);
             return CurrentPriority;
         }
 

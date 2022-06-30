@@ -31,6 +31,11 @@ namespace AEAssist.AI.Monk
             {
                 return;
             }
+
+            if (!Core.Me.HasTarget)
+            {
+                return;
+            }
             if (AIRoot.GetBattleData<MonkBattleData>().RoFBH2)
             {
                 if (Core.Me.HasAura(AurasDefine.RiddleOfFire) &&

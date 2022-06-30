@@ -77,7 +77,7 @@ namespace AEAssist
             GamelogManager.Pulse();
             SettingMgr.Instance.AutoSave();
             CombatMessageManager.UpdateDisplayedMessage();
-            MeleePosition.Intance.GetPriority();
+            // MeleePosition.Intance.GetPriority();
         }
 
         public void Shutdown()
