@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using AEAssist.Define;
+using ff14bot;
 
 namespace AEAssist.AI.Samurai.GCD
 {
@@ -7,18 +8,18 @@ namespace AEAssist.AI.Samurai.GCD
     {
         public int Check(SpellEntity lastSpell)
         {
-            var checkOddOrEvenBattleTime = SamuraiSpellHelper.CheckOddOrEvenBattleTime();
-            if (checkOddOrEvenBattleTime == 1 || checkOddOrEvenBattleTime == 0)
-            {
-                return -1;
-            }
+            // var checkOddOrEvenBattleTime = SamuraiSpellHelper.CheckOddOrEvenBattleTime();
+            // if (checkOddOrEvenBattleTime == 1 || checkOddOrEvenBattleTime == 0)
+            // {
+            //     return -1;
+            // }
             return 0;
         }
 
         public async Task<SpellEntity> Run()
         {
             // CoolDownPhase
-            return await SamuraiSpellHelper.CoolDownPhaseGCD();
+            return await SamuraiSpellHelper.CoolDownPhaseGCD(Core.Me.CurrentTarget);
         }
     }
 }

@@ -46,28 +46,38 @@ namespace AEAssist.AI.Samurai
             return null;
         }
 
-        public static async Task<SpellEntity> CoolDownPhaseGCD()
+        public static async Task<SpellEntity> CoolDownPhaseGCD(GameObject target)
         {
             // https://www.thebalanceffxiv.com/jobs/melee/samurai/basic-guide/
             // Hakaze -> Yukikaze -> Hakaze -> Jinpu -> Gekko -> Hakaze -> Shifu -> Kasha -> Midare Setsugekka -> repeat
             // refer to the balance level 90 samurai
+            
+            
             if (SpellsDefine.Hakaze.IsUnlock())
             {
                 if (SpellsDefine.Hakaze.IsReady())
                 {
-                    await SpellsDefine.Hakaze.DoGCD();
-                    return SpellsDefine.Hakaze.GetSpellEntity();
+                    if (await SpellsDefine.Hakaze.DoGCD())
+                    {
+                        return SpellsDefine.Hakaze.GetSpellEntity();
+                    }
+                }
+            }
+
+            if (ActionManager.LastSpell == SpellsDefine.Hakaze.GetSpellEntity().SpellData)
+            {
+                if (SpellsDefine.Yukikaze.IsUnlock())
+                {
+                    if (SpellsDefine.Yukikaze.IsReady())
+                    {
+                        if (await SpellsDefine.Yukikaze.DoGCD())
+                        {
+                            return SpellsDefine.Yukikaze.GetSpellEntity();
+                        }
+                    }
                 }
             }
             
-            if (SpellsDefine.Yukikaze.IsUnlock())
-            {
-                if (SpellsDefine.Yukikaze.IsReady())
-                {
-                    await SpellsDefine.Yukikaze.DoGCD();
-                    return SpellsDefine.Yukikaze.GetSpellEntity();
-                }
-            }
             
             if (SpellsDefine.Hakaze.IsUnlock())
             {
@@ -123,14 +133,7 @@ namespace AEAssist.AI.Samurai
                 }
             }
             
-            if (SpellsDefine.HissatsuShinten.IsUnlock())
-            {
-                if (SpellsDefine.HissatsuShinten.IsReady())
-                {
-                    await SpellsDefine.HissatsuShinten.DoAbility();
-                    return SpellsDefine.HissatsuShinten.GetSpellEntity();
-                }
-            }
+            await GetHissatsuShinten().DoAbility();
             
             if (SpellsDefine.MidareSetsugekka.IsUnlock())
             {
@@ -154,14 +157,7 @@ namespace AEAssist.AI.Samurai
             
             // do odd minute bursts
                 
-            if (SpellsDefine.HissatsuShinten.IsUnlock())
-            {
-                if (SpellsDefine.HissatsuShinten.IsReady())
-                {
-                    await SpellsDefine.HissatsuShinten.DoAbility();
-                    return SpellsDefine.HissatsuShinten.GetSpellEntity();
-                }
-            }
+            await GetHissatsuShinten().DoAbility();
                 
             if (SpellsDefine.MidareSetsugekka.IsUnlock())
             {
@@ -199,14 +195,7 @@ namespace AEAssist.AI.Samurai
                 }
             }
                 
-            if (SpellsDefine.HissatsuShinten.IsUnlock())
-            {
-                if (SpellsDefine.HissatsuShinten.IsReady())
-                {
-                    await SpellsDefine.HissatsuShinten.DoAbility();
-                    return SpellsDefine.HissatsuShinten.GetSpellEntity();
-                }
-            }
+            await GetHissatsuShinten().DoAbility();
                 
             if (SpellsDefine.Higanbana.IsUnlock())
             {
@@ -253,14 +242,7 @@ namespace AEAssist.AI.Samurai
                 }
             }
                 
-            if (SpellsDefine.HissatsuShinten.IsUnlock())
-            {
-                if (SpellsDefine.HissatsuShinten.IsReady())
-                {
-                    await SpellsDefine.HissatsuShinten.DoAbility();
-                    return SpellsDefine.HissatsuShinten.GetSpellEntity();
-                }
-            }
+            await GetHissatsuShinten().DoAbility();
                 
             if (SpellsDefine.MidareSetsugekka.IsUnlock())
             {
@@ -282,14 +264,7 @@ namespace AEAssist.AI.Samurai
             if (checkOddOrEven != 0) return null;
             // do Even minute bursts
                 
-            if (SpellsDefine.HissatsuShinten.IsUnlock())
-            {
-                if (SpellsDefine.HissatsuShinten.IsReady())
-                {
-                    await SpellsDefine.HissatsuShinten.DoAbility();
-                    return SpellsDefine.HissatsuShinten.GetSpellEntity();
-                }
-            }
+            await GetHissatsuShinten().DoAbility();
                 
             if (SpellsDefine.MidareSetsugekka.IsUnlock())
             {
@@ -336,14 +311,7 @@ namespace AEAssist.AI.Samurai
                 }
             }
                 
-            if (SpellsDefine.HissatsuShinten.IsUnlock())
-            {
-                if (SpellsDefine.HissatsuShinten.IsReady())
-                {
-                    await SpellsDefine.HissatsuShinten.DoAbility();
-                    return SpellsDefine.HissatsuShinten.GetSpellEntity();
-                }
-            }
+            await GetHissatsuShinten().DoAbility();
                 
             if (SpellsDefine.Higanbana.IsUnlock())
             {
@@ -363,14 +331,7 @@ namespace AEAssist.AI.Samurai
                 }
             }
             
-            if (SpellsDefine.HissatsuShinten.IsUnlock())
-            {
-                if (SpellsDefine.HissatsuShinten.IsReady())
-                {
-                    await SpellsDefine.HissatsuShinten.DoAbility();
-                    return SpellsDefine.HissatsuShinten.GetSpellEntity();
-                }
-            }
+            await GetHissatsuShinten().DoAbility();
             
             if (SpellsDefine.OgiNamikiri.IsUnlock())
             {
@@ -417,14 +378,7 @@ namespace AEAssist.AI.Samurai
                 }
             }
                 
-            if (SpellsDefine.HissatsuShinten.IsUnlock())
-            {
-                if (SpellsDefine.HissatsuShinten.IsReady())
-                {
-                    await SpellsDefine.HissatsuShinten.DoAbility();
-                    return SpellsDefine.HissatsuShinten.GetSpellEntity();
-                }
-            }
+            await GetHissatsuShinten().DoAbility();
                 
             if (SpellsDefine.MidareSetsugekka.IsUnlock())
             {
@@ -631,15 +585,8 @@ namespace AEAssist.AI.Samurai
                     }
                 }
             }
-            
-            if (SpellsDefine.HissatsuShinten.IsUnlock())
-            {
-                if (SpellsDefine.HissatsuShinten.IsReady())
-                {
-                    await SpellsDefine.HissatsuShinten.DoAbility();
-                    return SpellsDefine.HissatsuShinten.GetSpellEntity();
-                }
-            }
+
+            await GetHissatsuShinten().DoAbility();
             
             if (TargetHelper.CheckNeedUseAOE(0, 5))
             {
@@ -654,6 +601,23 @@ namespace AEAssist.AI.Samurai
             }
             
             return null;
+        }
+        
+        public static SpellEntity GetHissatsuShinten()
+        {
+            
+            if (!SpellsDefine.HissatsuShinten.IsUnlock())
+            {
+                return null;
+            }
+            if (!SpellsDefine.HissatsuShinten.IsReady())
+            {
+                return null;
+            }
+
+            if (!ActionManager.CanCastOrQueue(SpellsDefine.HissatsuShinten.GetSpellEntity().SpellData,
+                    Core.Me.CurrentTarget)) return null;
+            return ActionResourceManager.Samurai.Kenki >= 25 ? SpellsDefine.HissatsuShinten.GetSpellEntity() : null;
         }
 
         public static SpellEntity IaijutsuCanSpell()
