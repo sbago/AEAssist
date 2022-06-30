@@ -457,6 +457,81 @@ namespace AEAssist.AI.Samurai
 
             return -1;
         }
+        
+        public static async Task<SpellEntity> AoEGCD()
+        {
+
+            if (TargetHelper.CheckNeedUseAOE(8, 5))
+            {
+                if (SpellsDefine.Fuga.IsUnlock())
+                {
+                    if (SpellsDefine.Fuga.IsReady())
+                    {
+                        await SpellsDefine.Fuga.DoGCD();
+                        return SpellsDefine.Fuga.GetSpellEntity();
+                    }
+                }
+            }
+            
+            if (TargetHelper.CheckNeedUseAOE(0, 5))
+            {
+                if (SpellsDefine.Oka.IsUnlock())
+                {
+                    if (SpellsDefine.Oka.IsReady())
+                    {
+                        await SpellsDefine.Oka.DoGCD();
+                        return SpellsDefine.Oka.GetSpellEntity();
+                    }
+                }
+            }
+            
+            if (TargetHelper.CheckNeedUseAOE(8, 5))
+            {
+                if (SpellsDefine.Fuga.IsUnlock())
+                {
+                    if (SpellsDefine.Fuga.IsReady())
+                    {
+                        await SpellsDefine.Fuga.DoGCD();
+                        return SpellsDefine.Fuga.GetSpellEntity();
+                    }
+                }
+            }
+            
+            if (TargetHelper.CheckNeedUseAOE(0, 5))
+            {
+                if (SpellsDefine.Mangetsu.IsUnlock())
+                {
+                    if (SpellsDefine.Mangetsu.IsReady())
+                    {
+                        await SpellsDefine.Mangetsu.DoGCD();
+                        return SpellsDefine.Mangetsu.GetSpellEntity();
+                    }
+                }
+            }
+            
+            if (SpellsDefine.HissatsuShinten.IsUnlock())
+            {
+                if (SpellsDefine.HissatsuShinten.IsReady())
+                {
+                    await SpellsDefine.HissatsuShinten.DoAbility();
+                    return SpellsDefine.HissatsuShinten.GetSpellEntity();
+                }
+            }
+            
+            if (TargetHelper.CheckNeedUseAOE(0, 5))
+            {
+                if (SpellsDefine.TenkaGoken.IsUnlock())
+                {
+                    if (SpellsDefine.TenkaGoken.IsReady())
+                    {
+                        await SpellsDefine.TenkaGoken.DoGCD();
+                        return SpellsDefine.TenkaGoken.GetSpellEntity();
+                    }
+                }
+            }
+            
+            return null;
+        }
 
         public static SpellEntity IaijutsuCanSpell()
         {
