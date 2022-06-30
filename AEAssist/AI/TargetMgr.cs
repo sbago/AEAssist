@@ -25,7 +25,7 @@ namespace AEAssist.AI
 
     public class TargetMgr
     {
-        private const int damageCalCount = 100;
+        private const int damageCalCount = 50;
         public static readonly TargetMgr Instance = new TargetMgr();
 
         private readonly HashSet<uint> DeleteSet = new HashSet<uint>();

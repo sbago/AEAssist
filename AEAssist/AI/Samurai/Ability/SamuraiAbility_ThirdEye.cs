@@ -1,24 +1,20 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
-using ff14bot.Managers;
 
 namespace AEAssist.AI.Samurai.Ability
 {
-    public class SamuraiAbility_Shoha : IAIHandler
+    public class SamuraiAbility_ThirdEye : IAIHandler
     {
         public int Check(SpellEntity lastSpell)
         {
-            if (!SpellsDefine.Shoha.IsUnlock()) return -1;
-            if (ActionResourceManager.Samurai.Meditation == 3)
-                return 0;
-
-            return -1;
+            if (!SpellsDefine.ThirdEye.IsReady()) return -1;
+            return 0;
         }
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.Shoha.GetSpellEntity();
+            var spell = SpellsDefine.ThirdEye.GetSpellEntity();
             if (spell == null) return null;
             if (await spell.DoAbility())
                 return spell;

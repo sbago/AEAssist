@@ -80,6 +80,11 @@
                                   Content="{Binding Language.Heal}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
                                   IsChecked="{Binding SageSettings.Heal,Mode=TwoWay}" />
+                        
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="{Binding Language.UseCDPull}"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding SageSettings.UseCDPull,Mode=TwoWay}" />
                     </WrapPanel>
                     <WrapPanel Margin="10">
                         <Button Style="{StaticResource ImageButton}"

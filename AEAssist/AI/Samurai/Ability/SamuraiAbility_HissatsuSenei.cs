@@ -11,7 +11,7 @@ namespace AEAssist.AI.Samurai.Ability
         public int Check(SpellEntity lastSpell)
         {
             if (ActionResourceManager.Samurai.Kenki >= 25 &&
-                SpellsDefine.HissatsuSenei.GetSpellEntity().Cooldown.TotalSeconds == 0 &&
+                SpellsDefine.HissatsuSenei.GetSpellEntity().IsReady() &&
                 Core.Me.HasAura(AurasDefine.Shifu))
                 return 1;
             return -1;
@@ -19,9 +19,10 @@ namespace AEAssist.AI.Samurai.Ability
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.HissatsuSenei;
+            var spell = SpellsDefine.HissatsuSenei.GetSpellEntity();
+            if (spell == null) return null;
             if (await spell.DoAbility())
-                return spell.GetSpellEntity();
+                return spell;
             return null;
         }
     }
