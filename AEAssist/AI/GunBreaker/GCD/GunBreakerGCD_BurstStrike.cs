@@ -22,19 +22,29 @@ namespace AEAssist.AI.GunBreaker.GCD
                     return 2;
             }
 
+            if (SpellsDefine.NoMercy.GetSpellEntity().SpellData.Cooldown.TotalMilliseconds < 5000)
+                return -5;
+
             //在无情中 泻子弹
             if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.NoMercy))
             {
                 if (Core.Me.ClassLevel < 90)
                     return 5;
-
+                if(SpellsDefine.DoubleDown.GetSpellEntity().SpellData.Cooldown.TotalMilliseconds==0)
+                    return -1;
                 //90级技能冷却时间<无情时间
                 else if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.NoMercy, (int)SpellsDefine.DoubleDown.GetSpellEntity().SpellData.Cooldown.TotalMilliseconds))
                     return -51;
                 else return 6;
             }
 
-
+            if (SpellsDefine.Bloodfest.GetSpellEntity().SpellData.Cooldown.TotalMilliseconds < 5000 && 
+                ActionResourceManager.Gunbreaker.Cartridge > 0)
+            {
+                if(ActionResourceManager.Gunbreaker.Cartridge == 1 && SpellsDefine.GnashingFang.GetSpellEntity().SpellData.Cooldown.TotalMilliseconds < 5000)
+                    return -2;
+                return 7;
+            }
             return -1;
         }
 

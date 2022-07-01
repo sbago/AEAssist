@@ -216,7 +216,10 @@ namespace AEAssist
         public string ToolTip_SMN_SaveInstantSpells { get; set;}
         public string Textbox_SMN_SwiftcastOption { get; set; }
         public string Toggle_SMN_Crimson { get; set; }
-
+        #region GNB
+        public string Toggle_GNB_Open { get; set; }
+        public string Toggle_GNB_RoughDivide { get; set; }
+        #endregion
 
     }
 }

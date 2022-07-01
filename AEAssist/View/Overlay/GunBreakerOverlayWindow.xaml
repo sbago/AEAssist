@@ -63,7 +63,16 @@
                                   Content="{Binding Language.Toggle_ActiveAttack}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
                                   IsChecked="{Binding Pull,Mode=TwoWay}" />
-
+                        
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="{Binding Language.Toggle_GNB_Open}"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding GNBOpen,Mode=TwoWay}" />
+                        
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="{Binding Language.Toggle_GNB_RoughDivide}"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding GNBRoughDivide,Mode=TwoWay}" />
 
                     </WrapPanel>
                     <WrapPanel Margin="10">

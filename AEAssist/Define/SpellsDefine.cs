@@ -74,7 +74,8 @@ namespace AEAssist.Define
             Meditation,
             Mantra,
             
-            
+            //GNB
+            DoubleDown
             
             
             

@@ -50,8 +50,8 @@
   "Label_CurrTriggerLine": "CurrTriggerLine:",
   "Label_ChoosePotion": "Choose Potion",
   "Label_PotionNum": "Num:",
-  "Label_ChooseResPriority" : "Choose Res Priority",
-  "Label_CombatMessageFontSize" : "Font Size",
+  "Label_ChooseResPriority": "Choose Res Priority",
+  "Label_CombatMessageFontSize": "Font Size",
   "Toggle_PreferGallow": "Prefer Gallow",
   "Btn_LoadTriggerLine": "Load",
   "Btn_ClearTriggerLine": "Clear",
@@ -108,5 +108,7 @@
   "ToolTip_MCH_WildFireFirst": "Normally, the use of Wildfire is delayed due to the high power GCD that is about to cool down, after activation, Wildfire will be used as soon as 50 points of heat are available.\nThis can be set to the default active state. (In the exclusive GUI of MCH.)",
   "ToolTip_MCH_Burst": "If it is off, then battery / wildfire / HyperCharge will not be used",
   "ToolTip_RPR_Burst": "If it is off, then Enshround / ArcaneCircle will not be used",
-  "ToolTip_RPR_DoubleEnshroundPrefer": "Each Arcane Circle window will contain 2 uses of Communio and 1 use of Plentiful Harvest.\nBut if you don't have at least 50 points of blue energy when Arcane Circle cooldowns. Then it will not be used in this way"
+  "ToolTip_RPR_DoubleEnshroundPrefer": "Each Arcane Circle window will contain 2 uses of Communio and 1 use of Plentiful Harvest.\nBut if you don't have at least 50 points of blue energy when Arcane Circle cooldowns. Then it will not be used in this way",
+  "Toggle_GNBO_pen": "LightningShot/RoughDivide",
+  "Toggle_GNB_RoughDivide": "Keep1RoughDivide"
 }
