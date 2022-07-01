@@ -17,8 +17,18 @@ namespace AEAssist.AI.Gunbreaker
 
         public void Init()
         {
-                CountDownHandler.Instance.AddListener(300, () =>
-                    SpellsDefine.LightningShot.DoGCD());
+            int time = SettingMgr.GetSetting<GunBreakerSettings>().UsePotionEarly;
+            if (time > 0)
+            {                
+                CountDownHandler.Instance.AddListener(time, () => PotionHelper.ForceUsePotion(SettingMgr.GetSetting<GeneralSettings>().StrPotionId));
+                LogHelper.Info("UsePotionEarly: " + time+" ms");
+            }
+            CountDownHandler.Instance.AddListener(300, () =>
+            {
+                if(DataBinding.Instance.GNBOpen)
+                    return SpellsDefine.RoughDivide.DoAbility();
+                return SpellsDefine.LightningShot.DoGCD();
+            });
 
             AEAssist.DataBinding.Instance.EarlyDecisionMode = SettingMgr.GetSetting<GunBreakerSettings>().EarlyDecisionMode;
             LogHelper.Info("EarlyDecisionMode: " + AEAssist.DataBinding.Instance.EarlyDecisionMode);

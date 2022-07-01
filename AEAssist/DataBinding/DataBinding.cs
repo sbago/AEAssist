@@ -62,6 +62,7 @@ namespace AEAssist
         public DancerSettings DancerSettings => SettingMgr.GetSetting<DancerSettings>();
         public MonkSettings MonkSettings => SettingMgr.GetSetting<MonkSettings>();
         public SMNSettings SMNSettings => SettingMgr.GetSetting<SMNSettings>();
+        public GunBreakerSettings GunBreakerSettings => SettingMgr.GetSetting<GunBreakerSettings>();
         public DebugCenter DebugCenter => DebugCenter.Intance;
         public MeleePosition MeleePosition => MeleePosition.Intance;
 
@@ -186,5 +187,9 @@ namespace AEAssist
             Crimson = true;
             SaveInstantSpells = false;
         }
+        #region GNB
+        public bool GNBOpen { get; set; }=true;
+        public bool GNBRoughDivide { get; set; } = true;
+        #endregion
     }
 }

@@ -569,6 +569,9 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Compile Include="View\GeneralSetting\UserControl_Hotkey.xaml.cs">
       <DependentUpon>UserControl_Hotkey.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GunBreakerSettingView.xaml.cs">
+      <DependentUpon>GunBreakerSettingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Hotkey\BuiltinHotkeys\ArmLength.cs" />
     <Compile Include="View\Hotkey\BuiltinHotkeys\Burst.cs" />
     <Compile Include="View\Hotkey\BuiltinHotkeys\EnAvant.cs" />
@@ -704,6 +707,10 @@ xcopy "$(SolutionDir)))\Output" "C:\Users\Black\Documents\Rebornbuddy64\Routines
     <Resource Include="Resources\Spells\WhiteMage\PresenceofMind.png" />
     <Resource Include="Resources\Spells\WhiteMage\ThinAir.png" />
     <Page Include="View\DancerSettingView.xaml" />
+    <Page Include="View\GunBreakerSettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Overlay\CombatMessageOverlay.xaml" />
     <Page Include="View\Overlay\SMNOverlayWindow.xaml">
       <SubType>Designer</SubType>

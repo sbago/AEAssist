@@ -27,7 +27,8 @@ namespace AEAssist.AI.GunBreaker.GCD
             {
                 if (Core.Me.ClassLevel < 90)
                     return 5;
-
+                if(SpellsDefine.DoubleDown.GetSpellEntity().SpellData.Cooldown.TotalMilliseconds==0)
+                    return -1;
                 //90级技能冷却时间<无情时间
                 else if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.NoMercy, (int)SpellsDefine.DoubleDown.GetSpellEntity().SpellData.Cooldown.TotalMilliseconds))
                     return -51;

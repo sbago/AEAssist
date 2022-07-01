@@ -110,7 +110,8 @@
   "ToolTip_SMN_SaveInstantSpells": "除非要被刷新了/正在移动不然不放瞬发技，优先读条",
   "Textbox_SMN_SwiftcastOption": "即刻咏唱目标",
   "Toggle_SMN_Crimson": "火神冲",
-  "Toggle_Bloodletter":"失血箭",
-  "ToolTip_Bard_Bloodletter":"是否使用失血箭"
-
+  "Toggle_Bloodletter": "失血箭",
+  "ToolTip_Bard_Bloodletter": "是否使用失血箭",
+  "Toggle_GNBO_pen": "起手远程/突进",
+  "Toggle_GNB_RoughDivide": "保留一层突进"
 }
