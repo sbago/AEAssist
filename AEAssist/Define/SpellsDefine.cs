@@ -74,7 +74,8 @@ namespace AEAssist.Define
             Meditation,
             Mantra,
             
-            
+            //GNB
+            DoubleDown
             
             
             
@@ -84,8 +85,7 @@ namespace AEAssist.Define
 
         public static HashSet<uint> IgnoreEarlyDecisionSet = new HashSet<uint>
         {
-            PlentifulHarvest,
-            DoubleDown
+            PlentifulHarvest
         };
 
 
