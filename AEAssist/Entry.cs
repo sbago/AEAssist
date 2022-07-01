@@ -124,7 +124,13 @@ namespace AEAssist
 
         public Composite CombatBuffBehavior{ get; } = new TreeSharp.Action();
 
-        public Composite CombatBehavior{ get; } = new TreeSharp.Action();
+        public Composite CombatBehavior{
+            get
+            {
+                return
+                    new ActionRunCoroutine(ctx => RotationManager.Instance.Update());
+            }
+        }
         public Composite PullBuffBehavior{ get; } = new TreeSharp.Action();
         #endregion Behavior Composites
     }
