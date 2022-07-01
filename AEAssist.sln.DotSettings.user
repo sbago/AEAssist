@@ -1,4 +1,5 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=E_003A_005CAEAssist_005CReferences_005CRebornBuddy_002Eexe/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=E_003A_005CWork_005CAEAssist_005CReferences_005CGreyMagic_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=E_003A_005CWork_005CAEAssist_005CReferences_005CRebornBuddy_002Eexe/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
@@ -7,6 +8,7 @@
   &lt;Assembly Path="C:\Users\Administrator\.nuget\packages\materialdesignextensions\4.0.0-a02\lib\net452\MaterialDesignExtensions.dll" /&gt;&#xD;
   &lt;Assembly Path="J:\AEAssist\Harmony\AEAssist\References\RebornBuddy.exe" /&gt;&#xD;
   &lt;Assembly Path="J:\RebornbuddyCN 1.0.470.0\RebornBuddy.exe" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\Black\RiderProjects\AEAssist\AEAssist\References\RebornBuddy.exe" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=AEAssist_002FProperties_002FResources/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=AEAssist_002FResources_002FIcons/@EntryIndexedValue">True</s:Boolean>

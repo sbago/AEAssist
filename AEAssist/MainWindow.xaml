@@ -7,7 +7,7 @@
         xmlns:viewModels="clr-namespace:AEAssist"
         xmlns:dataBinding="clr-namespace:AEAssist"
         mc:Ignorable="d"
-        Title="AEAssist" Height="480" Width="800" WindowStyle="SingleBorderWindow" Icon="Resources/Icon.png"
+        Title="AEAssist" Height="550" Width="800" WindowStyle="SingleBorderWindow" Icon="Resources/Icon.png"
         ResizeMode="NoResize">
 
     <Window.Resources>
@@ -38,7 +38,7 @@
                 <TabControl
                     Background="Transparent"
                     TabStripPlacement="Left"
-                    Height="400">
+                    Height="450">
                     <TabItem Width="50" Height="50">
                         <TabItem.Header>
                             <Image Margin="5" Source="Resources/Icon.png" />
@@ -100,6 +100,19 @@
                         </TabItem.LayoutTransform>
                         <view:SamuraiSettingView HorizontalAlignment="Center" />
                     </TabItem>
+                    
+                    <TabItem Width="50" Height="50">
+                        <TabItem.Header>
+                            <Image Margin="5" Source="Resources/jobs/smn-framed.png" />
+                        </TabItem.Header>
+                        <TabItem.LayoutTransform>
+                            <TransformGroup>
+                                <RotateTransform Angle="90" />
+                            </TransformGroup>
+                        </TabItem.LayoutTransform>
+                        <view:SMNSettingView HorizontalAlignment="Center" />
+                    </TabItem>
+                    
                     <!-- <TabItem Width="50" Height="50"> -->
                     <!--     <TabItem.Header> -->
                     <!--         <Image Margin="5" Source="Resources/jobs/mch-framed.png" /> -->
@@ -112,17 +125,7 @@
                     <!--     <view:MCHSettingView HorizontalAlignment="Center" /> -->
                     <!-- </TabItem> -->
                     
-                    <TabItem Width="50" Height="50">
-                        <TabItem.Header>
-                            <Image Margin="5" Source="Resources/jobs/sge-framed.png" />
-                        </TabItem.Header>
-                        <TabItem.LayoutTransform>
-                            <TransformGroup>
-                                <RotateTransform Angle="90" />
-                            </TransformGroup>
-                        </TabItem.LayoutTransform>
-                        <view:SageSettingView HorizontalAlignment="Center" />
-                    </TabItem>
+                    
                     
                     <TabItem Width="50" Height="50">
                         <TabItem.Header>
@@ -136,6 +139,28 @@
                         <view:DancerSettingView HorizontalAlignment="Center" />
                     </TabItem>
                     
+                    <TabItem Width="50" Height="50">
+                        <TabItem.Header>
+                            <Image Margin="5" Source="Resources/jobs/sge-framed.png" />
+                        </TabItem.Header>
+                        <TabItem.LayoutTransform>
+                            <TransformGroup>
+                                <RotateTransform Angle="90" />
+                            </TransformGroup>
+                        </TabItem.LayoutTransform>
+                        <view:SageSettingView HorizontalAlignment="Center" />
+                    </TabItem>
+                    <TabItem Width="50" Height="50">
+                        <TabItem.Header>
+                            <Image Margin="5" Source="Resources/jobs/whm-framed.png" />
+                        </TabItem.Header>
+                        <TabItem.LayoutTransform>
+                            <TransformGroup>
+                                <RotateTransform Angle="90" />
+                            </TransformGroup>
+                        </TabItem.LayoutTransform>
+                        <view:WhiteMageSettingView HorizontalAlignment="Center" />
+                    </TabItem>
                 </TabControl>
             </Border>
             <Border>

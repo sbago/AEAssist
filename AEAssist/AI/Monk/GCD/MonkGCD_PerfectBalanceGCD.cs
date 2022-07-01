@@ -4,6 +4,7 @@ using AEAssist.Define;
 using AEAssist.Helper;
 using ff14bot;
 using ff14bot.Helpers;
+using ff14bot.Managers;
 using ff14bot.Objects;
 
 namespace AEAssist.AI.Monk.GCD
@@ -12,16 +13,16 @@ namespace AEAssist.AI.Monk.GCD
     {
         public int Check(SpellEntity lastSpell)
         {
-            if (SpellsDefine.PerfectBalance.RecentlyUsed())
+            if (ActionResourceManager.Monk.BlitzTimer != TimeSpan.Zero)
+            {
+                AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.None;
+                return -2;
+            }
+            if (SpellsDefine.PerfectBalance.RecentlyUsed() || Core.Me.HasAura(AurasDefine.PerfectBalance))
             {
                 return 1;
             }
 
-            if (Core.Me.HasAura(AurasDefine.PerfectBalance))
-            {
-                return 2;
-            }
-            
             return -4;
         }
 

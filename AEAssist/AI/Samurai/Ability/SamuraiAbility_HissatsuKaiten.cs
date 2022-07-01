@@ -16,9 +16,10 @@ namespace AEAssist.AI.Samurai.Ability
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.HissatsuKaiten;
+            var spell = SpellsDefine.HissatsuKaiten.GetSpellEntity();
+            if (spell == null) return null;
             if (await spell.DoAbility())
-                return spell.GetSpellEntity();
+                return spell;
             return null;
         }
     }

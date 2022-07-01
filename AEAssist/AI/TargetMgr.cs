@@ -25,11 +25,13 @@ namespace AEAssist.AI
 
     public class TargetMgr
     {
-        private const int damageCalCount = 100;
+        private const int damageCalCount = 50;
         public static readonly TargetMgr Instance = new TargetMgr();
 
         private readonly HashSet<uint> DeleteSet = new HashSet<uint>();
 
+        public Dictionary<uint, Character> Units = new Dictionary<uint, Character>();
+        
         public Dictionary<uint, BattleCharacter> Enemys = new Dictionary<uint, BattleCharacter>();
 
         public Dictionary<uint, BattleCharacter> EnemysIn25 = new Dictionary<uint, BattleCharacter>();
@@ -44,29 +46,30 @@ namespace AEAssist.AI
 
         public void Update()
         {
-            var tars = GameObjectManager.GetObjectsOfType<BattleCharacter>().Where(r => (r.TaggerType > 0
-                    || r.HasTarget
-                    || r.IsBoss())
-                && Core.Me.Distance(r) < 50);
+            var tars = GameObjectManager.GetObjectsOfType<Character>(true).Where(r => Core.Me.Distance(r) < 50);
 
+            Units.Clear();
             Enemys.Clear();
             //   EnemysIn12.Clear();
             EnemysIn25.Clear();
 
-            foreach (var unit in tars)
+            foreach (var v in tars)
             {
-                
-                if (!unit.CanAttackUnit())
+                if (!v.ValidUnit())
                     continue;
-                
+                Units[v.ObjectId] = v;
                 if (SettingMgr.GetSetting<GeneralSettings>().ShowGameLog)
                 {
-                    if (LastNpcIds.Add(unit.NpcId)) LogHelper.Info($"Find new enemy : {unit.Name} NpcId: {unit.NpcId}");
+                    if (LastNpcIds.Add(v.NpcId)) LogHelper.Info($"Find new enemy : {v.Name} Ename: {v.EnglishName} NpcId: {v.NpcId}");
 
-                    if (unit.IsCasting && CastingSpell.Add(unit.CastingSpellId))
-                        LogHelper.Info($"Find enemy casting spell : {unit.Name} NpcId: {unit.NpcId} " +
-                                       $"CastingSpell [{unit.SpellCastInfo.Name}] [{unit.SpellCastInfo.SpellData.LocalizedName}] SpellId : {unit.SpellCastInfo.SpellData.Id} ");
+                    if (v.IsCasting && CastingSpell.Add(v.CastingSpellId))
+                        LogHelper.Info($"Find enemy casting spell : {v.Name} NpcId: {v.NpcId} " +
+                                       $"CastingSpell [{v.SpellCastInfo.Name}] [{v.SpellCastInfo.SpellData.LocalizedName}] SpellId : {v.SpellCastInfo.SpellData.Id} ");
                 }
+                var unit = v as BattleCharacter;;
+                if(unit == null)
+                    continue;
+                
                 Enemys.Add(unit.ObjectId, unit);
                 if (!unit.ValidAttackUnit())
                     continue;

@@ -63,6 +63,10 @@
                                   Content="{Binding Language.Toggle_Battery}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
                                   IsChecked="{Binding UseBattery,Mode=TwoWay}" />
+                        <CheckBox HorizontalContentAlignment="Center"
+                                  Content="{Binding Language.Toggle_Heat}"
+                                  Style="{StaticResource CheckBoxOverlayCustomToggle}"
+                                  IsChecked="{Binding UseHeat,Mode=TwoWay}" />
 
                         <CheckBox HorizontalContentAlignment="Center"
                                   Content="{Binding Language.Toggle_Potion}"
@@ -75,10 +79,9 @@
                                   IsChecked="{Binding Pull,Mode=TwoWay}" />
 
                         <CheckBox HorizontalContentAlignment="Center"
-                                  Content="{Binding Language.Toggle_WildfireNoDelay}"
+                                  Content="{Binding Language.Toggle_Wildfire}"
                                   Style="{StaticResource CheckBoxOverlayCustomToggle}"
-                                  IsChecked="{Binding WildfireNoDelay,Mode=TwoWay}" 
-                                  ToolTip="{Binding Language.ToolTip_MCH_WildFireFirst}"/>
+                                  IsChecked="{Binding  Wildfire,Mode=TwoWay}" />
 
 
                         <CheckBox HorizontalContentAlignment="Center"

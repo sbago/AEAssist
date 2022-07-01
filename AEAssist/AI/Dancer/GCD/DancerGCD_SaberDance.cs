@@ -26,15 +26,29 @@ namespace AEAssist.AI.Dancer.GCD
                 return -1;
             }
             if (AEAssist.DataBinding.Instance.FinalBurst) return 2;
-
-            if (Core.Me.HasAura(AurasDefine.Devilment))
-            {
-                return 0;
-            }
-            if (ActionResourceManager.Dancer.Esprit >= 80)
+            
+            if (ActionResourceManager.Dancer.Esprit >= 85)
             {
                 return 1;
             }
+            
+            if (AEAssist.DataBinding.Instance.UseFlourish)
+            {
+                if (SpellsDefine.Flourish.AbilityCoolDownInNextXGCDsWindow(1) && (!Core.Me.HasMyAura(AurasDefine.FlourshingFlow) &&
+                                                                !Core.Me.HasMyAura(AurasDefine.FlourishingSymmetry)))
+                {
+                    return 1;
+                }
+            }
+
+            if (!AIRoot.Instance.CloseBurst)
+            {
+                if (SpellsDefine.TechnicalStep.CoolDownInGCDs(1) && !SpellsDefine.TechnicalStep.IsReady())
+                {
+                    return 2;
+                }
+            }
+            
             return -4;
         }
 

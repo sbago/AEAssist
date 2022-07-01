@@ -1,8 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using AEAssist.Define;
 using AEAssist.Helper;
 using Buddy.Coroutines;
 using ff14bot;
+using ff14bot.Enums;
+using ff14bot.Helpers;
 using ff14bot.Managers;
 using ff14bot.Objects;
 
@@ -10,13 +15,124 @@ namespace AEAssist.AI.Monk
 {
     public class MonkSpellHelper
     {
+        public static void SetPostion()
+        {
+            if (!Core.OverlayManager.IsActive)
+            {
+                return;
+            }
+
+            if (Core.Me.CurrentJob != ClassJobType.Monk)
+            {
+                return;
+            }
+
+            if (!Core.Me.InCombat)
+            {
+                return;
+            }
+
+            if (!Core.Me.HasTarget)
+            {
+                return;
+            }
+            if (AIRoot.GetBattleData<MonkBattleData>().RoFBH2)
+            {
+                if (Core.Me.HasAura(AurasDefine.RiddleOfFire) &&
+                    !Core.Me.HasMyAuraWithTimeleft(AurasDefine.RiddleOfFire, 3000))
+                {
+                    AIRoot.GetBattleData<MonkBattleData>().RoFBH2 = false;
+                }
+
+            }
+            if (!Core.Me.HasTarget)
+            {
+                MeleePosition.Intance.SetPositionToNone();
+                MeleePosition.Intance.ShowMsg();
+                return;
+            }
+
+            if (AIRoot.GetBattleData<MonkBattleData>().DoingOpener)
+            {
+                MeleePosition.Intance.SetPositionToBack();
+                MeleePosition.Intance.ShowMsg();
+                return;
+            }
+
+            var target = Core.Me.CurrentTarget as Character;
+            
+            var priority = MeleePosition.Priority.Low;
+            
+            if (InRaptorForm())
+            {
+                priority = MeleePosition.Priority.Medium;
+            }
+            else if (InCoeurlForm())
+            {
+                priority = MeleePosition.Priority.High;
+            }
+
+            if (SpellsDefine.PerfectBalance.RecentlyUsed() || Core.Me.HasMyAura(AurasDefine.PerfectBalance))
+            {
+                var currentNadi = AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo;
+                if (currentNadi == MonkNadiCombo.Lunar)
+                {
+                    MeleePosition.Intance.SetPositionToNone(priority);
+                    MeleePosition.Intance.ShowMsg();
+                    return;
+                }
+
+                if (currentNadi == MonkNadiCombo.Solar)
+                {
+                    if (AIRoot.GetBattleData<MonkBattleData>().RoFBH2)
+                    {
+                        MeleePosition.Intance.SetPositionToSide(priority);
+                        MeleePosition.Intance.ShowMsg();
+                        return;
+                    }
+                    else
+                    {
+                        MeleePosition.Intance.SetPositionToBack(priority);
+                        MeleePosition.Intance.ShowMsg();
+                        return;
+                    }
+                }
+            }
+            
+            if (UsingDot())
+            {
+                if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 5))
+                {
+                    MeleePosition.Intance.SetPositionToNone(priority);
+                    MeleePosition.Intance.ShowMsg();
+                    return;
+                }
+                if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 6000) == false)
+                {
+                    MeleePosition.Intance.SetPositionToBack(priority);
+                    MeleePosition.Intance.ShowMsg();
+                    return;
+                }
+            }
+
+            if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
+            {
+                MeleePosition.Intance.SetPositionToNone(priority);
+                MeleePosition.Intance.ShowMsg();
+                return;
+            }
+            MeleePosition.Intance.SetPositionToSide(priority);
+            MeleePosition.Intance.ShowMsg();
+            return;
+        }
+
         public static bool InCoeurlForm()
         {
             if (Core.Me.HasMyAura(AurasDefine.CoeurlForm))
             {
                 return true;
             }
-            
+
             if (ActionManager.LastSpellId == SpellsDefine.TrueStrike ||
                 ActionManager.LastSpellId == SpellsDefine.TwinSnakes ||
                 ActionManager.LastSpellId == SpellsDefine.FourPointFury)
@@ -26,13 +142,14 @@ namespace AEAssist.AI.Monk
 
             return false;
         }
-        public static bool InOpoOpeForm()
+
+        public static bool InOpoOpoForm()
         {
             if (Core.Me.HasMyAura(AurasDefine.OpoOpoForm))
             {
                 return true;
             }
-            
+
             if (ActionManager.LastSpellId == SpellsDefine.Demolish ||
                 ActionManager.LastSpellId == SpellsDefine.SnapPunch ||
                 ActionManager.LastSpellId == SpellsDefine.Rockbreaker)
@@ -42,14 +159,15 @@ namespace AEAssist.AI.Monk
 
             return false;
         }
+
         public static bool InRaptorForm()
         {
             if (Core.Me.HasMyAura(AurasDefine.RaptorForm))
             {
                 return true;
             }
-            
-            if (ActionManager.LastSpellId == SpellsDefine.Bootshine  ||
+
+            if (ActionManager.LastSpellId == SpellsDefine.Bootshine ||
                 ActionManager.LastSpellId == SpellsDefine.DragonKick ||
                 ActionManager.LastSpellId == SpellsDefine.ArmOfTheDestroyer)
             {
@@ -59,43 +177,34 @@ namespace AEAssist.AI.Monk
             return false;
         }
         
-        private static async Task<SpellEntity> UseAOECombo(Character target)
-        {
-            if (InCoeurlForm())
-            {
-                // if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 6000))
-                // {
-                //     //Snap Punch 崩拳
-                //     if (await SpellsDefine.SnapPunch.DoGCD())
-                //     {
-                //         return SpellsDefine.SnapPunch.GetSpellEntity();
-                //     }
-                // }
-                
-                //Rockbreaker 地烈劲
-                if (await SpellsDefine.Rockbreaker.DoGCD())
-                {
-                    return SpellsDefine.Rockbreaker.GetSpellEntity();
-                }
-            }
 
-            if (InRaptorForm())
+        public static async Task<SpellEntity> DoOpoOpoGCDS(Character target, bool pb = false)
+        {
+            if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
             {
-                if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 4000))
+                if (SpellsDefine.ShadowOfTheDestroyer.IsUnlock())
                 {
-                    //Four-point Fury 四面脚
-                    if (await SpellsDefine.FourPointFury.DoGCD())
+                    if (await SpellsDefine.ShadowOfTheDestroyer.DoGCD())
                     {
-                        return SpellsDefine.FourPointFury.GetSpellEntity();
+                        return SpellsDefine.ShadowOfTheDestroyer.GetSpellEntity();
                     }
                 }
-                //Twin Snakes 双掌打
-                if (await SpellsDefine.TwinSnakes.DoGCD())
+
+                if (!pb)
                 {
-                    return SpellsDefine.TwinSnakes.GetSpellEntity();
+                    if (SpellsDefine.ArmOfTheDestroyer.IsUnlock())
+                    {
+                        //Arm of the Destroyer 破坏神冲
+                        if (await SpellsDefine.ArmOfTheDestroyer.DoGCD())
+                        {
+                            return SpellsDefine.ArmOfTheDestroyer.GetSpellEntity();
+                        }
+                    }
                 }
+                
             }
-            if (Core.Me.HasMyAura(AurasDefine.LeadenFist))
+
+            if (Core.Me.HasMyAura(AurasDefine.LeadenFist) || !SpellsDefine.DragonKick.IsUnlock())
             {
                 //Bootshine 连击
                 if (await SpellsDefine.Bootshine.DoGCD())
@@ -103,39 +212,78 @@ namespace AEAssist.AI.Monk
                     return SpellsDefine.Bootshine.GetSpellEntity();
                 }
             }
-            //Arm of the Destroyer 破坏神冲
-            if (await SpellsDefine.ArmOfTheDestroyer.DoGCD())
+
+            //Dragon Kick 双龙脚
+            if (await SpellsDefine.DragonKick.DoGCD())
             {
-                return SpellsDefine.ArmOfTheDestroyer.GetSpellEntity();
+                return SpellsDefine.DragonKick.GetSpellEntity();
             }
 
             return null;
         }
 
-
-        private static async Task<SpellEntity> UseSingleCombo(Character target)
+        private static async Task<SpellEntity> DoRaptorGCDS(Character target)
         {
-            if (InCoeurlForm())
-            {
-                if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 6000))
-                {
-                    //Snap Punch 崩拳
-                    if (await SpellsDefine.SnapPunch.DoGCD())
-                    {
-                        return SpellsDefine.SnapPunch.GetSpellEntity();
-                    }
-                }
-                //Demolish 破碎拳
-                if (await SpellsDefine.Demolish.DoGCD())
-                {
-                    return SpellsDefine.Demolish.GetSpellEntity();
-                }
-            }
-
             if (InRaptorForm())
             {
-                LogHelper.Info(Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 4000).ToString());
-                if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 4000))
+                if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
+                {
+                    if (SpellsDefine.FourPointFury.IsUnlock())
+                    {
+                        //Four-point Fury 四面脚
+                        if (await SpellsDefine.FourPointFury.DoGCD())
+                        {
+                            return SpellsDefine.FourPointFury.GetSpellEntity();
+                        }
+                    }
+                }
+
+                //Pre Rof
+                if (!Core.Me.HasMyAura(AurasDefine.RiddleOfFire) && SpellsDefine.RiddleofFire.AbilityCoolDownInNextXGCDsWindow(5))
+                {
+                    //Even Window
+                    if (SpellsDefine.Brotherhood.AbilityCoolDownInNextXGCDsWindow(10))
+                    {
+                        if (SpellsDefine.RiddleofFire.AbilityCoolDownInNextXGCDsWindow(3))
+                        {
+                            if (!target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 7000))
+                            {
+                                if (await SpellsDefine.TwinSnakes.DoGCD())
+                                {
+                                    return SpellsDefine.TwinSnakes.GetSpellEntity();
+                                }
+                            }
+                        }
+                    }
+                    //Odd window
+                    else
+                    {
+                        if (SpellsDefine.RiddleofFire.AbilityCoolDownInNextXGCDsWindow(5))
+                        {
+                            if (!target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 7000))
+                            {
+                                if (await SpellsDefine.TwinSnakes.DoGCD())
+                                {
+                                    return SpellsDefine.TwinSnakes.GetSpellEntity();
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+                if (Core.Me.HasMyAura(AurasDefine.RiddleOfFire))
+                {
+                    if (!target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 7000))
+                    {
+                        if (await SpellsDefine.TwinSnakes.DoGCD())
+                        {
+                            return SpellsDefine.TwinSnakes.GetSpellEntity();
+                        }
+                    }
+                }
+
+                if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 8000))
                 {
                     //True Strike 正拳
                     if (await SpellsDefine.TrueStrike.DoGCD())
@@ -143,39 +291,275 @@ namespace AEAssist.AI.Monk
                         return SpellsDefine.TrueStrike.GetSpellEntity();
                     }
                 }
+
                 //Twin Snakes 双掌打
                 if (await SpellsDefine.TwinSnakes.DoGCD())
                 {
                     return SpellsDefine.TwinSnakes.GetSpellEntity();
                 }
             }
-            if (Core.Me.HasMyAura(AurasDefine.LeadenFist))
+
+            return null;
+        }
+
+        public static SpellEntity GetCoeurlGCDS(Character target)
+        {
+            if (InCoeurlForm())
             {
-                //Bootshine 连击
-                if (await SpellsDefine.Bootshine.DoGCD())
+                if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
                 {
-                    return SpellsDefine.Bootshine.GetSpellEntity();
+                    if (SpellsDefine.Rockbreaker.IsUnlock())
+                    {
+                        //Rockbreaker 地烈劲
+                        return SpellsDefine.Rockbreaker.GetSpellEntity();
+                    }
                 }
-            }
-            //Dragon Kick 双龙脚
-            if (await SpellsDefine.DragonKick.DoGCD())
-            {
-                return SpellsDefine.DragonKick.GetSpellEntity();
+
+                if (UsingDot() == false)
+                {
+                    //Snap Punch 崩拳
+                    return SpellsDefine.SnapPunch.GetSpellEntity();
+                }
+
+                if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 5000))
+                {
+                    //Snap Punch 崩拳
+                    return SpellsDefine.SnapPunch.GetSpellEntity();
+                }
+
+                //Demolish 破碎拳
+                return SpellsDefine.Demolish.GetSpellEntity();
             }
 
             return null;
         }
 
+        private static async Task<SpellEntity> DoCoeurlGCDS(Character target)
+        {
+            if (InCoeurlForm())
+            {
+                if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
+                {
+                    if (SpellsDefine.Rockbreaker.IsUnlock())
+                    {
+                        //Rockbreaker 地烈劲
+                        if (await SpellsDefine.Rockbreaker.DoGCD())
+                        {
+                            return SpellsDefine.Rockbreaker.GetSpellEntity();
+                        }
+                    }
+                }
+
+                if (UsingDot() == false)
+                {
+                    //Snap Punch 崩拳
+                    if (await SpellsDefine.SnapPunch.DoGCD())
+                    {
+                        return SpellsDefine.SnapPunch.GetSpellEntity();
+                    }
+                }
+
+                if (target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 5000))
+                {
+                    //Snap Punch 崩拳
+                    if (await SpellsDefine.SnapPunch.DoGCD())
+                    {
+                        return SpellsDefine.SnapPunch.GetSpellEntity();
+                    }
+                }
+
+                //Demolish 破碎拳
+                if (await SpellsDefine.Demolish.DoGCD())
+                {
+                    return SpellsDefine.Demolish.GetSpellEntity();
+                }
+            }
+
+            return null;
+        }
+        
+
         public static async Task<SpellEntity> BaseGCDCombo(Character target)
         {
-            if (TargetHelper.CheckNeedUseAOE(target, 5, 5, 3)) return await UseAOECombo(target);
+            if (InCoeurlForm())
+            {
+                return await DoCoeurlGCDS(target);
+            }
 
-            return await UseSingleCombo(target);
+            if (InRaptorForm())
+            {
+                return await DoRaptorGCDS(target);
+            }
+
+            return await DoOpoOpoGCDS(target);
+        }
+
+        public static bool UsingDot()
+        {
+            if (!AEAssist.DataBinding.Instance.UseDot)
+            {
+                return false;
+            }
+
+            if (!SpellsDefine.Demolish.IsUnlock())
+            {
+                return false;
+            }
+            var target = Core.Me.CurrentTarget as Character;
+
+            if (DotBlacklistHelper.IsBlackList(target))
+                return false;
+
+            if (TTKHelper.IsTargetTTK(target))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private static async Task<SpellEntity> UseLunarNadiCombo(Character target)
         {
-            
+            return await DoOpoOpoGCDS(target);
+        }
+
+        private static async Task<SpellEntity> UseSolarNadiCombo(Character target)
+        {
+            //combo1
+            if (!ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.Raptor))
+            {
+                // if we have ROF, buff, go first
+                if (Core.Me.HasMyAura(AurasDefine.RiddleOfFire) || SpellsDefine.RiddleofFire.RecentlyUsed())
+                {
+                    if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 2000))
+                    {
+                        return await DoOpoOpoGCDS(target, true);
+                    }
+                }
+                // if we not have ROF, other two is done, we have to use it
+                else if (ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.Coeurl) &&
+                         ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.OpoOpo))
+                {
+                    return await DoOpoOpoGCDS(target, true);
+                }
+            }
+
+            //combo2
+            if (!ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.Coeurl))
+            {
+                // if we need it maintain the buff
+                if (!Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 3000))
+                {
+                    LogHelper.Info("PerfectBalance - combo 2 - do it to refresh buff");
+                    return await PerfectBalanceCoeurl(target);
+                }
+
+                // if we not having RoF, it goes first, because high dmg goes to later
+                if (!Core.Me.HasMyAura(AurasDefine.RiddleOfFire) && !SpellsDefine.RiddleofFire.RecentlyUsed())
+                {
+                    LogHelper.Info(
+                        "PerfectBalance - combo 2 - do it because we don't have ROF, low dmg combo 2 go first");
+                    return await PerfectBalanceCoeurl(target);
+                }
+
+                // if we have other two, we have to use this
+                if (ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.Raptor) &&
+                    ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.OpoOpo))
+                {
+                    LogHelper.Info("PerfectBalance - combo 2 - do it because other two is done");
+                    return await PerfectBalanceCoeurl(target);
+                }
+            }
+
+            //combo 3
+            if (!ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.OpoOpo))
+            {
+                if (Core.Me.HasMyAura(AurasDefine.RiddleOfFire) || SpellsDefine.RiddleofFire.RecentlyUsed())
+                {
+                    if (UsingDot() && !target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 5000))
+                    {
+                        if (await SpellsDefine.Demolish.DoGCD())
+                        {
+                            LogHelper.Info("PerfectBalance - combo 3 - do it in rof to refresh dot");
+                            return SpellsDefine.Demolish.GetSpellEntity();
+                        }
+                    }
+                    else
+                    {
+                        if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
+                        {
+                            if (await SpellsDefine.Rockbreaker.DoGCD())
+                            {
+                                return SpellsDefine.Rockbreaker.GetSpellEntity();
+                            }
+                        }
+
+                        if (await SpellsDefine.SnapPunch.DoGCD())
+                        {
+                            LogHelper.Info("PerfectBalance - combo 3 - do it because we don't need to refresh dot");
+                            return SpellsDefine.SnapPunch.GetSpellEntity();
+                        }
+                    }
+                }
+
+                if (ActionResourceManager.Monk.MastersGauge.Contains(ActionResourceManager.Monk.Chakra.Coeurl) &&
+                    !Core.Me.HasMyAura(AurasDefine.RiddleOfFire))
+                {
+                    if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
+                    {
+                        if (await SpellsDefine.Rockbreaker.DoGCD())
+                        {
+                            return SpellsDefine.Rockbreaker.GetSpellEntity();
+                        }
+                    }
+
+                    if (await SpellsDefine.SnapPunch.DoGCD())
+                    {
+                        LogHelper.Info(
+                            "PerfectBalance - combo 3 - do it because we don't have RoF, combo2 is done, push combo 1 to later,");
+                        return SpellsDefine.SnapPunch.GetSpellEntity();
+                    }
+                }
+            }
+
+
+            return null;
+        }
+
+        private static async Task<SpellEntity> PerfectBalanceOpoOpo(Character target)
+        {
+            return null;
+        }
+
+        private static async Task<SpellEntity> PerfectBalanceCoeurl(Character target)
+        {
+            if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
+            {
+                if (await SpellsDefine.FourPointFury.DoGCD())
+                {
+                    return SpellsDefine.FourPointFury.GetSpellEntity();
+                }
+            }
+
+            if (await SpellsDefine.TwinSnakes.DoGCD())
+            {
+                LogHelper.Info("PerfectBalance - combo 2 - do it to refresh buff");
+                return SpellsDefine.TwinSnakes.GetSpellEntity();
+            }
+
+            return null;
+        }
+
+        private static async Task<SpellEntity> PerfectBalanceRaptor(Character target)
+        {
+            if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 3))
+            {
+                if (await SpellsDefine.ShadowOfTheDestroyer.DoGCD())
+                {
+                    return SpellsDefine.ShadowOfTheDestroyer.GetSpellEntity();
+                }
+            }
+
             if (Core.Me.HasMyAura(AurasDefine.LeadenFist))
             {
                 //Bootshine 连击
@@ -184,107 +568,110 @@ namespace AEAssist.AI.Monk
                     return SpellsDefine.Bootshine.GetSpellEntity();
                 }
             }
+
             //Dragon Kick 双龙脚
             if (await SpellsDefine.DragonKick.DoGCD())
             {
                 return SpellsDefine.DragonKick.GetSpellEntity();
             }
-            
-            return null;
-        }
-        
-        private static async Task<SpellEntity> UseSolarNadiCombo(Character target)
-        {
-            
+
             return null;
         }
 
         public static async Task<SpellEntity> PerfectBalanceGCDCombo(Character target)
         {
+            if (!SpellsDefine.ElixirField.IsUnlock())
+            {
+                AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
+            }
+            else
+            {
+                //有阳打阴 两个都有也打阴
+                if (ActionResourceManager.Monk.ActiveNadi == ActionResourceManager.Monk.Nadi.Both ||
+                    ActionResourceManager.Monk.ActiveNadi == ActionResourceManager.Monk.Nadi.Solar)
+                {
+                    AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
+                }
+                //有阴打阳
+                else if (ActionResourceManager.Monk.ActiveNadi == ActionResourceManager.Monk.Nadi.Lunar)
+                {
+                    AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Solar;
+                }
+                //什么都没有 
+                //todo 如果时间都够 怎么接下来打阳
+                else if (ActionResourceManager.Monk.ActiveNadi == ActionResourceManager.Monk.Nadi.None &&
+                         AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo == MonkNadiCombo.None)
+                {
+                    //如果双buff时间都够 打阴
+                    if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 7000) &&
+                        target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 9000))
+                    {
+                        AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
+                    }
+                    //如果时间不够打阳
+                    else
+                    {
+                        AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Solar;
+                    }
+                }
+            }
+
             if (AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo == MonkNadiCombo.Solar)
             {
                 return await UseSolarNadiCombo(target);
             }
-            if (AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo == MonkNadiCombo.Lunar)
-            {
-                return await UseLunarNadiCombo(target);
-            }
 
-            if (HasBothNadi())
-            {
-                AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
-                return await UseLunarNadiCombo(target);
-            }
-            
-            if (HasLunarNadi() && !HasSolarNadi())
-            {
-                AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Solar;
-                return await UseSolarNadiCombo(target);
-            }
-            
-            if (HasSolarNadi() && !HasLunarNadi())
-            {
-                AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
-                return await UseLunarNadiCombo(target);
-            }
-
-            if (!HasLunarNadi() && !HasSolarNadi() && AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo == MonkNadiCombo.None)
-            {
-                if (Core.Me.HasMyAuraWithTimeleft(AurasDefine.DisciplinedFist, 7000) &&
-                    target.HasMyAuraWithTimeleft(AurasDefine.Demolish, 9000))
-                {
-                    AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Lunar;
-                    return await UseLunarNadiCombo(target);
-                }
-                AIRoot.GetBattleData<MonkBattleData>().CurrentMonkNadiCombo = MonkNadiCombo.Solar;
-                return await UseSolarNadiCombo(target);
-            }
-
-            return null;
+            return await UseLunarNadiCombo(target);
         }
 
-        public static bool HasLunarNadi()
+        public static bool LastSpellWasGCD()
         {
-            //Lunar Nadi
-            // ActionResourceManager.CostTypesStruct.offset_C == 2
-            
-            //offset_9: 2, offset_A: 3, offset_B: 1,
-            //2 = combo 1, 3 = combo2, 1 = combo1
-            //offset_9 = first
-            //offset_A = second
-            //offset_B = third
-            
-            //timer3: 3930 => time left for combo
-            if (ActionResourceManager.CostTypesStruct.offset_C == 2 ||
-                ActionResourceManager.CostTypesStruct.offset_C == 6)
+            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
+            SpellEntity[] GCDs =
+            {
+                SpellsDefine.Bootshine.GetSpellEntity(),
+                SpellsDefine.DragonKick.GetSpellEntity(),
+                SpellsDefine.ArmOfTheDestroyer.GetSpellEntity(),
+                SpellsDefine.ShadowOfTheDestroyer.GetSpellEntity(),
+                SpellsDefine.TwinSnakes.GetSpellEntity(),
+                SpellsDefine.TrueStrike.GetSpellEntity(),
+                SpellsDefine.FourPointFury.GetSpellEntity(),
+                SpellsDefine.Rockbreaker.GetSpellEntity(),
+                SpellsDefine.Demolish.GetSpellEntity(),
+                SpellsDefine.SnapPunch.GetSpellEntity(),
+            };
+            if (GCDs.Contains(bdls))
             {
                 return true;
             }
 
             return false;
         }
-        public static bool HasSolarNadi()
+
+        public static bool LastSpellWasNadi()
         {
-            // Solar Nadi
-            // ActionResourceManager.CostTypesStruct.offset_C == 4
-            if (ActionResourceManager.CostTypesStruct.offset_C == 4 ||
-                ActionResourceManager.CostTypesStruct.offset_C == 6)
+            var bdls = AIRoot.GetBattleData<BattleData>().lastGCDSpell;
+            SpellEntity[] GCDs =
+            {
+                SpellsDefine.ElixirField.GetSpellEntity(),
+                SpellsDefine.FlintStrike.GetSpellEntity(),
+                SpellsDefine.CelestialRevolution.GetSpellEntity(),
+                SpellsDefine.TornadoKick.GetSpellEntity(),
+                SpellsDefine.RisingPhoenix.GetSpellEntity(),
+                SpellsDefine.PhantomRush.GetSpellEntity()
+            };
+            if (GCDs.Contains(bdls))
             {
                 return true;
             }
 
             return false;
         }
-        public static bool HasBothNadi()
-        {
-            //Lunar Nadi + Solar Nadi
-            // ActionResourceManager.CostTypesStruct.offset_C == 6
-            if (ActionResourceManager.CostTypesStruct.offset_C == 6)
-            {
-                return true;
-            }
 
-            return false;
+        public void test()
+        {
+            var distance2D = Core.Me.CurrentTarget.Distance2D();
+            var ObjectRaduis = Core.Me.CurrentTarget.CombatReach;
         }
     }
 }

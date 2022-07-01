@@ -12,12 +12,9 @@ namespace AEAssist.AI.Sage.GCD
         {
             var phlegmaCheck = SageSpellHelper.GetPhlegma();
             if (phlegmaCheck == null) return -1;
-            var currentDistance = Core.Me.Distance(Core.Me.CurrentTarget);
-            var maxDistanceToUseAbility = 8.3;
-            if (currentDistance > maxDistanceToUseAbility)
+            if (!ActionManager.CanCastOrQueue(phlegmaCheck.SpellData, Core.Me.CurrentTarget))
             {
-                LogHelper.Debug("Current Distance" + currentDistance + 
-                                "is greater than" + maxDistanceToUseAbility + "max range to use the ability..");
+                LogHelper.Debug("Can't Cast Phlegma distance maybe too much?");
                 return -6;
             }
             var phlegmaCharges = DataManager.GetSpellData(SpellsDefine.Phlegma).Charges;
@@ -33,22 +30,10 @@ namespace AEAssist.AI.Sage.GCD
             }
 
             // If we are not moving check how many charges left for phlegma; don't waste it keep it for movement.
-            if (!MovementManager.IsMoving)
-            {
-                // var battleData = AIRoot.GetBattleData<BattleData>();
-                // if (battleData.lastGCDSpell == SageSpellHelper.GetPhlegma())
-                // {
-                //     LogHelper.Debug("Phlegma last used skipping.");
-                //     return -10;
-                // }
-                
-                if (phlegmaCharges < 2 || phlegmaChargesII < 2 || phlegmaChargesIII < 2)
-                {
-                    LogHelper.Debug("Not wasting Phlegma while standing still saving it for movement cast.");
-                    return -1;
-                }   
-            }
-            return 0;
+            if (MovementManager.IsMoving) return 0;
+            if (!(phlegmaCharges < 2) && !(phlegmaChargesII < 2) && !(phlegmaChargesIII < 2)) return 0;
+            LogHelper.Debug("Not wasting Phlegma while standing still saving it for movement cast.");
+            return -1;
         }
 
         public async Task<SpellEntity> Run()

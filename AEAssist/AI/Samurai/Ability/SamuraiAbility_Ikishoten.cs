@@ -9,7 +9,8 @@ namespace AEAssist.AI.Samurai.Ability
     {
         public int Check(SpellEntity lastSpell)
         {
-            if (SpellsDefine.Ikishoten.GetSpellEntity().Cooldown.TotalSeconds == 0 &&
+            if (!SpellsDefine.Ikishoten.IsUnlock()) return -1;
+            if (SpellsDefine.Ikishoten.GetSpellEntity().IsReady() &&
                 ActionResourceManager.Samurai.Kenki < 50)
                 return 1;
             return -1;
@@ -17,9 +18,10 @@ namespace AEAssist.AI.Samurai.Ability
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.Ikishoten;
+            var spell = SpellsDefine.Ikishoten.GetSpellEntity();
+            if (spell == null) return null;
             if (await spell.DoAbility())
-                return spell.GetSpellEntity();
+                return spell;
             return null;
         }
     }

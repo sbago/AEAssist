@@ -16,7 +16,8 @@ namespace AEAssist.AI.Dancer.Ability
             {
                 return -10;
             }
-
+            LogHelper.Error($"Current feathers -- {ActionResourceManager.Dancer.FourFoldFeathers.ToString()}");
+            
             if (ActionResourceManager.Dancer.FourFoldFeathers < 1)
             {
                 return -1;
@@ -34,24 +35,19 @@ namespace AEAssist.AI.Dancer.Ability
 
             if (SpellsDefine.Flourish.RecentlyUsed())
             {
-                return -2;
-            }
-
-            if (SpellsDefine.FanDance3.RecentlyUsed() && !SpellsDefine.Flourish.RecentlyUsed())
-            {
-                return 1;
+                return -4;
             }
 
             if (AEAssist.DataBinding.Instance.FinalBurst) return 2;
 
-            if (Core.Me.HasAura(AurasDefine.Devilment))
+            if (Core.Me.HasMyAura(AurasDefine.Devilment))
             {
                 return 1;
             }
 
-            if (ActionResourceManager.Dancer.FourFoldFeathers == 4)
+            if (ActionResourceManager.Dancer.FourFoldFeathers > 3)
             {
-                if (Core.Me.HasAura(AurasDefine.FlourishingSymmetry) || Core.Me.HasAura(AurasDefine.FlourshingFlow))
+                if (Core.Me.HasMyAura(AurasDefine.FlourishingSymmetry) || Core.Me.HasMyAura(AurasDefine.FlourshingFlow))
                 {
                     return 0;
                 }
@@ -65,7 +61,7 @@ namespace AEAssist.AI.Dancer.Ability
             var spell = SpellsDefine.FanDance.GetSpellEntity();
             if (SpellsDefine.FanDance2.IsUnlock())
             {
-                if (TargetHelper.CheckNeedUseAOE(Core.Me.CurrentTarget, 5, 5, 2))
+                if (TargetHelper.CheckNeedUseAOEByMe(5, 5, 2))
                 {
                     spell = SpellsDefine.FanDance2.GetSpellEntity();
                 }

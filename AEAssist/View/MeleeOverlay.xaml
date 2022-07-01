@@ -20,38 +20,19 @@
     </UserControl.Resources>
 
     <UserControl.DataContext>
-        <Binding Source="{x:Static dataBinding:MeleePosition.Instance}" />
+        <Binding Source="{x:Static dataBinding:DataBinding.Instance}" />
     </UserControl.DataContext>
-    <StackPanel>
-        <WrapPanel Width="250" Orientation="Horizontal" HorizontalAlignment="Center"
-                   VerticalAlignment="Top">
-            <CheckBox
-                Content="{Binding SideTimer}"
-                Style="{StaticResource MeleeBoxOverlayCustomToggle}"
-                IsChecked="{Binding CurrentPosition, Mode=OneWay}" />
-            <CheckBox
-                Opacity="1"
-                Content="Target"
-                Style="{StaticResource MeleeBoxOverlayCustomToggle}"
-                IsChecked="True" />
-            <CheckBox
-                Content="{Binding SideTimer}"
-                Style="{StaticResource MeleeBoxOverlayCustomToggle}"
-                IsChecked="{Binding CurrentPosition, Mode=OneWay}"/>
-        </WrapPanel>
-        <WrapPanel Width="250" Orientation="Horizontal" HorizontalAlignment="Center"
-                   VerticalAlignment="Top">
-            <CheckBox
-                Opacity="0"
-                Style="{StaticResource MeleeBoxOverlayCustomToggle}"/>
-            <CheckBox
-                Content="{Binding BackTimer}"
-                Style="{StaticResource MeleeBoxOverlayCustomToggle}"
-                IsChecked="{Binding CurrentPosition, Mode=OneWay}" />
-            <CheckBox
-                Opacity="0"
-                Style="{StaticResource MeleeBoxOverlayCustomToggle}"/>
-
-        </WrapPanel>
+    <StackPanel Margin="5">
+        <Label HorizontalContentAlignment="Center" FontWeight="UltraBold" FontSize="80"
+               Foreground="{Binding MeleePosition.IsPositionCorrectColor}"
+               Content="{Binding MeleePosition.RequiredPositionString}" />
+        <StackPanel>
+            <ProgressBar x:Name = "MeleeDistance" Value = "{Binding MeleePosition.TargetDistance}" Margin = "5" Maximum = "300"
+                         Height = "30" IsIndeterminate = "False" 
+                         BorderThickness="3"
+                         Foreground="{Binding MeleePosition.IsTargetDistanceSafe}"
+                         Width = "220"
+            />
+        </StackPanel>
     </StackPanel>
 </UserControl>

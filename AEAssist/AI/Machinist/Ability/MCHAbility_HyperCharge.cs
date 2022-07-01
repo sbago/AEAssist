@@ -15,6 +15,8 @@ namespace AEAssist.AI.Machinist.Ability
                 return -1;
             if (AIRoot.Instance.CloseBurst)
                 return -2;
+            if (!DataBinding.Instance.UseHeat)
+                return -100;
             if (ActionResourceManager.Machinist.Heat < 50)
                 return -3;
 

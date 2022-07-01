@@ -20,7 +20,7 @@ namespace AEAssist.AI.Dancer.Ability
             if (!PotionHelper.CheckPotion(SettingMgr.GetSetting<GeneralSettings>().DexPotionId))
                 return -6;
         
-            if (SpellsDefine.TechnicalStep.GetSpellEntity().Cooldown.TotalMilliseconds < 5000)
+            if (SpellsDefine.TechnicalStep.CoolDownInGCDs(2))
                 return 0;
 
             return -7;

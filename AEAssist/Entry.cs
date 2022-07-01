@@ -6,6 +6,7 @@ using AEAssist.Define;
 using AEAssist.Gamelog;
 using AEAssist.Helper;
 using AEAssist.Rotations.Core;
+using AEAssist.Utilities.CombatMessages;
 using AEAssist.View;
 using AEAssist.View.OverlayManager;
 using ff14bot.Behavior;
@@ -56,7 +57,7 @@ namespace AEAssist
                 // PotionHelper.DebugAllItems();
                 AIRoot.Instance.Init();
                 AIMgrs.Instance.Init();
-                
+
                 UIHelper.SetToolTipDuration();
                 
                 LogHelper.Info("Initialized!");
@@ -75,6 +76,8 @@ namespace AEAssist
             WorldHelper.CheckZone();
             GamelogManager.Pulse();
             SettingMgr.Instance.AutoSave();
+            CombatMessageManager.UpdateDisplayedMessage();
+            // MeleePosition.Intance.GetPriority();
         }
 
         public void Shutdown()
@@ -121,7 +124,13 @@ namespace AEAssist
 
         public Composite CombatBuffBehavior{ get; } = new TreeSharp.Action();
 
-        public Composite CombatBehavior{ get; } = new TreeSharp.Action();
+        public Composite CombatBehavior{
+            get
+            {
+                return
+                    new ActionRunCoroutine(ctx => RotationManager.Instance.Update());
+            }
+        }
         public Composite PullBuffBehavior{ get; } = new TreeSharp.Action();
         #endregion Behavior Composites
     }

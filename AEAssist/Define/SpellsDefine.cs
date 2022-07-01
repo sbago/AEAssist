@@ -56,7 +56,28 @@ namespace AEAssist.Define
             Windmill,
             RisingWindmill,
             Bladeshower,
-            Bloodshower
+            Bloodshower,
+            
+            //Monk
+            ElixirField,
+            FlintStrike,
+            RisingPhoenix,
+            RiddleofFire,
+            Brotherhood,
+            PerfectBalance,
+            RiddleofWind,
+            Rockbreaker,
+            FourPointFury,
+            ArmOfTheDestroyer,
+            ShadowOfTheDestroyer,
+            FormShift,
+            Meditation,
+            Mantra,
+            
+            //GNB
+            DoubleDown
+            
+            
             
             
             
@@ -513,28 +534,37 @@ namespace AEAssist.Define
         public const uint TrueStrike = 54;
 
         public const uint SnapPunch = 56;
+        public const uint SixSidedStar = 16476;
 
         //public const uint FistsOfEarth = 60;
         public const uint TwinSnakes = 61;
         public const uint Demolish = 66;
 
         public const uint Rockbreaker = 70;
+        public const uint SteelPeak = 25761;
+        public const uint HowlingFist = 25763;
 
         //public const uint FistsOfWind = 73;
         //public const uint ShoulderTackle = 71;
         //public const uint FistsOfFire = 63;
         public const uint Mantra = 65;
+        public const uint Thunderclap = 25762;
         public const uint PerfectBalance = 69;
         public const uint DragonKick = 74;
         public const uint TheForbiddenChakra = 3547;
         public const uint ElixirField = 3545;
+        public const uint FlintStrike = 25882;
+        public const uint RisingPhoenix = 25768;
+        public const uint CelestialRevolution = 25765;
         public const uint RiddleofEarth = 7394;
         public const uint RiddleofFire = 7395;
+        public const uint RiddleofWind = 25766;
         public const uint Brotherhood = 7396;
         public const uint FormShift = 4262;
         public const uint FourPointFury = 16473;
         public const uint Enlightenment = 16474;
         public const uint TornadoKick = 3543;
+        public const uint PhantomRush = 25769;
         public const uint MasterfulBlitz = 25764;
         public const uint ShadowOfTheDestroyer = 25767;
 
@@ -690,7 +720,11 @@ namespace AEAssist.Define
         public const uint HissatsuKaiten = 7494;
         public const uint Ikishoten = 16482;
         public const uint HissatsuGuren = 7496;
+        public const uint HissatsuGyoten = 7492;
+        public const uint HissatsuYaten = 7493;
         public const uint HissatsuSenei = 16481;
+        public const uint Hagakure = 7495;
+        public const uint TsubameGaeshi = 16483;
         public const uint Meditate = 7497;
         public const uint ThirdEye = 7498;
 

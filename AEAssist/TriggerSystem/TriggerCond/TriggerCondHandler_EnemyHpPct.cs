@@ -14,7 +14,7 @@ namespace AEAssist.TriggerSystem.TriggerCond
             }
             else
             {
-                var enemys = TargetMgr.Instance.Enemys;
+                var enemys = TargetMgr.Instance.Units;
                 foreach (var v in enemys.Values)
                 {
                     if (!v.Name.Contains(cond.Name) && v.NpcId.ToString() != cond.Name)

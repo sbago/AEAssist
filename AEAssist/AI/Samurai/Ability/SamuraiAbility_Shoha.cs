@@ -9,6 +9,7 @@ namespace AEAssist.AI.Samurai.Ability
     {
         public int Check(SpellEntity lastSpell)
         {
+            if (!SpellsDefine.Shoha.IsUnlock()) return -1;
             if (ActionResourceManager.Samurai.Meditation == 3)
                 return 0;
 
@@ -17,9 +18,10 @@ namespace AEAssist.AI.Samurai.Ability
 
         public async Task<SpellEntity> Run()
         {
-            var spell = SpellsDefine.Shoha;
+            var spell = SpellsDefine.Shoha.GetSpellEntity();
+            if (spell == null) return null;
             if (await spell.DoAbility())
-                return spell.GetSpellEntity();
+                return spell;
             return null;
         }
     }
